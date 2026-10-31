@@ -1,0 +1,20 @@
+{
+    "signal_id": "sig-685cc1aec4f2bf8d8c2e",
+    "threat_id": "DEMO-VULN-001",
+    "signal_type": "epss_jump",
+    "old_value": 0.04,
+    "new_value": 0.62,
+    "detected_at": "2026-10-31T13:08:42.624952Z",
+    "source": "epss",
+    "details": {
+        "simulated": true,
+        "fixture_file": "data/threats_synthetic.json",
+        "note": "Demo signal created by POST /api/demo/simulate-signal; not a real feed change.",
+        "delta": 0.58,
+        "crossed": true
+    },
+    "is_simulated": true,
+    "threat_title": "[SIMULATED] GridView HMI unauthenticated remote command execution",
+    "severity": "critical",
+    "kev_listed": false
+}

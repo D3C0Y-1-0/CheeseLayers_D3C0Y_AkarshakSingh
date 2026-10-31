@@ -18,14 +18,18 @@ log = logging.getLogger("netrax")
 
 
 @asynccontextmanager
-async def lifespan(_: FastAPI):
+async def lifespan(app: FastAPI):
     init_db()  # also rebuilds Member 2's derived tables if their columns changed -> they come back empty
     with SessionLocal() as s:
         empty = not s.scalar(select(func.count()).select_from(Threat))
     if empty:
         from ingestion.loader import load
         log.warning("empty DB, loading cache: %s", load())
+    from ingestion import scheduler
+    app.state.scheduler = scheduler.start()  # None in DEMO_MODE
     yield
+    if app.state.scheduler:
+        app.state.scheduler.shutdown(wait=False)
 
 
 app = FastAPI(title="NETRA-X API", version="0.1.0", lifespan=lifespan,

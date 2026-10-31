@@ -92,8 +92,9 @@ METHODOLOGY = [
     "epss: FIRST EPSS score on past dates (historical API), sampled at kev_date_added minus each of `config.epss_offsets_days`; "
     "fires at the earliest sampled date with EPSS >= `config.epss_threshold`.",
     "exploitdb: earliest Exploit-DB date_published for an exploit listing the CVE.",
-    "github_poc: earliest created_at of a proof-of-concept repo listed by nomi-sec/PoC-in-GitHub; ignored if the repo is older "
-    "than the CVE's NVD publication minus `config.poc_max_days_before_publication` (a reused repo, not an early PoC).",
+    "github_poc: earliest created_at of a proof-of-concept repo listed by nomi-sec/PoC-in-GitHub that passes the quality "
+    "filter: >= 1 non-README code file in its git tree AND created no earlier than the CVE's NVD publication minus "
+    "`config.poc_max_days_before_publication` (older = a reused repo, not an early PoC).",
     "certin: earliest CERT-In advisory / vulnerability note (Indian date) mentioning the CVE.",
     "flagged_at = earliest signal; lead_days = kev_date_added - flagged_at. Median / p75 are over flagged CVEs only (nearest-rank p75).",
     "Cohorts: new_cves = NVD-published at most `config.new_cve_max_age_days` before the KEV date; old_cves = older. "
@@ -137,7 +138,7 @@ def lead_time(days: int = Query(90, ge=1, le=LEAD_TIME["max_window_days"], descr
                      .order_by(Threat.kev_date_added.desc())).all()
     epss_hist = load_cache("epss_history") or {}
     exploit = load_cache("exploit_signals") or {}
-    poc = load_cache("github_poc_dates") or {}
+    poc = load_cache("github_poc_quality") or {}  # quality-filtered: real code, not older than the CVE
     certin = _certin_dates(db)
     thr = LEAD_TIME["epss_threshold"]
     names = LEAD_TIME["signals"]
@@ -148,7 +149,8 @@ def lead_time(days: int = Query(90, ge=1, le=LEAD_TIME["max_window_days"], descr
         h = epss_hist.get(cve) or {}
         hits = sorted(d for d, v in h.items() if v is not None and v >= thr and date.fromisoformat(d) < kd)
         ed = (exploit.get(cve) or {}).get("exploitdb_date")
-        pd = poc.get(cve)
+        q = poc.get(cve)
+        pd = q["first_ok_created_at"] if q and q.get("ok") else None
         # Earliest credible PoC date: NVD publication minus the grace period (CVE year start if NVD date unknown).
         pub = t.nvd_published_at.date() if t.nvd_published_at else date(int(cve.split("-")[1]), 1, 1)
         poc_floor = pub - timedelta(days=LEAD_TIME["poc_max_days_before_publication"])
@@ -159,7 +161,7 @@ def lead_time(days: int = Query(90, ge=1, le=LEAD_TIME["max_window_days"], descr
             "github_poc": SignalHit(date=pd[:10]) if pd_ok else None,
             "certin": SignalHit(date=certin[cve][0], detail=certin[cve][1]) if cve in certin and certin[cve][0] < kd else None,
         }
-        avail = {"epss": bool(h), "exploitdb": bool(ed), "github_poc": bool(pd), "certin": cve in certin}
+        avail = {"epss": bool(h), "exploitdb": bool(ed), "github_poc": q is not None, "certin": cve in certin}
         fired = {n: s.date for n, s in sig.items() if s}
         flagged = min(fired.values(), default=None)
         for n in names:

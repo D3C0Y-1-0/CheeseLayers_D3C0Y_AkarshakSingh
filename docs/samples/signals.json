@@ -1,0 +1,90 @@
+{
+    "items": [
+        {
+            "signal_id": "sig-0df2f77ad64ec7cc6d8d",
+            "threat_id": "CVE-2023-22515",
+            "signal_type": "new_certin_advisory",
+            "old_value": null,
+            "new_value": "SIMULATED-CIAD-2026-2122",
+            "detected_at": "2026-10-31T13:08:42.704063Z",
+            "source": "certin",
+            "details": {
+                "simulated": true,
+                "fixture_file": "data/demo_cves.json",
+                "note": "Demo signal created by POST /api/demo/simulate-signal; not a real feed change.",
+                "cve_ids": [
+                    "CVE-2023-22515"
+                ],
+                "severity": "critical",
+                "title": "[SIMULATED] CERT-In advisory on CVE-2023-22515: Atlassian Confluence Data Center and Server Broken Access Control Vulnerability"
+            },
+            "is_simulated": true,
+            "threat_title": "CVE-2023-22515: Atlassian Confluence Data Center and Server Broken Access Control Vulnerability",
+            "severity": "critical",
+            "kev_listed": true
+        },
+        {
+            "signal_id": "sig-8010381152256b45f9e3",
+            "threat_id": "DEMO-VULN-002",
+            "signal_type": "new_kev",
+            "old_value": false,
+            "new_value": true,
+            "detected_at": "2026-10-31T13:08:42.690003Z",
+            "source": "kev",
+            "details": {
+                "simulated": true,
+                "fixture_file": "data/threats_synthetic.json",
+                "note": "Demo signal created by POST /api/demo/simulate-signal; not a real feed change.",
+                "cve_id": null,
+                "kev_date_added": "2026-10-31",
+                "title": "[SIMULATED] CoreLink Banking Gateway authentication bypass"
+            },
+            "is_simulated": true,
+            "threat_title": "[SIMULATED] CoreLink Banking Gateway authentication bypass",
+            "severity": "high",
+            "kev_listed": true
+        },
+        {
+            "signal_id": "sig-3ef0657af6c6c1e30c6f",
+            "threat_id": "CVE-2024-21762",
+            "signal_type": "epss_jump",
+            "old_value": 0.49589,
+            "new_value": 0.84589,
+            "detected_at": "2026-10-31T13:08:42.656380Z",
+            "source": "epss",
+            "details": {
+                "simulated": true,
+                "fixture_file": "data/demo_cves.json",
+                "note": "Demo signal created by POST /api/demo/simulate-signal; not a real feed change.",
+                "delta": 0.35,
+                "crossed": true
+            },
+            "is_simulated": true,
+            "threat_title": "CVE-2024-21762: Fortinet FortiOS Out-of-Bound Write Vulnerability",
+            "severity": "critical",
+            "kev_listed": true
+        },
+        {
+            "signal_id": "sig-685cc1aec4f2bf8d8c2e",
+            "threat_id": "DEMO-VULN-001",
+            "signal_type": "epss_jump",
+            "old_value": 0.04,
+            "new_value": 0.62,
+            "detected_at": "2026-10-31T13:08:42.624952Z",
+            "source": "epss",
+            "details": {
+                "simulated": true,
+                "fixture_file": "data/threats_synthetic.json",
+                "note": "Demo signal created by POST /api/demo/simulate-signal; not a real feed change.",
+                "delta": 0.58,
+                "crossed": true
+            },
+            "is_simulated": true,
+            "threat_title": "[SIMULATED] GridView HMI unauthenticated remote command execution",
+            "severity": "critical",
+            "kev_listed": false
+        }
+    ],
+    "count": 4,
+    "newest_detected_at": "2026-10-31T13:08:42.704063Z"
+}

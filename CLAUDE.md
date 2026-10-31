@@ -98,8 +98,8 @@ docs/              # pitch notes, architecture diagram, scoring explanation
 
 **Rules for every collector:** timeout + retry with backoff · respect rate limits · save raw response to `data/raw/` · write normalised output to `data/cache/<source>.json` · log counts · never crash the pipeline if one source fails. `DEMO_MODE=true` → read only from `data/cache/` (no network).
 
-## 8. Normalised schemas → **`data/contracts.json` (v1.1) is the source of truth**
-Field names, types and enums for `threat`, `ioc`, `asset`, `event`, `alert`, `window` live in `data/contracts.json`
+## 8. Normalised schemas → **`data/contracts.json` (v1.2) is the source of truth**
+Field names, types and enums for `threat`, `ioc`, `threat_signal`, `asset`, `event`, `alert`, `window` live in `data/contracts.json`
 (check fixtures with `.venv/bin/python data/validate.py`). Don't restate them here: change the contract first,
 tell the team, then change code. Key rule: **`null` = unknown/unverified, never 0/false.**
 
@@ -108,6 +108,7 @@ Every collector builds these directly (no post-conversion). After a schema chang
 `python -m collectors.run_all --from-raw`: it re-parses `backend/data/raw/*` with each collector's own parser.
 §9 below still says `in_kev`; read it as **`kev_listed`**.
 
+v1.2 (31 Oct): added `threat_signal` (early-warning changes, see docs/API.md; Member 3 hook = `on_new_threat(threat_id, signal_type)`).
 v1.1 changes (31 Oct): added entity `ioc`; made `type`, `cve_ids[]`, `tags[]` and `affected_configurations[].versions_text`
 official threat fields; split dates (`published_at` = original publication: NVD's date for CVEs, advisory/pulse date
 otherwise · `nvd_published_at` · `kev_date_added` (YYYY-MM-DD) · `retrieved_at` = when we fetched it); added `raw_refs[]`

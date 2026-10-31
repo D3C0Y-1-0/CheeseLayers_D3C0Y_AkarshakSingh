@@ -71,3 +71,29 @@ class SourceStatus(Base):
     status: Mapped[str] = mapped_column(String)  # ok | stale | failed | skipped | cache
     error: Mapped[str | None] = mapped_column(Text)
     record_count: Mapped[int | None] = mapped_column(Integer)
+
+
+class ExploitEvidence(Base):
+    """Per-CVE public-exploit evidence (derived from caches) so change detection can diff it against the last load."""
+    __tablename__ = "exploit_evidence"
+    cve_id: Mapped[str] = mapped_column(String, primary_key=True)
+    exploitdb: Mapped[bool] = mapped_column(Boolean, default=False)
+    exploitdb_date: Mapped[str | None] = mapped_column(String)
+    github_poc_listed: Mapped[bool] = mapped_column(Boolean, default=False)  # PoC-in-GitHub lists any repo
+    github_poc_ok: Mapped[bool | None] = mapped_column(Boolean)  # quality-filtered PoC; None = not checked
+    github_poc_repo: Mapped[str | None] = mapped_column(String)
+    github_poc_date: Mapped[str | None] = mapped_column(String)
+
+
+class ThreatSignal(Base):
+    """An early-warning change seen on a threat (contracts.json `threat_signal`). History: never auto-dropped."""
+    __tablename__ = "threat_signals"
+    signal_id: Mapped[str] = mapped_column(String, primary_key=True)  # deterministic hash -> same change, same id
+    threat_id: Mapped[str] = mapped_column(String, index=True)
+    signal_type: Mapped[str] = mapped_column(String, index=True)
+    old_value: Mapped[object | None] = mapped_column(JSON)
+    new_value: Mapped[object | None] = mapped_column(JSON)
+    detected_at: Mapped[object] = mapped_column(UTCDateTime, index=True)
+    source: Mapped[str] = mapped_column(String)
+    details: Mapped[dict] = mapped_column(JSON, default=dict)
+    is_simulated: Mapped[bool] = mapped_column(Boolean, default=False, index=True)

@@ -1,0 +1,20 @@
+{
+    "signal_id": "sig-3ef0657af6c6c1e30c6f",
+    "threat_id": "CVE-2024-21762",
+    "signal_type": "epss_jump",
+    "old_value": 0.49589,
+    "new_value": 0.84589,
+    "detected_at": "2026-10-31T13:08:42.656380Z",
+    "source": "epss",
+    "details": {
+        "simulated": true,
+        "fixture_file": "data/demo_cves.json",
+        "note": "Demo signal created by POST /api/demo/simulate-signal; not a real feed change.",
+        "delta": 0.35,
+        "crossed": true
+    },
+    "is_simulated": true,
+    "threat_title": "CVE-2024-21762: Fortinet FortiOS Out-of-Bound Write Vulnerability",
+    "severity": "critical",
+    "kev_listed": true
+}

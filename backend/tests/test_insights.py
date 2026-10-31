@@ -42,7 +42,7 @@ def test_lead_time_no_lookahead(client, monkeypatch):
     poc_day = (date.fromisoformat(kd) - timedelta(days=5)).isoformat()
     fake = {"epss_history": {cve: {kd: 0.99, "2000-01-01": 0.0}},  # high EPSS only ON the KEV day -> must not count
             "exploit_signals": {cve: {"exploitdb_date": "2099-01-01"}},  # after KEV -> must not count
-            "github_poc_dates": {cve: f"{poc_day}T00:00:00Z"}}  # 5 days before KEV -> counts
+            "github_poc_quality": {cve: {"ok": True, "first_ok_created_at": f"{poc_day}T00:00:00Z"}}}  # 5 days before KEV -> counts
     monkeypatch.setattr("app.insights.load_cache", lambda name: fake.get(name, {}))
     got = next(x for x in client.get("/api/insights/lead-time", params={"days": 90}).json()["rows"] if x["cve_id"] == cve)
     assert got["signals"]["epss"] is None and got["signals"]["exploitdb"] is None
@@ -54,7 +54,7 @@ def test_lead_time_ignores_poc_repo_older_than_cve(client, monkeypatch):
     row = next(r for r in rows if r["published_at"])
     cve, pub = row["cve_id"], date.fromisoformat(row["published_at"][:10])
     for repo_created, counted in ((date(pub.year - 3, 1, 1), False), (pub, True)):
-        fake = {"github_poc_dates": {cve: f"{repo_created}T00:00:00Z"}}
+        fake = {"github_poc_quality": {cve: {"ok": True, "first_ok_created_at": f"{repo_created}T00:00:00Z"}}}
         monkeypatch.setattr("app.insights.load_cache", lambda name, f=fake: f.get(name, {}))
         got = next(x for x in client.get("/api/insights/lead-time", params={"days": 90}).json()["rows"] if x["cve_id"] == cve)
         assert (got["signals"]["github_poc"] is not None) is (counted and repo_created < date.fromisoformat(got["kev_date_added"]))

@@ -1,6 +1,7 @@
 {
     "status": "ok",
     "demo_mode": true,
-    "threats": 19635,
-    "time": "2026-10-31T12:32:40.372187Z"
+    "threats": 19638,
+    "time": "2026-10-31T13:08:48.890461Z",
+    "scheduler": null
 }

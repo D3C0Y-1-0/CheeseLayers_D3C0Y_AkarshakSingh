@@ -29,6 +29,8 @@ def check(v, spec: dict, path: str) -> None:
             errors.append(f"{path}: null not allowed")
         return
     t = spec["type"]
+    if t == "any":
+        return
     ok = {"string": isinstance(v, str), "datetime": isinstance(v, str), "date": isinstance(v, str), "ipv4": isinstance(v, str), "enum": isinstance(v, str),
           "integer": isinstance(v, int) and not isinstance(v, bool),
           "number": isinstance(v, (int, float)) and not isinstance(v, bool),

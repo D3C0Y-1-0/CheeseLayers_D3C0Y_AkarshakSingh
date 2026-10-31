@@ -37,7 +37,7 @@ class UTCDateTime(TypeDecorator):
 
 # Tables owned by Member 2 hold only data derived from backend/data/cache (+ source_status, rewritten every run),
 # so when their columns change we drop and rebuild them instead of writing migrations. Never touches other tables.
-DERIVED = ("threats", "iocs", "raw_payloads", "source_status")
+DERIVED = ("threats", "iocs", "raw_payloads", "source_status", "exploit_evidence")  # NOT threat_signals (history)
 
 
 def init_db() -> None:
@@ -48,7 +48,7 @@ def init_db() -> None:
     stale = [t for t in DERIVED if insp.has_table(t)
              and {c["name"] for c in insp.get_columns(t)} != set(Base.metadata.tables[t].columns.keys())]
     if stale:
-        Base.metadata.drop_all(engine, tables=[Base.metadata.tables[t] for t in DERIVED if insp.has_table(t)])
+        Base.metadata.drop_all(engine, tables=[Base.metadata.tables[t] for t in stale])  # only the changed ones
     Base.metadata.create_all(engine)
 
 

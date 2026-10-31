@@ -2,14 +2,14 @@
     "window_days": 90,
     "as_of": "2026-10-31",
     "population": 110,
-    "flagged_before_kev": 44,
-    "pct_flagged_before_kev": 40.0,
-    "median_lead_days": 32.5,
-    "p75_lead_days": 309.0,
+    "flagged_before_kev": 43,
+    "pct_flagged_before_kev": 39.1,
+    "median_lead_days": 40.0,
+    "p75_lead_days": 339.0,
     "per_signal": {
         "epss": {
             "fired_before_kev": 21,
-            "earliest_signal": 1,
+            "earliest_signal": 2,
             "data_available": 110
         },
         "exploitdb": {
@@ -18,8 +18,8 @@
             "data_available": 10
         },
         "github_poc": {
-            "fired_before_kev": 41,
-            "earliest_signal": 39,
+            "fired_before_kev": 40,
+            "earliest_signal": 37,
             "data_available": 84
         },
         "certin": {
@@ -31,10 +31,10 @@
     "cohorts": {
         "new_cves": {
             "population": 97,
-            "flagged_before_kev": 33,
-            "pct_flagged_before_kev": 34.0,
-            "median_lead_days": 9.0,
-            "p75_lead_days": 55.0
+            "flagged_before_kev": 32,
+            "pct_flagged_before_kev": 33.0,
+            "median_lead_days": 13.0,
+            "p75_lead_days": 64.0
         },
         "old_cves": {
             "population": 12,
@@ -77,7 +77,7 @@
         "Only signals dated strictly BEFORE kev_date_added count (no look-ahead). A signal on the KEV day itself does not count.",
         "epss: FIRST EPSS score on past dates (historical API), sampled at kev_date_added minus each of `config.epss_offsets_days`; fires at the earliest sampled date with EPSS >= `config.epss_threshold`.",
         "exploitdb: earliest Exploit-DB date_published for an exploit listing the CVE.",
-        "github_poc: earliest created_at of a proof-of-concept repo listed by nomi-sec/PoC-in-GitHub; ignored if the repo is older than the CVE's NVD publication minus `config.poc_max_days_before_publication` (a reused repo, not an early PoC).",
+        "github_poc: earliest created_at of a proof-of-concept repo listed by nomi-sec/PoC-in-GitHub that passes the quality filter: >= 1 non-README code file in its git tree AND created no earlier than the CVE's NVD publication minus `config.poc_max_days_before_publication` (older = a reused repo, not an early PoC).",
         "certin: earliest CERT-In advisory / vulnerability note (Indian date) mentioning the CVE.",
         "flagged_at = earliest signal; lead_days = kev_date_added - flagged_at. Median / p75 are over flagged CVEs only (nearest-rank p75).",
         "Cohorts: new_cves = NVD-published at most `config.new_cve_max_age_days` before the KEV date; old_cves = older. Headline numbers mix both; use cohorts.new_cves for the early-warning claim."
@@ -485,6 +485,26 @@
             }
         },
         {
+            "cve_id": "CVE-2026-48710",
+            "title": "CVE-2026-48710: Kludex Starlette HTTP Request/Response Smuggling Vulnerability",
+            "kev_date_added": "2026-09-02",
+            "published_at": "2026-05-26T22:16:44.020000Z",
+            "flagged_at": "2026-05-27",
+            "lead_days": 98,
+            "first_signal": "github_poc",
+            "cve_age_at_kev_days": 99,
+            "cohort": "new_cves",
+            "signals": {
+                "epss": null,
+                "exploitdb": null,
+                "github_poc": {
+                    "date": "2026-05-27",
+                    "detail": null
+                },
+                "certin": null
+            }
+        },
+        {
             "cve_id": "CVE-2026-48356",
             "title": "CVE-2026-48356: Adobe Commerce and Magento Unrestricted Upload of File with Dangerous Type Vulnerability",
             "kev_date_added": "2026-10-27",
@@ -575,9 +595,9 @@
             "title": "CVE-2026-8037: Progress LoadMaster Command Injection Vulnerability",
             "kev_date_added": "2026-08-07",
             "published_at": "2026-06-04T14:16:45.177000Z",
-            "flagged_at": "2026-06-30",
-            "lead_days": 38,
-            "first_signal": "github_poc",
+            "flagged_at": "2026-07-08",
+            "lead_days": 30,
+            "first_signal": "epss",
             "cve_age_at_kev_days": 64,
             "cohort": "new_cves",
             "signals": {
@@ -587,7 +607,7 @@
                 },
                 "exploitdb": null,
                 "github_poc": {
-                    "date": "2026-06-30",
+                    "date": "2026-07-09",
                     "detail": null
                 },
                 "certin": null
@@ -671,6 +691,26 @@
                 "exploitdb": null,
                 "github_poc": {
                     "date": "2026-07-21",
+                    "detail": null
+                },
+                "certin": null
+            }
+        },
+        {
+            "cve_id": "CVE-2026-8452",
+            "title": "CVE-2026-8452: Citrix NetScaler ADC and NetScaler Gateway Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability",
+            "kev_date_added": "2026-08-26",
+            "published_at": "2026-06-30T13:19:33.450000Z",
+            "flagged_at": "2026-08-14",
+            "lead_days": 12,
+            "first_signal": "github_poc",
+            "cve_age_at_kev_days": 57,
+            "cohort": "new_cves",
+            "signals": {
+                "epss": null,
+                "exploitdb": null,
+                "github_poc": {
+                    "date": "2026-08-14",
                     "detail": null
                 },
                 "certin": null
@@ -763,26 +803,6 @@
                     "date": "2026-10-22",
                     "detail": "CIAD-2026-0052"
                 }
-            }
-        },
-        {
-            "cve_id": "CVE-2026-5430",
-            "title": "CVE-2026-5430: WSO2 Multiple Products Path Traversal Vulnerability ",
-            "kev_date_added": "2026-09-24",
-            "published_at": "2026-08-06T08:16:33.240000Z",
-            "flagged_at": "2026-09-16",
-            "lead_days": 8,
-            "first_signal": "github_poc",
-            "cve_age_at_kev_days": 49,
-            "cohort": "new_cves",
-            "signals": {
-                "epss": null,
-                "exploitdb": null,
-                "github_poc": {
-                    "date": "2026-09-16",
-                    "detail": null
-                },
-                "certin": null
             }
         },
         {
@@ -975,26 +995,6 @@
             }
         },
         {
-            "cve_id": "CVE-2026-64849",
-            "title": "CVE-2026-64849: MLflow Server-Side Request Forgery Vulnerability",
-            "kev_date_added": "2026-08-19",
-            "published_at": "2026-08-17T22:17:23.580000Z",
-            "flagged_at": "2026-08-18",
-            "lead_days": 1,
-            "first_signal": "github_poc",
-            "cve_age_at_kev_days": 2,
-            "cohort": "new_cves",
-            "signals": {
-                "epss": null,
-                "exploitdb": null,
-                "github_poc": {
-                    "date": "2026-08-18",
-                    "detail": null
-                },
-                "certin": null
-            }
-        },
-        {
             "cve_id": "CVE-2026-75650",
             "title": "CVE-2026-75650: Adobe Commerce and Magento Improper Neutralization of Special Elements Used in a Template Engine Vulnerability",
             "kev_date_added": "2026-09-08",
@@ -1029,26 +1029,6 @@
                 "exploitdb": null,
                 "github_poc": {
                     "date": "2026-09-01",
-                    "detail": null
-                },
-                "certin": null
-            }
-        },
-        {
-            "cve_id": "CVE-2026-86218",
-            "title": "CVE-2026-86218: N-able N-central Static Code Injection Vulnerability",
-            "kev_date_added": "2026-09-08",
-            "published_at": "2026-09-06T03:17:17.373000Z",
-            "flagged_at": "2026-09-07",
-            "lead_days": 1,
-            "first_signal": "github_poc",
-            "cve_age_at_kev_days": 2,
-            "cohort": "new_cves",
-            "signals": {
-                "epss": null,
-                "exploitdb": null,
-                "github_poc": {
-                    "date": "2026-09-07",
                     "detail": null
                 },
                 "certin": null
@@ -1429,14 +1409,14 @@
             }
         },
         {
-            "cve_id": "CVE-2026-48710",
-            "title": "CVE-2026-48710: Kludex Starlette HTTP Request/Response Smuggling Vulnerability",
-            "kev_date_added": "2026-09-02",
-            "published_at": "2026-05-26T22:16:44.020000Z",
+            "cve_id": "CVE-2026-53266",
+            "title": "CVE-2026-53266: Linux Kernel Out-of-Bounds Write Vulnerability",
+            "kev_date_added": "2026-09-18",
+            "published_at": "2026-06-25T09:16:44.643000Z",
             "flagged_at": null,
             "lead_days": null,
             "first_signal": null,
-            "cve_age_at_kev_days": 99,
+            "cve_age_at_kev_days": 85,
             "cohort": "new_cves",
             "signals": {
                 "epss": null,
@@ -1446,14 +1426,14 @@
             }
         },
         {
-            "cve_id": "CVE-2026-53266",
-            "title": "CVE-2026-53266: Linux Kernel Out-of-Bounds Write Vulnerability",
-            "kev_date_added": "2026-09-18",
-            "published_at": "2026-06-25T09:16:44.643000Z",
+            "cve_id": "CVE-2026-5430",
+            "title": "CVE-2026-5430: WSO2 Multiple Products Path Traversal Vulnerability ",
+            "kev_date_added": "2026-09-24",
+            "published_at": "2026-08-06T08:16:33.240000Z",
             "flagged_at": null,
             "lead_days": null,
             "first_signal": null,
-            "cve_age_at_kev_days": 85,
+            "cve_age_at_kev_days": 49,
             "cohort": "new_cves",
             "signals": {
                 "epss": null,
@@ -1488,6 +1468,23 @@
             "lead_days": null,
             "first_signal": null,
             "cve_age_at_kev_days": 56,
+            "cohort": "new_cves",
+            "signals": {
+                "epss": null,
+                "exploitdb": null,
+                "github_poc": null,
+                "certin": null
+            }
+        },
+        {
+            "cve_id": "CVE-2026-64849",
+            "title": "CVE-2026-64849: MLflow Server-Side Request Forgery Vulnerability",
+            "kev_date_added": "2026-08-19",
+            "published_at": "2026-08-17T22:17:23.580000Z",
+            "flagged_at": null,
+            "lead_days": null,
+            "first_signal": null,
+            "cve_age_at_kev_days": 2,
             "cohort": "new_cves",
             "signals": {
                 "epss": null,
@@ -1837,23 +1834,6 @@
             }
         },
         {
-            "cve_id": "CVE-2026-8452",
-            "title": "CVE-2026-8452: Citrix NetScaler ADC and NetScaler Gateway Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability",
-            "kev_date_added": "2026-08-26",
-            "published_at": "2026-06-30T13:19:33.450000Z",
-            "flagged_at": null,
-            "lead_days": null,
-            "first_signal": null,
-            "cve_age_at_kev_days": 57,
-            "cohort": "new_cves",
-            "signals": {
-                "epss": null,
-                "exploitdb": null,
-                "github_poc": null,
-                "certin": null
-            }
-        },
-        {
             "cve_id": "CVE-2026-84869",
             "title": "CVE-2026-84869: ConnectWise ScreenConnect Improper Privilege Management and Missing Authorization Vulnerability",
             "kev_date_added": "2026-09-11",
@@ -1947,6 +1927,23 @@
             "lead_days": null,
             "first_signal": null,
             "cve_age_at_kev_days": 5,
+            "cohort": "new_cves",
+            "signals": {
+                "epss": null,
+                "exploitdb": null,
+                "github_poc": null,
+                "certin": null
+            }
+        },
+        {
+            "cve_id": "CVE-2026-86218",
+            "title": "CVE-2026-86218: N-able N-central Static Code Injection Vulnerability",
+            "kev_date_added": "2026-09-08",
+            "published_at": "2026-09-06T03:17:17.373000Z",
+            "flagged_at": null,
+            "lead_days": null,
+            "first_signal": null,
+            "cve_age_at_kev_days": 2,
             "cohort": "new_cves",
             "signals": {
                 "epss": null,

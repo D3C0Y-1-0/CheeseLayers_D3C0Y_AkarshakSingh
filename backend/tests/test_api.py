@@ -90,11 +90,11 @@ def test_inject_rejects_malformed(client):
 @pytest.mark.parametrize("fid,simulated", [("CVE-2024-21762", False), ("DEMO-VULN-001", True)])
 def test_inject_tops_feed(client, fid, simulated, monkeypatch):
     called = []
-    monkeypatch.setattr("app.hooks.on_new_threat", called.append)
+    monkeypatch.setattr("app.hooks.on_new_threat", lambda tid, typ: called.append((tid, typ)))
     before = client.get("/api/overview").json()["threats_total"]
     r = client.post("/api/demo/inject-cve", json={"fixture_id": fid})
     assert r.status_code == 200, r.text
-    assert called == [fid] and r.json()["injected"]["is_simulated"] is simulated
+    assert called == [(fid, "demo_inject")] and r.json()["injected"]["is_simulated"] is simulated
     top = client.get("/api/threats", params={"page_size": 1}).json()["items"][0]
     assert top["threat_id"] == fid  # "just arrived"
     assert client.get("/api/overview").json()["threats_total"] == before  # refresh, not a duplicate

@@ -1,5 +1,5 @@
 {
-  "contract_version": "1.1.0",
+  "contract_version": "1.2.0",
   "product": "NETRA-X",
   "description": "Single source of truth for shared field names, types and enums across all 4 members. Change a field here first, tell the team, then change code. data/validate.py checks every fixture against this file.",
   "rules": [
@@ -22,7 +22,8 @@
     "enum": "string from the listed values",
     "array": "JSON array; 'items' describes each element",
     "object": "JSON object; 'fields' describes required keys (none listed = free-form)",
-    "date": "YYYY-MM-DD string (calendar date, no time)"
+    "date": "YYYY-MM-DD string (calendar date, no time)",
+    "any": "any JSON value (string, number, boolean, object, array) or null"
   },
   "entities": {
     "threat": {
@@ -283,6 +284,62 @@
         "raw_ref": {
           "type": "string",
           "nullable": true
+        },
+        "is_simulated": {
+          "type": "boolean",
+          "nullable": false
+        }
+      }
+    },
+    "threat_signal": {
+      "file": "none (table threat_signals; GET /api/signals)",
+      "id_field": "signal_id",
+      "description": "An early-warning change on a threat, emitted by ingestion/changes.py (or simulated for the demo). Each one fires hooks.on_new_threat(threat_id, signal_type).",
+      "fields": {
+        "signal_id": {
+          "type": "string",
+          "nullable": false,
+          "description": "Deterministic hash of (threat_id, signal_type, old_value, new_value): the same change never gets two ids."
+        },
+        "threat_id": {
+          "type": "string",
+          "nullable": false,
+          "description": "threats.threat_id (for new_certin_advisory: the advisory)."
+        },
+        "signal_type": {
+          "type": "enum",
+          "nullable": false,
+          "enum": [
+            "new_kev",
+            "epss_jump",
+            "new_public_exploit",
+            "new_certin_advisory",
+            "new_critical_cve"
+          ]
+        },
+        "old_value": {
+          "type": "any",
+          "nullable": true,
+          "description": "Value before the change; null = unknown / not present."
+        },
+        "new_value": {
+          "type": "any",
+          "nullable": true
+        },
+        "detected_at": {
+          "type": "datetime",
+          "nullable": false,
+          "description": "When NETRA-X noticed the change (not when it happened upstream)."
+        },
+        "source": {
+          "type": "string",
+          "nullable": false,
+          "description": "kev | epss | exploitdb | github_poc | certin | nvd"
+        },
+        "details": {
+          "type": "object",
+          "nullable": false,
+          "description": "Type-specific context, e.g. cve_ids for a CERT-In advisory, delta for epss_jump. details.simulated=true for demo signals."
         },
         "is_simulated": {
           "type": "boolean",

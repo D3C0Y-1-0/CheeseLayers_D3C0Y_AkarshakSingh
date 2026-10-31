@@ -1,0 +1,19 @@
+{
+    "deleted_simulated_signals": 4,
+    "before": {
+        "threats": 19638,
+        "iocs": 27496,
+        "raw_payloads": 66,
+        "source_status": 15,
+        "exploit_evidence": 2420,
+        "threat_signals": 4
+    },
+    "after": {
+        "threats": 19638,
+        "iocs": 27496,
+        "raw_payloads": 66,
+        "source_status": 15,
+        "exploit_evidence": 2420,
+        "threat_signals": 0
+    }
+}

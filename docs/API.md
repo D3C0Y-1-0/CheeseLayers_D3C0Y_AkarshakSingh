@@ -1,4 +1,4 @@
-# NETRA-X API: Member 2 endpoints (feeds, health, demo, insights, STIX export)
+# NETRA-X API: Member 2 endpoints (feeds, signals, health, demo, insights, STIX export)
 
 Base URL `http://localhost:8000` · interactive docs at `/docs` (OpenAPI at `/openapi.json`) · CORS allows `http://localhost:5173`.
 Field names follow **`data/contracts.json`** (entity `threat`). Example responses (real output) are in `docs/samples/*.json`.
@@ -16,6 +16,8 @@ DEMO_MODE=true .venv/bin/uvicorn app.main:app --port 8000
 .venv/bin/python -m pytest tests -q
 ```
 If the DB is empty, the server loads the cache on startup, so a fresh clone works with no network.
+Without DEMO_MODE the server also runs the **feed scheduler** in-process (see *Scheduler* below). With `DEMO_MODE=true`
+the scheduler is off: no network at all.
 
 ## Threat object (`ThreatItem`) — `data/contracts.json` v1.1 entity `threat`
 `threat_id, cve_id, source, title, description, cvss, cvss_version, severity, epss, epss_percentile, kev_listed,
@@ -37,9 +39,10 @@ IOCs follow the contract entity `ioc`.
 ---
 
 ### `GET /health`
-Liveness check, plus whether we're running offline. Sample: `samples/health.json`
+Liveness check, whether we're running offline, and the scheduler's next runs (`null` in DEMO_MODE). Sample: `samples/health.json`
 ```json
-{"status": "ok", "demo_mode": true, "threats": 19643, "time": "2026-10-31T11:54:32.883336Z"}
+{"status": "ok", "demo_mode": true, "threats": 19635, "time": "2026-10-31T11:54:32.883336Z", "scheduler": null}
+// live mode: "scheduler": [{"id": "kev", "every_hours": 1.0, "next_run_time": "2026-10-31T14:02:00+00:00"}, ...]
 ```
 
 ### `GET /api/threats`
@@ -110,6 +113,99 @@ To reset the demo, run `python -m ingestion.loader`. That restores the cached ve
 
 ---
 
+## Early-warning signals (`ingestion/changes.py`)
+Every ingest (scheduled job, manual `run_all`) diffs the new data against the DB as it was and stores a
+**ThreatSignal** (contracts.json `threat_signal`) per change:
+
+| `signal_type` | Fires when | `old_value → new_value` | `source` |
+|---|---|---|---|
+| `new_kev` | a CVE is newly KEV-listed | `false`/`null` → `true` | kev |
+| `epss_jump` | EPSS rose by ≥ 0.2 (absolute), or crossed 0.5 upwards. `null` before or after never counts. | old → new score | epss |
+| `new_public_exploit` | a new Exploit-DB entry, or a GitHub PoC that **passes the quality filter**, appears | `null` → `{source, date / repo}` | exploitdb · github_poc |
+| `new_certin_advisory` | a new CERT-In advisory or vulnerability note. `details.cve_ids` = the CVEs it mentions, `details.kev_cves` = those in KEV | `null` → advisory id | certin |
+| `new_critical_cve` | a CVE published in the last 14 days gets CVSS ≥ 9.0 (new, or newly scored) | old → new CVSS | nvd |
+
+Thresholds are in one config (`changes.SIGNALS`), echoed by `/api/signals/summary`.
+- **Idempotent:** `signal_id` = a hash of (threat_id, type, old, new). Re-running an ingest, or the same change happening
+  again, never creates a second signal.
+- **Baseline:** the very first load into an empty DB is a baseline with no signals (no flood of "new" KEV entries).
+- Demo signals (`simulate-signal`) are `is_simulated: true` with `details.simulated: true`.
+
+### `GET /api/signals?since=&type=&simulated=&limit=50`
+Newest first. **The frontend polls this:** keep the response's `newest_detected_at`, then call
+`?since=<that>` to get only newer signals. `type` = csv of the types above (anything else → 422). `limit` ≤ 500.
+Sample: `samples/signals.json`
+```json
+{"items": [{"signal_id": "sig-…", "threat_id": "CVE-2024-21762", "signal_type": "epss_jump", "old_value": 0.49, "new_value": 0.84,
+            "detected_at": "…", "source": "epss", "details": {"delta": 0.35, "crossed": true}, "is_simulated": false,
+            "threat_title": "CVE-2024-21762: Fortinet FortiOS …", "severity": "critical", "kev_listed": true}],
+ "count": 1, "newest_detected_at": "…"}
+```
+
+### `GET /api/signals/summary`
+Counts by type for the last 24 h and 7 days (dashboard tiles). Sample: `samples/signals_summary.json`
+```json
+{"last_24h": {"new_kev": 1, "epss_jump": 3, "new_public_exploit": 0, "new_certin_advisory": 2, "new_critical_cve": 5},
+ "last_7d": {...}, "total": 11, "simulated_last_24h": 0, "latest_detected_at": "…",
+ "thresholds": {"epss_jump_abs": 0.2, "epss_cross": 0.5, "critical_cvss": 9.0, "critical_max_age_days": 14}}
+```
+
+### `POST /api/demo/simulate-signal`
+Body: `{"fixture_id": "DEMO-VULN-001", "signal_type": "epss_jump"}`. Same allowlist as `inject-cve` (a non-allowlisted
+fixture → 400; an unknown `signal_type` → 422). It creates a realistic signal, stores it, fires
+`on_new_threat(threat_id, signal_type)`, and returns the signal (same shape as `/api/signals` items).
+- **Real KEV fixtures are never altered.** The signal ends at their real current value (e.g. EPSS 0.49 → real 0.84).
+- **Synthetic `DEMO-VULN-*` rows are updated to match the signal**, so the dashboard stays consistent: EPSS → 0.62,
+  `kev_listed` → true, `public_exploit` → true, or CVSS → 9.1 for `new_critical_cve`.
+- Every press creates a new signal (demo signals are salted with their time).
+Samples: `samples/simulate_signal.json`, `samples/simulate_signal_real.json`.
+
+### `POST /api/demo/reset`
+Restores Member 2's data to the cached baseline. It deletes every simulated signal and reloads threats and IOCs from
+the cache, which undoes `inject-cve` and `simulate-signal` edits. Real signals and **other members' tables are untouched**.
+Sample: `samples/demo_reset.json`
+```json
+{"deleted_simulated_signals": 3, "before": {"threats": 19635, "threat_signals": 14, ...}, "after": {"threats": 19635, "threat_signals": 11, ...}}
+```
+
+## Scheduler (`ingestion/scheduler.py`)
+APScheduler runs in-process, started by the FastAPI lifespan. It is **never started when `DEMO_MODE=true`**.
+Each job fetches only its own sources, re-merges the rest from cache, reloads the DB and runs change detection.
+Every run updates `source_status`.
+
+| Job | Every | Fetches live |
+|---|---|---|
+| kev | 1 h | KEV catalogue + NVD records for newly added KEV CVEs + EPSS history / PoC quality for the backtest |
+| nvd | 2 h | **incremental only**: `lastModStartDate` = last success − 1 h (NVD indexing lag). Never the full window |
+| epss | 24 h | EPSS scores + exploit signals (Exploit-DB, PoC-in-GitHub, Nuclei, Vulnrichment) + PoC quality for new PoCs |
+| certin | 6 h | CERT-In advisories + vulnerability notes |
+| abusech | 1 h | ThreatFox / URLhaus / MalwareBazaar / Feodo |
+
+- **First runs:** each job's first run is at its last success + interval, so a restart doesn't refetch fresh data.
+  First runs are staggered by 2 minutes.
+- **One run at a time:** a global lock stops jobs (and `/api/demo/reset`) from interleaving writes to the caches and the DB.
+- **The full 30-day NVD fetch only happens on a manual** `python -m collectors.run_all`.
+
+## For Member 3: `on_new_threat(threat_id, signal_type)`
+`backend/app/hooks.py` is yours to implement:
+```python
+def on_new_threat(threat_id: str, signal_type: str) -> None: ...
+```
+- **When it fires:** once per **new** signal, **after** the signal and the threat are committed, so you can read both
+  from the DB. A replayed change doesn't fire it again, because the signal already exists. It never fires on the
+  baseline load or on `/api/demo/reset`.
+- **`signal_type`:** one of the five types above, or `demo_inject` (from `POST /api/demo/inject-cve`; no signal row).
+- **`threat_id`:** a row in `threats`. For `new_certin_advisory` it's the advisory, and its CVEs are in `threats.cve_ids`
+  and `signal.details.cve_ids`. Match each CVE's own record.
+- **To read the signal:** `SELECT * FROM threat_signals WHERE threat_id=? AND signal_type=? ORDER BY detected_at DESC LIMIT 1`.
+- **Where it runs:** in the scheduler thread (live ingest) or in the request thread (demo endpoints). Keep it fast
+  (match, score, insert alert). Exceptions are logged and swallowed, so a hook bug never breaks ingestion. Still,
+  don't rely on that.
+- **Suggested handling:** `new_kev` / `epss_jump` / `new_public_exploit` → re-score existing alerts on matched assets.
+  `new_critical_cve` / `demo_inject` / `new_certin_advisory` → match against assets and create alerts.
+
+---
+
 ## Insights & export (`backend/app/insights.py`)
 
 ### `GET /api/insights/lead-time?days=90`
@@ -117,25 +213,25 @@ Backtest: of the CVEs CISA added to KEV in the last `days` days (1–180), how m
 the KEV date, and how early? Sample: `samples/lead_time.json`
 - **Signals** (only those dated strictly before `kev_date_added` count, so there's no look-ahead):
   `epss` (historical EPSS ≥ threshold, sampled at fixed offsets before the KEV date) · `exploitdb` (earliest exploit
-  `date_published`) · `github_poc` (earliest PoC repo `created_at`. Repos older than the CVE's NVD date minus 30 days
-  are ignored as reused repos) · `certin` (earliest CERT-In advisory mentioning the CVE).
+  `date_published`) · `github_poc` (earliest PoC repo `created_at` that passes the **PoC quality filter**: the repo has at least one
+  non-README code file in its git tree, and was created no earlier than the CVE's NVD date minus 30 days. Older repos
+  are reused or renamed, not early PoCs.) · `certin` (earliest CERT-In advisory mentioning the CVE).
 - `flagged_at` = earliest signal. `lead_days = kev_date_added − flagged_at`. Median and p75 are over flagged CVEs.
 - **Use `cohorts.new_cves` for the early-warning claim.** `old_cves` (CVEs published > 365 days before their KEV date)
   get huge lead days from years-old exploits. That's real, but it isn't an early warning.
 - All thresholds are in one config (`collectors/history.py: LEAD_TIME`), echoed back as `config`.
   `methodology[]` and `limitations[]` are included in every response, so show them in the UI.
 ```json
-{"window_days": 90, "as_of": "2026-10-31", "population": 110, "flagged_before_kev": 44, "pct_flagged_before_kev": 40.0,
- "median_lead_days": 32.5, "p75_lead_days": 309.0,
- "cohorts": {"new_cves": {"population": 97, "flagged_before_kev": 33, "pct_flagged_before_kev": 34.0, "median_lead_days": 9.0, "p75_lead_days": 55.0},
+{"window_days": 90, "as_of": "2026-10-31", "population": 110, "flagged_before_kev": 43, ...,
+ "cohorts": {"new_cves": {"population": 97, "flagged_before_kev": 32, "pct_flagged_before_kev": 33.0, "median_lead_days": 13.0, "p75_lead_days": 64.0},
              "old_cves": {...}, "unknown_age": {...}},
- "per_signal": {"github_poc": {"fired_before_kev": 41, "earliest_signal": 39, "data_available": 84}, "epss": {...}, ...},
+ "per_signal": {"github_poc": {"fired_before_kev": 40, "earliest_signal": 37, "data_available": 84}, "epss": {...}, ...},
  "config": {"epss_threshold": 0.1, "epss_offsets_days": [1,3,7,14,30,60,90], ...}, "methodology": [...], "limitations": [...],
  "rows": [{"cve_id": "CVE-…", "title": "…", "kev_date_added": "2026-09-18", "published_at": "…", "flagged_at": "2025-11-13",
            "lead_days": 309, "first_signal": "github_poc", "cve_age_at_kev_days": 340, "cohort": "new_cves",
            "signals": {"epss": {"date": "…", "detail": "epss=0.231"} | null, "exploitdb": null, "github_poc": {"date": "…"}, "certin": null}}]}
 ```
-The data comes from `epss_history.json` and `github_poc_dates.json` (collected by `collectors/history.py` during `run_all`,
+The data comes from `epss_history.json` and `github_poc_quality.json` (collected by `collectors/history.py` during `run_all`,
 incrementally) plus `exploit_signals.json` (`exploitdb_date`). Fully offline in DEMO_MODE. `days` > 180 → 422.
 
 ### `GET /api/insights/india?limit=10`

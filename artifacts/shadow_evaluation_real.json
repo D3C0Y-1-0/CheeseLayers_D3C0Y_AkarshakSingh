@@ -1,0 +1,166 @@
+{
+  "is_simulated": false,
+  "dataset": "SecRepo real logs (CC BY 4.0): secrepo.com web server Dec 2016; AWS sshd 30 Nov - 31 Dec 2014",
+  "model": {
+    "n_estimators": 200,
+    "contamination": 0.02,
+    "train_fraction": 0.7,
+    "random_state": 42
+  },
+  "split": "temporal: first 70% of each sensor's active minutes train, rest test",
+  "sensors": [
+    {
+      "sensor": "secrepo:web",
+      "train_minutes": 4477,
+      "test_minutes": 1920,
+      "trained_until": "2016-12-21T14:06:00+00:00",
+      "test_from": "2016-12-21T14:08:00+00:00",
+      "test_to": "2017-01-01T09:56:00+00:00",
+      "features": [
+        "requests_per_minute",
+        "http_4xx_ratio",
+        "unique_clients",
+        "failed_auth"
+      ],
+      "rule_definition": "attack signature / known-exploit path, or 3+ secret-path requests in the minute",
+      "rule_flagged_test_minutes": 21,
+      "model_flagged_test_minutes": 65,
+      "both": 1,
+      "model_only": 64,
+      "rules_only": 20,
+      "model_only_examples": [
+        {
+          "minute": "2016-12-24T17:33:00+00:00",
+          "unusual_percentile": 99.8,
+          "requests_per_minute": 51,
+          "http_4xx_ratio": 0.902,
+          "unique_clients": 1,
+          "failed_auth": 0,
+          "top_sources": [
+            "79.116.29.43"
+          ]
+        },
+        {
+          "minute": "2016-12-28T08:31:00+00:00",
+          "unusual_percentile": 99.8,
+          "requests_per_minute": 197,
+          "http_4xx_ratio": 0.025,
+          "unique_clients": 1,
+          "failed_auth": 0,
+          "top_sources": [
+            "93.244.223.70"
+          ]
+        },
+        {
+          "minute": "2016-12-28T08:32:00+00:00",
+          "unusual_percentile": 99.8,
+          "requests_per_minute": 187,
+          "http_4xx_ratio": 0.016,
+          "unique_clients": 1,
+          "failed_auth": 0,
+          "top_sources": [
+            "93.244.223.70"
+          ]
+        },
+        {
+          "minute": "2016-12-28T08:30:00+00:00",
+          "unusual_percentile": 99.7,
+          "requests_per_minute": 198,
+          "http_4xx_ratio": 0.01,
+          "unique_clients": 1,
+          "failed_auth": 0,
+          "top_sources": [
+            "93.244.223.70"
+          ]
+        },
+        {
+          "minute": "2016-12-27T15:58:00+00:00",
+          "unusual_percentile": 99.7,
+          "requests_per_minute": 646,
+          "http_4xx_ratio": 0.005,
+          "unique_clients": 1,
+          "failed_auth": 0,
+          "top_sources": [
+            "196.200.154.2"
+          ]
+        },
+        {
+          "minute": "2016-12-27T16:00:00+00:00",
+          "unusual_percentile": 99.6,
+          "requests_per_minute": 848,
+          "http_4xx_ratio": 0.0,
+          "unique_clients": 1,
+          "failed_auth": 0,
+          "top_sources": [
+            "196.200.154.2"
+          ]
+        },
+        {
+          "minute": "2016-12-28T18:59:00+00:00",
+          "unusual_percentile": 99.6,
+          "requests_per_minute": 660,
+          "http_4xx_ratio": 0.0,
+          "unique_clients": 1,
+          "failed_auth": 0,
+          "top_sources": [
+            "192.171.117.214"
+          ]
+        },
+        {
+          "minute": "2016-12-28T19:00:00+00:00",
+          "unusual_percentile": 99.6,
+          "requests_per_minute": 766,
+          "http_4xx_ratio": 0.0,
+          "unique_clients": 1,
+          "failed_auth": 0,
+          "top_sources": [
+            "192.171.117.214"
+          ]
+        }
+      ]
+    },
+    {
+      "sensor": "secrepo:ssh",
+      "train_minutes": 1768,
+      "test_minutes": 759,
+      "trained_until": "2014-12-23T02:15:00+00:00",
+      "test_from": "2014-12-23T02:19:00+00:00",
+      "test_to": "2014-12-31T22:27:00+00:00",
+      "features": [
+        "failed_logins",
+        "unique_sources",
+        "unique_users",
+        "invalid_user_ratio"
+      ],
+      "rule_definition": "10+ failed logins in the minute (SW-AUTH-001)",
+      "rule_flagged_test_minutes": 226,
+      "model_flagged_test_minutes": 113,
+      "both": 112,
+      "model_only": 1,
+      "rules_only": 114,
+      "model_only_examples": [
+        {
+          "minute": "2014-12-29T13:53:00+00:00",
+          "unusual_percentile": 99.3,
+          "failed_logins": 7,
+          "unique_sources": 7,
+          "unique_users": 5,
+          "invalid_user_ratio": 1.0,
+          "top_sources": [
+            "173.20.16.2",
+            "50.57.143.118",
+            "24.111.193.62"
+          ]
+        }
+      ]
+    }
+  ],
+  "decision": "Enabled as SW-ML-001: a LOW-severity, low-confidence 'unusual, needs review' finding, only for the real sensor each model was trained on, and only for windows no rule flagged. It never escalates an incident by itself.",
+  "limitations": [
+    "No ground truth: agreement with our rules is not accuracy",
+    "Payload attacks hidden in normal-volume minutes are left to the rules (the model does not see payloads)",
+    "One server per sensor; a baseline does not transfer to other servers",
+    "Outlier score, not attack probability"
+  ],
+  "model_saved": false
+}

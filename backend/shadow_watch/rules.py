@@ -12,6 +12,7 @@ class RuleConfig:
     minimum_4xx_ratio: float = 0.60
     minimum_window_seconds: int = 60
     maximum_window_seconds: int = 60
+    minimum_failed_logins: int = 10  # SW-AUTH-001: failed logins in one window
 
     def __post_init__(self):
         if self.minimum_requests_per_minute < 1 or not 0 <= self.minimum_4xx_ratio <= 1:
@@ -54,6 +55,15 @@ def evaluate_rule(event: NormalizedEvent, context: DetectionContext, maintenance
         severity, confidence = "low", "low"
         reason = f"First-seen outbound destination {d.destination_ip}:{d.destination_port} on protected asset"
         limitations.append("New destination alone does not establish malicious activity; no destination was contacted")
+    elif event.event_type == "auth_window":
+        if d.failed_count < config.minimum_failed_logins:
+            return None
+        detector, kind = "SW-AUTH-001", "login_failure_burst"
+        severity, confidence = ("high", "medium") if d.failed_count >= 3 * config.minimum_failed_logins else ("medium", "medium")
+        reason = (f"{d.failed_count} failed logins in {d.window_seconds}s ({d.invalid_user_count} for non-existent users) "
+                  f"from {d.unique_source_count} source(s) trying {d.unique_user_count} username(s)"
+                  + (f": {', '.join(d.top_users)}" if d.top_users else ""))
+        limitations.append("Failures only: the sensor does not show whether any later login succeeded")
     else:
         return None
     if maintenance:

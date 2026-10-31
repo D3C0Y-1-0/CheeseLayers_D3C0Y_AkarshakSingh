@@ -58,6 +58,22 @@ class NetworkDetails(FrozenDTO):
     connection_uid: Identifier | None = None
 
 
+class AuthDetails(FrozenDTO):
+    """One window of a real login sensor (e.g. sshd): failures only, never passwords."""
+    failed_count: Count
+    invalid_user_count: Count
+    unique_source_count: Count
+    unique_user_count: Count
+    window_seconds: Annotated[StrictInt, Field(ge=1, le=3600)]
+    top_users: tuple[Annotated[str, Field(max_length=64)], ...] = Field(default=(), max_length=5)
+
+    @model_validator(mode="after")
+    def counts_fit(self):
+        if self.invalid_user_count > self.failed_count:
+            raise ValueError("invalid-user count cannot exceed failed count")
+        return self
+
+
 class MaintenanceDetails(FrozenDTO):
     asset_id: Identifier
     start_at: Timestamp
@@ -79,7 +95,7 @@ class EventEnvelope(FrozenDTO):
     observed_at: Timestamp
     ingested_at: Timestamp
     source_type: Literal["synthetic_http", "synthetic_host", "synthetic_network", "synthetic_change",
-                         "http_sensor", "host_sensor", "network_sensor", "change_management"]
+                         "http_sensor", "host_sensor", "network_sensor", "change_management", "auth_sensor"]
     is_simulated: StrictBool
     source: Annotated[str, Field(min_length=1, max_length=128)]
     raw_ref: Annotated[str, Field(min_length=1, max_length=512)]
@@ -89,6 +105,7 @@ class EventEnvelope(FrozenDTO):
         allowed = {"http_window": ("synthetic_http", "http_sensor"),
                    "process_start": ("synthetic_host", "host_sensor"),
                    "network_connection": ("synthetic_network", "network_sensor"),
+                   "auth_window": ("auth_sensor",),
                    "maintenance_window": ("synthetic_change", "change_management")}
         if self.source_type not in allowed[self.event_type]:
             raise ValueError("event type requires a compatible sensor (processes need host telemetry)")
@@ -116,12 +133,18 @@ class NetworkEvent(EventEnvelope):
     details: NetworkDetails
 
 
+class AuthEvent(EventEnvelope):
+    event_type: Literal["auth_window"]
+    details: AuthDetails
+
+
 class MaintenanceEvent(EventEnvelope):
     event_type: Literal["maintenance_window"]
     details: MaintenanceDetails
 
 
-NormalizedEvent = Annotated[HTTPEvent | ProcessEvent | NetworkEvent | MaintenanceEvent, Field(discriminator="event_type")]
+NormalizedEvent = Annotated[HTTPEvent | ProcessEvent | NetworkEvent | AuthEvent | MaintenanceEvent,
+                            Field(discriminator="event_type")]
 
 
 class DetectionContext(FrozenDTO):
@@ -133,9 +156,10 @@ class DetectionContext(FrozenDTO):
 class DetectionFinding(FrozenDTO):
     finding_id: Identifier
     asset_id: Identifier
-    detector_id: Literal["SW-HTTP-001", "SW-PROC-001", "SW-NET-001"]
-    detector_version: str = "rules-v1"
-    finding_type: Literal["unusual_http_window", "unexpected_process_activity", "new_outbound_destination"]
+    detector_id: Literal["SW-HTTP-001", "SW-PROC-001", "SW-NET-001", "SW-AUTH-001", "SW-ML-001"]
+    detector_version: str = "rules-v1"  # SW-ML-001: "iforest-v1"
+    finding_type: Literal["unusual_http_window", "unexpected_process_activity", "new_outbound_destination",
+                          "login_failure_burst", "statistical_anomaly"]
     observed_at: Timestamp
     severity_hint: Literal["low", "medium", "high"]
     evidence_ids: tuple[str, ...]

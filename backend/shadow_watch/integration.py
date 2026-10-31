@@ -11,6 +11,11 @@ from .normalize import EVENT
 from .schemas import DetectionFinding
 
 
+FINDING_LABEL = {"unusual_http_window": "Unusual HTTP error burst", "unexpected_process_activity": "Web server spawned a shell",
+                 "new_outbound_destination": "New outbound destination", "login_failure_burst": "SSH password guessing",
+                 "statistical_anomaly": "Statistical anomaly (Isolation Forest)"}
+
+
 def to_security_event(event, findings) -> SecurityEvent:
     d = event.details
     if event.event_type == "http_window":
@@ -19,6 +24,9 @@ def to_security_event(event, findings) -> SecurityEvent:
                    "http_4xx_ratio": d.http_4xx_count / d.request_count if d.request_count else 0}
     elif event.event_type == "process_start":
         kind, details = "process", {**d.model_dump(mode="json"), "child_process": d.process_name}
+    elif event.event_type == "auth_window":
+        kind = "auth"
+        details = {**d.model_dump(mode="json"), "failed_logins_last_minute": d.failed_count * 60 / d.window_seconds}
     elif event.event_type == "network_connection":
         kind = "network"
         details = {**d.model_dump(mode="json"), "dest_ip": str(d.destination_ip), "dest_port": d.destination_port,
@@ -28,6 +36,8 @@ def to_security_event(event, findings) -> SecurityEvent:
         if d.approved:
             details.update(window_start=d.start_at.isoformat(), window_end=d.end_at.isoformat())
     own = [f for f in findings if event.event_id in f.evidence_ids]
+    if own:  # readable name for the incident title (the correlator titles incidents by attack label)
+        details["attack_label"] = FINDING_LABEL[own[0].finding_type]
     return SecurityEvent(event_id=event.event_id, asset_id=event.asset_id, timestamp=event.observed_at,
                          event_type=kind, source_sensor=event.sensor_id, details=details, is_simulated=event.is_simulated,
                          rule_id=own[0].detector_id if own else None, confidence=own[0].confidence if own else None,

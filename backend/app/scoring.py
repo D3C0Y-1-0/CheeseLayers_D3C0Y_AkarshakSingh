@@ -114,7 +114,8 @@ def classify_event(e: SecurityEvent) -> EventSignal:
         # Do not reclassify approved/benign observations with looser legacy heuristics.
         findings = e.model_extra.get("shadow_findings", [])
         if findings:
-            signal = {"http": "http_anomaly", "process": "unexpected_process", "network": "outbound_connection"}.get(e.event_type)
+            signal = {"http": "http_anomaly", "process": "unexpected_process", "network": "outbound_connection",
+                      "auth": "auth_anomaly"}.get(e.event_type)
             reason = findings[0]["reason"]
             limits.extend(findings[0].get("limitations", []))
         return EventSignal(event_id=e.event_id, asset_id=e.asset_id, at=e.timestamp,

@@ -13,12 +13,14 @@ from typing import Literal, Protocol
 from pydantic import TypeAdapter
 
 from ai.schemas import IncidentContext
+from . import real
 from .engine import ShadowWatchEngine
 from .normalize import normalize_events
 from .schemas import DetectionContext, DetectionFinding, FrozenDTO, Identifier, NormalizedEvent
 
 ROOT = Path(__file__).resolve().parents[2]
-Scenario = Literal["no_cve_suspicious_chain", "benign_maintenance", "missing_telemetry"]
+Scenario = Literal["no_cve_suspicious_chain", "benign_maintenance", "missing_telemetry",
+                   "real_ssh_bruteforce", "real_ssh_distributed_spray", "real_web_crawler"]
 
 
 class DemoRequest(FrozenDTO):
@@ -69,12 +71,18 @@ class DemoAdapter:
                     result = DemoResult.model_validate({**result.model_dump(), "alert_ids": alert_ids, "handoff_status": "delivered"})
                     self._runs[incident_id] = (ctx, result)
                 return result
-            manifest = json.loads((ROOT / "data/fixtures/demo_scenarios.json").read_text(encoding="utf-8"))
-            records = json.loads((ROOT / "data/fixtures/events_shadow.json").read_text(encoding="utf-8"))
-            wanted = set(manifest[request.scenario])
-            selected = [r for r in records if r["event_id"] in wanted]
-            if {r["event_id"] for r in selected} != wanted or len(selected) != len(wanted):
-                raise ValueError("scenario manifest has missing or duplicate evidence")
+            if request.scenario in real.SCENARIOS:  # real SecRepo windows, replayed against our asset
+                from datetime import datetime, timezone
+                selected = real.events(request.scenario, datetime.now(timezone.utc).isoformat())
+                if not selected:
+                    raise ValueError("no real SecRepo windows cached for this scenario")
+            else:
+                manifest = json.loads((ROOT / "data/fixtures/demo_scenarios.json").read_text(encoding="utf-8"))
+                records = json.loads((ROOT / "data/fixtures/events_shadow.json").read_text(encoding="utf-8"))
+                wanted = set(manifest[request.scenario])
+                selected = [r for r in records if r["event_id"] in wanted]
+                if {r["event_id"] for r in selected} != wanted or len(selected) != len(wanted):
+                    raise ValueError("scenario manifest has missing or duplicate evidence")
             for raw in selected:
                 raw["event_id"] = key + ":" + raw["event_id"]
             events = normalize_events(selected)
@@ -85,7 +93,9 @@ class DemoAdapter:
                 raise ValueError("unknown demo asset")
             findings = ShadowWatchEngine().evaluate(events, DetectionContext(protected_asset_ids=frozenset(assets)))
             # Scenario expectations are fixture metadata, not a production incident classifier.
-            assessment = "suspected_activity" if request.scenario == "no_cve_suspicious_chain" else "needs_verification"
+            rule_hit = any(f.detector_id != "SW-ML-001" for f in findings)
+            assessment = ("suspected_activity" if request.scenario == "no_cve_suspicious_chain"
+                          or (request.scenario in real.SCENARIOS and rule_hit) else "needs_verification")
             limitations = ("Signals share a simulated asset and time window; a causal process/network join is not verified",)
             ctx = IncidentContext(incident_id=incident_id, assessment=assessment,
                                   asset_ids=tuple(sorted({e.asset_id for e in events})), evidence=tuple(events),

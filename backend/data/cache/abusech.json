@@ -1,0 +1,95 @@
+{
+ "items": [
+  {
+   "id": "feodotracker:emotet",
+   "source": "feodotracker",
+   "type": "ioc_batch",
+   "title": "feodotracker: 1 Emotet indicators",
+   "description": "1 indicators of compromise linked to Emotet, reported by abuse.ch feodotracker.",
+   "published_at": "2022-06-04T21:24:53Z",
+   "url": "https://feodotracker.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "feodotracker",
+    "Emotet"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "feodotracker:qakbot",
+   "source": "feodotracker",
+   "type": "ioc_batch",
+   "title": "feodotracker: 4 QakBot indicators",
+   "description": "4 indicators of compromise linked to QakBot, reported by abuse.ch feodotracker.",
+   "published_at": "2026-03-04T14:28:39Z",
+   "url": "https://feodotracker.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "feodotracker",
+    "QakBot"
+   ],
+   "raw_ref": null
+  }
+ ],
+ "iocs": [
+  {
+   "value": "162.243.103.246",
+   "ioc_type": "ip",
+   "source": "feodotracker",
+   "malware_family": "Emotet",
+   "first_seen": "2022-06-04T21:24:53Z",
+   "confidence": null,
+   "related_threat_id": "feodotracker:emotet"
+  },
+  {
+   "value": "50.16.16.211",
+   "ioc_type": "ip",
+   "source": "feodotracker",
+   "malware_family": "QakBot",
+   "first_seen": "2025-12-30T13:56:31Z",
+   "confidence": null,
+   "related_threat_id": "feodotracker:qakbot"
+  },
+  {
+   "value": "34.204.119.63",
+   "ioc_type": "ip",
+   "source": "feodotracker",
+   "malware_family": "QakBot",
+   "first_seen": "2026-01-13T21:41:15Z",
+   "confidence": null,
+   "related_threat_id": "feodotracker:qakbot"
+  },
+  {
+   "value": "178.62.3.223",
+   "ioc_type": "ip",
+   "source": "feodotracker",
+   "malware_family": "QakBot",
+   "first_seen": "2026-02-17T05:41:23Z",
+   "confidence": null,
+   "related_threat_id": "feodotracker:qakbot"
+  },
+  {
+   "value": "27.133.154.218",
+   "ioc_type": "ip",
+   "source": "feodotracker",
+   "malware_family": "QakBot",
+   "first_seen": "2026-03-04T14:28:39Z",
+   "confidence": null,
+   "related_threat_id": "feodotracker:qakbot"
+  }
+ ]
+}

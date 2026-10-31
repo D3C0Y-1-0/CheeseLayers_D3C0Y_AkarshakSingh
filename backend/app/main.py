@@ -10,9 +10,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import func, select
 
-from . import alerts, analytics, assets, feeds, insights
+from . import alerts, analytics, assets, feeds, frontend, insights
 from .database import SessionLocal, init_db
 from .models import Threat
+from routes import investigation, shadow_watch
+from shadow_watch.demo import DemoAdapter
+from shadow_watch.integration import DatabaseFindingSink, demo_investigation_factory
 
 log = logging.getLogger("netrax")
 
@@ -27,9 +30,19 @@ async def lifespan(app: FastAPI):
         log.warning("empty DB, loading cache: %s", load())
     from ingestion import scheduler
     app.state.scheduler = scheduler.start()  # None in DEMO_MODE
-    yield
-    if app.state.scheduler:
-        app.state.scheduler.shutdown(wait=False)
+    installed = []
+    for name, adapter in (("shadow_finding_sink", DatabaseFindingSink(SessionLocal)),
+                          ("investigation_tools_factory", demo_investigation_factory(SessionLocal))):
+        if not hasattr(app.state, name):
+            setattr(app.state, name, adapter)
+            installed.append(name)
+    try:
+        yield
+    finally:
+        if app.state.scheduler:
+            app.state.scheduler.shutdown(wait=False)
+        for name in installed:
+            delattr(app.state, name)
 
 
 app = FastAPI(title="NETRA-X API", version="0.1.0", lifespan=lifespan,
@@ -41,3 +54,7 @@ app.include_router(insights.router)
 app.include_router(assets.router)  # Member 3
 app.include_router(alerts.router)  # Member 3
 app.include_router(analytics.router)  # Member 3
+app.state.shadow_demo_adapter = DemoAdapter()
+app.include_router(shadow_watch.router)
+app.include_router(investigation.router)
+app.include_router(frontend.router)  # Last: API routes must win over the SPA history fallback.

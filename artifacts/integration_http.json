@@ -1,0 +1,35 @@
+{
+  "base_url": "http://127.0.0.1:8000",
+  "api_health": "ok",
+  "spa_routes": 6,
+  "build_assets_checked": 2,
+  "scenarios": [
+    {
+      "scenario": "no_cve_suspicious_chain",
+      "findings": 3,
+      "alert_ids": [
+        "ALR-EDB7AF1F"
+      ],
+      "generated_by": "template"
+    },
+    {
+      "scenario": "benign_maintenance",
+      "findings": 0,
+      "alert_ids": [],
+      "generated_by": "template"
+    },
+    {
+      "scenario": "missing_telemetry",
+      "findings": 2,
+      "alert_ids": [
+        "ALR-108DD7C1"
+      ],
+      "generated_by": "template"
+    }
+  ],
+  "patch_before_affected": 2,
+  "patch_after_affected": 0,
+  "threats": 19633,
+  "open_alerts": 5,
+  "browser_visual_check": "unavailable"
+}

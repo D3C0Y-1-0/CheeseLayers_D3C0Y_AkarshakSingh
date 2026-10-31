@@ -1,3 +1,4 @@
+import scoring from '../fixtures/scoring_config.json'
 // Everything on the landing page that claims a fact lives here, so it is easy to audit.
 // Counts were read from backend/data/cache at commit b139a76. Re-read them after a fresh collector run.
 
@@ -31,18 +32,23 @@ export type ScoreInput = {
   confidence: number
 }
 
-// Same formula as CLAUDE.md section 9. If Member 3 changes it, change this too.
+// Educational projection of the central vulnerability score, with no local telemetry or public-exploit bonus.
+// Weights are exported from app.scoring.CONFIG; real incidents always use backend scores.
 export function riskFactors(s: ScoreInput) {
-  const exploit = s.inKev ? 1 : Math.max(s.epss, 0.05)
-  const exposure = s.internetFacing ? 1 : 0.5
-  const score = 100 * (s.cvss / 10) * Math.sqrt(exploit) * (s.criticality / 5) * exposure * s.confidence
+  const exploit = s.inKev ? 1 : s.epss
+  const config = scoring.vulnerability
+  const exposure = config.exposure[s.internetFacing ? 'internet_facing' : 'internal']
+  const factors = { severity: s.cvss / 10, exploitation: exploit ** config.epss_exponent, criticality: s.criticality / 5, exposure }
+  const score = Math.min(100, Object.entries(factors).reduce((sum, [key, value]) =>
+    sum + Math.round(1000 * config.weights[key as keyof typeof config.weights] * value) / 10, 0))
   return { exploit, exposure, score }
 }
 
-export function riskLevel(score: number) {
-  if (score >= 75) return 'Critical'
-  if (score >= 50) return 'High'
-  if (score >= 25) return 'Medium'
+export function riskLevel(score: number, confidence = 1) {
+  const t = scoring.priority_thresholds
+  if (score >= t.critical) return confidence === 1 ? 'Critical' : 'High'
+  if (score >= t.high) return 'High'
+  if (score >= t.medium) return 'Medium'
   return 'Low'
 }
 

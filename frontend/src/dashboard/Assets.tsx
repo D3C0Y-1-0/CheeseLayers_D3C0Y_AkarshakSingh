@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAlerts, useAssets } from './api'
-import { Empty, PageHead, Panel, PriorityBadge, Unknown } from './ui'
+import { DataNotice, Empty, PageHead, Panel, PriorityBadge, Unknown } from './ui'
 
 const RANK = { critical: 0, high: 1, medium: 2, low: 3 }
 
 export default function Assets() {
-  const { data: assets } = useAssets()
+  const { data: assets, mode, error } = useAssets()
   const { data: alerts } = useAlerts()
   const [sector, setSector] = useState('all')
   const [query, setQuery] = useState('')
@@ -35,6 +35,7 @@ export default function Assets() {
           </select>
         </div>
       </PageHead>
+      <DataNotice mode={mode} error={error} />
       <Panel>
         {rows.length === 0 ? <Empty>No assets match this search.</Empty> : (
           <div className="overflow-x-auto">

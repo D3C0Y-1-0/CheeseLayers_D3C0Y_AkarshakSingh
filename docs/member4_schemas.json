@@ -1,0 +1,2597 @@
+{
+  "NormalizedEvent": {
+    "$defs": {
+      "HTTPDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "request_count": {
+            "maximum": 1000000000,
+            "minimum": 0,
+            "title": "Request Count",
+            "type": "integer"
+          },
+          "http_4xx_count": {
+            "maximum": 1000000000,
+            "minimum": 0,
+            "title": "Http 4Xx Count",
+            "type": "integer"
+          },
+          "failed_auth_count": {
+            "maximum": 1000000000,
+            "minimum": 0,
+            "title": "Failed Auth Count",
+            "type": "integer"
+          },
+          "unique_client_count": {
+            "maximum": 1000000000,
+            "minimum": 0,
+            "title": "Unique Client Count",
+            "type": "integer"
+          },
+          "window_seconds": {
+            "maximum": 3600,
+            "minimum": 1,
+            "title": "Window Seconds",
+            "type": "integer"
+          },
+          "path_category": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Path Category"
+          }
+        },
+        "required": [
+          "request_count",
+          "http_4xx_count",
+          "failed_auth_count",
+          "unique_client_count",
+          "window_seconds"
+        ],
+        "title": "HTTPDetails",
+        "type": "object"
+      },
+      "HTTPEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "sensor_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Sensor Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "ingested_at": {
+            "format": "date-time",
+            "title": "Ingested At",
+            "type": "string"
+          },
+          "source_type": {
+            "enum": [
+              "synthetic_http",
+              "synthetic_host",
+              "synthetic_network",
+              "synthetic_change",
+              "http_sensor",
+              "host_sensor",
+              "network_sensor",
+              "change_management"
+            ],
+            "title": "Source Type",
+            "type": "string"
+          },
+          "is_simulated": {
+            "title": "Is Simulated",
+            "type": "boolean"
+          },
+          "source": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Source",
+            "type": "string"
+          },
+          "raw_ref": {
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "event_type": {
+            "const": "http_window",
+            "title": "Event Type",
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/$defs/HTTPDetails"
+          }
+        },
+        "required": [
+          "event_id",
+          "asset_id",
+          "sensor_id",
+          "observed_at",
+          "ingested_at",
+          "source_type",
+          "is_simulated",
+          "source",
+          "raw_ref",
+          "event_type",
+          "details"
+        ],
+        "title": "HTTPEvent",
+        "type": "object"
+      },
+      "MaintenanceDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "start_at": {
+            "format": "date-time",
+            "title": "Start At",
+            "type": "string"
+          },
+          "end_at": {
+            "format": "date-time",
+            "title": "End At",
+            "type": "string"
+          },
+          "change_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Change Id",
+            "type": "string"
+          },
+          "approved": {
+            "title": "Approved",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "asset_id",
+          "start_at",
+          "end_at",
+          "change_id",
+          "approved"
+        ],
+        "title": "MaintenanceDetails",
+        "type": "object"
+      },
+      "MaintenanceEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "sensor_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Sensor Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "ingested_at": {
+            "format": "date-time",
+            "title": "Ingested At",
+            "type": "string"
+          },
+          "source_type": {
+            "enum": [
+              "synthetic_http",
+              "synthetic_host",
+              "synthetic_network",
+              "synthetic_change",
+              "http_sensor",
+              "host_sensor",
+              "network_sensor",
+              "change_management"
+            ],
+            "title": "Source Type",
+            "type": "string"
+          },
+          "is_simulated": {
+            "title": "Is Simulated",
+            "type": "boolean"
+          },
+          "source": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Source",
+            "type": "string"
+          },
+          "raw_ref": {
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "event_type": {
+            "const": "maintenance_window",
+            "title": "Event Type",
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/$defs/MaintenanceDetails"
+          }
+        },
+        "required": [
+          "event_id",
+          "asset_id",
+          "sensor_id",
+          "observed_at",
+          "ingested_at",
+          "source_type",
+          "is_simulated",
+          "source",
+          "raw_ref",
+          "event_type",
+          "details"
+        ],
+        "title": "MaintenanceEvent",
+        "type": "object"
+      },
+      "NetworkDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "destination_ip": {
+            "format": "ipvanyaddress",
+            "title": "Destination Ip",
+            "type": "string"
+          },
+          "destination_port": {
+            "maximum": 65535,
+            "minimum": 1,
+            "title": "Destination Port",
+            "type": "integer"
+          },
+          "outbound": {
+            "title": "Outbound",
+            "type": "boolean"
+          },
+          "is_new_destination": {
+            "title": "Is New Destination",
+            "type": "boolean"
+          },
+          "connection_uid": {
+            "anyOf": [
+              {
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Connection Uid"
+          }
+        },
+        "required": [
+          "destination_ip",
+          "destination_port",
+          "outbound",
+          "is_new_destination"
+        ],
+        "title": "NetworkDetails",
+        "type": "object"
+      },
+      "NetworkEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "sensor_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Sensor Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "ingested_at": {
+            "format": "date-time",
+            "title": "Ingested At",
+            "type": "string"
+          },
+          "source_type": {
+            "enum": [
+              "synthetic_http",
+              "synthetic_host",
+              "synthetic_network",
+              "synthetic_change",
+              "http_sensor",
+              "host_sensor",
+              "network_sensor",
+              "change_management"
+            ],
+            "title": "Source Type",
+            "type": "string"
+          },
+          "is_simulated": {
+            "title": "Is Simulated",
+            "type": "boolean"
+          },
+          "source": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Source",
+            "type": "string"
+          },
+          "raw_ref": {
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "event_type": {
+            "const": "network_connection",
+            "title": "Event Type",
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/$defs/NetworkDetails"
+          }
+        },
+        "required": [
+          "event_id",
+          "asset_id",
+          "sensor_id",
+          "observed_at",
+          "ingested_at",
+          "source_type",
+          "is_simulated",
+          "source",
+          "raw_ref",
+          "event_type",
+          "details"
+        ],
+        "title": "NetworkEvent",
+        "type": "object"
+      },
+      "ProcessDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "process_name": {
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Process Name",
+            "type": "string"
+          },
+          "parent_process": {
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Parent Process",
+            "type": "string"
+          },
+          "process_id": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Process Id"
+          },
+          "parent_process_id": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Parent Process Id"
+          }
+        },
+        "required": [
+          "process_name",
+          "parent_process"
+        ],
+        "title": "ProcessDetails",
+        "type": "object"
+      },
+      "ProcessEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "sensor_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Sensor Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "ingested_at": {
+            "format": "date-time",
+            "title": "Ingested At",
+            "type": "string"
+          },
+          "source_type": {
+            "enum": [
+              "synthetic_http",
+              "synthetic_host",
+              "synthetic_network",
+              "synthetic_change",
+              "http_sensor",
+              "host_sensor",
+              "network_sensor",
+              "change_management"
+            ],
+            "title": "Source Type",
+            "type": "string"
+          },
+          "is_simulated": {
+            "title": "Is Simulated",
+            "type": "boolean"
+          },
+          "source": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Source",
+            "type": "string"
+          },
+          "raw_ref": {
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "event_type": {
+            "const": "process_start",
+            "title": "Event Type",
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/$defs/ProcessDetails"
+          }
+        },
+        "required": [
+          "event_id",
+          "asset_id",
+          "sensor_id",
+          "observed_at",
+          "ingested_at",
+          "source_type",
+          "is_simulated",
+          "source",
+          "raw_ref",
+          "event_type",
+          "details"
+        ],
+        "title": "ProcessEvent",
+        "type": "object"
+      }
+    },
+    "discriminator": {
+      "mapping": {
+        "http_window": "#/$defs/HTTPEvent",
+        "maintenance_window": "#/$defs/MaintenanceEvent",
+        "network_connection": "#/$defs/NetworkEvent",
+        "process_start": "#/$defs/ProcessEvent"
+      },
+      "propertyName": "event_type"
+    },
+    "oneOf": [
+      {
+        "$ref": "#/$defs/HTTPEvent"
+      },
+      {
+        "$ref": "#/$defs/ProcessEvent"
+      },
+      {
+        "$ref": "#/$defs/NetworkEvent"
+      },
+      {
+        "$ref": "#/$defs/MaintenanceEvent"
+      }
+    ]
+  },
+  "DetectionFinding": {
+    "additionalProperties": false,
+    "properties": {
+      "finding_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Finding Id",
+        "type": "string"
+      },
+      "asset_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Asset Id",
+        "type": "string"
+      },
+      "detector_id": {
+        "enum": [
+          "SW-HTTP-001",
+          "SW-PROC-001",
+          "SW-NET-001"
+        ],
+        "title": "Detector Id",
+        "type": "string"
+      },
+      "detector_version": {
+        "default": "rules-v1",
+        "title": "Detector Version",
+        "type": "string"
+      },
+      "finding_type": {
+        "enum": [
+          "unusual_http_window",
+          "unexpected_process_activity",
+          "new_outbound_destination"
+        ],
+        "title": "Finding Type",
+        "type": "string"
+      },
+      "observed_at": {
+        "format": "date-time",
+        "title": "Observed At",
+        "type": "string"
+      },
+      "severity_hint": {
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "title": "Severity Hint",
+        "type": "string"
+      },
+      "evidence_ids": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Evidence Ids",
+        "type": "array"
+      },
+      "reason": {
+        "title": "Reason",
+        "type": "string"
+      },
+      "confidence": {
+        "enum": [
+          "low",
+          "medium"
+        ],
+        "title": "Confidence",
+        "type": "string"
+      },
+      "is_simulated": {
+        "title": "Is Simulated",
+        "type": "boolean"
+      },
+      "source": {
+        "title": "Source",
+        "type": "string"
+      },
+      "retrieved_at": {
+        "format": "date-time",
+        "title": "Retrieved At",
+        "type": "string"
+      },
+      "raw_ref": {
+        "title": "Raw Ref",
+        "type": "string"
+      },
+      "maintenance_evidence_ids": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Maintenance Evidence Ids",
+        "type": "array"
+      },
+      "limitations": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Limitations",
+        "type": "array"
+      }
+    },
+    "required": [
+      "finding_id",
+      "asset_id",
+      "detector_id",
+      "finding_type",
+      "observed_at",
+      "severity_hint",
+      "evidence_ids",
+      "reason",
+      "confidence",
+      "is_simulated",
+      "source",
+      "retrieved_at",
+      "raw_ref"
+    ],
+    "title": "DetectionFinding",
+    "type": "object"
+  },
+  "IncidentContext": {
+    "$defs": {
+      "DetectionFinding": {
+        "additionalProperties": false,
+        "properties": {
+          "finding_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Finding Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "detector_id": {
+            "enum": [
+              "SW-HTTP-001",
+              "SW-PROC-001",
+              "SW-NET-001"
+            ],
+            "title": "Detector Id",
+            "type": "string"
+          },
+          "detector_version": {
+            "default": "rules-v1",
+            "title": "Detector Version",
+            "type": "string"
+          },
+          "finding_type": {
+            "enum": [
+              "unusual_http_window",
+              "unexpected_process_activity",
+              "new_outbound_destination"
+            ],
+            "title": "Finding Type",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "severity_hint": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "title": "Severity Hint",
+            "type": "string"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Evidence Ids",
+            "type": "array"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "low",
+              "medium"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "is_simulated": {
+            "title": "Is Simulated",
+            "type": "boolean"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "retrieved_at": {
+            "format": "date-time",
+            "title": "Retrieved At",
+            "type": "string"
+          },
+          "raw_ref": {
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "maintenance_evidence_ids": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Maintenance Evidence Ids",
+            "type": "array"
+          },
+          "limitations": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          }
+        },
+        "required": [
+          "finding_id",
+          "asset_id",
+          "detector_id",
+          "finding_type",
+          "observed_at",
+          "severity_hint",
+          "evidence_ids",
+          "reason",
+          "confidence",
+          "is_simulated",
+          "source",
+          "retrieved_at",
+          "raw_ref"
+        ],
+        "title": "DetectionFinding",
+        "type": "object"
+      },
+      "EvidenceCitation": {
+        "additionalProperties": false,
+        "properties": {
+          "evidence_id": {
+            "title": "Evidence Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Asset Id"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "sensor_id": {
+            "title": "Sensor Id",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "retrieved_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retrieved At"
+          },
+          "raw_ref": {
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "event_type": {
+            "title": "Event Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "evidence_id",
+          "asset_id",
+          "observed_at",
+          "sensor_id",
+          "source",
+          "retrieved_at",
+          "raw_ref",
+          "event_type"
+        ],
+        "title": "EvidenceCitation",
+        "type": "object"
+      },
+      "HTTPDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "request_count": {
+            "maximum": 1000000000,
+            "minimum": 0,
+            "title": "Request Count",
+            "type": "integer"
+          },
+          "http_4xx_count": {
+            "maximum": 1000000000,
+            "minimum": 0,
+            "title": "Http 4Xx Count",
+            "type": "integer"
+          },
+          "failed_auth_count": {
+            "maximum": 1000000000,
+            "minimum": 0,
+            "title": "Failed Auth Count",
+            "type": "integer"
+          },
+          "unique_client_count": {
+            "maximum": 1000000000,
+            "minimum": 0,
+            "title": "Unique Client Count",
+            "type": "integer"
+          },
+          "window_seconds": {
+            "maximum": 3600,
+            "minimum": 1,
+            "title": "Window Seconds",
+            "type": "integer"
+          },
+          "path_category": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Path Category"
+          }
+        },
+        "required": [
+          "request_count",
+          "http_4xx_count",
+          "failed_auth_count",
+          "unique_client_count",
+          "window_seconds"
+        ],
+        "title": "HTTPDetails",
+        "type": "object"
+      },
+      "HTTPEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "sensor_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Sensor Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "ingested_at": {
+            "format": "date-time",
+            "title": "Ingested At",
+            "type": "string"
+          },
+          "source_type": {
+            "enum": [
+              "synthetic_http",
+              "synthetic_host",
+              "synthetic_network",
+              "synthetic_change",
+              "http_sensor",
+              "host_sensor",
+              "network_sensor",
+              "change_management"
+            ],
+            "title": "Source Type",
+            "type": "string"
+          },
+          "is_simulated": {
+            "title": "Is Simulated",
+            "type": "boolean"
+          },
+          "source": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Source",
+            "type": "string"
+          },
+          "raw_ref": {
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "event_type": {
+            "const": "http_window",
+            "title": "Event Type",
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/$defs/HTTPDetails"
+          }
+        },
+        "required": [
+          "event_id",
+          "asset_id",
+          "sensor_id",
+          "observed_at",
+          "ingested_at",
+          "source_type",
+          "is_simulated",
+          "source",
+          "raw_ref",
+          "event_type",
+          "details"
+        ],
+        "title": "HTTPEvent",
+        "type": "object"
+      },
+      "MaintenanceDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "start_at": {
+            "format": "date-time",
+            "title": "Start At",
+            "type": "string"
+          },
+          "end_at": {
+            "format": "date-time",
+            "title": "End At",
+            "type": "string"
+          },
+          "change_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Change Id",
+            "type": "string"
+          },
+          "approved": {
+            "title": "Approved",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "asset_id",
+          "start_at",
+          "end_at",
+          "change_id",
+          "approved"
+        ],
+        "title": "MaintenanceDetails",
+        "type": "object"
+      },
+      "MaintenanceEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "sensor_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Sensor Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "ingested_at": {
+            "format": "date-time",
+            "title": "Ingested At",
+            "type": "string"
+          },
+          "source_type": {
+            "enum": [
+              "synthetic_http",
+              "synthetic_host",
+              "synthetic_network",
+              "synthetic_change",
+              "http_sensor",
+              "host_sensor",
+              "network_sensor",
+              "change_management"
+            ],
+            "title": "Source Type",
+            "type": "string"
+          },
+          "is_simulated": {
+            "title": "Is Simulated",
+            "type": "boolean"
+          },
+          "source": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Source",
+            "type": "string"
+          },
+          "raw_ref": {
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "event_type": {
+            "const": "maintenance_window",
+            "title": "Event Type",
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/$defs/MaintenanceDetails"
+          }
+        },
+        "required": [
+          "event_id",
+          "asset_id",
+          "sensor_id",
+          "observed_at",
+          "ingested_at",
+          "source_type",
+          "is_simulated",
+          "source",
+          "raw_ref",
+          "event_type",
+          "details"
+        ],
+        "title": "MaintenanceEvent",
+        "type": "object"
+      },
+      "NetworkDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "destination_ip": {
+            "format": "ipvanyaddress",
+            "title": "Destination Ip",
+            "type": "string"
+          },
+          "destination_port": {
+            "maximum": 65535,
+            "minimum": 1,
+            "title": "Destination Port",
+            "type": "integer"
+          },
+          "outbound": {
+            "title": "Outbound",
+            "type": "boolean"
+          },
+          "is_new_destination": {
+            "title": "Is New Destination",
+            "type": "boolean"
+          },
+          "connection_uid": {
+            "anyOf": [
+              {
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Connection Uid"
+          }
+        },
+        "required": [
+          "destination_ip",
+          "destination_port",
+          "outbound",
+          "is_new_destination"
+        ],
+        "title": "NetworkDetails",
+        "type": "object"
+      },
+      "NetworkEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "sensor_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Sensor Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "ingested_at": {
+            "format": "date-time",
+            "title": "Ingested At",
+            "type": "string"
+          },
+          "source_type": {
+            "enum": [
+              "synthetic_http",
+              "synthetic_host",
+              "synthetic_network",
+              "synthetic_change",
+              "http_sensor",
+              "host_sensor",
+              "network_sensor",
+              "change_management"
+            ],
+            "title": "Source Type",
+            "type": "string"
+          },
+          "is_simulated": {
+            "title": "Is Simulated",
+            "type": "boolean"
+          },
+          "source": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Source",
+            "type": "string"
+          },
+          "raw_ref": {
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "event_type": {
+            "const": "network_connection",
+            "title": "Event Type",
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/$defs/NetworkDetails"
+          }
+        },
+        "required": [
+          "event_id",
+          "asset_id",
+          "sensor_id",
+          "observed_at",
+          "ingested_at",
+          "source_type",
+          "is_simulated",
+          "source",
+          "raw_ref",
+          "event_type",
+          "details"
+        ],
+        "title": "NetworkEvent",
+        "type": "object"
+      },
+      "ProcessDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "process_name": {
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Process Name",
+            "type": "string"
+          },
+          "parent_process": {
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Parent Process",
+            "type": "string"
+          },
+          "process_id": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Process Id"
+          },
+          "parent_process_id": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Parent Process Id"
+          }
+        },
+        "required": [
+          "process_name",
+          "parent_process"
+        ],
+        "title": "ProcessDetails",
+        "type": "object"
+      },
+      "ProcessEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "sensor_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Sensor Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "ingested_at": {
+            "format": "date-time",
+            "title": "Ingested At",
+            "type": "string"
+          },
+          "source_type": {
+            "enum": [
+              "synthetic_http",
+              "synthetic_host",
+              "synthetic_network",
+              "synthetic_change",
+              "http_sensor",
+              "host_sensor",
+              "network_sensor",
+              "change_management"
+            ],
+            "title": "Source Type",
+            "type": "string"
+          },
+          "is_simulated": {
+            "title": "Is Simulated",
+            "type": "boolean"
+          },
+          "source": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Source",
+            "type": "string"
+          },
+          "raw_ref": {
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "event_type": {
+            "const": "process_start",
+            "title": "Event Type",
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/$defs/ProcessDetails"
+          }
+        },
+        "required": [
+          "event_id",
+          "asset_id",
+          "sensor_id",
+          "observed_at",
+          "ingested_at",
+          "source_type",
+          "is_simulated",
+          "source",
+          "raw_ref",
+          "event_type",
+          "details"
+        ],
+        "title": "ProcessEvent",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "description": "Trusted Member 3 adapter output, scoped and checked before retrieval.",
+    "properties": {
+      "incident_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Incident Id",
+        "type": "string"
+      },
+      "assessment": {
+        "enum": [
+          "vulnerability_exposure",
+          "suspected_activity",
+          "needs_verification"
+        ],
+        "title": "Assessment",
+        "type": "string"
+      },
+      "asset_ids": {
+        "items": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+          "type": "string"
+        },
+        "maxItems": 20,
+        "title": "Asset Ids",
+        "type": "array"
+      },
+      "evidence": {
+        "items": {
+          "discriminator": {
+            "mapping": {
+              "http_window": "#/$defs/HTTPEvent",
+              "maintenance_window": "#/$defs/MaintenanceEvent",
+              "network_connection": "#/$defs/NetworkEvent",
+              "process_start": "#/$defs/ProcessEvent"
+            },
+            "propertyName": "event_type"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/HTTPEvent"
+            },
+            {
+              "$ref": "#/$defs/ProcessEvent"
+            },
+            {
+              "$ref": "#/$defs/NetworkEvent"
+            },
+            {
+              "$ref": "#/$defs/MaintenanceEvent"
+            }
+          ]
+        },
+        "maxItems": 100,
+        "title": "Evidence",
+        "type": "array"
+      },
+      "additional_evidence": {
+        "default": [],
+        "items": {
+          "$ref": "#/$defs/EvidenceCitation"
+        },
+        "maxItems": 100,
+        "title": "Additional Evidence",
+        "type": "array"
+      },
+      "findings": {
+        "items": {
+          "$ref": "#/$defs/DetectionFinding"
+        },
+        "maxItems": 100,
+        "title": "Findings",
+        "type": "array"
+      },
+      "verified_cve_ids": {
+        "default": [],
+        "items": {
+          "pattern": "^CVE-\\d{4}-\\d{4,}$",
+          "type": "string"
+        },
+        "title": "Verified Cve Ids",
+        "type": "array"
+      },
+      "references": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 30,
+        "title": "References",
+        "type": "array"
+      },
+      "limitations": {
+        "default": [],
+        "items": {
+          "type": "string"
+        },
+        "title": "Limitations",
+        "type": "array"
+      },
+      "is_simulated": {
+        "title": "Is Simulated",
+        "type": "boolean"
+      },
+      "integration_status": {
+        "enum": [
+          "demo_adapter",
+          "persisted"
+        ],
+        "title": "Integration Status",
+        "type": "string"
+      }
+    },
+    "required": [
+      "incident_id",
+      "assessment",
+      "asset_ids",
+      "evidence",
+      "findings",
+      "is_simulated",
+      "integration_status"
+    ],
+    "title": "IncidentContext",
+    "type": "object"
+  },
+  "InvestigationReport": {
+    "$defs": {
+      "EvidenceCitation": {
+        "additionalProperties": false,
+        "properties": {
+          "evidence_id": {
+            "title": "Evidence Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Asset Id"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "sensor_id": {
+            "title": "Sensor Id",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "retrieved_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retrieved At"
+          },
+          "raw_ref": {
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "event_type": {
+            "title": "Event Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "evidence_id",
+          "asset_id",
+          "observed_at",
+          "sensor_id",
+          "source",
+          "retrieved_at",
+          "raw_ref",
+          "event_type"
+        ],
+        "title": "EvidenceCitation",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "incident_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Incident Id",
+        "type": "string"
+      },
+      "assessment": {
+        "enum": [
+          "vulnerability_exposure",
+          "suspected_activity",
+          "needs_verification"
+        ],
+        "title": "Assessment",
+        "type": "string"
+      },
+      "summary": {
+        "maxLength": 4000,
+        "minLength": 1,
+        "title": "Summary",
+        "type": "string"
+      },
+      "asset_ids": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Asset Ids",
+        "type": "array"
+      },
+      "verified_cve_ids": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Verified Cve Ids",
+        "type": "array"
+      },
+      "evidence_ids": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Evidence Ids",
+        "type": "array"
+      },
+      "evidence": {
+        "items": {
+          "$ref": "#/$defs/EvidenceCitation"
+        },
+        "title": "Evidence",
+        "type": "array"
+      },
+      "why_relevant": {
+        "maxLength": 4000,
+        "title": "Why Relevant",
+        "type": "string"
+      },
+      "limitations": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Limitations",
+        "type": "array"
+      },
+      "recommended_actions": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Recommended Actions",
+        "type": "array"
+      },
+      "references": {
+        "items": {
+          "type": "string"
+        },
+        "title": "References",
+        "type": "array"
+      },
+      "generated_by": {
+        "enum": [
+          "template",
+          "llm"
+        ],
+        "title": "Generated By",
+        "type": "string"
+      },
+      "is_simulated": {
+        "title": "Is Simulated",
+        "type": "boolean"
+      },
+      "integration_status": {
+        "enum": [
+          "demo_adapter",
+          "persisted"
+        ],
+        "title": "Integration Status",
+        "type": "string"
+      },
+      "fallback_reason": {
+        "anyOf": [
+          {
+            "enum": [
+              "disabled",
+              "offline_mode",
+              "unconfigured",
+              "timeout",
+              "invalid_output",
+              "provider_error"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Fallback Reason"
+      },
+      "analyst_review_required": {
+        "default": true,
+        "title": "Analyst Review Required",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "incident_id",
+      "assessment",
+      "summary",
+      "asset_ids",
+      "verified_cve_ids",
+      "evidence_ids",
+      "evidence",
+      "why_relevant",
+      "limitations",
+      "recommended_actions",
+      "references",
+      "generated_by",
+      "is_simulated",
+      "integration_status"
+    ],
+    "title": "InvestigationReport",
+    "type": "object"
+  },
+  "DemoRequest": {
+    "additionalProperties": false,
+    "properties": {
+      "scenario": {
+        "enum": [
+          "no_cve_suspicious_chain",
+          "benign_maintenance",
+          "missing_telemetry"
+        ],
+        "title": "Scenario",
+        "type": "string"
+      },
+      "run_id": {
+        "default": "demo-session-1",
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Run Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "scenario"
+    ],
+    "title": "DemoRequest",
+    "type": "object"
+  },
+  "DemoResult": {
+    "$defs": {
+      "DetectionFinding": {
+        "additionalProperties": false,
+        "properties": {
+          "finding_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Finding Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "detector_id": {
+            "enum": [
+              "SW-HTTP-001",
+              "SW-PROC-001",
+              "SW-NET-001"
+            ],
+            "title": "Detector Id",
+            "type": "string"
+          },
+          "detector_version": {
+            "default": "rules-v1",
+            "title": "Detector Version",
+            "type": "string"
+          },
+          "finding_type": {
+            "enum": [
+              "unusual_http_window",
+              "unexpected_process_activity",
+              "new_outbound_destination"
+            ],
+            "title": "Finding Type",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "severity_hint": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "title": "Severity Hint",
+            "type": "string"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Evidence Ids",
+            "type": "array"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "low",
+              "medium"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "is_simulated": {
+            "title": "Is Simulated",
+            "type": "boolean"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "retrieved_at": {
+            "format": "date-time",
+            "title": "Retrieved At",
+            "type": "string"
+          },
+          "raw_ref": {
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "maintenance_evidence_ids": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Maintenance Evidence Ids",
+            "type": "array"
+          },
+          "limitations": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          }
+        },
+        "required": [
+          "finding_id",
+          "asset_id",
+          "detector_id",
+          "finding_type",
+          "observed_at",
+          "severity_hint",
+          "evidence_ids",
+          "reason",
+          "confidence",
+          "is_simulated",
+          "source",
+          "retrieved_at",
+          "raw_ref"
+        ],
+        "title": "DetectionFinding",
+        "type": "object"
+      },
+      "HTTPDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "request_count": {
+            "maximum": 1000000000,
+            "minimum": 0,
+            "title": "Request Count",
+            "type": "integer"
+          },
+          "http_4xx_count": {
+            "maximum": 1000000000,
+            "minimum": 0,
+            "title": "Http 4Xx Count",
+            "type": "integer"
+          },
+          "failed_auth_count": {
+            "maximum": 1000000000,
+            "minimum": 0,
+            "title": "Failed Auth Count",
+            "type": "integer"
+          },
+          "unique_client_count": {
+            "maximum": 1000000000,
+            "minimum": 0,
+            "title": "Unique Client Count",
+            "type": "integer"
+          },
+          "window_seconds": {
+            "maximum": 3600,
+            "minimum": 1,
+            "title": "Window Seconds",
+            "type": "integer"
+          },
+          "path_category": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Path Category"
+          }
+        },
+        "required": [
+          "request_count",
+          "http_4xx_count",
+          "failed_auth_count",
+          "unique_client_count",
+          "window_seconds"
+        ],
+        "title": "HTTPDetails",
+        "type": "object"
+      },
+      "HTTPEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "sensor_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Sensor Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "ingested_at": {
+            "format": "date-time",
+            "title": "Ingested At",
+            "type": "string"
+          },
+          "source_type": {
+            "enum": [
+              "synthetic_http",
+              "synthetic_host",
+              "synthetic_network",
+              "synthetic_change",
+              "http_sensor",
+              "host_sensor",
+              "network_sensor",
+              "change_management"
+            ],
+            "title": "Source Type",
+            "type": "string"
+          },
+          "is_simulated": {
+            "title": "Is Simulated",
+            "type": "boolean"
+          },
+          "source": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Source",
+            "type": "string"
+          },
+          "raw_ref": {
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "event_type": {
+            "const": "http_window",
+            "title": "Event Type",
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/$defs/HTTPDetails"
+          }
+        },
+        "required": [
+          "event_id",
+          "asset_id",
+          "sensor_id",
+          "observed_at",
+          "ingested_at",
+          "source_type",
+          "is_simulated",
+          "source",
+          "raw_ref",
+          "event_type",
+          "details"
+        ],
+        "title": "HTTPEvent",
+        "type": "object"
+      },
+      "MaintenanceDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "start_at": {
+            "format": "date-time",
+            "title": "Start At",
+            "type": "string"
+          },
+          "end_at": {
+            "format": "date-time",
+            "title": "End At",
+            "type": "string"
+          },
+          "change_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Change Id",
+            "type": "string"
+          },
+          "approved": {
+            "title": "Approved",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "asset_id",
+          "start_at",
+          "end_at",
+          "change_id",
+          "approved"
+        ],
+        "title": "MaintenanceDetails",
+        "type": "object"
+      },
+      "MaintenanceEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "sensor_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Sensor Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "ingested_at": {
+            "format": "date-time",
+            "title": "Ingested At",
+            "type": "string"
+          },
+          "source_type": {
+            "enum": [
+              "synthetic_http",
+              "synthetic_host",
+              "synthetic_network",
+              "synthetic_change",
+              "http_sensor",
+              "host_sensor",
+              "network_sensor",
+              "change_management"
+            ],
+            "title": "Source Type",
+            "type": "string"
+          },
+          "is_simulated": {
+            "title": "Is Simulated",
+            "type": "boolean"
+          },
+          "source": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Source",
+            "type": "string"
+          },
+          "raw_ref": {
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "event_type": {
+            "const": "maintenance_window",
+            "title": "Event Type",
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/$defs/MaintenanceDetails"
+          }
+        },
+        "required": [
+          "event_id",
+          "asset_id",
+          "sensor_id",
+          "observed_at",
+          "ingested_at",
+          "source_type",
+          "is_simulated",
+          "source",
+          "raw_ref",
+          "event_type",
+          "details"
+        ],
+        "title": "MaintenanceEvent",
+        "type": "object"
+      },
+      "NetworkDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "destination_ip": {
+            "format": "ipvanyaddress",
+            "title": "Destination Ip",
+            "type": "string"
+          },
+          "destination_port": {
+            "maximum": 65535,
+            "minimum": 1,
+            "title": "Destination Port",
+            "type": "integer"
+          },
+          "outbound": {
+            "title": "Outbound",
+            "type": "boolean"
+          },
+          "is_new_destination": {
+            "title": "Is New Destination",
+            "type": "boolean"
+          },
+          "connection_uid": {
+            "anyOf": [
+              {
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Connection Uid"
+          }
+        },
+        "required": [
+          "destination_ip",
+          "destination_port",
+          "outbound",
+          "is_new_destination"
+        ],
+        "title": "NetworkDetails",
+        "type": "object"
+      },
+      "NetworkEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "sensor_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Sensor Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "ingested_at": {
+            "format": "date-time",
+            "title": "Ingested At",
+            "type": "string"
+          },
+          "source_type": {
+            "enum": [
+              "synthetic_http",
+              "synthetic_host",
+              "synthetic_network",
+              "synthetic_change",
+              "http_sensor",
+              "host_sensor",
+              "network_sensor",
+              "change_management"
+            ],
+            "title": "Source Type",
+            "type": "string"
+          },
+          "is_simulated": {
+            "title": "Is Simulated",
+            "type": "boolean"
+          },
+          "source": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Source",
+            "type": "string"
+          },
+          "raw_ref": {
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "event_type": {
+            "const": "network_connection",
+            "title": "Event Type",
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/$defs/NetworkDetails"
+          }
+        },
+        "required": [
+          "event_id",
+          "asset_id",
+          "sensor_id",
+          "observed_at",
+          "ingested_at",
+          "source_type",
+          "is_simulated",
+          "source",
+          "raw_ref",
+          "event_type",
+          "details"
+        ],
+        "title": "NetworkEvent",
+        "type": "object"
+      },
+      "ProcessDetails": {
+        "additionalProperties": false,
+        "properties": {
+          "process_name": {
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Process Name",
+            "type": "string"
+          },
+          "parent_process": {
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Parent Process",
+            "type": "string"
+          },
+          "process_id": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Process Id"
+          },
+          "parent_process_id": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Parent Process Id"
+          }
+        },
+        "required": [
+          "process_name",
+          "parent_process"
+        ],
+        "title": "ProcessDetails",
+        "type": "object"
+      },
+      "ProcessEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Event Id",
+            "type": "string"
+          },
+          "asset_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Asset Id",
+            "type": "string"
+          },
+          "sensor_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Sensor Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "title": "Observed At",
+            "type": "string"
+          },
+          "ingested_at": {
+            "format": "date-time",
+            "title": "Ingested At",
+            "type": "string"
+          },
+          "source_type": {
+            "enum": [
+              "synthetic_http",
+              "synthetic_host",
+              "synthetic_network",
+              "synthetic_change",
+              "http_sensor",
+              "host_sensor",
+              "network_sensor",
+              "change_management"
+            ],
+            "title": "Source Type",
+            "type": "string"
+          },
+          "is_simulated": {
+            "title": "Is Simulated",
+            "type": "boolean"
+          },
+          "source": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Source",
+            "type": "string"
+          },
+          "raw_ref": {
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Raw Ref",
+            "type": "string"
+          },
+          "event_type": {
+            "const": "process_start",
+            "title": "Event Type",
+            "type": "string"
+          },
+          "details": {
+            "$ref": "#/$defs/ProcessDetails"
+          }
+        },
+        "required": [
+          "event_id",
+          "asset_id",
+          "sensor_id",
+          "observed_at",
+          "ingested_at",
+          "source_type",
+          "is_simulated",
+          "source",
+          "raw_ref",
+          "event_type",
+          "details"
+        ],
+        "title": "ProcessEvent",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "scenario": {
+        "enum": [
+          "no_cve_suspicious_chain",
+          "benign_maintenance",
+          "missing_telemetry"
+        ],
+        "title": "Scenario",
+        "type": "string"
+      },
+      "run_id": {
+        "title": "Run Id",
+        "type": "string"
+      },
+      "incident_id": {
+        "title": "Incident Id",
+        "type": "string"
+      },
+      "alert_ids": {
+        "default": [],
+        "items": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+          "type": "string"
+        },
+        "title": "Alert Ids",
+        "type": "array"
+      },
+      "findings": {
+        "items": {
+          "$ref": "#/$defs/DetectionFinding"
+        },
+        "title": "Findings",
+        "type": "array"
+      },
+      "evidence": {
+        "items": {
+          "discriminator": {
+            "mapping": {
+              "http_window": "#/$defs/HTTPEvent",
+              "maintenance_window": "#/$defs/MaintenanceEvent",
+              "network_connection": "#/$defs/NetworkEvent",
+              "process_start": "#/$defs/ProcessEvent"
+            },
+            "propertyName": "event_type"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/HTTPEvent"
+            },
+            {
+              "$ref": "#/$defs/ProcessEvent"
+            },
+            {
+              "$ref": "#/$defs/NetworkEvent"
+            },
+            {
+              "$ref": "#/$defs/MaintenanceEvent"
+            }
+          ]
+        },
+        "title": "Evidence",
+        "type": "array"
+      },
+      "integration_status": {
+        "const": "demo_adapter",
+        "default": "demo_adapter",
+        "title": "Integration Status",
+        "type": "string"
+      },
+      "handoff_status": {
+        "enum": [
+          "pending_member3",
+          "delivered"
+        ],
+        "title": "Handoff Status",
+        "type": "string"
+      },
+      "is_simulated": {
+        "const": true,
+        "default": true,
+        "title": "Is Simulated",
+        "type": "boolean"
+      },
+      "note": {
+        "default": "Reviewable synthetic preview; central alert persistence and priority are owned by Member 3",
+        "title": "Note",
+        "type": "string"
+      }
+    },
+    "required": [
+      "scenario",
+      "run_id",
+      "incident_id",
+      "findings",
+      "evidence",
+      "handoff_status"
+    ],
+    "title": "DemoResult",
+    "type": "object"
+  }
+}

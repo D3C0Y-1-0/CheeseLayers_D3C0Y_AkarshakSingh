@@ -75,6 +75,7 @@ class Overview(BaseModel):
     matched_assets: int | None  # TODO(Member 3): count of assets matched to any threat
     open_alerts: int | None  # TODO(Member 3): count of alerts with status != resolved
     notes: list[str]
+    trend: list[dict]
 
 
 class InjectRequest(BaseModel):
@@ -117,6 +118,7 @@ def list_threats(
     min_epss: float | None = Query(None, ge=0, le=1, description="EPSS >= this (threats with null EPSS excluded)"),
     q: str | None = Query(None, min_length=2, description="Case-insensitive search in threat_id, title, description"),
     simulated: bool | None = Query(None, description="true = synthetic fixtures only, false = real intel only"),
+    relevant: bool = Query(False, description="Only threats referenced by active asset alerts"),
     sort: Literal["retrieved", "published"] = Query("retrieved", description="retrieved = newest arrival first (default); published = newest publication first"),
     page: int = Query(1, ge=1),
     page_size: int = Query(50, ge=1, le=200),
@@ -141,6 +143,10 @@ def list_threats(
         filters.append(or_(Threat.threat_id.ilike(like), Threat.title.ilike(like), Threat.description.ilike(like)))
     if simulated is not None:
         filters.append(Threat.is_simulated.is_(simulated))
+    if relevant:
+        from .correlator import AlertRow
+        ids = {tid for row in db.scalars(select(AlertRow)) if row.data["status"] != "resolved" for tid in row.data["threat_ids"]}
+        filters.append(Threat.threat_id.in_(ids))
     total = db.scalar(select(func.count()).select_from(Threat).where(*filters))
     published = (Threat.published_at.is_(None), Threat.published_at.desc())  # nulls last
     order = (Threat.retrieved_at.desc(), *published) if sort == "retrieved" else (*published, Threat.retrieved_at.desc())
@@ -176,6 +182,13 @@ def overview(db: Session = Depends(get_db)):
     sev_col = case((Threat.severity.is_(None), "unknown"), else_=Threat.severity)
     by_sev = dict(db.execute(select(sev_col, func.count()).group_by(sev_col)).all())
     now = datetime.now(timezone.utc)
+    from .correlator import AlertRow
+    active = [r.data for r in db.scalars(select(AlertRow)) if r.data["status"] != "resolved"]
+    cutoff = now - timedelta(days=14)
+    publication_day = func.date(Threat.published_at)
+    trend = [{"date": day, "count": n} for day, n in db.execute(
+        select(publication_day, func.count()).where(Threat.published_at >= cutoff)
+        .group_by(publication_day).order_by(publication_day)).all()]
     return Overview(
         threats_total=count(),
         threats_by_source=by_source,
@@ -189,9 +202,10 @@ def overview(db: Session = Depends(get_db)):
         iocs_by_type=dict(db.execute(select(IOCRow.ioc_type, func.count()).group_by(IOCRow.ioc_type)).all()),
         sources=[_status(r, now) for r in db.scalars(select(SourceStatus).order_by(SourceStatus.source))],
         newest_retrieved_at=db.scalar(select(func.max(Threat.retrieved_at))),
-        matched_assets=None,
-        open_alerts=None,
-        notes=["matched_assets and open_alerts are null until Member 3's correlation/alerts land (TODO)."],
+        matched_assets=len({i for a in active if a["kind"] == "vulnerability" for i in a["asset_ids"]}),
+        open_alerts=len(active), trend=trend,
+        notes=["Trend groups records by original publication date over the last 14 days; undated records are excluded.",
+               "Assets are synthetic; API connectivity does not imply live feed collection."],
     )
 
 

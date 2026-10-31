@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { toTitle, useAlerts, when } from './api'
-import { Empty, PageHead, Panel, PriorityBadge, Provenance } from './ui'
+import { DataNotice, Empty, PageHead, Panel, PriorityBadge, Provenance } from './ui'
 
 const RANK = { critical: 0, high: 1, medium: 2, low: 3 }
 const STATUS = { new: 'New', ack: 'Acknowledged', resolved: 'Resolved' }
@@ -22,7 +22,7 @@ export default function Incidents() {
           ))}
         </div>
       </PageHead>
-      {error && mode === 'live' && <p role="status" className="mb-3 text-sev-high">{error}</p>}
+      <DataNotice mode={mode} error={error} />
       <Panel>
         {rows.length === 0 ? <Empty>No incidents of this type yet.</Empty> : (
           <ul>

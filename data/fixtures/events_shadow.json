@@ -1,0 +1,150 @@
+[
+  {
+    "event_id": "SW-EV-0001",
+    "asset_id": "HLT-WEB-01",
+    "event_type": "http_window",
+    "sensor_id": "synthetic_http-01",
+    "observed_at": "2026-10-31T09:32:10+00:00",
+    "ingested_at": "2026-10-31T09:32:12+00:00",
+    "source_type": "synthetic_http",
+    "source": "netrax_synthetic",
+    "is_simulated": true,
+    "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0001",
+    "details": {
+      "request_count": 340,
+      "http_4xx_count": 240,
+      "failed_auth_count": 0,
+      "unique_client_count": 12,
+      "window_seconds": 60
+    }
+  },
+  {
+    "event_id": "SW-EV-0002",
+    "asset_id": "HLT-WEB-01",
+    "event_type": "process_start",
+    "sensor_id": "synthetic_host-01",
+    "observed_at": "2026-10-31T09:33:40+00:00",
+    "ingested_at": "2026-10-31T09:33:42+00:00",
+    "source_type": "synthetic_host",
+    "source": "netrax_synthetic",
+    "is_simulated": true,
+    "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0002",
+    "details": {
+      "parent_process": "php-fpm8.3",
+      "process_name": "/bin/sh",
+      "parent_process_id": 1100,
+      "process_id": 1201
+    }
+  },
+  {
+    "event_id": "SW-EV-0003",
+    "asset_id": "HLT-WEB-01",
+    "event_type": "network_connection",
+    "sensor_id": "synthetic_network-01",
+    "observed_at": "2026-10-31T09:36:05+00:00",
+    "ingested_at": "2026-10-31T09:36:07+00:00",
+    "source_type": "synthetic_network",
+    "source": "netrax_synthetic",
+    "is_simulated": true,
+    "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0003",
+    "details": {
+      "destination_ip": "203.0.113.250",
+      "destination_port": 4444,
+      "outbound": true,
+      "is_new_destination": true,
+      "connection_uid": "sim-connection-01"
+    }
+  },
+  {
+    "event_id": "SW-EV-0004",
+    "asset_id": "BNK-NET-01",
+    "event_type": "maintenance_window",
+    "sensor_id": "synthetic_change-01",
+    "observed_at": "2026-10-30T20:30:00+00:00",
+    "ingested_at": "2026-10-30T20:30:02+00:00",
+    "source_type": "synthetic_change",
+    "source": "netrax_synthetic",
+    "is_simulated": true,
+    "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0004",
+    "details": {
+      "asset_id": "BNK-NET-01",
+      "start_at": "2026-10-30T20:30:00Z",
+      "end_at": "2026-10-30T22:30:00Z",
+      "change_id": "CHG-2026-1031-07",
+      "approved": true
+    }
+  },
+  {
+    "event_id": "SW-EV-0005",
+    "asset_id": "BNK-NET-01",
+    "event_type": "http_window",
+    "sensor_id": "synthetic_http-01",
+    "observed_at": "2026-10-30T20:50:00+00:00",
+    "ingested_at": "2026-10-30T20:50:02+00:00",
+    "source_type": "synthetic_http",
+    "source": "netrax_synthetic",
+    "is_simulated": true,
+    "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0005",
+    "details": {
+      "request_count": 2100,
+      "http_4xx_count": 21,
+      "failed_auth_count": 0,
+      "unique_client_count": 12,
+      "window_seconds": 60
+    }
+  },
+  {
+    "event_id": "SW-EV-0006",
+    "asset_id": "BNK-NET-01",
+    "event_type": "process_start",
+    "sensor_id": "synthetic_host-01",
+    "observed_at": "2026-10-30T21:05:00+00:00",
+    "ingested_at": "2026-10-30T21:05:02+00:00",
+    "source_type": "synthetic_host",
+    "source": "netrax_synthetic",
+    "is_simulated": true,
+    "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0006",
+    "details": {
+      "parent_process": "systemd",
+      "process_name": "/usr/bin/apt-get"
+    }
+  },
+  {
+    "event_id": "SW-EV-0007",
+    "asset_id": "HLT-WEB-01",
+    "event_type": "http_window",
+    "sensor_id": "synthetic_http-01",
+    "observed_at": "2026-10-31T10:00:00+00:00",
+    "ingested_at": "2026-10-31T10:00:02+00:00",
+    "source_type": "synthetic_http",
+    "source": "netrax_synthetic",
+    "is_simulated": true,
+    "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0007",
+    "details": {
+      "request_count": 300,
+      "http_4xx_count": 200,
+      "failed_auth_count": 0,
+      "unique_client_count": 12,
+      "window_seconds": 60
+    }
+  },
+  {
+    "event_id": "SW-EV-0008",
+    "asset_id": "HLT-WEB-01",
+    "event_type": "network_connection",
+    "sensor_id": "synthetic_network-01",
+    "observed_at": "2026-10-31T10:02:00+00:00",
+    "ingested_at": "2026-10-31T10:02:02+00:00",
+    "source_type": "synthetic_network",
+    "source": "netrax_synthetic",
+    "is_simulated": true,
+    "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0008",
+    "details": {
+      "destination_ip": "203.0.113.250",
+      "destination_port": 4444,
+      "outbound": true,
+      "is_new_destination": true,
+      "connection_uid": "sim-connection-01"
+    }
+  }
+]

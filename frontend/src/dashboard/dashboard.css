@@ -34,6 +34,14 @@
 .dash-main {
   padding: 1.25rem;
 }
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+.dash pre {
+  max-height: 26rem;
+  overflow-wrap: anywhere;
+}
 .dash-banner {
   padding: 0.45rem 1.25rem;
   background: rgb(240 170 60 / 0.14);

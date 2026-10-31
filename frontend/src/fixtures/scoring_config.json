@@ -1,0 +1,66 @@
+{
+  "vulnerability": {
+    "weights": {
+      "severity": 0.3,
+      "exploitation": 0.35,
+      "criticality": 0.2,
+      "exposure": 0.15
+    },
+    "cvss_missing_fallback": 0.5,
+    "epss_missing_fallback": 0.25,
+    "epss_exponent": 0.5,
+    "public_exploit_floor": 0.6,
+    "exposure": {
+      "internet_facing": 1.0,
+      "internal": 0.4
+    }
+  },
+  "behaviour": {
+    "signal_severity": {
+      "unexpected_process": 0.8,
+      "outbound_connection": 0.7,
+      "http_anomaly": 0.5,
+      "auth_anomaly": 0.5,
+      "inbound_ids_alert": 0.4
+    },
+    "base_weight": 0.75,
+    "diversity_bonus": 0.2,
+    "maintenance_damping": 0.3,
+    "benign_in_maintenance": [
+      "http_anomaly",
+      "auth_anomaly"
+    ],
+    "confidence_multiplier": {
+      "low": 0.6,
+      "medium": 0.8,
+      "high": 1.0
+    }
+  },
+  "confidence": {
+    "provenance": {
+      "kev": 30,
+      "verified": 25,
+      "simulated": 15,
+      "other": 10,
+      "telemetry": 20
+    },
+    "verified_sources": [
+      "nvd",
+      "kev",
+      "nvd+kev",
+      "certin"
+    ],
+    "match_certainty": {
+      "confirmed_affected": 40,
+      "needs_verification": 15
+    },
+    "corroboration_per_signal": 10,
+    "corroboration_max": 30
+  },
+  "priority_thresholds": {
+    "critical": 80,
+    "high": 55,
+    "medium": 30
+  },
+  "needs_verification_cap": "high"
+}

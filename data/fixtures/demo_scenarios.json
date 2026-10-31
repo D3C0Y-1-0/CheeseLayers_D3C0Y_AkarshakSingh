@@ -1,0 +1,16 @@
+{
+  "no_cve_suspicious_chain": [
+    "SW-EV-0001",
+    "SW-EV-0002",
+    "SW-EV-0003"
+  ],
+  "benign_maintenance": [
+    "SW-EV-0004",
+    "SW-EV-0005",
+    "SW-EV-0006"
+  ],
+  "missing_telemetry": [
+    "SW-EV-0007",
+    "SW-EV-0008"
+  ]
+}

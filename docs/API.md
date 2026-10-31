@@ -1,4 +1,67 @@
-# NETRA-X API: Member 2 endpoints (feeds, signals, health, demo, insights, STIX export)
+# NETRA-X API: feeds, signals, assets, alerts, analytics, Shadow Watch and investigation
+
+## Member 4 endpoints
+
+### `POST /api/demo/inject-behaviour`
+
+Available only with `DEMO_MODE=true`; otherwise 404. Request:
+
+```json
+{"scenario":"no_cve_suspicious_chain","run_id":"demo-session-1"}
+```
+
+`scenario` is required and must be `no_cve_suspicious_chain`, `benign_maintenance`, or
+`missing_telemetry`. Optional `run_id` defaults as above; 1-128 characters from letters,
+digits, `_`, `.`, `:`, `-`, beginning with a letter/digit. Extra fields and malformed input
+return 422. Invalid/missing synthetic fixtures or unavailable Member 3 sink return 503.
+
+Response fields: `scenario`, `run_id`, `incident_id`, `alert_ids`, `findings`, `evidence`,
+`integration_status`, `handoff_status`, `is_simulated`, `note`. Evidence is the typed Member 4
+envelope and references original fixture records via `raw_ref`. All demo records are simulated.
+The normal app lifespan connects the SQLite handoff: `handoff_status="delivered"` and `alert_ids`
+identify persisted central incidents. Benign maintenance has no escalated alert, so an empty
+`alert_ids` is valid even when delivered. Standalone replay reports `pending_member3`.
+`incident_id` remains the optional in-memory preview ID; the frontend follows central `alert_ids`.
+
+Same scenario/run replays return stable IDs without duplicate findings. Preview retention is
+100 runs per API process; restart resets it. Use one worker. Fixture observation times remain
+historical on replay. See [handoff](MEMBER4_HANDOFF.md) for central alert sink registration.
+
+Samples (each includes injection and investigation):
+[suspicious](samples/shadow_no_cve_suspicious_chain.json),
+[benign](samples/shadow_benign_maintenance.json),
+[missing telemetry](samples/shadow_missing_telemetry.json).
+
+### `POST /api/alerts/{id}/investigate`
+
+No body. Use the injection's `incident_id` for a demo preview or an authorised persisted central
+alert ID after Member 3 integration. Demo mode prohibits cloud LLM calls regardless of keys.
+
+Returns `incident_id`, `assessment` (`vulnerability_exposure`, `suspected_activity`,
+`needs_verification`), `summary`, `asset_ids`, `verified_cve_ids`, `evidence_ids`, `evidence`,
+`why_relevant`, `limitations`, `recommended_actions`, `references`, `generated_by` (`template`
+or `llm`), `is_simulated`, `integration_status`, `fallback_reason`, `analyst_review_required`.
+Each evidence citation includes ID, asset, event type, observation time, sensor, source,
+retrieval/ingestion time and raw provenance pointer. Unknown CVE association is an empty array.
+
+Template reports always work offline. Optional consent-gated Groq generation can only select a
+permitted summary and reorder prevalidated review steps; factual fields must match trusted
+context exactly. Every action is a suggestion. `fallback_reason` is null or `offline_mode`,
+`disabled`, `unconfigured`, `timeout`, `invalid_output`, `provider_error`. Model errors return
+a normal 200 template report. Missing demo preview returns 404; scope denial returns 403;
+invalid IDs return 422. The default persisted provider permits synthetic incidents in demo mode
+and denies real incidents or access outside demo mode. Real deployments must supply an
+authenticated scope factory. No evidence is inferred from missing telemetry or absent feeds.
+
+### `GET /api/alerts/{id}/evidence`
+
+Returns `{alert_id, items: [SecurityEvent], limit: 100, truncated: boolean}`. Original normalized
+Shadow Watch envelopes and findings are preserved in event additions (`normalized_event`,
+`shadow_findings`). Legacy event fields remain unchanged. Requires simulated incident scope in
+demo mode or an authenticated tools factory outside it. Unknown alert: 404; scope denial: 403.
+The frontend uses these stored events rather than matching IDs to bundled fixtures.
+
+## Existing Member 2 endpoints
 
 Base URL `http://localhost:8000` · interactive docs at `/docs` (OpenAPI at `/openapi.json`) · CORS allows `http://localhost:5173`.
 Field names follow **`data/contracts.json`** (entity `threat`). Example responses (real output) are in `docs/samples/*.json`.
@@ -92,10 +155,14 @@ Dashboard KPIs in one call. Sample: `samples/overview.json`
  "kev_count": 1846, "high_epss_count": 970, "high_epss_threshold": 0.5, "public_exploit_count": 1716,
  "simulated_count": 3, "ioc_count": 27406, "iocs_by_type": {"ip": 4770, "cidr": 1756, ...},
  "sources": [SourceStatus, ...], "newest_retrieved_at": "…",
- "matched_assets": null, "open_alerts": null, "notes": ["… null until Member 3 …"]}
+ "matched_assets": 0, "open_alerts": 0, "trend": [], "notes": ["Counts reflect active incidents."]}
 ```
 `kev_count` counts every threat with `kev_listed: true`, including CERT-In advisories that mention a KEV CVE, so it
-is larger than `threats_by_source.kev`. **`matched_assets` / `open_alerts` are `null` (TODO Member 3).**
+is larger than `threats_by_source.kev`. `matched_assets` counts distinct assets with active
+vulnerability alerts; `open_alerts` counts all active incidents. `trend` adds publication-date
+counts (`{date,count}`), ordered by day for the last 14 days, excluding undated records.
+The snippet illustrates the shape; `samples/overview.json` contains a captured response.
+Threat listing also accepts `relevant=true` to filter to threats behind active asset alerts.
 
 ### `POST /api/demo/inject-cve`
 Demo trigger for Scenario A ("a new advisory just arrived"). Body: `{"fixture_id": "CVE-2024-21762"}`.

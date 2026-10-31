@@ -1,14 +1,14 @@
 """Member 3 endpoints: incident alerts, lifecycle, and the correlation entry points for Members 2 and 4."""
 from typing import Any
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from .asset_store import get_asset_store
 from .contracts import LifecycleStatus, Priority, Sector, SecurityEvent, ThreatRecord
-from .correlator import AlertRow, CorrelationEngine
+from .correlator import AlertRow, CorrelationEngine, EventRow
 from .database import get_db
 from .models import Threat
 
@@ -67,8 +67,31 @@ def get_alert(alert_id: str, db: Session = Depends(get_db)) -> dict[str, Any]:
         t = db.get(Threat, tid)
         threats.append({"threat_id": tid, "in_database": t is not None} | ({
             k: getattr(t, k) for k in ("cve_id", "title", "source", "severity", "cvss", "epss", "kev_listed",
-                                       "public_exploit", "is_simulated")} if t else {}))
+                                       "public_exploit", "is_simulated", "references", "attack_techniques")} if t else {}))
     return a | {"assets": assets, "threats": threats}
+
+
+@router.get("/api/alerts/{alert_id}/evidence", tags=["alerts"])
+def alert_evidence(alert_id: str, request: Request, db: Session = Depends(get_db)) -> dict:
+    row = db.get(AlertRow, alert_id)
+    if row is None:
+        raise HTTPException(404, "alert not found")
+    from ai.llm import demo_mode
+    if demo_mode():
+        if not row.data.get("is_simulated"):
+            raise HTTPException(403, "demo mode permits simulated evidence only")
+    else:
+        factory = getattr(request.app.state, "investigation_tools_factory", None)
+        if factory is None:
+            raise HTTPException(403, "authenticated evidence access required")
+        try:
+            factory(request, alert_id).get_incident_context(alert_id)
+        except PermissionError:
+            raise HTTPException(403, "evidence access denied") from None
+    records = list(db.scalars(select(EventRow).where(EventRow.event_id.in_(row.data["evidence_ids"]))
+                              .order_by(EventRow.timestamp, EventRow.event_id).limit(101)))
+    return {"alert_id": alert_id, "items": [r.data for r in records[:100]], "limit": 100,
+            "truncated": len(records) > 100}
 
 
 @router.post("/api/alerts/{alert_id}/acknowledge", tags=["alerts"],
@@ -98,6 +121,12 @@ def correlate_events(events: list[SecurityEvent], db: Session = Depends(get_db))
 
 
 @router.post("/api/demo/reset-alerts", tags=["demo"])
-def reset_alerts(db: Session = Depends(get_db)) -> dict[str, int]:
+def reset_alerts(request: Request, db: Session = Depends(get_db)) -> dict[str, int]:
     """Delete all alerts and ingested events (Member 2's /api/demo/reset leaves other members' tables alone)."""
-    return CorrelationEngine(db).reset()
+    from ai.llm import demo_mode
+    if not demo_mode():
+        raise HTTPException(404, "demo reset unavailable")
+    result = CorrelationEngine(db).reset()
+    from shadow_watch.demo import DemoAdapter
+    request.app.state.shadow_demo_adapter = DemoAdapter()
+    return result

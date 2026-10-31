@@ -38,7 +38,7 @@ export function ScoreLab() {
 
   const input = { cvss, inKev: exploit === 1, epss: exploit, criticality, internetFacing, confidence }
   const { score, exploit: ex, exposure } = riskFactors(input)
-  const level = riskLevel(score)
+  const level = riskLevel(score, confidence)
   const factors: [string, string, number][] = [
     ['Severity', `CVSS ${cvss.toFixed(1)}`, cvss / 10],
     ['Exploitation', exploit === 1 ? 'In CISA KEV' : `EPSS ${exploit.toFixed(2)}`, Math.sqrt(ex)],
@@ -101,7 +101,7 @@ export function ScoreLab() {
             </div>
           ))}
         </dl>
-        <p className="lab-formula">The score is 100 multiplied by all five values. Exploitation is the square root of its signal, so a low EPSS never drops the score to zero.</p>
+        <p className="lab-formula">Illustrative vulnerability priority: 30% severity + 35% exploitation + 20% criticality + 15% exposure. Exploitation uses square-root EPSS, or 1 for KEV. An unverified version match caps priority at High. The dashboard separately shows behavioural suspicion and evidence confidence.</p>
       </div>
     </section>
   )

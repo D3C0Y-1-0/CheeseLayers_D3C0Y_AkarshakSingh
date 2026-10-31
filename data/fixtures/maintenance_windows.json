@@ -1,0 +1,21 @@
+[
+  {
+    "event_id": "SW-EV-0004",
+    "asset_id": "BNK-NET-01",
+    "event_type": "maintenance_window",
+    "sensor_id": "synthetic_change-01",
+    "observed_at": "2026-10-30T20:30:00+00:00",
+    "ingested_at": "2026-10-30T20:30:02+00:00",
+    "source_type": "synthetic_change",
+    "source": "netrax_synthetic",
+    "is_simulated": true,
+    "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0004",
+    "details": {
+      "asset_id": "BNK-NET-01",
+      "start_at": "2026-10-30T20:30:00Z",
+      "end_at": "2026-10-30T22:30:00Z",
+      "change_id": "CHG-2026-1031-07",
+      "approved": true
+    }
+  }
+]

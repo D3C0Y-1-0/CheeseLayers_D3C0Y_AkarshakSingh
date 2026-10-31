@@ -61,7 +61,26 @@ export type Alert = {
   title?: string
   recommended_actions?: string[]
   is_simulated?: boolean
+  lifecycle_status?: string
+  match_detail?: string | null
+  vulnerability_priority_score?: number
+  behavioural_suspicion_score?: number
+  evidence_confidence_score?: number
+  score_factors?: Record<string, unknown>
+  suppressed?: boolean
+  assets?: Asset[]
+  threats?: Partial<Threat>[]
 }
+
+export type StoredEvent = { event_id: string; asset_id: string | null; timestamp: string; event_type: string;
+  source_sensor: string; details: Record<string, unknown>; is_simulated: boolean;
+  normalized_event?: { raw_ref: string; source: string; ingested_at: string };
+  shadow_findings?: { finding_id: string; detector_id: string; reason: string; confidence: string; evidence_ids: string[] }[] }
+export type Report = { incident_id: string; summary: string; assessment: string; evidence_ids: string[]; why_relevant: string;
+  limitations: string[]; recommended_actions: string[]; references: string[]; generated_by: 'template' | 'llm';
+  is_simulated: boolean; integration_status: string; analyst_review_required: boolean; fallback_reason: string | null }
+export type DemoResult = { alert_ids: string[]; incident_id: string; handoff_status: string; findings: unknown[];
+  evidence: unknown[]; scenario: string }
 
 export type Event = (typeof eventsFx)[number]
 
@@ -70,7 +89,7 @@ export type Overview = {
   snapshot_at: string | null
   threats_received: number
   trend: { date: string; count: number }[]
-  sources: { source: string; name: string; records: number; newest_record: string | null; status: string }[]
+  sources: { source: string; name: string; records: number | null; newest_record: string | null; status: string }[]
 }
 
 export const fixtures = {
@@ -81,17 +100,21 @@ export const fixtures = {
   overview: overviewFx as unknown as Overview,
 }
 
-async function getJson(path: string, init?: RequestInit) {
+export async function getJson(path: string, init?: RequestInit) {
   const res = await fetch(path, { ...init, signal: AbortSignal.timeout(init?.method === 'POST' ? 30000 : 4000) })
-  if (!res.ok) throw new Error(`${path} returned ${res.status}`)
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(typeof body.detail === 'string' ? body.detail : `Request failed (${res.status}). Check the submitted fields.`)
+  }
+  if (!(res.headers.get('content-type') ?? '').includes('json')) throw new Error('Backend did not return JSON')
   return res.json()
 }
 
 // Accepts a bare array or a wrapper like {items: [...]} until response formats are final.
 const listOf = <T,>(json: unknown): T[] => {
   if (Array.isArray(json)) return json
-  const inner = Object.values((json ?? {}) as object).find(Array.isArray)
-  if (inner) return inner as T[]
+  const inner = (json as { items?: unknown })?.items
+  if (Array.isArray(inner)) return inner as T[]
   throw new Error('Expected a list')
 }
 
@@ -104,12 +127,17 @@ export type Mode = 'loading' | 'live' | 'sample'
 export function useData<T>(path: string, sample: T, parse: (json: unknown) => T, pollMs?: number) {
   const [state, setState] = useState<{ data: T; mode: Mode; error: string | null }>({ data: sample, mode: 'loading', error: null })
   const latest = useRef({ sample, parse })
+  useEffect(() => { latest.current = { sample, parse } }, [sample, parse])
+  const sequence = useRef(0)
 
   const load = useCallback(async () => {
+    const requestId = ++sequence.current
     try {
       const data = latest.current.parse(await getJson(path))
+      if (requestId !== sequence.current) return
       setState({ data, mode: 'live', error: null })
     } catch (e) {
+      if (requestId !== sequence.current) return
       setState((prev) => (prev.mode === 'live'
         ? { ...prev, error: 'Lost contact with the backend. Showing the last data received.' }
         : { data: latest.current.sample, mode: 'sample', error: e instanceof Error ? e.message : 'Backend unreachable' }))
@@ -118,11 +146,13 @@ export function useData<T>(path: string, sample: T, parse: (json: unknown) => T,
 
   useEffect(() => {
     const first = setTimeout(load, 0)
-    if (!pollMs) return () => clearTimeout(first)
-    const timer = setInterval(load, pollMs)
+    window.addEventListener('netrax:refresh', load)
+    const timer = pollMs ? setInterval(load, pollMs) : undefined
     return () => {
       clearTimeout(first)
       clearInterval(timer)
+      window.removeEventListener('netrax:refresh', load)
+      sequence.current++
     }
   }, [load, pollMs])
 
@@ -135,7 +165,21 @@ const uniqueAlerts = (json: unknown) => [...new Map(listOf<Alert>(json).map((a) 
 export const useAlerts = () => useData<Alert[]>('/api/alerts', fixtures.alerts, uniqueAlerts, 3000)
 export const useThreats = () => useData<Threat[]>('/api/threats', fixtures.threats, listOf<Threat>)
 export const useAssets = () => useData<Asset[]>('/api/assets', fixtures.assets, listOf<Asset>)
-export const useOverview = () => useData<Overview>('/api/overview', fixtures.overview, (j) => j as Overview)
+type BackendOverview = { threats_total: number; newest_retrieved_at: string | null; trend: Overview['trend'];
+  threats_by_source: Record<string, number>; sources: { source: string; status: string; last_success: string | null; record_count: number | null }[] }
+export const parseOverview = (json: unknown): Overview => {
+  const j = json as BackendOverview
+  if (typeof j.threats_total !== 'number' || !Array.isArray(j.trend)) throw new Error('Unsupported overview response')
+  return { threats_received: j.threats_total, snapshot_at: j.newest_retrieved_at, trend: j.trend,
+    sources: [...new Set([...Object.keys(j.threats_by_source), ...j.sources.map((s) => s.source)])].map((source) => {
+      const health = j.sources.find((s) => s.source === source)
+      return { source, name: source, records: j.threats_by_source[source] ?? health?.record_count ?? null,
+        newest_record: health?.last_success ?? null, status: health?.status ?? 'Cache available; collector health unknown' }
+    }) }
+}
+export const useOverview = () => useData<Overview>('/api/overview', fixtures.overview, parseOverview, 10000)
+export const useHealth = () => useData<{ demo_mode: boolean }>('/health', { demo_mode: false }, (j) => j as { demo_mode: boolean }, 5000)
+export const notifyRefresh = () => window.dispatchEvent(new Event('netrax:refresh'))
 
 export const post = (path: string, body?: unknown) =>
   getJson(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined })
@@ -143,4 +187,4 @@ export const post = (path: string, body?: unknown) =>
 export const toTitle = (a: Alert) => a.title ?? (a.kind === 'behaviour' ? `Suspicious behaviour on ${a.asset_ids[0] ?? 'unknown asset'}` : `${a.threat_ids[0]} on ${a.asset_ids[0]}`)
 
 export const when = (iso: string | null) =>
-  iso ? new Date(iso).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Kolkata' }) : 'Unknown'
+  iso && !Number.isNaN(Date.parse(iso)) ? new Date(iso).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Kolkata' }) : 'Unknown'

@@ -1,0 +1,138 @@
+{
+  "injection": {
+    "scenario": "benign_maintenance",
+    "run_id": "demo-session-1",
+    "incident_id": "SW-DEMO-55572df0f7b7c56901d9173c",
+    "alert_ids": [],
+    "findings": [],
+    "evidence": [
+      {
+        "event_id": "55572df0f7b7c56901d9173c:SW-EV-0004",
+        "asset_id": "BNK-NET-01",
+        "sensor_id": "synthetic_change-01",
+        "observed_at": "2026-10-30T20:30:00Z",
+        "ingested_at": "2026-10-30T20:30:02Z",
+        "source_type": "synthetic_change",
+        "is_simulated": true,
+        "source": "netrax_synthetic",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0004",
+        "event_type": "maintenance_window",
+        "details": {
+          "asset_id": "BNK-NET-01",
+          "start_at": "2026-10-30T20:30:00Z",
+          "end_at": "2026-10-30T22:30:00Z",
+          "change_id": "CHG-2026-1031-07",
+          "approved": true
+        }
+      },
+      {
+        "event_id": "55572df0f7b7c56901d9173c:SW-EV-0005",
+        "asset_id": "BNK-NET-01",
+        "sensor_id": "synthetic_http-01",
+        "observed_at": "2026-10-30T20:50:00Z",
+        "ingested_at": "2026-10-30T20:50:02Z",
+        "source_type": "synthetic_http",
+        "is_simulated": true,
+        "source": "netrax_synthetic",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0005",
+        "event_type": "http_window",
+        "details": {
+          "request_count": 2100,
+          "http_4xx_count": 21,
+          "failed_auth_count": 0,
+          "unique_client_count": 12,
+          "window_seconds": 60,
+          "path_category": null
+        }
+      },
+      {
+        "event_id": "55572df0f7b7c56901d9173c:SW-EV-0006",
+        "asset_id": "BNK-NET-01",
+        "sensor_id": "synthetic_host-01",
+        "observed_at": "2026-10-30T21:05:00Z",
+        "ingested_at": "2026-10-30T21:05:02Z",
+        "source_type": "synthetic_host",
+        "is_simulated": true,
+        "source": "netrax_synthetic",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0006",
+        "event_type": "process_start",
+        "details": {
+          "process_name": "/usr/bin/apt-get",
+          "parent_process": "systemd",
+          "process_id": null,
+          "parent_process_id": null
+        }
+      }
+    ],
+    "integration_status": "demo_adapter",
+    "handoff_status": "delivered",
+    "is_simulated": true,
+    "note": "Reviewable synthetic preview; central alert persistence and priority are owned by Member 3"
+  },
+  "investigation": {
+    "incident_id": "SW-DEMO-55572df0f7b7c56901d9173c",
+    "assessment": "needs_verification",
+    "summary": "3 stored observations (2026-10-30T20:30:00+00:00 to 2026-10-30T21:05:00+00:00). 55572df0f7b7c56901d9173c:SW-EV-0004: maintenance_window on BNK-NET-01 at 2026-10-30T20:30:00+00:00; 55572df0f7b7c56901d9173c:SW-EV-0005: http_window on BNK-NET-01 at 2026-10-30T20:50:00+00:00; 55572df0f7b7c56901d9173c:SW-EV-0006: process_start on BNK-NET-01 at 2026-10-30T21:05:00+00:00. No known CVE linkage.",
+    "asset_ids": [
+      "BNK-NET-01"
+    ],
+    "verified_cve_ids": [],
+    "evidence_ids": [
+      "55572df0f7b7c56901d9173c:SW-EV-0004",
+      "55572df0f7b7c56901d9173c:SW-EV-0005",
+      "55572df0f7b7c56901d9173c:SW-EV-0006"
+    ],
+    "evidence": [
+      {
+        "evidence_id": "55572df0f7b7c56901d9173c:SW-EV-0004",
+        "asset_id": "BNK-NET-01",
+        "observed_at": "2026-10-30T20:30:00Z",
+        "sensor_id": "synthetic_change-01",
+        "source": "netrax_synthetic",
+        "retrieved_at": "2026-10-30T20:30:02Z",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0004",
+        "event_type": "maintenance_window"
+      },
+      {
+        "evidence_id": "55572df0f7b7c56901d9173c:SW-EV-0005",
+        "asset_id": "BNK-NET-01",
+        "observed_at": "2026-10-30T20:50:00Z",
+        "sensor_id": "synthetic_http-01",
+        "source": "netrax_synthetic",
+        "retrieved_at": "2026-10-30T20:50:02Z",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0005",
+        "event_type": "http_window"
+      },
+      {
+        "evidence_id": "55572df0f7b7c56901d9173c:SW-EV-0006",
+        "asset_id": "BNK-NET-01",
+        "observed_at": "2026-10-30T21:05:00Z",
+        "sensor_id": "synthetic_host-01",
+        "source": "netrax_synthetic",
+        "retrieved_at": "2026-10-30T21:05:02Z",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0006",
+        "event_type": "process_start"
+      }
+    ],
+    "why_relevant": "No typed Shadow Watch finding was supplied. Review the stored evidence and any maintenance context.",
+    "limitations": [
+      "Signals share a simulated asset and time window; a causal process/network join is not verified",
+      "Compromise not confirmed",
+      "No known CVE linkage; no vendor patch has been verified for these observations",
+      "Approved maintenance context retained; it does not rule out unrelated suspicious activity",
+      "Synthetic demo preview in memory; Member 3 persistence/correlation and final priority are not connected"
+    ],
+    "recommended_actions": [
+      "Review the stored source evidence and validate sensor coverage",
+      "Review application request logs and compare the HTTP window with the normal baseline",
+      "Validate process ancestry against authorised service and change records",
+      "Confirm the approved maintenance window and load-test scope with change records"
+    ],
+    "references": [],
+    "generated_by": "template",
+    "is_simulated": true,
+    "integration_status": "demo_adapter",
+    "fallback_reason": "offline_mode",
+    "analyst_review_required": true
+  }
+}

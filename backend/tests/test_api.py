@@ -72,9 +72,11 @@ def test_api_output_matches_contract(client):
     assert not V.errors, V.errors[:5]
 
 
-def test_overview_member3_fields_null(client):
+def test_overview_member3_fields_connected(client):
     o = client.get("/api/overview").json()
-    assert o["matched_assets"] is None and o["open_alerts"] is None
+    active = [a for a in client.get('/api/alerts').json()['items'] if a['status'] != 'resolved']
+    assert o['open_alerts'] == len(active)
+    assert o['matched_assets'] == len({i for a in active if a['kind'] == 'vulnerability' for i in a['asset_ids']})
     assert o["threats_total"] == sum(o["threats_by_source"].values()) == sum(o["threats_by_severity"].values())
 
 

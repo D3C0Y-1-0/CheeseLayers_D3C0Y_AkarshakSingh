@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
-import { Boxes, LayoutDashboard, Radar, Siren } from 'lucide-react'
+import { Activity, Boxes, ChartNoAxesCombined, LayoutDashboard, Radar, Siren } from 'lucide-react'
 import { Mark } from '../landing/Mark'
 import './dashboard.css'
 
@@ -9,11 +9,14 @@ const NAV = [
   { to: '/app/threats', label: 'Threat Intelligence', icon: Radar },
   { to: '/app/assets', label: 'Asset Inventory', icon: Boxes },
   { to: '/app/incidents', label: 'Incidents', icon: Siren },
+  { to: '/app/signals', label: 'Early warnings', icon: Activity },
+  { to: '/app/analytics', label: 'Exposure & impact', icon: ChartNoAxesCombined },
 ]
 
 export default function Shell() {
   const { pathname } = useLocation()
   const [online, setOnline] = useState<boolean | null>(null)
+  const [demo, setDemo] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -21,7 +24,7 @@ export default function Shell() {
 
   useEffect(() => {
     const check = () => fetch('/health', { signal: AbortSignal.timeout(2500) })
-      .then((r) => setOnline(r.ok && !(r.headers.get('content-type') ?? '').includes('html')))
+      .then(async (r) => { if (!r.ok) throw new Error('unavailable'); const h = await r.json(); setOnline(h.status === 'ok'); setDemo(h.demo_mode === true) })
       .catch(() => setOnline(false))
     check()
     const t = setInterval(check, 5000)
@@ -37,7 +40,7 @@ export default function Shell() {
         </Link>
         <nav aria-label="Dashboard" className="grid gap-px">
           {NAV.map(({ to, end, label, icon: Icon }) => (
-            <NavLink key={to} to={to} end={end} className={({ isActive }) => `dash-nav ${isActive ? 'is-on' : ''}`}>
+            <NavLink key={to} to={to} end={end} aria-label={label} title={label} className={({ isActive }) => `dash-nav ${isActive ? 'is-on' : ''}`}>
               <Icon aria-hidden className="size-4" />
               <span>{label}</span>
             </NavLink>
@@ -45,6 +48,7 @@ export default function Shell() {
         </nav>
       </aside>
       <div className="min-w-0">
+        {online && demo && <p className="border-b border-rule px-5 py-2 text-xs text-grey-300">Offline-safe demo · cached public intelligence · simulated assets and behaviour · cloud LLM disabled</p>}
         {online === false && (
           <p role="status" className="dash-banner">
             Backend not connected. Showing bundled sample data: real feed records, simulated assets and hand-built sample alerts.

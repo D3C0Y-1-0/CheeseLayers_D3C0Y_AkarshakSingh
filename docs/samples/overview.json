@@ -1,175 +1,111 @@
 {
-    "threats_total": 19635,
-    "threats_by_source": {
-        "nvd": 17259,
-        "kev": 1765,
-        "otx": 200,
-        "ransomware": 170,
-        "threatfox": 141,
-        "urlhaus": 44,
-        "certin": 40,
-        "malwarebazaar": 7,
-        "netrax_synthetic": 3,
-        "feodotracker": 2,
-        "nvd+kev": 1,
-        "openphish": 1,
-        "spamhaus_drop": 1,
-        "tor_exit": 1
+  "threats_total": 19633,
+  "threats_by_source": {
+    "nvd": 17259,
+    "kev": 1765,
+    "otx": 200,
+    "ransomware": 170,
+    "threatfox": 142,
+    "urlhaus": 44,
+    "certin": 40,
+    "malwarebazaar": 4,
+    "netrax_synthetic": 3,
+    "feodotracker": 2,
+    "nvd+kev": 1,
+    "openphish": 1,
+    "spamhaus_drop": 1,
+    "tor_exit": 1
+  },
+  "threats_by_severity": {
+    "critical": 2109,
+    "high": 7308,
+    "medium": 6901,
+    "low": 726,
+    "none": 2,
+    "unknown": 2587
+  },
+  "kev_count": 1846,
+  "high_epss_count": 971,
+  "high_epss_threshold": 0.5,
+  "public_exploit_count": 1716,
+  "simulated_count": 3,
+  "ioc_count": 27408,
+  "iocs_by_type": {
+    "cidr": 1755,
+    "domain": 7491,
+    "ip": 4775,
+    "md5": 1482,
+    "sha256": 7404,
+    "url": 4501
+  },
+  "sources": [],
+  "newest_retrieved_at": "2026-10-31T14:59:47.716173Z",
+  "matched_assets": 3,
+  "open_alerts": 5,
+  "notes": [
+    "Trend groups records by original publication date over the last 14 days; undated records are excluded.",
+    "Assets are synthetic; API connectivity does not imply live feed collection."
+  ],
+  "trend": [
+    {
+      "date": "2026-10-17",
+      "count": 61
     },
-    "threats_by_severity": {
-        "critical": 2109,
-        "high": 7308,
-        "medium": 6901,
-        "low": 726,
-        "none": 2,
-        "unknown": 2589
+    {
+      "date": "2026-10-18",
+      "count": 551
     },
-    "kev_count": 1846,
-    "high_epss_count": 970,
-    "high_epss_threshold": 0.5,
-    "public_exploit_count": 1716,
-    "simulated_count": 3,
-    "ioc_count": 27418,
-    "iocs_by_type": {
-        "cidr": 1755,
-        "domain": 7486,
-        "ip": 4775,
-        "md5": 1482,
-        "sha256": 7419,
-        "url": 4501
+    {
+      "date": "2026-10-19",
+      "count": 541
     },
-    "sources": [
-        {
-            "source": "abusech",
-            "status": "cache",
-            "last_attempt": "2026-10-31T12:20:07.969602Z",
-            "last_success": "2026-10-31T12:27:02.938550Z",
-            "age_minutes": 5,
-            "error": null,
-            "record_count": 18521
-        },
-        {
-            "source": "attack_techniques",
-            "status": "cache",
-            "last_attempt": "2026-10-31T12:20:45.806773Z",
-            "last_success": "2026-10-31T12:20:45.992378Z",
-            "age_minutes": 11,
-            "error": null,
-            "record_count": 706
-        },
-        {
-            "source": "certin",
-            "status": "cache",
-            "last_attempt": "2026-10-31T12:18:54.844100Z",
-            "last_success": "2026-10-31T12:27:02.605010Z",
-            "age_minutes": 5,
-            "error": null,
-            "record_count": 40
-        },
-        {
-            "source": "epss",
-            "status": "cache",
-            "last_attempt": "2026-10-31T12:20:46.834451Z",
-            "last_success": "2026-10-31T12:22:23.583579Z",
-            "age_minutes": 10,
-            "error": null,
-            "record_count": 18274
-        },
-        {
-            "source": "epss_history",
-            "status": "cache",
-            "last_attempt": "2026-10-31T12:22:38.809787Z",
-            "last_success": "2026-10-31T12:26:29.655156Z",
-            "age_minutes": 6,
-            "error": null,
-            "record_count": 179
-        },
-        {
-            "source": "exploit_signals",
-            "status": "cache",
-            "last_attempt": "2026-10-31T12:22:23.591394Z",
-            "last_success": "2026-10-31T12:22:38.809201Z",
-            "age_minutes": 10,
-            "error": null,
-            "record_count": 38878
-        },
-        {
-            "source": "github_poc_dates",
-            "status": "cache",
-            "last_attempt": "2026-10-31T12:26:29.655572Z",
-            "last_success": "2026-10-31T12:26:36.270404Z",
-            "age_minutes": 6,
-            "error": null,
-            "record_count": 136
-        },
-        {
-            "source": "ip_reputation",
-            "status": "cache",
-            "last_attempt": "2026-10-31T12:20:27.063004Z",
-            "last_success": "2026-10-31T12:27:03.061876Z",
-            "age_minutes": 5,
-            "error": null,
-            "record_count": 3805
-        },
-        {
-            "source": "kev",
-            "status": "cache",
-            "last_attempt": "2026-10-31T12:18:53.300137Z",
-            "last_success": "2026-10-31T12:27:02.596482Z",
-            "age_minutes": 5,
-            "error": null,
-            "record_count": 1766
-        },
-        {
-            "source": "kev_attack_map",
-            "status": "cache",
-            "last_attempt": "2026-10-31T12:20:45.992752Z",
-            "last_success": "2026-10-31T12:20:46.818888Z",
-            "age_minutes": 11,
-            "error": null,
-            "record_count": 419
-        },
-        {
-            "source": "nvd",
-            "status": "cache",
-            "last_attempt": "2026-10-31T12:18:20.254855Z",
-            "last_success": "2026-10-31T12:27:00.862225Z",
-            "age_minutes": 5,
-            "error": null,
-            "record_count": 17279
-        },
-        {
-            "source": "nvd_kev",
-            "status": "cache",
-            "last_attempt": "2026-10-31T12:18:48.843857Z",
-            "last_success": "2026-10-31T12:27:02.541026Z",
-            "age_minutes": 5,
-            "error": null,
-            "record_count": 1765
-        },
-        {
-            "source": "otx",
-            "status": "cache",
-            "last_attempt": "2026-10-31T12:20:22.209604Z",
-            "last_success": "2026-10-31T12:27:03.020991Z",
-            "age_minutes": 5,
-            "error": null,
-            "record_count": 6484
-        },
-        {
-            "source": "ransomware",
-            "status": "cache",
-            "last_attempt": "2026-10-31T12:20:44.252685Z",
-            "last_success": "2026-10-31T12:27:03.067442Z",
-            "age_minutes": 5,
-            "error": null,
-            "record_count": 170
-        }
-    ],
-    "newest_retrieved_at": "2026-10-31T12:29:37.604578Z",
-    "matched_assets": null,
-    "open_alerts": null,
-    "notes": [
-        "matched_assets and open_alerts are null until Member 3's correlation/alerts land (TODO)."
-    ]
+    {
+      "date": "2026-10-20",
+      "count": 1941
+    },
+    {
+      "date": "2026-10-21",
+      "count": 563
+    },
+    {
+      "date": "2026-10-22",
+      "count": 513
+    },
+    {
+      "date": "2026-10-23",
+      "count": 502
+    },
+    {
+      "date": "2026-10-24",
+      "count": 82
+    },
+    {
+      "date": "2026-10-25",
+      "count": 144
+    },
+    {
+      "date": "2026-10-26",
+      "count": 767
+    },
+    {
+      "date": "2026-10-27",
+      "count": 706
+    },
+    {
+      "date": "2026-10-28",
+      "count": 843
+    },
+    {
+      "date": "2026-10-29",
+      "count": 608
+    },
+    {
+      "date": "2026-10-30",
+      "count": 751
+    },
+    {
+      "date": "2026-10-31",
+      "count": 186
+    }
+  ]
 }

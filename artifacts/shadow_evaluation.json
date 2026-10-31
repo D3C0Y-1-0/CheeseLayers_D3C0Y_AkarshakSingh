@@ -1,0 +1,1111 @@
+{
+  "is_simulated": true,
+  "dataset": "windows.csv",
+  "dataset_sha256": "e0009ddd851ce1681c8ce34b68bc5a4f42c45a9c2ec44dc136d41232d27021fe",
+  "features": [
+    "requests_per_minute",
+    "http_4xx_ratio",
+    "failed_logins",
+    "unique_client_ips",
+    "new_outbound_destinations",
+    "unexpected_child_processes"
+  ],
+  "feature_schema": "netrax-one-minute-v1",
+  "seed": 42,
+  "n_estimators": 100,
+  "contamination": 0.02,
+  "sklearn_version": "1.9.1",
+  "train_count": 350,
+  "train_normal_count": 350,
+  "test_count": 150,
+  "test_normal_count": 142,
+  "test_suspicious_count": 8,
+  "train_test_overlap": [],
+  "fit_latency_ms": 114.79909997433424,
+  "rules_only": {
+    "true_positives": 8,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "true_negatives": 142,
+    "precision": 1.0,
+    "recall": 1.0,
+    "false_positive_rate": 0.0,
+    "false_positive_denominator": 142,
+    "batch_latency_ms": 0.03890006337314844
+  },
+  "rules_plus_isolation_forest": {
+    "true_positives": 8,
+    "false_positives": 4,
+    "false_negatives": 0,
+    "true_negatives": 138,
+    "precision": 0.6666666666666666,
+    "recall": 1.0,
+    "false_positive_rate": 0.028169014084507043,
+    "false_positive_denominator": 142,
+    "batch_latency_ms": 6.834800005890429
+  },
+  "model_saved": false,
+  "live_model_enabled": false,
+  "decision": "Omit live ML: no recall gain without additional false positives",
+  "limitations": [
+    "Entire dataset and labels are synthetic; no real-world accuracy claim",
+    "Supplied split contains normal training rows only; test rows never used for fitting or threshold tuning",
+    "Small held-out set; no independent validation set; fixed settings were selected before evaluation",
+    "Unexpected process counts are synthetic pre-labelled features, not independent ancestry validation",
+    "No timestamps in fixture; this is a supplied row split, not a verified temporal holdout",
+    "Raw decision_function score is an outlier score, not attack probability or incident priority",
+    "Latency is one local batch measurement, not a production performance benchmark"
+  ],
+  "windows": [
+    {
+      "window_id": "W0351",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.1330797619316536
+    },
+    {
+      "window_id": "W0352",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.23315340470335827
+    },
+    {
+      "window_id": "W0353",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.13904032782208164
+    },
+    {
+      "window_id": "W0354",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.12129961095942843
+    },
+    {
+      "window_id": "W0355",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.21861363485569701
+    },
+    {
+      "window_id": "W0356",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2326571815462154
+    },
+    {
+      "window_id": "W0357",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.19560739375026415
+    },
+    {
+      "window_id": "W0358",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.09403581080778323
+    },
+    {
+      "window_id": "W0359",
+      "label": "suspicious",
+      "rules_flag": true,
+      "is_outlier": true,
+      "raw_anomaly_score": -0.12711864537269868
+    },
+    {
+      "window_id": "W0360",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.22299101533102444
+    },
+    {
+      "window_id": "W0361",
+      "label": "suspicious",
+      "rules_flag": true,
+      "is_outlier": true,
+      "raw_anomaly_score": -0.12711864537269868
+    },
+    {
+      "window_id": "W0362",
+      "label": "suspicious",
+      "rules_flag": true,
+      "is_outlier": true,
+      "raw_anomaly_score": -0.12359978468735056
+    },
+    {
+      "window_id": "W0363",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.18508267157411368
+    },
+    {
+      "window_id": "W0364",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.10075820164652316
+    },
+    {
+      "window_id": "W0365",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.24868989558931826
+    },
+    {
+      "window_id": "W0366",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.1978751419215496
+    },
+    {
+      "window_id": "W0367",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.16779540505276536
+    },
+    {
+      "window_id": "W0368",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2407481674253864
+    },
+    {
+      "window_id": "W0369",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.08958075763999318
+    },
+    {
+      "window_id": "W0370",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.11213296271198858
+    },
+    {
+      "window_id": "W0371",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.16267110793847667
+    },
+    {
+      "window_id": "W0372",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.24725740324491358
+    },
+    {
+      "window_id": "W0373",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.07423497044452232
+    },
+    {
+      "window_id": "W0374",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.21847303097390697
+    },
+    {
+      "window_id": "W0375",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.16504009462076252
+    },
+    {
+      "window_id": "W0376",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.26378550777566995
+    },
+    {
+      "window_id": "W0377",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.1326615405287509
+    },
+    {
+      "window_id": "W0378",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.228574093561409
+    },
+    {
+      "window_id": "W0379",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.04309255338055418
+    },
+    {
+      "window_id": "W0380",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2208312301148953
+    },
+    {
+      "window_id": "W0381",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": true,
+      "raw_anomaly_score": -0.02892588156156717
+    },
+    {
+      "window_id": "W0382",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2625152659919388
+    },
+    {
+      "window_id": "W0383",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.07841462179249403
+    },
+    {
+      "window_id": "W0384",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.22766084344447585
+    },
+    {
+      "window_id": "W0385",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.13483902361390326
+    },
+    {
+      "window_id": "W0386",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.03234771870458297
+    },
+    {
+      "window_id": "W0387",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.24407381626728675
+    },
+    {
+      "window_id": "W0388",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.21566077972746228
+    },
+    {
+      "window_id": "W0389",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.13665010347044254
+    },
+    {
+      "window_id": "W0390",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2541185681971415
+    },
+    {
+      "window_id": "W0391",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.22948661548888344
+    },
+    {
+      "window_id": "W0392",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.11047605912406311
+    },
+    {
+      "window_id": "W0393",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.21277172339655315
+    },
+    {
+      "window_id": "W0394",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.17113157894864106
+    },
+    {
+      "window_id": "W0395",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.08038544571086093
+    },
+    {
+      "window_id": "W0396",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.09810434651246214
+    },
+    {
+      "window_id": "W0397",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.09708510012417226
+    },
+    {
+      "window_id": "W0398",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2489146810186284
+    },
+    {
+      "window_id": "W0399",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.24217183787476249
+    },
+    {
+      "window_id": "W0400",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2405632809652371
+    },
+    {
+      "window_id": "W0401",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.012423178617423147
+    },
+    {
+      "window_id": "W0402",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.03894368217802102
+    },
+    {
+      "window_id": "W0403",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.20419183368570104
+    },
+    {
+      "window_id": "W0404",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.24899063772038904
+    },
+    {
+      "window_id": "W0405",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.16085257808860304
+    },
+    {
+      "window_id": "W0406",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.12288157066548899
+    },
+    {
+      "window_id": "W0407",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.08043775085431626
+    },
+    {
+      "window_id": "W0408",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.23321344086831358
+    },
+    {
+      "window_id": "W0409",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.1531334894728994
+    },
+    {
+      "window_id": "W0410",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.19350338992961053
+    },
+    {
+      "window_id": "W0411",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.24138940551976934
+    },
+    {
+      "window_id": "W0412",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.24519685694279214
+    },
+    {
+      "window_id": "W0413",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.05135891686555771
+    },
+    {
+      "window_id": "W0414",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.23343479425945524
+    },
+    {
+      "window_id": "W0415",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.22386717825073815
+    },
+    {
+      "window_id": "W0416",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.23555460104501447
+    },
+    {
+      "window_id": "W0417",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2294592932071136
+    },
+    {
+      "window_id": "W0418",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2408082116967813
+    },
+    {
+      "window_id": "W0419",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.25372322082988435
+    },
+    {
+      "window_id": "W0420",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2476420911529436
+    },
+    {
+      "window_id": "W0421",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2525257312705882
+    },
+    {
+      "window_id": "W0422",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2593454674852538
+    },
+    {
+      "window_id": "W0423",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.23484896932553562
+    },
+    {
+      "window_id": "W0424",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.024094942452488666
+    },
+    {
+      "window_id": "W0425",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.10194966897544144
+    },
+    {
+      "window_id": "W0426",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2382002134773693
+    },
+    {
+      "window_id": "W0427",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.022644019307390018
+    },
+    {
+      "window_id": "W0428",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.13045659112076835
+    },
+    {
+      "window_id": "W0429",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.10750521606656982
+    },
+    {
+      "window_id": "W0430",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.06460357007772866
+    },
+    {
+      "window_id": "W0431",
+      "label": "suspicious",
+      "rules_flag": true,
+      "is_outlier": true,
+      "raw_anomaly_score": -0.12711864537269868
+    },
+    {
+      "window_id": "W0432",
+      "label": "suspicious",
+      "rules_flag": true,
+      "is_outlier": true,
+      "raw_anomaly_score": -0.12257570042184562
+    },
+    {
+      "window_id": "W0433",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.1348871693741836
+    },
+    {
+      "window_id": "W0434",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.21253285665222754
+    },
+    {
+      "window_id": "W0435",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.08201547262388909
+    },
+    {
+      "window_id": "W0436",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.1490806705603377
+    },
+    {
+      "window_id": "W0437",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.24467093539156415
+    },
+    {
+      "window_id": "W0438",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.02138964484370276
+    },
+    {
+      "window_id": "W0439",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.20839157644606682
+    },
+    {
+      "window_id": "W0440",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2324104970299839
+    },
+    {
+      "window_id": "W0441",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.15129203681971637
+    },
+    {
+      "window_id": "W0442",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.09591500740961245
+    },
+    {
+      "window_id": "W0443",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2638010811620879
+    },
+    {
+      "window_id": "W0444",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.12374847296157776
+    },
+    {
+      "window_id": "W0445",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.08429350854465478
+    },
+    {
+      "window_id": "W0446",
+      "label": "suspicious",
+      "rules_flag": true,
+      "is_outlier": true,
+      "raw_anomaly_score": -0.12359978468735056
+    },
+    {
+      "window_id": "W0447",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.13864584972246502
+    },
+    {
+      "window_id": "W0448",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.07348363399695823
+    },
+    {
+      "window_id": "W0449",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.25530892581167
+    },
+    {
+      "window_id": "W0450",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": true,
+      "raw_anomaly_score": -0.015394610018876986
+    },
+    {
+      "window_id": "W0451",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.26043252339404943
+    },
+    {
+      "window_id": "W0452",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2642367913875421
+    },
+    {
+      "window_id": "W0453",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.23358867558298718
+    },
+    {
+      "window_id": "W0454",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.06602190275851261
+    },
+    {
+      "window_id": "W0455",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.10817816892873111
+    },
+    {
+      "window_id": "W0456",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.05092050375197421
+    },
+    {
+      "window_id": "W0457",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.23032404601394868
+    },
+    {
+      "window_id": "W0458",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.030862204938376103
+    },
+    {
+      "window_id": "W0459",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": true,
+      "raw_anomaly_score": -0.02628990625848182
+    },
+    {
+      "window_id": "W0460",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.19003499937134816
+    },
+    {
+      "window_id": "W0461",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.1403258158380553
+    },
+    {
+      "window_id": "W0462",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.24557181111852094
+    },
+    {
+      "window_id": "W0463",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.07773779734060682
+    },
+    {
+      "window_id": "W0464",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.09115357024435333
+    },
+    {
+      "window_id": "W0465",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.22190799864063082
+    },
+    {
+      "window_id": "W0466",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2524817876425264
+    },
+    {
+      "window_id": "W0467",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2113170615071981
+    },
+    {
+      "window_id": "W0468",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.014723887495704413
+    },
+    {
+      "window_id": "W0469",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.23351439201917146
+    },
+    {
+      "window_id": "W0470",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.13232987457692702
+    },
+    {
+      "window_id": "W0471",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.23689515603504524
+    },
+    {
+      "window_id": "W0472",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.26437624002921445
+    },
+    {
+      "window_id": "W0473",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": true,
+      "raw_anomaly_score": -0.057807166657008247
+    },
+    {
+      "window_id": "W0474",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.19081935180605802
+    },
+    {
+      "window_id": "W0475",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.03405745496715573
+    },
+    {
+      "window_id": "W0476",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2467875860432941
+    },
+    {
+      "window_id": "W0477",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.15760214114938675
+    },
+    {
+      "window_id": "W0478",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2651076231680231
+    },
+    {
+      "window_id": "W0479",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.23050781518907082
+    },
+    {
+      "window_id": "W0480",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.22719816874625048
+    },
+    {
+      "window_id": "W0481",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.1867869178192857
+    },
+    {
+      "window_id": "W0482",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.04289512451594524
+    },
+    {
+      "window_id": "W0483",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2475106338156156
+    },
+    {
+      "window_id": "W0484",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.23681003905665965
+    },
+    {
+      "window_id": "W0485",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.06007329992539556
+    },
+    {
+      "window_id": "W0486",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.24043630827817336
+    },
+    {
+      "window_id": "W0487",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.11654776063473704
+    },
+    {
+      "window_id": "W0488",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.23382820030087742
+    },
+    {
+      "window_id": "W0489",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.0765110447183478
+    },
+    {
+      "window_id": "W0490",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.09058808791461359
+    },
+    {
+      "window_id": "W0491",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2132439685078149
+    },
+    {
+      "window_id": "W0492",
+      "label": "suspicious",
+      "rules_flag": true,
+      "is_outlier": true,
+      "raw_anomaly_score": -0.12359978468735056
+    },
+    {
+      "window_id": "W0493",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.08536855857201087
+    },
+    {
+      "window_id": "W0494",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.24793606030710696
+    },
+    {
+      "window_id": "W0495",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.2190312315246949
+    },
+    {
+      "window_id": "W0496",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.09617782147626064
+    },
+    {
+      "window_id": "W0497",
+      "label": "suspicious",
+      "rules_flag": true,
+      "is_outlier": true,
+      "raw_anomaly_score": -0.12359978468735056
+    },
+    {
+      "window_id": "W0498",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.09228018371557445
+    },
+    {
+      "window_id": "W0499",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.0772189487667414
+    },
+    {
+      "window_id": "W0500",
+      "label": "normal",
+      "rules_flag": false,
+      "is_outlier": false,
+      "raw_anomaly_score": 0.26733146792888773
+    }
+  ]
+}

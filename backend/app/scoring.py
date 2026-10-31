@@ -84,6 +84,16 @@ def classify_event(e: SecurityEvent) -> EventSignal:
             limits.append(f"{e.event_id}: {key} is missing, so the source/destination is unverified")
 
     signal, reason = None, "no suspicious pattern"
+    if e.model_extra.get("shadow_watch_evaluated") and e.event_type != "maintenance":
+        # The typed detector has already checked source capability and exact rules.
+        # Do not reclassify approved/benign observations with looser legacy heuristics.
+        findings = e.model_extra.get("shadow_findings", [])
+        if findings:
+            signal = {"http": "http_anomaly", "process": "unexpected_process", "network": "outbound_connection"}.get(e.event_type)
+            reason = findings[0]["reason"]
+            limits.extend(findings[0].get("limitations", []))
+        return EventSignal(event_id=e.event_id, asset_id=e.asset_id, at=e.timestamp,
+                           signal=signal, reason=reason, limitations=limits)
     if e.event_type == "maintenance":
         reason = f"approved change {d.get('change_id')} ({d.get('window_start')} to {d.get('window_end')})"
     elif e.event_type == "http":
@@ -126,6 +136,8 @@ def maintenance_windows(events: list[SecurityEvent]) -> list[tuple[str | None, d
     out = []
     for e in events:
         if e.event_type != "maintenance":
+            continue
+        if e.details.get("approved") is False:
             continue
         try:
             start = datetime.fromisoformat(e.details["window_start"])

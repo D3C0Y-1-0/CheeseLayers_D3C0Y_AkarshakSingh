@@ -1,40 +1,57 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
-import { post, toTitle, useAlerts, useOverview, useThreats, when } from './api'
+import { getJson, notifyRefresh, parseList, post, toTitle, useAlerts, useHealth, useOverview, when, type Alert, type DemoResult } from './api'
 import { Intro } from './Intro'
-import { Empty, PageHead, Panel, PriorityBadge } from './ui'
+import { DataNotice, Empty, PageHead, Panel, PriorityBadge } from './ui'
 
 const RANK = { critical: 0, high: 1, medium: 2, low: 3 }
-const day = (d: string) => new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' })
+const day = (d: string) => d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' }) : 'no records'
 
 const SIMS = [
-  { label: 'Inject known CVE', path: '/api/demo/inject-cve', owner: 'Member 2' },
-  { label: 'Inject suspicious behaviour', path: '/api/demo/inject-behaviour', body: { scenario: 'B' }, owner: 'Member 4' },
-  { label: 'Inject benign maintenance', path: '/api/demo/inject-behaviour', body: { scenario: 'C' }, owner: 'Member 4' },
+  { label: 'Inject known CVE', path: '/api/demo/inject-cve', body: { fixture_id: 'CVE-2024-21762' } },
+  { label: 'Inject suspicious behaviour', path: '/api/demo/inject-behaviour', body: { scenario: 'no_cve_suspicious_chain' } },
+  { label: 'Inject benign maintenance', path: '/api/demo/inject-behaviour', body: { scenario: 'benign_maintenance' } },
+  { label: 'Missing telemetry', path: '/api/demo/inject-behaviour', body: { scenario: 'missing_telemetry' } },
 ]
 
 // These always call the real backend. They never fake a result in the browser.
-function SimControls({ onDone }: { onDone: () => void }) {
-  const [state, setState] = useState<{ busy?: string; msg?: string; bad?: boolean }>({})
+function SimControls() {
+  const health = useHealth()
+  const enabled = health.mode === 'live' && health.data.demo_mode
+  const [state, setState] = useState<{ busy?: string; msg?: string; bad?: boolean; ids?: string[] }>({})
   const run = async (s: (typeof SIMS)[number]) => {
     setState({ busy: s.label })
     try {
-      await post(s.path, s.body)
-      setState({ msg: `${s.label}: sent. The new alert will appear within 3 seconds.` })
-      onDone()
-    } catch {
-      setState({ msg: `${s.label} needs ${s.path} from ${s.owner}, and it is not responding. Start the backend and try again.`, bad: true })
+      const result = await post(s.path, s.body) as DemoResult
+      if (s.path.endsWith('inject-behaviour')) {
+        setState({ ids: result.alert_ids, msg: result.findings.length
+          ? `${result.findings.length} evidence-linked findings stored; ${result.alert_ids.length} incident(s) available.`
+          : `${result.evidence.length} maintenance observations retained. No suspicious rule fired; no incident escalated.` })
+      } else {
+        const alerts = parseList<Alert>(await getJson('/api/alerts'))
+        setState({ msg: 'Known CVE matched against the simulated inventory.', ids: alerts.filter((a) => a.threat_ids.includes('CVE-2024-21762')).map((a) => a.alert_id) })
+      }
+      notifyRefresh()
+    } catch (e) {
+      setState({ msg: e instanceof Error ? e.message : 'Could not run the scenario.', bad: true })
     }
   }
   return (
     <div className="flex flex-wrap items-center gap-2">
       {SIMS.map((s) => (
-        <button key={s.label} type="button" className="btn-line" disabled={!!state.busy} onClick={() => run(s)}>
+        <button key={s.label} type="button" className="btn-line" disabled={!enabled || !!state.busy} onClick={() => run(s)}>
           {state.busy === s.label ? 'Sending' : s.label}
         </button>
       ))}
+      <button type="button" className="btn-line" disabled={!enabled || !!state.busy} onClick={async () => {
+        setState({ busy: 'reset' })
+        try { await post('/api/demo/reset-alerts'); setState({ msg: 'Demo alerts and sensor events reset. Feed data is retained.' }); notifyRefresh() }
+        catch (e) { setState({ msg: e instanceof Error ? e.message : 'Reset failed', bad: true }) }
+      }}>Reset demo alerts</button>
+      {!enabled && <p className="w-full text-grey-300">Demo controls require a connected backend in demo mode.</p>}
       {state.msg && <p role="status" className={`w-full text-[0.9375rem] ${state.bad ? 'text-sev-high' : 'text-grey-200'}`}>{state.msg}</p>}
+      {!!state.ids?.length && <div className="flex w-full flex-wrap gap-3">{state.ids.map((id) => <Link key={id} className="text-blue-300 underline" to={`/app/incidents/${id}`}>Open {id}</Link>)}</div>}
     </div>
   )
 }
@@ -49,7 +66,6 @@ function Tip({ active, payload }: TipProps) {
 export default function CommandCenter() {
   const overview = useOverview()
   const alerts = useAlerts()
-  const threats = useThreats()
   const location = useLocation()
   const navigate = useNavigate()
   // The greeting plays only on arrival from the landing page's "Open dashboard".
@@ -80,8 +96,10 @@ export default function CommandCenter() {
       {intro && <Intro urgent={urgent.length} onDone={finish} />}
 
       <PageHead title="Command Center">
-        <SimControls onDone={() => { alerts.reload(); threats.reload(); overview.reload() }} />
+        <SimControls />
       </PageHead>
+      <DataNotice mode={overview.mode} error={overview.error} />
+      <p className="mb-4 text-grey-300">{overview.mode === 'live' ? 'Connected to the backend.' : 'Bundled preview.'} Assets and behaviour scenarios are simulated. <Link className="text-blue-300 underline" to="/app/analytics">Explore sector exposure and patch impact</Link></p>
 
       <div className="tiles mb-3">
         {tiles.map((t) => (
@@ -109,27 +127,27 @@ export default function CommandCenter() {
           )}
         </Panel>
 
-        <Panel title="Threat activity, new records per day">
+        <Panel title="Advisories by publication date · last 14 days">
           <div role="img" aria-label={`Bar chart of new threat records per day from ${day(o.trend[0]?.date ?? '')}. Highest day: ${Math.max(0, ...o.trend.map((t) => t.count))}.`} className="h-[15.5rem] px-2 pb-2">
-            <ResponsiveContainer width="100%" height="100%">
+            {o.trend.length === 0 ? <Empty>No dated publications in this window.</Empty> : <ResponsiveContainer width="100%" height="100%">
               <BarChart data={o.trend} margin={{ top: 8, right: 8, left: 0, bottom: 0 }} barCategoryGap={3}>
                 <XAxis dataKey="date" tickFormatter={day} tick={{ fill: '#b6bac2', fontSize: 12 }} tickLine={false} axisLine={{ stroke: 'rgb(217 220 225 / 0.2)' }} minTickGap={28} />
                 <YAxis tick={{ fill: '#b6bac2', fontSize: 12 }} tickLine={false} axisLine={false} width={38} />
                 <Tooltip content={<Tip />} cursor={{ fill: 'rgb(146 195 255 / 0.1)' }} />
                 <Bar dataKey="count" fill="#3d8bff" radius={[4, 4, 0, 0]} isAnimationActive={false} />
               </BarChart>
-            </ResponsiveContainer>
+            </ResponsiveContainer>}
           </div>
         </Panel>
 
         <Panel title="Source health" className="xl:col-span-2">
           <div className="overflow-x-auto"><table className="dash-table">
-            <thead><tr><th>Source</th><th className="num">Records</th><th>Newest record</th><th>State</th></tr></thead>
+            <thead><tr><th>Source</th><th className="num">Records</th><th>Last successful collection</th><th>State</th></tr></thead>
             <tbody>
               {o.sources.map((s) => (
                 <tr key={s.source}>
                   <td className="text-white">{s.name}</td>
-                  <td className="num">{s.records.toLocaleString('en-IN')}</td>
+                  <td className="num">{s.records?.toLocaleString('en-IN') ?? 'Unknown'}</td>
                   <td>{when(s.newest_record)}</td>
                   <td>{s.status === 'cached' ? 'From cached snapshot' : s.status}</td>
                 </tr>

@@ -1,0 +1,208 @@
+{
+  "injection": {
+    "scenario": "no_cve_suspicious_chain",
+    "run_id": "demo-session-1",
+    "incident_id": "SW-DEMO-9652e455c013b7e4db1ee316",
+    "alert_ids": [
+      "ALR-EDB7AF1F"
+    ],
+    "findings": [
+      {
+        "finding_id": "FIND-630376a4b54609eb78a63142",
+        "asset_id": "HLT-WEB-01",
+        "detector_id": "SW-HTTP-001",
+        "detector_version": "rules-v1",
+        "finding_type": "unusual_http_window",
+        "observed_at": "2026-10-31T09:32:10Z",
+        "severity_hint": "medium",
+        "evidence_ids": [
+          "9652e455c013b7e4db1ee316:SW-EV-0001"
+        ],
+        "reason": "240/340 HTTP 4xx responses (70.6%) in 60s (340.0 requests/min)",
+        "confidence": "medium",
+        "is_simulated": true,
+        "source": "netrax_synthetic",
+        "retrieved_at": "2026-10-31T09:32:12Z",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0001",
+        "maintenance_evidence_ids": [],
+        "limitations": [
+          "Heuristic observation; compromise not confirmed"
+        ]
+      },
+      {
+        "finding_id": "FIND-89b7016a6523a9a8c17a51f8",
+        "asset_id": "HLT-WEB-01",
+        "detector_id": "SW-PROC-001",
+        "detector_version": "rules-v1",
+        "finding_type": "unexpected_process_activity",
+        "observed_at": "2026-10-31T09:33:40Z",
+        "severity_hint": "high",
+        "evidence_ids": [
+          "9652e455c013b7e4db1ee316:SW-EV-0002"
+        ],
+        "reason": "Host sensor observed unexpected process relationship: php-fpm8.3 -> sh",
+        "confidence": "medium",
+        "is_simulated": true,
+        "source": "netrax_synthetic",
+        "retrieved_at": "2026-10-31T09:33:42Z",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0002",
+        "maintenance_evidence_ids": [],
+        "limitations": [
+          "Heuristic observation; compromise not confirmed"
+        ]
+      },
+      {
+        "finding_id": "FIND-7b9a650b706d06ef2c47bd88",
+        "asset_id": "HLT-WEB-01",
+        "detector_id": "SW-NET-001",
+        "detector_version": "rules-v1",
+        "finding_type": "new_outbound_destination",
+        "observed_at": "2026-10-31T09:36:05Z",
+        "severity_hint": "low",
+        "evidence_ids": [
+          "9652e455c013b7e4db1ee316:SW-EV-0003"
+        ],
+        "reason": "First-seen outbound destination 203.0.113.250:4444 on protected asset",
+        "confidence": "low",
+        "is_simulated": true,
+        "source": "netrax_synthetic",
+        "retrieved_at": "2026-10-31T09:36:07Z",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0003",
+        "maintenance_evidence_ids": [],
+        "limitations": [
+          "Heuristic observation; compromise not confirmed",
+          "New destination alone does not establish malicious activity; no destination was contacted"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "event_id": "9652e455c013b7e4db1ee316:SW-EV-0001",
+        "asset_id": "HLT-WEB-01",
+        "sensor_id": "synthetic_http-01",
+        "observed_at": "2026-10-31T09:32:10Z",
+        "ingested_at": "2026-10-31T09:32:12Z",
+        "source_type": "synthetic_http",
+        "is_simulated": true,
+        "source": "netrax_synthetic",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0001",
+        "event_type": "http_window",
+        "details": {
+          "request_count": 340,
+          "http_4xx_count": 240,
+          "failed_auth_count": 0,
+          "unique_client_count": 12,
+          "window_seconds": 60,
+          "path_category": null
+        }
+      },
+      {
+        "event_id": "9652e455c013b7e4db1ee316:SW-EV-0002",
+        "asset_id": "HLT-WEB-01",
+        "sensor_id": "synthetic_host-01",
+        "observed_at": "2026-10-31T09:33:40Z",
+        "ingested_at": "2026-10-31T09:33:42Z",
+        "source_type": "synthetic_host",
+        "is_simulated": true,
+        "source": "netrax_synthetic",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0002",
+        "event_type": "process_start",
+        "details": {
+          "process_name": "/bin/sh",
+          "parent_process": "php-fpm8.3",
+          "process_id": 1201,
+          "parent_process_id": 1100
+        }
+      },
+      {
+        "event_id": "9652e455c013b7e4db1ee316:SW-EV-0003",
+        "asset_id": "HLT-WEB-01",
+        "sensor_id": "synthetic_network-01",
+        "observed_at": "2026-10-31T09:36:05Z",
+        "ingested_at": "2026-10-31T09:36:07Z",
+        "source_type": "synthetic_network",
+        "is_simulated": true,
+        "source": "netrax_synthetic",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0003",
+        "event_type": "network_connection",
+        "details": {
+          "destination_ip": "203.0.113.250",
+          "destination_port": 4444,
+          "outbound": true,
+          "is_new_destination": true,
+          "connection_uid": "sim-connection-01"
+        }
+      }
+    ],
+    "integration_status": "demo_adapter",
+    "handoff_status": "delivered",
+    "is_simulated": true,
+    "note": "Reviewable synthetic preview; central alert persistence and priority are owned by Member 3"
+  },
+  "investigation": {
+    "incident_id": "ALR-EDB7AF1F",
+    "assessment": "suspected_activity",
+    "summary": "3 stored observations (2026-10-31T09:32:10+00:00 to 2026-10-31T09:36:05+00:00). 9652e455c013b7e4db1ee316:SW-EV-0001: http_window on HLT-WEB-01 at 2026-10-31T09:32:10+00:00; 9652e455c013b7e4db1ee316:SW-EV-0002: process_start on HLT-WEB-01 at 2026-10-31T09:33:40+00:00; 9652e455c013b7e4db1ee316:SW-EV-0003: network_connection on HLT-WEB-01 at 2026-10-31T09:36:05+00:00. No known CVE linkage.",
+    "asset_ids": [
+      "HLT-WEB-01"
+    ],
+    "verified_cve_ids": [],
+    "evidence_ids": [
+      "9652e455c013b7e4db1ee316:SW-EV-0001",
+      "9652e455c013b7e4db1ee316:SW-EV-0002",
+      "9652e455c013b7e4db1ee316:SW-EV-0003"
+    ],
+    "evidence": [
+      {
+        "evidence_id": "9652e455c013b7e4db1ee316:SW-EV-0001",
+        "asset_id": "HLT-WEB-01",
+        "observed_at": "2026-10-31T09:32:10Z",
+        "sensor_id": "synthetic_http-01",
+        "source": "netrax_synthetic",
+        "retrieved_at": "2026-10-31T09:32:12Z",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0001",
+        "event_type": "http_window"
+      },
+      {
+        "evidence_id": "9652e455c013b7e4db1ee316:SW-EV-0002",
+        "asset_id": "HLT-WEB-01",
+        "observed_at": "2026-10-31T09:33:40Z",
+        "sensor_id": "synthetic_host-01",
+        "source": "netrax_synthetic",
+        "retrieved_at": "2026-10-31T09:33:42Z",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0002",
+        "event_type": "process_start"
+      },
+      {
+        "evidence_id": "9652e455c013b7e4db1ee316:SW-EV-0003",
+        "asset_id": "HLT-WEB-01",
+        "observed_at": "2026-10-31T09:36:05Z",
+        "sensor_id": "synthetic_network-01",
+        "source": "netrax_synthetic",
+        "retrieved_at": "2026-10-31T09:36:07Z",
+        "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0003",
+        "event_type": "network_connection"
+      }
+    ],
+    "why_relevant": "Stored observations warrant analyst review; temporal proximity does not establish causality. Observed rule evidence: 240/340 HTTP 4xx responses (70.6%) in 60s (340.0 requests/min); Host sensor observed unexpected process relationship: php-fpm8.3 -> sh; First-seen outbound destination 203.0.113.250:4444 on protected asset.",
+    "limitations": [
+      "Heuristic observation; compromise not confirmed",
+      "New destination alone does not establish malicious activity; no destination was contacted",
+      "Signals share an asset/time window; process-to-network causality is not verified",
+      "Compromise not confirmed",
+      "No known CVE linkage; no vendor patch has been verified for these observations"
+    ],
+    "recommended_actions": [
+      "Review the stored source evidence and validate sensor coverage",
+      "Review application request logs and compare the HTTP window with the normal baseline",
+      "Validate process ancestry against authorised service and change records",
+      "Verify outbound destination purpose using authorised connection logs"
+    ],
+    "references": [],
+    "generated_by": "template",
+    "is_simulated": true,
+    "integration_status": "persisted",
+    "fallback_reason": "offline_mode",
+    "analyst_review_required": true
+  }
+}

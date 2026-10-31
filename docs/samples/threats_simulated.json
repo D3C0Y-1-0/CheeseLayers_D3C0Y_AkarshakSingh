@@ -1,0 +1,121 @@
+{
+    "items": [
+        {
+            "threat_id": "DEMO-VULN-003",
+            "cve_id": null,
+            "source": "netrax_synthetic",
+            "title": "[SIMULATED] MediVault PACS path traversal (CVSS not yet assigned)",
+            "description": "SIMULATED advisory for demo only. Path traversal in DICOM export. Vendor has not published a score. HLT-PACS-01 runs it but its version is unknown -> requires manual review.",
+            "cvss": null,
+            "cvss_version": null,
+            "severity": null,
+            "epss": null,
+            "epss_percentile": null,
+            "kev_listed": false,
+            "public_exploit": null,
+            "affected_configurations": [
+                {
+                    "vendor": "netrax_demo_vendor",
+                    "product": "medivault_pacs",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": "6.1.0",
+                    "cpe": "cpe:2.3:a:netrax_demo_vendor:medivault_pacs:*:*:*:*:*:*:*:*",
+                    "versions_text": null
+                }
+            ],
+            "references": [],
+            "attack_techniques": [
+                "T1083"
+            ],
+            "published_at": "2026-10-31T05:30:00Z",
+            "retrieved_at": "2026-10-31T08:30:00Z",
+            "raw_ref": "data/threats_synthetic.json",
+            "is_simulated": true,
+            "type": "vulnerability",
+            "cve_ids": [],
+            "tags": []
+        },
+        {
+            "threat_id": "DEMO-VULN-002",
+            "cve_id": null,
+            "source": "netrax_synthetic",
+            "title": "[SIMULATED] CoreLink Banking Gateway authentication bypass",
+            "description": "SIMULATED advisory for demo only. Missing check on an internal API allows session forgery. Matches BNK-CBS-01 (3.0.5).",
+            "cvss": 8.1,
+            "cvss_version": "3.1",
+            "severity": "high",
+            "epss": null,
+            "epss_percentile": null,
+            "kev_listed": false,
+            "public_exploit": null,
+            "affected_configurations": [
+                {
+                    "vendor": "netrax_demo_vendor",
+                    "product": "corelink_banking_gateway",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": "3.0.5",
+                    "version_end_excluding": null,
+                    "cpe": "cpe:2.3:a:netrax_demo_vendor:corelink_banking_gateway:*:*:*:*:*:*:*:*",
+                    "versions_text": null
+                }
+            ],
+            "references": [],
+            "attack_techniques": [
+                "T1190",
+                "T1078"
+            ],
+            "published_at": "2026-10-31T04:45:00Z",
+            "retrieved_at": "2026-10-31T08:30:00Z",
+            "raw_ref": "data/threats_synthetic.json",
+            "is_simulated": true,
+            "type": "vulnerability",
+            "cve_ids": [],
+            "tags": []
+        },
+        {
+            "threat_id": "DEMO-VULN-001",
+            "cve_id": null,
+            "source": "netrax_synthetic",
+            "title": "[SIMULATED] GridView HMI unauthenticated remote command execution",
+            "description": "SIMULATED advisory for demo only. A crafted request to the HMI web service lets an unauthenticated attacker run commands. Matches PWR-HMI-01 (4.2.1).",
+            "cvss": 9.8,
+            "cvss_version": "3.1",
+            "severity": "critical",
+            "epss": null,
+            "epss_percentile": null,
+            "kev_listed": false,
+            "public_exploit": null,
+            "affected_configurations": [
+                {
+                    "vendor": "netrax_demo_vendor",
+                    "product": "gridview_hmi",
+                    "version_start_including": "4.0.0",
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": "4.2.3",
+                    "cpe": "cpe:2.3:a:netrax_demo_vendor:gridview_hmi:*:*:*:*:*:*:*:*",
+                    "versions_text": null
+                }
+            ],
+            "references": [],
+            "attack_techniques": [
+                "T1190",
+                "T1059"
+            ],
+            "published_at": "2026-10-31T04:00:00Z",
+            "retrieved_at": "2026-10-31T08:30:00Z",
+            "raw_ref": "data/threats_synthetic.json",
+            "is_simulated": true,
+            "type": "vulnerability",
+            "cve_ids": [],
+            "tags": []
+        }
+    ],
+    "total": 3,
+    "page": 1,
+    "page_size": 50,
+    "pages": 1
+}

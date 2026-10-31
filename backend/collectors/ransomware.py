@@ -16,7 +16,7 @@ INDIA_DAYS = 90
 # The per-country endpoint allows 1 call/minute; we make exactly one per run.
 
 
-def _item(v: dict) -> ThreatItem:
+def _item(v: dict, ref: str) -> ThreatItem:
     # The two endpoints name fields differently: recentvictims (group, victim) vs countryvictims (group_name, post_title).
     group = v.get("group") or v.get("group_name") or "unknown"
     victim = v.get("victim") or v.get("post_title") or "unknown"
@@ -25,28 +25,33 @@ def _item(v: dict) -> ThreatItem:
     date = v.get("discovered") or v.get("published") or v.get("attackdate")
     tags = ["ransomware", f"group:{group}", f"sector:{sector}"] + ([f"country:{country}"] if country else []) + (["india"] if country == "IN" else [])
     return ThreatItem(
-        id="ransomware:" + hashlib.sha1(f"{group}|{victim}".encode()).hexdigest()[:12],
+        threat_id="ransomware:" + hashlib.sha1(f"{group}|{victim}".encode()).hexdigest()[:12],
         source=SOURCE, type="campaign", title=f"{group} ransomware claims {victim}" + (f" ({country})" if country else ""),
-        description=v.get("description") or "", published_at=date,
+        description=v.get("description") or None, published_at=date,
         # Never link the leak site itself (.onion, criminal-run); link ransomware.live's page instead.
-        url=v.get("url") or f"https://www.ransomware.live/group/{group.lower()}",
-        tags=tags,
+        references=[v.get("url") or f"https://www.ransomware.live/group/{group.lower()}"],
+        tags=tags, raw_ref=ref,
     )
 
 
 def fetch() -> dict:
     recent = get(f"{API}/recentvictims").json()
-    save_raw(SOURCE, recent, "recentvictims")
-    india = []
+    recent_ref = save_raw(SOURCE, recent, "recentvictims")
+    india, india_ref = [], None
     try:
         india = get(f"{API}/countryvictims/IN").json()
-        save_raw(SOURCE, india, "india")
+        india_ref = save_raw(SOURCE, india, "india")
         if not isinstance(india, list):  # rate-limited: {"message": "1 per 1 minute"}
             raise RuntimeError(india)
     except Exception as e:
         log.warning("ransomware: India list failed (%s), global list only", e)
         india = []
+    return parse(recent, recent_ref, india, india_ref)
+
+
+def parse(recent: list, recent_ref: str, india: list, india_ref: str | None) -> dict:
     cutoff = datetime.now(timezone.utc) - timedelta(days=INDIA_DAYS)
     india = [v for v in india if (v.get("discovered") or v.get("published") or "") >= cutoff.isoformat()]
-    items = {i.id: i for i in map(_item, recent + india)}  # same victim in both lists -> one item
+    pairs = [(v, recent_ref) for v in recent] + [(v, india_ref) for v in india]
+    items = {i.threat_id: i for i in (_item(v, r) for v, r in pairs)}  # same victim in both lists -> one item
     return {"items": list(items.values())}

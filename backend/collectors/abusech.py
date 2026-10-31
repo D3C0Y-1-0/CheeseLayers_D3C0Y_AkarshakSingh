@@ -21,10 +21,14 @@ def _ts(s: str | None) -> str | None:
     return s.replace(" UTC", "") + "+00:00" if s else None  # abuse.ch: "2026-10-30 12:34:56 UTC"
 
 
+# Each feed: fetch + save raw, then a pure parser (data, raw_ref) -> IOCs, so caches can be rebuilt from data/raw offline.
 def _threatfox(key: str) -> list[IOC]:
     data = request("POST", "https://threatfox-api.abuse.ch/api/v1/", json={"query": "get_iocs", "days": 7},
                    headers={"Auth-Key": key}).json()
-    save_raw(SOURCE, data, "threatfox")
+    return parse_threatfox(data, save_raw(SOURCE, data, "threatfox"))
+
+
+def parse_threatfox(data: dict, ref: str) -> list[IOC]:
     out = []
     for r in data.get("data") or []:
         t = TF_TYPES.get(r["ioc_type"])
@@ -32,31 +36,40 @@ def _threatfox(key: str) -> list[IOC]:
             continue  # e.g. sha1 — not in our schema
         value = r["ioc"].rsplit(":", 1)[0] if t == "ip" else r["ioc"]  # "1.2.3.4:443" -> "1.2.3.4"
         out.append(IOC(value=value, ioc_type=t, source="threatfox", malware_family=r.get("malware_printable"),
-                       first_seen=_ts(r.get("first_seen")), confidence=r.get("confidence_level")))
+                       first_seen=_ts(r.get("first_seen")), confidence=r.get("confidence_level"), raw_ref=ref))
     return out
 
 
 def _urlhaus(key: str) -> list[IOC]:
     data = get("https://urlhaus-api.abuse.ch/v1/urls/recent/", headers={"Auth-Key": key}).json()  # GET-only endpoint
-    save_raw(SOURCE, data, "urlhaus")
+    return parse_urlhaus(data, save_raw(SOURCE, data, "urlhaus"))
+
+
+def parse_urlhaus(data: dict, ref: str) -> list[IOC]:
     return [IOC(value=r["url"], ioc_type="url", source="urlhaus", malware_family=(r.get("tags") or [None])[0],
-                first_seen=_ts(r.get("date_added"))) for r in data.get("urls") or []]
+                first_seen=_ts(r.get("date_added")), raw_ref=ref) for r in data.get("urls") or []]
 
 
 def _bazaar(key: str) -> list[IOC]:
     # selector=time: samples from the last 60 minutes (selector=100 would be the latest 100).
     data = request("POST", "https://mb-api.abuse.ch/api/v1/", data={"query": "get_recent", "selector": "time"},
                    headers={"Auth-Key": key}).json()
-    save_raw(SOURCE, data, "malwarebazaar")
+    return parse_bazaar(data, save_raw(SOURCE, data, "malwarebazaar"))
+
+
+def parse_bazaar(data: dict, ref: str) -> list[IOC]:
     return [IOC(value=r["sha256_hash"], ioc_type="sha256", source="malwarebazaar", malware_family=r.get("signature"),
-                first_seen=_ts(r.get("first_seen"))) for r in data.get("data") or [] if isinstance(r, dict)]
+                first_seen=_ts(r.get("first_seen")), raw_ref=ref) for r in data.get("data") or [] if isinstance(r, dict)]
 
 
 def _feodo() -> list[IOC]:
     data = get(FEODO).json()
-    save_raw(SOURCE, data, "feodo")
+    return parse_feodo(data, save_raw(SOURCE, data, "feodo"))
+
+
+def parse_feodo(data: list, ref: str) -> list[IOC]:
     return [IOC(value=r["ip_address"], ioc_type="ip", source="feodotracker", malware_family=r.get("malware"),
-                first_seen=_ts(r.get("first_seen"))) for r in data]
+                first_seen=_ts(r.get("first_seen")), raw_ref=ref) for r in data]
 
 
 def fetch() -> dict:
@@ -73,6 +86,8 @@ def fetch() -> dict:
     if not iocs:
         raise Skipped("no abuse.ch data (add ABUSECH_AUTH_KEY)")
 
-    urls = {"malwarebazaar": "https://bazaar.abuse.ch/", "threatfox": "https://threatfox.abuse.ch/",
-            "urlhaus": "https://urlhaus.abuse.ch/", "feodotracker": "https://feodotracker.abuse.ch/"}
-    return {"items": ioc_batches(iocs, urls, "abuse.ch"), "iocs": iocs}
+    return {"items": ioc_batches(iocs, URLS, "abuse.ch"), "iocs": iocs}
+
+
+URLS = {"malwarebazaar": "https://bazaar.abuse.ch/", "threatfox": "https://threatfox.abuse.ch/",
+        "urlhaus": "https://urlhaus.abuse.ch/", "feodotracker": "https://feodotracker.abuse.ch/"}

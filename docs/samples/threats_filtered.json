@@ -1,0 +1,100 @@
+{
+    "items": [
+        {
+            "threat_id": "CVE-2026-39808",
+            "cve_id": "CVE-2026-39808",
+            "source": "kev",
+            "title": "CVE-2026-39808: Fortinet FortiSandbox OS Command Injection Vulnerability",
+            "description": "Fortinet FortiSandbox contains an OS command injection vulnerability that could allow an unauthenticated attacker to execute unauthorized code or commands via crafted HTTP requests.\nRequired action: Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage Requirements\u201d (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines. (due 2026-07-19)",
+            "cvss": 9.8,
+            "cvss_version": "3.1",
+            "severity": "critical",
+            "epss": 0.93189,
+            "epss_percentile": 0.99834,
+            "kev_listed": true,
+            "public_exploit": true,
+            "affected_configurations": [
+                {
+                    "vendor": "fortinet",
+                    "product": "fortisandbox",
+                    "version_start_including": "4.4.0",
+                    "version_start_excluding": null,
+                    "version_end_including": "4.4.9",
+                    "version_end_excluding": null,
+                    "cpe": "cpe:2.3:a:fortinet:fortisandbox:*:*:*:*:*:*:*:*",
+                    "versions_text": null
+                }
+            ],
+            "references": [
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-39808",
+                "https://fortiguard.fortinet.com/psirt/FG-IR-26-100",
+                "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk",
+                "https://www.cisa.gov/news-events/directives/bod-26-04-implementation-guidance-prioritizing-security-updates-based-risk",
+                "https://github.com/samu-delucas/CVE-2026-39808",
+                "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2026-39808"
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-07-16T00:00:00Z",
+            "retrieved_at": "2026-10-31T11:47:38.241319Z",
+            "raw_ref": "backend/data/raw/kev/latest.json",
+            "is_simulated": false,
+            "type": "vulnerability",
+            "cve_ids": [
+                "CVE-2026-39808"
+            ],
+            "tags": [
+                "CWE-78",
+                "kev"
+            ]
+        },
+        {
+            "threat_id": "CVE-2026-21643",
+            "cve_id": "CVE-2026-21643",
+            "source": "kev",
+            "title": "CVE-2026-21643: Fortinet FortiClient EMS SQL Injection Vulnerability",
+            "description": "Fortinet FortiClient EMS contains a SQL injection vulnerability that may allow an unauthenticated attacker to execute unauthorized code or commands via specifically crafted HTTP requests.\nRequired action: Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable. (due 2026-04-16)",
+            "cvss": 9.8,
+            "cvss_version": "3.1",
+            "severity": "critical",
+            "epss": 0.97735,
+            "epss_percentile": 0.99904,
+            "kev_listed": true,
+            "public_exploit": true,
+            "affected_configurations": [
+                {
+                    "vendor": "fortinet",
+                    "product": "forticlientems",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": "cpe:2.3:a:fortinet:forticlientems:7.4.4:*:*:*:*:*:*:*",
+                    "versions_text": null
+                }
+            ],
+            "references": [
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-21643",
+                "https://fortiguard.fortinet.com/psirt/FG-IR-25-1142",
+                "https://github.com/0xBlackash/CVE-2026-21643/blob/main/cve-2026-21643.py",
+                "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2026-21643"
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-04-13T00:00:00Z",
+            "retrieved_at": "2026-10-31T11:47:38.241319Z",
+            "raw_ref": "backend/data/raw/kev/latest.json",
+            "is_simulated": false,
+            "type": "vulnerability",
+            "cve_ids": [
+                "CVE-2026-21643"
+            ],
+            "tags": [
+                "CWE-89",
+                "kev"
+            ]
+        }
+    ],
+    "total": 11,
+    "page": 1,
+    "page_size": 2,
+    "pages": 6
+}

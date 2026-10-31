@@ -23,7 +23,9 @@ def fetch(cve_ids: list[str]) -> dict:
 
 def apply(items: list[ThreatItem], scores: dict[str, dict]) -> None:
     # An item with several CVEs (e.g. a CERT-In advisory) is as likely to be exploited as its most likely CVE.
+    # No score from FIRST -> stays None (unknown), never 0.
     for it in items:
-        vals = [scores[c]["epss"] for c in it.cve_ids if c in scores]
+        vals = [scores[c] for c in it.cve_ids if c in scores]
         if vals:
-            it.epss = max(vals)
+            top = max(vals, key=lambda v: v["epss"])
+            it.epss, it.epss_percentile = top["epss"], top.get("percentile")

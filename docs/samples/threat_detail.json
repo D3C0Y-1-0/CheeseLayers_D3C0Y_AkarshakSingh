@@ -1,0 +1,148 @@
+{
+    "threat_id": "CVE-2024-21762",
+    "cve_id": "CVE-2024-21762",
+    "source": "kev",
+    "title": "CVE-2024-21762: Fortinet FortiOS Out-of-Bound Write Vulnerability",
+    "description": "Fortinet FortiOS contains an out-of-bound write vulnerability that allows a remote unauthenticated attacker to execute code or commands via specially crafted HTTP requests.\nRequired action: Apply mitigations per vendor instructions or discontinue use of the product if mitigations are unavailable. (due 2024-02-16)",
+    "cvss": 9.8,
+    "cvss_version": "3.1",
+    "severity": "critical",
+    "epss": 0.84589,
+    "epss_percentile": 0.99703,
+    "kev_listed": true,
+    "public_exploit": true,
+    "affected_configurations": [
+        {
+            "vendor": "fortinet",
+            "product": "fortiproxy",
+            "version_start_including": "1.0.0",
+            "version_start_excluding": null,
+            "version_end_including": null,
+            "version_end_excluding": "2.0.14",
+            "cpe": "cpe:2.3:a:fortinet:fortiproxy:*:*:*:*:*:*:*:*",
+            "versions_text": null
+        },
+        {
+            "vendor": "fortinet",
+            "product": "fortiproxy",
+            "version_start_including": "7.0.0",
+            "version_start_excluding": null,
+            "version_end_including": null,
+            "version_end_excluding": "7.0.15",
+            "cpe": "cpe:2.3:a:fortinet:fortiproxy:*:*:*:*:*:*:*:*",
+            "versions_text": null
+        },
+        {
+            "vendor": "fortinet",
+            "product": "fortiproxy",
+            "version_start_including": "7.2.0",
+            "version_start_excluding": null,
+            "version_end_including": null,
+            "version_end_excluding": "7.2.9",
+            "cpe": "cpe:2.3:a:fortinet:fortiproxy:*:*:*:*:*:*:*:*",
+            "versions_text": null
+        },
+        {
+            "vendor": "fortinet",
+            "product": "fortiproxy",
+            "version_start_including": "7.4.0",
+            "version_start_excluding": null,
+            "version_end_including": null,
+            "version_end_excluding": "7.4.3",
+            "cpe": "cpe:2.3:a:fortinet:fortiproxy:*:*:*:*:*:*:*:*",
+            "versions_text": null
+        },
+        {
+            "vendor": "fortinet",
+            "product": "fortios",
+            "version_start_including": "6.0.0",
+            "version_start_excluding": null,
+            "version_end_including": null,
+            "version_end_excluding": "6.0.18",
+            "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+            "versions_text": null
+        },
+        {
+            "vendor": "fortinet",
+            "product": "fortios",
+            "version_start_including": "6.2.0",
+            "version_start_excluding": null,
+            "version_end_including": null,
+            "version_end_excluding": "6.2.16",
+            "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+            "versions_text": null
+        },
+        {
+            "vendor": "fortinet",
+            "product": "fortios",
+            "version_start_including": "6.4.0",
+            "version_start_excluding": null,
+            "version_end_including": null,
+            "version_end_excluding": "6.4.15",
+            "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+            "versions_text": null
+        },
+        {
+            "vendor": "fortinet",
+            "product": "fortios",
+            "version_start_including": "7.0.0",
+            "version_start_excluding": null,
+            "version_end_including": null,
+            "version_end_excluding": "7.0.14",
+            "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+            "versions_text": null
+        },
+        {
+            "vendor": "fortinet",
+            "product": "fortios",
+            "version_start_including": "7.2.0",
+            "version_start_excluding": null,
+            "version_end_including": null,
+            "version_end_excluding": "7.2.7",
+            "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+            "versions_text": null
+        },
+        {
+            "vendor": "fortinet",
+            "product": "fortios",
+            "version_start_including": "7.4.0",
+            "version_start_excluding": null,
+            "version_end_including": null,
+            "version_end_excluding": "7.4.3",
+            "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+            "versions_text": null
+        }
+    ],
+    "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-21762",
+        "https://fortiguard.fortinet.com/psirt/FG-IR-24-015",
+        "https://fortiguard.com/psirt/FG-IR-24-015",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-21762"
+    ],
+    "attack_techniques": [
+        "T1190",
+        "T1574",
+        "T1547.009"
+    ],
+    "published_at": "2024-02-09T00:00:00Z",
+    "retrieved_at": "2026-10-31T11:47:38.241319Z",
+    "raw_ref": "backend/data/raw/kev/latest.json",
+    "is_simulated": false,
+    "type": "vulnerability",
+    "cve_ids": [
+        "CVE-2024-21762"
+    ],
+    "tags": [
+        "CWE-787",
+        "kev",
+        "ransomware"
+    ],
+    "raw_payload": {
+        "id": 1,
+        "source": "kev",
+        "path": "backend/data/raw/kev/latest.json",
+        "sha256": "72b78544db5a4a152a370cfcb3ac856d47d8e2964c921916a01c83957fe57218",
+        "size_bytes": 1472929,
+        "fetched_at": "2026-10-31T11:47:38.707226Z"
+    }
+}

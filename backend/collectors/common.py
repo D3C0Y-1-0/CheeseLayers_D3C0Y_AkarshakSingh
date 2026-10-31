@@ -1,13 +1,18 @@
 """Shared plumbing for every collector: HTTP with retry/backoff/rate limits, raw + cache files, logging."""
-from dotenv import find_dotenv, load_dotenv
+import os
+
+from dotenv import dotenv_values, find_dotenv
 
 # Find .env by walking up from the working directory (it lives at the repo root, not in backend/).
-load_dotenv(find_dotenv(usecwd=True), override=True)
+# A non-empty shell variable wins (so `DEMO_MODE=true python -m ...` works); an empty one is filled from .env.
+for _k, _v in dotenv_values(find_dotenv(usecwd=True)).items():
+    if _v and not os.environ.get(_k):
+        os.environ[_k] = _v
 
 import json
 import logging
-import os
 import time
+from datetime import datetime, timezone
 from collections import defaultdict
 from pathlib import Path
 from urllib.parse import urlparse
@@ -99,7 +104,7 @@ def save_raw(source: str, payload, name: str = "latest") -> str:
     ext = "txt" if isinstance(payload, str) else "json"
     path = RAW / source / f"{name}.{ext}"
     _write(path, payload if isinstance(payload, str) else json.dumps(payload))
-    return str(path.relative_to(BASE))
+    return str(path.relative_to(BASE.parent))  # repo-relative, e.g. backend/data/raw/kev/latest.json
 
 
 def save_cache(source: str, items) -> Path:
@@ -107,6 +112,11 @@ def save_cache(source: str, items) -> Path:
     path = CACHE / f"{source}.json"
     _write(path, json.dumps(to_jsonable_python(items), indent=1, ensure_ascii=False))
     return path
+
+
+def cache_mtime(source: str) -> datetime | None:
+    path = CACHE / f"{source}.json"
+    return datetime.fromtimestamp(path.stat().st_mtime, timezone.utc) if path.exists() else None
 
 
 def load_cache(source: str):
@@ -126,9 +136,9 @@ def ioc_batches(iocs: list[IOC], urls: dict[str, str], label: str) -> list[Threa
         for i in group:
             i.related_threat_id = tid
         items.append(ThreatItem(
-            id=tid, source=src, type="ioc_batch", title=f"{src}: {len(group)} {family} indicators",
+            threat_id=tid, source=src, type="ioc_batch", title=f"{src}: {len(group)} {family} indicators",
             description=f"{len(group)} indicators of compromise linked to {family}, reported by {label} {src}.",
             published_at=max((i.first_seen for i in group if i.first_seen), default=None),
-            url=urls.get(src), tags=[label, src, family],
+            references=[urls[src]] if src in urls else [], tags=[label, src, family], raw_ref=group[0].raw_ref,
         ))
     return items

@@ -1,0 +1,98 @@
+{
+    "injected": {
+        "threat_id": "CVE-2024-21762",
+        "cve_id": "CVE-2024-21762",
+        "source": "nvd+kev",
+        "title": "CVE-2024-21762: Fortinet FortiOS Out-of-Bound Write Vulnerability",
+        "description": "A out-of-bounds write vulnerability in Fortinet FortiOS 7.4.0 through 7.4.2, FortiOS 7.2.0 through 7.2.6, FortiOS 7.0.0 through 7.0.13, FortiOS 6.4.0 through 6.4.14, FortiOS 6.2.0 through 6.2.15, FortiOS 6.0 all versions, FortiProxy 7.4.0 through 7.4.2, FortiProxy 7.2.0 through 7.2.8, FortiProxy 7.0.0 through 7.0.14, FortiProxy 2.0.0 through 2.0.13, FortiProxy 01.02 all versions, FortiProxy 1.2 all versions, FortiProxy 01.01 all versions, FortiProxy 1.1 all versions, FortiProxy 01.00 all versions allows attacker to execute unauthorized code or commands via specifically crafted requests",
+        "cvss": 9.8,
+        "cvss_version": "3.1",
+        "severity": "critical",
+        "epss": 0.84589,
+        "epss_percentile": 0.99703,
+        "kev_listed": true,
+        "public_exploit": true,
+        "affected_configurations": [
+            {
+                "vendor": "fortinet",
+                "product": "fortios",
+                "version_start_including": "6.0.0",
+                "version_start_excluding": null,
+                "version_end_including": null,
+                "version_end_excluding": "6.0.18",
+                "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+                "versions_text": null
+            },
+            {
+                "vendor": "fortinet",
+                "product": "fortios",
+                "version_start_including": "6.2.0",
+                "version_start_excluding": null,
+                "version_end_including": null,
+                "version_end_excluding": "6.2.16",
+                "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+                "versions_text": null
+            },
+            {
+                "vendor": "fortinet",
+                "product": "fortios",
+                "version_start_including": "6.4.0",
+                "version_start_excluding": null,
+                "version_end_including": null,
+                "version_end_excluding": "6.4.15",
+                "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+                "versions_text": null
+            },
+            {
+                "vendor": "fortinet",
+                "product": "fortios",
+                "version_start_including": "7.0.0",
+                "version_start_excluding": null,
+                "version_end_including": null,
+                "version_end_excluding": "7.0.14",
+                "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+                "versions_text": null
+            },
+            {
+                "vendor": "fortinet",
+                "product": "fortios",
+                "version_start_including": "7.2.0",
+                "version_start_excluding": null,
+                "version_end_including": null,
+                "version_end_excluding": "7.2.7",
+                "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+                "versions_text": null
+            },
+            {
+                "vendor": "fortinet",
+                "product": "fortios",
+                "version_start_including": "7.4.0",
+                "version_start_excluding": null,
+                "version_end_including": null,
+                "version_end_excluding": "7.4.3",
+                "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+                "versions_text": null
+            }
+        ],
+        "references": [
+            "https://fortiguard.com/psirt/FG-IR-24-015",
+            "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-21762"
+        ],
+        "attack_techniques": [
+            "T1190",
+            "T1574",
+            "T1547.009"
+        ],
+        "published_at": "2024-02-09T09:15:08.087000Z",
+        "retrieved_at": "2026-10-31T11:54:33.127092Z",
+        "raw_ref": "backend/data/raw/nvd_kev/all_0.json",
+        "is_simulated": false,
+        "type": "vulnerability",
+        "cve_ids": [
+            "CVE-2024-21762"
+        ],
+        "tags": []
+    },
+    "fixture_file": "data/demo_cves.json",
+    "hook_called": "on_new_threat"
+}

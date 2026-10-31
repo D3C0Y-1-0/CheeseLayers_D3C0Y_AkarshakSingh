@@ -11,7 +11,7 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
 from .common import get, log, save_raw
-from .schema import Affected, ThreatItem
+from .schema import AffectedConfiguration, ThreatItem, severity
 
 SOURCE = "certin"
 HOME = "https://www.cert-in.org.in/"
@@ -46,13 +46,14 @@ def _section(lines: list[str], start: str, stops: tuple[str, ...]) -> list[str]:
     return out
 
 
-def _affected(line: str) -> Affected:
-    # "Mozilla Firefox versions prior to 159" -> vendor "Mozilla", product "Firefox", versions ["prior to 159"]
+def _affected(line: str) -> AffectedConfiguration:
+    # "Mozilla Firefox versions prior to 159" -> vendor "Mozilla", product "Firefox", versions_text "prior to 159"
+    # Free text doesn't fit NVD-style bounds, so it goes in versions_text (an extra) and all bounds stay None.
     # ponytail: first word = vendor is a guess; the correlator fuzzy-matches anyway. Map to CPE names if matching is weak.
     m = re.match(r"(.+?)\s+versions?\b\s*(.*)", line, re.I)
     name, ver = (m.group(1), m.group(2)) if m else (line, "")
     words = name.split()
-    return Affected(vendor=words[0], product=" ".join(words[1:]) or name, versions=[ver] if ver else [])
+    return AffectedConfiguration(vendor=words[0], product=" ".join(words[1:]) or name, versions_text=ver or None)
 
 
 def _detail(url: str, kind: str, code: str) -> ThreatItem:
@@ -68,12 +69,12 @@ def _detail(url: str, kind: str, code: str) -> ThreatItem:
     sev = re.search(r"Severity Rating:\s*([A-Za-z]+)", body)
     overview = _section(lines, "Overview", ("Target Audience:", "Description", "Solution"))
     return ThreatItem(
-        id=code, source=SOURCE, type="advisory", title=f"{code}: {title}",
-        description=" ".join(overview),
+        threat_id=code, source=SOURCE, type="advisory", title=f"{code}: {title}",
+        description=" ".join(overview) or None,
         published_at=datetime.strptime(" ".join(date.groups()), "%B %d %Y").replace(tzinfo=IST) if date else None,
-        url=url, cve_ids=sorted(set(CVE_RE.findall(body))),
-        severity=sev.group(1).title() if sev else "Unknown",
-        affected=[_affected(l) for l in _section(lines, "Software Affected", ("Overview", "Description"))],
+        references=[url], cve_ids=sorted(set(CVE_RE.findall(body))),
+        severity=severity(sev.group(1)) if sev else None,
+        affected_configurations=[_affected(l) for l in _section(lines, "Software Affected", ("Overview", "Description"))],
         tags=["cert-in", kind, "india"], raw_ref=ref,
     )
 

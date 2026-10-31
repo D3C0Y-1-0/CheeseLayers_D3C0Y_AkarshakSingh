@@ -98,20 +98,37 @@ docs/              # pitch notes, architecture diagram, scoring explanation
 
 **Rules for every collector:** timeout + retry with backoff · respect rate limits · save raw response to `data/raw/` · write normalised output to `data/cache/<source>.json` · log counts · never crash the pipeline if one source fails. `DEMO_MODE=true` → read only from `data/cache/` (no network).
 
-## 8. Normalised schemas (core contracts — don't change without telling the team)
-```python
-ThreatItem: id, source, type("vulnerability"|"advisory"|"campaign"|"ioc_batch"),
-            title, description, published_at, url,
-            cve_ids[], cvss: float|None, severity, epss: float|None, in_kev: bool,
-            affected: [{vendor, product, versions, cpe}], attack_techniques[], tags[], raw_ref
-IOC:        value, ioc_type("ip"|"domain"|"url"|"sha256"|"md5"), source, malware_family,
-            first_seen, confidence, related_threat_id
-Asset:      id, hostname, ip, role, os, software:[{vendor, product, version, cpe}],
-            criticality(1-5), internet_facing: bool, sector("power"|"banking"|"govt"|"health"|...), owner
-Alert:      id, threat_id, asset_ids[], risk_score(0-100), level("Low"|"Medium"|"High"|"Critical"),
-            factors:{cvss, exploit, criticality, exposure, confidence}, ai_summary, why_it_matters,
-            recommendations[], attack_techniques[], status("new"|"ack"|"resolved"), created_at
-```
+## 8. Normalised schemas → **`data/contracts.json` is the source of truth**
+Field names, types and enums for `threat`, `asset`, `event`, `alert`, `window` live in `data/contracts.json`
+(check any fixture with `.venv/bin/python data/validate.py`). Don't restate them here: change the contract
+first, tell the team, then change code. Key rule: **`null` = unknown/unverified, never 0/false.**
+
+Backend implementation (Member 2): `backend/collectors/schema.py` → `ThreatItem` (contract `threat` fields
+exactly) and `IOC`. Renamed vs the old schema: `id→threat_id`, `in_kev→kev_listed`, `affected→affected_configurations`
+(NVD bounds `version_start_including/…_excluding/version_end_including/…_excluding`, one entry per NVD cpeMatch),
+`url→references[]`; new `cve_id`, `cvss_version`, `epss_percentile`, `retrieved_at`, `is_simulated`; severity is
+lowercase `critical|high|medium|low|none` or `null`. §9 below still says `in_kev` — read it as `kev_listed`.
+
+Extras we add on top of the contract (allowed, never rename a contract field):
+`type` (vulnerability|advisory|campaign|ioc_batch), `cve_ids[]` (every CVE a threat mentions — drives KEV/EPSS/exploit
+enrichment), `tags[]`, and `affected_configurations[].versions_text` (unparsed free-text range).
+
+**Where our cache doesn't fit the contract cleanly** (checked 31 Oct, 19,640 merged threats, 0 validation errors):
+1. **IOC has no contract entity.** Our IOC: `value, ioc_type(ip|cidr|domain|url|sha256|md5), source, malware_family,
+   first_seen, confidence(0-100), related_threat_id, retrieved_at, raw_ref, is_simulated`. → propose adding `ioc` to contracts.json.
+2. **No `type` / multi-CVE field in the contract.** CERT-In advisories and OTX pulses cover several CVEs, so their
+   `cve_id` is `null` (605 threats) and the CVEs live in the extra `cve_ids[]`.
+3. **CERT-In version ranges are free text** ("prior to 159", "3.4.5 to 6.1.0 with OpenSSL TLS build"): all four bounds
+   null, text in `versions_text` (101 entries). Vendor/product are guessed from the text, not CPE names, and `cpe` is null.
+4. **KEV-based records: `published_at` = date CISA added it to KEV**, not NVD's publish date; `raw_ref` points at the
+   KEV dump even though CVSS/CPEs were merged in from the NVD dump.
+5. **`kev_listed` / `public_exploit` are `null` for 500 threats with no CVE at all** (ransomware victims, OTX pulses without
+   CVEs, IOC batches): not checkable, so not `false`.
+6. **Not yet scored upstream:** `cvss`/`cvss_version` null 2,528, `severity` null 2,586, `epss` null 1,495.
+   `cvss_version` mixes 3.1 / 3.0 / 4.0 (1,345 are CVSS v4-only), so scores aren't strictly comparable.
+7. **`published_at` null** for the 3 reputation-list batches (Tor, Spamhaus DROP, OpenPhish publish no dates).
+8. **`retrieved_at` is per source run**, not per record (one timestamp per collector fetch).
+9. OTX sometimes sends an empty ATT&CK ID: now dropped by the collector (the only contract error found).
 
 ## 9. Risk scoring (explainable — show every factor in the UI)
 ```

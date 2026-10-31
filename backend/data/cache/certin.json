@@ -1,64 +1,193 @@
 {
  "items": [
   {
-   "id": "CIAD-2026-0057",
+   "threat_id": "CIAD-2026-0057",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0057: Multiple vulnerabilities in GoAhead Web Server",
    "description": "Multiple vulnerabilities have been reported in GoAhead Web Server which could allow a remote attacker to bypass security restrictions, obtain sensitive information, decrypt certain TLS-encrypted communications, or unauthorized access to affected services on the targeted system.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "critical",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
+    {
+     "vendor": "GoAhead",
+     "product": "Web Server",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "3.4.5 to 6.1.0 with OpenSSL TLS build"
+    },
+    {
+     "vendor": "GoAhead",
+     "product": "Web Server",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "4.0.2 to 6.1.0 with Mbed TLS build"
+    },
+    {
+     "vendor": "GoAhead",
+     "product": "Web Server",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "6.1.0 and prior with LibreSSL Legacy TLS build"
+    }
+   ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0057"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-28T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0057",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0057.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2026-115881",
     "CVE-2026-115884"
    ],
-   "cvss": null,
-   "severity": "Critical",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
-    {
-     "vendor": "GoAhead",
-     "product": "Web Server",
-     "versions": [
-      "3.4.5 to 6.1.0 with OpenSSL TLS build"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "GoAhead",
-     "product": "Web Server",
-     "versions": [
-      "4.0.2 to 6.1.0 with Mbed TLS build"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "GoAhead",
-     "product": "Web Server",
-     "versions": [
-      "6.1.0 and prior with LibreSSL Legacy TLS build"
-     ],
-     "cpe": null
-    }
-   ],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0057.txt"
+   ]
   },
   {
-   "id": "CIAD-2026-0056",
+   "threat_id": "CIAD-2026-0056",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0056: Multiple Vulnerabilities in Apple Products",
    "description": "Multiple vulnerabilities have been reported in Apple products, which could allow an attacker to execute arbitrary code, escalate privileges, disclose sensitive information, bypass security restrictions or cause denial-of-service conditions on the targeted system.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "high",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
+    {
+     "vendor": "Safari",
+     "product": "Safari",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 27.2"
+    },
+    {
+     "vendor": "MacOS",
+     "product": "Sequoia",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 15.8.2"
+    },
+    {
+     "vendor": "MacOS",
+     "product": "Tahoe",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 26.7.2"
+    },
+    {
+     "vendor": "MacOS",
+     "product": "Golden Gate",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 27.2"
+    },
+    {
+     "vendor": "iOS",
+     "product": "iOS",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 18.7.11 and iPadOS versions prior to 18.7.11"
+    },
+    {
+     "vendor": "iOS",
+     "product": "iOS",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 26.7.2 and iPadOS versions prior to 26.7.2"
+    },
+    {
+     "vendor": "iOS",
+     "product": "iOS",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 27.2 and iPadOS versions prior to 27.2"
+    },
+    {
+     "vendor": "WatchOS",
+     "product": "WatchOS",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 27.2"
+    },
+    {
+     "vendor": "TvOS",
+     "product": "TvOS",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 27.2"
+    },
+    {
+     "vendor": "VisionOS",
+     "product": "VisionOS",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 27.2"
+    }
+   ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0056"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-27T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0056",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0056.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2019-5598",
     "CVE-2022-26704",
@@ -241,429 +370,683 @@
     "CVE-2026-86991",
     "CVE-2026-86992"
    ],
-   "cvss": null,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
-    {
-     "vendor": "Safari",
-     "product": "Safari",
-     "versions": [
-      "prior to 27.2"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "MacOS",
-     "product": "Sequoia",
-     "versions": [
-      "prior to 15.8.2"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "MacOS",
-     "product": "Tahoe",
-     "versions": [
-      "prior to 26.7.2"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "MacOS",
-     "product": "Golden Gate",
-     "versions": [
-      "prior to 27.2"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "iOS",
-     "product": "iOS",
-     "versions": [
-      "prior to 18.7.11 and iPadOS versions prior to 18.7.11"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "iOS",
-     "product": "iOS",
-     "versions": [
-      "prior to 26.7.2 and iPadOS versions prior to 26.7.2"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "iOS",
-     "product": "iOS",
-     "versions": [
-      "prior to 27.2 and iPadOS versions prior to 27.2"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "WatchOS",
-     "product": "WatchOS",
-     "versions": [
-      "prior to 27.2"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "TvOS",
-     "product": "TvOS",
-     "versions": [
-      "prior to 27.2"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "VisionOS",
-     "product": "VisionOS",
-     "versions": [
-      "prior to 27.2"
-     ],
-     "cpe": null
-    }
-   ],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0056.txt"
+   ]
   },
   {
-   "id": "CIAD-2026-0055",
+   "threat_id": "CIAD-2026-0055",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0055: Out-of-Bounds Write Vulnerability in Google Brotli Decoder",
    "description": "A buffer overflow vulnerability in the Brotli decoder (c/dec/decode.c) in Google Brotli versions 1.0.3 through 1.2.0 on all platforms allows a remote unauthenticated attacker to corrupt adjacent decoder state memory, disclose sensitive memory contents, cause a denial of service, or potentially execute arbitrary code using a crafted Brotli-compressed stream.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "critical",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0055"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-27T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0055",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0055.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2026-111497"
    ],
-   "cvss": null,
-   "severity": "Critical",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0055.txt"
+   ]
   },
   {
-   "id": "CIAD-2026-0054",
+   "threat_id": "CIAD-2026-0054",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0054: Multiple vulnerabilities in Fortinet Products",
-   "description": "",
+   "description": null,
+   "cvss": null,
+   "cvss_version": null,
+   "severity": null,
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0054"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-24T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0054",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0054.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0054.txt"
+   ]
   },
   {
-   "id": "CIAD-2026-0053",
+   "threat_id": "CIAD-2026-0053",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0053: Compromise of LiteLLM PyPI Package and Docker Images",
-   "description": "",
-   "published_at": "2026-10-23T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0053",
-   "cve_ids": [],
+   "description": null,
    "cvss": null,
-   "severity": "Unknown",
+   "cvss_version": null,
+   "severity": null,
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [],
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0053"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-23T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0053.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0053.txt"
+   ]
   },
   {
-   "id": "CIAD-2026-0052",
+   "threat_id": "CIAD-2026-0052",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0052: Advisory to MSME - Remote code execution vulnerabilities in PHP (PHP2Shell)",
    "description": "Multiple vulnerabilities have been reported in PHP which could allow a remote attacker to execute arbitrary code on the targeted system.",
-   "published_at": "2026-10-22T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0052",
-   "cve_ids": [
-    "CVE-2026-109618",
-    "CVE-2026-109619"
-   ],
    "cvss": null,
-   "severity": "Critical",
+   "cvss_version": null,
+   "severity": "critical",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "PHP",
      "product": "8.5",
-     "versions": [
-      "prior to 8.5.12"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 8.5.12"
     },
     {
      "vendor": "PHP",
      "product": "8.4",
-     "versions": [
-      "prior to 8.4.27"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 8.4.27"
     },
     {
      "vendor": "PHP",
      "product": "8.3",
-     "versions": [
-      "prior to 8.3.36"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 8.3.36"
     },
     {
      "vendor": "PHP",
      "product": "8.2",
-     "versions": [
-      "prior to 8.2.35"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 8.2.35"
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0052"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-22T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0052.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [
+    "CVE-2026-109618",
+    "CVE-2026-109619"
+   ],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0052.txt"
+   ]
   },
   {
-   "id": "CIAD-2026-0051",
+   "threat_id": "CIAD-2026-0051",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0051: Multiple Vulnerabilities in Oracle Products",
    "description": "Multiple vulnerabilities have been reported in various Oracle products, which could be exploited by a remote attacker to trigger elevation of privilege, denial of service condition, remote code execution, data manipulation, sensitive information disclosure and security restriction bypass on the targeted system.",
-   "published_at": "2026-10-22T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0051",
-   "cve_ids": [],
    "cvss": null,
-   "severity": "High",
+   "cvss_version": null,
+   "severity": "high",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "Oracle",
      "product": "Database Server",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "E-Business Suite",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Fusion Middleware and Oracle WebLogic Server",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Enterprise Manager",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Java SE, JavaFX and GraalVM",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "MySQL products",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "PeopleSoft Enterprise",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "JD Edwards EnterpriseOne",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Siebel CRM",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Analytics and BI Publisher",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "HealthCare Applications",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Hospitality Applications",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "GoldenGate",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "REST Data Services",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "NoSQL Database",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Solaris and Oracle VM VirtualBox",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Retail, Financial Services, Communications,",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Utilities",
      "product": "and Supply Chain applications",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "For",
      "product": "complete list of affected products refer to the oracle advisory:",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "https://www.oracle.com/security-alerts/cpuoct2026.html",
      "product": "https://www.oracle.com/security-alerts/cpuoct2026.html",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0051"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-22T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0051.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0051.txt"
+   ]
   },
   {
-   "id": "CIAD-2026-0050",
+   "threat_id": "CIAD-2026-0050",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0050: Compromise of eMudhra Intermediate CA Certificates",
-   "description": "",
+   "description": null,
+   "cvss": null,
+   "cvss_version": null,
+   "severity": null,
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0050"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-21T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0050",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0050.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0050.txt"
+   ]
   },
   {
-   "id": "CIAD-2026-0049",
+   "threat_id": "CIAD-2026-0049",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0049: AI Agents as Attack Vectors: Unauthorized Access by Agents under Evaluation and Misuse of Open-Source Agentic AI Tools Targeting Indian ICT Assets",
-   "description": "",
-   "published_at": "2026-10-15T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0049",
-   "cve_ids": [],
+   "description": null,
    "cvss": null,
-   "severity": "Critical",
+   "cvss_version": null,
+   "severity": "critical",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [],
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0049"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-15T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0049.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0049.txt"
+   ]
   },
   {
-   "id": "CIAD-2026-0048",
+   "threat_id": "CIAD-2026-0048",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0048: Multiple Vulnerabilities in SAP Products",
    "description": "Multiple vulnerabilities have been reported in SAP products, which could allow an attacker to execute arbitrary code or commands, bypass security controls, gain unauthorized access, disclose sensitive information, manipulate data, or cause denial-of-service conditions on the targeted system.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "critical",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
+    {
+     "vendor": "SAP",
+     "product": "Cloud SDK for Python",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 0.45.2"
+    },
+    {
+     "vendor": "SAP",
+     "product": "NetWeaver Visual Composer ¿ VC70RUNTIME 7.50",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "S/4HANA (Manage Substitution/Validation Rules) ¿ S4CORE",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "105, 106, 107, 108, 109"
+    },
+    {
+     "vendor": "SAP",
+     "product": "Manufacturing Integration and Intelligence (SAP MII) ¿ XMII",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "15.4 and 15.5"
+    },
+    {
+     "vendor": "SAP",
+     "product": "Commerce Cloud ¿ COM_CLOUD",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "2211-JDK21"
+    },
+    {
+     "vendor": "SAP",
+     "product": "NetWeaver and SAP Web Dispatcher (Internet Communication Manager) ¿ HDB 2.00; KRNL64UC 7.53; WEBDISP 7.53, 7.54, 7.77, 7.93, 9.16; XS_ADVANCED_RUNTIME 1.00; SAP_EXTENDED_APP_SERVICES 1; CONTSERV 7.53, 7.54; KERNEL 7.53, 7.54, 7.77, 7.93, 9.16, 9.18, 9.19, 9.20",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "ABAP Platform ¿ KERNEL",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "7.93 and 9.16"
+    },
+    {
+     "vendor": "CLA-Assistant",
+     "product": "CLA-Assistant",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to or equal to 2.13.1"
+    },
+    {
+     "vendor": "SAP",
+     "product": "NetWeaver Application Server for ABAP ¿ SAP_BASIS",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "740, 750, 752, 753, 754, 755, 756, 757, 758, 816, 918"
+    },
+    {
+     "vendor": "SAP",
+     "product": "NetWeaver ABAP Platform ¿ S4CRM",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "100, 200, 204, 205, 206; S4CEXT versions 107, 108; BBPCRM versions 713, 714"
+    },
+    {
+     "vendor": "SAP",
+     "product": "NetWeaver Enterprise Portal ¿ EP-ADMIN 7.50; EP-RUNTIME 7.50",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAPUI5",
+     "product": "(Support Assistant Overlay) ¿ SAP_UI 754",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "Yeoman-UI",
+     "product": "/ Application Wizard Extension for Visual Studio Code",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to or equal to 1.25.1"
+    },
+    {
+     "vendor": "SAP",
+     "product": "NetWeaver Application Server ABAP (applications based on SAP GUI for HTML) ¿ SAP_BASIS",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "731, 740, 750, 751, 752, 753, 754, 755, 756, 757, 758, 816"
+    },
+    {
+     "vendor": "SAPUI5",
+     "product": "¿ SAP_UI",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "750, 754, 755, 756, 757, 758, 816; UI_700 version 200"
+    },
+    {
+     "vendor": "SAP",
+     "product": "S/4HANA (Linear Asset Management RAP Business Object) ¿ S4CORE 109",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "Global Trade Services, edition for SAP HANA ¿ GTSCORE",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "200 and 300"
+    },
+    {
+     "vendor": "SAP",
+     "product": "Cloud Security Services Integration Library",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "3.6.6 and later, but prior to 4.1.1"
+    },
+    {
+     "vendor": "SAP",
+     "product": "Cloud Connector ¿ SAP_CLOUD_CONNECTOR 2.0",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    }
+   ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0048"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-14T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0048",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0048.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2025-42938",
     "CVE-2025-89105",
@@ -688,314 +1071,429 @@
     "CVE-2026-89122",
     "CVE-2026-89124"
    ],
-   "cvss": null,
-   "severity": "Critical",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
-    {
-     "vendor": "SAP",
-     "product": "Cloud SDK for Python",
-     "versions": [
-      "prior to 0.45.2"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "NetWeaver Visual Composer ¿ VC70RUNTIME 7.50",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "S/4HANA (Manage Substitution/Validation Rules) ¿ S4CORE",
-     "versions": [
-      "105, 106, 107, 108, 109"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Manufacturing Integration and Intelligence (SAP MII) ¿ XMII",
-     "versions": [
-      "15.4 and 15.5"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Commerce Cloud ¿ COM_CLOUD",
-     "versions": [
-      "2211-JDK21"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "NetWeaver and SAP Web Dispatcher (Internet Communication Manager) ¿ HDB 2.00; KRNL64UC 7.53; WEBDISP 7.53, 7.54, 7.77, 7.93, 9.16; XS_ADVANCED_RUNTIME 1.00; SAP_EXTENDED_APP_SERVICES 1; CONTSERV 7.53, 7.54; KERNEL 7.53, 7.54, 7.77, 7.93, 9.16, 9.18, 9.19, 9.20",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "ABAP Platform ¿ KERNEL",
-     "versions": [
-      "7.93 and 9.16"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "CLA-Assistant",
-     "product": "CLA-Assistant",
-     "versions": [
-      "prior to or equal to 2.13.1"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "NetWeaver Application Server for ABAP ¿ SAP_BASIS",
-     "versions": [
-      "740, 750, 752, 753, 754, 755, 756, 757, 758, 816, 918"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "NetWeaver ABAP Platform ¿ S4CRM",
-     "versions": [
-      "100, 200, 204, 205, 206; S4CEXT versions 107, 108; BBPCRM versions 713, 714"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "NetWeaver Enterprise Portal ¿ EP-ADMIN 7.50; EP-RUNTIME 7.50",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAPUI5",
-     "product": "(Support Assistant Overlay) ¿ SAP_UI 754",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "Yeoman-UI",
-     "product": "/ Application Wizard Extension for Visual Studio Code",
-     "versions": [
-      "prior to or equal to 1.25.1"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "NetWeaver Application Server ABAP (applications based on SAP GUI for HTML) ¿ SAP_BASIS",
-     "versions": [
-      "731, 740, 750, 751, 752, 753, 754, 755, 756, 757, 758, 816"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "SAPUI5",
-     "product": "¿ SAP_UI",
-     "versions": [
-      "750, 754, 755, 756, 757, 758, 816; UI_700 version 200"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "S/4HANA (Linear Asset Management RAP Business Object) ¿ S4CORE 109",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Global Trade Services, edition for SAP HANA ¿ GTSCORE",
-     "versions": [
-      "200 and 300"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Cloud Security Services Integration Library",
-     "versions": [
-      "3.6.6 and later, but prior to 4.1.1"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Cloud Connector ¿ SAP_CLOUD_CONNECTOR 2.0",
-     "versions": [],
-     "cpe": null
-    }
-   ],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0048.txt"
+   ]
   },
   {
-   "id": "CIAD-2026-0047",
+   "threat_id": "CIAD-2026-0047",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0047: Multiple Vulnerabilities in Microsoft Products",
    "description": "Multiple vulnerabilities have been reported in Microsoft products that could allow an attacker to gain elevated privileges, obtain sensitive information, execute arbitrary code remotely, bypass security restrictions, conduct spoofing attacks, perform tampering of data or system processes, or cause denial-of-service (DoS) conditions.",
-   "published_at": "2026-10-14T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0047",
-   "cve_ids": [
-    "CVE-2026-96951"
-   ],
    "cvss": null,
-   "severity": "High",
+   "cvss_version": null,
+   "severity": "high",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "Microsoft",
      "product": "Windows",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Microsoft",
      "product": "Office",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Microsoft",
      "product": "Dynamics",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "SQL",
      "product": "Server",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Extended",
      "product": "Security Updates (ESU) for legacy Microsoft products",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Azure",
      "product": "Azure",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Apps",
      "product": "Apps",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Developer",
      "product": "Tools",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Open",
      "product": "Source Software",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Server",
      "product": "Software",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "System",
      "product": "Center",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "ASP.NET",
      "product": "Core",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Microsoft",
      "product": "Azure",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": ".NET",
      "product": ".NET",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Skype",
      "product": "for Business Server",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Linux",
      "product": "components",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0047"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-14T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0047.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [
+    "CVE-2026-96951"
+   ],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0047.txt"
+   ]
   },
   {
-   "id": "CIAD-2026-0046",
+   "threat_id": "CIAD-2026-0046",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0046: Threat Actors Exploiting Payment and Disbursement APIs for Unauthorized Fund Transfers in BFSI Entities",
-   "description": "",
-   "published_at": "2026-10-09T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0046",
-   "cve_ids": [],
+   "description": null,
    "cvss": null,
-   "severity": "Critical",
+   "cvss_version": null,
+   "severity": "critical",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [],
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0046"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-09T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0046.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0046.txt"
+   ]
   },
   {
-   "id": "CIAD-2026-0045",
+   "threat_id": "CIAD-2026-0045",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0045: Multiple Vulnerabilities in SAP Products",
    "description": "Multiple vulnerabilities have been reported in various SAP products which could allow a remote attacker to execute arbitrary code, elevate privileges, obtain sensitive information, bypass security restrictions, cause memory corruption, cause denial of service (DoS) conditions, gain unauthorized access, manipulate application data, and perform server-side request forgery (SSRF) on the targeted system.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "high",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
+    {
+     "vendor": "SAP",
+     "product": "Extended Passport (EPP) Processing",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "NetWeaver (Message Server)",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "Cloud Application Programming Model (CAP)",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "NetWeaver (SAP GUI for Java)",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "ABAP Developer Tools",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "Integration Suite",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "NetWeaver Business Client",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "NetWeaver Application Server for ABAP and ABAP Platform",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "Commerce Cloud (Search And Navigation)",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "Web Dispatcher, Internet Communication Manager and SAP Content Server",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "S/4HANA (Intercompany Matching and Reconciliation)",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "Manufacturing Integration and Intelligence",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAPUI5",
+     "product": "(Frame Options Allowlist)",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "S/4HANA (Finance for Advanced Payment Management)",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "S/4HANA (Manage Bank Chains app)",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "NetWeaver and ABAP Platform",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "Process Integration (SOAP Adapter)",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    }
+   ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0045"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-09-10T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0045",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0045.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2026-2332",
     "CVE-2026-34477",
@@ -1018,435 +1516,632 @@
     "CVE-2026-76971",
     "CVE-2026-76977"
    ],
-   "cvss": null,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
-    {
-     "vendor": "SAP",
-     "product": "Extended Passport (EPP) Processing",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "NetWeaver (Message Server)",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Cloud Application Programming Model (CAP)",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "NetWeaver (SAP GUI for Java)",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "ABAP Developer Tools",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Integration Suite",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "NetWeaver Business Client",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "NetWeaver Application Server for ABAP and ABAP Platform",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Commerce Cloud (Search And Navigation)",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Web Dispatcher, Internet Communication Manager and SAP Content Server",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "S/4HANA (Intercompany Matching and Reconciliation)",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Manufacturing Integration and Intelligence",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAPUI5",
-     "product": "(Frame Options Allowlist)",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "S/4HANA (Finance for Advanced Payment Management)",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "S/4HANA (Manage Bank Chains app)",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "NetWeaver and ABAP Platform",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Process Integration (SOAP Adapter)",
-     "versions": [],
-     "cpe": null
-    }
-   ],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0045.txt"
+   ]
   },
   {
-   "id": "CIAD-2026-0044",
+   "threat_id": "CIAD-2026-0044",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0044: Multiple Vulnerabilities in Microsoft Products",
    "description": "Multiple vulnerabilities have been reported in Microsoft products that could allow an attacker to gain elevated privileges, obtain sensitive information, execute arbitrary code remotely, bypass security restrictions, conduct spoofing attacks, perform tampering of data or system processes, or cause denial-of-service (DoS) conditions.",
-   "published_at": "2026-09-09T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0044",
-   "cve_ids": [
-    "CVE-2026-81963",
-    "CVE-2026-85880"
-   ],
    "cvss": null,
-   "severity": "High",
+   "cvss_version": null,
+   "severity": "high",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "Microsoft",
      "product": "Windows",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Microsoft",
      "product": "Office",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Microsoft",
      "product": "Dynamics",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "SQL",
      "product": "Server",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Extended",
      "product": "Security Updates (ESU) for legacy Microsoft products",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Azure",
      "product": "Azure",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Apps",
      "product": "Apps",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Developer",
      "product": "Tools",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Open",
      "product": "Source Software",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Server",
      "product": "Software",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0044"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-09-09T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0044.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [
+    "CVE-2026-81963",
+    "CVE-2026-85880"
+   ],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0044.txt"
+   ]
   },
   {
-   "id": "CIAD-2026-0043",
+   "threat_id": "CIAD-2026-0043",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2026-0043: Multiple Vulnerabilities in Oracle Products",
    "description": "Multiple vulnerabilities have been reported in various Oracle products which could be exploited by a remote attacker to gain unauthorized access, execute arbitrary code, disclose sensitive information, manipulate data, bypass security controls, or cause denial-of-service conditions on the targeted system.",
-   "published_at": "2026-08-28T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0043",
-   "cve_ids": [],
    "cvss": null,
-   "severity": "High",
+   "cvss_version": null,
+   "severity": "high",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "Oracle",
      "product": "MySQL",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Access Manager",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Supply Chain Products",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Analytics",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Commerce",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Communications",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Database Server",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "E-Business Suite",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Enterprise Manager",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Oracle",
      "product": "Financial Services Applications",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "For",
      "product": "complete list of affected products and",
-     "versions": [
-      "refer to the Oracle advisory:"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "refer to the Oracle advisory:"
     },
     {
      "vendor": "https://www.oracle.com/security-alerts/cspuaug2026.html",
      "product": "https://www.oracle.com/security-alerts/cspuaug2026.html",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     }
    ],
-   "attack_techniques": [],
-   "tags": [
-    "cert-in",
-    "advisory",
-    "india"
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0043"
    ],
-   "raw_ref": "data/raw/certin/CIAD-2026-0043.txt"
-  },
-  {
-   "id": "CIAD-2025-0055",
-   "source": "certin",
+   "attack_techniques": [],
+   "published_at": "2026-08-28T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2026-0043.txt",
+   "is_simulated": false,
    "type": "advisory",
-   "title": "CIAD-2025-0055: WhatsApp Account takeover campaign (GhostPairing)",
-   "description": "",
-   "published_at": "2025-12-19T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2025-0055",
    "cve_ids": [],
-   "cvss": null,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2025-0055.txt"
+   ]
   },
   {
-   "id": "CIAD-2025-0054",
+   "threat_id": "CIAD-2025-0055",
+   "cve_id": null,
    "source": "certin",
+   "title": "CIAD-2025-0055: WhatsApp Account takeover campaign (GhostPairing)",
+   "description": null,
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "high",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2025-0055"
+   ],
+   "attack_techniques": [],
+   "published_at": "2025-12-19T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2025-0055.txt",
+   "is_simulated": false,
    "type": "advisory",
+   "cve_ids": [],
+   "tags": [
+    "cert-in",
+    "advisory",
+    "india"
+   ]
+  },
+  {
+   "threat_id": "CIAD-2025-0054",
+   "cve_id": null,
+   "source": "certin",
    "title": "CIAD-2025-0054: Multiple Vulnerabilities in Apple Products",
    "description": "Multiple vulnerabilities have been reported in Apple Products which could allow an attacker to execute arbitrary code, gain elevated privileges, disclose sensitive information, bypass security restrictions or can cause denial of service condition on the targeted system.",
-   "published_at": "2025-12-16T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2025-0054",
-   "cve_ids": [],
    "cvss": null,
-   "severity": "High",
+   "cvss_version": null,
+   "severity": "high",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "Apple",
      "product": "iOS and iPadOS",
-     "versions": [
-      "prior to 26.2"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 26.2"
     },
     {
      "vendor": "Apple",
      "product": "iOS and iPadOS",
-     "versions": [
-      "prior 18.7.3"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior 18.7.3"
     },
     {
      "vendor": "Apple",
      "product": "macOS Tahoe",
-     "versions": [
-      "prior 26.2"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior 26.2"
     },
     {
      "vendor": "Apple",
      "product": "macOS Sequoia",
-     "versions": [
-      "prior 15.7.3"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior 15.7.3"
     },
     {
      "vendor": "Apple",
      "product": "macOS Sonoma",
-     "versions": [
-      "prior 14.8.3"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior 14.8.3"
     },
     {
      "vendor": "Apple",
      "product": "tvOS",
-     "versions": [
-      "prior 26.2"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior 26.2"
     },
     {
      "vendor": "Apple",
      "product": "watchOS",
-     "versions": [
-      "prior 26.2"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior 26.2"
     },
     {
      "vendor": "Apple",
      "product": "visionOS",
-     "versions": [
-      "prior 26.2"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior 26.2"
     },
     {
      "vendor": "Apple",
      "product": "Safari",
-     "versions": [
-      "prior 26.2"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior 26.2"
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2025-0054"
+   ],
    "attack_techniques": [],
+   "published_at": "2025-12-16T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2025-0054.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2025-0054.txt"
+   ]
   },
   {
-   "id": "CIAD-2025-0053",
+   "threat_id": "CIAD-2025-0053",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2025-0053: Multiple Vulnerabilities in Adobe Products",
    "description": "Multiple Vulnerabilities have been reported in Adobe products which could be exploited by an attacker to gain elevated privileges, bypass security restrictions, execute arbitrary code, obtain sensitive information or cause Denial of service (DoS) condition on the targeted system. Target audience: System administrators, Security teams or end-users of Adobe software products. Risk Assessment: High risk of unauthorized access to sensitive data, system compromise. Impact Assessment: Potential for data theft, remote code execution or service disruption.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "critical",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
+    {
+     "vendor": "Acrobat",
+     "product": "DC 25.001.20982 and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for Windows & macOS"
+    },
+    {
+     "vendor": "Acrobat",
+     "product": "Reader DC 25.001.20982 and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for Windows & macOS"
+    },
+    {
+     "vendor": "Acrobat",
+     "product": "Reader 2020 Mac - 20.005.30803 and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for Windows & macOS"
+    },
+    {
+     "vendor": "Acrobat",
+     "product": "Reader 2020 Win - 20.005.30793 and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for Windows & macOS"
+    },
+    {
+     "vendor": "Acrobat",
+     "product": "2020 Mac - 20.005.30803 and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for Windows & macOS"
+    },
+    {
+     "vendor": "Acrobat",
+     "product": "2020 Win - 20.005.30793 and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for Windows & macOS"
+    },
+    {
+     "vendor": "Acrobat",
+     "product": "2024 Mac - 24.001.30273 and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for Windows & macOS"
+    },
+    {
+     "vendor": "Acrobat",
+     "product": "2024 Win - 24.001.30264 and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for Windows & macOS"
+    },
+    {
+     "vendor": "Adobe",
+     "product": "DNG Software Development Kit (SDK) DNG SDK 1.7.0 and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for Windows"
+    },
+    {
+     "vendor": "Adobe",
+     "product": "Experience Manager (AEM) AEM Cloud Service (CS) for All",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "Adobe",
+     "product": "Experience Manager (AEM) 6.5 LTS and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for All"
+    },
+    {
+     "vendor": "Adobe",
+     "product": "Experience Manager (AEM) 6.5.23 and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for All"
+    },
+    {
+     "vendor": "ColdFusion",
+     "product": "2021 Update 22 and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for All"
+    },
+    {
+     "vendor": "ColdFusion",
+     "product": "2023 Update 16 and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for All"
+    },
+    {
+     "vendor": "ColdFusion",
+     "product": "2025 Update 4 and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for All"
+    },
+    {
+     "vendor": "Creative",
+     "product": "Cloud Desktop Application 6.4.0.361 and earlier",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "for macOS"
+    }
+   ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2025-0053"
+   ],
+   "attack_techniques": [],
    "published_at": "2025-12-15T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2025-0053",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2025-0053.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2025-61808",
     "CVE-2025-61809",
@@ -1585,155 +2280,35 @@
     "CVE-2025-64898",
     "CVE-2025-64899"
    ],
-   "cvss": null,
-   "severity": "Critical",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
-    {
-     "vendor": "Acrobat",
-     "product": "DC 25.001.20982 and earlier",
-     "versions": [
-      "for Windows & macOS"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Acrobat",
-     "product": "Reader DC 25.001.20982 and earlier",
-     "versions": [
-      "for Windows & macOS"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Acrobat",
-     "product": "Reader 2020 Mac - 20.005.30803 and earlier",
-     "versions": [
-      "for Windows & macOS"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Acrobat",
-     "product": "Reader 2020 Win - 20.005.30793 and earlier",
-     "versions": [
-      "for Windows & macOS"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Acrobat",
-     "product": "2020 Mac - 20.005.30803 and earlier",
-     "versions": [
-      "for Windows & macOS"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Acrobat",
-     "product": "2020 Win - 20.005.30793 and earlier",
-     "versions": [
-      "for Windows & macOS"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Acrobat",
-     "product": "2024 Mac - 24.001.30273 and earlier",
-     "versions": [
-      "for Windows & macOS"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Acrobat",
-     "product": "2024 Win - 24.001.30264 and earlier",
-     "versions": [
-      "for Windows & macOS"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Adobe",
-     "product": "DNG Software Development Kit (SDK) DNG SDK 1.7.0 and earlier",
-     "versions": [
-      "for Windows"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Adobe",
-     "product": "Experience Manager (AEM) AEM Cloud Service (CS) for All",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "Adobe",
-     "product": "Experience Manager (AEM) 6.5 LTS and earlier",
-     "versions": [
-      "for All"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Adobe",
-     "product": "Experience Manager (AEM) 6.5.23 and earlier",
-     "versions": [
-      "for All"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "ColdFusion",
-     "product": "2021 Update 22 and earlier",
-     "versions": [
-      "for All"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "ColdFusion",
-     "product": "2023 Update 16 and earlier",
-     "versions": [
-      "for All"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "ColdFusion",
-     "product": "2025 Update 4 and earlier",
-     "versions": [
-      "for All"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Creative",
-     "product": "Cloud Desktop Application 6.4.0.361 and earlier",
-     "versions": [
-      "for macOS"
-     ],
-     "cpe": null
-    }
-   ],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2025-0053.txt"
+   ]
   },
   {
-   "id": "CIAD-2025-0052",
+   "threat_id": "CIAD-2025-0052",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2025-0052: Multiple Vulnerabilities in Atlassian Products",
    "description": "Multiple vulnerabilities have been reported in Atlassian Products which could allow an attacker to execute RCE (Remote Code Execution), perform XXE (XML External Entity Injection), Prototype Pollution, File Inclusion, Improper Authorization, SSRF (server-side request forgery) attack, Information Disclosure, Improper Input Validation and cause Denial of Service (DoS) condition on the targeted system.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "high",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2025-0052"
+   ],
+   "attack_techniques": [],
    "published_at": "2025-12-14T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2025-0052",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2025-0052.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2016-1181",
     "CVE-2016-1182",
@@ -1765,28 +2340,176 @@
     "CVE-2025-59250",
     "CVE-2025-66516"
    ],
-   "cvss": null,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2025-0052.txt"
+   ]
   },
   {
-   "id": "CIAD-2025-0051",
+   "threat_id": "CIAD-2025-0051",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIAD-2025-0051: Multiple vulnerabilities in SAP Products",
    "description": "Multiple vulnerabilities have been reported, which could be exploited by an attacker to disclose sensitive information, gain elevated privileges, execute arbitrary code, denial-of-service condition, perform Cross-Site Scripting (XSS) and Server-Side Request Forgery (SSRF) on the targeted system.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "high",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
+    {
+     "vendor": "SAP",
+     "product": "Solution Manager",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "Commerce Cloud",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "jConnect - SDK for ASE",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "Web Dispatcher & Internet Communication Manager (ICM)Version",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "NetWeaver",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "Business Objects",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "Web Dispatcher, Internet Communication Manager & SAP Content Server",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "S/4 HANA Private Cloud (Financials General Ledger)",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "NetWeaver Internet Communication Framework",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "Application",
+     "product": "Server ABAP",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "NetWeaver Enterprise Portal",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAPUI5",
+     "product": "framework (Markdown-it component)",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "Enterprise Search for ABAP",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "SAP",
+     "product": "BusinessObjects Business Intelligence Platform",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    }
+   ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2025-0051"
+   ],
+   "attack_techniques": [],
    "published_at": "2025-12-12T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2025-0051",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIAD-2025-0051.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2025-42872",
     "CVE-2025-42873",
@@ -1803,212 +2526,191 @@
     "CVE-2025-48976",
     "CVE-2025-55754"
    ],
-   "cvss": null,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
-    {
-     "vendor": "SAP",
-     "product": "Solution Manager",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Commerce Cloud",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "jConnect - SDK for ASE",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Web Dispatcher & Internet Communication Manager (ICM)Version",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "NetWeaver",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Business Objects",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Web Dispatcher, Internet Communication Manager & SAP Content Server",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "S/4 HANA Private Cloud (Financials General Ledger)",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "NetWeaver Internet Communication Framework",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "Application",
-     "product": "Server ABAP",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "NetWeaver Enterprise Portal",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAPUI5",
-     "product": "framework (Markdown-it component)",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "Enterprise Search for ABAP",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "SAP",
-     "product": "BusinessObjects Business Intelligence Platform",
-     "versions": [],
-     "cpe": null
-    }
-   ],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "advisory",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIAD-2025-0051.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0533",
+   "threat_id": "CIVN-2026-0533",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0533: Multiple Vulnerabilities in Mozilla Products",
    "description": "Multiple vulnerabilities have been reported in Mozilla products which could allow a remote attacker to gain elevated privileges, bypass security restrictions, disclose sensitive information, manipulate data, and conduct spoofing attacks on the targeted system.",
-   "published_at": "2026-10-30T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0533",
-   "cve_ids": [],
    "cvss": null,
-   "severity": "Critical",
+   "cvss_version": null,
+   "severity": "critical",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "Mozilla",
      "product": "Firefox",
-     "versions": [
-      "prior to 159"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 159"
     },
     {
      "vendor": "Mozilla",
      "product": "Firefox ESR",
-     "versions": [
-      "prior to 115.44 and 153.6"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 115.44 and 153.6"
     },
     {
      "vendor": "Mozilla",
      "product": "Thunderbird",
-     "versions": [
-      "prior to 153.6 and 159"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 153.6 and 159"
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0533"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-30T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0533.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0533.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0532",
+   "threat_id": "CIVN-2026-0532",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0532: Multiple Vulnerabilities in Apache Tomcat",
    "description": "Multiple vulnerabilities have been reported in Apache Tomcat which could allow a remote attacker to bypass authentication and cause requests/responses to be incorrectly associated with different users.",
-   "published_at": "2026-10-29T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0532",
-   "cve_ids": [
-    "CVE-2026-101296",
-    "CVE-2026-101356"
-   ],
    "cvss": null,
-   "severity": "Critical",
+   "cvss_version": null,
+   "severity": "critical",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "Apache",
      "product": "Tomcat 11.0.x",
-     "versions": [
-      "11.0.26 and prior"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "11.0.26 and prior"
     },
     {
      "vendor": "Apache",
      "product": "Tomcat 10.1.x",
-     "versions": [
-      "10.1.60 and prior"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "10.1.60 and prior"
     },
     {
      "vendor": "Apache",
      "product": "Tomcat 9.0.x",
-     "versions": [
-      "9.0.122 and prior"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "9.0.122 and prior"
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0532"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-29T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0532.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [
+    "CVE-2026-101296",
+    "CVE-2026-101356"
+   ],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0532.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0531",
+   "threat_id": "CIVN-2026-0531",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0531: Multiple Vulnerabilities in Mozilla Products",
    "description": "Multiple vulnerabilities have been reported in Mozilla products which could allow an attacker to execute arbitrary code, obtain sensitive information, or cause denial of service (DoS) conditions on the targeted system.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "high",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
+    {
+     "vendor": "Mozilla",
+     "product": "Firefox",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 158.0.1"
+    },
+    {
+     "vendor": "Mozilla",
+     "product": "Firefox ESR",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 153.5.1 and versions prior to 115.43.1"
+    },
+    {
+     "vendor": "Mozilla",
+     "product": "Thunderbird",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 158.0.1 and Thunderbird versions prior to 153.5.1"
+    }
+   ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0531"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-28T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0531",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0531.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2026-113399",
     "CVE-2026-113400",
@@ -2018,471 +2720,616 @@
     "CVE-2026-113867",
     "CVE-2026-113868"
    ],
-   "cvss": null,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
-    {
-     "vendor": "Mozilla",
-     "product": "Firefox",
-     "versions": [
-      "prior to 158.0.1"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Mozilla",
-     "product": "Firefox ESR",
-     "versions": [
-      "prior to 153.5.1 and versions prior to 115.43.1"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Mozilla",
-     "product": "Thunderbird",
-     "versions": [
-      "prior to 158.0.1 and Thunderbird versions prior to 153.5.1"
-     ],
-     "cpe": null
-    }
-   ],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0531.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0530",
+   "threat_id": "CIVN-2026-0530",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0530: Multiple Vulnerabilities in Zoom Workplace Clients",
    "description": "Multiple vulnerabilities have been reported in Zoom Workplace Clients, which could be exploited by an attacker to trigger elevation of privilege and obtain sensitive information on the targeted system.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "high",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
+    {
+     "vendor": "Zoom",
+     "product": "Workplace for Android",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 7.2.1"
+    },
+    {
+     "vendor": "Zoom",
+     "product": "Workplace for Windows, MacOS and Linux",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 7.2.0 (including the 7.1.9 branch)"
+    },
+    {
+     "vendor": "Zoom",
+     "product": "Workplace for iOS",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 7.2.0"
+    },
+    {
+     "vendor": "Zoom",
+     "product": "Workplace VDI Client for Windows",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "7.0.11 up to 7.0.13"
+    },
+    {
+     "vendor": "Zoom",
+     "product": "Rooms for Windows",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "7.0.0 up to 7.1.7"
+    }
+   ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0530"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-28T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0530",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0530.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2026-108184",
     "CVE-2026-108185",
     "CVE-2026-53418",
     "CVE-2026-53420"
    ],
-   "cvss": null,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
-    {
-     "vendor": "Zoom",
-     "product": "Workplace for Android",
-     "versions": [
-      "prior to 7.2.1"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Zoom",
-     "product": "Workplace for Windows, MacOS and Linux",
-     "versions": [
-      "prior to 7.2.0 (including the 7.1.9 branch)"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Zoom",
-     "product": "Workplace for iOS",
-     "versions": [
-      "prior to 7.2.0"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Zoom",
-     "product": "Workplace VDI Client for Windows",
-     "versions": [
-      "7.0.11 up to 7.0.13"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "Zoom",
-     "product": "Rooms for Windows",
-     "versions": [
-      "7.0.0 up to 7.1.7"
-     ],
-     "cpe": null
-    }
-   ],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0530.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0529",
+   "threat_id": "CIVN-2026-0529",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0529: SQL Injection Vulnerability in Radius Xenia M2M Platform",
    "description": "A vulnerability has been reported in Radius Xenia M2M Platform, which could allow an unauthenticated remote attacker to gain unauthorized access to sensitive information, or modify database records on the targeted system.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "high",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0529"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-27T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0529",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0529.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2026-114358"
    ],
-   "cvss": null,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0529.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0528",
+   "threat_id": "CIVN-2026-0528",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0528: Remote Code Execution Vulnerability in PHP",
    "description": "A vulnerability has been reported in PHP which could allow a remote attacker to gain access to sensitive information or execute arbitrary code on the targeted system.",
-   "published_at": "2026-10-27T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0528",
-   "cve_ids": [
-    "CVE-2026-109619"
-   ],
    "cvss": null,
-   "severity": "Critical",
+   "cvss_version": null,
+   "severity": "critical",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "PHP",
      "product": "8.2",
-     "versions": [
-      "prior to 8.2.35"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 8.2.35"
     },
     {
      "vendor": "PHP",
      "product": "8.3",
-     "versions": [
-      "prior to 8.3.36"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 8.3.36"
     },
     {
      "vendor": "PHP",
      "product": "8.4",
-     "versions": [
-      "prior to 8.4.27"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 8.4.27"
     },
     {
      "vendor": "PHP",
      "product": "8.5",
-     "versions": [
-      "prior to 8.5.12"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 8.5.12"
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0528"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-27T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0528.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [
+    "CVE-2026-109619"
+   ],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0528.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0527",
+   "threat_id": "CIVN-2026-0527",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0527: DLL Sideloading Vulnerability in Siemens Software Center",
    "description": "A vulnerability has been reported in Siemens Software Center which could allow an attacker to execute arbitrary code on the targeted system.",
-   "published_at": "2026-10-26T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0527",
-   "cve_ids": [
-    "CVE-2026-110936"
-   ],
    "cvss": null,
-   "severity": "High",
+   "cvss_version": null,
+   "severity": "high",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "Siemens",
      "product": "Software Center",
-     "versions": [
-      "prior to V4.0.9.8"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to V4.0.9.8"
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0527"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-26T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0527.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [
+    "CVE-2026-110936"
+   ],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0527.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0526",
+   "threat_id": "CIVN-2026-0526",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0526: Use-After-Free Vulnerability in curl and libcurl",
    "description": "A Use-After-Free vulnerability has been reported in curl and libcurl, which could allow a remote attacker to execute arbitrary code or cause a denial-of-service condition on affected systems.",
-   "published_at": "2026-10-26T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0526",
-   "cve_ids": [
-    "CVE-2026-92392"
-   ],
    "cvss": null,
-   "severity": "High",
+   "cvss_version": null,
+   "severity": "high",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "curl",
      "product": "curl",
-     "versions": [
-      "8.12.0 to 8.22.0"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "8.12.0 to 8.22.0"
     },
     {
      "vendor": "libcurl",
      "product": "libcurl",
-     "versions": [
-      "corresponding to the affected releases"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "corresponding to the affected releases"
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0526"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-26T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0526.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [
+    "CVE-2026-92392"
+   ],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0526.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0525",
+   "threat_id": "CIVN-2026-0525",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0525: VeloCloud Orchestrator (VCO) SQL Injection Vulnerability",
    "description": "A vulnerability has been reported in VeloCloud Orchestrator (VCO), which could allow a remote attacker to escalate privileges and gain unauthorized access to privileged functionality on affected systems.",
-   "published_at": "2026-10-26T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0525",
-   "cve_ids": [
-    "CVE-2026-114625"
-   ],
    "cvss": null,
-   "severity": "Critical",
+   "cvss_version": null,
+   "severity": "critical",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "VeloCloud",
      "product": "Orchestrator On-Prem 5.2.x prior to 5.2.3.18",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "VeloCloud",
      "product": "Orchestrator On-Prem 6.1.x prior to 6.1.3.10",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "VeloCloud",
      "product": "Orchestrator On-Prem 6.4.x prior to 6.4.2.12",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0525"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-26T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0525.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [
+    "CVE-2026-114625"
+   ],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0525.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0524",
+   "threat_id": "CIVN-2026-0524",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0524: Multiple Vulnerabilities in Google Chrome for Desktop",
    "description": "Multiple vulnerabilities have been reported in Google chrome for Desktop which could allow a remote attacker to execute arbitrary code, obtain sensitive information, bypass security restrictions, or cause denial of service (DoS) conditions on the targeted system.",
-   "published_at": "2026-10-26T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0524",
-   "cve_ids": [],
    "cvss": null,
-   "severity": "Critical",
+   "cvss_version": null,
+   "severity": "critical",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "Google",
      "product": "Chrome prior to 156.0.8078.47/.48 for Windows and Mac",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     },
     {
      "vendor": "Google",
      "product": "Chrome prior to 156.0.8078.47 for Linux",
-     "versions": [],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0524"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-26T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0524.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0524.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0523",
+   "threat_id": "CIVN-2026-0523",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0523: Multiple Vulnerabilities in CreditNirvana Products",
    "description": "Multiple vulnerabilities have been reported in CreditNirvana, which could allow an unauthenticated remote attacker to bypass authentication controls, access sensitive information and perform actions with the privileges of an impersonated user.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "high",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0523"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-26T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0523",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0523.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2026-110474",
     "CVE-2026-110475"
    ],
-   "cvss": null,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0523.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0522",
+   "threat_id": "CIVN-2026-0522",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0522: Improper Certificate Vulnerability in Oracle Java SE and GraalVM",
    "description": "A vulnerability has been reported in Oracle Java SE and GraalVM products which could allow a remote unauthenticated attacker to obtain sensitive information and manipulate critical data on the targeted system.",
-   "published_at": "2026-10-24T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0522",
-   "cve_ids": [
-    "CVE-2026-91403"
-   ],
    "cvss": null,
-   "severity": "Critical",
+   "cvss_version": null,
+   "severity": "critical",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "Oracle",
      "product": "GraalVM Enterprise Edition",
-     "versions": [
-      "21.3.20"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "21.3.20"
     },
     {
      "vendor": "Oracle",
      "product": "GraalVM for JDK",
-     "versions": [
-      "17.0.21, 21.0.13"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "17.0.21, 21.0.13"
     },
     {
      "vendor": "Oracle",
      "product": "Java SE",
-     "versions": [
-      "8u511, 8u511-perf, 11.0.33, 17.0.21, 21.0.13, 25.0.5, 27.0.1"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "8u511, 8u511-perf, 11.0.33, 17.0.21, 21.0.13, 25.0.5, 27.0.1"
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0522"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-24T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0522.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [
+    "CVE-2026-91403"
+   ],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0522.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0521",
+   "threat_id": "CIVN-2026-0521",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0521: Directory Traversal Vulnerability in FortiSIEM",
    "description": "A directory traversal vulnerability has been reported in Fortinet FortiSIEM which could allow an unauthenticated remote attacker to execute arbitrary code or commands on the targeted system.",
-   "published_at": "2026-10-23T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0521",
-   "cve_ids": [
-    "CVE-2026-106173"
-   ],
    "cvss": null,
-   "severity": "Critical",
+   "cvss_version": null,
+   "severity": "critical",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "Fortinet",
      "product": "FortiSIEM",
-     "versions": [
-      "prior to 7.5.1"
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 7.5.1"
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0521"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-23T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0521.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [
+    "CVE-2026-106173"
+   ],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0521.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0520",
+   "threat_id": "CIVN-2026-0520",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0520: Multiple Vulnerabilities in MongoDB Products",
    "description": "Multiple vulnerabilities have been reported in MongoDB products which could allow an attacker to cause memory corruption, disclose sensitive information or cause denial of service (DoS) conditions on the targeted system.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "medium",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
+    {
+     "vendor": "MongoDB",
+     "product": "PHP Driver",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 1.21.12, 2.1.12, and 2.5.5"
+    },
+    {
+     "vendor": "MongoDB",
+     "product": "Server",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "8.0 prior to 8.0.34, 8.3 prior to 8.3.13, and 9.0 prior to 9.0.4"
+    },
+    {
+     "vendor": "MongoDB",
+     "product": "Go Driver 1.17.10 and prior, and 2.x",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 2.9.2"
+    },
+    {
+     "vendor": "MongoDB",
+     "product": "libmongocrypt",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "prior to 1.20.5"
+    }
+   ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0520"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-23T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0520",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0520.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2026-104004",
     "CVE-2026-104005",
@@ -2492,266 +3339,380 @@
     "CVE-2026-112368",
     "CVE-2026-96299"
    ],
-   "cvss": null,
-   "severity": "Medium",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
-    {
-     "vendor": "MongoDB",
-     "product": "PHP Driver",
-     "versions": [
-      "prior to 1.21.12, 2.1.12, and 2.5.5"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "MongoDB",
-     "product": "Server",
-     "versions": [
-      "8.0 prior to 8.0.34, 8.3 prior to 8.3.13, and 9.0 prior to 9.0.4"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "MongoDB",
-     "product": "Go Driver 1.17.10 and prior, and 2.x",
-     "versions": [
-      "prior to 2.9.2"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "MongoDB",
-     "product": "libmongocrypt",
-     "versions": [
-      "prior to 1.20.5"
-     ],
-     "cpe": null
-    }
-   ],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0520.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0519",
+   "threat_id": "CIVN-2026-0519",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0519: Multiple Vulnerabilities in ISC BIND",
    "description": "Multiple vulnerabilities have been reported in ISC BIND that could allow an attacker to cause denial-of-service (DoS) conditions or potentially execute arbitrary code. Successful exploitation could disrupt DNS services and affect the availability and security of affected systems.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "high",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
+    {
+     "vendor": "BIND",
+     "product": "9",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "Versions",
+     "product": "9.11.0 through 9.18.50.",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "Versions",
+     "product": "9.20.0 through 9.20.29.",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "Versions",
+     "product": "9.21.0 through 9.21.26.",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "BIND",
+     "product": "Supported Preview Edition",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "Versions",
+     "product": "9.11.3-S1 through 9.18.50-S1.",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    },
+    {
+     "vendor": "Versions",
+     "product": "9.20.9-S1 through 9.20.29-S1.",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": null
+    }
+   ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0519"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-23T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0519",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0519.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2026-19630",
     "CVE-2026-94300",
     "CVE-2026-96888",
     "CVE-2026-97313"
    ],
-   "cvss": null,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
-    {
-     "vendor": "BIND",
-     "product": "9",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "Versions",
-     "product": "9.11.0 through 9.18.50.",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "Versions",
-     "product": "9.20.0 through 9.20.29.",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "Versions",
-     "product": "9.21.0 through 9.21.26.",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "BIND",
-     "product": "Supported Preview Edition",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "Versions",
-     "product": "9.11.3-S1 through 9.18.50-S1.",
-     "versions": [],
-     "cpe": null
-    },
-    {
-     "vendor": "Versions",
-     "product": "9.20.9-S1 through 9.20.29-S1.",
-     "versions": [],
-     "cpe": null
-    }
-   ],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0519.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0518",
+   "threat_id": "CIVN-2026-0518",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0518: Authentication Bypass Vulnerability in BeyondTrust Remote Support",
    "description": "Authentication Bypass vulnerability has been reported in BeyondTrust Remote Support, which could allow a remote attacker to perform unauthorized file operations on the targeted system.",
-   "published_at": "2026-10-23T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0518",
-   "cve_ids": [
-    "CVE-2026-102764"
-   ],
    "cvss": null,
-   "severity": "Critical",
+   "cvss_version": null,
+   "severity": "critical",
    "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
     {
      "vendor": "BeyondTrust",
      "product": "Remote Support",
-     "versions": [
-      "26.2.3 and earlier."
-     ],
-     "cpe": null
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "26.2.3 and earlier."
     }
    ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0518"
+   ],
    "attack_techniques": [],
+   "published_at": "2026-10-23T00:00:00+05:30",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0518.txt",
+   "is_simulated": false,
+   "type": "advisory",
+   "cve_ids": [
+    "CVE-2026-102764"
+   ],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0518.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0517",
+   "threat_id": "CIVN-2026-0517",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0517: Multiple Vulnerabilities in F5 Products",
    "description": "Multiple vulnerabilities have been reported in F5 NGINX products which could allow an attacker to execute arbitrary code, cause unexpected termination or restart of NGINX worker processes, or denial of service (DoS) conditions on the targeted system.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "critical",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
+    {
+     "vendor": "NGINX",
+     "product": "Plus",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "37x and Rx: 37.0.0 to 37.0.4 and R33 to R36"
+    },
+    {
+     "vendor": "NGINX",
+     "product": "Open Source",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "1x: 1.31.0 to 1.31.6 and 1.0.0 to 1.30.5"
+    },
+    {
+     "vendor": "NGINX",
+     "product": "Instance Manager",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "2x: 2.18.0 to 2.23.0"
+    },
+    {
+     "vendor": "F5",
+     "product": "WAF for NGINX",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "5.x: 5.9.0 to 5.15.0"
+    },
+    {
+     "vendor": "NGINX",
+     "product": "App Protect WAF",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "5x and 4x: 5.4.0 to 5.8.0 and 4.12.0 to 4.16.0"
+    },
+    {
+     "vendor": "F5",
+     "product": "DoS for NGINX",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "4x: 4.8.0 to 4.10.0"
+    },
+    {
+     "vendor": "NGINX",
+     "product": "App Protect DoS",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "4x: 4.5.0 to 4.7.0"
+    },
+    {
+     "vendor": "NGINX",
+     "product": "Gateway Fabric",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "2x: 2.1.0 to 2.7.2"
+    },
+    {
+     "vendor": "NGINX",
+     "product": "Ingress Controller",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "5x: 5.6.0 to 5.6.3"
+    }
+   ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0517"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-22T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0517",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0517.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2026-15176",
     "CVE-2026-93479",
     "CVE-2026-97205"
    ],
-   "cvss": null,
-   "severity": "Critical",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
-    {
-     "vendor": "NGINX",
-     "product": "Plus",
-     "versions": [
-      "37x and Rx: 37.0.0 to 37.0.4 and R33 to R36"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "NGINX",
-     "product": "Open Source",
-     "versions": [
-      "1x: 1.31.0 to 1.31.6 and 1.0.0 to 1.30.5"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "NGINX",
-     "product": "Instance Manager",
-     "versions": [
-      "2x: 2.18.0 to 2.23.0"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "F5",
-     "product": "WAF for NGINX",
-     "versions": [
-      "5.x: 5.9.0 to 5.15.0"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "NGINX",
-     "product": "App Protect WAF",
-     "versions": [
-      "5x and 4x: 5.4.0 to 5.8.0 and 4.12.0 to 4.16.0"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "F5",
-     "product": "DoS for NGINX",
-     "versions": [
-      "4x: 4.8.0 to 4.10.0"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "NGINX",
-     "product": "App Protect DoS",
-     "versions": [
-      "4x: 4.5.0 to 4.7.0"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "NGINX",
-     "product": "Gateway Fabric",
-     "versions": [
-      "2x: 2.1.0 to 2.7.2"
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "NGINX",
-     "product": "Ingress Controller",
-     "versions": [
-      "5x: 5.6.0 to 5.6.3"
-     ],
-     "cpe": null
-    }
-   ],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0517.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0516",
+   "threat_id": "CIVN-2026-0516",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0516: Multiple Vulnerabilities in GitLab Community Edition (CE) and Enterprise Edition (EE)",
    "description": "Multiple vulnerabilities have been reported in GitLab Community Edition (CE) and Enterprise Edition (EE), which could allow an unauthenticated attacker to execute arbitrary code, take over user accounts, disclose sensitive information, bypass authorization mechanisms, modify access permissions, or disrupt the security and integrity of the targeted system.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "critical",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [
+    {
+     "vendor": "GitLab",
+     "product": "CE/EE: all",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "from 7.0 prior to 18.11.13."
+    },
+    {
+     "vendor": "GitLab",
+     "product": "CE/EE:",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "19.0 prior to 19.0.10."
+    },
+    {
+     "vendor": "GitLab",
+     "product": "CE/EE:",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "19.1 prior to 19.1.9."
+    },
+    {
+     "vendor": "GitLab",
+     "product": "CE/EE:",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "19.2 prior to 19.2.9."
+    },
+    {
+     "vendor": "GitLab",
+     "product": "CE/EE:",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "19.3 prior to 19.3.6."
+    },
+    {
+     "vendor": "GitLab",
+     "product": "CE/EE:",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "19.4 prior to 19.4.3."
+    },
+    {
+     "vendor": "GitLab",
+     "product": "CE/EE:",
+     "version_start_including": null,
+     "version_start_excluding": null,
+     "version_end_including": null,
+     "version_end_excluding": null,
+     "cpe": null,
+     "versions_text": "19.5 prior to 19.5.1."
+    }
+   ],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0516"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-22T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0516",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0516.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2026-103515",
     "CVE-2026-105711",
@@ -2766,110 +3727,67 @@
     "CVE-2026-15723",
     "CVE-2026-16255"
    ],
-   "cvss": null,
-   "severity": "Critical",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [
-    {
-     "vendor": "GitLab",
-     "product": "CE/EE: all",
-     "versions": [
-      "from 7.0 prior to 18.11.13."
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "GitLab",
-     "product": "CE/EE:",
-     "versions": [
-      "19.0 prior to 19.0.10."
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "GitLab",
-     "product": "CE/EE:",
-     "versions": [
-      "19.1 prior to 19.1.9."
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "GitLab",
-     "product": "CE/EE:",
-     "versions": [
-      "19.2 prior to 19.2.9."
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "GitLab",
-     "product": "CE/EE:",
-     "versions": [
-      "19.3 prior to 19.3.6."
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "GitLab",
-     "product": "CE/EE:",
-     "versions": [
-      "19.4 prior to 19.4.3."
-     ],
-     "cpe": null
-    },
-    {
-     "vendor": "GitLab",
-     "product": "CE/EE:",
-     "versions": [
-      "19.5 prior to 19.5.1."
-     ],
-     "cpe": null
-    }
-   ],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0516.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0515",
+   "threat_id": "CIVN-2026-0515",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0515: Remote Code Execution Vulnerability in Cisco Expressway Series",
    "description": "A vulnerability has been reported in the database service feature of Cisco Expressway Series could allow an unauthenticated, remote attacker with network access to a Cisco Expressway device to execute arbitrary operating system commands as root.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "critical",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0515"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-22T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0515",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0515.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2026-76466"
    ],
-   "cvss": null,
-   "severity": "Critical",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0515.txt"
+   ]
   },
   {
-   "id": "CIVN-2026-0514",
+   "threat_id": "CIVN-2026-0514",
+   "cve_id": null,
    "source": "certin",
-   "type": "advisory",
    "title": "CIVN-2026-0514: Multiple Vulnerabilities in Microsoft Products",
    "description": "Multiple vulnerabilities have been reported in Microsoft products which could allow a remote attacker to elevate privileges, execute arbitrary code, disclose sensitive information, perform spoofing or cause denial of services on the affected systems.",
+   "cvss": null,
+   "cvss_version": null,
+   "severity": "high",
+   "epss": null,
+   "epss_percentile": null,
+   "kev_listed": null,
+   "public_exploit": null,
+   "affected_configurations": [],
+   "references": [
+    "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0514"
+   ],
+   "attack_techniques": [],
    "published_at": "2026-10-22T00:00:00+05:30",
-   "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0514",
+   "retrieved_at": "2026-10-31T11:47:38.765423Z",
+   "raw_ref": "backend/data/raw/certin/CIVN-2026-0514.txt",
+   "is_simulated": false,
+   "type": "advisory",
    "cve_ids": [
     "CVE-2026-108426",
     "CVE-2026-108427",
@@ -2906,19 +3824,11 @@
     "CVE-2026-80092",
     "CVE-2026-96202"
    ],
-   "cvss": null,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "public_exploit": false,
-   "affected": [],
-   "attack_techniques": [],
    "tags": [
     "cert-in",
     "vulnerability_note",
     "india"
-   ],
-   "raw_ref": "data/raw/certin/CIVN-2026-0514.txt"
+   ]
   }
  ]
 }

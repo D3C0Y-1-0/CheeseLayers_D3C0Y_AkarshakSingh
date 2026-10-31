@@ -4,12 +4,14 @@
     DEMO_MODE=true python -m collectors.run_all         # offline, from data/cache only
 """
 import time
+from datetime import datetime, timezone
 
 from . import abusech, attack, attack_mappings, certin, epss, exploits, ip_reputation, kev, nvd, nvd_kev, otx, ransomware
-from .common import DEMO_MODE, Skipped, load_cache, log, save_cache
+from .common import DEMO_MODE, Skipped, cache_mtime, load_cache, log, save_cache
 from .schema import IOC, ThreatItem
 
 summary: list[tuple[str, str, str, float]] = []
+statuses: list[dict] = []  # -> source_status table
 
 
 def _count(data) -> str:
@@ -24,24 +26,46 @@ def _count(data) -> str:
     return f"{len(data.get('items', []))}" + (f" (+{len(data['iocs'])} IOCs)" if data.get("iocs") else "")
 
 
+def _records(data) -> int | None:
+    if data is None:
+        return None
+    if isinstance(data, dict) and ("items" in data or "iocs" in data):
+        return len(data.get("items", [])) + len(data.get("iocs", []))
+    return len(data.get("scores", data)) if isinstance(data, dict) else len(data)
+
+
+def _stamp(data, at: datetime) -> None:
+    # One retrieved_at per source run, so a whole fetch shares one "arrived at" time.
+    if isinstance(data, dict):
+        for x in data.get("items", []) + data.get("iocs", []):
+            x.retrieved_at = at
+
+
 def run(name: str, fn, *args):
     """Run one collector in isolation. Failure falls back to its last cache, so one dead feed never stops the rest."""
-    t0 = time.monotonic()
+    t0, started = time.monotonic(), datetime.now(timezone.utc)
+    error, attempted, succeeded = None, None, None
     if DEMO_MODE:
         data = load_cache(name)
-        status = "cache" if data is not None else "no cache"
+        status = "cache" if data is not None else "failed"
+        error = None if data is not None else "DEMO_MODE and no cache file"
+        succeeded = cache_mtime(name)  # the cached data was fetched when the file was written
     else:
+        attempted = started
         try:
             data = fn(*args)
+            _stamp(data, started)
             save_cache(name, data)
-            status = "ok"
+            status, succeeded = "ok", started
         except Skipped as e:
-            data, status = None, f"skipped: {e}"
+            data, status, error = None, "skipped", str(e)
         except Exception as e:
             log.warning("%s failed: %r — using last cache", name, e)
             data = load_cache(name)
-            status = "failed, stale cache" if data is not None else f"failed: {type(e).__name__}"
-    summary.append((name, status, _count(data), time.monotonic() - t0))
+            status, error = ("stale" if data is not None else "failed"), repr(e)[:500]
+    summary.append((name, status + (f": {error}" if error and status != "cache" else ""), _count(data), time.monotonic() - t0))
+    statuses.append({"source": name, "status": status, "error": error, "record_count": _records(data),
+                     "last_attempt": attempted, "last_success": succeeded})
     return data
 
 
@@ -53,19 +77,23 @@ def merge(nvd_items, nvd_kev_items, kev_items, other_items, scores, signals=None
     kev_set = kev.cve_ids(kev_items)
     # Dedupe vulnerabilities by CVE ID. For actively-exploited CVEs the KEV item is the base (CISA's name +
     # required action) and NVD fills in what KEV lacks: CVSS score and CPE version ranges.
-    nvd_by_cve = {i.id: i for i in nvd_kev_items} | {i.id: i for i in nvd_items}
+    nvd_by_cve = {i.threat_id: i for i in nvd_kev_items} | {i.threat_id: i for i in nvd_items}
     for k in kev_items:
-        n = nvd_by_cve.get(k.id)
+        n = nvd_by_cve.get(k.threat_id)
         if n:
-            k.cvss, k.severity = n.cvss, n.severity
-            k.affected = n.affected or k.affected
+            k.cvss, k.cvss_version, k.severity = n.cvss, n.cvss_version, n.severity
+            k.affected_configurations = n.affected_configurations or k.affected_configurations
+            k.references = list(dict.fromkeys(k.references + n.references))
             k.tags = sorted(set(k.tags) | set(n.tags))
-    items = kev_items + [i for i in nvd_items if i.id not in kev_set] + other_items
-    cvss_by_cve = {c: i.cvss for c, i in nvd_by_cve.items() if i.cvss is not None}
+    items = kev_items + [i for i in nvd_items if i.threat_id not in kev_set] + other_items
+    scored = {c: i for c, i in nvd_by_cve.items() if i.cvss is not None}
     for it in items:
-        it.in_kev = it.in_kev or any(c in kev_set for c in it.cve_ids)
-        if it.cvss is None and (known := [cvss_by_cve[c] for c in it.cve_ids if c in cvss_by_cve]):
-            it.cvss = max(known)  # advisory is as severe as its worst CVE
+        # KEV catalogue loaded -> every CVE was checked (True/False). No catalogue or no CVE -> None (unknown).
+        if it.cve_ids and kev_set:
+            it.kev_listed = it.kev_listed or any(c in kev_set for c in it.cve_ids)
+        if it.cvss is None and (known := [scored[c] for c in it.cve_ids if c in scored]):
+            worst = max(known, key=lambda i: i.cvss)  # advisory is as severe as its worst CVE
+            it.cvss, it.cvss_version = worst.cvss, worst.cvss_version
     epss.apply(items, scores)
     exploits.apply(items, signals or {})
     attack_mappings.apply(items, attack_map or {})
@@ -93,7 +121,7 @@ def main() -> None:
     # KEV CVEs are skipped there: their exploitation status is already "active".
     kev_set = kev.cve_ids(kev_items)
     certin_cves = [c for i in _items(certin_d) for c in i.cve_ids]
-    by_cvss = [i.id for i in sorted(nvd_items, key=lambda i: i.cvss or 0, reverse=True)]
+    by_cvss = [i.threat_id for i in sorted(nvd_items, key=lambda i: i.cvss or 0, reverse=True)]
     targets = [c for c in dict.fromkeys(certin_cves + by_cvss) if c not in kev_set]
     signals = run("exploit_signals", exploits.fetch, targets) or {}
 
@@ -114,6 +142,11 @@ def main() -> None:
     print("-" * 82)
     for name, status, count, dur in summary:
         print(f"{name:<18} | {status[:28]:<28} | {count:>22} | {dur:6.1f}s")
+
+    # Imported here so collectors stay usable without the app package (e.g. a quick single-collector test).
+    from ingestion.loader import load, record_source_status
+    record_source_status(statuses)
+    print("\nDB:", load())
 
 
 if __name__ == "__main__":

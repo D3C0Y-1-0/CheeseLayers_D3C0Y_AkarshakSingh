@@ -1,0 +1,71 @@
+{
+    "items": [
+        {
+            "threat_id": "ransomware:cf8e88e5820e",
+            "cve_id": null,
+            "source": "ransomware",
+            "title": "thegentlemen ransomware claims WABAG (IN)",
+            "description": "wabag.in VA Tech WABAG is the world's leading pure-play water technology company, founded in 1924 and headquartered in Chennai, India, operating in over 25 countries with 2000 engineers and over 1500 plants delivered. Listed on NSE and BSE, it posted record FY2026 revenue of 3944 crore rupees with PAT of 371 crore and has been net cash positive for 6 straight years with a credit rating of AA minus stable. Its order book surged to an all time high of 19400 crore rupees in Q1 FY2027, over 4 times annual revenue, backed by World Bank, ADB and JICA funded projects across India, the Middle East, Africa and Southeast Asia. Key projects include Southeast Asia's largest 400 MLD desalination plant in Chennai and a 300 MLD mega desalination order in Saudi Arabia. The company holds 125 plus proprietary patents and ranks 3rd globally among private water operators and desalination suppliers per Global Water Intelligence. Led by Chairman Rajiv Mittal.",
+            "cvss": null,
+            "cvss_version": null,
+            "severity": null,
+            "epss": null,
+            "epss_percentile": null,
+            "kev_listed": null,
+            "public_exploit": null,
+            "affected_configurations": [],
+            "references": [
+                "https://www.ransomware.live/group/thegentlemen"
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-10-31T07:27:18.307305Z",
+            "retrieved_at": "2026-10-31T11:49:21.927867Z",
+            "raw_ref": "backend/data/raw/ransomware/india.json",
+            "is_simulated": false,
+            "type": "campaign",
+            "cve_ids": [],
+            "tags": [
+                "ransomware",
+                "group:thegentlemen",
+                "sector:Energy & Utilities",
+                "country:IN",
+                "india"
+            ]
+        },
+        {
+            "threat_id": "ransomware:47e47b5244df",
+            "cve_id": null,
+            "source": "ransomware",
+            "title": "thegentlemen ransomware claims First Dental (US)",
+            "description": "myfirstdental.com First Dental Care is a dental practice network in Massachusetts founded by Dr. Farshad Ghobbeh, who opened his first clinic in Medford in 2008 and expanded to Somerville in 2012 and four more locations including Arlington, Watertown, Acton and Bedford. With over 20,000 patients and 18 years of experience, it offers general and cosmetic dentistry, dental implants, Invisalign, emergency care and smile makeovers across six clinics. Its Smile Now Pay Later model with Klarna makes implants available from 58 dollars per month and whitening at 149 dollars instead of 500. The team is multilingual speaking English, Spanish, Portuguese, Russian, Chinese and Persian to serve diverse Massachusetts communities. It accepts over 15 insurance plans including Aetna, Blue Cross Blue Shield, Delta Dental and MassHealth. Key strengths are 18 years of community trust, multi-location accessibility, affordable payment plans and Dr. Ghobbeh's personal commitment to quality oral health.",
+            "cvss": null,
+            "cvss_version": null,
+            "severity": null,
+            "epss": null,
+            "epss_percentile": null,
+            "kev_listed": null,
+            "public_exploit": null,
+            "affected_configurations": [],
+            "references": [
+                "https://www.ransomware.live/id/Rmlyc3QgRGVudGFsQHRoZWdlbnRsZW1lbg=="
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-10-31T07:21:56.012217Z",
+            "retrieved_at": "2026-10-31T11:49:21.927867Z",
+            "raw_ref": "backend/data/raw/ransomware/recentvictims.json",
+            "is_simulated": false,
+            "type": "campaign",
+            "cve_ids": [],
+            "tags": [
+                "ransomware",
+                "group:thegentlemen",
+                "sector:Healthcare",
+                "country:US"
+            ]
+        }
+    ],
+    "total": 19643,
+    "page": 1,
+    "page_size": 2,
+    "pages": 9822
+}

@@ -30,23 +30,32 @@ def _tor() -> list[IOC]:
             log.warning("ip_reputation: tor list %s failed (%s), trying next", url, e)
     else:
         raise RuntimeError("all Tor exit list sources failed")
-    save_raw(SOURCE, text, "tor")
-    return [IOC(value=ip, ioc_type="ip", source="tor_exit", malware_family="tor-exit-node", confidence=30)
+    return parse_tor(text, save_raw(SOURCE, text, "tor"))
+
+
+def parse_tor(text: str, ref: str) -> list[IOC]:
+    return [IOC(value=ip, ioc_type="ip", source="tor_exit", malware_family="tor-exit-node", confidence=30, raw_ref=ref)
             for ip in sorted(set(text.split())) if not ip.startswith("#")]
 
 
 def _drop() -> list[IOC]:
     text = get(DROP).text
-    save_raw(SOURCE, text, "spamhaus_drop")
+    return parse_drop(text, save_raw(SOURCE, text, "spamhaus_drop"))
+
+
+def parse_drop(text: str, ref: str) -> list[IOC]:
     rows = [json.loads(line) for line in text.splitlines() if line.strip()]
-    return [IOC(value=r["cidr"], ioc_type="cidr", source="spamhaus_drop", malware_family="hijacked-range", confidence=90)
+    return [IOC(value=r["cidr"], ioc_type="cidr", source="spamhaus_drop", malware_family="hijacked-range", confidence=90, raw_ref=ref)
             for r in rows if "cidr" in r]  # last line is a metadata record
 
 
 def _openphish() -> list[IOC]:
     text = get(OPENPHISH).text
-    save_raw(SOURCE, text, "openphish")
-    return [IOC(value=u, ioc_type="url", source="openphish", malware_family="phishing", confidence=80)
+    return parse_openphish(text, save_raw(SOURCE, text, "openphish"))
+
+
+def parse_openphish(text: str, ref: str) -> list[IOC]:
+    return [IOC(value=u, ioc_type="url", source="openphish", malware_family="phishing", confidence=80, raw_ref=ref)
             for u in sorted(set(text.split()))]
 
 

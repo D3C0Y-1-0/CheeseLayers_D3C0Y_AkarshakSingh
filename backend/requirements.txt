@@ -9,3 +9,4 @@ pydantic
 sqlalchemy
 apscheduler
 tenacity
+pytest

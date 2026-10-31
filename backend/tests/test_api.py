@@ -1,5 +1,7 @@
 import json
 
+from pathlib import Path
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -53,6 +55,8 @@ def test_endpoints_200(client, path):
     assert r.status_code == 200, r.text
 
 
+@pytest.mark.skipif(not (Path(__file__).resolve().parents[1] / "data" / "raw").exists(),
+                    reason="backend/data/raw/ is gitignored and absent in this checkout: raw payload hashes can't be checked")
 def test_threat_detail_has_raw_payloads(client):
     t = client.get("/api/threats/CVE-2024-21762").json()
     assert [r["path"] for r in t["raw_payloads"]] == t["raw_refs"] and t["raw_refs"][0] == t["raw_ref"]

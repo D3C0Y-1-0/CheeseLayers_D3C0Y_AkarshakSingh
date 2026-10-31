@@ -12,7 +12,7 @@ import hashlib
 import random
 import uuid
 from datetime import datetime, timedelta, timezone
-from typing import Any, Literal
+from typing import Annotated, Any, Literal
 from urllib.parse import quote
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -238,7 +238,7 @@ class RunRequest(BaseModel):
 
 
 class AnalyzeRequest(BaseModel):
-    lines: list[str] = Field(min_length=1, max_length=2000)
+    lines: list[Annotated[str, Field(max_length=4096)]] = Field(min_length=1, max_length=500)  # 422 beyond
 
 
 @router.get("/api/attack-lab/playbooks", tags=["attack-lab"])

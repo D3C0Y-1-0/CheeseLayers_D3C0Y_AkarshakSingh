@@ -130,7 +130,7 @@ SIGNATURES = [
     _sig("SQLI-COMMENT", "sql_injection", "Quote closed then rest of query commented out", r"'\s*(?:--|#|/\*)", strong=False),
     _sig("CMDI-CHAIN", "command_injection", "Shell command chained onto a parameter",
          r"(?:;|\|\||&&|\||`|\$\()\s*(?:bash|sh|nc|ncat|curl|wget|cat|id|whoami|uname|powershell|cmd)\b"),
-    _sig("CMDI-REVSHELL", "command_injection", "Reverse-shell payload", r"/dev/tcp/|\bbash\s+-i\b|\bnc\b[^&;|]*\s-e\s"),
+    _sig("CMDI-REVSHELL", "command_injection", "Reverse-shell payload", r"/dev/tcp/|\bbash\s+-i\b|\bnc\b[^&;|]{0,80}?\s-e\s"),
     _sig("TRAV-DOTDOT", "path_traversal", "Directory traversal (../)", r"\.\./|\.\.\\"),
     _sig("XSS-TAG", "xss", "Script injected into a page", r"<\s*script|\bon(?:error|load)\s*=|javascript:"),
 ]

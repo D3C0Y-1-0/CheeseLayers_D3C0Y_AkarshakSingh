@@ -4,17 +4,19 @@
 caches validated LLM text, so the offline demo shows **LLM-cached** badges. Without it every AI panel
 shows **Template**, which is still complete and correct.
 **Start:** `./scripts/start.sh` (Windows: `.\scripts\start.ps1`) → open http://127.0.0.1:8000/app.
-On the Command Center, press **Reset demo alerts** so you start clean.
+On the Command Center, press **Reset demo alerts** so you start clean, then prepare the Early warnings feed:
+`curl -X POST http://127.0.0.1:8000/api/demo/seed` (or offline: `backend/.venv/bin/python scripts/seed_demo.py`).
+It adds 5 labelled replay signals (Simulated) and creates no alerts. Safe to repeat.
 
 | Time | Click | Say |
 |---|---|---|
 | 0:00 | **Command Center** | "~19,600 real public threat records from NVD, CISA KEV, EPSS, CERT-In, abuse.ch and OTX, cached so the demo runs offline. Assets and behaviour are simulated." Point at the top banner: it says whether the cloud LLM is on. |
-| 0:30 | **Inject known CVE** (CVE-2024-21762, FortiOS) | "A new advisory arrives. A change-detection signal fires, and the matcher checks our 40-asset inventory." |
+| 0:30 | **Inject known CVE** (CVE-2024-21762, FortiOS) | "A new advisory arrives. A labelled early-warning signal (new_kev, Simulated replay) is recorded, and the matcher checks our 40-asset inventory." |
 | 0:50 | **Early warnings** | Show the signal. "Signals come from KEV additions, EPSS jumps, quality-checked public exploits, CERT-In advisories and new critical CVEs." Optional: **Simulate on DEMO-VULN-001** (labelled Simulated). |
 | 1:10 | **Incidents** → open *CVE-2024-21762 on nrldc-edge-fw01 (PWR-FW-01)* | "Critical: the power-grid firewall runs 7.2.6, inside the vulnerable range. Its patched twin PWR-FW-02 (7.4.11) did not alert." Show **Why this priority** (three scores and their inputs) and the **Remediation target** tag: "organisation policy, not a regulatory deadline." |
 | 1:40 | On the same incident: **AI summary** → *Generate AI summary* | Read the badge (LLM / LLM-cached / Template) and the validation note: "Every ID, version and URL in the AI text must exist in our stored facts, or we fall back to the template." |
 | 2:05 | **Draft CERT-In report** → expand *Preview draft* → **Download .md** | "Vulnerability exposure only, so not by itself a reportable incident. The category is a suggestion for the analyst to confirm. Nothing is sent." |
-| 2:30 | **Campaigns** → tick *Emerging only* → open the FortiOS campaign | "Related threats grouped by shared CVE, product, ATT&CK technique and text similarity. *Why grouped* lists the evidence. 2 of our assets are exposed." |
+| 2:30 | **Campaigns** → open the top one, *PEERSTITCH, a Stealthy FortiGate Implant* | "Ranked by actionability. A current threat report naming FortiOS CVEs, linked by shared CVEs; *Why grouped* lists the evidence. 2 of our assets are exposed (both FortiGate firewalls)." Then tick *Emerging only*: "Emerging means real threat activity growing over several days, like Qilin ransomware claims. Vendor patch days are labelled patch batches, not campaigns." |
 | 3:00 | **Command Center** → **Inject suspicious behaviour** → open the new incident | "Scenario B: no CVE at all. An odd HTTP window, an unexpected process and a new outbound connection on HLT-WEB-01." Click **Investigate incident** (cites evidence IDs, lists visibility gaps), then **Draft CERT-In report**: "potential security incident, analyst must determine reportability." |
 | 3:40 | **Command Center** → **Inject benign maintenance** | "Scenario C: an approved change window explains the spike, so the events are kept but not escalated. No alert." Optional: **Missing telemetry** → "an absent sensor is a visibility gap, never proof of safety." |
 | 4:10 | **Exposure & impact** → *Early-warning lead-time* + *Lead-time examples* | "Backtest: X of Y new CVEs were flagged before CISA KEV confirmed exploitation." Walk one timeline: NVD publish → first quality PoC → KEV add, plus the **Missed** example. |

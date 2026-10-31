@@ -7,7 +7,7 @@ from stix2validator import ValidationOptions, validate_string
 
 from app.main import app
 from collectors import abusech, certin, ip_reputation, kev, nvd, nvd_kev, otx, ransomware
-from collectors.common import load_cache
+from collectors.common import RAW, load_cache
 
 
 @pytest.fixture(scope="module")
@@ -116,6 +116,8 @@ def test_stix_errors(client, params, code):
 # ---------- collectors emit contract names natively: re-parsing raw reproduces the cache ----------
 @pytest.mark.parametrize("name,mod", [("nvd", nvd), ("nvd_kev", nvd_kev), ("kev", kev), ("certin", certin), ("otx", otx),
                                       ("abusech", abusech), ("ip_reputation", ip_reputation), ("ransomware", ransomware)])
+@pytest.mark.skipif(not RAW.exists() or not any(RAW.iterdir()),
+                    reason="backend/data/raw/ is gitignored and absent in this checkout; run a live collector first")
 def test_from_raw_matches_cache(name, mod):
     cached = load_cache(name)
     rebuilt = mod.from_raw()

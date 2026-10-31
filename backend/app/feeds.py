@@ -104,6 +104,19 @@ def _status(row: SourceStatus, now: datetime) -> SourceStatusOut:
                            age_minutes=age, error=row.error, record_count=row.record_count)
 
 
+def _sources(db: Session, now: datetime) -> list[SourceStatusOut]:
+    """Collector rows if any run happened; otherwise (offline demo from cache) one row per source derived from the
+    records we hold: status "cache" (never "ok": cached data is not proof the source is healthy), last_success =
+    newest retrieved_at (when that data was actually fetched), last_attempt = null (no live fetch was tried)."""
+    rows = [_status(r, now) for r in db.scalars(select(SourceStatus).order_by(SourceStatus.source))]
+    if rows:
+        return rows
+    agg = db.execute(select(Threat.source, func.count(), func.max(Threat.retrieved_at))
+                     .where(Threat.is_simulated.is_(False)).group_by(Threat.source).order_by(Threat.source)).all()
+    return [_status(SourceStatus(source=s, status="cache", last_attempt=None, last_success=newest, error=None,
+                                 record_count=n), now) for s, n, newest in agg]
+
+
 # ---------- endpoints ----------
 @router.get("/health", response_model=Health, tags=["system"])
 def health(request: Request, db: Session = Depends(get_db)):
@@ -175,9 +188,8 @@ def get_threat(threat_id: str, db: Session = Depends(get_db)):
 
 @router.get("/api/source-status", response_model=list[SourceStatusOut], tags=["system"])
 def source_status(db: Session = Depends(get_db)):
-    """Health of every collector, written by collectors/run_all.py on each run."""
-    now = datetime.now(timezone.utc)
-    return [_status(r, now) for r in db.scalars(select(SourceStatus).order_by(SourceStatus.source))]
+    """Health of every collector, written by collectors/run_all.py on each run (offline demo: derived from the cache)."""
+    return _sources(db, datetime.now(timezone.utc))
 
 
 @router.get("/api/overview", response_model=Overview, tags=["threats"])
@@ -206,7 +218,7 @@ def overview(db: Session = Depends(get_db)):
         simulated_count=count(Threat.is_simulated.is_(True)),
         ioc_count=db.scalar(select(func.count()).select_from(IOCRow)),
         iocs_by_type=dict(db.execute(select(IOCRow.ioc_type, func.count()).group_by(IOCRow.ioc_type)).all()),
-        sources=[_status(r, now) for r in db.scalars(select(SourceStatus).order_by(SourceStatus.source))],
+        sources=_sources(db, now),
         newest_retrieved_at=db.scalar(select(func.max(Threat.retrieved_at))),
         matched_assets=len({i for a in active if a["kind"] == "vulnerability" for i in a["asset_ids"]}),
         open_alerts=len(active), trend=trend,

@@ -499,7 +499,7 @@ the correlation engine as a normal behaviour incident. Dashboard: `/app/attack-l
 | GET | `/api/attack-lab/playbooks` | Attacks we can simulate: `brute_force`, `sql_injection`, `port_scan`, `command_injection`, `normal_traffic` (control: must not fire) |
 | GET | `/api/attack-lab/rules` | The rulebook: every rule's exact logic, threshold, reason it works, MITRE technique; SQLi/CMDi signature regexes |
 | POST | `/api/attack-lab/run` | `{scenario, target_asset_id?, succeed?}` → steps, raw lines, detections, verdict, events sent, incident. **DEMO_MODE only** (403 otherwise) |
-| POST | `/api/attack-lab/analyze` | `{lines: [...]}` → same detection on any pasted log lines / URLs. Stateless, nothing stored |
+| POST | `/api/attack-lab/analyze` | `{lines: [...]}` (≤ 500 lines, ≤ 4096 chars each, else 422) → same detection on pasted log lines / URLs. Stateless, nothing stored |
 
 Pipeline: **parse** (web access, sshd auth, firewall, process audit, conntrack; anything else is checked as raw request
 text) → **per-line signatures** (SQLi, command injection, traversal, XSS on the URL-decoded request) → **per-source

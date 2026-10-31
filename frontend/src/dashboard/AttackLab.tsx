@@ -8,26 +8,34 @@ import { Empty, PageHead, Panel } from './ui'
 // honeypots and firewall sensors) are replayed against one of our simulated assets, detected from the log text alone,
 // linked to our threat intel (CVE -> KEV/EPSS -> our asset inventory) and turned into a scored incident.
 
-type Attacker = { ip: string; kind: 'web' | 'login' | 'scan'; headline: string; attack_types: string[]; rules: string[]; cve_ids: string[]
+type Attacker = {
+  ip: string; kind: 'web' | 'login' | 'scan'; headline: string; attack_types: string[]; rules: string[]; cve_ids: string[]
   web_requests: number; firewall_records: number; first_seen: string | null; last_seen: string | null; country: string | null
-  as_name: string | null; threat_feeds: string[]; user_agents: string[]; detected: boolean; default_target: string }
+  as_name: string | null; threat_feeds: string[]; user_agents: string[]; detected: boolean; default_target: string
+}
 type Catalogue = { source: string; retrieved_at: string | null; note: string | null; web_requests: number; firewall_records: number; items: Attacker[] }
 type Match = { start: number; end: number; text: string; technique: string; signature: string; family?: string }
 type Line = { line_no: number; raw: string; source: string; flagged_by: string | null; decoded: string | null; matches: Match[] }
 type Mitre = { id: string; name: string; tactic: string; url: string }
-type Detection = { rule_id: string; name: string; label: string; stage: string; confidence: string; src_ip: string | null;
-  count: number; reason: string; techniques: string[]; mitre: Mitre[]; evidence: { line_no: number }[] }
+type Detection = {
+  rule_id: string; name: string; label: string; stage: string; confidence: string; src_ip: string | null;
+  count: number; reason: string; techniques: string[]; mitre: Mitre[]; evidence: { line_no: number }[]
+}
 type Check = { rule_id: string; fired: boolean; observed: string; threshold: string }
-type Verdict = { attack_detected: boolean; headline: string; attack_types: string[]; stage: string | null; confidence: string | null;
-  mitre: Mitre[]; attacker_ips: string[]; decision_path: string[] }
+type Verdict = {
+  attack_detected: boolean; headline: string; attack_types: string[]; stage: string | null; confidence: string | null;
+  mitre: Mitre[]; attacker_ips: string[]; decision_path: string[]
+}
 type Analysis = { lines: Line[]; detections: Detection[]; checks: Check[]; verdict: Verdict; parsed: Record<string, number> }
 type Step = { title: string; detail: string; actor: string; line_nos: number[] }
 type Location = { country?: string; country_code?: string; city?: string; asn?: number; asn_org?: string; geo_source?: string }
 type Reputation = { as_name?: string; country?: string; isc_reports?: number | null; isc_targets?: number | null; threat_feeds: string[] }
-type RunResult = Analysis & { run_id: string; kind: string; data_classification: string; steps: Step[]; replayed: number; total_records: number
+type RunResult = Analysis & {
+  run_id: string; kind: string; data_classification: string; steps: Step[]; replayed: number; total_records: number
   attacker: Attacker; target: { asset_id: string; hostname: string; role: string }
   intel: { cves: IntelCve[]; attacker: { ip: string; reputation: Reputation | null; location: Location | null; our_ioc_hits: { source: string; type: string; malware_family: string | null }[] } }
-  correlation: { created: string[]; note: string; incidents: Alert[]; vulnerability_alerts: string[] } }
+  correlation: { created: string[]; note: string; incidents: Alert[]; vulnerability_alerts: string[] }
+}
 type RuleBook = { rules: Rule[]; thresholds?: Record<string, number & number[]> }
 type Rule = { rule_id: string; name: string; log_source: string; kind: string; logic: string; why_it_works: string; mitre: Mitre[] }
 

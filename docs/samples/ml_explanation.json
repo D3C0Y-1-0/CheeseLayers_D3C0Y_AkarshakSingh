@@ -1,0 +1,185 @@
+{
+  "alert_id": "ALR-383D1317",
+  "title": "Statistical anomaly (Isolation Forest) on patient-portal (HLT-WEB-01)",
+  "priority": "low",
+  "is_simulated": true,
+  "ml_findings": 1,
+  "explanations": [
+    {
+      "event_id": "2e80703733b802b62f0d6cb2:SR-WEB-20161224T1733",
+      "asset_id": "HLT-WEB-01",
+      "observed_at": "2016-12-24T17:33:00+00:00",
+      "finding_id": "FIND-def4682c9c7c225fa119d661",
+      "finding_reason": "Isolation Forest: more unusual than 99.8% of 4477 real training minutes from this sensor (outlier score -0.0755); requests_per_minute 51.0, http_4xx_ratio 0.902, unique_clients 1, failed_auth 0",
+      "sensor": "web",
+      "sensor_name": "the secrepo.com web server",
+      "flagged": true,
+      "outlier_score": -0.0755,
+      "unusual_percentile": 99.8,
+      "training_minutes": 4477,
+      "trained_until": "2016-12-21T14:06:00+00:00",
+      "baseline_path_length": 14.383,
+      "path_length": 3.936,
+      "summary": "The model flagged this minute from the secrepo.com web server: it is more unusual than 99.8% of the 4,477 normal minutes it learned from. Main reason: Requests per minute was 51, higher than 99.1% of normal minutes. Also contributing: Share of requests that failed (HTTP 4xx).",
+      "features": [
+        {
+          "feature": "requests_per_minute",
+          "label": "Requests per minute",
+          "value": 51.0,
+          "training_median": 1.0,
+          "training_percentile": 99.1,
+          "shap_value": -5.6854,
+          "toward": "unusual",
+          "share_pct": 52.0,
+          "sentence": "Requests per minute was 51, higher than the usual 1 (higher than 99% of normal minutes). This made the minute look more unusual and accounts for 52% of the decision."
+        },
+        {
+          "feature": "http_4xx_ratio",
+          "label": "Share of requests that failed (HTTP 4xx)",
+          "value": 0.902,
+          "training_median": 0.0,
+          "training_percentile": 98.6,
+          "shap_value": -5.0076,
+          "toward": "unusual",
+          "share_pct": 45.8,
+          "sentence": "Share of requests that failed (HTTP 4xx) was 90%, higher than the usual 0% (higher than 99% of normal minutes). This made the minute look more unusual and accounts for 46% of the decision."
+        },
+        {
+          "feature": "failed_auth",
+          "label": "Failed logins",
+          "value": 0.0,
+          "training_median": 0.0,
+          "training_percentile": 0.0,
+          "shap_value": 0.0,
+          "toward": "normal",
+          "share_pct": 0.0,
+          "sentence": "Failed logins was 0, the same as the usual 0 (higher than 0% of normal minutes). This looked normal and pulled the verdict back towards normal (0% of the decision)."
+        },
+        {
+          "feature": "unique_clients",
+          "label": "Different client IP addresses",
+          "value": 1.0,
+          "training_median": 1.0,
+          "training_percentile": 0.0,
+          "shap_value": 0.2455,
+          "toward": "normal",
+          "share_pct": 2.2,
+          "sentence": "Different client IP addresses was 1, the same as the usual 1 (higher than 0% of normal minutes). This looked normal and pulled the verdict back towards normal (2% of the decision)."
+        }
+      ],
+      "method": [
+        "Model: scikit-learn Isolation Forest (200 trees, 2% expected outliers), trained only on the earliest 70% of this sensor's real one-minute history (SecRepo) and never on the minutes it is tested on.",
+        "Explanation: SHAP TreeExplainer computes each feature's exact contribution to this minute's isolation path length, compared with an average training minute. Negative = pushed towards 'unusual'.",
+        "Percentiles compare each value with the same feature in the training minutes."
+      ],
+      "limitations": [
+        "An outlier is unusual for this sensor, not proof of an attack; SW-ML-001 findings are low severity, low confidence.",
+        "SHAP explains the model's decision, not the attacker's intent. Features interact: a value can matter only in combination with another.",
+        "The baseline is the sensor's own past: if the past contained attacks, the model treats them as normal."
+      ]
+    }
+  ],
+  "note": null,
+  "model": {
+    "detector_id": "SW-ML-001",
+    "model": "Isolation Forest (scikit-learn)",
+    "config": {
+      "n_estimators": 200,
+      "contamination": 0.02,
+      "train_fraction": 0.7,
+      "random_state": 42
+    },
+    "explainer": "SHAP TreeExplainer",
+    "sensors": [
+      {
+        "sensor": "web",
+        "source": "secrepo:web",
+        "sensor_name": "the secrepo.com web server",
+        "training_minutes": 4477,
+        "trained_until": "2016-12-21T14:06:00+00:00",
+        "features": [
+          "Requests per minute",
+          "Share of requests that failed (HTTP 4xx)",
+          "Different client IP addresses",
+          "Failed logins"
+        ],
+        "global_importance": [
+          {
+            "feature": "http_4xx_ratio",
+            "label": "Share of requests that failed (HTTP 4xx)",
+            "mean_abs_shap": 0.929,
+            "share_pct": 34.4
+          },
+          {
+            "feature": "unique_clients",
+            "label": "Different client IP addresses",
+            "mean_abs_shap": 0.9018,
+            "share_pct": 33.4
+          },
+          {
+            "feature": "requests_per_minute",
+            "label": "Requests per minute",
+            "mean_abs_shap": 0.8687,
+            "share_pct": 32.2
+          },
+          {
+            "feature": "failed_auth",
+            "label": "Failed logins",
+            "mean_abs_shap": 0.0,
+            "share_pct": 0.0
+          }
+        ]
+      },
+      {
+        "sensor": "ssh",
+        "source": "secrepo:ssh",
+        "sensor_name": "the AWS SSH server",
+        "training_minutes": 1768,
+        "trained_until": "2014-12-23T02:15:00+00:00",
+        "features": [
+          "Failed SSH logins",
+          "Different source IP addresses",
+          "Different usernames tried",
+          "Share of attempts with non-existent usernames"
+        ],
+        "global_importance": [
+          {
+            "feature": "failed_logins",
+            "label": "Failed SSH logins",
+            "mean_abs_shap": 0.8726,
+            "share_pct": 28.4
+          },
+          {
+            "feature": "unique_sources",
+            "label": "Different source IP addresses",
+            "mean_abs_shap": 0.8673,
+            "share_pct": 28.2
+          },
+          {
+            "feature": "invalid_user_ratio",
+            "label": "Share of attempts with non-existent usernames",
+            "mean_abs_shap": 0.7152,
+            "share_pct": 23.2
+          },
+          {
+            "feature": "unique_users",
+            "label": "Different usernames tried",
+            "mean_abs_shap": 0.621,
+            "share_pct": 20.2
+          }
+        ]
+      }
+    ],
+    "method": [
+      "Model: scikit-learn Isolation Forest (200 trees, 2% expected outliers), trained only on the earliest 70% of this sensor's real one-minute history (SecRepo) and never on the minutes it is tested on.",
+      "Explanation: SHAP TreeExplainer computes each feature's exact contribution to this minute's isolation path length, compared with an average training minute. Negative = pushed towards 'unusual'.",
+      "Percentiles compare each value with the same feature in the training minutes."
+    ],
+    "limitations": [
+      "An outlier is unusual for this sensor, not proof of an attack; SW-ML-001 findings are low severity, low confidence.",
+      "SHAP explains the model's decision, not the attacker's intent. Features interact: a value can matter only in combination with another.",
+      "The baseline is the sensor's own past: if the past contained attacks, the model treats them as normal."
+    ]
+  },
+  "generated_at": "2026-10-31T23:33:52.388415+00:00"
+}

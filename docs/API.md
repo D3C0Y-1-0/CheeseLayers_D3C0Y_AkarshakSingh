@@ -651,3 +651,30 @@ grouped per ~10 km cell, largest first), geo_source, available, attribution, not
 malicious IPs/networks (ThreatFox, Spamhaus DROP, Tor exits, OTX, Feodo), all located; 39% on hosting
 networks. Shown on the Security Operations globe (red dots) and its "Where malicious IPs are registered" card.
 Sample: `docs/samples/ioc_geo.json`.
+
+# Explainable AI for the Isolation Forest (`backend/shadow_watch/explain.py`, `backend/app/ml_explain.py`)
+
+The anomaly detector SW-ML-001 (Isolation Forest per real sensor, `shadow_watch/ml.py`) is explained with
+**SHAP TreeExplainer**: each feature's exact contribution to the minute's isolation path length versus an average
+training minute (path = baseline + Σ SHAP; negative = pushed towards "unusual"; verified: tracks the model's
+decision score, corr. 0.996). Each contribution is turned into a plain-language sentence with the training
+median and percentile. No language model involved.
+
+### `GET /api/alerts/{alert_id}/ml-explanation`
+`{alert_id, title, priority, is_simulated, ml_findings, explanations[], note, model, generated_at}`; each
+explanation: `{event_id, asset_id, observed_at, finding_id, sensor, sensor_name, flagged, outlier_score,
+unusual_percentile, training_minutes, trained_until, baseline_path_length, path_length, summary,
+features[] ({feature, label, value, training_median, training_percentile, shap_value, toward:
+unusual|normal|none, share_pct, sentence}), method[], limitations[]}`. `ml_findings: 0` + `note` when the
+incident has no ML finding. Same access rule as `/evidence` (demo: simulated only). 404 unknown alert.
+Sample: `docs/samples/ml_explanation.json`.
+
+### `GET /api/alerts/{alert_id}/ml-explanation.pdf`
+The detailed report as `application/pdf` (attachment): verdict in simple words, SHAP bar chart, feature table,
+feature-by-feature sentences, model card, method and limitations.
+
+### `GET /api/ml/model`
+Model card: settings, per-sensor training size/period and global importance (mean |SHAP|).
+
+UI: Incident page → "Why the ML model flagged this (explainable AI)" (behaviour incidents with an ML finding,
+e.g. Command Center → "Real crawler anomaly (ML)"), with the PDF download.

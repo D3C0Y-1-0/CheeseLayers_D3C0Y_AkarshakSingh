@@ -4,6 +4,7 @@ import { ArrowLeft, Sparkles } from 'lucide-react'
 import { fixtures, notifyRefresh, parseList, post, toTitle, useData, when, type Alert, type Report, type StoredEvent } from './api'
 import { ThreatAiSummary } from './AiSummary'
 import { CertInDraft } from './CertInDraft'
+import { MlExplanation } from './MlExplain'
 import { AiBadge, TargetCell, DataNotice, Empty, PageHead, Panel, PriorityBadge, Provenance, safeReference, Unknown } from './ui'
 
 const STAGES = ['detected', 'investigating', 'confirmed', 'action_required', 'mitigated', 'closed']
@@ -94,6 +95,7 @@ export default function Incident() {
       <Panel title="Affected assets"><ul>{linkedAssets.map((a) => <li key={a.asset_id} className="border-b border-rule p-4 last:border-0"><b className="text-white">{a.asset_id} · {a.hostname}</b><p>{a.role} · {a.internet_facing ? 'Internet-facing' : 'Internal'} · Criticality {a.criticality}/5</p><p>{a.software.map((s) => `${s.product} ${s.version ?? 'version unknown'}`).join(', ')}</p></li>)}</ul>{!linkedAssets.length && <Empty>Asset attribution is unknown.</Empty>}</Panel>
       {refs.length > 0 && <Panel title="Source references"><ul className="space-y-2 p-4">{refs.map((r) => <li key={r} className="break-all"><a href={r} target="_blank" rel="noreferrer" className="text-blue-300 underline">{r}</a></li>)}</ul></Panel>}
     </div><div className="grid gap-3">
+      {alert.kind === 'behaviour' && incident.mode === 'live' && <MlExplanation key={`ml-${id}`} alertId={id} />}
       <AgentExplanation key={id} alert={alert} enabled={incident.mode === 'live' && !incident.error} onReport={setReport} />
       <CertInDraft key={`c-${id}`} alertId={id} enabled={incident.mode === 'live' && !incident.error} />
       {alert.kind === 'vulnerability' && alert.threat_ids[0] && <ThreatAiSummary key={`t-${id}`} threatId={alert.threat_ids[0]} enabled={incident.mode === 'live'} title={`Threat summary (AI) · ${alert.threat_ids[0]}`} />}

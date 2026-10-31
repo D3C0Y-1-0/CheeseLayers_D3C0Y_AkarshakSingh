@@ -1,0 +1,166 @@
+{
+  "alert_id": "ALR-C1E18948",
+  "kind": "behaviour",
+  "priority": "low",
+  "status": "new",
+  "asset_ids": [
+    "BNK-NET-01"
+  ],
+  "threat_ids": [],
+  "evidence_ids": [
+    "EVT-0004",
+    "EVT-0005",
+    "EVT-0006"
+  ],
+  "risk_score": 11.2,
+  "factors": {
+    "severity": null,
+    "exploitation": null,
+    "criticality": 1.0,
+    "exposure": null,
+    "confidence": 0.3
+  },
+  "match_status": null,
+  "reasons": [
+    "EVT-0005: request spike 7x baseline",
+    "behavioural suspicion 11.2 -> low (1 signal type(s): http_anomaly)",
+    "suppressed: activity falls inside approved maintenance window CHG-2026-1031-07 and shows no malicious process or outbound indicators",
+    "priority low (driven by behaviour)"
+  ],
+  "limitations": [],
+  "timeline": [
+    {
+      "at": "2026-10-31T02:00:00+05:30",
+      "event": "context: approved change CHG-2026-1031-07 (2026-10-31T02:00:00+05:30 to 2026-10-31T04:00:00+05:30)",
+      "ref": "EVT-0004"
+    },
+    {
+      "at": "2026-10-31T02:20:00+05:30",
+      "event": "http_anomaly: request spike 7x baseline",
+      "ref": "EVT-0005"
+    },
+    {
+      "at": "2026-10-31T02:35:00+05:30",
+      "event": "context: no suspicious pattern",
+      "ref": "EVT-0006"
+    },
+    {
+      "at": "2026-10-31T14:09:58.420012Z",
+      "event": "incident opened from 2 event(s) on BNK-NET-01",
+      "ref": null
+    },
+    {
+      "at": "2026-10-31T14:09:58.420012Z",
+      "event": "suppressed: activity falls inside approved maintenance window CHG-2026-1031-07 and shows no malicious process or outbound indicators",
+      "ref": null
+    }
+  ],
+  "created_at": "2026-10-31T14:09:58.420012Z",
+  "title": "Maintenance activity on netbanking-web (BNK-NET-01): not escalated",
+  "lifecycle_status": "detected",
+  "match_detail": "no_cve_behavioural",
+  "vulnerability_priority_score": 0.0,
+  "behavioural_suspicion_score": 11.2,
+  "evidence_confidence_score": 30.0,
+  "score_factors": {
+    "vulnerability": {
+      "score": 0.0,
+      "reason": "no known vulnerability",
+      "weights": {
+        "severity": 0.3,
+        "exploitation": 0.35,
+        "criticality": 0.2,
+        "exposure": 0.15
+      }
+    },
+    "behaviour": {
+      "score": 11.2,
+      "signals": [
+        {
+          "event_id": "EVT-0005",
+          "signal": "http_anomaly",
+          "severity": 0.5,
+          "reason": "request spike 7x baseline",
+          "in_maintenance": true
+        }
+      ],
+      "distinct_signal_types": [
+        "http_anomaly"
+      ],
+      "worst_signal_severity": 0.5,
+      "diversity_bonus": 0.0,
+      "maintenance_windows": [
+        {
+          "change_id": "CHG-2026-1031-07",
+          "start": "2026-10-31T02:00:00+05:30",
+          "end": "2026-10-31T04:00:00+05:30"
+        }
+      ],
+      "maintenance_damping_applied": true,
+      "config": {
+        "base_weight": 0.75,
+        "diversity_bonus": 0.2,
+        "maintenance_damping": 0.3
+      }
+    },
+    "confidence": {
+      "score": 30.0,
+      "provenance": 20,
+      "provenance_reason": "local sensor telemetry",
+      "match_certainty": 0,
+      "telemetry_corroboration": 10,
+      "incomplete_evidence_penalty": 0
+    },
+    "priority": {
+      "driver": "behaviour",
+      "vulnerability_level": "low",
+      "behaviour_level": "low",
+      "thresholds": {
+        "critical": 80,
+        "high": 55,
+        "medium": 30
+      }
+    }
+  },
+  "escalation_reasons": [
+    "behavioural suspicion 11.2 -> low (1 signal type(s): http_anomaly)",
+    "suppressed: activity falls inside approved maintenance window CHG-2026-1031-07 and shows no malicious process or outbound indicators",
+    "priority low (driven by behaviour)"
+  ],
+  "is_simulated": true,
+  "related_alert_ids": [],
+  "indicators": {
+    "dest_ips": []
+  },
+  "suppressed": true,
+  "assets": [
+    {
+      "asset_id": "BNK-NET-01",
+      "hostname": "netbanking-web",
+      "ip": "203.0.113.25",
+      "organisation": "Sim Cooperative Bank",
+      "sector": "banking",
+      "role": "Internet-banking web front end",
+      "os": "Ubuntu 24.04",
+      "software": [
+        {
+          "vendor": "f5",
+          "product": "nginx",
+          "version": "1.27.2",
+          "cpe": "cpe:2.3:a:f5:nginx:1.27.2:*:*:*:*:*:*:*"
+        },
+        {
+          "vendor": "apache",
+          "product": "tomcat",
+          "version": "10.1.40",
+          "cpe": "cpe:2.3:a:apache:tomcat:10.1.40:*:*:*:*:*:*:*"
+        }
+      ],
+      "criticality": 5,
+      "internet_facing": true,
+      "owner": "bank-digital",
+      "is_simulated": true
+    }
+  ],
+  "threats": []
+}

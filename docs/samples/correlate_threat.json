@@ -1,0 +1,29 @@
+{
+  "threat_id": "CVE-2024-21762",
+  "assets_checked": 40,
+  "created": [
+    "ALR-D6B33680",
+    "ALR-9423EFA2"
+  ],
+  "updated": [],
+  "matches": [
+    {
+      "asset_id": "PWR-FW-01",
+      "match_detail": "confirmed_affected",
+      "match_status": "confirmed",
+      "reason": "installed 7.2.6 is inside the vulnerable range (>= 7.2.0, < 7.2.7)",
+      "alert_id": "ALR-D6B33680",
+      "priority": "critical",
+      "risk_score": 99.4
+    },
+    {
+      "asset_id": "BNK-FW-01",
+      "match_detail": "confirmed_affected",
+      "match_status": "confirmed",
+      "reason": "installed 7.0.13 is inside the vulnerable range (>= 7.0.0, < 7.0.14)",
+      "alert_id": "ALR-9423EFA2",
+      "priority": "critical",
+      "risk_score": 99.4
+    }
+  ]
+}

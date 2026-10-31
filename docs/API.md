@@ -276,7 +276,7 @@ Invalid values → 422. `software[].version: null` = version unknown (any match 
 ### `GET /api/assets/{asset_id}`
 One asset, or 404. Sample: `samples/asset_PWR-FW-01.json`.
 
-### Alert object (`IncidentAlert`), endpoints in progress
+### Alert object (`IncidentAlert`)
 JSON Schema: `samples/incident_alert.schema.json`. Every contract `alert` field, plus these Member 3 additions:
 
 | Field | Meaning |
@@ -288,3 +288,58 @@ JSON Schema: `samples/incident_alert.schema.json`. Every contract `alert` field,
 | `score_factors` | Breakdown of each score's inputs and weights, for display |
 | `escalation_reasons` | Audit trail explaining the priority |
 | `is_simulated` | True when built on synthetic data |
+| `related_alert_ids` | Behaviour incidents on OTHER assets that share an exact outbound `dest_ip` (linked, never merged) |
+| `indicators.dest_ips` | Suspicious outbound destinations seen in a behaviour incident |
+| `suppressed` | `true` = maintenance context kept this incident from escalating |
+
+**`timeline`** is always chronological. It mixes sensor events (`ref` = event_id, sensor's own UTC offset) and audit
+entries (detected, re-scored, duplicate received, suppressed, merged, status changes; `Z` times). Sort by parsed time, not by string.
+
+### `GET /api/alerts`
+Most urgent first (priority, then latest update). `{"items": [IncidentAlert, ...], "total": n}`. Sample: `samples/alerts.json`.
+
+| Param | Values |
+|---|---|
+| `priority` | `low` \| `medium` \| `high` \| `critical` |
+| `status` | contract `new`/`ack`/`resolved` **or** a `lifecycle_status` value |
+| `sector` | any asset sector |
+| `match_status` | contract `confirmed`/`uncertain`/`requires_manual_review` **or** a `match_detail` value (e.g. `no_cve_behavioural`) |
+| `kind` | `vulnerability` \| `behaviour` |
+| `asset_id` | alerts involving this asset |
+
+### `GET /api/alerts/{alert_id}`
+The alert, plus `assets[]` (full asset records) and `threats[]` (summary from the threats table, `in_database: false` if
+it isn't loaded). 404 if unknown. Samples: `alert_detail_vulnerability.json` (Scenario A), `alert_detail_behaviour.json`
+(Scenario B), `alert_detail_maintenance.json` (Scenario C).
+
+### `POST /api/alerts/{alert_id}/acknowledge`
+Body (all optional): `{"status": "<lifecycle_status>", "reason": "patch scheduled", "by": "soc-analyst"}`. No `status` =
+advance one step. Lifecycle only moves forward: going backwards gives **409**, an unknown alert gives **404**. It adds a timeline entry
+with who, when and why. Re-scores never reset an analyst's progress. Sample: `samples/acknowledge.json`.
+
+### `POST /api/correlate/threat` (Member 2 → Member 3)
+Body: one threat (contract `threat`). Matches it against all 40 assets, scores each exposed one, and creates or updates one
+alert per (threat, asset). Sending it again updates the alert and never duplicates it. Sample: `samples/correlate_threat.json`.
+```json
+{"threat_id": "CVE-2024-21762", "assets_checked": 40, "created": ["ALR-…"], "updated": [],
+ "matches": [{"asset_id": "PWR-FW-01", "match_detail": "confirmed_affected", "match_status": "confirmed",
+              "reason": "installed 7.2.6 is inside the vulnerable range (>= 7.2.0, < 7.2.7)", "alert_id": "ALR-…",
+              "priority": "critical", "risk_score": 99.4}]}
+```
+`on_new_threat` (hooks.py) does the same automatically for every new signal and for `POST /api/demo/inject-cve`.
+
+### `POST /api/correlate/events` (Member 4 → Member 3)
+Body: a JSON **array** of events (contract `event`; optional additions `rule_id`, `confidence`: low/medium/high).
+- Events with the same `event_id` are deduplicated (`duplicates[]`).
+- Events on one asset that are ≤15 min apart (chained) form one incident. Arrival order doesn't matter.
+- Different assets are never merged.
+- A maintenance window covering the activity suppresses noisy HTTP/auth signals. It never suppresses a shell or a new
+  outbound connection.
+- Events with `asset_id: null` become their own alert (`unattributed[]`), capped at medium.
+
+Response: `{"received", "duplicates", "created", "updated", "merged", "unattributed", "incidents": [IncidentAlert]}`.
+Sample: `samples/correlate_events.json`.
+
+### `POST /api/demo/reset-alerts`
+Deletes all alerts and ingested events. Member 2's `/api/demo/reset` leaves our tables alone, so a full demo reset
+calls both.

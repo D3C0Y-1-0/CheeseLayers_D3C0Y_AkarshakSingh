@@ -1,0 +1,173 @@
+{
+  "alert_id": "ALR-BBA4D249",
+  "kind": "behaviour",
+  "priority": "critical",
+  "status": "new",
+  "asset_ids": [
+    "HLT-WEB-01"
+  ],
+  "threat_ids": [],
+  "evidence_ids": [
+    "EVT-0001",
+    "EVT-0002",
+    "EVT-0003"
+  ],
+  "risk_score": 100.0,
+  "factors": {
+    "severity": null,
+    "exploitation": null,
+    "criticality": 0.6,
+    "exposure": null,
+    "confidence": 0.5
+  },
+  "match_status": null,
+  "reasons": [
+    "EVT-0001: path traversal pattern in request; request spike 8x baseline",
+    "EVT-0002: web server process php-fpm8.3 spawned shell /bin/sh",
+    "EVT-0003: outbound to 203.0.113.250: never-seen destination, suspicious port 4444",
+    "behavioural suspicion 100.0 -> critical (3 signal type(s): http_anomaly, outbound_connection, unexpected_process)",
+    "priority critical (driven by behaviour)"
+  ],
+  "limitations": [],
+  "timeline": [
+    {
+      "at": "2026-10-31T15:02:10+05:30",
+      "event": "http_anomaly: path traversal pattern in request; request spike 8x baseline",
+      "ref": "EVT-0001"
+    },
+    {
+      "at": "2026-10-31T15:03:40+05:30",
+      "event": "unexpected_process: web server process php-fpm8.3 spawned shell /bin/sh",
+      "ref": "EVT-0002"
+    },
+    {
+      "at": "2026-10-31T15:06:05+05:30",
+      "event": "outbound_connection: outbound to 203.0.113.250: never-seen destination, suspicious port 4444",
+      "ref": "EVT-0003"
+    },
+    {
+      "at": "2026-10-31T14:09:58.387763Z",
+      "event": "incident opened from 3 event(s) on HLT-WEB-01",
+      "ref": null
+    }
+  ],
+  "created_at": "2026-10-31T14:09:58.387763Z",
+  "title": "Suspicious activity on patient-portal (HLT-WEB-01): http_anomaly, outbound_connection, unexpected_process",
+  "lifecycle_status": "detected",
+  "match_detail": "no_cve_behavioural",
+  "vulnerability_priority_score": 0.0,
+  "behavioural_suspicion_score": 100.0,
+  "evidence_confidence_score": 50.0,
+  "score_factors": {
+    "vulnerability": {
+      "score": 0.0,
+      "reason": "no known vulnerability",
+      "weights": {
+        "severity": 0.3,
+        "exploitation": 0.35,
+        "criticality": 0.2,
+        "exposure": 0.15
+      }
+    },
+    "behaviour": {
+      "score": 100.0,
+      "signals": [
+        {
+          "event_id": "EVT-0001",
+          "signal": "http_anomaly",
+          "severity": 0.5,
+          "reason": "path traversal pattern in request; request spike 8x baseline",
+          "in_maintenance": false
+        },
+        {
+          "event_id": "EVT-0002",
+          "signal": "unexpected_process",
+          "severity": 0.8,
+          "reason": "web server process php-fpm8.3 spawned shell /bin/sh",
+          "in_maintenance": false
+        },
+        {
+          "event_id": "EVT-0003",
+          "signal": "outbound_connection",
+          "severity": 0.7,
+          "reason": "outbound to 203.0.113.250: never-seen destination, suspicious port 4444",
+          "in_maintenance": false
+        }
+      ],
+      "distinct_signal_types": [
+        "http_anomaly",
+        "outbound_connection",
+        "unexpected_process"
+      ],
+      "worst_signal_severity": 0.8,
+      "diversity_bonus": 0.4,
+      "maintenance_windows": [],
+      "maintenance_damping_applied": false,
+      "config": {
+        "base_weight": 0.75,
+        "diversity_bonus": 0.2,
+        "maintenance_damping": 0.3
+      }
+    },
+    "confidence": {
+      "score": 50.0,
+      "provenance": 20,
+      "provenance_reason": "local sensor telemetry",
+      "match_certainty": 0,
+      "telemetry_corroboration": 30,
+      "incomplete_evidence_penalty": 0
+    },
+    "priority": {
+      "driver": "behaviour",
+      "vulnerability_level": "low",
+      "behaviour_level": "critical",
+      "thresholds": {
+        "critical": 80,
+        "high": 55,
+        "medium": 30
+      }
+    }
+  },
+  "escalation_reasons": [
+    "behavioural suspicion 100.0 -> critical (3 signal type(s): http_anomaly, outbound_connection, unexpected_process)",
+    "priority critical (driven by behaviour)"
+  ],
+  "is_simulated": true,
+  "related_alert_ids": [],
+  "indicators": {
+    "dest_ips": [
+      "203.0.113.250"
+    ]
+  },
+  "suppressed": false,
+  "assets": [
+    {
+      "asset_id": "HLT-WEB-01",
+      "hostname": "patient-portal",
+      "ip": "198.51.100.40",
+      "organisation": "Sim District Hospital",
+      "sector": "health",
+      "role": "Patient appointment portal",
+      "os": "Ubuntu 24.04",
+      "software": [
+        {
+          "vendor": "f5",
+          "product": "nginx",
+          "version": "1.27.2",
+          "cpe": "cpe:2.3:a:f5:nginx:1.27.2:*:*:*:*:*:*:*"
+        },
+        {
+          "vendor": "php",
+          "product": "php",
+          "version": "8.3.36",
+          "cpe": "cpe:2.3:a:php:php:8.3.36:*:*:*:*:*:*:*"
+        }
+      ],
+      "criticality": 3,
+      "internet_facing": true,
+      "owner": "hospital-it",
+      "is_simulated": true
+    }
+  ],
+  "threats": []
+}

@@ -1,0 +1,312 @@
+"""Transparent risk & confidence scoring. Three separate 0-100 scores, never merged into one black box:
+
+  vulnerability_priority_score  how urgently a known vulnerability on this asset needs patching
+  behavioural_suspicion_score   how suspicious the asset's own recent activity looks (Shadow Watch events)
+  evidence_confidence_score     how much we trust the evidence behind the alert
+
+Priority = the higher of the first two, mapped to low/medium/high/critical. Every weight is in CONFIG so the
+dashboard can show exactly what contributed. Unknown inputs (CVSS/EPSS null) never count as 0: they get a
+conservative fallback AND a limitation note saying we didn't know.
+"""
+import re
+from datetime import datetime
+from typing import Any
+
+from pydantic import BaseModel, Field
+
+from .contracts import AlertFactors, Asset, Priority, SecurityEvent, ThreatRecord
+from .matcher import MatchResult
+
+CONFIG: dict[str, Any] = {
+    "vulnerability": {
+        "weights": {"severity": 0.30, "exploitation": 0.35, "criticality": 0.20, "exposure": 0.15},
+        "cvss_missing_fallback": 0.5,  # unscored CVE: assume "medium", not "harmless"
+        "epss_missing_fallback": 0.25,  # no EPSS: conservative baseline, not 0
+        "epss_exponent": 0.5,  # sqrt: stops low-but-real EPSS values collapsing to ~0
+        "public_exploit_floor": 0.6,  # public exploit code exists -> exploitation at least this
+        "exposure": {"internet_facing": 1.0, "internal": 0.4},
+    },
+    "behaviour": {
+        # How bad each suspicious signal is on its own (0-1).
+        "signal_severity": {
+            "unexpected_process": 0.8,  # e.g. a web server spawning a shell
+            "outbound_connection": 0.7,  # new destination / reverse-shell port
+            "http_anomaly": 0.5,  # path traversal, request spike
+            "auth_anomaly": 0.5,  # failed-login burst
+            "inbound_ids_alert": 0.4,  # perimeter IDS signature
+        },
+        "base_weight": 0.75,  # score from the single worst signal
+        "diversity_bonus": 0.2,  # per extra DIFFERENT signal type: independent signals corroborate each other
+        "maintenance_damping": 0.3,  # noisy-but-benign signals inside an approved change window are scaled down
+        "benign_in_maintenance": ["http_anomaly", "auth_anomaly"],  # only these can be explained by maintenance
+        "confidence_multiplier": {"low": 0.6, "medium": 0.8, "high": 1.0},  # if Shadow Watch says how sure it is
+    },
+    "confidence": {
+        "provenance": {"kev": 30, "verified": 25, "simulated": 15, "other": 10, "telemetry": 20},
+        "verified_sources": ["nvd", "kev", "nvd+kev", "certin"],
+        "match_certainty": {"confirmed_affected": 40, "needs_verification": 15},
+        "corroboration_per_signal": 10,
+        "corroboration_max": 30,
+    },
+    "priority_thresholds": {"critical": 80, "high": 55, "medium": 30},  # score >= threshold
+    "needs_verification_cap": "high",  # an unconfirmed version match can never be "critical"
+}
+
+_LEVELS: list[str] = ["low", "medium", "high", "critical"]
+
+# --- event classification (rule-based; Member 4's Shadow Watch can override via rule_id/confidence) ------
+
+WEB_PARENTS = re.compile(r"^(php-fpm|php|nginx|apache2?|httpd|w3wp|java|tomcat|node|python|gunicorn|uwsgi)", re.I)
+SHELLS = {"sh", "bash", "dash", "zsh", "ksh", "cmd.exe", "powershell.exe", "pwsh", "powershell"}
+SUSPICIOUS_PORTS = {4444, 1337, 31337, 6666, 6667, 9001}  # common reverse-shell / IRC / Tor ports
+TRAVERSAL = re.compile(r"\.\./|\.\.\\|%2e%2e", re.I)
+SPIKE_RATIO = 5  # requests this many times above baseline = spike
+FAILED_LOGIN_BURST = 20
+
+
+class EventSignal(BaseModel):
+    event_id: str
+    asset_id: str | None
+    at: datetime
+    signal: str | None  # None = not suspicious on its own (normal activity or context)
+    reason: str
+    in_maintenance: bool = False
+    limitations: list[str] = Field(default_factory=list)
+
+
+def classify_event(e: SecurityEvent) -> EventSignal:
+    """Turn one raw sensor event into a named suspicious signal (or None) with a human-readable reason."""
+    d, limits = e.details, []
+    if e.asset_id is None:
+        limits.append(f"{e.event_id}: sensor did not record which asset was involved")
+    for key in ("client_ip", "src_ip", "dest_ip"):
+        if key in d and d[key] is None:
+            limits.append(f"{e.event_id}: {key} is missing, so the source/destination is unverified")
+
+    signal, reason = None, "no suspicious pattern"
+    if e.event_type == "maintenance":
+        reason = f"approved change {d.get('change_id')} ({d.get('window_start')} to {d.get('window_end')})"
+    elif e.event_type == "http":
+        path, rpm, base = str(d.get("path") or ""), d.get("requests_last_minute"), d.get("baseline_requests_per_minute")
+        hits = []
+        if TRAVERSAL.search(path):
+            hits.append("path traversal pattern in request")
+        if rpm and base and rpm >= SPIKE_RATIO * base:
+            hits.append(f"request spike {rpm / base:.0f}x baseline")
+        if hits:
+            signal, reason = "http_anomaly", "; ".join(hits)
+    elif e.event_type == "process":
+        parent, child = str(d.get("parent_process") or ""), str(d.get("child_process") or "")
+        if WEB_PARENTS.match(parent) and child.rsplit("/", 1)[-1].rsplit("\\", 1)[-1].lower() in SHELLS:
+            signal, reason = "unexpected_process", f"web server process {parent} spawned shell {child}"
+    elif e.event_type == "network":
+        port = d.get("dest_port")
+        if d.get("direction") == "outbound" and (d.get("first_seen_destination") or port in SUSPICIOUS_PORTS):
+            why = [w for w, ok in (("never-seen destination", d.get("first_seen_destination")),
+                                   (f"suspicious port {port}", port in SUSPICIOUS_PORTS)) if ok]
+            signal, reason = "outbound_connection", f"outbound to {d.get('dest_ip')}: {', '.join(why)}"
+        elif d.get("direction") == "inbound" and d.get("signature"):
+            signal, reason = "inbound_ids_alert", f"IDS signature: {d['signature']}"
+    elif e.event_type == "auth":
+        n = d.get("failed_logins_last_minute") or 0
+        if n >= FAILED_LOGIN_BURST:
+            signal, reason = "auth_anomaly", f"{n} failed logins in one minute"
+
+    if signal is None and e.rule_id and e.event_type != "maintenance":
+        # Shadow Watch flagged it with a rule we don't have: trust it, with a generic signal for its type.
+        signal = {"http": "http_anomaly", "process": "unexpected_process", "network": "outbound_connection",
+                  "auth": "auth_anomaly"}[e.event_type]
+        reason = f"Shadow Watch rule {e.rule_id}"
+    return EventSignal(event_id=e.event_id, asset_id=e.asset_id, at=e.timestamp, signal=signal, reason=reason,
+                       limitations=limits)
+
+
+def maintenance_windows(events: list[SecurityEvent]) -> list[tuple[str | None, datetime, datetime, str]]:
+    """(asset_id, start, end, change_id) for every maintenance event with a usable window."""
+    out = []
+    for e in events:
+        if e.event_type != "maintenance":
+            continue
+        try:
+            start = datetime.fromisoformat(e.details["window_start"])
+            end = datetime.fromisoformat(e.details["window_end"])
+        except (KeyError, TypeError, ValueError):
+            continue  # no usable window -> no suppression (fail safe)
+        out.append((e.asset_id, start, end, e.details.get("change_id") or e.event_id))
+    return out
+
+
+# --- the three scores --------------------------------------------------------------------------------
+
+class ScoreResult(BaseModel):
+    vulnerability_priority_score: float
+    behavioural_suspicion_score: float
+    evidence_confidence_score: float
+    risk_score: float  # contract field: the score that drove the priority
+    priority: Priority
+    factors: AlertFactors  # contract 0-1 factors
+    score_factors: dict[str, Any]  # full breakdown for the dashboard
+    escalation_reasons: list[str]
+    limitations: list[str]
+    warnings: list[str]
+    signals: list[EventSignal]
+
+
+def level(score: float) -> str:
+    t = CONFIG["priority_thresholds"]
+    return "critical" if score >= t["critical"] else "high" if score >= t["high"] else \
+        "medium" if score >= t["medium"] else "low"
+
+
+def vulnerability_priority(asset: Asset, threat: ThreatRecord | None, match: MatchResult | None) -> tuple[float, dict, list[str]]:
+    """Returns (score, breakdown, limitations). 0 when there's no threat or the asset is confirmed unaffected."""
+    cfg = CONFIG["vulnerability"]
+    if threat is None or match is None or match.match_detail == "confirmed_unaffected":
+        why = "no known vulnerability" if threat is None else "asset is not running an affected version"
+        return 0.0, {"score": 0.0, "reason": why, "weights": cfg["weights"]}, []
+
+    limits = []
+    if threat.cvss is None:
+        severity = cfg["cvss_missing_fallback"]
+        limits.append(f"{threat.threat_id} has no CVSS score yet; severity assumed medium ({severity}), not zero")
+    else:
+        severity = threat.cvss / 10
+
+    if threat.kev_listed:
+        exploitation, why_exp = 1.0, "CISA KEV: exploited in the wild"
+    elif threat.epss is None:
+        exploitation, why_exp = cfg["epss_missing_fallback"], "no EPSS score; conservative fallback used"
+        limits.append(f"{threat.threat_id} has no EPSS score; exploitation assumed {exploitation}, not zero")
+    else:
+        exploitation = threat.epss ** cfg["epss_exponent"]
+        why_exp = f"EPSS {threat.epss:.3f} -> sqrt = {exploitation:.2f}"
+    if threat.kev_listed is None and threat.cve_id:
+        limits.append(f"{threat.threat_id}: CISA KEV status was not checked")
+    if threat.public_exploit and exploitation < cfg["public_exploit_floor"]:
+        exploitation, why_exp = cfg["public_exploit_floor"], why_exp + "; raised: public exploit code exists"
+
+    criticality = asset.criticality / 5
+    exposure = cfg["exposure"]["internet_facing" if asset.internet_facing else "internal"]
+    factors = {"severity": severity, "exploitation": exploitation, "criticality": criticality, "exposure": exposure}
+    contributions = {k: round(100 * cfg["weights"][k] * v, 1) for k, v in factors.items()}
+    score = round(min(100.0, sum(contributions.values())), 1)
+    return score, {
+        "score": score,
+        "weights": cfg["weights"],
+        "inputs": {"cvss": threat.cvss, "epss": threat.epss, "kev_listed": threat.kev_listed,
+                   "public_exploit": threat.public_exploit, "criticality": asset.criticality,
+                   "internet_facing": asset.internet_facing, "match_detail": match.match_detail},
+        "factors": {k: round(v, 3) for k, v in factors.items()},
+        "contributions": contributions,  # points out of 100 from each factor; these sum to the score
+        "exploitation_reason": why_exp,
+    }, limits
+
+
+def behavioural_suspicion(asset_id: str | None, events: list[SecurityEvent]) -> tuple[float, dict, list[EventSignal]]:
+    """Score this asset's own events. 0 if there are none or nothing suspicious."""
+    cfg = CONFIG["behaviour"]
+    mine = [e for e in events if e.asset_id == asset_id]
+    windows = [w for w in maintenance_windows(mine) if w[0] == asset_id]
+    signals = sorted((classify_event(e) for e in mine), key=lambda s: s.at)
+    conf = {e.event_id: e.confidence for e in mine}
+
+    for s in signals:
+        s.in_maintenance = any(start <= s.at <= end for _, start, end, _ in windows)
+
+    suspicious = [s for s in signals if s.signal]
+    if not suspicious:
+        return 0.0, {"score": 0.0, "reason": "no suspicious activity on this asset", "signals": []}, signals
+
+    sev = cfg["signal_severity"]
+    worst = max(sev[s.signal] * cfg["confidence_multiplier"].get(conf.get(s.event_id) or "high") for s in suspicious)
+    kinds = sorted({s.signal for s in suspicious})
+    bonus = cfg["diversity_bonus"] * (len(kinds) - 1)
+    score = min(1.0, worst * cfg["base_weight"] + bonus) * 100
+
+    # Maintenance only explains noisy-but-benign signals. A shell or a new outbound connection is never "maintenance".
+    explainable = all(s.signal in cfg["benign_in_maintenance"] and s.in_maintenance for s in suspicious)
+    damped = bool(windows) and explainable
+    if damped:
+        score *= cfg["maintenance_damping"]
+    score = round(score, 1)
+    return score, {
+        "score": score,
+        "signals": [{"event_id": s.event_id, "signal": s.signal, "severity": sev[s.signal], "reason": s.reason,
+                     "in_maintenance": s.in_maintenance} for s in suspicious],
+        "distinct_signal_types": kinds,
+        "worst_signal_severity": round(worst, 2),
+        "diversity_bonus": round(bonus, 2),
+        "maintenance_windows": [{"change_id": c, "start": st.isoformat(), "end": en.isoformat()} for _, st, en, c in windows],
+        "maintenance_damping_applied": damped,
+        "config": {k: cfg[k] for k in ("base_weight", "diversity_bonus", "maintenance_damping")},
+    }, signals
+
+
+def evidence_confidence(threat: ThreatRecord | None, match: MatchResult | None, signals: list[EventSignal]) -> tuple[float, dict]:
+    cfg = CONFIG["confidence"]
+    if threat is None:
+        provenance, prov_why = (cfg["provenance"]["telemetry"], "local sensor telemetry") if signals else (0, "no evidence")
+    elif threat.kev_listed:
+        provenance, prov_why = cfg["provenance"]["kev"], "CISA KEV (government-verified exploitation)"
+    elif threat.is_simulated:
+        provenance, prov_why = cfg["provenance"]["simulated"], "simulated advisory (demo data)"
+    elif threat.source in cfg["verified_sources"]:
+        provenance, prov_why = cfg["provenance"]["verified"], f"verified source ({threat.source})"
+    else:
+        provenance, prov_why = cfg["provenance"]["other"], f"unverified source ({threat.source})"
+
+    certainty = cfg["match_certainty"].get(match.match_detail, 0) if match else 0
+    kinds = {s.signal for s in signals if s.signal}
+    corroboration = min(cfg["corroboration_max"], cfg["corroboration_per_signal"] * len(kinds))
+    incomplete = sum(1 for s in signals if s.limitations)
+    penalty = 5 * incomplete  # every event with a missing key field lowers trust a little
+    score = float(max(0, min(100, provenance + certainty + corroboration - penalty)))
+    return score, {"score": score, "provenance": provenance, "provenance_reason": prov_why,
+                   "match_certainty": certainty, "telemetry_corroboration": corroboration,
+                   "incomplete_evidence_penalty": penalty}
+
+
+def score_incident(asset: Asset, threat: ThreatRecord | None = None, match: MatchResult | None = None,
+                   events: list[SecurityEvent] | None = None) -> ScoreResult:
+    """Score one asset's incident from an optional vulnerability match and any local events."""
+    events = events or []
+    vuln, vuln_bd, limits = vulnerability_priority(asset, threat, match)
+    behav, behav_bd, signals = behavioural_suspicion(asset.asset_id, events)
+    conf, conf_bd = evidence_confidence(threat, match, signals)
+    limits += [l for s in signals for l in s.limitations]
+
+    reasons, warnings = [], []
+    vuln_level, behav_level = level(vuln), level(behav)
+    if vuln > 0:
+        reasons.append(f"vulnerability priority {vuln} -> {vuln_level}")
+    if match is not None and match.match_detail == "needs_verification":
+        cap = CONFIG["needs_verification_cap"]
+        warnings.append(f"version match needs manual verification: {match.reason}")
+        if _LEVELS.index(vuln_level) > _LEVELS.index(cap):
+            reasons.append(f"capped {vuln_level} -> {cap}: the affected version is not confirmed")
+            vuln_level = cap
+    if behav > 0:
+        reasons.append(f"behavioural suspicion {behav} -> {behav_level}"
+                       f" ({len(behav_bd['distinct_signal_types'])} signal type(s): {', '.join(behav_bd['distinct_signal_types'])})")
+    if behav_bd.get("maintenance_damping_applied"):
+        changes = ", ".join(w["change_id"] for w in behav_bd["maintenance_windows"])
+        reasons.append(f"suppressed: activity falls inside approved maintenance window {changes} and shows no "
+                       f"malicious process or outbound indicators")
+
+    priority = max(vuln_level, behav_level, key=_LEVELS.index)
+    driver = "vulnerability" if _LEVELS.index(vuln_level) >= _LEVELS.index(behav_level) and vuln > 0 else \
+        "behaviour" if behav > 0 else "none"
+    reasons.append(f"priority {priority} (driven by {driver})")
+
+    vf = vuln_bd.get("factors", {})
+    return ScoreResult(
+        vulnerability_priority_score=vuln, behavioural_suspicion_score=behav, evidence_confidence_score=conf,
+        risk_score=max(vuln, behav), priority=priority,
+        factors=AlertFactors(severity=vf.get("severity"), exploitation=vf.get("exploitation"),
+                             criticality=vf.get("criticality", asset.criticality / 5),
+                             exposure=vf.get("exposure"), confidence=round(conf / 100, 3)),
+        score_factors={"vulnerability": vuln_bd, "behaviour": behav_bd, "confidence": conf_bd,
+                       "priority": {"driver": driver, "vulnerability_level": vuln_level,
+                                    "behaviour_level": behav_level, "thresholds": CONFIG["priority_thresholds"]}},
+        escalation_reasons=reasons, limitations=limits, warnings=warnings, signals=signals,
+    )

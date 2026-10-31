@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { fixtures, useAlerts, useData, useOverview, when, type Threat } from './api'
 import { ThreatAiSummary } from './AiSummary'
 import { DataNotice, Empty, PageHead, Panel, safeReference, SeverityBadge, Unknown } from './ui'
@@ -10,7 +10,7 @@ type ThreatPage = { items: Threat[]; total: number; page: number; pages: number 
 const sample: ThreatPage = { items: fixtures.threats, total: fixtures.threats.length, page: 1, pages: 1 }
 
 function ThreatDetail({ threat, connected, close }: { threat: Threat; connected: boolean; close: () => void }) {
-  const record = useData<Threat & { raw_payloads?: { path: string; sha256: string | null }[] }>(
+  const record = useData<Threat & { raw_payloads?: { path: string; sha256: string | null }[]; campaign_ids?: string[] }>(
     `/api/threats/${encodeURIComponent(threat.threat_id)}`, threat, (j) => j as Threat)
   return <Panel title={threat.title} className="mb-3"><div className="space-y-3 p-4">
     <button type="button" className="btn-line" onClick={close}>Close details</button>
@@ -20,6 +20,7 @@ function ThreatDetail({ threat, connected, close }: { threat: Threat; connected:
     <ul className="space-y-1">{threat.references.filter(safeReference).map((url) => <li key={url} className="break-all"><a className="text-blue-300 underline" href={url} target="_blank" rel="noreferrer">{url}</a></li>)}</ul>
     {!!record.data.raw_payloads?.length && <details><summary className="cursor-pointer text-blue-300">Raw payload provenance</summary><ul className="mt-3 space-y-2 text-xs">{record.data.raw_payloads.map((r) => <li key={r.path} className="break-all">{r.path} · {r.sha256 ? `SHA-256: ${r.sha256}` : 'Original raw file absent; hash not verified'}</li>)}</ul></details>}
     {connected && <a className="btn-line inline-block" download={`vectra-${threat.threat_id}.json`} href={`/api/export/stix?threat_id=${encodeURIComponent(threat.threat_id)}`}>Export STIX 2.1</a>}
+    {!!record.data.campaign_ids?.length && <p>Part of campaign: {record.data.campaign_ids.map((c) => <Link key={c} className="mr-2 text-blue-300 underline" to={`/app/campaigns?id=${encodeURIComponent(c)}`}>{c}</Link>)}</p>}
     <ThreatAiSummary threatId={threat.threat_id} enabled={connected} />
   </div></Panel>
 }

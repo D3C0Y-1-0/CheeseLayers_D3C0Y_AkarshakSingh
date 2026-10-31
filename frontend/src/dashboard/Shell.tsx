@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
-import { Activity, Boxes, ChartNoAxesCombined, LayoutDashboard, Radar, Siren } from 'lucide-react'
+import { Activity, Boxes, ChartNoAxesCombined, LayoutDashboard, Network, Radar, Siren } from 'lucide-react'
 import { Mark } from '../landing/Mark'
 import './dashboard.css'
 
@@ -10,6 +10,7 @@ const NAV = [
   { to: '/app/assets', label: 'Asset Inventory', icon: Boxes },
   { to: '/app/incidents', label: 'Incidents', icon: Siren },
   { to: '/app/signals', label: 'Early warnings', icon: Activity },
+  { to: '/app/campaigns', label: 'Campaigns', icon: Network },
   { to: '/app/analytics', label: 'Exposure & impact', icon: ChartNoAxesCombined },
 ]
 

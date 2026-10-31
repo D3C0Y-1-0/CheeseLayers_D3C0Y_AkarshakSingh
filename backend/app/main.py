@@ -10,7 +10,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import func, select
 
-from . import alerts, analytics, assets, feeds, frontend, insights, summaries
+from . import alerts, analytics, assets, campaigns, feeds, frontend, insights, summaries
 from .database import SessionLocal, init_db
 from .models import Threat
 from routes import investigation, shadow_watch
@@ -28,6 +28,7 @@ async def lifespan(app: FastAPI):
     if empty:
         from ingestion.loader import load
         log.warning("empty DB, loading cache: %s", load())
+    campaigns.refresh_in_background(SessionLocal)  # warm backend/data/cache/campaigns.json (no-op if current)
     from ingestion import scheduler
     app.state.scheduler = scheduler.start()  # None in DEMO_MODE
     installed = []
@@ -58,4 +59,5 @@ app.state.shadow_demo_adapter = DemoAdapter()
 app.include_router(shadow_watch.router)
 app.include_router(investigation.router)
 app.include_router(summaries.router)  # AI threat summaries
+app.include_router(campaigns.router)  # emerging campaigns
 app.include_router(frontend.router)  # Last: API routes must win over the SPA history fallback.

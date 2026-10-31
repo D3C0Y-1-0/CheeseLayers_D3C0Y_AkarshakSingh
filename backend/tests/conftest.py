@@ -7,6 +7,7 @@ from pathlib import Path
 os.environ["DEMO_MODE"] = "true"
 os.environ["LLM_ALLOW_CLOUD"] = "false"  # tests never call a real provider, whatever .env says
 os.environ["AI_CACHE_DIR"] = tempfile.mkdtemp()  # never read/write the real AI report cache
+os.environ["CAMPAIGNS_CACHE"] = str(Path(tempfile.mkdtemp()) / "campaigns.json")
 os.environ["VECTRA_DB_URL"] = f"sqlite:///{Path(tempfile.mkdtemp()) / 'test.db'}"
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # backend/
 

@@ -49,6 +49,7 @@ class RawPayloadRef(BaseModel):
 
 class ThreatDetail(ThreatItem):
     raw_payloads: list[RawPayloadRef]  # one per raw_refs entry, same order (primary first)
+    campaign_ids: list[str] = []  # emerging-campaign groups this threat belongs to (GET /api/campaigns/{id})
 
 
 class SourceStatusOut(BaseModel):
@@ -166,7 +167,8 @@ def get_threat(threat_id: str, db: Session = Depends(get_db)):
         raise HTTPException(404, f"threat {threat_id!r} not found")
     by_path = {r.path: r for r in db.scalars(select(RawPayload).where(RawPayload.path.in_(row.raw_refs or [])))}
     raws = [RawPayloadRef.model_validate(by_path[p], from_attributes=True) for p in row.raw_refs or [] if p in by_path]
-    return ThreatDetail(**_threat(row).model_dump(), raw_payloads=raws)
+    from .campaigns import campaign_ids_for
+    return ThreatDetail(**_threat(row).model_dump(), raw_payloads=raws, campaign_ids=campaign_ids_for(db, threat_id))
 
 
 @router.get("/api/source-status", response_model=list[SourceStatusOut], tags=["system"])

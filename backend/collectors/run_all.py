@@ -5,6 +5,7 @@
     python -m collectors.run_all --from-raw             # offline: re-parse data/raw/* with the collectors' own
                                                         # parsers (after a schema change), enrichment from cache
 """
+import logging
 import sys
 import threading
 import time
@@ -231,6 +232,13 @@ def _pipeline(run: Run, nvd_mode: str) -> dict:
     from ingestion.loader import load, record_source_status
     record_source_status(run.statuses)
     result = load(detect=True)  # diff vs the previous DB state -> threat_signals + on_new_threat hook
+    try:  # new data -> regroup campaigns (rewrites backend/data/cache/campaigns.json if anything in scope changed)
+        from app import campaigns
+        from app.database import SessionLocal
+        with SessionLocal() as db:
+            campaigns.get(db)
+    except Exception:
+        logging.getLogger("vectra.campaigns").exception("campaign recompute failed")
     return {"summary": run.summary, "db": result}
 
 

@@ -1,0 +1,112 @@
+{
+  "seeded": [
+    {
+      "signal_id": "sig-525aae9fb84afd0bf58a",
+      "threat_id": "CVE-2024-4577",
+      "signal_type": "new_kev",
+      "old_value": false,
+      "new_value": true,
+      "detected_at": "2026-10-31T18:35:46.302430Z",
+      "source": "kev",
+      "details": {
+        "simulated": true,
+        "replay": true,
+        "purpose": "seed",
+        "note": "Demo replay (seed) of a fact already in this record; not a new feed change.",
+        "cve_id": "CVE-2024-4577",
+        "title": "CVE-2024-4577: PHP-CGI OS Command Injection Vulnerability",
+        "kev_date_added": "2024-06-12"
+      },
+      "is_simulated": true,
+      "threat_title": "CVE-2024-4577: PHP-CGI OS Command Injection Vulnerability",
+      "severity": "critical",
+      "kev_listed": true
+    },
+    {
+      "signal_id": "sig-35cbd1b67ab27037e221",
+      "threat_id": "CVE-2023-22515",
+      "signal_type": "new_kev",
+      "old_value": false,
+      "new_value": true,
+      "detected_at": "2026-10-31T18:35:46.302430Z",
+      "source": "kev",
+      "details": {
+        "simulated": true,
+        "replay": true,
+        "purpose": "seed",
+        "note": "Demo replay (seed) of a fact already in this record; not a new feed change.",
+        "cve_id": "CVE-2023-22515",
+        "title": "CVE-2023-22515: Atlassian Confluence Data Center and Server Broken Access Control Vulnerability",
+        "kev_date_added": "2023-10-05"
+      },
+      "is_simulated": true,
+      "threat_title": "CVE-2023-22515: Atlassian Confluence Data Center and Server Broken Access Control Vulnerability",
+      "severity": "critical",
+      "kev_listed": true
+    },
+    {
+      "signal_id": "sig-4d82f095bae1c0f571a7",
+      "threat_id": "CVE-2024-4577",
+      "signal_type": "new_public_exploit",
+      "old_value": null,
+      "new_value": {
+        "public_exploit": true
+      },
+      "detected_at": "2026-10-31T18:35:46.302430Z",
+      "source": "github_poc",
+      "details": {
+        "simulated": true,
+        "replay": true,
+        "purpose": "seed",
+        "note": "Demo replay (seed) of a fact already in this record; not a new feed change."
+      },
+      "is_simulated": true,
+      "threat_title": "CVE-2024-4577: PHP-CGI OS Command Injection Vulnerability",
+      "severity": "critical",
+      "kev_listed": true
+    },
+    {
+      "signal_id": "sig-e3a23bb5516c02571f2f",
+      "threat_id": "CVE-2023-22515",
+      "signal_type": "new_public_exploit",
+      "old_value": null,
+      "new_value": {
+        "public_exploit": true
+      },
+      "detected_at": "2026-10-31T18:35:46.302430Z",
+      "source": "github_poc",
+      "details": {
+        "simulated": true,
+        "replay": true,
+        "purpose": "seed",
+        "note": "Demo replay (seed) of a fact already in this record; not a new feed change."
+      },
+      "is_simulated": true,
+      "threat_title": "CVE-2023-22515: Atlassian Confluence Data Center and Server Broken Access Control Vulnerability",
+      "severity": "critical",
+      "kev_listed": true
+    },
+    {
+      "signal_id": "sig-4e13deb7a314abdbcaed",
+      "threat_id": "DEMO-VULN-001",
+      "signal_type": "new_critical_cve",
+      "old_value": null,
+      "new_value": 9.8,
+      "detected_at": "2026-10-31T18:35:46.302430Z",
+      "source": "nvd",
+      "details": {
+        "simulated": true,
+        "replay": true,
+        "purpose": "seed",
+        "note": "Demo replay (seed) of a fact already in this record; not a new feed change.",
+        "cvss_version": "3.1"
+      },
+      "is_simulated": true,
+      "threat_title": "[SIMULATED] GridView HMI unauthenticated remote command execution",
+      "severity": "critical",
+      "kev_listed": false
+    }
+  ],
+  "skipped": [],
+  "note": "Simulated replays of real record facts (is_simulated=true). No alerts were created; use POST /api/demo/inject-cve for the live scenario."
+}

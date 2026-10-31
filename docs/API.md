@@ -198,13 +198,18 @@ Demo trigger for Scenario A ("a new advisory just arrived"). Body: `{"fixture_id
   **`data/threats_synthetic.json`** (`DEMO-VULN-001..003`). Anything else → **400**, with the allowed list. Missing body → 422.
 - Upserts the fixture record (no duplicate) with `retrieved_at = now`, so it tops `GET /api/threats`.
   Real CVEs keep `is_simulated: false` and `source: "nvd+kev"`. Synthetic ones are always `is_simulated: true`.
-- Then calls `app/hooks.py:on_new_threat(threat_id)`. It's a no-op for now; Member 3 adds matching, scoring and alerts there.
+- Records **one labelled early-warning signal** (`is_simulated: true`, `details.replay: true`), so the inject shows on
+  *Early warnings*: `new_kev` if the record is KEV-listed (all three demo CVEs), else `new_critical_cve` if CVSS ≥ 9.0
+  (`DEMO-VULN-001`). If neither fact is true (`DEMO-VULN-002/003`) no signal is invented: `signal: null` + `signal_note`.
+  The id is deterministic, so injecting again refreshes `detected_at` instead of adding a second signal.
+- Then calls `app/hooks.py:on_new_threat(threat_id, "demo_inject")`: Member 3 matches, scores and creates alerts.
 
 Samples: `samples/inject_cve.json`, `inject_cve_synthetic.json`, `inject_cve_rejected.json`
 ```json
-{"injected": ThreatItem, "fixture_file": "data/demo_cves.json", "hook_called": "on_new_threat"}
+{"injected": ThreatItem, "fixture_file": "data/demo_cves.json", "hook_called": "on_new_threat",
+ "signal": SignalOut | null, "signal_note": null | "why no signal"}
 ```
-To reset the demo, run `python -m ingestion.loader`. That restores the cached versions and timestamps.
+To reset the demo: `POST /api/demo/reset` (feed data + simulated signals) and `POST /api/demo/reset-alerts`.
 
 ---
 
@@ -224,7 +229,8 @@ Thresholds are in one config (`changes.SIGNALS`), echoed by `/api/signals/summar
 - **Idempotent:** `signal_id` = a hash of (threat_id, type, old, new). Re-running an ingest, or the same change happening
   again, never creates a second signal.
 - **Baseline:** the very first load into an empty DB is a baseline with no signals (no flood of "new" KEV entries).
-- Demo signals (`simulate-signal`) are `is_simulated: true` with `details.simulated: true`.
+- Demo signals (`simulate-signal`, `inject-cve`, `seed`) are `is_simulated: true` with `details.simulated: true`.
+  Inject/seed signals also carry `details.replay: true`: they replay a fact the record already has.
 
 ### `GET /api/signals?since=&type=&simulated=&limit=50`
 Newest first. **The frontend polls this:** keep the response's `newest_detected_at`, then call
@@ -254,6 +260,18 @@ fixture → 400; an unknown `signal_type` → 422). It creates a realistic signa
   `kev_listed` → true, `public_exploit` → true, or CVSS → 9.1 for `new_critical_cve`.
 - Every press creates a new signal (demo signals are salted with their time).
 Samples: `samples/simulate_signal.json`, `samples/simulate_signal_real.json`.
+
+### `POST /api/demo/seed` (prepare the demo)
+Fills *Early warnings* on a cold start. **DEMO_MODE only** (403 otherwise). Idempotent: the same 5 `signal_id`s
+every call (re-running refreshes `detected_at`). Re-seed after `/api/demo/reset`, which deletes simulated signals.
+Every signal replays a fact the record really has, and nothing is invented (no made-up EPSS jump):
+`new_kev` + `new_public_exploit` on CVE-2024-4577 and CVE-2023-22515, `new_critical_cve` on DEMO-VULN-001.
+It does **not** fire `on_new_threat`, so no alerts are created and incidents still start empty.
+CVE-2024-21762 is left out on purpose: the live inject provides it. Offline equivalent: `scripts/seed_demo.py`.
+Sample: `samples/demo_seed.json`
+```json
+{"seeded": [SignalOut, ...], "skipped": [], "note": "Simulated replays of real record facts ..."}
+```
 
 ### `POST /api/demo/reset`
 Restores Member 2's data to the cached baseline. It deletes every simulated signal and reloads threats and IOCs from
@@ -289,7 +307,8 @@ def on_new_threat(threat_id: str, signal_type: str) -> None: ...
 - **When it fires:** once per **new** signal, **after** the signal and the threat are committed, so you can read both
   from the DB. A replayed change doesn't fire it again, because the signal already exists. It never fires on the
   baseline load or on `/api/demo/reset`.
-- **`signal_type`:** one of the five types above, or `demo_inject` (from `POST /api/demo/inject-cve`; no signal row).
+- **`signal_type`:** one of the five types above, or `demo_inject` (from `POST /api/demo/inject-cve`, which also stores one labelled signal but fires the hook
+  only once, as `demo_inject`).
 - **`threat_id`:** a row in `threats`. For `new_certin_advisory` it's the advisory, and its CVEs are in `threats.cve_ids`
   and `signal.details.cve_ids`. Match each CVE's own record.
 - **To read the signal:** `SELECT * FROM threat_signals WHERE threat_id=? AND signal_type=? ORDER BY detected_at DESC LIMIT 1`.

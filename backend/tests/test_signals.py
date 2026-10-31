@@ -197,10 +197,10 @@ def test_reset_restores_counts(client):
     base = counts()
     for typ in ("new_kev", "new_critical_cve", "new_public_exploit"):
         assert client.post("/api/demo/simulate-signal", json={"fixture_id": "DEMO-VULN-003", "signal_type": typ}).status_code == 200
-    client.post("/api/demo/inject-cve", json={"fixture_id": "CVE-2024-21762"})
-    assert counts()["threat_signals"] == base["threat_signals"] + 3
+    client.post("/api/demo/inject-cve", json={"fixture_id": "CVE-2024-21762"})  # + its own labelled demo signal
+    assert counts()["threat_signals"] == base["threat_signals"] + 4
     r = client.post("/api/demo/reset").json()
-    assert r["deleted_simulated_signals"] == 3 and r["after"] == base
+    assert r["deleted_simulated_signals"] == 4 and r["after"] == base
     t = client.get("/api/threats/DEMO-VULN-003").json()
     assert t["cvss"] is None and t["kev_listed"] is False and t["public_exploit"] is None  # fixture values back
     assert client.get("/api/signals", params={"simulated": "true"}).json()["count"] == 0
@@ -212,3 +212,49 @@ def test_signals_api(client):
     assert client.get("/api/signals", params={"since": future}).json()["count"] == 0
     summ = client.get("/api/signals/summary").json()
     assert set(summ["last_24h"]) == set(changes.TYPES) and summ["thresholds"]["epss_jump_abs"] == 0.2
+
+
+# ---------- inject records a signal; seed prepares the demo ----------
+def test_inject_records_one_labelled_signal(client, hook_calls):
+    client.post("/api/demo/reset")
+    r = client.post("/api/demo/inject-cve", json={"fixture_id": "CVE-2024-21762"}).json()
+    s = r["signal"]
+    assert s["signal_type"] == "new_kev" and s["is_simulated"] and s["details"]["replay"] and s["details"]["simulated"]
+    assert hook_calls == [("CVE-2024-21762", "demo_inject")]  # the matcher runs once, not once more for the signal
+    feed = client.get("/api/signals").json()["items"]
+    assert [x["signal_id"] for x in feed if x["threat_id"] == "CVE-2024-21762"] == [s["signal_id"]]
+    again = client.post("/api/demo/inject-cve", json={"fixture_id": "CVE-2024-21762"}).json()["signal"]
+    assert again["signal_id"] == s["signal_id"] and again["detected_at"] >= s["detected_at"]  # refreshed, not duplicated
+    assert client.get("/api/signals/summary").json()["last_24h"]["new_kev"] == 1
+
+
+@pytest.mark.parametrize("fid,typ", [("DEMO-VULN-001", "new_critical_cve"), ("DEMO-VULN-002", None), ("DEMO-VULN-003", None)])
+def test_inject_signal_type_is_honest(client, fid, typ):
+    client.post("/api/demo/reset")
+    r = client.post("/api/demo/inject-cve", json={"fixture_id": fid}).json()
+    assert (r["signal"] or {}).get("signal_type") == typ
+    assert (r["signal_note"] is None) == (typ is not None)  # no honest type -> no invented signal, and it says why
+
+
+def test_seed_is_idempotent_reseedable_and_creates_no_alerts(client, hook_calls):
+    client.post("/api/demo/reset")
+    client.post("/api/demo/reset-alerts")
+    first = client.post("/api/demo/seed").json()
+    assert {(s["threat_id"], s["signal_type"]) for s in first["seeded"]} == {
+        ("CVE-2024-4577", "new_kev"), ("CVE-2023-22515", "new_kev"), ("CVE-2024-4577", "new_public_exploit"),
+        ("CVE-2023-22515", "new_public_exploit"), ("DEMO-VULN-001", "new_critical_cve")}
+    assert all(s["is_simulated"] and s["details"]["replay"] for s in first["seeded"]) and not first["skipped"]
+    n = counts()["threat_signals"]
+    second = client.post("/api/demo/seed").json()
+    assert counts()["threat_signals"] == n
+    assert sorted(s["signal_id"] for s in second["seeded"]) == sorted(s["signal_id"] for s in first["seeded"])
+    summary = client.get("/api/signals/summary").json()["last_24h"]
+    assert summary["new_kev"] == 2 and summary["new_public_exploit"] == 2 and summary["new_critical_cve"] == 1
+    assert hook_calls == [] and client.get("/api/alerts").json()["total"] == 0  # incidents still start clean
+    assert client.post("/api/demo/reset").json()["deleted_simulated_signals"] == 5
+    assert len(client.post("/api/demo/seed").json()["seeded"]) == 5  # re-seedable after reset
+
+
+def test_seed_is_demo_mode_only(client, monkeypatch):
+    monkeypatch.setenv("DEMO_MODE", "false")
+    assert client.post("/api/demo/seed").status_code == 403

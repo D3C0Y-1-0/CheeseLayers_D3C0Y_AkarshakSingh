@@ -1,25 +1,25 @@
 {
-    "last_24h": {
-        "new_kev": 1,
-        "epss_jump": 2,
-        "new_public_exploit": 0,
-        "new_certin_advisory": 1,
-        "new_critical_cve": 0
-    },
-    "last_7d": {
-        "new_kev": 1,
-        "epss_jump": 2,
-        "new_public_exploit": 0,
-        "new_certin_advisory": 1,
-        "new_critical_cve": 0
-    },
-    "total": 4,
-    "simulated_last_24h": 4,
-    "latest_detected_at": "2026-10-31T13:08:42.704063Z",
-    "thresholds": {
-        "epss_jump_abs": 0.2,
-        "epss_cross": 0.5,
-        "critical_cvss": 9.0,
-        "critical_max_age_days": 14
-    }
+  "last_24h": {
+    "new_kev": 3,
+    "epss_jump": 0,
+    "new_public_exploit": 2,
+    "new_certin_advisory": 0,
+    "new_critical_cve": 1
+  },
+  "last_7d": {
+    "new_kev": 3,
+    "epss_jump": 0,
+    "new_public_exploit": 2,
+    "new_certin_advisory": 0,
+    "new_critical_cve": 1
+  },
+  "total": 6,
+  "simulated_last_24h": 6,
+  "latest_detected_at": "2026-10-31T18:35:46.337034Z",
+  "thresholds": {
+    "epss_jump_abs": 0.2,
+    "epss_cross": 0.5,
+    "critical_cvss": 9.0,
+    "critical_max_age_days": 14
+  }
 }

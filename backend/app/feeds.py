@@ -89,6 +89,8 @@ class InjectResult(BaseModel):
     injected: ThreatItem
     fixture_file: str
     hook_called: str
+    signal: "SignalOut | None" = None  # the labelled demo early-warning signal (is_simulated=true); null = no honest type
+    signal_note: str | None = None  # why signal is null, when it is
 
 
 # ---------- helpers ----------
@@ -226,8 +228,17 @@ def inject_cve(body: InjectRequest, db: Session = Depends(get_db)):
     t.retrieved_at = datetime.now(timezone.utc)
     upsert_threats(db, [t])
     db.commit()
+    # One labelled early-warning signal, so "inject" shows up on the Early warnings page like a real arrival.
+    # The hook below already runs the matcher, so the signal itself doesn't fire it again.
+    row = db.get(Threat, t.threat_id)
+    typ = next((x for x in ("new_kev", "new_critical_cve") if _replay(row, x, t.retrieved_at, "inject")), None)
+    sig = _record_replay(db, row, typ, t.retrieved_at, "inject") if typ else None
+    db.commit()
     hooks.on_new_threat(t.threat_id, "demo_inject")
-    return InjectResult(injected=t, fixture_file=f.relative_to(f.parents[1]).as_posix(), hook_called="on_new_threat")
+    return InjectResult(injected=t, fixture_file=f.relative_to(f.parents[1]).as_posix(), hook_called="on_new_threat",
+                        signal=_signal_out(db.get(ThreatSignal, sig["signal_id"]), row) if sig else None,
+                        signal_note=None if sig else "no signal type honestly applies: not KEV-listed and CVSS below "
+                                                     "the critical threshold (or unknown)")
 
 
 def _fixture(fixture_id: str) -> tuple[ThreatItem, "Path"]:
@@ -393,6 +404,84 @@ def simulate_signal(body: SimulateRequest, db: Session = Depends(get_db)):
     db.commit()
     changes.fire_hooks([sig])
     return _signal_out(db.get(ThreatSignal, sig["signal_id"]), db.get(Threat, row.threat_id))
+
+
+InjectResult.model_rebuild()
+
+# Demo signals are REPLAYS of facts the fixture record really has (it is KEV-listed, it has a public exploit, its
+# CVSS is critical), stamped is_simulated=true with details.replay=true. They never invent a value (no made-up
+# EPSS jump). Deterministic signal_id per (threat, type, purpose): re-running only refreshes detected_at.
+SEED = [("CVE-2024-4577", "new_kev"), ("CVE-2023-22515", "new_kev"), ("CVE-2024-4577", "new_public_exploit"),
+        ("CVE-2023-22515", "new_public_exploit"), ("DEMO-VULN-001", "new_critical_cve")]
+
+
+def _replay(row: Threat | None, typ: str, now: datetime, purpose: str) -> dict | None:
+    """The demo signal for a fact this record really has, or None if the fact isn't true for it."""
+    from ingestion import changes
+    if row is None:
+        return None
+    details = {"simulated": True, "replay": True, "purpose": purpose,
+               "note": f"Demo replay ({purpose}) of a fact already in this record; not a new feed change."}
+    if typ == "new_kev" and row.kev_listed:
+        old, new = False, True
+        details |= {"cve_id": row.cve_id, "title": row.title,
+                    "kev_date_added": str(row.kev_date_added) if row.kev_date_added else None}
+    elif typ == "new_public_exploit" and row.public_exploit:
+        old, new = None, {"public_exploit": True}
+    elif typ == "new_critical_cve" and row.cvss is not None and row.cvss >= changes.SIGNALS["critical_cvss"]:
+        old, new = None, row.cvss
+        details |= {"cvss_version": row.cvss_version}
+    else:
+        return None
+    return changes.make(row.threat_id, typ, old, new, SOURCE_OF[typ], details, now, simulated=True,
+                        salt=f"demo-{purpose}")
+
+
+def _record_replay(db: Session, row: Threat, typ: str, now: datetime, purpose: str) -> dict | None:
+    from ingestion import changes
+    sig = _replay(row, typ, now, purpose)
+    if sig:
+        db.execute(delete(ThreatSignal).where(ThreatSignal.signal_id == sig["signal_id"]))  # refresh, never duplicate
+        changes.emit(db, [sig])
+    return sig
+
+
+class SeedResult(BaseModel):
+    seeded: list[SignalOut]
+    skipped: list[str]
+    note: str
+
+
+def seed_demo(db: Session) -> SeedResult:
+    """Idempotent: same signal_ids every run. Does NOT run the matcher, so incidents start empty."""
+    from ingestion.loader import upsert_threats
+    now, out, skipped = datetime.now(timezone.utc), [], []
+    for tid, typ in SEED:
+        row = db.get(Threat, tid)
+        if row is None:  # fixture not loaded yet
+            upsert_threats(db, [_fixture(tid)[0]])
+            db.flush()
+            row = db.get(Threat, tid)
+        sig = _record_replay(db, row, typ, now, "seed")
+        if sig:
+            out.append(sig["signal_id"])
+        else:
+            skipped.append(f"{tid} {typ}: fact not true for this record")
+    db.commit()
+    rows = [db.get(ThreatSignal, s) for s in out]
+    return SeedResult(seeded=[_signal_out(r, db.get(Threat, r.threat_id)) for r in rows], skipped=skipped,
+                      note="Simulated replays of real record facts (is_simulated=true). No alerts were created; "
+                           "use POST /api/demo/inject-cve for the live scenario.")
+
+
+@router.post("/api/demo/seed", response_model=SeedResult, tags=["demo"], responses={403: {"description": "demo mode only"}})
+def demo_seed(db: Session = Depends(get_db)):
+    """Prepare the demo: fill the Early warnings feed with labelled replay signals. Safe to call repeatedly, and
+    again after POST /api/demo/reset (which deletes simulated signals)."""
+    from ai.llm import demo_mode
+    if not demo_mode():
+        raise HTTPException(403, "demo seeding is only available in DEMO_MODE")
+    return seed_demo(db)
 
 
 class ResetResult(BaseModel):

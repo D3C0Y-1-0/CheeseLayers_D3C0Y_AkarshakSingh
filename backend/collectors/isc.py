@@ -14,7 +14,8 @@ the User-Agent and polite pacing; DEMO_MODE never calls it (cache only).
 import json
 import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
-from datetime import date, datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone
+from ipaddress import ip_address
 
 from .common import CACHE, RAW, get, log, raw_file, ref, save_cache, save_raw
 
@@ -87,7 +88,7 @@ def fetch() -> dict:
         save_raw(SOURCE, text, f"firewall_{fw_day}_{page}")
         firewall += _firewall(text)
     reputation = {}
-    for ip in interesting_ips(web, firewall):
+    for ip in [i for i in interesting_ips(web, firewall) if _public(i)]:
         try:
             data = _json(f"ip/{ip}")
             save_raw(SOURCE, data, f"ip_{ip}")
@@ -119,9 +120,18 @@ def _rep(r: dict) -> dict:
             "threat_feeds": sorted(feeds) if isinstance(feeds, dict) else []}
 
 
+def _public(ip: str | None) -> bool:
+    try:
+        return bool(ip) and ip_address(ip).is_global
+    except ValueError:
+        return False
+
+
 def parse(web: list[dict], firewall: list[dict], reputation: dict) -> dict:
     web = [{"date": r.get("date"), "url": r.get("url") or "", "user_agent": r.get("user_agent") or "",
-            "source": r.get("source")} for r in web if r.get("source") and r.get("url")]
+            "source": r.get("source")} for r in web if _public(r.get("source")) and r.get("url")]
+    firewall = [r for r in firewall if _public(r["source"])]
+    reputation = {ip: r for ip, r in reputation.items() if _public(ip)}
     return {
         "source": SOURCE, "retrieved_at": datetime.now(timezone.utc).isoformat(),
         "licence": "CC BY-NC-SA 4.0, SANS Internet Storm Center (isc.sans.edu)",
@@ -141,4 +151,4 @@ if __name__ == "__main__":
     path = save_cache(SOURCE, data)
     print(f"{len(data['web_requests'])} web requests, {len(data['firewall'])} firewall records, "
           f"{len(data['reputation'])} attacker reputations -> {ref(path)}  (days: "
-          f"{sorted({r['date'] for r in data['web_requests']})}; firewall day {date.today() - timedelta(days=1)})")
+          f"{sorted({r['date'] for r in data['web_requests']})}; firewall {sorted({r['date'] for r in data['firewall']})})")

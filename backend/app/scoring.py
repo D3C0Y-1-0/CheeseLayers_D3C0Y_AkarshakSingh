@@ -46,6 +46,10 @@ CONFIG: dict[str, Any] = {
             "command_injection": 0.85,  # attempt to run OS commands on the server
             "credential_compromise": 0.95,  # a guessed password worked
             "data_exposure": 0.95,  # an injected query returned data
+            "recon_probe": 0.35,  # wordlist scanning for secrets / admin pages
+            "login_hammering": 0.5,  # many connections to SSH / RDP / Telnet / VNC
+            "exploit_attempt": 0.7,  # a published exploit for a specific CVE
+            "exploit_on_vulnerable_asset": 0.9,  # ...for a CVE our matcher says this asset is vulnerable to
         },
         "base_weight": 0.75,  # score from the single worst signal
         "diversity_bonus": 0.2,  # per extra DIFFERENT signal type: independent signals corroborate each other

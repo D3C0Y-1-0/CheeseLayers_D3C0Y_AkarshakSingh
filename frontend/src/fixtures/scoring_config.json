@@ -28,7 +28,11 @@
       "sql_injection": 0.75,
       "command_injection": 0.85,
       "credential_compromise": 0.95,
-      "data_exposure": 0.95
+      "data_exposure": 0.95,
+      "recon_probe": 0.35,
+      "login_hammering": 0.5,
+      "exploit_attempt": 0.7,
+      "exploit_on_vulnerable_asset": 0.9
     },
     "base_weight": 0.75,
     "diversity_bonus": 0.2,

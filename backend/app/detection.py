@@ -9,7 +9,7 @@ Two kinds of rules, both listed in RULES with their exact logic so the dashboard
 """
 import re
 import statistics
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from ipaddress import ip_address
@@ -146,7 +146,7 @@ SIGNATURES = [
 KNOWN_EXPLOITS = [(re.compile(p, re.I), cve, name) for p, cve, name in [
     (r"eval-stdin\.php", "CVE-2017-9841", "PHPUnit eval-stdin remote code execution"),
     (r"/remote/fgt_lang", "CVE-2018-13379", "FortiOS SSL-VPN path traversal (credential theft)"),
-    (r"%ad-d|%ad%2dd", "CVE-2024-4577", "PHP-CGI argument injection (soft hyphen)"),
+    (r"%ad[a-z]", "CVE-2024-4577", "PHP-CGI argument injection (soft hyphen %AD instead of '-')"),
     (r"allow_url_include", "CVE-2012-1823", "PHP-CGI query-string argument injection"),
     (r"%%32%65", "CVE-2021-42013", "Apache HTTP Server path traversal / RCE"),
     (r"/cgi-bin/(?:\.%2e|%2e%2e)", "CVE-2021-41773", "Apache HTTP Server path traversal / RCE"),
@@ -290,7 +290,7 @@ def _densest_window(records: list[LogRecord], key) -> tuple[list[LogRecord], int
     """Largest set of records inside any `window_seconds` window, scored by len(set(key(r))). Untimed = one window."""
     if not records:
         return [], 0
-    if any(r.at is None for r in records):
+    if any(r.at is None for r in records) or len({r.at for r in records}) == 1:  # no usable time of day
         return records, len({key(r) for r in records})
     rs = sorted(records, key=lambda r: r.at)
     best, best_n, j = rs[:1], 1, 0
@@ -301,6 +301,33 @@ def _densest_window(records: list[LogRecord], key) -> tuple[list[LogRecord], int
         if n > best_n:
             best, best_n = rs[j:i + 1], n
     return best, best_n
+
+
+def _span(window: list[LogRecord]) -> str:
+    """How long the window lasted, honestly: date-only sources (e.g. SANS ISC) have no time of day."""
+    if not window or any(r.at is None for r in window) or len({r.at for r in window}) == 1:
+        day = window[0].at.date().isoformat() if window and window[0].at else None
+        return f"on {day} (source gives dates, not times)" if day else "(no timestamps)"
+    secs = (window[-1].at - window[0].at).total_seconds()
+    return f"within {max(secs, 1):.0f}s"
+
+
+def line_matches(r: LogRecord) -> list[dict]:
+    """Every highlightable match on a web request: attack signatures, a known-CVE exploit path, a recon path."""
+    if r.source not in ("web", "raw"):
+        return []
+    text = r.fields["decoded"]
+    out = signature_hits(text)
+    for pat, cve, name in KNOWN_EXPLOITS:
+        if pat.search(r.fields.get("path", r.raw)) or pat.search(text):
+            m = pat.search(text)
+            out.append({"signature": cve, "family": "known_exploit", "technique": f"{cve}: {name}", "strong": True,
+                        "start": m.start() if m else 0, "end": m.end() if m else 0, "text": m.group(0) if m else ""})
+            break
+    if m := RECON_PATHS.search(text):
+        out.append({"signature": "RECON", "family": "recon", "technique": "Well-known secret / admin path",
+                    "strong": False, "start": m.start(), "end": m.end(), "text": m.group(0)})
+    return out
 
 
 def _is_public(ip: str | None) -> bool:
@@ -334,7 +361,7 @@ def detect(records: list[LogRecord]) -> tuple[list[Detection], list[dict]]:
                 "AUTH-BF-001", RULE_BY_ID["AUTH-BF-001"]["name"], kind, LABELS[kind], "brute_force",
                 [mitre("T1110.003" if spraying else "T1110.001")], "attempt", "high" if n >= 3 * CONFIG["brute_force_failures"] else "medium",
                 src, window[0].fields.get("host"), _iso(window[0]), _iso(window[-1]), len(fails),
-                f"{n} failed logins from {src} within {CONFIG['window_seconds']}s (threshold {CONFIG['brute_force_failures']}) "
+                f"{n} failed logins from {src} {_span(window)} (threshold {CONFIG['brute_force_failures']}) "
                 f"against {len(users)} username(s): {', '.join(users[:6])}" + ("" if len(users) <= 6 else ", ..."),
                 _evidence(window), indicators={"src_ips": [src], "usernames": users}))
         oks = [r for r in rs if r.source == "auth" and r.fields["result"] == "success"]
@@ -363,12 +390,11 @@ def detect(records: list[LogRecord]) -> tuple[list[Detection], list[dict]]:
         if n >= CONFIG["port_scan_distinct_ports"]:
             ports = sorted({r.fields["dpt"] for r in window})
             open_ports = sorted({r.fields["dpt"] for r in window if r.fields["action"] in ("ACCEPT", "ALLOW")})
-            secs = (window[-1].at - window[0].at).total_seconds() if window[0].at and window[-1].at else None
             detections.append(Detection(
                 "NET-SCAN-001", RULE_BY_ID["NET-SCAN-001"]["name"], "port_scan", LABELS["port_scan"], "port_scan",
                 [mitre("T1046")], "recon", "high" if n >= 25 else "medium", src, window[0].fields["dst"],
                 _iso(window[0]), _iso(window[-1]), len(fw),
-                f"{src} probed {n} different ports" + (f" in {secs:.0f}s" if secs is not None else "") +
+                f"{src} probed {n} different ports {_span(window)}" +
                 f" (threshold {CONFIG['port_scan_distinct_ports']}); open: {', '.join(map(str, open_ports)) or 'none'}",
                 _evidence(window), indicators={"src_ips": [src], "ports_probed": ports, "open_ports": open_ports}))
     checks.append({"rule_id": "NET-SCAN-001", "fired": any(d.rule_id == "NET-SCAN-001" for d in detections),
@@ -376,17 +402,61 @@ def detect(records: list[LogRecord]) -> tuple[list[Detection], list[dict]]:
                                + (f" ({worst_ports[0]})" if worst_ports[0] else ""),
                    "threshold": f">= {CONFIG['port_scan_distinct_ports']}"})
 
+    # Login-port hammering (firewall logs): many connections to SSH / Telnet / RDP / VNC from one source
+    worst_login = (None, 0)
+    for src, rs in by_src.items():
+        tries = [r for r in rs if r.source == "firewall" and r.fields["dpt"] in CONFIG["login_ports"]]
+        window, n = _densest_window(tries, key=lambda r: r.line_no)
+        if n > worst_login[1]:
+            worst_login = (src, n)
+        if n >= CONFIG["login_hammer_min"]:
+            per_port = Counter(r.fields["dpt"] for r in window)
+            detections.append(Detection(
+                "NET-LOGIN-001", RULE_BY_ID["NET-LOGIN-001"]["name"], "login_hammering", LABELS["login_hammering"],
+                "login_hammering", [mitre("T1110")], "attempt", "high" if n >= 3 * CONFIG["login_hammer_min"] else "medium",
+                src, window[0].fields["dst"], _iso(window[0]), _iso(window[-1]), len(tries),
+                f"{n} connection attempts from {src} to login ports "
+                f"({', '.join(f'{p}: {c}' for p, c in per_port.most_common())}) {_span(window)} "
+                f"(threshold {CONFIG['login_hammer_min']})", _evidence(window),
+                indicators={"src_ips": [src], "login_ports": dict(per_port)}))
+    checks.append({"rule_id": "NET-LOGIN-001", "fired": any(d.rule_id == "NET-LOGIN-001" for d in detections),
+                   "observed": f"most login-port connections from one source: {worst_login[1]}"
+                               + (f" ({worst_login[0]})" if worst_login[0] else ""),
+                   "threshold": f">= {CONFIG['login_hammer_min']}"})
+
     # Web signatures, grouped per source IP and attack family
     injected_ips: set[str] = set()
     web_rules = {"sql_injection": "WEB-SQLI-001", "command_injection": "WEB-CMDI-001",
                  "path_traversal": "WEB-TRAV-001", "xss": "WEB-XSS-001"}
-    seen_web = 0
+    seen_web, worst_recon = 0, 0
     for src, rs in by_src.items():
         web = [r for r in rs if r.source in ("web", "raw")]
         seen_web += len(web)
         who = src or "pasted input"
         hits = {r.line_no: signature_hits(r.fields["decoded"]) for r in web}
         tool = next((r.fields["user_agent"] for r in web if ATTACK_TOOLS.search(r.fields["user_agent"])), None)
+        marks = {r.line_no: line_matches(r) for r in web}
+        ex = [r for r in web if any(h["family"] == "known_exploit" for h in marks[r.line_no])]
+        if ex:
+            named = {h["signature"]: h["technique"] for r in ex for h in marks[r.line_no] if h["family"] == "known_exploit"}
+            detections.append(Detection(
+                "WEB-EXPLOIT-001", RULE_BY_ID["WEB-EXPLOIT-001"]["name"], "known_exploit", LABELS["known_exploit"],
+                "exploit_attempt", [mitre("T1190")], "attempt", "high", src, None, _iso(ex[0]), _iso(ex[-1]), len(ex),
+                f"{len(ex)} request(s) from {who} carry published exploits for " + "; ".join(named.values()),
+                _evidence(ex, {r.line_no: [h for h in marks[r.line_no] if h["family"] == "known_exploit"] for r in ex}),
+                list(named.values()), {"src_ips": [src] if src else [], "cve_ids": list(named)}))
+        rc = [r for r in web if any(h["family"] == "recon" for h in marks[r.line_no])]
+        worst_recon = max(worst_recon, len(rc))
+        if len(rc) >= CONFIG["recon_min_requests"]:
+            paths = sorted({h["text"] for r in rc for h in marks[r.line_no] if h["family"] == "recon"})
+            detections.append(Detection(
+                "WEB-RECON-001", RULE_BY_ID["WEB-RECON-001"]["name"], "recon_scanning", LABELS["recon_scanning"],
+                "recon_probe", [mitre("T1595.003")], "recon", "high" if len(rc) >= 15 else "medium", src, None,
+                _iso(rc[0]), _iso(rc[-1]), len(rc),
+                f"{len(rc)} requests from {who} for well-known secret/admin paths (threshold "
+                f"{CONFIG['recon_min_requests']}): {', '.join(paths[:6])}",
+                _evidence(rc, {r.line_no: [h for h in marks[r.line_no] if h["family"] == "recon"] for r in rc}),
+                indicators={"src_ips": [src] if src else []}))
         for family, rule_id in web_rules.items():
             matched = [r for r in web if any(h["family"] == family for h in hits[r.line_no])]
             if not matched:
@@ -425,6 +495,12 @@ def detect(records: list[LogRecord]) -> tuple[list[Detection], list[dict]]:
                         len(big), f"{len(big)} injected request(s) returned HTTP 200 with up to {top.fields['bytes']:,} bytes "
                                   f"vs a normal page of ~{base:,.0f} bytes: rows were very likely returned to the attacker",
                         _evidence(big, fam_hits), indicators={"src_ips": [src]}))
+    checks.append({"rule_id": "WEB-EXPLOIT-001", "fired": any(d.rule_id == "WEB-EXPLOIT-001" for d in detections),
+                   "observed": f"{seen_web} web request(s) checked against {len(KNOWN_EXPLOITS)} known-CVE exploit paths",
+                   "threshold": "any match"})
+    checks.append({"rule_id": "WEB-RECON-001", "fired": any(d.rule_id == "WEB-RECON-001" for d in detections),
+                   "observed": f"most secret/admin-path requests from one source: {worst_recon}",
+                   "threshold": f">= {CONFIG['recon_min_requests']}"})
     for family, rule_id in web_rules.items():
         checks.append({"rule_id": rule_id, "fired": any(d.rule_id == rule_id for d in detections),
                        "observed": f"{seen_web} web request(s) checked against {sum(s.family == family for s in SIGNATURES)} "
@@ -513,7 +589,7 @@ def analyze_lines(lines: list[str]) -> dict:
     return {
         "lines": [{"line_no": r.line_no, "raw": r.raw, "source": r.source, "at": _iso(r), "flagged_by": flagged.get(r.line_no),
                    "decoded": r.fields.get("decoded"),  # match offsets refer to this URL-decoded path
-                   "matches": signature_hits(r.fields["decoded"]) if r.source in ("web", "raw") else []} for r in records],
+                   "matches": line_matches(r)} for r in records],
         "parsed": {s: sum(r.source == s for r in records) for s in ("web", "auth", "firewall", "process", "network", "raw")},
         "detections": [asdict(d) for d in detections],
         "checks": checks,

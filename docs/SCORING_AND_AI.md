@@ -64,7 +64,7 @@ vulnerability_priority_score = 100 × ( 0.25·severity + 0.3·exploitation + 0.2
 behavioural_suspicion_score = 100 × min(1, 0.75·worst_signal × confidence_multiplier + 0.2·(distinct signal types − 1))
   confidence_multiplier (from the detector): low 0.6 · medium 0.8 · high 1.0
   × 0.3 only if EVERY signal is http_anomaly / auth_anomaly inside an approved maintenance window
-  signal severities: credential_compromise 0.95, data_exposure 0.95, command_injection 0.85, unexpected_process 0.8, sql_injection 0.75, outbound_connection 0.7, brute_force 0.6, http_anomaly 0.5, auth_anomaly 0.5, port_scan 0.45, inbound_ids_alert 0.4
+  signal severities: credential_compromise 0.95, data_exposure 0.95, exploit_on_vulnerable_asset 0.9, command_injection 0.85, unexpected_process 0.8, sql_injection 0.75, outbound_connection 0.7, exploit_attempt 0.7, brute_force 0.6, http_anomaly 0.5, auth_anomaly 0.5, login_hammering 0.5, port_scan 0.45, inbound_ids_alert 0.4, recon_probe 0.35
 
 evidence_confidence_score = provenance + match certainty + corroboration − missing-field penalty
   provenance: kev 30 · verified 25 · telemetry 20 · simulated 15 · other 10

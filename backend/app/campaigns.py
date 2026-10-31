@@ -5,10 +5,14 @@ caches give the same answer every day) plus every KEV entry, OTX pulse, CERT-In 
 Plain NVD CVEs only count if they show activity (KEV / public exploit / EPSS >= nvd_min_epss) or are named by
 another in-scope item: thousands of unexploited CVEs with boilerplate text are a vulnerability class, not a campaign.
 
-Two threats are LINKED when they share: a CVE · an IOC value · an ATT&CK technique · a vendor+product · or their
-title+description TF-IDF cosine similarity >= tfidf_threshold. A shared key held by more than max_key_members
-threats (e.g. T1190, "microsoft windows") is too generic to mean "same campaign" and is skipped (reported in
-`meta.skipped_generic_keys`). Campaigns = connected components with >= min_size members. Deterministic.
+Two threats are LINKED by strong evidence (a shared CVE or IOC value) or, only when BOTH were published inside the
+window, by weak evidence (a shared ATT&CK technique, vendor+product, or title+description TF-IDF cosine >=
+tfidf_threshold). Weak evidence across years just chains a vendor's whole history (monthly patch days, templated KEV
+text), which is not a campaign. Linux distributions and other redistributors list every package they ship, so their
+"products" are never evidence. A shared key held by more than max_key_members threats (e.g. T1190) is too generic and
+is skipped (reported in `meta.skipped_generic_keys`). Campaigns = connected components with >= min_size members.
+A group that is one vendor's release-day batch of vulnerability records is labelled kind=patch_batch: it is listed
+(it may still hit our assets) but never "emerging". Ranked by actionability_score. Deterministic.
 """
 import hashlib
 import json
@@ -40,7 +44,22 @@ CONFIG = {
     "emerging_min_new": 3,  # is_emerging: >= this many members in the last 7 days...
     "emerging_growth": 2.0,  # ...and at least this multiple of the previous 7 days (prev 0 counts as 1)
     "scope_sources": ["kev", "otx", "certin", "ransomware"],
+    "emerging_min_days": 2,  # ...spread over this many publication days (one vendor release day is not "emerging")
+    # Downstream packagers: their CPEs cover everything they ship, so a shared "debian debian_linux" proves nothing.
+    "redistributor_vendors": ["debian", "fedoraproject", "canonical", "redhat", "suse", "opensuse", "netapp"],
+    "patch_batch_same_day_share": 0.6,  # >= this share of members published on one day = a vendor release batch
+    # A report naming more CVEs than this is a roundup ("top exploited", APT profile): linking through every CVE it
+    # names would make it a hub that chains unrelated campaigns together. Its own record still counts.
+    "max_report_cves": 10,
+    "actionability_points": {"exposed_assets": 50, "kev_members": 25, "threat_activity": 15, "emerging": 10},
+    "actionability_saturation": {"exposed_assets": 4, "kev_members": 5},  # full points at this many
 }
+STRONG = {"cve", "ioc"}  # evidence that links threats regardless of when they were published
+ACTIVITY_SOURCES = {"otx", "ransomware", "threatfox", "urlhaus", "malwarebazaar"}  # reports of attacks, not bug lists
+VULN_SOURCES = {"nvd", "kev", "nvd+kev", "certin"}
+PRETTY = {"macos": "macOS", "ios": "iOS", "ipados": "iPadOS", "tvos": "tvOS", "watchos": "watchOS",
+          "visionos": "visionOS", "fortios": "FortiOS", "fortiproxy": "FortiProxy", "ios_xe": "IOS XE",
+          "pan-os": "PAN-OS", "vcenter_server": "vCenter Server", "esxi": "ESXi"}
 KIND_ORDER = {"cve": 0, "ioc": 1, "product": 2, "technique": 3, "text_similarity": 4}
 # Feed wording that says nothing about WHICH campaign (source names, record-type words).
 BOILERPLATE = {"threatfox", "urlhaus", "malwarebazaar", "indicators", "ioc", "iocs", "ransomware", "claims",
@@ -88,12 +107,28 @@ class _DSU:
 
 def link_keys(row, iocs: dict[str, set]) -> list[tuple[str, str]]:
     """(kind, key) pairs this threat can share with others."""
-    keys = [("cve", c) for c in sorted(set(row.cve_ids or []) | ({row.cve_id} if row.cve_id else set()))]
+    named = set(row.cve_ids or [])
+    if len(named) > CONFIG["max_report_cves"]:
+        named = set()  # roundup report: see CONFIG
+    keys = [("cve", c) for c in sorted(named | ({row.cve_id} if row.cve_id else set()))]
     keys += [("ioc", v) for v in sorted(iocs.get(row.threat_id, ()))]
     keys += [("technique", t) for t in sorted(set(row.attack_techniques or []))]
-    keys += [("product", p) for p in sorted({f"{c['vendor']} {c['product']}" for c in row.affected_configurations or []
-                                             if c.get("vendor") and c.get("product")})]
+    keys += [("product", p) for p in sorted(_products(row))]
     return keys
+
+
+def _products(row) -> set[str]:
+    skip = set(CONFIG["redistributor_vendors"])
+    return {f"{c['vendor']} {c['product']}".lower() for c in row.affected_configurations or []
+            if c.get("vendor") and c.get("product") and c["vendor"].lower() not in skip}
+
+
+def _pretty(product_key: str) -> str:
+    """'fortinet fortios' -> 'Fortinet FortiOS'."""
+    vendor, _, product = product_key.partition(" ")
+    name = PRETTY.get(product) or " ".join(PRETTY.get(w, w.upper() if len(w) <= 3 else w.capitalize())
+                                           for w in product.split("_"))
+    return f"{vendor.capitalize()} {name}".strip()
 
 
 def build(db: Session) -> dict:
@@ -107,6 +142,8 @@ def build(db: Session) -> dict:
     from .models import IOCRow
 
     rows, as_of = _scope(db)
+    since = as_of - timedelta(days=CONFIG["window_days"])
+    recent = {i for i, r in enumerate(rows) if r.published_at and r.published_at >= since}  # weak links only here
     ids = {r.threat_id: i for i, r in enumerate(rows)}
     iocs: dict[str, set] = defaultdict(set)
     for tid, value in db.execute(select(IOCRow.related_threat_id, IOCRow.value).where(IOCRow.related_threat_id.in_(ids))):
@@ -119,7 +156,11 @@ def build(db: Session) -> dict:
     skipped = sorted(f"{k[0]}:{k[1]} ({len(v)})" for k, v in holders.items() if len(v) > cap(k))
     shared = {k: v for k, v in holders.items() if 2 <= len(v) <= cap(k)}
     # Candidate links, strongest evidence first: shared CVE > IOC > product > technique > text (by similarity).
-    edges = [(KIND_ORDER[k[0]], 0.0, m[0], j, k) for k, m in sorted(shared.items()) for j in m[1:]]
+    # Weak keys only link members that are both inside the window.
+    edges = []
+    for k, m in sorted(shared.items()):
+        m = m if k[0] in STRONG else [i for i in m if i in recent]
+        edges += [(KIND_ORDER[k[0]], 0.0, m[0], j, k) for j in m[1:]]
     text_pairs, X, terms = [], None, []
     if len(rows) > 1:
         docs = [f"{r.title} {r.description or ''}" for r in rows]
@@ -136,23 +177,41 @@ def build(db: Session) -> dict:
                 sims = linear_kernel(X[start:start + 1000], X)
                 for a, b in zip(*(sims >= CONFIG["tfidf_threshold"]).nonzero()):
                     a += start
-                    if a < b:
+                    if a < b and a in recent and b in recent:
                         sim = round(float(sims[a - start, b]), 3)
                         text_pairs.append((a, b, sim))
                         edges.append((KIND_ORDER["text_similarity"], -sim, a, b, None))
     # Single-linkage with a size cap: a link that would grow a group past max_campaign_size is not applied, so
     # boilerplate similarity can't chain thousands of unrelated advisories into one "campaign".
-    dsu, size, used = _DSU(len(rows)), [1] * len(rows), set()
+    dsu, size, used, capped = _DSU(len(rows)), [1] * len(rows), set(), []
     for _, _, a, b, key in sorted(edges, key=lambda e: e[:4]):
         ra, rb = dsu.find(a), dsu.find(b)
         if ra == rb:
             used.add((a, b, key))
             continue
         if size[ra] + size[rb] > CONFIG["max_campaign_size"]:
+            capped.append((a, b, key))  # may still join two halves of one patch batch (below)
             continue
         dsu.union(ra, rb)
         size[dsu.find(ra)] = size[ra] + size[rb]
         used.add((a, b, key))
+    # A capped link between two halves of the SAME vendor release day re-joins them: a patch batch is one release,
+    # however big. The cap exists to stop campaign blobs, not to split one vendor's patch day into look-alike pieces.
+    def members_of(root):
+        return [i for i in range(len(rows)) if dsu.find(i) == root]
+    day_of: dict[int, str | None] = {}
+    for a, b, key in capped:
+        ra, rb = dsu.find(a), dsu.find(b)
+        if ra == rb:
+            continue
+        for r_ in (ra, rb):
+            if r_ not in day_of:
+                day_of[r_] = _batch_day([rows[i] for i in members_of(r_)])
+        if day_of[ra] and day_of[ra] == day_of[rb]:
+            day = day_of[ra]
+            dsu.union(ra, rb)
+            day_of[dsu.find(ra)] = day
+            used.add((a, b, key))
     text_pairs = [(a, b, s_) for a, b, s_ in text_pairs if (a, b, None) in used]
     groups = defaultdict(list)
     for i in range(len(rows)):
@@ -178,54 +237,118 @@ def build(db: Session) -> dict:
             r_["text"] = (f"{r_['count']} share {r_['key']}" if r_["type"] != "text_similarity"
                           else f"{r_['count']} have near-identical descriptions ({r_['key']})")
         mrows = [rows[i] for i in sorted(members, key=lambda i: rows[i].threat_id)]
+        day = _batch_day(mrows)
+        kind = "patch_batch" if day else "campaign"
         dates = sorted(r.published_at for r in mrows if r.published_at)
         last7 = sum(1 for d in dates if d > week)
         prev7 = sum(1 for d in dates if fortnight < d <= week)
-        emerging = last7 >= CONFIG["emerging_min_new"] and last7 >= CONFIG["emerging_growth"] * max(prev7, 1)
-        affected, kev = set(), False
+        days7 = len({d.date() for d in dates if d > week})
+        emerging = (kind == "campaign" and last7 >= CONFIG["emerging_min_new"] and days7 >= CONFIG["emerging_min_days"]
+                    and last7 >= CONFIG["emerging_growth"] * max(prev7, 1))
+        affected = set()
         for r in mrows:
-            kev = kev or bool(r.kev_listed)
             if r.affected_configurations:
                 affected |= {m.asset_id for m in exposed(match_threat(threat_from_row(r), store.all()))}
-        # Title: the products most members share (even generic ones), else the group's most distinctive words.
-        prod = Counter(p for r in mrows for p in {f"{c['vendor']} {c['product']}" for c in r.affected_configurations or []
-                                                  if c.get("vendor") and c.get("product")})
-        title = [p for p, n in prod.most_common(2) if n >= 2]
-        if not title and X is not None:
-            weights = X[members].sum(axis=0).A1
-            title = [terms[i] for i in weights.argsort()[::-1][:3] if weights[i] > 0]
+        kev_n = sum(1 for r in mrows if r.kev_listed)
+        activity = any(r.source in ACTIVITY_SOURCES for r in mrows)
+        score, factors = _actionability(len(affected), kev_n, activity, emerging)
         anchor = min(mrows, key=lambda r: (r.published_at or as_of, r.threat_id))
         has_iocs = any(iocs.get(r.threat_id) for r in mrows) or any(r.type == "ioc_batch" for r in mrows)
-        if affected and kev:
-            action = f"Patch the {len(affected)} exposed asset(s) first: the campaign includes KEV-listed vulnerabilities"
+        if affected and kev_n:
+            action = f"Patch the {len(affected)} exposed asset(s) first: the group includes KEV-listed vulnerabilities"
         elif affected:
-            action = f"Verify and remediate the {len(affected)} asset(s) that match campaign vulnerabilities"
+            action = f"Verify and remediate the {len(affected)} asset(s) that match these vulnerabilities"
         elif has_iocs:
             action = "Block and hunt for the campaign's indicators in firewall/proxy/DNS logs"
+        elif kind == "patch_batch":
+            action = "Routine patching: no asset in our inventory matches this release"
         else:
             action = "Monitor: no asset in our inventory matches this campaign"
         out.append({
             "campaign_id": "CMP-" + hashlib.sha1(anchor.threat_id.encode()).hexdigest()[:8].upper(),
-            "title": " · ".join(title) or anchor.title[:80],
+            "title": _title(mrows, kind, day, anchor),
+            "kind": kind,
             "size": len(mrows), "threat_ids": [r.threat_id for r in mrows],
             "sources": dict(sorted(Counter(r.source for r in mrows).items())),
             "link_reasons": reasons[:8],
             "first_seen": dates[0].isoformat() if dates else None, "last_seen": dates[-1].isoformat() if dates else None,
             "growth_7d": {"last_7d": last7, "prev_7d": prev7,
                           "ratio": round(last7 / prev7, 2) if prev7 else None},
-            "is_emerging": emerging, "kev_listed_members": sum(1 for r in mrows if r.kev_listed),
+            "is_emerging": emerging, "kev_listed_members": kev_n,
             "affected_asset_ids": sorted(affected), "affected_asset_count": len(affected),
             "top_recommended_action": action,
             "is_simulated": all(r.is_simulated for r in mrows),
+            "actionability_score": score, "actionability_factors": factors,
         })
-    out.sort(key=lambda c: (not c["is_emerging"], -c["affected_asset_count"], -c["growth_7d"]["last_7d"],
-                            -c["size"], c["campaign_id"]))
+    _unique_titles(out)
+    out.sort(key=lambda c: (-c["actionability_score"], c["kind"] == "patch_batch", -c["size"], c["campaign_id"]))
     return {"as_of": as_of.isoformat(), "fingerprint": _fingerprint(rows, as_of), "config": CONFIG,
             "meta": {"threats_in_scope": len(rows), "links_by_type": dict(sorted(Counter(
                 k[0] for k in shared).items())) | {"text_similarity": len(text_pairs)},
                      "skipped_generic_keys": skipped[:50], "skipped_generic_keys_total": len(skipped),
                      "method": __doc__.strip().split("\n\n")[1].replace("\n", " ")},
             "campaigns": out}
+
+
+def _batch_day(mrows) -> str | None:
+    """The release day if this group is one vendor's batch of vulnerability records, else None."""
+    if not mrows or any(r.source in ACTIVITY_SOURCES or r.type == "ioc_batch" for r in mrows):
+        return None
+    if sum(r.source in VULN_SOURCES for r in mrows) < 0.8 * len(mrows):
+        return None
+    days = Counter(r.published_at.date() for r in mrows if r.published_at)
+    if not days:
+        return None
+    day, n = days.most_common(1)[0]
+    return day.isoformat() if n >= CONFIG["patch_batch_same_day_share"] * len(mrows) else None
+
+
+def _title(mrows, kind: str, day: str | None, anchor) -> str:
+    n = len(mrows)
+    if kind == "patch_batch":
+        # Vendor from real CPE data only (CERT-In vendor names are guessed from text), confirmed by >= 2 members.
+        vendors = Counter(v for r in mrows for v in {c["vendor"].lower() for c in r.affected_configurations or []
+                                                     if c.get("cpe") and c.get("vendor")}
+                          if v not in CONFIG["redistributor_vendors"])
+        top = vendors.most_common(2)
+        if top and top[0][1] >= 2 and (len(top) == 1 or top[0][1] > top[1][1]):
+            return f"{top[0][0].capitalize()} patch release {day} ({n} vulnerabilities)"
+        return f"Vulnerability batch published {day} ({n} vulnerabilities)"  # no single vendor: not "a release"
+    groups = Counter(t.split(":", 1)[1] for r in mrows if r.source == "ransomware" for t in r.tags or []
+                     if t.startswith("group:"))
+    if groups and sum(r.source == "ransomware" for r in mrows) * 2 >= n:
+        g, k = groups.most_common(1)[0]
+        return f"{g.capitalize()} ransomware activity ({k} victim claims)"
+    feed_words = {"abuse.ch", "threatfox", "urlhaus", "malwarebazaar"}
+    families = Counter(t for r in mrows if r.type == "ioc_batch" for t in r.tags or [] if t.lower() not in feed_words)
+    if families:
+        return " + ".join(f for f, _ in families.most_common(2)) + " indicators"
+    # A threat report's own headline says what the campaign is ("PEERSTITCH, a Stealthy FortiGate Implant").
+    pulses = sorted((r for r in mrows if r.source == "otx"), key=lambda r: (-len(r.cve_ids or []), r.threat_id))
+    if pulses:
+        return pulses[0].title[:90]
+    top = [p for p, k in Counter(p for r in mrows for p in _products(r)).most_common(2) if k >= 2]
+    if top:
+        return " · ".join(_pretty(p) for p in top)
+    return anchor.title[:90]
+
+
+def _unique_titles(out: list[dict]) -> None:
+    """Two campaigns never share a title: name a member (groups are disjoint, so this is always unique)."""
+    seen = Counter(c["title"] for c in out)
+    for c in out:
+        if seen[c["title"]] > 1:
+            c["title"] = f"{c['title']} · incl. {c['threat_ids'][0]}"
+
+
+def _actionability(n_assets: int, kev_n: int, activity: bool, emerging: bool) -> tuple[float, dict]:
+    """What should an analyst look at first? Our exposure dominates; exploitation and live activity next."""
+    pts, sat = CONFIG["actionability_points"], CONFIG["actionability_saturation"]
+    f = {"exposed_assets": round(pts["exposed_assets"] * min(n_assets, sat["exposed_assets"]) / sat["exposed_assets"], 1),
+         "kev_members": round(pts["kev_members"] * min(kev_n, sat["kev_members"]) / sat["kev_members"], 1),
+         "threat_activity": pts["threat_activity"] if activity else 0,
+         "emerging": pts["emerging"] if emerging else 0}
+    return round(sum(f.values()), 1), f
 
 
 def get(db: Session, refresh: bool = False) -> dict:

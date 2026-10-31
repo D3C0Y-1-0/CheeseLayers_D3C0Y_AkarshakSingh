@@ -16,15 +16,37 @@
       "otx",
       "certin",
       "ransomware"
-    ]
+    ],
+    "emerging_min_days": 2,
+    "redistributor_vendors": [
+      "debian",
+      "fedoraproject",
+      "canonical",
+      "redhat",
+      "suse",
+      "opensuse",
+      "netapp"
+    ],
+    "patch_batch_same_day_share": 0.6,
+    "max_report_cves": 10,
+    "actionability_points": {
+      "exposed_assets": 50,
+      "kev_members": 25,
+      "threat_activity": 15,
+      "emerging": 10
+    },
+    "actionability_saturation": {
+      "exposed_assets": 4,
+      "kev_members": 5
+    }
   },
   "meta": {
     "threats_in_scope": 3086,
     "links_by_type": {
-      "cve": 437,
-      "product": 1420,
+      "cve": 156,
+      "product": 1311,
       "technique": 164,
-      "text_similarity": 4093
+      "text_similarity": 1775
     },
     "skipped_generic_keys": [
       "product:adobe flash_player (36)",
@@ -32,19 +54,16 @@
       "product:apple iphone_os (94)",
       "product:apple mac_os_x (26)",
       "product:apple macos (81)",
-      "product:apple safari (27)",
-      "product:apple tvos (37)",
-      "product:apple watchos (46)",
-      "product:canonical ubuntu_linux (47)",
+      "product:apple safari (28)",
+      "product:apple tvos (38)",
+      "product:apple watchos (47)",
       "product:cisco ios (39)",
       "product:cisco ios_xe (28)",
-      "product:debian debian_linux (125)",
-      "product:fedoraproject fedora (88)",
       "product:google chrome (79)",
       "product:linux linux_kernel (33)",
       "product:microsoft 365_apps (39)",
       "product:microsoft internet_explorer (43)",
-      "product:microsoft office (34)",
+      "product:microsoft office (36)",
       "product:microsoft office_2021 (31)",
       "product:microsoft office_2024 (29)",
       "product:microsoft windows_10_1507 (132)",
@@ -76,381 +95,371 @@
       "product:microsoft windows_server_2022 (111)",
       "product:microsoft windows_server_2022_23h2 (59)",
       "product:microsoft windows_server_2025 (44)",
-      "product:microsoft windows_server_20h2 (36)"
+      "product:microsoft windows_server_20h2 (36)",
+      "product:microsoft windows_vista (38)",
+      "technique:T1003 (29)",
+      "technique:T1003.001 (11)"
     ],
-    "skipped_generic_keys_total": 177,
+    "skipped_generic_keys_total": 166,
     "method": "Scope: threats published in the last `window_days` of the DATA (anchored to the newest published_at, so offline caches give the same answer every day) plus every KEV entry, OTX pulse, CERT-In advisory and ransomware record. Plain NVD CVEs only count if they show activity (KEV / public exploit / EPSS >= nvd_min_epss) or are named by another in-scope item: thousands of unexploited CVEs with boilerplate text are a vulnerability class, not a campaign."
   },
-  "total": 140,
-  "emerging_total": 17,
+  "total": 49,
+  "emerging_total": 4,
   "items": [
     {
-      "campaign_id": "CMP-2C3896A3",
-      "title": "apple macos",
+      "campaign_id": "CMP-209935AF",
+      "title": "PEERSTITCH, a Stealthy FortiGate Implant",
+      "kind": "campaign",
+      "size": 4,
+      "threat_ids": [
+        "CVE-2024-47575",
+        "CVE-2025-59718",
+        "CVE-2025-61624",
+        "otx:6ad0096119a185c9dcb055b0"
+      ],
+      "sources": {
+        "kev": 3,
+        "otx": 1
+      },
+      "link_reasons": [
+        {
+          "type": "cve",
+          "key": "CVE-2024-47575",
+          "count": 2,
+          "text": "2 share CVE-2024-47575"
+        },
+        {
+          "type": "cve",
+          "key": "CVE-2025-59718",
+          "count": 2,
+          "text": "2 share CVE-2025-59718"
+        },
+        {
+          "type": "cve",
+          "key": "CVE-2025-61624",
+          "count": 2,
+          "text": "2 share CVE-2025-61624"
+        },
+        {
+          "type": "product",
+          "key": "fortinet fortios",
+          "count": 2,
+          "text": "2 share fortinet fortios"
+        },
+        {
+          "type": "product",
+          "key": "fortinet fortiproxy",
+          "count": 2,
+          "text": "2 share fortinet fortiproxy"
+        },
+        {
+          "type": "product",
+          "key": "fortinet fortiswitchmanager",
+          "count": 2,
+          "text": "2 share fortinet fortiswitchmanager"
+        },
+        {
+          "type": "product",
+          "key": "siemens ruggedcom_ape1808_firmware",
+          "count": 2,
+          "text": "2 share siemens ruggedcom_ape1808_firmware"
+        }
+      ],
+      "first_seen": "2024-10-23T15:15:30.707000+00:00",
+      "last_seen": "2026-10-14T22:59:45+00:00",
+      "growth_7d": {
+        "last_7d": 0,
+        "prev_7d": 0,
+        "ratio": null
+      },
+      "is_emerging": false,
+      "kev_listed_members": 4,
+      "affected_asset_ids": [
+        "BNK-FW-01",
+        "PWR-FW-01"
+      ],
+      "affected_asset_count": 2,
+      "top_recommended_action": "Patch the 2 exposed asset(s) first: the group includes KEV-listed vulnerabilities",
+      "is_simulated": false,
+      "actionability_score": 60.0,
+      "actionability_factors": {
+        "exposed_assets": 25.0,
+        "kev_members": 20.0,
+        "threat_activity": 15,
+        "emerging": 0
+      }
+    },
+    {
+      "campaign_id": "CMP-BE9D18AC",
+      "title": "DragonForce Ransomware Profile: From Affiliate Program to Cybercrime Cartel",
+      "kind": "campaign",
       "size": 50,
       "threat_ids": [
-        "CIAD-2026-0056",
-        "CVE-2026-112410",
-        "CVE-2026-112414",
-        "CVE-2026-112416",
-        "CVE-2026-112421",
-        "CVE-2026-112424",
-        "CVE-2026-112427",
-        "CVE-2026-112429",
-        "CVE-2026-112432",
-        "CVE-2026-112434",
-        "CVE-2026-112438",
-        "CVE-2026-112441",
-        "CVE-2026-112443",
-        "CVE-2026-112446",
-        "CVE-2026-112449",
-        "CVE-2026-112453",
-        "CVE-2026-112455",
-        "CVE-2026-112457",
-        "CVE-2026-112461",
-        "CVE-2026-112464",
-        "CVE-2026-112467",
-        "CVE-2026-112469",
-        "CVE-2026-112471",
-        "CVE-2026-112474",
-        "CVE-2026-112476",
-        "CVE-2026-112478",
-        "CVE-2026-112480",
-        "CVE-2026-112482",
-        "CVE-2026-112484",
-        "CVE-2026-112486",
-        "CVE-2026-112488",
-        "CVE-2026-112492",
-        "CVE-2026-112494",
-        "CVE-2026-112497",
-        "CVE-2026-112498",
-        "CVE-2026-112501",
-        "CVE-2026-112504",
-        "CVE-2026-112506",
-        "CVE-2026-112508",
-        "CVE-2026-112511",
-        "CVE-2026-112513",
-        "CVE-2026-112515",
-        "CVE-2026-112517",
-        "CVE-2026-112521",
-        "CVE-2026-112524",
-        "CVE-2026-112529",
-        "CVE-2026-112532",
-        "CVE-2026-112535",
-        "CVE-2026-112537",
-        "CVE-2026-112540"
+        "CIVN-2026-0518",
+        "CVE-2021-44228",
+        "CVE-2023-46805",
+        "CVE-2024-21412",
+        "CVE-2024-21887",
+        "CVE-2024-21893",
+        "CVE-2024-3272",
+        "CVE-2024-3273",
+        "CVE-2024-57726",
+        "CVE-2024-57727",
+        "CVE-2024-57728",
+        "CVE-2025-31324",
+        "CVE-2025-5777",
+        "CVE-2026-102764",
+        "CVE-2026-103515",
+        "CVE-2026-104935",
+        "CVE-2026-105711",
+        "CVE-2026-105777",
+        "CVE-2026-110264",
+        "CVE-2026-111357",
+        "CVE-2026-112212",
+        "CVE-2026-112326",
+        "CVE-2026-112378",
+        "CVE-2026-12664",
+        "CVE-2026-13319",
+        "CVE-2026-14288",
+        "CVE-2026-15723",
+        "CVE-2026-16255",
+        "CVE-2026-1731",
+        "CVE-2026-21589",
+        "CVE-2026-82078",
+        "CVE-2026-88771",
+        "CVE-2026-88772",
+        "CVE-2026-88779",
+        "CVE-2026-97229",
+        "otx:6abde373c68b5d048accac49",
+        "otx:6abde39c863acdfda74e5d84",
+        "otx:6abde7dd3f829cf6b721cfaa",
+        "otx:6ac6bb9b4a8df7d9c471fc83",
+        "otx:6ac9101554900e3ae83df111",
+        "otx:6acf8533a44062761084826c",
+        "otx:6ad0dc1e98341fe609c19f3e",
+        "otx:6ad0e1295c816b236074f6a2",
+        "otx:6ad0e1520be4762ce91fe695",
+        "otx:6ad1cb3feb7d313786acfcf5",
+        "otx:6ad71b768e708ffb59419b43",
+        "otx:6ad71c12c5136d952c0cda96",
+        "otx:6ad81ada1b040cdb328c726b",
+        "otx:6ae14ab2a51c8b2b96924ba2",
+        "otx:6ae205cd5f78e91614edbd47"
       ],
       "sources": {
         "certin": 1,
-        "nvd": 49
+        "kev": 22,
+        "nvd": 12,
+        "otx": 15
       },
       "link_reasons": [
         {
+          "type": "product",
+          "key": "gitlab gitlab",
+          "count": 13,
+          "text": "13 share gitlab gitlab"
+        },
+        {
+          "type": "cve",
+          "key": "CVE-2026-88771",
+          "count": 6,
+          "text": "6 share CVE-2026-88771"
+        },
+        {
+          "type": "cve",
+          "key": "CVE-2026-102764",
+          "count": 5,
+          "text": "5 share CVE-2026-102764"
+        },
+        {
+          "type": "product",
+          "key": "ivanti connect_secure",
+          "count": 5,
+          "text": "5 share ivanti connect_secure"
+        },
+        {
           "type": "text_similarity",
           "key": "TF-IDF cosine >= 0.6",
-          "count": 37,
-          "text": "37 have near-identical descriptions (TF-IDF cosine >= 0.6)"
+          "count": 5,
+          "text": "5 have near-identical descriptions (TF-IDF cosine >= 0.6)"
         },
         {
           "type": "cve",
-          "key": "CVE-2026-112410",
-          "count": 2,
-          "text": "2 share CVE-2026-112410"
+          "key": "CVE-2021-44228",
+          "count": 4,
+          "text": "4 share CVE-2021-44228"
         },
         {
           "type": "cve",
-          "key": "CVE-2026-112414",
-          "count": 2,
-          "text": "2 share CVE-2026-112414"
+          "key": "CVE-2026-104935",
+          "count": 4,
+          "text": "4 share CVE-2026-104935"
         },
         {
-          "type": "cve",
-          "key": "CVE-2026-112416",
-          "count": 2,
-          "text": "2 share CVE-2026-112416"
-        },
-        {
-          "type": "cve",
-          "key": "CVE-2026-112421",
-          "count": 2,
-          "text": "2 share CVE-2026-112421"
-        },
-        {
-          "type": "cve",
-          "key": "CVE-2026-112424",
-          "count": 2,
-          "text": "2 share CVE-2026-112424"
-        },
-        {
-          "type": "cve",
-          "key": "CVE-2026-112427",
-          "count": 2,
-          "text": "2 share CVE-2026-112427"
-        },
-        {
-          "type": "cve",
-          "key": "CVE-2026-112429",
-          "count": 2,
-          "text": "2 share CVE-2026-112429"
+          "type": "product",
+          "key": "citrix netscaler_application_delivery_controller",
+          "count": 4,
+          "text": "4 share citrix netscaler_application_delivery_controller"
         }
       ],
-      "first_seen": "2026-10-26T18:30:00+00:00",
-      "last_seen": "2026-10-26T21:17:46.730000+00:00",
+      "first_seen": "2021-12-10T10:15:09.143000+00:00",
+      "last_seen": "2026-10-28T14:25:17+00:00",
       "growth_7d": {
-        "last_7d": 50,
-        "prev_7d": 0,
-        "ratio": null
+        "last_7d": 2,
+        "prev_7d": 16,
+        "ratio": 0.12
       },
-      "is_emerging": true,
-      "kev_listed_members": 1,
-      "affected_asset_ids": [],
-      "affected_asset_count": 0,
-      "top_recommended_action": "Monitor: no asset in our inventory matches this campaign",
-      "is_simulated": false
+      "is_emerging": false,
+      "kev_listed_members": 35,
+      "affected_asset_ids": [
+        "TEL-WIKI-01"
+      ],
+      "affected_asset_count": 1,
+      "top_recommended_action": "Patch the 1 exposed asset(s) first: the group includes KEV-listed vulnerabilities",
+      "is_simulated": false,
+      "actionability_score": 52.5,
+      "actionability_factors": {
+        "exposed_assets": 12.5,
+        "kev_members": 25.0,
+        "threat_activity": 15,
+        "emerging": 0
+      }
     },
     {
-      "campaign_id": "CMP-2E0A2DA4",
-      "title": "apple macos",
+      "campaign_id": "CMP-C597F65F",
+      "title": "Operation Master: Deconstructing a Multi-Tiered Intrusion and Monetization Pipeline",
+      "kind": "campaign",
       "size": 50,
       "threat_ids": [
-        "CVE-2026-112546",
-        "CVE-2026-112553",
-        "CVE-2026-112560",
-        "CVE-2026-112563",
-        "CVE-2026-112604",
-        "CVE-2026-112610",
-        "CVE-2026-112611",
-        "CVE-2026-112614",
-        "CVE-2026-112621",
-        "CVE-2026-112638",
-        "CVE-2026-112642",
-        "CVE-2026-112651",
-        "CVE-2026-112655",
-        "CVE-2026-112659",
-        "CVE-2026-112670",
-        "CVE-2026-112682",
-        "CVE-2026-112695",
-        "CVE-2026-112705",
-        "CVE-2026-113901",
-        "CVE-2026-113936",
-        "CVE-2026-113938",
-        "CVE-2026-113940",
-        "CVE-2026-113941",
-        "CVE-2026-113942",
-        "CVE-2026-113943",
-        "CVE-2026-113944",
-        "CVE-2026-113945",
-        "CVE-2026-113946",
-        "CVE-2026-113949",
-        "CVE-2026-113950",
-        "CVE-2026-64750",
-        "CVE-2026-65384",
-        "CVE-2026-65385",
-        "CVE-2026-84494",
-        "CVE-2026-84496",
-        "CVE-2026-84539",
-        "CVE-2026-84590",
-        "CVE-2026-84595",
-        "CVE-2026-84627",
-        "CVE-2026-86929",
-        "CVE-2026-86942",
-        "CVE-2026-86954",
-        "CVE-2026-86969",
-        "CVE-2026-86970",
-        "CVE-2026-86971",
-        "CVE-2026-86973",
-        "CVE-2026-86974",
-        "CVE-2026-86985",
-        "CVE-2026-86988",
-        "CVE-2026-86991"
+        "CIAD-2026-0052",
+        "CIAD-2026-0055",
+        "CIVN-2026-0528",
+        "CVE-2019-6693",
+        "CVE-2020-1938",
+        "CVE-2021-36260",
+        "CVE-2021-4034",
+        "CVE-2021-42278",
+        "CVE-2021-42287",
+        "CVE-2022-40684",
+        "CVE-2023-27532",
+        "CVE-2023-3519",
+        "CVE-2023-7028",
+        "CVE-2024-1086",
+        "CVE-2025-32975",
+        "CVE-2025-54236",
+        "CVE-2025-55182",
+        "CVE-2025-64446",
+        "CVE-2026-0257",
+        "CVE-2026-107406",
+        "CVE-2026-109618",
+        "CVE-2026-109619",
+        "CVE-2026-111497",
+        "CVE-2026-20131",
+        "CVE-2026-20253",
+        "CVE-2026-48356",
+        "CVE-2026-75650",
+        "CVE-2026-81578",
+        "otx:6a9ef14fbc62257cff38357b",
+        "otx:6aa17d032b2537347f416f22",
+        "otx:6aba46a30e26418fb09c6000",
+        "otx:6ad187349cefc9d2193e5cc3",
+        "otx:6ad2ca008bd3199ee7bb0b83",
+        "otx:6ad79104128abd6fe9532c09",
+        "otx:6ad8d87ee8e0fe132bce49d2",
+        "otx:6ad8d884cb22f07021380605",
+        "otx:6ad8d8853d4b5de3946bd006",
+        "otx:6ad91a624dfadf973556516c",
+        "otx:6ad9eb3e5a8fa9121e8ab038",
+        "otx:6ada1e58491e58bb903b7604",
+        "otx:6adc07f41102c5c37a64cd50",
+        "otx:6add9cbb9d565685946f59b0",
+        "otx:6ade9b49eed172cd38ff41e7",
+        "otx:6ae095c9103f37d94d160182",
+        "otx:6ae0b1549b888d367073448e",
+        "otx:6ae205cefd1c69f6a9b3116d",
+        "otx:6ae20c8b7eea709e876863db",
+        "otx:6ae2424aa801637ecf4942df",
+        "otx:6ae307a3ac3f1c968fce54a3",
+        "otx:6ae38bc5104a1b7a03e20f92"
       ],
       "sources": {
-        "nvd": 50
+        "certin": 3,
+        "kev": 24,
+        "nvd": 1,
+        "otx": 22
       },
       "link_reasons": [
         {
-          "type": "text_similarity",
-          "key": "TF-IDF cosine >= 0.6",
-          "count": 50,
-          "text": "50 have near-identical descriptions (TF-IDF cosine >= 0.6)"
-        }
-      ],
-      "first_seen": "2026-10-26T21:17:47.660000+00:00",
-      "last_seen": "2026-10-26T21:20:38.060000+00:00",
-      "growth_7d": {
-        "last_7d": 50,
-        "prev_7d": 0,
-        "ratio": null
-      },
-      "is_emerging": true,
-      "kev_listed_members": 0,
-      "affected_asset_ids": [],
-      "affected_asset_count": 0,
-      "top_recommended_action": "Monitor: no asset in our inventory matches this campaign",
-      "is_simulated": false
-    },
-    {
-      "campaign_id": "CMP-91219B6A",
-      "title": "improved \u00b7 ipados \u00b7 able",
-      "size": 45,
-      "threat_ids": [
-        "CVE-2026-112550",
-        "CVE-2026-112568",
-        "CVE-2026-112576",
-        "CVE-2026-112609",
-        "CVE-2026-112617",
-        "CVE-2026-112624",
-        "CVE-2026-112628",
-        "CVE-2026-112660",
-        "CVE-2026-112668",
-        "CVE-2026-112675",
-        "CVE-2026-112685",
-        "CVE-2026-112688",
-        "CVE-2026-112701",
-        "CVE-2026-113910",
-        "CVE-2026-113914",
-        "CVE-2026-113934",
-        "CVE-2026-43736",
-        "CVE-2026-65327",
-        "CVE-2026-65350",
-        "CVE-2026-65363",
-        "CVE-2026-65368",
-        "CVE-2026-65397",
-        "CVE-2026-84493",
-        "CVE-2026-84495",
-        "CVE-2026-84498",
-        "CVE-2026-84542",
-        "CVE-2026-84545",
-        "CVE-2026-84594",
-        "CVE-2026-84599",
-        "CVE-2026-84605",
-        "CVE-2026-86880",
-        "CVE-2026-86916",
-        "CVE-2026-86920",
-        "CVE-2026-86923",
-        "CVE-2026-86925",
-        "CVE-2026-86931",
-        "CVE-2026-86936",
-        "CVE-2026-86937",
-        "CVE-2026-86943",
-        "CVE-2026-86945",
-        "CVE-2026-86946",
-        "CVE-2026-86958",
-        "CVE-2026-86978",
-        "CVE-2026-86987",
-        "CVE-2026-86992"
-      ],
-      "sources": {
-        "nvd": 45
-      },
-      "link_reasons": [
+          "type": "cve",
+          "key": "CVE-2026-109619",
+          "count": 15,
+          "text": "15 share CVE-2026-109619"
+        },
+        {
+          "type": "cve",
+          "key": "CVE-2026-109618",
+          "count": 14,
+          "text": "14 share CVE-2026-109618"
+        },
+        {
+          "type": "cve",
+          "key": "CVE-2026-111497",
+          "count": 6,
+          "text": "6 share CVE-2026-111497"
+        },
+        {
+          "type": "cve",
+          "key": "CVE-2026-0257",
+          "count": 4,
+          "text": "4 share CVE-2026-0257"
+        },
+        {
+          "type": "product",
+          "key": "siemens ruggedcom_ape1808_firmware",
+          "count": 4,
+          "text": "4 share siemens ruggedcom_ape1808_firmware"
+        },
+        {
+          "type": "technique",
+          "key": "T1087.001",
+          "count": 4,
+          "text": "4 share T1087.001"
+        },
+        {
+          "type": "technique",
+          "key": "T1098.004",
+          "count": 4,
+          "text": "4 share T1098.004"
+        },
         {
           "type": "text_similarity",
           "key": "TF-IDF cosine >= 0.6",
-          "count": 45,
-          "text": "45 have near-identical descriptions (TF-IDF cosine >= 0.6)"
+          "count": 4,
+          "text": "4 have near-identical descriptions (TF-IDF cosine >= 0.6)"
         }
       ],
-      "first_seen": "2026-10-26T21:17:48.127000+00:00",
-      "last_seen": "2026-10-26T21:20:38.220000+00:00",
+      "first_seen": "2019-11-21T16:15:13.173000+00:00",
+      "last_seen": "2026-10-29T18:09:09+00:00",
       "growth_7d": {
-        "last_7d": 45,
-        "prev_7d": 0,
-        "ratio": null
+        "last_7d": 11,
+        "prev_7d": 12,
+        "ratio": 0.92
       },
-      "is_emerging": true,
-      "kev_listed_members": 0,
-      "affected_asset_ids": [],
-      "affected_asset_count": 0,
-      "top_recommended_action": "Monitor: no asset in our inventory matches this campaign",
-      "is_simulated": false
-    },
-    {
-      "campaign_id": "CMP-2CD3A06E",
-      "title": "stealer \u00b7 akira \u00b7 password",
-      "size": 12,
-      "threat_ids": [
-        "threatfox:acr_stealer",
-        "threatfox:akira_stealer",
-        "threatfox:aura_stealer",
-        "threatfox:creal_stealer",
-        "threatfox:katz_stealer",
-        "threatfox:loki_password_stealer_(pws)",
-        "threatfox:raven_stealer",
-        "threatfox:redline_stealer",
-        "threatfox:rn_stealer",
-        "threatfox:unknown_stealer",
-        "threatfox:venus_stealer",
-        "urlhaus:stealer"
+      "is_emerging": false,
+      "kev_listed_members": 49,
+      "affected_asset_ids": [
+        "GOV-WEB-01"
       ],
-      "sources": {
-        "threatfox": 11,
-        "urlhaus": 1
-      },
-      "link_reasons": [
-        {
-          "type": "text_similarity",
-          "key": "TF-IDF cosine >= 0.6",
-          "count": 12,
-          "text": "12 have near-identical descriptions (TF-IDF cosine >= 0.6)"
-        }
-      ],
-      "first_seen": "2026-10-27T00:39:52+00:00",
-      "last_seen": "2026-10-31T08:15:30+00:00",
-      "growth_7d": {
-        "last_7d": 12,
-        "prev_7d": 0,
-        "ratio": null
-      },
-      "is_emerging": true,
-      "kev_listed_members": 0,
-      "affected_asset_ids": [],
-      "affected_asset_count": 0,
-      "top_recommended_action": "Block and hunt for the campaign's indicators in firewall/proxy/DNS logs",
-      "is_simulated": false
-    },
-    {
-      "campaign_id": "CMP-F7561B23",
-      "title": "qilin \u00b7 sapi \u00b7 technologies",
-      "size": 12,
-      "threat_ids": [
-        "ransomware:185a658e8c2c",
-        "ransomware:402bb1e52c41",
-        "ransomware:51facc078f7e",
-        "ransomware:5913b3f386e8",
-        "ransomware:67aa4b7bfcbd",
-        "ransomware:6fd3a73c866e",
-        "ransomware:78b4d0f2ddad",
-        "ransomware:8e23ccd42980",
-        "ransomware:9660eef632c8",
-        "ransomware:c3e8cf2215f3",
-        "ransomware:cc9920f97dec",
-        "ransomware:f1990b874a86"
-      ],
-      "sources": {
-        "ransomware": 12
-      },
-      "link_reasons": [
-        {
-          "type": "text_similarity",
-          "key": "TF-IDF cosine >= 0.6",
-          "count": 12,
-          "text": "12 have near-identical descriptions (TF-IDF cosine >= 0.6)"
-        }
-      ],
-      "first_seen": "2026-08-21T11:57:12.828596+00:00",
-      "last_seen": "2026-10-30T20:59:51.812328+00:00",
-      "growth_7d": {
-        "last_7d": 10,
-        "prev_7d": 1,
-        "ratio": 10.0
-      },
-      "is_emerging": true,
-      "kev_listed_members": 0,
-      "affected_asset_ids": [],
-      "affected_asset_count": 0,
-      "top_recommended_action": "Monitor: no asset in our inventory matches this campaign",
-      "is_simulated": false
+      "affected_asset_count": 1,
+      "top_recommended_action": "Patch the 1 exposed asset(s) first: the group includes KEV-listed vulnerabilities",
+      "is_simulated": false,
+      "actionability_score": 52.5,
+      "actionability_factors": {
+        "exposed_assets": 12.5,
+        "kev_members": 25.0,
+        "threat_activity": 15,
+        "emerging": 0
+      }
     }
   ]
 }

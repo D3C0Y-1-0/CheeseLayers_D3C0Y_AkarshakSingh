@@ -735,7 +735,7 @@
     "campaign": {
       "file": "backend/data/cache/campaigns.json (GET /api/campaigns)",
       "id_field": "campaign_id",
-      "description": "v1.3: group of related threats (shared CVE/IOC/ATT&CK technique/vendor+product or TF-IDF text similarity; connected components >= min_size). Statistical link between public reports, not attribution.",
+      "description": "v1.3: group of related threats. Strong evidence (shared CVE / IOC) links any in-scope threats; weak evidence (vendor+product, ATT&CK technique, TF-IDF text similarity) only links threats that are both inside the campaign window. Connected components >= min_size. Statistical link between public reports, not attribution.",
       "fields": {
         "campaign_id": {
           "type": "string",
@@ -745,7 +745,16 @@
         "title": {
           "type": "string",
           "nullable": false,
-          "description": "Top shared products, else most distinctive words"
+          "description": "Unique, human-readable: '<Vendor> patch release <date> (<n> vulnerabilities)' for patch batches; ransomware group / malware family / top shared products / OTX pulse title for campaigns"
+        },
+        "kind": {
+          "type": "enum",
+          "nullable": false,
+          "enum": [
+            "campaign",
+            "patch_batch"
+          ],
+          "description": "patch_batch = one vendor's release-day batch of vulnerability records (no threat activity sources): listed, never is_emerging"
         },
         "size": {
           "type": "integer",
@@ -805,6 +814,16 @@
         "is_simulated": {
           "type": "boolean",
           "nullable": false
+        },
+        "actionability_score": {
+          "type": "number",
+          "nullable": false,
+          "description": "0-100 ranking key: exposed assets (50) + KEV members (25) + threat-activity sources (15) + emerging (10)"
+        },
+        "actionability_factors": {
+          "type": "object",
+          "nullable": false,
+          "description": "points per factor; they sum to actionability_score"
         }
       }
     }

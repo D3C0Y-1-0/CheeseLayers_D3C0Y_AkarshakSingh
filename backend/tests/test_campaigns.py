@@ -49,8 +49,9 @@ def test_shared_cve_links_and_reason_text():
 
 def test_min_size_and_product_link():
     assert ids(build([T("A", cves=["CVE-2026-9"]), T("B", cves=["CVE-2026-9"])])) == []  # 2 < min_size
-    r = build([T(f"K{i}", "kev", products=[("ivanti", "connect_secure")]) for i in range(3)])
-    assert ids(r) == [["K0", "K1", "K2"]] and r["campaigns"][0]["title"] == "ivanti connect_secure"
+    r = build([T(f"K{i}", "kev", days=1 + 2 * i, products=[("ivanti", "connect_secure")]) for i in range(3)])
+    assert ids(r) == [["K0", "K1", "K2"]] and r["campaigns"][0]["title"] == "Ivanti Connect Secure"
+    assert r["campaigns"][0]["kind"] == "campaign"  # spread over days: an exploitation wave, not one release
 
 
 def test_generic_keys_are_skipped():
@@ -67,9 +68,11 @@ def test_text_similarity_groups_ransomware_actor():
 
 
 def test_growth_and_emerging():
-    r = build([T(f"E{i}", cves=["CVE-2026-5"], days=1) for i in range(4)])
+    r = build([T(f"E{i}", cves=["CVE-2026-5"], days=1 + i) for i in range(4)])
     c = r["campaigns"][0]
     assert c["growth_7d"] == {"last_7d": 4, "prev_7d": 0, "ratio": None} and c["is_emerging"]
+    one_day = build([T(f"D{i}", cves=["CVE-2026-8"], days=1) for i in range(4)])["campaigns"][0]
+    assert not one_day["is_emerging"]  # everything on one day is a release day, not a growing campaign
     old = build([T(f"O{i}", cves=["CVE-2026-6"], days=20) for i in range(4)] + [T("NEWEST", days=1)])["campaigns"][0]
     assert old["growth_7d"]["last_7d"] == 0 and not old["is_emerging"]  # "7 days" = before the newest record
 
@@ -108,3 +111,74 @@ def test_campaign_api_and_threat_reference(client):
     assert c["campaign_id"] in t["campaign_ids"]
     assert client.get("/api/campaigns/CMP-NOPE").status_code == 404
     assert client.get("/api/campaigns?emerging=true").json()["total"] == r["emerging_total"]
+
+
+# ---------- quality rules: patch batches, weak evidence, roundups, titles, ranking ----------
+def cpe(vendor, product):
+    return [{"vendor": vendor, "product": product, "cpe": f"cpe:2.3:a:{vendor}:{product}:*"}]
+
+
+def release(prefix, n, vendor="acme", product="router"):
+    """n NVD CVEs published the same day by one vendor (EPSS set so they are in campaign scope)."""
+    rows = [T(f"{prefix}{i}", "nvd", days=1, products=[(vendor, product)]) for i in range(n)]
+    for r in rows:
+        r.affected_configurations, r.epss = cpe(vendor, product), 0.2
+    return rows
+
+
+def test_vendor_release_day_is_a_patch_batch_and_never_emerging():
+    c = build(release("CVE-2026-10", 5))["campaigns"][0]
+    assert c["kind"] == "patch_batch" and not c["is_emerging"]
+    assert c["title"] == f"Acme patch release {(NOW - timedelta(days=1)).date()} (5 vulnerabilities)"
+    assert c["top_recommended_action"].startswith("Routine patching")
+
+
+def test_threat_activity_on_one_day_is_not_a_patch_batch():
+    rows = [T(f"R{i}", "ransomware", days=1, title=f"qilin ransomware claims v{i}", desc="qilin leak site posting extortion")
+            for i in range(4)]
+    for r in rows:
+        r.tags = ["ransomware", "group:qilin"]
+    c = build(rows + [T(f"N{i}") for i in range(20)])["campaigns"][0]
+    assert c["kind"] == "campaign" and c["title"] == "Qilin ransomware activity (4 victim claims)"
+
+
+def test_weak_evidence_only_links_inside_the_window():
+    old = [T(f"K{i}", "kev", days=100 + 200 * i, products=[("ivanti", "connect_secure")]) for i in range(3)]
+    assert ids(build(old + [T("NEWEST", days=1)])) == []  # one product's history across years is not a campaign
+    named = [T(f"CVE-2020-{i}", "kev", days=900, cves=[f"CVE-2020-{i}"]) for i in range(2)]
+    report = T("OTX-NOW", days=1, cves=["CVE-2020-0", "CVE-2020-1"])  # a current report naming old CVEs: strong link
+    assert ids(build(named + [report])) == [["CVE-2020-0", "CVE-2020-1", "OTX-NOW"]]
+
+
+def test_redistributor_products_are_not_evidence():
+    rows = [T(f"X{i}", "kev", days=1 + i, products=[("debian", "debian_linux")]) for i in range(4)]
+    assert ids(build(rows)) == []
+
+
+def test_roundup_report_is_not_a_hub():
+    cves = [f"CVE-2026-2{i:02d}" for i in range(12)]
+    rows = [T(c, "kev", days=1 + i, cves=[c]) for i, c in enumerate(cves)] + [T("ROUNDUP", days=1, cves=cves)]
+    assert ids(build(rows)) == []  # 12 CVEs > max_report_cves: naming them all proves no shared campaign
+
+
+def test_patch_batch_halves_rejoin_across_the_cap(monkeypatch):
+    monkeypatch.setitem(campaigns.CONFIG, "max_campaign_size", 3)
+    [c] = build(release("CVE-2026-30", 7))["campaigns"]
+    assert c["kind"] == "patch_batch" and c["size"] == 7  # one release, not three look-alike pieces
+
+
+def test_titles_are_unique():
+    out = [{"title": "Acme VPN", "threat_ids": ["A1"]}, {"title": "Acme VPN", "threat_ids": ["B1"]},
+           {"title": "Other", "threat_ids": ["C1"]}]
+    campaigns._unique_titles(out)
+    assert [c["title"] for c in out] == ["Acme VPN · incl. A1", "Acme VPN · incl. B1", "Other"]
+
+
+def test_ranked_by_actionability_with_explained_factors():
+    kev = [T(f"K{i}", "kev", days=1 + i, cves=["CVE-2026-51"], kev=True) for i in range(3)]
+    plain = [T(f"P{i}", "certin", days=1 + i, cves=["CVE-2026-52"]) for i in range(3)]
+    cs = build(plain + kev)["campaigns"]
+    assert [sorted(c["threat_ids"])[0] for c in cs] == ["K0", "P0"]
+    for c in cs:
+        assert c["actionability_score"] == round(sum(c["actionability_factors"].values()), 1)
+    assert cs[0]["actionability_factors"]["kev_members"] == 15.0  # 3 of 5 KEV members for full points

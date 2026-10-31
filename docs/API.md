@@ -536,15 +536,34 @@ day) plus every KEV entry, OTX pulse, CERT-In advisory and ransomware record. Pl
 only with activity (KEV, public exploit, EPSS ≥ 0.1) or when another in-scope item names them.
 
 Links, applied strongest first: shared CVE > shared IOC value > shared vendor+product > shared
-ATT&CK technique > TF-IDF cosine of title+description ≥ `tfidf_threshold`. Keys held by more than
-`max_key_members` (techniques: `max_technique_members`) threats are generic (T1190, "microsoft
-windows") and ignored (`meta.skipped_generic_keys`). Single-linkage with a size cap
-(`max_campaign_size`): a link that would grow a group past it is not applied, so boilerplate text
-can't chain thousands of advisories together. Campaigns = groups with ≥ `min_size` members.
-`is_emerging`: ≥ `emerging_min_new` members in the last 7 days and ≥ `emerging_growth` × the
-previous 7 days. Every threshold is in `CONFIG` (echoed as `config`). Deterministic; cached in
+ATT&CK technique > TF-IDF cosine of title+description ≥ `tfidf_threshold`.
+- **Strong evidence** (shared CVE / IOC) links any in-scope threats, e.g. a current OTX report naming a 2024 KEV CVE.
+- **Weak evidence** (product, technique, text) only links threats that were **both published inside the window**.
+  Across years it just chains a vendor's whole history (monthly patch days, templated KEV text), which is not a campaign.
+- **Not evidence:** products of redistributors (`redistributor_vendors`: Debian, Fedora, Ubuntu, Red Hat, SUSE, …:
+  their CPEs list everything they ship); the CVE list of a **roundup** report naming > `max_report_cves` CVEs
+  ("top exploited", APT profiles), which would otherwise be a hub chaining unrelated campaigns; keys held by more than
+  `max_key_members` (techniques: `max_technique_members`) threats (`meta.skipped_generic_keys`).
+- Single-linkage with a size cap (`max_campaign_size`). Campaigns = groups with ≥ `min_size` members.
+- **`kind: "patch_batch"`**: ≥ 80% vulnerability records (NVD/KEV/CERT-In), no threat-activity source (OTX, ransomware,
+  abuse.ch), and ≥ `patch_batch_same_day_share` of members published on one day = one vendor's release. Two halves of
+  the same release day split by the cap are re-joined. Listed (it may still hit our assets) but **never emerging**.
+  Title: `<Vendor> patch release <day> (<n> vulnerabilities)`, vendor from CPE data confirmed by ≥ 2 members, else
+  `Vulnerability batch published <day> (...)`.
+- **`is_emerging`** (campaigns only): ≥ `emerging_min_new` members in the last 7 days, over ≥ `emerging_min_days`
+  distinct days, and ≥ `emerging_growth` × the previous 7 days.
+- **Titles are unique**: ransomware group (`<Group> ransomware activity (<n> victim claims)`), malware family
+  (`<Family> indicators`), the OTX report's own headline, top shared products, else the earliest member's title.
+  A collision gets `· incl. <first member id>`.
+- **Ranked by `actionability_score`** (0-100, `actionability_factors` sum to it): exposed assets 50 (full at 4) +
+  KEV members 25 (full at 5) + threat-activity source 15 + emerging 10.
+
+Every threshold is in `CONFIG` (echoed as `config`). Deterministic; cached in
 `backend/data/cache/campaigns.json` with a fingerprint of the in-scope data; recomputed at
 startup (background) and after every ingest (`collectors/run_all.py`) only when that data changed.
+On the cached data (31 Oct): 140 → 49 groups; capped-at-50 17 → 5 (4 report clusters + the Apple 26 Oct release, now
+one 137-CVE patch batch); duplicate titles 12 → 0; emerging 17 → 4 (all threat activity: Qilin, SilentRansomGroup,
+stealer and RAT indicators); 21 patch batches labelled.
 Shared IOC links exist in the rule but the current cache has no IOC value in two threats.
 
 ### `GET /api/campaigns?emerging=true|false&limit=50`
@@ -554,7 +573,8 @@ total, emerging_total, items: [campaign]}`; campaign = `campaign_id`, `title`, `
 `threat_ids[]`, `sources{}`, `link_reasons[]` (`{type, key, count, text}` e.g. "17 share fortinet
 fortios"), `first_seen`, `last_seen`, `growth_7d {last_7d, prev_7d, ratio}`, `is_emerging`,
 `kev_listed_members`, `affected_asset_ids[]`/`affected_asset_count` (Member 3's matcher,
-read-only), `top_recommended_action`, `is_simulated`. Emerging first, then most exposed assets.
+read-only), `top_recommended_action`, `is_simulated`, `kind`, `actionability_score`, `actionability_factors`.
+Sorted by `actionability_score`, then campaigns before patch batches, then size.
 Sample: `docs/samples/campaigns.json`.
 
 ### `GET /api/campaigns/{campaign_id}`

@@ -10,7 +10,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import func, select
 
-from . import alerts, analytics, assets, campaigns, feeds, frontend, insights, summaries
+from . import alerts, analytics, assets, attack_lab, campaigns, feeds, frontend, insights, summaries
 from .database import SessionLocal, init_db
 from .models import Threat
 from routes import investigation, shadow_watch
@@ -55,6 +55,7 @@ app.include_router(insights.router)
 app.include_router(assets.router)  # Member 3
 app.include_router(alerts.router)  # Member 3
 app.include_router(analytics.router)  # Member 3
+app.include_router(attack_lab.router)  # Member 3: attack simulation + detection
 app.state.shadow_demo_adapter = DemoAdapter()
 app.include_router(shadow_watch.router)
 app.include_router(investigation.router)

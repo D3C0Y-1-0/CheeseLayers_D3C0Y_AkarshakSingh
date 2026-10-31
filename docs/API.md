@@ -467,3 +467,44 @@ A version that is still vulnerable stays affected and gets a note. A non-standar
 `needs_verification` and keeps a non-zero score: we never claim a patch is safe without proof. Errors: neither target given → 422,
 unknown threat or asset → 404, assets with no open alerts and no `threat_id` → 400. Threats come from the DB, falling back to the
 demo fixture files.
+
+## Member 3: Attack Lab (attack simulation + detection)
+
+Simulates simple attacks as the raw log lines a real server would write, detects them **from the text alone**
+(the detector is never told which attack ran), names the attack type with MITRE ATT&CK, and feeds what fired into
+the correlation engine as a normal behaviour incident. Dashboard: `/app/attack-lab`. Code: `backend/app/attack_lab.py`
+(playbooks + API), `backend/app/detection.py` (parsers, rules, verdict).
+
+| Method | Path | What |
+|---|---|---|
+| GET | `/api/attack-lab/playbooks` | Attacks we can simulate: `brute_force`, `sql_injection`, `port_scan`, `command_injection`, `normal_traffic` (control: must not fire) |
+| GET | `/api/attack-lab/rules` | The rulebook: every rule's exact logic, threshold, reason it works, MITRE technique; SQLi/CMDi signature regexes |
+| POST | `/api/attack-lab/run` | `{scenario, target_asset_id?, succeed?}` → steps, raw lines, detections, verdict, events sent, incident. **DEMO_MODE only** (403 otherwise) |
+| POST | `/api/attack-lab/analyze` | `{lines: [...]}` → same detection on any pasted log lines / URLs. Stateless, nothing stored |
+
+Pipeline: **parse** (web access, sshd auth, firewall, process audit, conntrack; anything else is checked as raw request
+text) → **per-line signatures** (SQLi, command injection, traversal, XSS on the URL-decoded request) → **per-source
+thresholds** (10+ failed logins / 60s, 15+ ports / 60s) → **sequence rules** (login success after failures; injected
+request returning 5x a normal page; web server → shell; outbound to attacker-named IP) → **verdict** (attack type,
+stage recon/attempt/compromise, confidence, decision path).
+
+| Rule | Detects | Signal → score |
+|---|---|---|
+| AUTH-BF-001 | brute force / password spraying (T1110) | `brute_force` 0.6 |
+| AUTH-BF-002 | success after brute force (T1078) | `credential_compromise` 0.95 |
+| NET-SCAN-001 | port scan (T1046) | `port_scan` 0.45 |
+| WEB-SQLI-001 | SQL injection (T1190) | `sql_injection` 0.75 |
+| WEB-SQLI-002 | injected query returned data (T1213) | `data_exposure` 0.95 |
+| WEB-CMDI-001 | command injection (T1190) | `command_injection` 0.85 |
+| WEB-TRAV-001 / WEB-XSS-001 | path traversal / XSS | `http_anomaly` 0.5 |
+| HOST-PROC-001 | web server spawned a shell (T1059.004) | `unexpected_process` 0.8 |
+| NET-C2-001 | reverse-shell outbound (T1095) | `outbound_connection` 0.7 |
+
+Each fired rule becomes one `SecurityEvent` (`rule_id`, `confidence`, `details.attack_signal/attack_label/
+detection_reason/mitre/src_ip`). Behaviour alerts built from them get a title naming the attack
+(e.g. `SQL injection + SQL injection: data extracted on netbanking-web (BNK-NET-01)`), plus
+`attack_classification` and `indicators.src_ips`. Re-running on the same asset within 15 minutes joins the open
+incident (`correlation.note` says so); `POST /api/demo/reset-alerts` starts clean.
+
+Expected results: brute force → medium (blocked) / critical (password guessed); SQL injection → high / critical (data
+extracted); port scan → medium; command injection → high / critical (shell + call-home); normal traffic → no incident.

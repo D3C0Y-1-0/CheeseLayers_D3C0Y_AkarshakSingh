@@ -255,7 +255,10 @@ class CorrelationEngine:
         dest_ips = sorted({e.details.get("dest_ip") for e in events
                            if classify_event(e).signal == "outbound_connection" and e.details.get("dest_ip")})
         kinds = ", ".join(b.get("distinct_signal_types", []))
+        attacks = list(dict.fromkeys(e.details["attack_label"] for e in sorted(events, key=lambda e: e.timestamp)
+                                     if e.details.get("attack_label")))
         title = (f"Maintenance activity on {asset.hostname} ({asset.asset_id}): not escalated" if suppressed
+                 else f"{' + '.join(attacks)} on {asset.hostname} ({asset.asset_id})" if attacks
                  else f"Suspicious activity on {asset.hostname} ({asset.asset_id}): {kinds}")
         reasons = [f"{x.event_id}: {x.reason}" for x in signals if x.signal] + s.escalation_reasons
         if open_vuln:
@@ -272,7 +275,13 @@ class CorrelationEngine:
             escalation_reasons=s.escalation_reasons, is_simulated=asset.is_simulated or any(e.is_simulated for e in events),
         )
         related = existing.data.get("related_alert_ids", []) if existing else []
-        return alert, {"related_alert_ids": related, "indicators": {"dest_ips": dest_ips}, "suppressed": suppressed}
+        classification = [{"rule_id": e.rule_id, "attack_type": e.details["attack_type"], "label": e.details["attack_label"],
+                           "stage": e.details.get("stage"), "mitre": e.details.get("mitre", []),
+                           "src_ip": e.details.get("src_ip"), "event_id": e.event_id}
+                          for e in events if e.details.get("attack_type")]
+        src_ips = sorted({c["src_ip"] for c in classification if c["src_ip"]})
+        return alert, {"related_alert_ids": related, "indicators": {"dest_ips": dest_ips, "src_ips": src_ips},
+                       "suppressed": suppressed, "attack_classification": classification}
 
     def _unattributed_alert(self, e: SecurityEvent) -> str:
         """An event with no asset_id can't be correlated or fully scored, but must stay visible."""

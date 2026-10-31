@@ -12,6 +12,7 @@ const Incident = lazy(() => import('./dashboard/Incident'))
 const Signals = lazy(() => import('./dashboard/Signals'))
 const Analytics = lazy(() => import('./dashboard/Analytics'))
 const Campaigns = lazy(() => import('./dashboard/Campaigns'))
+const AttackLab = lazy(() => import('./dashboard/AttackLab'))
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="signals" element={<Signals />} />
           <Route path="analytics" element={<Analytics />} />
           <Route path="campaigns" element={<Campaigns />} />
+          <Route path="attack-lab" element={<AttackLab />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

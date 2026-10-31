@@ -279,3 +279,86 @@ li:last-child > .row-link {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Attack simulation */
+.lab-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-height: 9rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-rule);
+  border-radius: 4px;
+  background: #060c20;
+  color: var(--color-grey-300);
+  text-align: left;
+  transition: border-color 0.2s;
+}
+.lab-card:hover {
+  border-color: var(--color-blue-300);
+}
+.lab-card.is-on {
+  border-color: var(--color-blue);
+  box-shadow: inset 0 0 0 1px var(--color-blue);
+}
+.lab-verdict {
+  border-left: 4px solid var(--color-rule);
+}
+.lab-verdict.tone-critical { border-left-color: #ff5a5f; }
+.lab-verdict.tone-high { border-left-color: #ff9d4d; }
+.lab-verdict.tone-medium { border-left-color: #f4d35e; }
+.lab-step {
+  animation: lab-in 0.35s ease-out;
+}
+@keyframes lab-in {
+  from { opacity: 0; transform: translateY(6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lab-step { animation: none; }
+}
+.lab-log {
+  border: 1px solid var(--color-rule);
+  border-radius: 3px;
+  background: #030716;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+.lab-line {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) auto;
+  gap: 0.6rem;
+  align-items: start;
+  padding: 0.3rem 0.75rem;
+  border-left: 3px solid transparent;
+  color: var(--color-grey-300);
+}
+.lab-line.is-hit {
+  border-left-color: #ff5a5f;
+  background: rgb(255 90 95 / 0.08);
+  color: #fff;
+}
+.lab-no {
+  color: var(--color-grey-500);
+  font-variant-numeric: tabular-nums;
+}
+.lab-rule {
+  display: inline-block;
+  padding: 0.05rem 0.4rem;
+  border-radius: 2px;
+  background: rgb(255 90 95 / 0.16);
+  color: #ffb3b5;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+.lab-mark {
+  padding: 0 0.15rem;
+  border-radius: 2px;
+  background: #ff9d4d;
+  color: #231002;
+}
+.tag-attacker {
+  background: rgb(255 90 95 / 0.16);
+  color: #ffb3b5;
+}

@@ -21,7 +21,13 @@
       "outbound_connection": 0.7,
       "http_anomaly": 0.5,
       "auth_anomaly": 0.5,
-      "inbound_ids_alert": 0.4
+      "inbound_ids_alert": 0.4,
+      "port_scan": 0.45,
+      "brute_force": 0.6,
+      "sql_injection": 0.75,
+      "command_injection": 0.85,
+      "credential_compromise": 0.95,
+      "data_exposure": 0.95
     },
     "base_weight": 0.75,
     "diversity_bonus": 0.2,

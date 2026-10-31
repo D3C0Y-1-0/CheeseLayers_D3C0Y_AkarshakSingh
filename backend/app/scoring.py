@@ -34,6 +34,13 @@ CONFIG: dict[str, Any] = {
             "http_anomaly": 0.5,  # path traversal, request spike
             "auth_anomaly": 0.5,  # failed-login burst
             "inbound_ids_alert": 0.4,  # perimeter IDS signature
+            # Attack Lab rule signals (app/detection.py), named after the attack the rule recognised.
+            "port_scan": 0.45,  # reconnaissance only: nothing exploited yet
+            "brute_force": 0.6,  # password guessing in progress
+            "sql_injection": 0.75,  # attempt against the database behind a web app
+            "command_injection": 0.85,  # attempt to run OS commands on the server
+            "credential_compromise": 0.95,  # a guessed password worked
+            "data_exposure": 0.95,  # an injected query returned data
         },
         "base_weight": 0.75,  # score from the single worst signal
         "diversity_bonus": 0.2,  # per extra DIFFERENT signal type: independent signals corroborate each other
@@ -84,6 +91,11 @@ def classify_event(e: SecurityEvent) -> EventSignal:
             limits.append(f"{e.event_id}: {key} is missing, so the source/destination is unverified")
 
     signal, reason = None, "no suspicious pattern"
+    if e.rule_id and d.get("attack_signal") in CONFIG["behaviour"]["signal_severity"]:
+        # Attack Lab: the detection rule already named the attack from the raw log lines; keep its explanation.
+        return EventSignal(event_id=e.event_id, asset_id=e.asset_id, at=e.timestamp, signal=d["attack_signal"],
+                           reason=f"{e.rule_id} {d.get('attack_label', '')}: {d.get('detection_reason', '')}",
+                           limitations=limits)
     if e.model_extra.get("shadow_watch_evaluated") and e.event_type != "maintenance":
         # The typed detector has already checked source capability and exact rules.
         # Do not reclassify approved/benign observations with looser legacy heuristics.

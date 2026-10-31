@@ -21,6 +21,22 @@ already built frontend or `-Port 8001` for another port. Your root `.env` stays 
 no key is needed. For frontend development run `npm.cmd run dev` in `frontend/` alongside the
 backend, then open http://127.0.0.1:5173/app. Vite proxies API calls to port 8000.
 
+## Run the complete demo (macOS / Linux)
+
+```bash
+uv venv backend/.venv            # or: python3.12 -m venv backend/.venv
+uv pip install --python backend/.venv/bin/python -r backend/requirements.txt
+(cd frontend && npm ci)
+./scripts/start.sh               # --skip-build to reuse frontend/dist, --port 8001 for another port
+```
+
+Open **http://127.0.0.1:8000/app**. Same behaviour as `start.ps1`: it uses `backend/.venv` (or
+`.venv`), exports the scoring config, builds the frontend, sets `DEMO_MODE=true` and `PYTHONUTF8=1`
+and binds 127.0.0.1 only. Cloud LLM text appears only if `.env` sets `LLM_ALLOW_CLOUD=true` and
+`LLM_API_KEY`; otherwise the dashboard shows cached LLM reports or templates. Pre-fill the cache
+before a demo with `backend/.venv/bin/python scripts/pregenerate_ai.py` (`--dry-run` to preview).
+Verify on macOS: `backend/.venv/bin/python -m pytest backend/tests -q -p no:cacheprovider`.
+
 ## Connected features
 
 - Command Center: real API counts, publication trend, source health, four predefined scenarios,

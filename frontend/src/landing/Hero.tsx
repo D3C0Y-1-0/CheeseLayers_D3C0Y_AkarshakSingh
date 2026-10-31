@@ -284,7 +284,7 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-              <FxButton to="/app/incidents/ALR-PWR-FW-01-CVE-2024-21762" arrow>Open this warning</FxButton>
+              <FxButton to="/app/incidents/ALR-D6B33680" arrow>Open this warning</FxButton>
               <p className="text-grey-200">Upgrade PWR-FW-01 to {MATCH.fixed} or later. PWR-FW-02 raises no alert.</p>
             </div>
           </article>

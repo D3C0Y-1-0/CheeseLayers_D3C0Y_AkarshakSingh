@@ -62,7 +62,9 @@ export function Intro({ urgent, onDone }: { urgent: number; onDone: () => void }
 
     // The cursor follows the end of whatever is being typed.
     const follow = () => {
-      const active = lineB.current!.textContent ? lineB.current! : lineA.current!
+      // The ticker can fire once more after the greeting unmounts; the refs are gone by then.
+      if (!lineA.current || !lineB.current || !writer.current) return
+      const active = lineB.current.textContent ? lineB.current : lineA.current
       writer.current!.style.transform = `translate3d(${active.getBoundingClientRect().right + 6}px, ${active.getBoundingClientRect().bottom - 18}px, 0)`
     }
     gsap.ticker.add(follow)

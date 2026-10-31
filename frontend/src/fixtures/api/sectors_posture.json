@@ -1,0 +1,92 @@
+{
+  "data_classification": "Simulated Sector Exposure (Synthetic Asset Inventory)",
+  "is_simulated": true,
+  "generated_at": "2026-10-31T14:15:46.690072+00:00",
+  "formula": "weighted_sector_risk_score = sum(criticality x worst active alert risk_score per asset) / sum(criticality), over every asset in the sector (assets with no active alert count as 0)",
+  "sectors": [
+    {
+      "sector": "power",
+      "label": "Power/Energy",
+      "total_assets": 7,
+      "confirmed_affected_assets": 2,
+      "needs_verification_assets": 0,
+      "active_incidents": 2,
+      "active_critical_high_incidents": 2,
+      "max_asset_priority_score": 99.4,
+      "weighted_sector_risk_score": 29.2,
+      "top_threat_ids": [
+        "CVE-2024-21762",
+        "DEMO-VULN-001"
+      ]
+    },
+    {
+      "sector": "banking",
+      "label": "Banking",
+      "total_assets": 7,
+      "confirmed_affected_assets": 2,
+      "needs_verification_assets": 0,
+      "active_incidents": 3,
+      "active_critical_high_incidents": 2,
+      "max_asset_priority_score": 99.4,
+      "weighted_sector_risk_score": 25.0,
+      "top_threat_ids": [
+        "CVE-2024-21762",
+        "DEMO-VULN-002"
+      ]
+    },
+    {
+      "sector": "health",
+      "label": "Healthcare",
+      "total_assets": 7,
+      "confirmed_affected_assets": 0,
+      "needs_verification_assets": 1,
+      "active_incidents": 2,
+      "active_critical_high_incidents": 1,
+      "max_asset_priority_score": 100.0,
+      "weighted_sector_risk_score": 20.1,
+      "top_threat_ids": [
+        "DEMO-VULN-003"
+      ]
+    },
+    {
+      "sector": "govt",
+      "label": "Government",
+      "total_assets": 7,
+      "confirmed_affected_assets": 1,
+      "needs_verification_assets": 0,
+      "active_incidents": 1,
+      "active_critical_high_incidents": 1,
+      "max_asset_priority_score": 95.4,
+      "weighted_sector_risk_score": 14.1,
+      "top_threat_ids": [
+        "CVE-2024-4577"
+      ]
+    },
+    {
+      "sector": "telecom",
+      "label": "Telecom",
+      "total_assets": 6,
+      "confirmed_affected_assets": 1,
+      "needs_verification_assets": 0,
+      "active_incidents": 1,
+      "active_critical_high_incidents": 1,
+      "max_asset_priority_score": 91.4,
+      "weighted_sector_risk_score": 12.5,
+      "top_threat_ids": [
+        "CVE-2023-22515"
+      ]
+    },
+    {
+      "sector": "water",
+      "label": "Water",
+      "total_assets": 6,
+      "confirmed_affected_assets": 0,
+      "needs_verification_assets": 0,
+      "active_incidents": 1,
+      "active_critical_high_incidents": 0,
+      "max_asset_priority_score": 37.5,
+      "weighted_sector_risk_score": 5.4,
+      "top_threat_ids": []
+    }
+  ]
+}

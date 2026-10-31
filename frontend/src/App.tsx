@@ -13,6 +13,7 @@ const Signals = lazy(() => import('./dashboard/Signals'))
 const Analytics = lazy(() => import('./dashboard/Analytics'))
 const Campaigns = lazy(() => import('./dashboard/Campaigns'))
 const AttackLab = lazy(() => import('./dashboard/AttackLab'))
+const Soc = lazy(() => import('./dashboard/Soc'))
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="analytics" element={<Analytics />} />
           <Route path="campaigns" element={<Campaigns />} />
           <Route path="attack-lab" element={<AttackLab />} />
+          <Route path="soc" element={<Soc />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

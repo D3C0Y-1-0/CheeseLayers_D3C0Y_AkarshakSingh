@@ -35,7 +35,7 @@ const MENUS: Menu[] = [
       { title: 'Attack patterns', body: 'Related events on one asset are linked by time and type into a single investigation.', href: '#scenarios' },
       { title: 'Threat relationships', body: 'Each threat maps to MITRE ATT&CK, so analysts see the technique behind it.', to: '/app/threats' },
     ],
-    feature: { icon: ScanSearch, kicker: 'Investigation agent', title: 'Explains from evidence', body: 'AI writes the summary using stored evidence only, and lists what it could not verify.', cta: 'See an investigation', to: '/app/incidents/ALR-BEH-HLT-WEB-01' },
+    feature: { icon: ScanSearch, kicker: 'Investigation agent', title: 'Explains from evidence', body: 'AI writes the summary using stored evidence only, and lists what it could not verify.', cta: 'See an investigation', to: '/app/incidents/ALR-BBA4D249' },
   },
   {
     label: 'Warnings',
@@ -45,14 +45,14 @@ const MENUS: Menu[] = [
       { title: 'Risk ranking', body: 'Exploitability, asset criticality, exposure and evidence, with every factor visible.', href: '#score' },
       { title: 'False alarm control', body: 'Approved maintenance and other context stop harmless spikes from escalating.', href: '#scenarios' },
     ],
-    feature: { icon: Gauge, kicker: 'Critical, 98 of 100', title: 'CVE-2024-21762 on PWR-FW-01', body: 'A real exploited flaw matched to a simulated grid firewall.', cta: 'Open this warning', to: '/app/incidents/ALR-PWR-FW-01-CVE-2024-21762' },
+    feature: { icon: Gauge, kicker: 'Critical, 98 of 100', title: 'CVE-2024-21762 on PWR-FW-01', body: 'A real exploited flaw matched to a simulated grid firewall.', cta: 'Open this warning', to: '/app/incidents/ALR-D6B33680' },
   },
   {
     label: 'Response',
     group: 'Actionable recommendations',
     items: [
-      { title: 'Patch', body: 'The exact fixed version for the affected system, not a generic reminder to update.', to: '/app/incidents/ALR-PWR-FW-01-CVE-2024-21762' },
-      { title: 'Block', body: 'Outbound destinations and indicators to stop while the investigation runs.', to: '/app/incidents/ALR-BEH-HLT-WEB-01' },
+      { title: 'Patch', body: 'The exact fixed version for the affected system, not a generic reminder to update.', to: '/app/incidents/ALR-D6B33680' },
+      { title: 'Block', body: 'Outbound destinations and indicators to stop while the investigation runs.', to: '/app/incidents/ALR-BBA4D249' },
       { title: 'Investigate', body: 'Which host to check, what evidence backs it and what is still unknown.', to: '/app/incidents' },
     ],
     feature: { icon: ShieldCheck, kicker: 'Threat dashboard', title: 'Active threats in one place', body: 'Risk levels, affected technologies and alerts for your SOC team.', cta: 'Open dashboard', to: '/app' },

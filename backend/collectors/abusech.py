@@ -9,10 +9,8 @@ All three main APIs need a free Auth-Key (https://auth.abuse.ch/). The old no-ke
 (threatfox .../export/json/recent/, urlhaus .../downloads/csv_recent/) return 410 Gone since 2025,
 so without a key we fall back to Feodo Tracker only.
 """
-from collections import defaultdict
-
-from .common import Skipped, env, get, log, request, save_raw
-from .schema import IOC, ThreatItem
+from .common import Skipped, env, get, ioc_batches, log, request, save_raw
+from .schema import IOC
 
 SOURCE = "abusech"
 FEODO = "https://feodotracker.abuse.ch/downloads/ipblocklist.json"
@@ -75,21 +73,6 @@ def fetch() -> dict:
     if not iocs:
         raise Skipped("no abuse.ch data (add ABUSECH_AUTH_KEY)")
 
-    # Group IOCs into one 'ioc_batch' ThreatItem per feed + malware family so the dashboard can show
-    # "ThreatFox: 120 Cobalt Strike IOCs" and the IOC matcher can link a log hit back to a threat.
-    groups: dict[tuple[str, str], list[IOC]] = defaultdict(list)
-    for i in iocs:
-        groups[(i.source, i.malware_family or "unknown")].append(i)
-    items = []
-    for (src, family), group in groups.items():
-        tid = f"{src}:{family.lower().replace(' ', '_')}"
-        for i in group:
-            i.related_threat_id = tid
-        items.append(ThreatItem(
-            id=tid, source=src, type="ioc_batch", title=f"{src}: {len(group)} {family} indicators",
-            description=f"{len(group)} indicators of compromise linked to {family}, reported by abuse.ch {src}.",
-            published_at=max((i.first_seen for i in group if i.first_seen), default=None),
-            url={"malwarebazaar": "https://bazaar.abuse.ch/"}.get(src, f"https://{src}.abuse.ch/"),
-            tags=["abuse.ch", src, family],
-        ))
-    return {"items": items, "iocs": iocs}
+    urls = {"malwarebazaar": "https://bazaar.abuse.ch/", "threatfox": "https://threatfox.abuse.ch/",
+            "urlhaus": "https://urlhaus.abuse.ch/", "feodotracker": "https://feodotracker.abuse.ch/"}
+    return {"items": ioc_batches(iocs, urls, "abuse.ch"), "iocs": iocs}

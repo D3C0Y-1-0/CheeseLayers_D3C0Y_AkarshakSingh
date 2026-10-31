@@ -1,24 +1,25 @@
 {
  "items": [
   {
-   "id": "threatfox:mirai",
+   "id": "threatfox:vidar",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 1145 Mirai indicators",
-   "description": "1145 indicators of compromise linked to Mirai, reported by abuse.ch threatfox.",
-   "published_at": "2026-10-31T09:22:01Z",
+   "title": "threatfox: 1558 Vidar indicators",
+   "description": "1558 indicators of compromise linked to Vidar, reported by abuse.ch threatfox.",
+   "published_at": "2026-10-31T11:05:48Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
    "cvss": null,
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
     "abuse.ch",
     "threatfox",
-    "Mirai"
+    "Vidar"
    ],
    "raw_ref": null
   },
@@ -26,15 +27,16 @@
    "id": "threatfox:clearfake",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 1676 ClearFake indicators",
-   "description": "1676 indicators of compromise linked to ClearFake, reported by abuse.ch threatfox.",
-   "published_at": "2026-10-31T09:07:08Z",
+   "title": "threatfox: 1681 ClearFake indicators",
+   "description": "1681 indicators of compromise linked to ClearFake, reported by abuse.ch threatfox.",
+   "published_at": "2026-10-31T11:05:48Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
    "cvss": null,
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -48,15 +50,16 @@
    "id": "threatfox:vshell",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 2080 VShell indicators",
-   "description": "2080 indicators of compromise linked to VShell, reported by abuse.ch threatfox.",
-   "published_at": "2026-10-31T09:05:05Z",
+   "title": "threatfox: 2083 VShell indicators",
+   "description": "2083 indicators of compromise linked to VShell, reported by abuse.ch threatfox.",
+   "published_at": "2026-10-31T11:05:04Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
    "cvss": null,
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -70,15 +73,16 @@
    "id": "threatfox:unknown_loader",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 392 Unknown Loader indicators",
-   "description": "392 indicators of compromise linked to Unknown Loader, reported by abuse.ch threatfox.",
-   "published_at": "2026-10-31T08:56:22Z",
+   "title": "threatfox: 396 Unknown Loader indicators",
+   "description": "396 indicators of compromise linked to Unknown Loader, reported by abuse.ch threatfox.",
+   "published_at": "2026-10-31T10:56:24Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
    "cvss": null,
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -89,18 +93,134 @@
    "raw_ref": null
   },
   {
-   "id": "threatfox:php.shin_webshell",
+   "id": "threatfox:mirai",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 206 php.shin_webshell indicators",
-   "description": "206 indicators of compromise linked to php.shin_webshell, reported by abuse.ch threatfox.",
-   "published_at": "2026-10-31T08:40:21Z",
+   "title": "threatfox: 1068 Mirai indicators",
+   "description": "1068 indicators of compromise linked to Mirai, reported by abuse.ch threatfox.",
+   "published_at": "2026-10-31T10:56:20Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
    "cvss": null,
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "threatfox",
+    "Mirai"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "threatfox:amos",
+   "source": "threatfox",
+   "type": "ioc_batch",
+   "title": "threatfox: 1907 AMOS indicators",
+   "description": "1907 indicators of compromise linked to AMOS, reported by abuse.ch threatfox.",
+   "published_at": "2026-10-31T10:56:19Z",
+   "url": "https://threatfox.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "threatfox",
+    "AMOS"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "threatfox:strelastealer",
+   "source": "threatfox",
+   "type": "ioc_batch",
+   "title": "threatfox: 331 StrelaStealer indicators",
+   "description": "331 indicators of compromise linked to StrelaStealer, reported by abuse.ch threatfox.",
+   "published_at": "2026-10-31T10:54:07Z",
+   "url": "https://threatfox.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "threatfox",
+    "StrelaStealer"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "threatfox:unknown_malware",
+   "source": "threatfox",
+   "type": "ioc_batch",
+   "title": "threatfox: 2394 Unknown malware indicators",
+   "description": "2394 indicators of compromise linked to Unknown malware, reported by abuse.ch threatfox.",
+   "published_at": "2026-10-31T10:51:10Z",
+   "url": "https://threatfox.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "threatfox",
+    "Unknown malware"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "threatfox:iclickfix",
+   "source": "threatfox",
+   "type": "ioc_batch",
+   "title": "threatfox: 2545 IClickFix indicators",
+   "description": "2545 indicators of compromise linked to IClickFix, reported by abuse.ch threatfox.",
+   "published_at": "2026-10-31T10:36:07Z",
+   "url": "https://threatfox.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "threatfox",
+    "IClickFix"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "threatfox:php.shin_webshell",
+   "source": "threatfox",
+   "type": "ioc_batch",
+   "title": "threatfox: 205 php.shin_webshell indicators",
+   "description": "205 indicators of compromise linked to php.shin_webshell, reported by abuse.ch threatfox.",
+   "published_at": "2026-10-31T10:35:54Z",
+   "url": "https://threatfox.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -111,24 +231,71 @@
    "raw_ref": null
   },
   {
-   "id": "threatfox:unknown_malware",
+   "id": "threatfox:cobalt_strike",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 2419 Unknown malware indicators",
-   "description": "2419 indicators of compromise linked to Unknown malware, reported by abuse.ch threatfox.",
-   "published_at": "2026-10-31T08:23:00Z",
+   "title": "threatfox: 413 Cobalt Strike indicators",
+   "description": "413 indicators of compromise linked to Cobalt Strike, reported by abuse.ch threatfox.",
+   "published_at": "2026-10-31T10:20:03Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
    "cvss": null,
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
     "abuse.ch",
     "threatfox",
-    "Unknown malware"
+    "Cobalt Strike"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "threatfox:jackskid",
+   "source": "threatfox",
+   "type": "ioc_batch",
+   "title": "threatfox: 38 Jackskid indicators",
+   "description": "38 indicators of compromise linked to Jackskid, reported by abuse.ch threatfox.",
+   "published_at": "2026-10-31T10:16:40Z",
+   "url": "https://threatfox.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "threatfox",
+    "Jackskid"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "threatfox:evilginx",
+   "source": "threatfox",
+   "type": "ioc_batch",
+   "title": "threatfox: 26 Evilginx indicators",
+   "description": "26 indicators of compromise linked to Evilginx, reported by abuse.ch threatfox.",
+   "published_at": "2026-10-31T09:44:08Z",
+   "url": "https://threatfox.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "threatfox",
+    "Evilginx"
    ],
    "raw_ref": null
   },
@@ -145,6 +312,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -167,6 +335,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -180,8 +349,8 @@
    "id": "threatfox:salatstealer",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 796 SalatStealer indicators",
-   "description": "796 indicators of compromise linked to SalatStealer, reported by abuse.ch threatfox.",
+   "title": "threatfox: 795 SalatStealer indicators",
+   "description": "795 indicators of compromise linked to SalatStealer, reported by abuse.ch threatfox.",
    "published_at": "2026-10-31T07:56:18Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
@@ -189,56 +358,13 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
     "abuse.ch",
     "threatfox",
     "SalatStealer"
-   ],
-   "raw_ref": null
-  },
-  {
-   "id": "threatfox:iclickfix",
-   "source": "threatfox",
-   "type": "ioc_batch",
-   "title": "threatfox: 2544 IClickFix indicators",
-   "description": "2544 indicators of compromise linked to IClickFix, reported by abuse.ch threatfox.",
-   "published_at": "2026-10-31T07:38:20Z",
-   "url": "https://threatfox.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "threatfox",
-    "IClickFix"
-   ],
-   "raw_ref": null
-  },
-  {
-   "id": "threatfox:cobalt_strike",
-   "source": "threatfox",
-   "type": "ioc_batch",
-   "title": "threatfox: 414 Cobalt Strike indicators",
-   "description": "414 indicators of compromise linked to Cobalt Strike, reported by abuse.ch threatfox.",
-   "published_at": "2026-10-31T07:38:10Z",
-   "url": "https://threatfox.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "threatfox",
-    "Cobalt Strike"
    ],
    "raw_ref": null
   },
@@ -255,6 +381,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -277,6 +404,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -299,6 +427,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -321,6 +450,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -334,8 +464,8 @@
    "id": "threatfox:purerat",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 129 PureRAT indicators",
-   "description": "129 indicators of compromise linked to PureRAT, reported by abuse.ch threatfox.",
+   "title": "threatfox: 120 PureRAT indicators",
+   "description": "120 indicators of compromise linked to PureRAT, reported by abuse.ch threatfox.",
    "published_at": "2026-10-31T07:33:32Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
@@ -343,6 +473,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -365,6 +496,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -378,8 +510,8 @@
    "id": "threatfox:havoc",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 11 Havoc indicators",
-   "description": "11 indicators of compromise linked to Havoc, reported by abuse.ch threatfox.",
+   "title": "threatfox: 10 Havoc indicators",
+   "description": "10 indicators of compromise linked to Havoc, reported by abuse.ch threatfox.",
    "published_at": "2026-10-31T07:33:18Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
@@ -387,6 +519,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -400,8 +533,8 @@
    "id": "threatfox:adaptixc2",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 30 AdaptixC2 indicators",
-   "description": "30 indicators of compromise linked to AdaptixC2, reported by abuse.ch threatfox.",
+   "title": "threatfox: 27 AdaptixC2 indicators",
+   "description": "27 indicators of compromise linked to AdaptixC2, reported by abuse.ch threatfox.",
    "published_at": "2026-10-31T07:32:53Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
@@ -409,6 +542,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -422,8 +556,8 @@
    "id": "threatfox:asyncrat",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 81 AsyncRAT indicators",
-   "description": "81 indicators of compromise linked to AsyncRAT, reported by abuse.ch threatfox.",
+   "title": "threatfox: 73 AsyncRAT indicators",
+   "description": "73 indicators of compromise linked to AsyncRAT, reported by abuse.ch threatfox.",
    "published_at": "2026-10-31T07:32:25Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
@@ -431,6 +565,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -453,6 +588,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -466,8 +602,8 @@
    "id": "threatfox:unknown_rat",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 57 Unknown RAT indicators",
-   "description": "57 indicators of compromise linked to Unknown RAT, reported by abuse.ch threatfox.",
+   "title": "threatfox: 56 Unknown RAT indicators",
+   "description": "56 indicators of compromise linked to Unknown RAT, reported by abuse.ch threatfox.",
    "published_at": "2026-10-31T07:31:47Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
@@ -475,6 +611,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -488,8 +625,8 @@
    "id": "threatfox:chaos",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 3 Chaos indicators",
-   "description": "3 indicators of compromise linked to Chaos, reported by abuse.ch threatfox.",
+   "title": "threatfox: 2 Chaos indicators",
+   "description": "2 indicators of compromise linked to Chaos, reported by abuse.ch threatfox.",
    "published_at": "2026-10-31T07:31:20Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
@@ -497,6 +634,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -519,6 +657,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -532,8 +671,8 @@
    "id": "threatfox:dcrat",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 26 DCRat indicators",
-   "description": "26 indicators of compromise linked to DCRat, reported by abuse.ch threatfox.",
+   "title": "threatfox: 25 DCRat indicators",
+   "description": "25 indicators of compromise linked to DCRat, reported by abuse.ch threatfox.",
    "published_at": "2026-10-31T07:28:35Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
@@ -541,34 +680,13 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
     "abuse.ch",
     "threatfox",
     "DCRat"
-   ],
-   "raw_ref": null
-  },
-  {
-   "id": "threatfox:amos",
-   "source": "threatfox",
-   "type": "ioc_batch",
-   "title": "threatfox: 1925 AMOS indicators",
-   "description": "1925 indicators of compromise linked to AMOS, reported by abuse.ch threatfox.",
-   "published_at": "2026-10-31T07:27:58Z",
-   "url": "https://threatfox.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "threatfox",
-    "AMOS"
    ],
    "raw_ref": null
   },
@@ -585,6 +703,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -607,6 +726,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -629,6 +749,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -651,6 +772,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -664,8 +786,8 @@
    "id": "threatfox:wardenstealer",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 39 WARDENStealer indicators",
-   "description": "39 indicators of compromise linked to WARDENStealer, reported by abuse.ch threatfox.",
+   "title": "threatfox: 38 WARDENStealer indicators",
+   "description": "38 indicators of compromise linked to WARDENStealer, reported by abuse.ch threatfox.",
    "published_at": "2026-10-31T04:56:03Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
@@ -673,6 +795,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -695,6 +818,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -717,34 +841,13 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
     "abuse.ch",
     "threatfox",
     "Tofsee"
-   ],
-   "raw_ref": null
-  },
-  {
-   "id": "threatfox:strelastealer",
-   "source": "threatfox",
-   "type": "ioc_batch",
-   "title": "threatfox: 337 StrelaStealer indicators",
-   "description": "337 indicators of compromise linked to StrelaStealer, reported by abuse.ch threatfox.",
-   "published_at": "2026-10-31T02:03:38Z",
-   "url": "https://threatfox.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "threatfox",
-    "StrelaStealer"
    ],
    "raw_ref": null
   },
@@ -761,6 +864,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -783,34 +887,13 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
     "abuse.ch",
     "threatfox",
     "ValleyRAT"
-   ],
-   "raw_ref": null
-  },
-  {
-   "id": "threatfox:evilginx",
-   "source": "threatfox",
-   "type": "ioc_batch",
-   "title": "threatfox: 25 Evilginx indicators",
-   "description": "25 indicators of compromise linked to Evilginx, reported by abuse.ch threatfox.",
-   "published_at": "2026-10-30T19:44:18Z",
-   "url": "https://threatfox.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "threatfox",
-    "Evilginx"
    ],
    "raw_ref": null
   },
@@ -827,34 +910,13 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
     "abuse.ch",
     "threatfox",
     "PoshC2"
-   ],
-   "raw_ref": null
-  },
-  {
-   "id": "threatfox:vidar",
-   "source": "threatfox",
-   "type": "ioc_batch",
-   "title": "threatfox: 1557 Vidar indicators",
-   "description": "1557 indicators of compromise linked to Vidar, reported by abuse.ch threatfox.",
-   "published_at": "2026-10-30T19:03:14Z",
-   "url": "https://threatfox.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "threatfox",
-    "Vidar"
    ],
    "raw_ref": null
   },
@@ -871,6 +933,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -893,6 +956,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -915,6 +979,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -937,6 +1002,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -959,34 +1025,13 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
     "abuse.ch",
     "threatfox",
     "Remus"
-   ],
-   "raw_ref": null
-  },
-  {
-   "id": "threatfox:jackskid",
-   "source": "threatfox",
-   "type": "ioc_batch",
-   "title": "threatfox: 35 Jackskid indicators",
-   "description": "35 indicators of compromise linked to Jackskid, reported by abuse.ch threatfox.",
-   "published_at": "2026-10-30T10:11:56Z",
-   "url": "https://threatfox.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "threatfox",
-    "Jackskid"
    ],
    "raw_ref": null
   },
@@ -1003,6 +1048,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1025,6 +1071,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1047,6 +1094,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1069,6 +1117,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1091,6 +1140,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1113,6 +1163,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1135,6 +1186,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1157,6 +1209,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1179,6 +1232,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1201,6 +1255,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1223,6 +1278,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1245,6 +1301,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1267,6 +1324,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1289,6 +1347,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1311,6 +1370,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1333,6 +1393,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1355,6 +1416,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1377,6 +1439,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1399,6 +1462,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1421,6 +1485,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1443,6 +1508,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1465,6 +1531,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1487,6 +1554,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1509,6 +1577,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1531,6 +1600,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1553,6 +1623,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1575,6 +1646,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1597,6 +1669,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1619,6 +1692,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1641,6 +1715,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1663,6 +1738,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1685,6 +1761,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1707,6 +1784,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1729,6 +1807,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1751,6 +1830,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1773,6 +1853,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1795,6 +1876,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1817,6 +1899,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1839,6 +1922,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1861,6 +1945,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1883,6 +1968,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1905,6 +1991,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1927,6 +2014,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1949,6 +2037,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1971,6 +2060,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1993,6 +2083,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2015,6 +2106,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2037,6 +2129,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2059,6 +2152,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2081,6 +2175,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2103,6 +2198,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2125,6 +2221,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2147,6 +2244,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2169,6 +2267,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2191,6 +2290,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2213,6 +2313,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2235,6 +2336,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2257,6 +2359,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2279,6 +2382,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2301,6 +2405,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2323,6 +2428,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2345,6 +2451,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2367,6 +2474,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2389,6 +2497,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2411,6 +2520,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2433,6 +2543,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2446,8 +2557,8 @@
    "id": "threatfox:purelogs_stealer",
    "source": "threatfox",
    "type": "ioc_batch",
-   "title": "threatfox: 4 PureLogs Stealer indicators",
-   "description": "4 indicators of compromise linked to PureLogs Stealer, reported by abuse.ch threatfox.",
+   "title": "threatfox: 2 PureLogs Stealer indicators",
+   "description": "2 indicators of compromise linked to PureLogs Stealer, reported by abuse.ch threatfox.",
    "published_at": "2026-10-27T15:24:24Z",
    "url": "https://threatfox.abuse.ch/",
    "cve_ids": [],
@@ -2455,6 +2566,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2477,6 +2589,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2499,6 +2612,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2521,6 +2635,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2543,6 +2658,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2565,6 +2681,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2587,6 +2704,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2609,6 +2727,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2631,6 +2750,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2653,6 +2773,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2675,6 +2796,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2697,6 +2819,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2719,6 +2842,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2741,6 +2865,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2763,6 +2888,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2785,6 +2911,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2807,6 +2934,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2829,6 +2957,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2851,6 +2980,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2873,6 +3003,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2895,6 +3026,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2917,6 +3049,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2939,6 +3072,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2961,6 +3095,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2983,6 +3118,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3005,6 +3141,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3027,6 +3164,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3049,6 +3187,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3071,6 +3210,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3093,6 +3233,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3103,68 +3244,25 @@
    "raw_ref": null
   },
   {
-   "id": "urlhaus:elf",
+   "id": "urlhaus:mozi",
    "source": "urlhaus",
    "type": "ioc_batch",
-   "title": "urlhaus: 40 elf indicators",
-   "description": "40 indicators of compromise linked to elf, reported by abuse.ch urlhaus.",
-   "published_at": "2026-10-31T09:24:17Z",
+   "title": "urlhaus: 83 Mozi indicators",
+   "description": "83 indicators of compromise linked to Mozi, reported by abuse.ch urlhaus.",
+   "published_at": "2026-10-31T11:02:06Z",
    "url": "https://urlhaus.abuse.ch/",
    "cve_ids": [],
    "cvss": null,
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
     "abuse.ch",
     "urlhaus",
-    "elf"
-   ],
-   "raw_ref": null
-  },
-  {
-   "id": "urlhaus:github",
-   "source": "urlhaus",
-   "type": "ioc_batch",
-   "title": "urlhaus: 443 github indicators",
-   "description": "443 indicators of compromise linked to github, reported by abuse.ch urlhaus.",
-   "published_at": "2026-10-31T09:23:08Z",
-   "url": "https://urlhaus.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "urlhaus",
-    "github"
-   ],
-   "raw_ref": null
-  },
-  {
-   "id": "urlhaus:mirai",
-   "source": "urlhaus",
-   "type": "ioc_batch",
-   "title": "urlhaus: 69 mirai indicators",
-   "description": "69 indicators of compromise linked to mirai, reported by abuse.ch urlhaus.",
-   "published_at": "2026-10-31T09:17:08Z",
-   "url": "https://urlhaus.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "urlhaus",
-    "mirai"
+    "Mozi"
    ],
    "raw_ref": null
   },
@@ -3172,15 +3270,16 @@
    "id": "urlhaus:unknown",
    "source": "urlhaus",
    "type": "ioc_batch",
-   "title": "urlhaus: 67 unknown indicators",
-   "description": "67 indicators of compromise linked to unknown, reported by abuse.ch urlhaus.",
-   "published_at": "2026-10-31T09:02:10Z",
+   "title": "urlhaus: 73 unknown indicators",
+   "description": "73 indicators of compromise linked to unknown, reported by abuse.ch urlhaus.",
+   "published_at": "2026-10-31T11:02:05Z",
    "url": "https://urlhaus.abuse.ch/",
    "cve_ids": [],
    "cvss": null,
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3191,18 +3290,65 @@
    "raw_ref": null
   },
   {
-   "id": "urlhaus:32-bit",
+   "id": "urlhaus:irahook",
    "source": "urlhaus",
    "type": "ioc_batch",
-   "title": "urlhaus: 52 32-bit indicators",
-   "description": "52 indicators of compromise linked to 32-bit, reported by abuse.ch urlhaus.",
-   "published_at": "2026-10-31T08:54:06Z",
+   "title": "urlhaus: 9 IRAHook indicators",
+   "description": "9 indicators of compromise linked to IRAHook, reported by abuse.ch urlhaus.",
+   "published_at": "2026-10-31T10:52:15Z",
    "url": "https://urlhaus.abuse.ch/",
    "cve_ids": [],
    "cvss": null,
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "urlhaus",
+    "IRAHook"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "urlhaus:github",
+   "source": "urlhaus",
+   "type": "ioc_batch",
+   "title": "urlhaus: 461 github indicators",
+   "description": "461 indicators of compromise linked to github, reported by abuse.ch urlhaus.",
+   "published_at": "2026-10-31T10:40:12Z",
+   "url": "https://urlhaus.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "urlhaus",
+    "github"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "urlhaus:32-bit",
+   "source": "urlhaus",
+   "type": "ioc_batch",
+   "title": "urlhaus: 55 32-bit indicators",
+   "description": "55 indicators of compromise linked to 32-bit, reported by abuse.ch urlhaus.",
+   "published_at": "2026-10-31T10:39:16Z",
+   "url": "https://urlhaus.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3213,24 +3359,209 @@
    "raw_ref": null
   },
   {
-   "id": "urlhaus:irahook",
+   "id": "urlhaus:mirai",
    "source": "urlhaus",
    "type": "ioc_batch",
-   "title": "urlhaus: 8 IRAHook indicators",
-   "description": "8 indicators of compromise linked to IRAHook, reported by abuse.ch urlhaus.",
-   "published_at": "2026-10-31T08:46:43Z",
+   "title": "urlhaus: 72 mirai indicators",
+   "description": "72 indicators of compromise linked to mirai, reported by abuse.ch urlhaus.",
+   "published_at": "2026-10-31T10:32:07Z",
    "url": "https://urlhaus.abuse.ch/",
    "cve_ids": [],
    "cvss": null,
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
     "abuse.ch",
     "urlhaus",
-    "IRAHook"
+    "mirai"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "urlhaus:arm",
+   "source": "urlhaus",
+   "type": "ioc_batch",
+   "title": "urlhaus: 9 arm indicators",
+   "description": "9 indicators of compromise linked to arm, reported by abuse.ch urlhaus.",
+   "published_at": "2026-10-31T10:20:15Z",
+   "url": "https://urlhaus.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "urlhaus",
+    "arm"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "urlhaus:gitlab",
+   "source": "urlhaus",
+   "type": "ioc_batch",
+   "title": "urlhaus: 4 gitlab indicators",
+   "description": "4 indicators of compromise linked to gitlab, reported by abuse.ch urlhaus.",
+   "published_at": "2026-10-31T10:16:07Z",
+   "url": "https://urlhaus.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "urlhaus",
+    "gitlab"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "urlhaus:honeypot",
+   "source": "urlhaus",
+   "type": "ioc_batch",
+   "title": "urlhaus: 2 honeypot indicators",
+   "description": "2 indicators of compromise linked to honeypot, reported by abuse.ch urlhaus.",
+   "published_at": "2026-10-31T10:14:06Z",
+   "url": "https://urlhaus.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "urlhaus",
+    "honeypot"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "urlhaus:elf",
+   "source": "urlhaus",
+   "type": "ioc_batch",
+   "title": "urlhaus: 48 elf indicators",
+   "description": "48 indicators of compromise linked to elf, reported by abuse.ch urlhaus.",
+   "published_at": "2026-10-31T10:06:28Z",
+   "url": "https://urlhaus.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "urlhaus",
+    "elf"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "urlhaus:sh",
+   "source": "urlhaus",
+   "type": "ioc_batch",
+   "title": "urlhaus: 3 sh indicators",
+   "description": "3 indicators of compromise linked to sh, reported by abuse.ch urlhaus.",
+   "published_at": "2026-10-31T10:06:27Z",
+   "url": "https://urlhaus.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "urlhaus",
+    "sh"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "urlhaus:cowrie",
+   "source": "urlhaus",
+   "type": "ioc_batch",
+   "title": "urlhaus: 4 cowrie indicators",
+   "description": "4 indicators of compromise linked to cowrie, reported by abuse.ch urlhaus.",
+   "published_at": "2026-10-31T09:56:16Z",
+   "url": "https://urlhaus.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "urlhaus",
+    "cowrie"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "urlhaus:hta",
+   "source": "urlhaus",
+   "type": "ioc_batch",
+   "title": "urlhaus: 1 hta indicators",
+   "description": "1 indicators of compromise linked to hta, reported by abuse.ch urlhaus.",
+   "published_at": "2026-10-31T09:53:05Z",
+   "url": "https://urlhaus.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "urlhaus",
+    "hta"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "urlhaus:formbook",
+   "source": "urlhaus",
+   "type": "ioc_batch",
+   "title": "urlhaus: 1 Formbook indicators",
+   "description": "1 indicators of compromise linked to Formbook, reported by abuse.ch urlhaus.",
+   "published_at": "2026-10-31T09:34:08Z",
+   "url": "https://urlhaus.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "urlhaus",
+    "Formbook"
    ],
    "raw_ref": null
   },
@@ -3247,34 +3578,13 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
     "abuse.ch",
     "urlhaus",
     "FakeGit"
-   ],
-   "raw_ref": null
-  },
-  {
-   "id": "urlhaus:mozi",
-   "source": "urlhaus",
-   "type": "ioc_batch",
-   "title": "urlhaus: 75 Mozi indicators",
-   "description": "75 indicators of compromise linked to Mozi, reported by abuse.ch urlhaus.",
-   "published_at": "2026-10-31T08:46:06Z",
-   "url": "https://urlhaus.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "urlhaus",
-    "Mozi"
    ],
    "raw_ref": null
   },
@@ -3291,6 +3601,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3313,6 +3624,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3335,34 +3647,13 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
     "abuse.ch",
     "urlhaus",
     "MicroStealer"
-   ],
-   "raw_ref": null
-  },
-  {
-   "id": "urlhaus:arm",
-   "source": "urlhaus",
-   "type": "ioc_batch",
-   "title": "urlhaus: 3 arm indicators",
-   "description": "3 indicators of compromise linked to arm, reported by abuse.ch urlhaus.",
-   "published_at": "2026-10-31T07:52:35Z",
-   "url": "https://urlhaus.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "urlhaus",
-    "arm"
    ],
    "raw_ref": null
   },
@@ -3379,6 +3670,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3401,34 +3693,13 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
     "abuse.ch",
     "urlhaus",
     "runelure"
-   ],
-   "raw_ref": null
-  },
-  {
-   "id": "urlhaus:sh",
-   "source": "urlhaus",
-   "type": "ioc_batch",
-   "title": "urlhaus: 2 sh indicators",
-   "description": "2 indicators of compromise linked to sh, reported by abuse.ch urlhaus.",
-   "published_at": "2026-10-31T07:37:28Z",
-   "url": "https://urlhaus.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "urlhaus",
-    "sh"
    ],
    "raw_ref": null
   },
@@ -3445,6 +3716,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3467,6 +3739,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3489,6 +3762,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3499,77 +3773,11 @@
    "raw_ref": null
   },
   {
-   "id": "urlhaus:honeypot",
-   "source": "urlhaus",
-   "type": "ioc_batch",
-   "title": "urlhaus: 1 honeypot indicators",
-   "description": "1 indicators of compromise linked to honeypot, reported by abuse.ch urlhaus.",
-   "published_at": "2026-10-31T07:37:14Z",
-   "url": "https://urlhaus.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "urlhaus",
-    "honeypot"
-   ],
-   "raw_ref": null
-  },
-  {
-   "id": "urlhaus:gitlab",
-   "source": "urlhaus",
-   "type": "ioc_batch",
-   "title": "urlhaus: 3 gitlab indicators",
-   "description": "3 indicators of compromise linked to gitlab, reported by abuse.ch urlhaus.",
-   "published_at": "2026-10-31T06:14:08Z",
-   "url": "https://urlhaus.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "urlhaus",
-    "gitlab"
-   ],
-   "raw_ref": null
-  },
-  {
-   "id": "urlhaus:cowrie",
-   "source": "urlhaus",
-   "type": "ioc_batch",
-   "title": "urlhaus: 3 cowrie indicators",
-   "description": "3 indicators of compromise linked to cowrie, reported by abuse.ch urlhaus.",
-   "published_at": "2026-10-31T01:20:12Z",
-   "url": "https://urlhaus.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "urlhaus",
-    "cowrie"
-   ],
-   "raw_ref": null
-  },
-  {
    "id": "urlhaus:dropper",
    "source": "urlhaus",
    "type": "ioc_batch",
-   "title": "urlhaus: 70 dropper indicators",
-   "description": "70 indicators of compromise linked to dropper, reported by abuse.ch urlhaus.",
+   "title": "urlhaus: 11 dropper indicators",
+   "description": "11 indicators of compromise linked to dropper, reported by abuse.ch urlhaus.",
    "published_at": "2026-10-30T20:43:13Z",
    "url": "https://urlhaus.abuse.ch/",
    "cve_ids": [],
@@ -3577,6 +3785,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3599,6 +3808,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3621,6 +3831,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3643,6 +3854,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3665,6 +3877,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3687,6 +3900,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3709,6 +3923,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3731,6 +3946,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3753,6 +3969,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3775,6 +3992,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3797,6 +4015,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3819,6 +4038,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3841,6 +4061,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3863,6 +4084,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3885,6 +4107,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3907,6 +4130,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3929,6 +4153,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3951,6 +4176,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3973,6 +4199,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3995,6 +4222,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -4017,6 +4245,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -4039,6 +4268,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -4061,6 +4291,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -4071,40 +4302,19 @@
    "raw_ref": null
   },
   {
-   "id": "malwarebazaar:mirai",
-   "source": "malwarebazaar",
-   "type": "ioc_batch",
-   "title": "malwarebazaar: 5 Mirai indicators",
-   "description": "5 indicators of compromise linked to Mirai, reported by abuse.ch malwarebazaar.",
-   "published_at": "2026-10-31T09:24:31Z",
-   "url": "https://bazaar.abuse.ch/",
-   "cve_ids": [],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "abuse.ch",
-    "malwarebazaar",
-    "Mirai"
-   ],
-   "raw_ref": null
-  },
-  {
    "id": "malwarebazaar:unknown",
    "source": "malwarebazaar",
    "type": "ioc_batch",
-   "title": "malwarebazaar: 8 unknown indicators",
-   "description": "8 indicators of compromise linked to unknown, reported by abuse.ch malwarebazaar.",
-   "published_at": "2026-10-31T09:24:20Z",
+   "title": "malwarebazaar: 1 unknown indicators",
+   "description": "1 indicators of compromise linked to unknown, reported by abuse.ch malwarebazaar.",
+   "published_at": "2026-10-31T10:57:48Z",
    "url": "https://bazaar.abuse.ch/",
    "cve_ids": [],
    "cvss": null,
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -4115,24 +4325,71 @@
    "raw_ref": null
   },
   {
-   "id": "malwarebazaar:rathat",
+   "id": "malwarebazaar:mirai",
    "source": "malwarebazaar",
    "type": "ioc_batch",
-   "title": "malwarebazaar: 1 RatHat indicators",
-   "description": "1 indicators of compromise linked to RatHat, reported by abuse.ch malwarebazaar.",
-   "published_at": "2026-10-31T08:33:42Z",
+   "title": "malwarebazaar: 4 Mirai indicators",
+   "description": "4 indicators of compromise linked to Mirai, reported by abuse.ch malwarebazaar.",
+   "published_at": "2026-10-31T10:50:31Z",
    "url": "https://bazaar.abuse.ch/",
    "cve_ids": [],
    "cvss": null,
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
     "abuse.ch",
     "malwarebazaar",
-    "RatHat"
+    "Mirai"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "malwarebazaar:amos",
+   "source": "malwarebazaar",
+   "type": "ioc_batch",
+   "title": "malwarebazaar: 1 AMOS indicators",
+   "description": "1 indicators of compromise linked to AMOS, reported by abuse.ch malwarebazaar.",
+   "published_at": "2026-10-31T10:25:10Z",
+   "url": "https://bazaar.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "malwarebazaar",
+    "AMOS"
+   ],
+   "raw_ref": null
+  },
+  {
+   "id": "malwarebazaar:rustystealer",
+   "source": "malwarebazaar",
+   "type": "ioc_batch",
+   "title": "malwarebazaar: 1 RustyStealer indicators",
+   "description": "1 indicators of compromise linked to RustyStealer, reported by abuse.ch malwarebazaar.",
+   "published_at": "2026-10-31T10:25:01Z",
+   "url": "https://bazaar.abuse.ch/",
+   "cve_ids": [],
+   "cvss": null,
+   "severity": "Unknown",
+   "epss": null,
+   "in_kev": false,
+   "public_exploit": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "abuse.ch",
+    "malwarebazaar",
+    "RustyStealer"
    ],
    "raw_ref": null
   },
@@ -4149,6 +4406,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -4171,6 +4429,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -4182,6 +4441,726 @@
   }
  ],
  "iocs": [
+  {
+   "value": "https://cd.afktogel.org/",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Vidar",
+   "first_seen": "2026-10-31T11:05:48Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:vidar"
+  },
+  {
+   "value": "cd.afktogel.org",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "Vidar",
+   "first_seen": "2026-10-31T11:05:48Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:vidar"
+  },
+  {
+   "value": "https://r.au338.org/",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Vidar",
+   "first_seen": "2026-10-31T11:05:48Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:vidar"
+  },
+  {
+   "value": "r.au338.org",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "Vidar",
+   "first_seen": "2026-10-31T11:05:48Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:vidar"
+  },
+  {
+   "value": "yzreuh97.bodes.store",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "ClearFake",
+   "first_seen": "2026-10-31T11:05:48Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:clearfake"
+  },
+  {
+   "value": "154.91.52.180",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "VShell",
+   "first_seen": "2026-10-31T11:05:04Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:vshell"
+  },
+  {
+   "value": "154.91.52.179",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "VShell",
+   "first_seen": "2026-10-31T11:05:04Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:vshell"
+  },
+  {
+   "value": "154.91.55.189",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "VShell",
+   "first_seen": "2026-10-31T11:05:03Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:vshell"
+  },
+  {
+   "value": "enertech.eng.br",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "ClearFake",
+   "first_seen": "2026-10-31T10:59:14Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:clearfake"
+  },
+  {
+   "value": "29e67c7654de59f76a27a5bb1c7800bcf35fa8d50c8d7041b55fa0f54dba7186",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Unknown Loader",
+   "first_seen": "2026-10-31T10:56:24Z",
+   "confidence": 75,
+   "related_threat_id": "threatfox:unknown_loader"
+  },
+  {
+   "value": "2970c87e980e5bd963231770f371dbdcb004e82b5e904300a8e3c6eb9b1dbb7c",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Unknown Loader",
+   "first_seen": "2026-10-31T10:56:24Z",
+   "confidence": 75,
+   "related_threat_id": "threatfox:unknown_loader"
+  },
+  {
+   "value": "68be87935af1904952c47dd072335a05a9bffc86bfd5eb4636d4f34714077079",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Unknown Loader",
+   "first_seen": "2026-10-31T10:56:22Z",
+   "confidence": 75,
+   "related_threat_id": "threatfox:unknown_loader"
+  },
+  {
+   "value": "ec2077a0034ac4e9c3ebbb5d0f60d18832f07157c2d5aa454ef3919dbeb5b96d",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Unknown Loader",
+   "first_seen": "2026-10-31T10:56:21Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:unknown_loader"
+  },
+  {
+   "value": "414e138f6d5ee5b863029e29ad0405bd2fa10a4f5f4401b9a06ac134873158c7",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T10:56:20Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "e58caff40b3056f15644c891ab78fa0f28dc9ebf1c321b1ccfd0718e82c0e71a",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "AMOS",
+   "first_seen": "2026-10-31T10:56:19Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:amos"
+  },
+  {
+   "value": "8c0c81f128a83a569abbe90dcffed19205e8e5eb2e20ff8e6aa2bdab39c5d665",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T10:56:18Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "c7a02e58c72183a58b2322c6f97f472476bf41ef6154acb9a4e2d3992e7e717f",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T10:56:17Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "cc4d2deeeca0896e780853292b57f3c24f12ef621aa9637d1bcfd5bbcaf59a92",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T10:56:15Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "www.jancorinnecross.com",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "StrelaStealer",
+   "first_seen": "2026-10-31T10:54:07Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:strelastealer"
+  },
+  {
+   "value": "45.90.163.37",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "Unknown malware",
+   "first_seen": "2026-10-31T10:51:10Z",
+   "confidence": 75,
+   "related_threat_id": "threatfox:unknown_malware"
+  },
+  {
+   "value": "securetds.beer",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "IClickFix",
+   "first_seen": "2026-10-31T10:36:07Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:iclickfix"
+  },
+  {
+   "value": "sophronia7862.workers.dev",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "php.shin_webshell",
+   "first_seen": "2026-10-31T10:35:54Z",
+   "confidence": 50,
+   "related_threat_id": "threatfox:php.shin_webshell"
+  },
+  {
+   "value": "www.huzungozlum.com",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "StrelaStealer",
+   "first_seen": "2026-10-31T10:34:44Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:strelastealer"
+  },
+  {
+   "value": "h7iarqsz.bossbeycrown.click",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "ClearFake",
+   "first_seen": "2026-10-31T10:32:07Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:clearfake"
+  },
+  {
+   "value": "https://taxwaley.com/",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Unknown malware",
+   "first_seen": "2026-10-31T10:30:59Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:unknown_malware"
+  },
+  {
+   "value": "bossbeycrown.click",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "ClearFake",
+   "first_seen": "2026-10-31T10:30:04Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:clearfake"
+  },
+  {
+   "value": "efreitorher.org",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "ClearFake",
+   "first_seen": "2026-10-31T10:23:07Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:clearfake"
+  },
+  {
+   "value": "47.97.243.66",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "Cobalt Strike",
+   "first_seen": "2026-10-31T10:20:03Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:cobalt_strike"
+  },
+  {
+   "value": "172.233.108.189",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "Jackskid",
+   "first_seen": "2026-10-31T10:16:40Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:jackskid"
+  },
+  {
+   "value": "172.233.108.128",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "Jackskid",
+   "first_seen": "2026-10-31T10:16:40Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:jackskid"
+  },
+  {
+   "value": "104.64.43.105",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "Jackskid",
+   "first_seen": "2026-10-31T10:16:40Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:jackskid"
+  },
+  {
+   "value": "cxjtcyym.bossbeyagency.click",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "ClearFake",
+   "first_seen": "2026-10-31T10:09:32Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:clearfake"
+  },
+  {
+   "value": "154.91.54.171",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "VShell",
+   "first_seen": "2026-10-31T10:05:07Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:vshell"
+  },
+  {
+   "value": "154.91.54.170",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "VShell",
+   "first_seen": "2026-10-31T10:05:06Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:vshell"
+  },
+  {
+   "value": "154.91.54.162",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "VShell",
+   "first_seen": "2026-10-31T10:05:06Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:vshell"
+  },
+  {
+   "value": "154.91.53.190",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "VShell",
+   "first_seen": "2026-10-31T10:05:05Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:vshell"
+  },
+  {
+   "value": "154.91.53.189",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "VShell",
+   "first_seen": "2026-10-31T10:05:04Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:vshell"
+  },
+  {
+   "value": "https://progressionplace.com/",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Unknown malware",
+   "first_seen": "2026-10-31T10:00:59Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:unknown_malware"
+  },
+  {
+   "value": "https://pkjn.co.in/",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Unknown malware",
+   "first_seen": "2026-10-31T10:00:59Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:unknown_malware"
+  },
+  {
+   "value": "https://lepamisel.top/",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Unknown malware",
+   "first_seen": "2026-10-31T10:00:59Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:unknown_malware"
+  },
+  {
+   "value": "https://www.growinghealthyhair.com/",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Unknown malware",
+   "first_seen": "2026-10-31T10:00:59Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:unknown_malware"
+  },
+  {
+   "value": "https://info.radio.am/",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Unknown malware",
+   "first_seen": "2026-10-31T10:00:59Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:unknown_malware"
+  },
+  {
+   "value": "https://www.theforestrecovery.kinsta.cloud/captcha.php",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Unknown malware",
+   "first_seen": "2026-10-31T10:00:59Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:unknown_malware"
+  },
+  {
+   "value": "https://organicnutritionbd.shop/",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Unknown malware",
+   "first_seen": "2026-10-31T10:00:59Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:unknown_malware"
+  },
+  {
+   "value": "www.mimapabook.com",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "ClearFake",
+   "first_seen": "2026-10-31T09:58:07Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:clearfake"
+  },
+  {
+   "value": "76856cbd24ca1198dcdabd1ff445f89084796d3945e47f56c16454ca9e74cd29",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:32Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "58b043e3f0faab361e56a45860fcfa9d0fb770098e856e83dc58df33408c646e",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:31Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "ea86bec8d68d86f9404c20b3d5085477ed56939710b0260e1de7ed4211cf5ccf",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:30Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "dd8de27e91664669406d97ebf52c5c8d2f7f6356705bd221841b80a6695ce7a6",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:29Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "143d267e0343c59bab514dd0a47090ee6d8288746a62372ae86c0c70df182b9e",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:28Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "f577f7525e7c9e94543bb3ce2bfb830cb381c9c0d26326d63342fb414e7d3311",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:27Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "cca4dc3aba0a84ae4af9c8f393cd61cc3a6225f2006ed0db4b8a6dd5689fc0c2",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:26Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "4c250c6ed00b66d440984156d4c9ff8472e2fd66c070f88c384e84f7d254fde2",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:25Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "a977e418f1d1cd81967899eeefb718dc55eec8820b9e2cca6a454a5ce5339d3c",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:24Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "70acdfcafb548a2c85c3350398b0f6d629d9134b16f0b2df2e627a36f521f643",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:22Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "30416c98689396c6ec57f5f4453ebba54309c119141abef9eaacc6c9db4ce079",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:22Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "278bd6ea4a998a126fc59102a339d2f2ad879de6c99addcc532465a11cce67bf",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:21Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "0526413d9b0aee920f024b710251c82d907ed922ad5dcb99bf4913b994e4877f",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:19Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "c8df1b7e1f3e6c9733d7afa09742f7b3523d7a3ed47aec0d12096571b816594a",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:18Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "efbdf3619a847c923265961d143c80bd14e1bcb05418c3fc03cf64242b547aec",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:17Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "8e073b59e35dc2a8a5abe3d0862e4845be08f19a5f7ba5f2030443ca3658f198",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:16Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "b7228ee93b7b40f62b74049e065e0b0a2f8ef1b47715ffc581e9a5736eb2e8da",
+   "ioc_type": "sha256",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:56:15Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "http://77.239.124.141/m2a7f3",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:48:09Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "http://77.239.124.141/l.sh",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:48:07Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "http://77.239.124.141/b/armv6l",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:48:06Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "http://77.239.124.141/b/armv7l",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:48:06Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "http://77.239.124.141/b/mips",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:48:05Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "http://77.239.124.141/b/armv4l",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:48:05Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "http://77.239.124.141/b/armv5l",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:48:05Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "http://77.239.124.141/b/m68k",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:48:04Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "http://77.239.124.141/b/sh4",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:48:04Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "http://77.239.124.141/b/x86",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:48:04Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "http://77.239.124.141/b/ppc",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Mirai",
+   "first_seen": "2026-10-31T09:48:03Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:mirai"
+  },
+  {
+   "value": "tuby27nu.paars.poker",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "ClearFake",
+   "first_seen": "2026-10-31T09:46:07Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:clearfake"
+  },
+  {
+   "value": "https://p.au338.org/x/",
+   "ioc_type": "url",
+   "source": "threatfox",
+   "malware_family": "Vidar",
+   "first_seen": "2026-10-31T09:45:48Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:vidar"
+  },
+  {
+   "value": "www.coralpalmprojects.com",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "StrelaStealer",
+   "first_seen": "2026-10-31T09:45:09Z",
+   "confidence": 100,
+   "related_threat_id": "threatfox:strelastealer"
+  },
+  {
+   "value": "199.91.221.35",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "Evilginx",
+   "first_seen": "2026-10-31T09:44:08Z",
+   "confidence": 75,
+   "related_threat_id": "threatfox:evilginx"
+  },
+  {
+   "value": "199.91.221.35",
+   "ioc_type": "ip",
+   "source": "threatfox",
+   "malware_family": "Evilginx",
+   "first_seen": "2026-10-31T09:44:08Z",
+   "confidence": 75,
+   "related_threat_id": "threatfox:evilginx"
+  },
+  {
+   "value": "naqixizy.workers.dev",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "php.shin_webshell",
+   "first_seen": "2026-10-31T09:39:48Z",
+   "confidence": 50,
+   "related_threat_id": "threatfox:php.shin_webshell"
+  },
+  {
+   "value": "restaurantkingstandoori.ch",
+   "ioc_type": "domain",
+   "source": "threatfox",
+   "malware_family": "ClearFake",
+   "first_seen": "2026-10-31T09:27:35Z",
+   "confidence": 90,
+   "related_threat_id": "threatfox:clearfake"
+  },
   {
    "value": "3f0b95f96a8f28631eb9ce6d0f40b47220b44f4892e171ede78ba78bd9e293ef",
    "ioc_type": "sha256",
@@ -159136,1966 +160115,616 @@
    "related_threat_id": "threatfox:strelastealer"
   },
   {
-   "value": "3.10.5.120",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Havoc",
-   "first_seen": "2026-10-24T11:05:06Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:havoc"
-  },
-  {
-   "value": "110.173.53.98",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "VShell",
-   "first_seen": "2026-10-24T11:05:06Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:vshell"
-  },
-  {
-   "value": "110.173.53.102",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "VShell",
-   "first_seen": "2026-10-24T11:05:05Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:vshell"
-  },
-  {
-   "value": "111.170.148.132",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T11:05:04Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "www.judeglass.com",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "StrelaStealer",
-   "first_seen": "2026-10-24T11:05:02Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:strelastealer"
-  },
-  {
-   "value": "176.65.132.7",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:24Z",
-   "confidence": 90,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "176.65.132.7",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:24Z",
-   "confidence": 90,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "7bf253e88bbded37d52cb3fd627dcbcd69b570a45e2b3fdda7c2fff168cde408",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:23Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "963a9d98e301b4c546ecf84a34569622a3587b4ca81be30a074c703cdaddccec",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:23Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "008391c2f5053f8d6ae93687ff3e646ea3781eb7fceb90dff27662639a7833d1",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:23Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "e43dc4bc7e0f09e409ab641af90e41ed761d61d548a42abafe1d9cb90f4e9fd5",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:22Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "384f6102f832c8275043e227cd628da323968fe0cb7b9bce68be4568f55dfea7",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:22Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "30565cd88df5581d1ecb807c7893702baf9489149bc255e72138819a4858c50e",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:22Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "dd9f2de148a4e974260ad1441e52d2206a9094189774caec8de819c5e203fad5",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:21Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "e10e3b26f909615328ede9691d24bb8df37fa5cc5569905d3e314483e90d0b6d",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:20Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "f4d9d45b6bfb977488816e89020c7db4b8c31a6e0c55931946e510d497e466c2",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:20Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "8a0c2c6c2fca4e2b6bbf0d8f60b4d6dc1f7812d12caffca203abe755c6a78ff2",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:19Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "8b6c459d683d473363105270cfbf29d0f5eff90c54e3c797dc64cb7cc92004f1",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:19Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "55d54c40098e920a1e8ab3bb45a61dffea9ad1c22d2451090ee90beff366aff9",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:17Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "e7d3b33ad533a7214a730c74b1b55bbf867ec0ef59bedd295aabb3761f1129b0",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:17Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "fb00431d5355efeebfd795b39b770a8b1368fea5500f765101d72b876348fd0d",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T11:01:17Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "9.59.79.34.bc.googleusercontent.com",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "php.shin_webshell",
-   "first_seen": "2026-10-24T10:56:28Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:php.shin_webshell"
-  },
-  {
-   "value": "94gs0ok1.dota.pw",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "ClearFake",
-   "first_seen": "2026-10-24T10:55:42Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:clearfake"
-  },
-  {
-   "value": "da13a4c7f55cdeb53f72e4b524da62b21f6ca25c779f8decd23f47bea6c08141",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "WARDENStealer",
-   "first_seen": "2026-10-24T10:55:07Z",
-   "confidence": 90,
-   "related_threat_id": "threatfox:wardenstealer"
-  },
-  {
-   "value": "hiv-sar.ru",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "StrelaStealer",
-   "first_seen": "2026-10-24T10:53:28Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:strelastealer"
-  },
-  {
-   "value": "36zyoge3n0.workers.dev",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "php.shin_webshell",
-   "first_seen": "2026-10-24T10:47:55Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:php.shin_webshell"
-  },
-  {
-   "value": "la.kker.dk",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "StrelaStealer",
-   "first_seen": "2026-10-24T10:46:24Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:strelastealer"
-  },
-  {
-   "value": "dota.pw",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "ClearFake",
-   "first_seen": "2026-10-24T10:42:49Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:clearfake"
-  },
-  {
-   "value": "mypersonalphotographerstudios.com",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "StrelaStealer",
-   "first_seen": "2026-10-24T10:42:42Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:strelastealer"
-  },
-  {
-   "value": "47.80.57.141",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "AdaptixC2",
-   "first_seen": "2026-10-24T10:38:57Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:adaptixc2"
-  },
-  {
-   "value": "177.4.10.40",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:25Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.68",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:17Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.68",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:17Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.68",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:17Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.68",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:17Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.68",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:17Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.68",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:17Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.64",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:08Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.64",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:08Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.64",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:08Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.64",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:08Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.64",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:08Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.64",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:08Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:00Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:38:00Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:37:59Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:37:59Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:37:59Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "172.81.98.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:37:59Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "360393e0b17fcafc92dd33ecaaf5cc02b346dace35a8088e9b4adcb13a5074c2",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T10:34:27Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
-  },
-  {
-   "value": "2a1109fba8167a0d1a7898d500633755a2216a4444d35db90901b2f526094746",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T10:31:44Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
-  },
-  {
-   "value": "pkpots.com",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "StrelaStealer",
-   "first_seen": "2026-10-24T10:28:42Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:strelastealer"
-  },
-  {
-   "value": "2980af93b43bf34876b9faf7bccfe6d4c5b572bc192b2c4e9325d11ab165571c",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T10:28:41Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
-  },
-  {
-   "value": "f22d071120fcea43be6c26274bc0864c8b53e92a01cad8f4283248e2c7c4cebe",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T10:25:57Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
-  },
-  {
-   "value": "piracaia.lacasadecheiro.com.br",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "StrelaStealer",
-   "first_seen": "2026-10-24T10:24:25Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:strelastealer"
-  },
-  {
-   "value": "a5bf74a6f47f895ec64631853cdee4252c43aed16d7f9af73d6a4e97efc8a174",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T10:23:12Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
-  },
-  {
-   "value": "svo-zv.pro",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "ClearFake",
-   "first_seen": "2026-10-24T10:21:04Z",
-   "confidence": 90,
-   "related_threat_id": "threatfox:clearfake"
-  },
-  {
-   "value": "auslanbee.com.au",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "ClearFake",
-   "first_seen": "2026-10-24T10:21:04Z",
-   "confidence": 90,
-   "related_threat_id": "threatfox:clearfake"
-  },
-  {
-   "value": "a9b89644f778b8b7448d6cbb2ed51c849c179f0f795c6ae5734bf4e00e0f2ae6",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T10:20:29Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
-  },
-  {
-   "value": "73fe2ff08964787a67457f492bab69135dfbeb4ee08fa2d46e0064806849066c",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T10:17:41Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
-  },
-  {
-   "value": "https://u7.ajo7.org/",
+   "value": "http://77.53.2.116:46749/bin.sh",
    "ioc_type": "url",
-   "source": "threatfox",
-   "malware_family": "Vidar",
-   "first_seen": "2026-10-24T10:15:48Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:vidar"
+   "source": "urlhaus",
+   "malware_family": "Mozi",
+   "first_seen": "2026-10-31T11:02:06Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:mozi"
   },
   {
-   "value": "u7.ajo7.org",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "Vidar",
-   "first_seen": "2026-10-24T10:15:48Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:vidar"
-  },
-  {
-   "value": "c3d732acbede053931e759c6fe5bafaf27fe635d8bad6397d2c6064b8b2d85f9",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T10:14:57Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
-  },
-  {
-   "value": "54.243.161.136",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:13:28Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "52.44.211.73",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:13:25Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "48.211.133.107",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:13:23Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "143.198.214.22",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:13:21Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "139.59.5.105",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:13:19Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
-  },
-  {
-   "value": "1e7c5c7f7bfd4db6d67ffae5f1a1bd63e5047060b5f8c7ca25ce4016101327ac",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T10:12:14Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
-  },
-  {
-   "value": "ee2059e76764f7aa6b07c8df8a7047aba55f9f667474a23e7e212b58414e8999",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T10:08:56Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
-  },
-  {
-   "value": "phmultiservicios.cl",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "StrelaStealer",
-   "first_seen": "2026-10-24T10:08:13Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:strelastealer"
-  },
-  {
-   "value": "84.159.229.27",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:08:05Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "82.131.200.122",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:07:28Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "69.249.62.135",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:51Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "880be756fdfe3c6c6ebecc2f41774258a18b0786a51318d3c8c4faae46c8f168",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:13Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:12Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:11Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "161.142.175.56",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:06:10Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
-  },
-  {
-   "value": "https://n.acunbet89.org/",
+   "value": "http://78.25.123.5:58527/bin.sh",
    "ioc_type": "url",
-   "source": "threatfox",
-   "malware_family": "Vidar",
-   "first_seen": "2026-10-24T10:05:48Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:vidar"
+   "source": "urlhaus",
+   "malware_family": null,
+   "first_seen": "2026-10-31T11:02:05Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:unknown"
   },
   {
-   "value": "n.acunbet89.org",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "Vidar",
-   "first_seen": "2026-10-24T10:05:48Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:vidar"
+   "value": "http://151.245.195.51/bog",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": null,
+   "first_seen": "2026-10-31T11:01:05Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:unknown"
   },
   {
-   "value": "111.248.211.17",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T10:05:33Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:mirai"
+   "value": "https://cdn.discordapp.com/attachments/1566040003727986790/1566040294611492985/32ced94aba?ex=6ae7182d&is=6ae5c6ad&hm=79252acca258cbb59eb098a175a26ece7b7af97d3c5c79a206f351df2439fa3e&",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "IRAHook",
+   "first_seen": "2026-10-31T10:52:15Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:irahook"
   },
   {
-   "value": "182.61.148.201",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "VShell",
-   "first_seen": "2026-10-24T10:05:06Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:vshell"
+   "value": "https://github.com/PROPANE3/zapret-manager/releases/download/v2.0.8-protable/Zapret-Manager-Portable-2.0.8.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:40:12Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "192.144.168.105",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "VShell",
-   "first_seen": "2026-10-24T10:05:06Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:vshell"
+   "value": "http://180.245.40.45:36498/i",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "32-bit",
+   "first_seen": "2026-10-31T10:39:16Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:32-bit"
   },
   {
-   "value": "156.240.41.162",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "VShell",
-   "first_seen": "2026-10-24T10:05:06Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:vshell"
+   "value": "https://raw.githubusercontent.com/Alchemica369/ComfyUI_FL-SongGen/refs/heads/main/codeclm/tokenizer/Flow1dVAE/our_MERT_BESTRQ/mert_fairseq/models/eat/Song_Comfy_F_U_Gen_zygodactylism.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:39:07Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "113.52.135.27",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Cobalt Strike",
-   "first_seen": "2026-10-24T10:05:04Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:cobalt_strike"
+   "value": "http://120.28.199.24:48034/i",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "32-bit",
+   "first_seen": "2026-10-31T10:36:12Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:32-bit"
   },
   {
-   "value": "101.35.26.34",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Cobalt Strike",
-   "first_seen": "2026-10-24T10:05:04Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:cobalt_strike"
+   "value": "https://raw.githubusercontent.com/armorgassmash/discord-unban-1.9.9c/refs/heads/main/serivce.bat",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:35:16Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "176.65.139.153",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:04:45Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:unknown_malware"
+   "value": "https://raw.githubusercontent.com/aspectpikemanworship/discord-unban-2.0.0/refs/heads/main/service.bat",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:35:00Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "pharmafilters.com",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "StrelaStealer",
-   "first_seen": "2026-10-24T10:04:39Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:strelastealer"
+   "value": "https://raw.githubusercontent.com/aspectpikemanworship/zapret-discord/refs/heads/main/service.bat",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:34:15Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "dexband.quest",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T10:03:11Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:unknown_malware"
+   "value": "https://raw.githubusercontent.com/armorgassmash/zapretdiscord/refs/heads/main/serivce.bat",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:34:15Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "176.65.139.210",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T09:59:47Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:unknown_malware"
+   "value": "https://raw.githubusercontent.com/aspectpikemanworship/discordzapret/refs/heads/main/service.bat",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:34:13Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "65.109.18.44",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T09:59:47Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:unknown_malware"
+   "value": "https://raw.githubusercontent.com/armorgassmash/discordzapret/refs/heads/main/serivce.bat",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:34:13Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "kafeprog7.com",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T09:57:21Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:unknown_malware"
+   "value": "https://raw.githubusercontent.com/aspectpikemanworship/discord-zapret-19.9.0/refs/heads/main/service.bat",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:34:11Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "64d441263415b7fc3bc2443d118290d57212fc1dcd8e03e4b01856f5aac777c6",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T09:55:11Z",
-   "confidence": 90,
-   "related_threat_id": "threatfox:mirai"
+   "value": "https://raw.githubusercontent.com/aspectpikemanworship/zapretdiscord/refs/heads/main/service.bat",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:34:11Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "8f850987a8805109aea4b23107188d6474b5ea349856c673df211fafdac8d289",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T09:55:10Z",
-   "confidence": 90,
-   "related_threat_id": "threatfox:mirai"
+   "value": "https://raw.githubusercontent.com/armorgassmash/zapret-discord/refs/heads/main/serivce.bat",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:34:08Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "f790d8e3a780704accb24b1fbeb5f1f025a2156f0749d3e69fb132b140e81652",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T09:55:09Z",
-   "confidence": 90,
-   "related_threat_id": "threatfox:mirai"
+   "value": "https://raw.githubusercontent.com/armorgassmash/discord-zapret-1.9.9c/refs/heads/main/serivce.bat",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:34:08Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "d6d85a48135b168530e8826cccd1b98af08bbaf353cc5e24f03dbf8a74fddef3",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T09:55:08Z",
-   "confidence": 90,
-   "related_threat_id": "threatfox:mirai"
+   "value": "https://raw.githubusercontent.com/Alerandre123/ASSISTENTE-IA-/main/src/ASSISTENT-I-v1.0.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:33:05Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "06c75b58e5664e6807b74486893a84430cbe3a5dc3ecf164a24b0bf45cab5e34",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T09:55:06Z",
-   "confidence": 90,
-   "related_threat_id": "threatfox:mirai"
+   "value": "https://github.com/koders-koner/py-patterns/releases/download/meated/py-patterns_v1.0.0_-_Meated.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:32:14Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "intellectualhaily.workers.dev",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "php.shin_webshell",
-   "first_seen": "2026-10-24T09:52:27Z",
-   "confidence": 50,
-   "related_threat_id": "threatfox:php.shin_webshell"
+   "value": "https://github.com/fadhlanharashta/Jarkom-Modul-2-I11-2023/releases/download/v3.6.6/Jarkom_Modul_2_I11_2023_v3.6.6.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:32:13Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "08906e5c2a385132f3eb69000ecf18fd126ec4bb252e005f1e48ab0df144fc16",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T09:47:21Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
+   "value": "https://github.com/fadhlanharashta/midtermProjectAU/releases/download/v3.0.5-alpha.3/Midterm_Project_AU_v3.0.5-alpha.3.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:32:10Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "93.233.116.44",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "AsyncRAT",
-   "first_seen": "2026-10-24T09:45:44Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:asyncrat"
+   "value": "https://github.com/acevalloUTC/practica2/releases/download/preanimism/97725940_v1.9.7-beta.3.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:32:10Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "92.171.20.51",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Chaos",
-   "first_seen": "2026-10-24T09:45:43Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:chaos"
+   "value": "https://github.com/smadridUTC/anime-tienda/releases/download/2.4.3/Release.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:32:10Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "91.215.85.182",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "AdaptixC2",
-   "first_seen": "2026-10-24T09:45:40Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:adaptixc2"
+   "value": "https://github.com/threestackingbirds/tsb-gs-telegrambot/releases/download/3.7.5/tsb-gs-telegrambot_v3.7.5.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:32:09Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "46.246.12.22",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "AsyncRAT",
-   "first_seen": "2026-10-24T09:45:18Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:asyncrat"
+   "value": "https://github.com/acevalloUTC/ViveTurismoCotopaxi/releases/download/v2.4.6-alpha.5/Release.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:32:08Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "46.246.12.22",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "AsyncRAT",
-   "first_seen": "2026-10-24T09:45:18Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:asyncrat"
+   "value": "https://github.com/smadridUTC/anime-tienda/releases/download/2.4.3/97725940_v1.9.7-beta.3.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:32:08Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "34.122.196.254",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T09:44:55Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:unknown_malware"
+   "value": "https://github.com/acevalloUTC/practica2/releases/download/preanimism/Release.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:32:08Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "23.102.109.4",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "AdaptixC2",
-   "first_seen": "2026-10-24T09:44:46Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:adaptixc2"
+   "value": "https://github.com/acevalloUTC/practica1/releases/download/v1.0.1/Release.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:32:08Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "peterhopkin.co.uk",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "StrelaStealer",
-   "first_seen": "2026-10-24T09:44:40Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:strelastealer"
+   "value": "http://60.208.154.67:60017/i",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "mirai",
+   "first_seen": "2026-10-31T10:32:07Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:mirai"
   },
   {
-   "value": "4b4cc689cfe36df958c1d91b15b91dfd495ddfced34a14feec2e6dc626bd9bcb",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T09:44:37Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
+   "value": "http://175.150.248.19:43811/i",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": null,
+   "first_seen": "2026-10-31T10:32:06Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:unknown"
   },
   {
-   "value": "45.141.148.134",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T09:44:26Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:unknown_malware"
+   "value": "https://github.com/acevalloUTC/practica1/releases/download/v1.0.1/97725940_v1.9.7-beta.3.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:32:06Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "216.108.230.89",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "AsyncRAT",
-   "first_seen": "2026-10-24T09:44:23Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:asyncrat"
+   "value": "http://119.185.175.202:40273/i",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "Mozi",
+   "first_seen": "2026-10-31T10:32:06Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:mozi"
   },
   {
-   "value": "207.56.30.48",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "PureRAT",
-   "first_seen": "2026-10-24T09:44:21Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:purerat"
+   "value": "https://github.com/acevalloUTC/ViveTurismoCotopaxi/releases/download/v2.4.6-alpha.5/97725940_v1.9.7-beta.3.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T10:32:06Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "207.56.30.42",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "PureRAT",
-   "first_seen": "2026-10-24T09:44:21Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:purerat"
+   "value": "http://188.243.232.136:14612/i",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": null,
+   "first_seen": "2026-10-31T10:32:05Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:unknown"
   },
   {
-   "value": "202.146.222.48",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "PureRAT",
-   "first_seen": "2026-10-24T09:44:18Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:purerat"
+   "value": "http://196.189.35.226:50721/i",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "arm",
+   "first_seen": "2026-10-31T10:20:15Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:arm"
   },
   {
-   "value": "202.146.222.229",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "PureRAT",
-   "first_seen": "2026-10-24T09:44:18Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:purerat"
+   "value": "http://27.207.190.113:42067/i",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "Mozi",
+   "first_seen": "2026-10-31T10:17:06Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:mozi"
   },
   {
-   "value": "197.147.44.160",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "PureRAT",
-   "first_seen": "2026-10-24T09:44:14Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:purerat"
+   "value": "https://gitlab.com/brokensword/fortnite-ragdoll-v2-privcheat-including-softaim-esp-wallhack-triggerbot-and-more/-/raw/main/Loader.exe",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "gitlab",
+   "first_seen": "2026-10-31T10:16:07Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:gitlab"
   },
   {
-   "value": "196.251.122.100",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "AsyncRAT",
-   "first_seen": "2026-10-24T09:44:13Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:asyncrat"
+   "value": "http://45.90.163.37/curl.sh",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "honeypot",
+   "first_seen": "2026-10-31T10:14:06Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:honeypot"
   },
   {
-   "value": "196.251.122.100",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "AsyncRAT",
-   "first_seen": "2026-10-24T09:44:13Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:asyncrat"
+   "value": "http://45.90.163.37/jklarm6",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "arm",
+   "first_seen": "2026-10-31T10:06:28Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:arm"
   },
   {
-   "value": "192.253.229.14",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "PureRAT",
-   "first_seen": "2026-10-24T09:44:09Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:purerat"
+   "value": "http://45.90.163.37/jklarm",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "arm",
+   "first_seen": "2026-10-31T10:06:28Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:arm"
   },
   {
-   "value": "191.107.91.119",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "AsyncRAT",
-   "first_seen": "2026-10-24T09:44:06Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:asyncrat"
+   "value": "http://45.90.163.37/jklx86",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "elf",
+   "first_seen": "2026-10-31T10:06:28Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:elf"
   },
   {
-   "value": "178.16.54.160",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "PureRAT",
-   "first_seen": "2026-10-24T09:43:58Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:purerat"
+   "value": "http://45.90.163.37/jklm68k",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "elf",
+   "first_seen": "2026-10-31T10:06:28Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:elf"
   },
   {
-   "value": "176.65.139.36",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T09:43:56Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:mirai"
+   "value": "http://45.90.163.37/jklsh4",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "elf",
+   "first_seen": "2026-10-31T10:06:28Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:elf"
   },
   {
-   "value": "162.35.9.54",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Evilginx",
-   "first_seen": "2026-10-24T09:43:49Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:evilginx"
+   "value": "http://45.90.163.37/jklarm7",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "arm",
+   "first_seen": "2026-10-31T10:06:28Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:arm"
   },
   {
-   "value": "elchapodonpablo.duckdns.org",
-   "ioc_type": "domain",
-   "source": "threatfox",
-   "malware_family": "PureLogs Stealer",
-   "first_seen": "2026-10-24T09:43:45Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:purelogs_stealer"
+   "value": "http://45.90.163.37/jklppc",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "elf",
+   "first_seen": "2026-10-31T10:06:28Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:elf"
   },
   {
-   "value": "102.220.163.236",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "PureLogs Stealer",
-   "first_seen": "2026-10-24T09:43:45Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:purelogs_stealer"
+   "value": "http://45.90.163.37/jklmpsl",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "elf",
+   "first_seen": "2026-10-31T10:06:28Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:elf"
   },
   {
-   "value": "129.21.21.81",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T09:43:21Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:unknown_malware"
+   "value": "http://45.90.163.37/jklmips",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "elf",
+   "first_seen": "2026-10-31T10:06:27Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:elf"
   },
   {
-   "value": "128.90.108.138",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "DCRat",
-   "first_seen": "2026-10-24T09:43:20Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:dcrat"
+   "value": "http://45.90.163.37/wget.sh",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "sh",
+   "first_seen": "2026-10-31T10:06:27Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:sh"
   },
   {
-   "value": "128.90.105.65",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "PureRAT",
-   "first_seen": "2026-10-24T09:43:20Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:purerat"
+   "value": "http://45.90.163.37/jklarm5",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "arm",
+   "first_seen": "2026-10-31T10:06:27Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:arm"
   },
   {
-   "value": "128.90.105.221",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "AsyncRAT",
-   "first_seen": "2026-10-24T09:43:20Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:asyncrat"
+   "value": "http://45.90.163.37/jklspc",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "elf",
+   "first_seen": "2026-10-31T10:06:27Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:elf"
   },
   {
-   "value": "109.110.184.18",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "PureRAT",
-   "first_seen": "2026-10-24T09:43:16Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:purerat"
+   "value": "http://119.108.226.143:36628/i",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": null,
+   "first_seen": "2026-10-31T10:03:06Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:unknown"
   },
   {
-   "value": "102.117.170.124",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown malware",
-   "first_seen": "2026-10-24T09:43:04Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:unknown_malware"
+   "value": "http://119.185.175.202:40273/bin.sh",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "Mozi",
+   "first_seen": "2026-10-31T10:02:09Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:mozi"
   },
   {
-   "value": "1d32753359c4f69d692f319fb16c2aabcb940fb7e7aa5ddabc78403e47795ea5",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T09:41:52Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
+   "value": "http://115.51.16.247:51122/bin.sh",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "Mozi",
+   "first_seen": "2026-10-31T10:02:06Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:mozi"
   },
   {
-   "value": "27dc0bbc7335f1905aaf00289bb9710dd31816a446303bf2fa02efea2f11a935",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T09:38:14Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
+   "value": "https://github.com/BaragozIQ/zapret-tray/releases/download/v0.2/ZapretTray-0.2.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "github",
+   "first_seen": "2026-10-31T09:59:05Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:github"
   },
   {
-   "value": "100.75.200.41",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Unknown RAT",
-   "first_seen": "2026-10-24T09:37:10Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:unknown_rat"
+   "value": "http://42.239.189.98:39430/bin.sh",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "cowrie",
+   "first_seen": "2026-10-31T09:56:16Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:cowrie"
   },
   {
-   "value": "2fae1eafc2dfacc820bfb46c8ce1d7cef08d61d4503f75463c27b8ef7d5d310e",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T09:35:26Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
+   "value": "http://196.189.35.226:50721/bin.sh",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "arm",
+   "first_seen": "2026-10-31T09:56:15Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:arm"
   },
   {
-   "value": "36b6a570b1f108534ef81f106c8bd9dd62994b61670aec231bf02bda06780739",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T09:32:42Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
+   "value": "http://119.152.232.95:37868/i",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "elf",
+   "first_seen": "2026-10-31T09:55:15Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:elf"
   },
   {
-   "value": "872d71ecc9f655549696ced22bd437163f4eb66e3bd3cd877c984591b6e5b100",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T09:29:59Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
+   "value": "http://104.194.138.119/11/update.hta",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "hta",
+   "first_seen": "2026-10-31T09:53:05Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:hta"
   },
   {
-   "value": "194.226.99.166",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "SalatStealer",
-   "first_seen": "2026-10-24T09:29:30Z",
-   "confidence": 75,
-   "related_threat_id": "threatfox:salatstealer"
+   "value": "http://120.28.199.24:48034/bin.sh",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "32-bit",
+   "first_seen": "2026-10-31T09:51:17Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:32-bit"
   },
   {
-   "value": "176.65.139.51",
-   "ioc_type": "ip",
-   "source": "threatfox",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-24T09:27:25Z",
-   "confidence": 80,
-   "related_threat_id": "threatfox:mirai"
+   "value": "http://222.142.246.72:60719/bin.sh",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "Mozi",
+   "first_seen": "2026-10-31T09:47:07Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:mozi"
   },
   {
-   "value": "0a32163de2cae86e0658281591ce6e1f44ca75d34a66faedea29cd11c517e4f8",
-   "ioc_type": "sha256",
-   "source": "threatfox",
-   "malware_family": "AMOS",
-   "first_seen": "2026-10-24T09:27:11Z",
-   "confidence": 100,
-   "related_threat_id": "threatfox:amos"
+   "value": "http://61.53.10.40:54984/i",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "Mozi",
+   "first_seen": "2026-10-31T09:47:07Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:mozi"
+  },
+  {
+   "value": "http://103.203.210.102:50652/bin.sh",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "Mozi",
+   "first_seen": "2026-10-31T09:47:06Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:mozi"
+  },
+  {
+   "value": "http://123.188.7.84:58261/bin.sh",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": null,
+   "first_seen": "2026-10-31T09:47:06Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:unknown"
+  },
+  {
+   "value": "https://fuzerom.cfd/slip/ceccfiS.txt",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "Formbook",
+   "first_seen": "2026-10-31T09:34:08Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:formbook"
+  },
+  {
+   "value": "http://113.53.69.165:34644/i",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "mirai",
+   "first_seen": "2026-10-31T09:32:18Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:mirai"
+  },
+  {
+   "value": "http://61.53.10.40:54984/bin.sh",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "Mozi",
+   "first_seen": "2026-10-31T09:32:07Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:mozi"
+  },
+  {
+   "value": "http://95.155.201.65:33621/i",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "mirai",
+   "first_seen": "2026-10-31T09:32:06Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:mirai"
   },
   {
    "value": "http://119.152.232.95:37868/bin.sh",
@@ -168667,7 +168296,7 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/akashlohar-techie/akashlohar-techie/raw/main/jank/techie-akashlohar-v2.8.zip",
+   "value": "https://github.com/Rupertfrozen923/Olden-Era-Template-Generator/raw/main/OldenEraTemplateGenerator/Properties/Olden_Generator_Template_Era_2.2.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -168676,13 +168305,31 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "http://154.36.183.100:8899/dl/agent2",
+   "value": "https://github.com/pankajydv08/tube-course-hub/raw/main/src/components/hub-course-tube-Hallstattian.zip",
    "ioc_type": "url",
    "source": "urlhaus",
-   "malware_family": "vshell",
+   "malware_family": "FakeGit",
    "first_seen": "2026-10-30T10:08:32Z",
    "confidence": null,
-   "related_threat_id": "urlhaus:vshell"
+   "related_threat_id": "urlhaus:fakegit"
+  },
+  {
+   "value": "https://github.com/sezerartug/filtre-takip-c/raw/main/src/integrations/supabase/takip-filtre-c-v1.6.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "FakeGit",
+   "first_seen": "2026-10-30T10:08:32Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:fakegit"
+  },
+  {
+   "value": "https://github.com/Atharva907/nextjs-dashboard/raw/main/app/dashboard/customers/dashboard-nextjs-liquidogenous.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "FakeGit",
+   "first_seen": "2026-10-30T10:08:32Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:fakegit"
   },
   {
    "value": "https://github.com/abuosi/my-quarkus/raw/master/src/main/quarkus-my-1.8.zip",
@@ -168703,34 +168350,16 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/Atharva907/nextjs-dashboard/raw/main/app/dashboard/customers/dashboard-nextjs-liquidogenous.zip",
+   "value": "http://154.36.183.100:8899/dl/agent2",
    "ioc_type": "url",
    "source": "urlhaus",
-   "malware_family": "FakeGit",
+   "malware_family": "vshell",
    "first_seen": "2026-10-30T10:08:32Z",
    "confidence": null,
-   "related_threat_id": "urlhaus:fakegit"
+   "related_threat_id": "urlhaus:vshell"
   },
   {
-   "value": "https://github.com/Rupertfrozen923/Olden-Era-Template-Generator/raw/main/OldenEraTemplateGenerator/Properties/Olden_Generator_Template_Era_2.2.zip",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "FakeGit",
-   "first_seen": "2026-10-30T10:08:32Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:fakegit"
-  },
-  {
-   "value": "https://github.com/sezerartug/filtre-takip-c/raw/main/src/integrations/supabase/takip-filtre-c-v1.6.zip",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "FakeGit",
-   "first_seen": "2026-10-30T10:08:32Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:fakegit"
-  },
-  {
-   "value": "https://github.com/pankajydv08/tube-course-hub/raw/main/src/components/hub-course-tube-Hallstattian.zip",
+   "value": "https://github.com/akashlohar-techie/akashlohar-techie/raw/main/jank/techie-akashlohar-v2.8.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169090,7 +168719,7 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/shripadk1999/Walmart_Data_Analysis/raw/main/circulable/Data-Analysis-Walmart-1.6.zip",
+   "value": "https://github.com/Shashwat970/coding-in-python/raw/main/ImageClassificationMobile/colab/coding-in-python-1.9.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169108,7 +168737,7 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/Shashwat970/coding-in-python/raw/main/ImageClassificationMobile/colab/coding-in-python-1.9.zip",
+   "value": "https://github.com/shripadk1999/Walmart_Data_Analysis/raw/main/circulable/Data-Analysis-Walmart-1.6.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169117,7 +168746,7 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/Havishjupudi/FortunaRoll-DomJS-Project/raw/main/imgs/Dom_Roll_J_Fortuna_Project_v3.6.zip",
+   "value": "https://github.com/Meliorative-peasant63/bar-on-apple-silicon/raw/main/docs/on_apple_bar_silicon_v3.9.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169126,7 +168755,7 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/Meliorative-peasant63/bar-on-apple-silicon/raw/main/docs/on_apple_bar_silicon_v3.9.zip",
+   "value": "https://github.com/Havishjupudi/FortunaRoll-DomJS-Project/raw/main/imgs/Dom_Roll_J_Fortuna_Project_v3.6.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169288,7 +168917,7 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/AKHILROCKEEEY/VAVI_blind-project/raw/master/yolo/blind-VAV-project-v3.0.zip",
+   "value": "https://github.com/pyetroRodrigues721/pyetrorodrigues721.github.io/raw/main/beeman/App_waned.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169306,7 +168935,7 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/pyetroRodrigues721/pyetrorodrigues721.github.io/raw/main/beeman/App_waned.zip",
+   "value": "https://github.com/AKHILROCKEEEY/VAVI_blind-project/raw/master/yolo/blind-VAV-project-v3.0.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169333,7 +168962,7 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/Shubham60019/E-Commerce/raw/main/public/Commerce_3.6.zip",
+   "value": "https://github.com/Aljawa831/MT5-MT4-Close-Orders-Script/raw/main/CloseOrders/obj/M-Orders-Script-Close-alpist.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169342,7 +168971,7 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/ayushcsh/alethea-frontend2/raw/main/app/frontend-alethea-v1.9.zip",
+   "value": "https://github.com/recchan13/tata-persuratan/raw/main/resources/views/pages/gallery/tata-persuratan-v2.7-alpha.4.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169351,7 +168980,7 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/Roadstergasfitter760/Yneko-Reimu/raw/main/theme/Yneko-Reimu/template-parts/widgets/Yneko_Reimu_3.8-beta.2.zip",
+   "value": "https://github.com/Urvans6127/urvans6127.github.io/raw/refs/heads/main/certifiable/App_v1.2-beta.5.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169360,7 +168989,25 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/Daffiburrlike452/agent-harness-generator/raw/main/packages/create-agent-harness/templates/vertical_exotic/.claude/harness-generator-agent-v2.5-alpha.2.zip",
+   "value": "https://github.com/Waka758/Clone-Wars/raw/refs/heads/main/.github/Clone-Wars-1.1.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "FakeGit",
+   "first_seen": "2026-10-30T10:08:12Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:fakegit"
+  },
+  {
+   "value": "https://github.com/camilo2874/gestion-de-tareas/raw/main/node_modules/gestion-de-tareas-palaeogeography.zip",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "FakeGit",
+   "first_seen": "2026-10-30T10:08:12Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:fakegit"
+  },
+  {
+   "value": "https://github.com/Pranavsiripangi/Influencer-Marketing-Dashboard/raw/main/Selachii/Dashboard-Marketing-Influencer-3.7.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169387,7 +169034,7 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/Pranavsiripangi/Influencer-Marketing-Dashboard/raw/main/Selachii/Dashboard-Marketing-Influencer-3.7.zip",
+   "value": "https://github.com/Daffiburrlike452/agent-harness-generator/raw/main/packages/create-agent-harness/templates/vertical_exotic/.claude/harness-generator-agent-v2.5-alpha.2.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169396,7 +169043,7 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/Aljawa831/MT5-MT4-Close-Orders-Script/raw/main/CloseOrders/obj/M-Orders-Script-Close-alpist.zip",
+   "value": "https://github.com/Roadstergasfitter760/Yneko-Reimu/raw/main/theme/Yneko-Reimu/template-parts/widgets/Yneko_Reimu_3.8-beta.2.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169405,7 +169052,7 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/camilo2874/gestion-de-tareas/raw/main/node_modules/gestion-de-tareas-palaeogeography.zip",
+   "value": "https://github.com/ayushcsh/alethea-frontend2/raw/main/app/frontend-alethea-v1.9.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169414,25 +169061,7 @@
    "related_threat_id": "urlhaus:fakegit"
   },
   {
-   "value": "https://github.com/Waka758/Clone-Wars/raw/refs/heads/main/.github/Clone-Wars-1.1.zip",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "FakeGit",
-   "first_seen": "2026-10-30T10:08:12Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:fakegit"
-  },
-  {
-   "value": "https://github.com/Urvans6127/urvans6127.github.io/raw/refs/heads/main/certifiable/App_v1.2-beta.5.zip",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "FakeGit",
-   "first_seen": "2026-10-30T10:08:12Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:fakegit"
-  },
-  {
-   "value": "https://github.com/recchan13/tata-persuratan/raw/main/resources/views/pages/gallery/tata-persuratan-v2.7-alpha.4.zip",
+   "value": "https://github.com/Shubham60019/E-Commerce/raw/main/public/Commerce_3.6.zip",
    "ioc_type": "url",
    "source": "urlhaus",
    "malware_family": "FakeGit",
@@ -169459,15 +169088,6 @@
    "related_threat_id": "urlhaus:mozi"
   },
   {
-   "value": "http://39.74.89.143:43061/bin.sh",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "Mozi",
-   "first_seen": "2026-10-30T09:47:07Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:mozi"
-  },
-  {
    "value": "http://223.151.76.117:48769/i",
    "ioc_type": "url",
    "source": "urlhaus",
@@ -169475,6 +169095,15 @@
    "first_seen": "2026-10-30T09:47:07Z",
    "confidence": null,
    "related_threat_id": "urlhaus:mirai"
+  },
+  {
+   "value": "http://39.74.89.143:43061/bin.sh",
+   "ioc_type": "url",
+   "source": "urlhaus",
+   "malware_family": "Mozi",
+   "first_seen": "2026-10-30T09:47:07Z",
+   "confidence": null,
+   "related_threat_id": "urlhaus:mozi"
   },
   {
    "value": "http://113.53.69.164:39392/bin.sh",
@@ -169486,742 +169115,67 @@
    "related_threat_id": "urlhaus:mirai"
   },
   {
-   "value": "https://github.com/Radianthroughreach/Prizrak-box-GIThub/releases/download/v1.0.20/prizrak-box.zip",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "github",
-   "first_seen": "2026-10-30T09:44:31Z",
+   "value": "8161009b41c1e2a45790429ca7907694fc33169c1710b26de542dad98e027add",
+   "ioc_type": "sha256",
+   "source": "malwarebazaar",
+   "malware_family": null,
+   "first_seen": "2026-10-31T10:57:48Z",
    "confidence": null,
-   "related_threat_id": "urlhaus:github"
+   "related_threat_id": "malwarebazaar:unknown"
   },
   {
-   "value": "https://raw.githubusercontent.com/BeachCourier/prIzrAk-Box-GItHuB/refs/heads/main/prizrak-box.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:44:26Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/NovaLeechHovel/pRizrAk-bOx-GItHUB/refs/heads/main/prizrak-box.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:44:17Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://github.com/NovaLeechHovel/pRizrAk-bOx-GItHUB/releases/download/v1.0.20/prizrak-box.zip",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "github",
-   "first_seen": "2026-10-30T09:44:11Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:github"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/Radianthroughreach/Prizrak-box-GIThub/refs/heads/main/prizrak-box.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:44:10Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://github.com/BeachCourier/prIzrAk-Box-GItHuB/releases/download/v1.0.20/prizrak-box.zip",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "github",
-   "first_seen": "2026-10-30T09:44:10Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:github"
-  },
-  {
-   "value": "https://github.com/NovaLeechHovel/VpNBOt/releases/download/v1.0.20/vpnbot.zip",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "github",
-   "first_seen": "2026-10-30T09:44:07Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:github"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/RockVolunteer/pRiZraK-BOx-GiTHUb/refs/heads/main/prizrak-box.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:33:14Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://github.com/SettlementKage/REmNAWAVE_reverSE-PRoxy/releases/download/v3.5.0/remnavawe-reverse-proxy.zip",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "github",
-   "first_seen": "2026-10-30T09:33:14Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:github"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/SettlementKage/pRizrAK-bOX-GItHUB/refs/heads/main/prizrak-box.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:33:11Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://github.com/RockVolunteer/RemNawaVe_rEVersE-pROXY/releases/download/v3.5.0/remnavawe-reverse-proxy.zip",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "github",
-   "first_seen": "2026-10-30T09:33:09Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:github"
-  },
-  {
-   "value": "https://github.com/SettlementKage/pRizrAK-bOX-GItHUB/releases/download/v1.0.20/prizrak-box.zip",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "github",
-   "first_seen": "2026-10-30T09:33:09Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:github"
-  },
-  {
-   "value": "https://github.com/RockVolunteer/pRiZraK-BOx-GiTHUb/releases/download/v1.0.20/prizrak-box.zip",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "github",
-   "first_seen": "2026-10-30T09:33:09Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:github"
-  },
-  {
-   "value": "http://221.15.6.154:36351/i",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "Mozi",
-   "first_seen": "2026-10-30T09:32:06Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:mozi"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/HighHemomancer/MIcrosoft-ActIVatIOn/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:24:16Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/Nucleusaoexterminate/MIcRosoFt-aCTIvatiOn-ScriPtS-GitHUb/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:24:13Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/TerminusWarrior/MiCRoSOfT-aCtivaTIon-KEy/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:24:10Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/MinisterScrew/MicRoSoft-kMs-ActiVatIoN-SCIpTs/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:41Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/SonicBlacksmithTruss/mIcROsoFt-ActIvAtION_key/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:38Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/LockedKaiserSpeak/MicroSoft-ACtIVaTIon-scRiptS/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:36Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/MysticGunsmithCock/MiCrOsoft-ActivAtioN_ScrIpTS-GIthUb/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:36Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/Nucleusaoexterminate/MicrOSoft-aCtiVATION/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:27Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/ShadowByte90/MicROsOFt_aCtivatIoN_sCrIPTs/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:27Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/OctagonStatesman/mICrosoFt-Kms-ActIVatION-SciptS/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:25Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/HighHemomancer/mICRosOFT-KMS-ACTIvAtiOn-sCIpTs/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:25Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/RhymeRampart/MiCROsofT_KMs-ACTIVaTion_SCiPTs/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:22Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/MarbleStoker/mIcrosoft_ACTIVatiON_ScRiPtS/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:22Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/MarbleStoker/mICROSOft-aCtIvATIoN-keY/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:21Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/MysticGunsmithCock/MIcrosofT-Kms-AcTivatIoN-ScIpTs/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:21Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/Surgekrugranary/MicRoSoFt_ActivatIOn/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:18Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/Surgekrugranary/MICrOSoFT-actIvaTION-ScRiptS/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:18Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/JoinerCelebrate/MIcRosOFt-ActivaTIoN-scrIPtS/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:16Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/SonicBlacksmithTruss/micRoSoFT-KMs-aCTIvAtIoN-SciPtS/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:16Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/MysticGunsmithCock/miCRosOFT-ACTiVaTion-sCrIPTs/refs/heads/main/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:14Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/Samuraianillustrate/miCrosOFt_ACtIVAtIOn-ScrIptS_gITHUB/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:14Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/HighHemomancer/mICRosOft-aCtivatIoN_kEY/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:14Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/TailorDipper/miCrosoFT_aCTIvation-ScrIPTS-GITHuB/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:14Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/HighHemomancer/mIcROsOFT_aCtIvaTION-sCRipTs_githUb/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:14Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/MarbleStoker/MiCroSoft-AcTivAtIOn_scRIpTS-gITHuB/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:14Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/StapleMotorman31/MIcRoSoFT-ACtiVation-kEY/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:14Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/OctagonStatesman/mICrosOFT_activaTion-key/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:14Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/MarbleStoker/micROSofT_acTIVATIOn/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:14Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/MinisterScrew/MICrosOfT-acTiVAtION-sCrIPTs-GIThUb/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:11Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/LockedKaiserSpeak/MicROSoft-ActiVatIoN-Key/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:11Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/Samuraianillustrate/mICroSoft-ACTIvaTIoN-Key/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:00Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/StapleMotorman31/MICROSOft-aCTIvATIon-SCrIpts/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:00Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/OctagonStatesman/miCRosOft-actIvAtion_SCRipTs/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:23:00Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/SonicBlacksmithTruss/micrOsoFt_actIvAtion_scRipTs-GithuB/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:59Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/Samuraianillustrate/mICroSOFt_ACtivAtion/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:59Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/RhymeRampart/micRosOFt_ACTIvatiON-SCripts_GitHUB/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:59Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/LockedKaiserSpeak/mIcRoSOFt_ActIVAtIOn_ScRIPTS-githuB/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:59Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/Surgekrugranary/MicroSOft_kms-ACtiVATioN-sciPtS/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:59Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/Samuraianillustrate/mICROsOFt_aCtivatIon_sCRIptS/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:59Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/Samuraianillustrate/mICrOsOft-kmS-ActiVAtion-SCIptS/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:55Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/MinisterScrew/mICROsOft-ACTivaTiOn_sCrIPtS/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:54Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/Nucleusaoexterminate/MICroSoFt-kMS-AcTIvatiON-Scipts/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:54Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/LockedKaiserSpeak/MicROsoFT-AcTIvAtIon/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:54Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/LockedKaiserSpeak/MIcROSoFT-kmS-ACtIvAtIon-SCiPts/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:49Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/Surgekrugranary/mICrOsoFt-ACTIVatiON_KeY/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:49Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/JoinerCelebrate/MICrOSOft-ACTIVaTiOn-sCRiPts-GIthUB/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:49Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/TerminusWarrior/MicRoSoFt-aCTivaTIOn-SCRIpTs-giTHUb/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:49Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/StapleMotorman31/MicroSoFT-kMS_ACtIVatiON-SciptS/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:49Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/TailorDipper/mICRoSOFT-ACTiVAtiON_scRipts/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:49Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/StapleMotorman31/mICrOSoFt_ActIVatION/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:49Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/ShadowByte90/MICRosofT-ACTIvaTiON-kEY/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:46Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/JoinerCelebrate/micRoSOft_ACTiVatION-key/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:46Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/StapleMotorman31/MiCrOSOft-ACTIVATion_scRIPTs-Github/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:39Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "https://raw.githubusercontent.com/SonicBlacksmithTruss/miCrosOft-AcTIVAtioN/refs/heads/main/MAS/Separate-Files-Version/Activators/Online_KMS_Activation.bat",
-   "ioc_type": "url",
-   "source": "urlhaus",
-   "malware_family": "dropper",
-   "first_seen": "2026-10-30T09:22:39Z",
-   "confidence": null,
-   "related_threat_id": "urlhaus:dropper"
-  },
-  {
-   "value": "8e073b59e35dc2a8a5abe3d0862e4845be08f19a5f7ba5f2030443ca3658f198",
+   "value": "5b6194d38e58ce7f0a33374179835cad54ae36d1442a9496286e0595fe127845",
    "ioc_type": "sha256",
    "source": "malwarebazaar",
    "malware_family": "Mirai",
-   "first_seen": "2026-10-31T09:24:31Z",
+   "first_seen": "2026-10-31T10:50:31Z",
    "confidence": null,
    "related_threat_id": "malwarebazaar:mirai"
   },
   {
-   "value": "efbdf3619a847c923265961d143c80bd14e1bcb05418c3fc03cf64242b547aec",
+   "value": "c7a02e58c72183a58b2322c6f97f472476bf41ef6154acb9a4e2d3992e7e717f",
    "ioc_type": "sha256",
    "source": "malwarebazaar",
    "malware_family": "Mirai",
-   "first_seen": "2026-10-31T09:24:23Z",
+   "first_seen": "2026-10-31T10:25:29Z",
    "confidence": null,
    "related_threat_id": "malwarebazaar:mirai"
   },
   {
-   "value": "e55b8643b95f30a68b89ef4515a39238a9170a89dad58845482d363bb9db2d9b",
-   "ioc_type": "sha256",
-   "source": "malwarebazaar",
-   "malware_family": null,
-   "first_seen": "2026-10-31T09:24:20Z",
-   "confidence": null,
-   "related_threat_id": "malwarebazaar:unknown"
-  },
-  {
-   "value": "c8df1b7e1f3e6c9733d7afa09742f7b3523d7a3ed47aec0d12096571b816594a",
-   "ioc_type": "sha256",
-   "source": "malwarebazaar",
-   "malware_family": null,
-   "first_seen": "2026-10-31T09:24:14Z",
-   "confidence": null,
-   "related_threat_id": "malwarebazaar:unknown"
-  },
-  {
-   "value": "0526413d9b0aee920f024b710251c82d907ed922ad5dcb99bf4913b994e4877f",
+   "value": "8c0c81f128a83a569abbe90dcffed19205e8e5eb2e20ff8e6aa2bdab39c5d665",
    "ioc_type": "sha256",
    "source": "malwarebazaar",
    "malware_family": "Mirai",
-   "first_seen": "2026-10-31T09:24:04Z",
+   "first_seen": "2026-10-31T10:25:18Z",
    "confidence": null,
    "related_threat_id": "malwarebazaar:mirai"
   },
   {
-   "value": "fa29f995c25887375b95c4fdbb750fce1ade56795c8557bff99557ed0148d0f6",
+   "value": "e58caff40b3056f15644c891ab78fa0f28dc9ebf1c321b1ccfd0718e82c0e71a",
+   "ioc_type": "sha256",
+   "source": "malwarebazaar",
+   "malware_family": "AMOS",
+   "first_seen": "2026-10-31T10:25:10Z",
+   "confidence": null,
+   "related_threat_id": "malwarebazaar:amos"
+  },
+  {
+   "value": "a6bb25f742c9f7722d9f05e98994aa94600560bef6d1513410be96474717fdc8",
+   "ioc_type": "sha256",
+   "source": "malwarebazaar",
+   "malware_family": "RustyStealer",
+   "first_seen": "2026-10-31T10:25:01Z",
+   "confidence": null,
+   "related_threat_id": "malwarebazaar:rustystealer"
+  },
+  {
+   "value": "cc4d2deeeca0896e780853292b57f3c24f12ef621aa9637d1bcfd5bbcaf59a92",
    "ioc_type": "sha256",
    "source": "malwarebazaar",
    "malware_family": "Mirai",
-   "first_seen": "2026-10-31T09:07:30Z",
+   "first_seen": "2026-10-31T10:24:52Z",
    "confidence": null,
    "related_threat_id": "malwarebazaar:mirai"
-  },
-  {
-   "value": "5fab0165138b47bb9bb1558676b039313f96b8744fc6300b4b3013226f111108",
-   "ioc_type": "sha256",
-   "source": "malwarebazaar",
-   "malware_family": null,
-   "first_seen": "2026-10-31T09:06:47Z",
-   "confidence": null,
-   "related_threat_id": "malwarebazaar:unknown"
-  },
-  {
-   "value": "65d505c8ec91afd197545a3b11333c2893ba85d70df359a19d31322f8a89c287",
-   "ioc_type": "sha256",
-   "source": "malwarebazaar",
-   "malware_family": null,
-   "first_seen": "2026-10-31T09:06:40Z",
-   "confidence": null,
-   "related_threat_id": "malwarebazaar:unknown"
-  },
-  {
-   "value": "db6f98241a3146331863e99ad89be9d1315d079a6afb8b8ebeca9742626a1559",
-   "ioc_type": "sha256",
-   "source": "malwarebazaar",
-   "malware_family": "Mirai",
-   "first_seen": "2026-10-31T09:00:18Z",
-   "confidence": null,
-   "related_threat_id": "malwarebazaar:mirai"
-  },
-  {
-   "value": "1fdae5afdca0a642242f0038b389a32b53d89569346eb0b7ec92c50e5a58a5c5",
-   "ioc_type": "sha256",
-   "source": "malwarebazaar",
-   "malware_family": null,
-   "first_seen": "2026-10-31T09:00:16Z",
-   "confidence": null,
-   "related_threat_id": "malwarebazaar:unknown"
-  },
-  {
-   "value": "3419c8e2bd5d890a88db57321f9985f919967f0099f5b868a4b64ddb6799e5c2",
-   "ioc_type": "sha256",
-   "source": "malwarebazaar",
-   "malware_family": null,
-   "first_seen": "2026-10-31T08:57:35Z",
-   "confidence": null,
-   "related_threat_id": "malwarebazaar:unknown"
-  },
-  {
-   "value": "12b1f1bb7d8e9f97a5d8e2c0c46cb251585f3abe0d4bb4993ed414c1e98e5381",
-   "ioc_type": "sha256",
-   "source": "malwarebazaar",
-   "malware_family": null,
-   "first_seen": "2026-10-31T08:55:31Z",
-   "confidence": null,
-   "related_threat_id": "malwarebazaar:unknown"
-  },
-  {
-   "value": "f6bf91fd210cf04592949131b3ed1a4a10986c9bdeebb4869f511b42c54c5328",
-   "ioc_type": "sha256",
-   "source": "malwarebazaar",
-   "malware_family": "RatHat",
-   "first_seen": "2026-10-31T08:33:42Z",
-   "confidence": null,
-   "related_threat_id": "malwarebazaar:rathat"
-  },
-  {
-   "value": "d6e30f20490cfb8bc983c2d2311f85a9568fb92cd6c66085c45c5f7522c9af6a",
-   "ioc_type": "sha256",
-   "source": "malwarebazaar",
-   "malware_family": null,
-   "first_seen": "2026-10-31T08:30:16Z",
-   "confidence": null,
-   "related_threat_id": "malwarebazaar:unknown"
   },
   {
    "value": "162.243.103.246",

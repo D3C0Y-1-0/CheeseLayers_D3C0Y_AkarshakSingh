@@ -16,6 +16,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "GoAhead",
@@ -244,6 +245,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Safari",
@@ -349,6 +351,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -371,6 +374,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -393,6 +397,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -418,6 +423,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "PHP",
@@ -473,6 +479,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Oracle",
@@ -616,6 +623,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -638,6 +646,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -683,6 +692,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "SAP",
@@ -848,6 +858,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Microsoft",
@@ -967,6 +978,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1010,6 +1022,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "SAP",
@@ -1138,6 +1151,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Microsoft",
@@ -1221,6 +1235,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Oracle",
@@ -1318,6 +1333,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1340,6 +1356,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Apple",
@@ -1572,6 +1589,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Acrobat",
@@ -1751,6 +1769,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1788,6 +1807,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "SAP",
@@ -1895,6 +1915,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Mozilla",
@@ -1945,6 +1966,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Apache",
@@ -2000,6 +2022,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Mozilla",
@@ -2052,6 +2075,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Zoom",
@@ -2117,6 +2141,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2141,6 +2166,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "PHP",
@@ -2198,6 +2224,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Siemens",
@@ -2231,6 +2258,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "curl",
@@ -2272,6 +2300,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "VeloCloud",
@@ -2313,6 +2342,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Google",
@@ -2351,6 +2381,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2375,6 +2406,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Oracle",
@@ -2424,6 +2456,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "Fortinet",
@@ -2463,6 +2496,7 @@
    "severity": "Medium",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "MongoDB",
@@ -2523,6 +2557,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "BIND",
@@ -2590,6 +2625,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "BeyondTrust",
@@ -2625,6 +2661,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "NGINX",
@@ -2733,6 +2770,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [
     {
      "vendor": "GitLab",
@@ -2814,6 +2852,7 @@
    "severity": "Critical",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2871,6 +2910,7 @@
    "severity": "High",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [

@@ -27,6 +27,7 @@ class ThreatItem(BaseModel):
     severity: str = "Unknown"  # Critical | High | Medium | Low | None | Unknown
     epss: float | None = None  # 0-1 probability it gets exploited in the next 30 days
     in_kev: bool = False  # CISA says it is being exploited in the wild right now
+    public_exploit: bool = False  # working exploit code is public (Exploit-DB, GitHub PoC, Nuclei template, CISA SSVC)
     affected: list[Affected] = []
     attack_techniques: list[str] = []  # MITRE ATT&CK IDs, e.g. T1190
     tags: list[str] = []
@@ -36,7 +37,7 @@ class ThreatItem(BaseModel):
 class IOC(BaseModel):
     # Indicator of Compromise: something seen in an attack we can look for in our own logs.
     value: str
-    ioc_type: Literal["ip", "domain", "url", "sha256", "md5"]
+    ioc_type: Literal["ip", "cidr", "domain", "url", "sha256", "md5"]  # cidr = whole IP range, e.g. 1.10.16.0/20
     source: str
     malware_family: str | None = None
     first_seen: datetime | None = None

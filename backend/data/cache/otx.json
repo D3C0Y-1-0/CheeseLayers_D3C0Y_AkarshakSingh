@@ -15,6 +15,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1560.001",
@@ -72,6 +73,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1087.002",
@@ -125,6 +127,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1036.005",
@@ -171,6 +174,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1115",
@@ -210,6 +214,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -265,6 +270,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1560.001",
@@ -328,6 +334,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1113",
@@ -365,6 +372,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1498.001",
@@ -404,6 +412,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1098.004",
@@ -447,6 +456,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1557",
@@ -486,6 +496,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -539,6 +550,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1083",
@@ -581,6 +593,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1078",
@@ -628,6 +641,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1003.006",
@@ -692,6 +706,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -743,6 +758,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1133",
@@ -792,6 +808,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1056.001",
@@ -850,6 +867,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [],
@@ -868,6 +886,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1567.002",
@@ -911,6 +930,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1056.001",
@@ -956,6 +976,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1113",
@@ -1004,6 +1025,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1036.005",
@@ -1050,6 +1072,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1218.010",
@@ -1103,6 +1126,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -1202,6 +1226,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1133",
@@ -1240,6 +1265,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -1301,6 +1327,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1583",
@@ -1349,6 +1376,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1384,6 +1412,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1491.002",
@@ -1439,6 +1468,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1470,6 +1500,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1036.005",
@@ -1518,6 +1549,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1522"
@@ -1572,6 +1604,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1082",
@@ -1608,6 +1641,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1033",
@@ -1660,6 +1694,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1417",
@@ -1696,6 +1731,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1036",
@@ -1736,6 +1772,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1113",
@@ -1791,6 +1828,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1543.003",
@@ -1842,6 +1880,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1566",
@@ -1882,6 +1921,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1036.005",
@@ -1937,6 +1977,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -1989,6 +2030,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2023,6 +2065,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1033",
@@ -2073,6 +2116,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1539",
@@ -2121,6 +2165,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1567.001",
@@ -2162,6 +2207,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1036.005",
@@ -2205,6 +2251,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1033",
@@ -2261,6 +2308,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1204.002",
@@ -2300,6 +2348,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -2353,6 +2402,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1133",
@@ -2404,6 +2454,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1204",
@@ -2450,6 +2501,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1204.002",
@@ -2500,6 +2552,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2537,6 +2590,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2576,6 +2630,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -2616,6 +2671,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1074.001",
@@ -2663,6 +2719,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1059.007",
@@ -2714,6 +2771,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1590.005",
@@ -2766,6 +2824,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1543",
@@ -2813,6 +2872,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1113",
@@ -2863,6 +2923,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1596.003",
@@ -2911,6 +2972,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -2965,6 +3027,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1068",
@@ -3008,6 +3071,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1036.005",
@@ -3054,6 +3118,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1113",
@@ -3105,6 +3170,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1543",
@@ -3157,6 +3223,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3188,6 +3255,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1133",
@@ -3224,6 +3292,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1566",
@@ -3271,6 +3340,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -3317,6 +3387,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1543",
@@ -3353,6 +3424,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1598.003",
@@ -3396,6 +3468,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3436,6 +3509,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -3488,6 +3562,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -3538,6 +3613,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1560.001",
@@ -3655,6 +3731,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1133",
@@ -3700,6 +3777,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1113",
@@ -3742,6 +3820,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1059.007",
@@ -3786,6 +3865,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1566.002",
@@ -3822,6 +3902,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1592",
@@ -3874,6 +3955,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -3981,6 +4063,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1132.001",
@@ -4034,6 +4117,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1539",
@@ -4081,6 +4165,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1133",
@@ -4145,6 +4230,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1003.003",
@@ -4243,6 +4329,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -4305,6 +4392,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1056.001",
@@ -4355,6 +4443,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1110.001",
@@ -4402,6 +4491,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1069",
@@ -4447,6 +4537,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1133",
@@ -4496,6 +4587,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1557",
@@ -4541,6 +4633,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -4590,6 +4683,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1592",
@@ -4658,6 +4752,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1539",
@@ -4705,6 +4800,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1132.001",
@@ -4749,6 +4845,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1133",
@@ -4798,6 +4895,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1132.001",
@@ -4859,6 +4957,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1133",
@@ -4914,6 +5013,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -4945,6 +5045,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1036.005",
@@ -5022,6 +5123,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1539",
@@ -5071,6 +5173,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1069",
@@ -5120,6 +5223,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -5187,6 +5291,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -5245,6 +5350,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -5289,6 +5395,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -5346,6 +5453,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1003",
@@ -5396,6 +5504,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1560.001",
@@ -5444,6 +5553,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -5489,6 +5599,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1583",
@@ -5544,6 +5655,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -5598,6 +5710,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1114",
@@ -5647,6 +5760,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1592",
@@ -5690,6 +5804,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1573.002"
@@ -5716,6 +5831,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1562",
@@ -5759,6 +5875,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1185",
@@ -5813,6 +5930,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -5859,6 +5977,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -5913,6 +6032,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -5947,6 +6067,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1132.001",
@@ -5996,6 +6117,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1562.001",
@@ -6039,6 +6161,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1113",
@@ -6080,6 +6203,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1547",
@@ -6138,6 +6262,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1005",
@@ -6191,6 +6316,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1047",
@@ -6238,6 +6364,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1113",
@@ -6302,6 +6429,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1132.001",
@@ -6352,6 +6480,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -6413,6 +6542,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1132.001",
@@ -6460,6 +6590,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1113",
@@ -6527,6 +6658,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1113",
@@ -6602,6 +6734,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1071.004",
@@ -6657,6 +6790,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1133",
@@ -6707,6 +6841,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1069",
@@ -6758,6 +6893,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -6802,6 +6938,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1560.001",
@@ -6855,6 +6992,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1113",
@@ -6911,6 +7049,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1003",
@@ -6964,6 +7103,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1539",
@@ -7020,6 +7160,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -7105,6 +7246,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -7180,6 +7322,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1056"
@@ -7220,6 +7363,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1557",
@@ -7265,6 +7409,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "",
@@ -7295,6 +7440,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1497.001",
@@ -7350,6 +7496,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1133",
@@ -7401,6 +7548,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1059.007",
@@ -7448,6 +7596,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -7479,6 +7628,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1110.001",
@@ -7525,6 +7675,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1539",
@@ -7604,6 +7755,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -7637,6 +7789,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1110.001",
@@ -7696,6 +7849,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1003.002",
@@ -7766,6 +7920,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -7800,6 +7955,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1047",
@@ -7850,6 +8006,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1583",
@@ -7896,6 +8053,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1110.001",
@@ -7960,6 +8118,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1036.005",
@@ -8009,6 +8168,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1496"
@@ -8055,6 +8215,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -8087,6 +8248,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -8119,6 +8281,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -8168,6 +8331,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1132.001",
@@ -8216,6 +8380,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1132.001",
@@ -8265,6 +8430,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1568.002",
@@ -8307,6 +8473,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1557",
@@ -8348,6 +8515,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1110.001",
@@ -8397,6 +8565,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1543",
@@ -8450,6 +8619,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1014",
@@ -8522,6 +8692,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1132.001",
@@ -8580,6 +8751,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1005",
@@ -8618,6 +8790,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -8650,6 +8823,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -8706,6 +8880,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1560.001",
@@ -8763,6 +8938,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1003.002",
@@ -8852,6 +9028,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1113",
@@ -8910,6 +9087,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1036.005",
@@ -8952,6 +9130,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1106",
@@ -9001,6 +9180,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1133",
@@ -9052,6 +9232,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1518",
@@ -9095,6 +9276,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1056.001",
@@ -9140,6 +9322,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1592",
@@ -9178,6 +9361,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1071.001",
@@ -9227,6 +9411,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -9251,6 +9436,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1568.002",
@@ -9305,6 +9491,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -9343,6 +9530,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053",
@@ -9398,6 +9586,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1014",
@@ -9446,6 +9635,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1113",
@@ -9506,6 +9696,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -9553,6 +9744,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1583",
@@ -9598,6 +9790,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1113",
@@ -9648,6 +9841,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -9688,6 +9882,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [],
    "tags": [
@@ -9718,6 +9913,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1053.005",
@@ -9766,6 +9962,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1132.001",
@@ -9826,6 +10023,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1132.001",
@@ -9872,6 +10070,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1539",
@@ -9925,6 +10124,7 @@
    "severity": "Unknown",
    "epss": null,
    "in_kev": false,
+   "public_exploit": false,
    "affected": [],
    "attack_techniques": [
     "T1583",

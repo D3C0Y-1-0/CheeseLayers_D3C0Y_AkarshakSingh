@@ -63,26 +63,30 @@ def _item(cve: dict, raw_ref: str) -> ThreatItem:
     )
 
 
-def fetch() -> dict:
+def query(params: dict, source: str = SOURCE, url: str = URL) -> list[ThreatItem]:
+    """All pages of one NVD query (startIndex pagination), normalised. Also used by nvd_kev.py."""
     key = env("NVD_API_KEY")
     headers = {"apiKey": key} if key else {}
     # Public limit: 5 requests / 30 s (50 with a key). Space requests to stay under it.
     interval = 0.7 if key else 6.5
+    items: list[ThreatItem] = []
+    idx = 0
+    while True:
+        data = get(url, params={**params, "startIndex": idx, "resultsPerPage": PAGE}, headers=headers, min_interval=interval).json()
+        ref = save_raw(source, data, f"{params.get('pubStartDate', 'all')[:10]}_{idx}")
+        items += [_item(v["cve"], ref) for v in data["vulnerabilities"]]
+        log.info("%s: %d/%d", source, min(idx + PAGE, data["totalResults"]), data["totalResults"])
+        idx += PAGE
+        if idx >= data["totalResults"]:
+            return items
+
+
+def fetch() -> dict:
     end = datetime.now(timezone.utc)
     start = end - timedelta(days=DAYS)
     items: list[ThreatItem] = []
     while start < end:
         w_end = min(start + WINDOW, end)
-        idx = 0
-        while True:
-            params = {"pubStartDate": start.strftime("%Y-%m-%dT%H:%M:%S.000"), "pubEndDate": w_end.strftime("%Y-%m-%dT%H:%M:%S.000"),
-                      "startIndex": idx, "resultsPerPage": PAGE}
-            data = get(URL, params=params, headers=headers, min_interval=interval).json()
-            ref = save_raw(SOURCE, data, f"{start:%Y%m%d}_{idx}")
-            items += [_item(v["cve"], ref) for v in data["vulnerabilities"]]
-            log.info("nvd: %d/%d", min(idx + PAGE, data["totalResults"]), data["totalResults"])
-            idx += PAGE
-            if idx >= data["totalResults"]:
-                break
+        items += query({"pubStartDate": start.strftime("%Y-%m-%dT%H:%M:%S.000"), "pubEndDate": w_end.strftime("%Y-%m-%dT%H:%M:%S.000")})
         start = w_end
     return {"items": items}

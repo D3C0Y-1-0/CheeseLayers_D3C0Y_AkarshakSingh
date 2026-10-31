@@ -1,0 +1,7214 @@
+{
+ "CVE-2026-112471": {
+  "sha": "48d0b99def63cb90a025abfddca53d4e8c3522dc",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112484": {
+  "sha": "f7d6ebecbc01ac5f22d10557788a6bf62b607ebc",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112506": {
+  "sha": "b5680d13217e8030ea2cf7adc4464873c15d5ba5",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112617": {
+  "sha": "9b62a47a96f60ef1bb92fe9d94769f45fc7c77d2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112614": {
+  "sha": "27d21fccdf6ec3cd6685acdf1b3e733958cf0e66",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112609": {
+  "sha": "c1638d32180d29cd1a391df42fdd92855040b25e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112651": {
+  "sha": "154184d4e604ad5e92a59598343b9633e4f2d36b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112655": {
+  "sha": "da016e87a436697f38a75a9b4757a0c7fdbd8c2e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112659": {
+  "sha": "d3501a2129024088003014e2de4b0c3d19c8e2c2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112678": {
+  "sha": "72bfbdf344a6dcbb492859140d955d09ecea1565",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112685": {
+  "sha": "762bea0a7d1a126dcfcbf8c752d21d07dcd0d838",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112675": {
+  "sha": "8ce953e81f3806c6d70147d335e6c11012f1069c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112701": {
+  "sha": "7999d006ac7372ac49c406cb734f1c6c6a5ec13c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112688": {
+  "sha": "4639fd7aa8ba083a702fff3c5d5727a85ae0855b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112706": {
+  "sha": "d65b539b403c655b0806fce0c3cd87e2a1efe4fe",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-113914": {
+  "sha": "1fc43fe4e6ca882c5a8453883b7e1e41d1331343",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-113896": {
+  "sha": "a652ab5decc9a5f168b9e26292cb1cdae888d5a8",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-113943": {
+  "sha": "211921f2688130544bfadbf43dc0522c7af53a88",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-20649": {
+  "sha": "2d77c412af163ef6ca6c4389b5b5553bd0da7986",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-113947": {
+  "sha": "35ea48a4f33aeb9c3a2e42e91296486158771406",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-20648": {
+  "sha": "b70a71dd6a3aa587c4907ac034e6c1dffb50762b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-28864": {
+  "sha": "0c5cec4301c063226c83de8886a8bc5617545891",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-43736": {
+  "sha": "953921c41dbdb2e9063fb46860fdf6077146f8d9",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-64759": {
+  "sha": "f186284e1d69c467aaf59150538e2891ae5d62cc",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-64767": {
+  "sha": "d6b0ed47ac7baba51f52e732b16fbd7fa65d2ff7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-28991": {
+  "sha": "fc112d2f99044b194e05b86ff18198508d994153",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-65327": {
+  "sha": "abd39c359420a689a26b18dc2ca5ef7ffdb13b80",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-65339": {
+  "sha": "34611e6d6d27f2fc5825a5b9b396cc95f0d96698",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-65397": {
+  "sha": "986c83beae665d6f5bc48dc6ed564373abc1aee3",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-86916": {
+  "sha": "21369a3ed865806ac07861aafe2a1a99b9a4a464",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84496": {
+  "sha": "2dd1cdb638a0e8a769fb43655c92a9ca7bb0a922",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-86920": {
+  "sha": "29ab0524a633f62827641fd4d4ababe48c8045d0",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-86929": {
+  "sha": "dd88398f63698402f40f22dbaaeddfcff2c750c6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-86925": {
+  "sha": "b621534c8079cc08af8753fedf470f6f778513c6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-86971": {
+  "sha": "7e0b67a7066b31180f6b4224b6f09148748a56e0",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-86987": {
+  "sha": "c6c4184904dc854c65db02a21265f762e5fce1c6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-42938": {
+  "sha": "108c589eee04021d121493f378def42757eef748",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-24316": {
+  "sha": "e27636fe0fb49e559959c2394e481c7976cbdf1d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-58249": {
+  "sha": "694bb3428f590a6ec9731f4e1e3d4402ab416784",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-58242": {
+  "sha": "8b5758c96a8506c3b1793acd7633f235ce3f45d8",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-76972": {
+  "sha": "786cbe6cbb25cd7dd555e5099cfded636441f727",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-76976": {
+  "sha": "2595867933de33ef1390a8afab5c31cc49e1e433",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-76975": {
+  "sha": "71cfac8cd53cf935071ef595b26de19d70e50d96",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-89106": {
+  "sha": "3cd661eeed65bdff518474e1bddef1caa4ce40a5",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-89107": {
+  "sha": "9e48e8b06894ea55e8a0664a2c850a758988cf6b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-89108": {
+  "sha": "e44079b4a7ab1499664993dcefa65c33f0de704c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-89110": {
+  "sha": "7e5f2b57a5217d49dac96d22409a6f160d7fc5a1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-89111": {
+  "sha": "ac7f1037fff84046ba41253861820a17b135feca",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-89112": {
+  "sha": "70f86c8d6d17138e3f82488b3fd9541054740873",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-89116": {
+  "sha": "db77338f1963cf81629f97e866cc55cf25822802",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-89113": {
+  "sha": "317604aab0d15d3db8c5686704637cdf0608bc28",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-89117": {
+  "sha": "fd24fd9edb48a11c7ed766e7933d839a774712ad",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-89118": {
+  "sha": "a63c188f4814e33da6a0f129dad9dd17625a103f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-89120": {
+  "sha": "69241df8f11fe4b4a9f2e426b9a27183b819eb0e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-89121": {
+  "sha": "d504206c04de09b738039b7b244dee9411a21c59",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-89122": {
+  "sha": "1a6ca4c54375bbd853100aabb81503fcd956dc68",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-89124": {
+  "sha": "2a0c3f99c1dc7748199748b5b551e8af25d99973",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-2332": {
+  "sha": "ecef78968c8c1104d28f3fcefcba76533a2f839d",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-34477": {
+  "sha": "9951e83dc5ef221e19ca936d500f4872146619b1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-44756": {
+  "sha": "c68e2f5763392a96730d72456920b07ecc0f93c6",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-44766": {
+  "sha": "ec7eadd7e535ded09bebf991e52888946ae90fdc",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-58234": {
+  "sha": "b1e3590f26de2fb36a1a10bed5f8f0635cc6f92e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-58240": {
+  "sha": "625cde0ca008b8ccf8fbcf1cf6b5aa48a6996930",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-58243": {
+  "sha": "ef7196d9810b780a866e57f7dc6e685af3a4d8f2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-66767": {
+  "sha": "105c50daeffd0fa96a07aad9a5426b6b0ef75bb1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-66768": {
+  "sha": "91ba696313c753c939a58be1c0450b6e56d1dc5a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76958": {
+  "sha": "ebc04836ba869e1db850360dfe72e849bc8ce459",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-76959": {
+  "sha": "887f9827457ff040ef6352fa2234857e52e5f6d9",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-76960": {
+  "sha": "fe94afb16f6ce682a698d786cd47b8acf6e772ff",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-76961": {
+  "sha": "a90ffcb814480ddef1f21be22795870f7c6dcc4b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-76962": {
+  "sha": "77ea712947d41de87713632102134af1e17df90c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-76963": {
+  "sha": "17521a4d9711e4f3f48b5dbdb1b950b1a1a1e5fb",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-76967": {
+  "sha": "c4696b879b430f50483d546f631fee336c0ad5b9",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76968": {
+  "sha": "57e2e27256a8305dcd1454f49b60919721291e59",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-76969": {
+  "sha": "531c624294cfd13619c7300116ca560e1e4ecb83",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-76971": {
+  "sha": "377ad7d596cb19088ef4fddda7ac0efeaa2f9c6c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-76977": {
+  "sha": "a681184bc4c80d978bae44b40d24ec8e9fea9fc9",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-61808": {
+  "sha": "a30ba0937313340ce59d42bdf3aed724c4d0f58f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-61809": {
+  "sha": "c5f5253821a258e378788b3e3d2e12a7f130ae29",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2025-61812": {
+  "sha": "3030314fa531ee8b9928abfdcc494e2887ce9445",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-61811": {
+  "sha": "abe7b2d7ad71cf35f04b1ae251b27e85d8d2b55f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-61810": {
+  "sha": "da2a3c5ff367709e1701b84fd16e418bc3b643a7",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-61822": {
+  "sha": "e14f302811e9faf157db77b96133196726e81434",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-61821": {
+  "sha": "e1a489ea711087cd4c2ebe3a473f04f0b49434e3",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-61813": {
+  "sha": "c3277e05fa4fa59a97438460350c1f60aafd902f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-61830": {
+  "sha": "efec872f0d34bb48bde18828a9a874833f346571",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-61823": {
+  "sha": "f95c31cbf71837c02a421cd125751529f21c57f4",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64537": {
+  "sha": "6b07f31708ddfac61784d4bc518d92ddb52a66d1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64539": {
+  "sha": "4ffa26184bc3a3753a8de41eba4ea37e8f73690c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-64541": {
+  "sha": "bb64e5153e45c7f6d94146e1701b87d4d4b826f4",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64542": {
+  "sha": "4a7c6896469fb8bda1b7add66bbcc6046e458dfb",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64544": {
+  "sha": "dc7c8dbb7565c2b94b0f3850d104d2f672539d89",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64543": {
+  "sha": "c32edabd52d313f44430062a3a54941d719aaa44",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64545": {
+  "sha": "188c945a4aa7f12ccdada8cbd4e71d1ad56e604a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64546": {
+  "sha": "1688f4acf2f5271c34d64e6d4eea5db04b3b0512",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64547": {
+  "sha": "d35e24d67d4acde8a08ca7d21a5ecb14b1bab5cf",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64548": {
+  "sha": "838f702670ff4770e2d3125f2d24c6c595524df2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64549": {
+  "sha": "a21c7fde0204eb4c375fc7ee62cd747099587dab",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64550": {
+  "sha": "3146b8f71d998691a92bbb220b20a520b3badab5",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64551": {
+  "sha": "86816cbb89a7055c8e4205d114f21411b9742cda",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64553": {
+  "sha": "9e2bb628c927a7c37f96100d8013c9d967eab0a4",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64555": {
+  "sha": "ed3af826c7882c2a312f0942fd6bae8cc32c5646",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64554": {
+  "sha": "8de28a319b71a82e0b9923fb68cc69b291f72449",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64558": {
+  "sha": "e7845e59ccc4e8a14aa37359a4fa15413ba72689",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64556": {
+  "sha": "3504f3ee4fd985cdeace5818f8d620f9a3865990",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64557": {
+  "sha": "e54ee5c767237090526619884adf2880b2756af7",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64562": {
+  "sha": "df8f66042c0705ca19798cc87f6ef783143b7e40",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64560": {
+  "sha": "039d6debdead350135096852563f83741ac40ba6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64559": {
+  "sha": "8ecc6a1436d14ea2c7e44985ec7087d04d1b32c9",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64563": {
+  "sha": "8f579dbca0b1e605855206da66322faa1bafebb8",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64564": {
+  "sha": "8f6aa9e3b1eb4b214ff3e538cf2fbb945a8f500b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64569": {
+  "sha": "7096dc4323c07e707818ca254a76e3c1afd6b5e5",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64572": {
+  "sha": "bcfb6d646a47dbd44b38e08eadc01f937643b072",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64574": {
+  "sha": "e89ad2f978e99697f88d4d3cae480e573a977b88",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64575": {
+  "sha": "967f01128c97962169514174e7c2980c0bee0e50",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64576": {
+  "sha": "84f7a955060de19fa1a67e5b55ef84f10aaa88a8",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64577": {
+  "sha": "2fd300f887396abdd63ec652271f73bbab4f16ca",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64578": {
+  "sha": "fd8223c55501d496eeea394ad524c15ae42466ef",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64579": {
+  "sha": "6dc5303b7041b53feeaedd1e81e320b4f8a997e5",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64580": {
+  "sha": "579b41999497daa4db9574a54c5729f0ab3936e6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64581": {
+  "sha": "52a11e6548696bd34bcb197a565312b1b6ba6ac1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64582": {
+  "sha": "c4d6af1e867ef33dabeeadb36ac8f726befab7ce",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64583": {
+  "sha": "577c10748187cbe2a22a01be8f21682872653d7d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64585": {
+  "sha": "2a873aab24f835d3e5e11c2396b312468954d9a3",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64586": {
+  "sha": "eb27e827a792ee8ec1ec50a40babfaec274cc1d5",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64590": {
+  "sha": "f74b69d5586c051459c25843094ec90a4dc64f5c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64591": {
+  "sha": "83949b63d6446a6db4309890bf5778b1e214c6df",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64592": {
+  "sha": "dc153b9e42641db7736cef2a66b4933e6653c3e6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64593": {
+  "sha": "dafb70852e88a26402120631c7c36fe2b837bce8",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64594": {
+  "sha": "fb8e8b5769fed99bef7a9650c45e63a2d71ee736",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64596": {
+  "sha": "18811b180d33d2b4c8e12282a8d055f6d265c319",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64597": {
+  "sha": "1349d12886bb2ee55e5666b82cd1ff4f84f56b06",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64598": {
+  "sha": "71cc5636bc07fc1aee95b4f2a15831a3bbe6d7be",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64600": {
+  "sha": "2e9af64719d9cd8358833ebb851b8edc2054da20",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64601": {
+  "sha": "ac0226863ae18b2e609a0f182bb5d35c3b89e2d0",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64602": {
+  "sha": "5280fc163f6695f781c5f30ca5c266a83a28418b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64603": {
+  "sha": "def151e1914723b017b7ed93d48f11b7a566a0f2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64604": {
+  "sha": "f3ee4127e8461674a298d16e8f81bb47f87319fc",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64605": {
+  "sha": "41f337033b5b9cdb936131d0a3eb4cb04f577c5b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64606": {
+  "sha": "59f59c69b7d60590069f5e3db46a9c199dac10f4",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64607": {
+  "sha": "d3152f3b71e1da5b66ca5930fbc0bf14fe8968ea",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64609": {
+  "sha": "5f7e738652abb80d41b6a44a89a9d8bc29a9491d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64610": {
+  "sha": "2385985c528f6f5fea13e14d13341b7af12a2336",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64611": {
+  "sha": "30f0e796cdd70aabe2d6f562069123e4a572db1f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64612": {
+  "sha": "ca5fd34227bfa15d27d2aa8b56703cd28c133517",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64614": {
+  "sha": "c48c572e79e64061f275faa1d91a7873e6e38353",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64615": {
+  "sha": "ab5a2e1211e69c1ac944fcc7f3575a52a293dde2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64616": {
+  "sha": "9a38ba92f0b7f4e76bec28b1da6d53d82489a6dc",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64619": {
+  "sha": "dfdce523be26d1c1949d24fc0d784b68a6d76fc2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64622": {
+  "sha": "d71a44ab9afcf09229baee010f2d4dd702ec6f29",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64623": {
+  "sha": "d649cba9df543e17b1968d80f274f04a462eab9d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64626": {
+  "sha": "8f71d4a49a99bfb04ee1024758c6bd6996981656",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64627": {
+  "sha": "0377433ee27c954a453e1e6dd2b017146d32381f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64783": {
+  "sha": "8ee7a62dbb793d854efe54ffd2c5c2b6b16919d2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-64784": {
+  "sha": "a4831e424afeb225ddbb4816cbc718e445fa33c2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64785": {
+  "sha": "cfdc7f1514f70e35df341345e8b5aedae05d4c4a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-64786": {
+  "sha": "6bf92219ccda170f55c12bb4e526719cc408d87f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64789": {
+  "sha": "6aed6cd2e7bf576765bdc8b639e20e7b36f2ae97",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64790": {
+  "sha": "253a3e49610e78b938e30e0d355d001ea926bac1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64791": {
+  "sha": "9f41545793f91c09c61f641cc3367a4b4fc61783",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64792": {
+  "sha": "650b7c6720fb5c7816310d4cb8f64ee6c1e24a3a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64787": {
+  "sha": "1f7cb1a1b0832171df152471c48b3b238fe11f0e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64794": {
+  "sha": "e2db6ba5bbd8baa67db9f92aa779ac89c79ced82",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64793": {
+  "sha": "1f4c3fbccfdfe7dc969e6d002d67bc4e8ce68b16",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64796": {
+  "sha": "80b42ec63a7d4a3c5f12b7812adafe116dc7d3f7",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64799": {
+  "sha": "335baba92bc6a6148ae506c4781dad88e528b3e6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64797": {
+  "sha": "5acf6cc2b12ff518af83d3507bf5d8c8e25601bd",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64800": {
+  "sha": "95e9e87ecd3a14ca6d4c3be00c01f4400c5cdd67",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64801": {
+  "sha": "1594a956a259e568f5240a33af8cdeb1a7354062",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64802": {
+  "sha": "34440254913fac772255a75939367c156480711f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64803": {
+  "sha": "3a2941ab21cf87f8962aa0999ae7e88e66889c68",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64804": {
+  "sha": "f78dddbb06f6baff7fd9a235f06145f0d2bd0049",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64808": {
+  "sha": "592a9bc768728bf8926fe5f68a0d504666e312de",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64814": {
+  "sha": "17b101f50db7c6802018d4a8e70576ac23bfdb11",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64820": {
+  "sha": "36f3121f74beccc623c038b97b3bd6df93bc29b1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64821": {
+  "sha": "3a6f176081c25d68d4f97b5652bf6f942c704b58",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64817": {
+  "sha": "b2c761eccf46569e8b6bfb13495f588cdf52c7b5",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64822": {
+  "sha": "cc8a3a3f280e4f4a58f69c6cd4e1416a6cb361da",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64823": {
+  "sha": "21b4c4c5445f68fd8f42c243bc124c1a9d63ee3c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64825": {
+  "sha": "b727b360a95948118d98c301ad89d331590b0ed7",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64827": {
+  "sha": "33276d89e31af434707b2ea0264fcb50a05e9ef9",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64829": {
+  "sha": "45a71830970ab8330d99356fc82ae3196ea10066",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64826": {
+  "sha": "e98de8afcc66c5ae5aaa6d5645c0421630831e49",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64833": {
+  "sha": "529a8ab6b8c40ffcce643b247416d0e6bd6cea02",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64840": {
+  "sha": "16ed2ef0a9d46645d2b0e62f9da5e60c142e12a7",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64839": {
+  "sha": "8c4a169e8669e5dffc582db8bc92f80497223f51",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64841": {
+  "sha": "a34fbf271af251854524a171d3f67e96c298d71e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64847": {
+  "sha": "622d8939431c272d28e0e4ab38bad8c214b8336f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64845": {
+  "sha": "426986ff2f912bb22fa3076a9d4b45fdea3ed55c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64853": {
+  "sha": "761305290029862734b45650ceb7d1a8d2858570",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64850": {
+  "sha": "23c65c2067e173ab8b981bb8b29816d7c993274a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64852": {
+  "sha": "b423c7c845f4fd57de1711373e35c0028f291d4b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64857": {
+  "sha": "e43b0d43c9fd6fc4c2de6c2b6e966e1fdb02c423",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64861": {
+  "sha": "1eb9ff55a8e6d5ce8a8081eb5dd7a3a53ce14bce",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64863": {
+  "sha": "3667bce122df75701502970e036f2ae139a3e08c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64869": {
+  "sha": "f1a1f751d9440e7df12f9e5148b4b392239adaba",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64858": {
+  "sha": "d028fe065cfe4266794134cff55cd7fa0c5636cb",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64875": {
+  "sha": "b004e0219e18ee7a98d0ec1c0aef7d00a29e1805",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64873": {
+  "sha": "bb800c0fc6200a50635afdcc6e3d10eceef1e9aa",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64872": {
+  "sha": "1f29df8224119cf579efe3afbeb6e6b98a699278",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64881": {
+  "sha": "1a9ffa646c16726b6c47c8f54ab0781a8f8f11e6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64888": {
+  "sha": "fec3f0542d615e3ce85ee5f1d184e08145537c02",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64887": {
+  "sha": "5a5c3bbdfd77ed4f26426e1f367df9592142c557",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64893": {
+  "sha": "b92a8b73da29e2b03d7537c6953507f340a7f0a2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64894": {
+  "sha": "eefeaef0f5598b6c3b2d43f3189f232bd032c942",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-64897": {
+  "sha": "d358319a7a0d06f5fe8fd76eeece5e6a5a6749be",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-64898": {
+  "sha": "a257f7a1e54b4625006fbce854fbc2554841022f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-64899": {
+  "sha": "5b24a2564747fd1e9e726d2c16a2b231e871e76e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2016-1181": {
+  "sha": "64e4738ed1511eda827e2a294c35171ce7b1c201",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2016-1182": {
+  "sha": "52c6f49cd561493278f3fa3115ca5b2aa66d33ef",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2020-36518": {
+  "sha": "eb74857386eeeffbbd3db97db4169dbcc7833c77",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2022-3517": {
+  "sha": "c929ff9bf2481cc78726f9ac8852f318b43aa1ad",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2021-46877": {
+  "sha": "f231d9b9bd5385b6c0a8e8ae2ac9b4764c466f5a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2022-37601": {
+  "sha": "f3afad9c6f4daa9f8d884d8bfb76ed47cf6ae2e3",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2022-37603": {
+  "sha": "1667117eea0590e552a8079962892d795572fded",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2022-45693": {
+  "sha": "ac4cd25c3f6166bcaa891c284a3d55ab95657664",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2024-12905": {
+  "sha": "a682dd5979e6db1e15a55ee9f86636c6635c41ec",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2024-13009": {
+  "sha": "6a8e651eb330cc8a204eec26b7d444239b39f79a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2023-49735": {
+  "sha": "1f9de61820eaeabe7d5f9fc19941b4f600ece664",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2024-7254": {
+  "sha": "ea654da161190c9f2cea3a47205f385af89fcf36",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2024-21634": {
+  "sha": "a414acb35381e7d87e359035979959f392d3d12c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2024-29415": {
+  "sha": "02f043ff33be2ab3b8ebb88c07458da16900ad39",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-41248": {
+  "sha": "280b8915b0923bec4310b38e329f297e32e88ccd",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-48976": {
+  "sha": "458bc4d9c0c5544a1ab0a31072d61f753cebdd99",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-27152": {
+  "sha": "54e1756eade3595bbf1df77085010b893a6243c5",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-52434": {
+  "sha": "785f0f56534ef67a3ac9dfbca91d4e4f23e232f7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-48989": {
+  "sha": "01dabe4a0712986d1448a8af7afa3866fcfa4e08",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-52999": {
+  "sha": "b2b15f8a6a334210810aa2658dfde2db6f4d4d5e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112455": {
+  "sha": "0bffd9f41666c02e104e4c170a1fcf4d40d359a7",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112427": {
+  "sha": "314f872ddb8e0c7df5766b5a00e0d79b7fb0728e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112556": {
+  "sha": "c6397d155cb8f3a7e36d8c98582c5bc662324feb",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112457": {
+  "sha": "f8cc94f0f1e73dd73fd94338c6233028bd74ee1d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112438": {
+  "sha": "2b5c3062a7b46a0f7a5be652729349db7d007186",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-54988": {
+  "sha": "1cf334164b530c844995ae597b2ffb99d73f4ed5",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-55163": {
+  "sha": "ec30f8ca5731ed72a55f43b5635a06762c2ec397",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-59250": {
+  "sha": "7755bfc631e287f19733ddf57c98632f7767b433",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-42872": {
+  "sha": "cf28c34e67d9aa58ff6e9c651e45d31cbd07d882",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-66516": {
+  "sha": "21f5cea7f47a767088474c90ad169d70d11e23ef",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-58754": {
+  "sha": "ed84b1e9c59889e44bdd85c3fd3d1e1c4e76617c",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-42874": {
+  "sha": "aca9f872dc6dfb7bd4537d84688e9fc7785f460e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-42873": {
+  "sha": "66f6aefc6af6dd780b701e26932edbe9026974b9",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-42875": {
+  "sha": "5f4e702f2bd3f0bfda03c917c0403bcbb85639ee",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-42876": {
+  "sha": "7031786179ced3d2debfabd978fc8e9259281f68",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-42877": {
+  "sha": "7f29dd3e41b8b581ed483b8e948d6e3021f7dd58",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-42878": {
+  "sha": "c89b32174e53f6a282a974675c8a8832ae236a22",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-42880": {
+  "sha": "4431b035827607192b3bf8dec0c40e7d3118a52e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-42891": {
+  "sha": "09516b658b54dd9b171e7f8fcf4bb504063ae2fc",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-42896": {
+  "sha": "cfacd42b015a8d4db5878e3882139ae9cfeb9403",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-42904": {
+  "sha": "c2ed26d1a871ddcde24bcc4214d710347d87bfc7",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2025-55754": {
+  "sha": "836889aef01c6cf5c45a7de74b4b27ebc10af4ea",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-42928": {
+  "sha": "683d4ebbba4560fa171e13cbfc9e24da2ede2780",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101296": {
+  "sha": "2a09d049250475eaba2cc9187a4c0a3cf98ba22b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113399": {
+  "sha": "ab3549353e9da0ac5bf745ccba9f28573ad0c8da",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113400": {
+  "sha": "da8bb444d214bf4ce65e1e9c23fa25331c5a0b62",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-101356": {
+  "sha": "30a39a092f64266e48245478ea0174b29d78cd7b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-113401": {
+  "sha": "bb06586d031f2d72435398fa488de98f40e5a0f5",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-113470": {
+  "sha": "33fd2b3e8fd568220b98ce01952810a95ef264dc",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-113866": {
+  "sha": "f12b2c525a07d20a36edd7873f12f5baace195e4",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-113867": {
+  "sha": "02c68e62f3ed2030ddda11f79d2859d87bf4c93a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108185": {
+  "sha": "4c966a2539eab35904c2b7ec53aa7f978fbd0dcd",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-108184": {
+  "sha": "810c712b2ddd5950ec063b9c6c8b0a53741dfb5a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-53418": {
+  "sha": "f645689f58e0b1eb7cae2b3dd62c92d1323cb246",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-53420": {
+  "sha": "37693ba7368cf61815cda3de712e717d487f0fee",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-114358": {
+  "sha": "3257ec8f058cc0025d52b841f84a6c5d32b2fac7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-92392": {
+  "sha": "c09d54511d54474604b9e110bc42ed6be1d9d417",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91403": {
+  "sha": "7202c1bef9e74a9f401732adb46ce768a98fc8be",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106173": {
+  "sha": "4628dbaae2364be8f11657f8bdbb3734a4007670",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104004": {
+  "sha": "fc7e93ab359daece3d3db13dc4c4bb68c48ab42b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-104005": {
+  "sha": "e3bff0ee4db2d5e2bced8505ede42f788b21baa6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-106433": {
+  "sha": "1051092392ef0f036d67bf88a766ae46da78e09b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107324": {
+  "sha": "511742ad72c8d560b657c42d9091955323c7501f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-96299": {
+  "sha": "c017b30b18bd664e958acf158efc4ca593b380d2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-94300": {
+  "sha": "b7425dbe7e80d93ee9bf3b37474166eed8ca790e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-96888": {
+  "sha": "1fd7a84d29c36785bba01e56bf5733f2a3b8ec09",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-97313": {
+  "sha": "3e0bc1968f8e383e2b36bf63fe52b5df09731a38",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-15176": {
+  "sha": "e32e763b4c604828ff8d14f65bb267445e0b065d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93479": {
+  "sha": "f2e11cad71f5c506bda2ee9a92b9ccd61154aca7",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-97205": {
+  "sha": "bc7eba8dcd5af24413d1036dcefaecb1762c7dee",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103515": {
+  "sha": "58f0b9bdea71f036c6134b5f50e97b6bb44c1515",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-105711": {
+  "sha": "f7bf2dbe97258b670bf756f1b01c392be391b355",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-110264": {
+  "sha": "4070d915c49aa683b8a2ed68a1914de0754e2fde",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105777": {
+  "sha": "eeac4cc6083eff8bc077d3acdb3faf051fb7f372",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112212": {
+  "sha": "c367ceaa98338733af5c22874eebc15040fb150e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-112326": {
+  "sha": "f69abd7b46f922dafc396b05f1353cb424a192c3",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-107325": {
+  "sha": "fe442fc6362f2ed029442157610631cceda62426",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-12664": {
+  "sha": "26480b3b2a121fb2d03a1a452e91d115186bdb6d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112378": {
+  "sha": "b73512fe7f16668aa5139b9a6cf619b1490df86d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-13319": {
+  "sha": "315340ddc392cfb177041996e1d72628001e9f48",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-19630": {
+  "sha": "24eb6aff10aeebb20b5ea923b88eded3c4ac3f93",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-14288": {
+  "sha": "c73b7002010af9247bab27d3ea60771bbdf28e9e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-15723": {
+  "sha": "7571ad3871b8bb6380555c34982eb361327d438a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-16255": {
+  "sha": "937f29e71bfff1c1a9f5227ff106779b7a2a2705",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-76466": {
+  "sha": "7842cc476ee8102be30468449aff6f25309da6d6",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108426": {
+  "sha": "3ea98d87831b840ab30880e15f8992a77e1b704e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108427": {
+  "sha": "0f667b77ad112cc48aaacf273de015c44ab71552",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108429": {
+  "sha": "b9dafac2c2eb71362229896d22b2d2981c3dd35b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108428": {
+  "sha": "9a877e3989da2d9785f81f912d28dfccc7f8bfb4",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108431": {
+  "sha": "b6a1c8da35c7c2a4e3e5f78fb7786933615f49df",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108430": {
+  "sha": "62e1f4049fb74a83f15addc708daa469088469ed",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108432": {
+  "sha": "69bc4000e17d550cf22ac54352d7e90623f2144d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108433": {
+  "sha": "d02ad5a37267ee07e11586d14c83e1b6cb0954df",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108435": {
+  "sha": "2c23d17f4b53a04664f5e3cdbbf9f6bda97c9c51",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-108434": {
+  "sha": "1628285c02e80cd47efc838253cda91a7acc0a0c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-108436": {
+  "sha": "07a138a269b160361d6a962b7f3680e521dbdf2f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-108439": {
+  "sha": "1d4e864a0eaa025c2e347f60199369e07d2be5d4",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108438": {
+  "sha": "edf28d8f1e183b4316ae401ab683a44f4f3af50a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-108437": {
+  "sha": "1179285c0193ace70d207c107a0765a7bb7f6aec",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108440": {
+  "sha": "150cef7927c5fe4f3a692852e303d9a27e3089d6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108441": {
+  "sha": "44d88ccd62ff215b40c7a48e828176d032f8f363",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108442": {
+  "sha": "3a29462770bf250a58aa23081cb28320609059c0",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108443": {
+  "sha": "16466b3e3d99e0a5027da21d7bc3e8d7b5e48730",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108444": {
+  "sha": "e7aaae947a74b5e619c87c0341a6b792da02269c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108446": {
+  "sha": "919d907e51c40845a6a66116d1e0d917e82853e5",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108445": {
+  "sha": "591ea17d22d557898fd4ca879ff11212e35703ad",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108447": {
+  "sha": "35e9763b90f2664ca527bf55014c37c079b910f2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108448": {
+  "sha": "638d44edcd0722435278f424a241b25c47b129e4",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108449": {
+  "sha": "4859d3167ee428ffe31d77eede8f1756516e7709",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108451": {
+  "sha": "989e52df09d16eed97668b62c152a69bad7b9431",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108450": {
+  "sha": "b402b065a6eda10a43cd855dcb226f3339036d85",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108452": {
+  "sha": "f38d52feab73cbc6a1f7634e6313d9f75f8fe84d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108454": {
+  "sha": "103571b9290ba058944e2a6ee11708abc891911e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-108455": {
+  "sha": "f156536bc1958f5ca88bd43a1dfaae40a92b961f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-108453": {
+  "sha": "ac922543d361a2bf0c3df7d7e3295c72597ddeff",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-109461": {
+  "sha": "efde0021e44c0a7aac69bed5d1796fbb652cef6e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-109468": {
+  "sha": "be9a15a02bfc39f17e953bf37f78f3ffec92ba7d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-96202": {
+  "sha": "8d343b81466702840f7fafd11d298c9ffce26ba0",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-80092": {
+  "sha": "cdf152c60f648a95fa50e66b2383df8b81f1495e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-55393": {
+  "sha": "7a4eb3fc3c1003c05d5537cf96b006b621286441",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104610": {
+  "sha": "58a446f5a7c38e67981227822762be173a86b9ce",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103956": {
+  "sha": "76a3b4d6b047409775d8639d45ebe94eef91521f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105135": {
+  "sha": "eb5332ec62b9a2c3e18588733f57f7fa6f52976b",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-100103": {
+  "sha": "dcae22116ea9ec44e537b69a3d2e4b12d0092956",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105284": {
+  "sha": "81f8dcd061ee5e561e7075658045f7d8e447f555",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105285": {
+  "sha": "85bc5a85b512bccd89997410734919261ebebc36",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105484": {
+  "sha": "8df18805c5b5087efcbb12e100b825fb4777999b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-32579": {
+  "sha": "21528a6563316d005b09586a06d3ed4cdca5b833",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-39770": {
+  "sha": "1dbc2ff6a26f26df38f84290a09d063ae9613f6c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-39773": {
+  "sha": "ac8e276d9a9caf79eb3a2591041c0b3972d6d58f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-63688": {
+  "sha": "d950b3d67c7569a282191f0f6b042c55350c778d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-63692": {
+  "sha": "caf7f4f832d9c81be7a61736a4828c2ed936425c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105857": {
+  "sha": "fdb082049b55a6c5d57acb4a01a70231468c4391",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2025-70518": {
+  "sha": "1f60f1584904d50164d8c79c59571881487c8a77",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106218": {
+  "sha": "5285de581b98d6d27259e1aa38c456374fdedc8e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76482": {
+  "sha": "484b4567be832e0b3bb7959313fad327bc4ba690",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-96207": {
+  "sha": "791d50730fc3286a6a8b7de6fb2fd29ac166146d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-94503": {
+  "sha": "214ae66749dd82fd26cb6ce91ce4ee79a0a6f0c4",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-42696": {
+  "sha": "7e3d8aab7a28d7ff1c84065649b67be7fc3d92e3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108804": {
+  "sha": "683db875bce5bcc3a633e63b8875ddf80af050fe",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108892": {
+  "sha": "1f49c644688a329231bd21ac445fb437a89278b3",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108917": {
+  "sha": "ed6473c0b2ee09ff1eb1b281f31a3f2ced5af4f7",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108918": {
+  "sha": "c3d937b6d704273e8a293225928a4a84b1f5dda9",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108907": {
+  "sha": "9ee19f8873b4d154622efadaf46e0714e7c1725c",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109109": {
+  "sha": "2692e0079217f062822f4e09498432af7f1a1d50",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109110": {
+  "sha": "a0f640575cd83ba903800c1075c88cb823e89f22",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-89309": {
+  "sha": "1457ad96036d7533349478bde6e2998f45c810ad",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2024-34323": {
+  "sha": "220a7c306669a065470b09bcf5de42f7b9e05417",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-65162": {
+  "sha": "2885712212169dc6fc55c4abe6a8343868a637c2",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-55675": {
+  "sha": "1f2ee67abe8c911b2dafef0f209e8857943ee723",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110130": {
+  "sha": "de5a52738c61a61afac0256841c23647353d952e",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103849": {
+  "sha": "bedbbce078f58ce80a18bbd28472edaf6cb48f6c",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-48382": {
+  "sha": "e0574826d0a2606b9d292c03b2cc3c94053c4471",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-48383": {
+  "sha": "7c8b2136d1bf98b0631f105d03459146152bf25b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-90532": {
+  "sha": "3436568df530265e3c0c8b2893fcb17fbe3642d8",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105899": {
+  "sha": "adf22bdd54a9fc505a4e2ed4d86e56c7e481831c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106622": {
+  "sha": "ea7c85b92eb00b154706769141df28f05963919c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-55572": {
+  "sha": "50cdc1105264f96275cbc2c4c9b33d1625355cbf",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106624": {
+  "sha": "14eda487304624bb529f4b69605f67183965cd0e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110536": {
+  "sha": "4f0b202620650a94b96a1080820d5f093d623c3a",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110957": {
+  "sha": "d451e77730acb5e91bc18b5d9128de24b2e01d39",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110958": {
+  "sha": "d0507a21d78ab07f077d3d5369d31d8cfb436e68",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-94169": {
+  "sha": "4c4b1c74c3307caf087ca5baf0f3643a8ff32615",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-95182": {
+  "sha": "c36b5526dde6559eec09d5cc45b3a4afbe5d8be9",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111057": {
+  "sha": "124b54105e4708f0c068435031a0d8484244121c",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101809": {
+  "sha": "77af24b9f603f8f941921724c92abb0ba96532c0",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-81212": {
+  "sha": "d1566dea061e3261aeee79e296427e9f532f3874",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-87337": {
+  "sha": "77ea8e077df825213e7cc56db3611c67d6244110",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91216": {
+  "sha": "74a7f1ab95db78858af79c505b4a4cb8f1290691",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91231": {
+  "sha": "9de5180b0c41ac259c2f07946b27af92e6fbba22",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91221": {
+  "sha": "ead18dee5a171bccf70d2cfd675802e0e9ff2571",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91299": {
+  "sha": "0bc35642ec4da95aac70fba5ec4ca9a389666cd2",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113744": {
+  "sha": "2c3dcf7696b6b9dcddf07a4ac07b159c7eb327fb",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111813": {
+  "sha": "b1af7adb254c373710dc5a106e976d083cb4b219",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111812": {
+  "sha": "bf901af3d9da6f4db4f72c549ef5ab2035487b16",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105944": {
+  "sha": "2e395a9a22f54da17b03fc5188a5077d308e3e89",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111814": {
+  "sha": "0d11f787123c8e619471052d063b23eb0986cf30",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111815": {
+  "sha": "452c868b55c1b9fe79ed7ea73eba7b4bb803a194",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-114382": {
+  "sha": "2eba8d3f3c40d78c7798a3c21e2cfb4776b305e2",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-114383": {
+  "sha": "950d043d376f09fd65ee5aad3dd829f7e2224e7c",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-114575": {
+  "sha": "c3ce8b9fa4826ca52a2cf357329b96b05791c4af",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-102785": {
+  "sha": "f4f083913d38a5bdb65ce080050b4ef6149f7c80",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79844": {
+  "sha": "29f4cc524e32760e4328da9d0ac55bc1bc639e64",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79847": {
+  "sha": "f39c8000c7c9e69bec07623409d6e870d13f824f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79848": {
+  "sha": "1cd5ee64ebbc8d568f2850678578550f0682cbba",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79850": {
+  "sha": "958d53cb4c1fa8090b81d35bca217a91db725b4e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79849": {
+  "sha": "5bfa060112df6957a42be64fa90b4a2cb129c3c0",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79851": {
+  "sha": "fbcab4fcb3550cce29d957d17e65d6ce0cf74d31",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110063": {
+  "sha": "64fcc5899654335023d73f44c66490d7f93567d2",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-97785": {
+  "sha": "ebb3180aba8118e62af45644b1962c5b789d0252",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-116508": {
+  "sha": "e07f11241052f7d51a3039b5ff7d61a207d27a71",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83938": {
+  "sha": "e6bcdef3bf2b316186b4d030ab4518b628e2649e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-61991": {
+  "sha": "0263ee1dd5e6e93f2e316d9dba7e2a5b0b708e99",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84295": {
+  "sha": "b22ba70bab0d2c2f8d4499e49e507d0b8955f29a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112816": {
+  "sha": "d33331ce8da57754a2c2bb486564d630aedc1742",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79901": {
+  "sha": "b5aaee6037792afd8aa173f05237d00bdf7197ee",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93698": {
+  "sha": "e6b939b0116139021f07f1158fd612c0ea20f901",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-90970": {
+  "sha": "e1e16904bc275573b4679801f000b489686a4eac",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105080": {
+  "sha": "d322eae77e4a5057152462803f3a4a9c85f7e6d0",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-82041": {
+  "sha": "66423ec6a453fb9229b556efc30096b860f7b476",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105636": {
+  "sha": "6eed0dc65afa76ae483da259bbd058384589fdf3",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105691": {
+  "sha": "4685185902d31bc9fe0794b9f33a572768f7c1ba",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105697": {
+  "sha": "ed329677a25bc0fd68f246fdf8e26d27080954a2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105740": {
+  "sha": "bdc7ab3272da6835b73d17def5b6569f21514543",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-32568": {
+  "sha": "df4e965b79af8e715e6500ed48c9e37cad5bd8a5",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-39755": {
+  "sha": "204a2589c63ba904445f50f86ded46fda1d07ef1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-39759": {
+  "sha": "ef27d5460aaf771c62c50624dc709ddaa19431dd",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-39757": {
+  "sha": "d2e2ad42d4982fd2cd497c6196a05bd3eb8074e0",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-67269": {
+  "sha": "949c5ccc88207c5273450792b2daf633bd3ab090",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106126": {
+  "sha": "aafec589d6dea6c89fbd246bcd21eb7e53b3735a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106486": {
+  "sha": "7136ca1c7b4fd2eb5b3bbad195adf02999544390",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79798": {
+  "sha": "d8b17bae5aae91ef551531a58ee176f8e530c58c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-94510": {
+  "sha": "8f60da341eb0bd9151695964aca25d97b5be66ed",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62024": {
+  "sha": "2781b252bc1dc900324ea0a9ea47c6da72e92b3f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108263": {
+  "sha": "2f417b644ab5636c17d70d941d99eb042f8083ce",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62129": {
+  "sha": "dda40204279ba8bbcea5c6b008933dabdccdb121",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108540": {
+  "sha": "2ae160b22b2afffccd180d4c82f02f4c1fcd2143",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108893": {
+  "sha": "adb224694e556e8b15c2a184d2107b7ffe9c0656",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108895": {
+  "sha": "8873687a9f4dbd35b7034a7b6270880d18b13dd1",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108896": {
+  "sha": "37e618c55d5147c8141c2e7b1305fcea0e1c0471",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85948": {
+  "sha": "59b490c622270c086799375792bfadfcaf3f2eac",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108914": {
+  "sha": "e09021283798a6271ff58b67be8f8af177794ed3",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85955": {
+  "sha": "122aea623cab5f95f69974c61f14363ec73a0f64",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108915": {
+  "sha": "895d21465f17a6126bc52f1ecd1c04715fa79c24",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-77366": {
+  "sha": "8d9535cb8824f8319cbd93a71785d4605fd96e65",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-96012": {
+  "sha": "ebd4225e005db61ed5e4445cbb9a656d43c582c7",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-82110": {
+  "sha": "9bde4de66d4c4f83f1006250665753b1db457d63",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-109157": {
+  "sha": "920aa6adf1c95979081aa155193fd7da649bff82",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109108": {
+  "sha": "54f93791723ce5d041374ea8215b58f9dae29b02",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-96119": {
+  "sha": "dc4e2680c2dd2a40a233e37db0f469747361d400",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106042": {
+  "sha": "2043844eef1b114cf3b09afe1c8f7c054253bb18",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109412": {
+  "sha": "d7b615602a10cd48c30799d246290ec2910148a3",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103848": {
+  "sha": "aca42f4f04b9fbdea822ca96ef0e18e1144831df",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-77459": {
+  "sha": "513b14543f29c6b5dd1cdc83a9ed24411f8b6fc4",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85947": {
+  "sha": "8323912360c60bfb04008c101bbdb97af936e29e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105903": {
+  "sha": "e1cc7e5099d757c647c1d806306f363cc698e687",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105895": {
+  "sha": "2dd680d523cd102bef84ea29fd23a3f4bdc4ab94",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-75732": {
+  "sha": "bc831c6528f79bda2a995bdbe386ae36ad396547",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106612": {
+  "sha": "d49043c0be7f68f8f8be248024e6a0ce45ae998f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-97381": {
+  "sha": "198a136e4af56bf30e5578c9cc6b3af93ae4b688",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-89310": {
+  "sha": "8cd1a942ec3f26a9e706fb28d2141bac48095a93",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-77524": {
+  "sha": "177485bcfedc1b16f0b9b0fd92c3468d4a11667c",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-57155": {
+  "sha": "06c561f669950f5c11d9e0d801032c43074bbd1d",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85746": {
+  "sha": "5d4bf0189f81aca6887a1849d301d1669248ce1c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105037": {
+  "sha": "a6097fca0673ee2b23e2d9a80e7951f51ee0f356",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110812": {
+  "sha": "3d20dbb83e02bcfc47ade93897ad339721cabf9d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85748": {
+  "sha": "c99b2a810523cc3c0dd1a652ecf8410869b170cd",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-92262": {
+  "sha": "03872bb60a3eedca53d15274a65fc6be6d996238",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110887": {
+  "sha": "e1a44e477f6d69e6cd52646f7eccd9331197c687",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111406": {
+  "sha": "df68a8571bfb41138531edd1319395cc44c9cea3",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112370": {
+  "sha": "01d014e28d4786b5c01340899573fedcbb2e48cb",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113389": {
+  "sha": "330fc26e6d0834e56785b8a905c3a8a6c9bff57d",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112371": {
+  "sha": "22ba206868ed4ddfee7f29f4b0f5c9282f91671f",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105312": {
+  "sha": "9b8afc4c067cbe3a774c2d5c9c89a2ce5f22daac",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113390": {
+  "sha": "f0eba251e041254bde2e5e6d572abd378751fdae",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113391": {
+  "sha": "782f69c08bbb848f5e0db1c83d4eaac2472965d3",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113506": {
+  "sha": "7a4d7489efbd3e3e5a50dea26aba913ad044014a",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113678": {
+  "sha": "9c95da8db12731f1d9c98f3680a4f2cf60a1aade",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113672": {
+  "sha": "751b9752e60ed9d4b1afa02aa0242151bd46fb38",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113708": {
+  "sha": "3771cc40d0a372ee5e4af5e9a2f43eb814fca2c1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113709": {
+  "sha": "1f93731d3658f6628bb756733aba4935b2a018cf",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112380": {
+  "sha": "32750c499b816d1eea4cedc81d06b1164c8bcc80",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91222": {
+  "sha": "4bcb2b6cad3ea9fa13cc46dbf6d54e7b4a37d29a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91232": {
+  "sha": "7e48f8577b1a8d0a49aa2264271be1f7213a12e5",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91354": {
+  "sha": "15f903d81bd1e490f2fd0a7aff86f73cb891d263",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91637": {
+  "sha": "2c5eb582b79aac53433518f4b0407d5de7a8b109",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91638": {
+  "sha": "f00c340bb88714e130c58f5707f4a936ebbfef8b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91658": {
+  "sha": "4dcd13c3624893aaa873ced4d588f55deb0ba395",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111834": {
+  "sha": "c25cad05fd8614b2480e4e1672df112fe13c3c4a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91663": {
+  "sha": "1815cca807d7e01a5470a97173ba7e1873806711",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-114268": {
+  "sha": "30edd1f3ef423a30c8a34e617050cad8050ca0bd",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76299": {
+  "sha": "bc85e4c95c8d48f0a2174f0d34b6f36127fd26b2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76531": {
+  "sha": "9f59d4d95c39c3fefe0e6889a92521e979c8fcca",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76302": {
+  "sha": "4bc98c28bce2c6fc5ce77bbe585bfbad4323f6a6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-114612": {
+  "sha": "244ee749f7e3801b1fe645015292c0388787fcb0",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-115377": {
+  "sha": "444b33d5343eec0f1fa75a1469704849c1c82447",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-115384": {
+  "sha": "989f3040fb26d565c9f707b09ffd23b0bbdf7752",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107861": {
+  "sha": "8792031eac2316d60b284a88133592497e5ee8ae",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110243": {
+  "sha": "0b30e6e571b5b089efa7a3eda45ea885f59bfca6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-53942": {
+  "sha": "6ff2bf3c28654e3a729d694cd8988c055533ae92",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-115889": {
+  "sha": "6e73e85bab5edd62bdbff6555c37ad617d4771f1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-115893": {
+  "sha": "13d80a117c64d2b70479e97745e05e4202778fbe",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-116232": {
+  "sha": "b403fab73768d0191ebd96b73477d3ac81df7861",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-116504": {
+  "sha": "72362ec53740f577e235a66a0c145802d1d88bf2",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-102649": {
+  "sha": "4e59b5ea4d231193cfe7bd84e9e7a1e82d27cf29",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-115188": {
+  "sha": "3004b12a5aac7afe8b1afeaf60c98640c5f5e44d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105489": {
+  "sha": "0d021235df9c4f96c4bfa3a7b110882a70cd924a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113617": {
+  "sha": "02f55accda070fc3e5f18f45b9f3f84ba32e2e7a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-119145": {
+  "sha": "49d01aa9bc963ada2d5c2222f8152a30ef9a800a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-90868": {
+  "sha": "e79b58db57b4ec1400133a95437fdf4c51cc42fd",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103244": {
+  "sha": "54788eef7a3c66fb2eead7527edd3b15112e2940",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103752": {
+  "sha": "44f96290a03b809a730d1f9ad336fca9bc7fd8d3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-12627": {
+  "sha": "5721e72b9bf38152e144d0665ba2cc5a310f6a50",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-56154": {
+  "sha": "691f3dc28d22343a5e4c2ef9a69f2283cb149ee6",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-57941": {
+  "sha": "1123e3eb09d0affcf1f36bcbb17aba62caea9773",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-59797": {
+  "sha": "d46a7b81ac11e6f5f557f7c0e90741f87ea299a1",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104056": {
+  "sha": "afa6750e85eec61cd7f2310009a9551b9736bd01",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-51880": {
+  "sha": "cc806d16ec5aa9fe29a959d6e35406c40a67e6c3",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-51881": {
+  "sha": "4ca8a6fc12d76bb76cb1a059aa4e75b22882a428",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-51884": {
+  "sha": "9b3c9960362a27c9bdeb28a517fb29c6c57d20f1",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-51886": {
+  "sha": "34ed0d7b865d7ec7ac411bb244ca4c49c47e37db",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-51893": {
+  "sha": "9561564bfb6d2e0563d6c1b0fa3d188444b437f9",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103764": {
+  "sha": "6b3d5ce4d4b30130715b14d8ce91349836108141",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-97637": {
+  "sha": "019a024f1b63637bec6b63583e0b8725916e33d4",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-94541": {
+  "sha": "be108e42590cddcda551d66599c949b611795aa6",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103877": {
+  "sha": "340e04e351a2f92e2ba105f2ac1806204a060dbe",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-19652": {
+  "sha": "0482907abcba2e0bd65cbe22753f2f1ebca42192",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104846": {
+  "sha": "4be26b7c4a9ce705ae82cc38fa3bb509c4fe7fb8",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-51898": {
+  "sha": "66d6132521fd8471936e423f3d9a543a2b091fa7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-51911": {
+  "sha": "be561df4aca90a80a1458a3bd066511e60db2bae",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-51904": {
+  "sha": "1b4cac059213b15fa6eab5e60febc2ebf69977d0",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-51915": {
+  "sha": "75dffac2299ec29599595450587df345f97faa41",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-51918": {
+  "sha": "cbbeca4fa0044a055153777becaf4d576cb208ee",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-51897": {
+  "sha": "6d9a1e9518e04b8e1d73ccb9d57442d279263aa2",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-51922": {
+  "sha": "52cbd3e727306bdb13997a6be7dc66dfc29a6824",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-19660": {
+  "sha": "13f748693af3471f3d03de5767e178b0a0ca986f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-14378": {
+  "sha": "0adaff406fe55f3554e441527e963080a81b0069",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-82042": {
+  "sha": "46a65fa78db15f649752585d937756d2de6ea896",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84411": {
+  "sha": "cee2f00da9fc632df2098a26e98767cf4ac0fcec",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2023-54405": {
+  "sha": "5690fecb9d95d05cbf64479675fe0cc07d6db0e8",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105105": {
+  "sha": "005234609f783b01a0dd0eb4d6d7693319abb500",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-88391": {
+  "sha": "7b67f454fe517ea6ad0fb0e2890cfcef2aa955e4",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105207": {
+  "sha": "f42077dc29ff48d9f39af83b7e29c36e03800e0e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-102780": {
+  "sha": "a800dc2a23b604cd8634e09044b8d908c0c7026b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-102428": {
+  "sha": "9e4d9f614f477f452491d485090ddaeee83395ae",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-37719": {
+  "sha": "0a00d1e86ad098f76514ab56348e231c126643e4",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-88393": {
+  "sha": "1e592ba597b3bd104d4c0ade7e94182343b56081",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-88395": {
+  "sha": "9d7f949c1bff64a3d9b241299dcc02b2fefc3861",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104711": {
+  "sha": "0de49305e0b1f5d7cb770be455eee96628e81652",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105639": {
+  "sha": "b9b5b6086a884a643773ac014bfdc03da26c643b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105641": {
+  "sha": "349abafd67634520ba54fe7342c7c8693361ca8f",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-88424": {
+  "sha": "facc6451ca8b3f5a3cfc5c554d3241bf4a985c79",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-97283": {
+  "sha": "34962e2131b72f55d1708821bf6dda2154aade75",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-82989": {
+  "sha": "d787532937c39a51896567616b0b7e68bdee2cf6",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-39753": {
+  "sha": "1456a8661f3b313bb428cd3d3a96cdf5d385a56b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-94293": {
+  "sha": "1a40eaefec4b1463a27e1f003129e6b1173b4adf",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-39761": {
+  "sha": "3b403e3edaca070592a0423c8cc196c36331ea41",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-39797": {
+  "sha": "840084e97fde9fceaab1dfaf3cab1adb2dd7a129",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106016": {
+  "sha": "76d635bdb4cce3c7bc7f7f5b61046bc64de76c7c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106037": {
+  "sha": "aea8494ca937a3f2b2d43cc12faa5d63a324303c",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105845": {
+  "sha": "be1fe0eafd96b843cd978d8144966ea4e1b70d62",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-61421": {
+  "sha": "18ccc4c0bcf817ba903cf5fe665725a6c4e96429",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2025-71383": {
+  "sha": "d956c457a86783636d4953ccba325d8021d529ee",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104070": {
+  "sha": "327016ce9aded702c4c984d8c012e0f72b49bf03",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106511": {
+  "sha": "5cbc20b92594b988e8d1ff5f9a64fa7d4709052c",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-55330": {
+  "sha": "b90cc319e0346e1314c32e889c91869535964b64",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-102159": {
+  "sha": "f749a9fd49b8baeb639ce27945e85c35cfef0438",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106446": {
+  "sha": "e6d0f08c650346c950f1057140534fc4ccc54db8",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-73278": {
+  "sha": "4b0818ee4da3382219543c65d9b02ecc4a1e2e04",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76742": {
+  "sha": "0df20890a2945403d55855475ef65cf17425ecee",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76743": {
+  "sha": "06d349f9d9fb9818ce5b9a54675821d061748129",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76744": {
+  "sha": "7fee8208bdf09a4301eb4e4ef7c28cf0497ddcd5",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76750": {
+  "sha": "8dda83830f803b2eb530a2607ae7cff5556f26e1",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76751": {
+  "sha": "c5536573980c060e0ca0cac31df12ee33baa46cd",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76752": {
+  "sha": "83c3a1851d9dd3313b657390c6fb5944e08335ef",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76753": {
+  "sha": "b4f5a7c502f015c52cf7e10efe1bf6ea6b92b5db",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76754": {
+  "sha": "25c73f141b684446e7ed9c68f0a59f5df145892f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79796": {
+  "sha": "c4b4337824cad907cee161509b36dfa392387a8d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79801": {
+  "sha": "c9967027fb025c46bb9a78bd02a5464edc964021",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79805": {
+  "sha": "d3f390f8fd4fc08b9d1db6ac7d5c441f3d8fa37d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-94205": {
+  "sha": "43a9c084c866182da937b3ea2718bcffdfe38007",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104334": {
+  "sha": "a22131a88f21a4a720f5b0fc2a98d45c07be6cfc",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93674": {
+  "sha": "e9349419fc36bf34a1b28a635fc7495991f68ef9",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105192": {
+  "sha": "67f92a4e4a43b08aae2502ff47e83d58b8c43585",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93675": {
+  "sha": "9f6848c81afb332a26d2d27b77ce35ce9574c9ec",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-70520": {
+  "sha": "4ddf876eb7f2ed68ff6e29fd2ce083da119c8a2d",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2025-70521": {
+  "sha": "c6eb6b71c993fb9c45cc49a4f6c6f405d7f59567",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107204": {
+  "sha": "675b73346f4475b2d99ef45424cab7647c72395a",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62252": {
+  "sha": "6cdd6cf14bd60aff47320864a38db424b39fe0af",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76455": {
+  "sha": "43b9dd7580a1aefbc125502b654b70f0e8653be1",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62253": {
+  "sha": "bbca68cbe701ea3292b69a4d95eac69104a94b0e",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76465": {
+  "sha": "a4d8e29a2e66a1c8949ce152c4afc09283fa6062",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76459": {
+  "sha": "7f330ca7e51b522b79848b18d81f2161c6974242",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76471": {
+  "sha": "990f819daeb45b0c5d126f3e43b6f2f8751bcb5a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76480": {
+  "sha": "2b7c4361f375a6426b35bca9eb65f64f79f4b78c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76485": {
+  "sha": "d5309a1b716b0ea33c5c700c34a2f47f8c858ad4",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76486": {
+  "sha": "6e04f39ad5cdc23bc17ec61a1497c23b1751be3f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76499": {
+  "sha": "f71e284f9a34a04437d9a3c1b8de36b6ed8fbdd7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76498": {
+  "sha": "2057d137a2430cfb83c187c3589026405f949bef",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76501": {
+  "sha": "4ad283c44e5b94f35328939b43cd1b8b8bf799fa",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-95606": {
+  "sha": "2e1c2586acd31e03a126d4e4183f8ed071096303",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76500": {
+  "sha": "8ddf401c4f00453092f66a580aeb636de4ea6eb7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76268": {
+  "sha": "245b8d818a2d53226b57f77dddb473b39b2f9594",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76284": {
+  "sha": "939a94d08982bbb8f57bdb37e8dcfda9f12fc42f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76285": {
+  "sha": "2865adbdf343b30f36e7f869524b19d199119897",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-87684": {
+  "sha": "9175eb1f7d69ae9d4d852f00a37bf576df70da99",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-87659": {
+  "sha": "e1d36cf8becfd698bb88f4141b7fe063897feb1e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103646": {
+  "sha": "5860c9fbe59553b3b3b7479f55bb227b35bde9cc",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103692": {
+  "sha": "9cb50129b5c90552bbce126cfd88a2ff2b251e58",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107459": {
+  "sha": "9af51f6678d134ec1a4c59792e312b94d2396d78",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85097": {
+  "sha": "aafc65697e50833b24dc88bd36e61aa60ba0bd7c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105110": {
+  "sha": "13a288ba4cf89185e75508a4707605a6bede6a1f",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-92555": {
+  "sha": "5b8fefe1fa2f4422611f81c79c89e9665d470e36",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-14269": {
+  "sha": "5947978e99b1dc65a85d698335d964cf61b12ab1",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-15762": {
+  "sha": "a21d2700b49db852e480d0851d6014df2dff568f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-14991": {
+  "sha": "32784caa4e7e06588f3670383806c6072776a3bc",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-14502": {
+  "sha": "32fa07b41f30c70c98fa784c62d19cc4b4eaf029",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-16340": {
+  "sha": "8eecce993819b9a28c3127fcb5522bda5087583b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-14888": {
+  "sha": "1852d450e3670e2f927279f64f5848e704a96795",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-14988": {
+  "sha": "3ef735263c68f099b1bfda064c52b045d52011db",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-14992": {
+  "sha": "431d54e7e0629b03aa0ced39814888f76003c295",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93034": {
+  "sha": "05bf0817ad8bf459a458124906a4c21182a3e555",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-9209": {
+  "sha": "4a3c1d53b03d6fba52340228cd77eb707dd8250e",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107700": {
+  "sha": "9f4468d9b0c7ea7dcb932da05f8b6190aba8479b",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107704": {
+  "sha": "fac854b6ffdf4ab34742681e988ad29c332fe8c1",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104075": {
+  "sha": "d79ca6526867c493e79a2115b8f645300c982951",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107699": {
+  "sha": "48d56fc79e9780d0a154ba1c720d6003f6cdea12",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-82335": {
+  "sha": "7ead245fd8bc33cb90ec5c190edd6203ccd35fd1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-82344": {
+  "sha": "30834339babb555dcc3bbea72c789b97837dbe05",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84272": {
+  "sha": "af083a42eefbcd599bc3067d18fa069bff0c72b0",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107779": {
+  "sha": "607445512e239e518bef1b099433007dcf0f4ccf",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-78401": {
+  "sha": "d33950dace47fda31c4c3229cbc394ca413d5aa3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107780": {
+  "sha": "cf4b76be78151aff27c8ec4a7aafb026eb60c489",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-78406": {
+  "sha": "5fd95b0463bddc09469eb2c57191d2ce348b1327",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-75875": {
+  "sha": "217be00abb60e5a7d54e5042cd430c4c1e0e20ea",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107722": {
+  "sha": "04eba1fe2bc3cc3c8ae7bf9e1b61cf3507fe09c3",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-80381": {
+  "sha": "5f72dcf7317b24fb920b685ddb74d405499fbe7f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-81932": {
+  "sha": "59b7c11023710aa6786ada5f2a7eefa4c4336708",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-82895": {
+  "sha": "7eb97d8f299afe1a66b553f2d01336ab59d87dd6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84035": {
+  "sha": "7c4b6f3954880c2c79bc20c6c5a2f2444d96aced",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84058": {
+  "sha": "ba594e3c32fff9ab9bcc7743fef36c976dd29833",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84057": {
+  "sha": "045ab98923fc35e44566a89b42f727c95bc0b057",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84198": {
+  "sha": "786c8fca55ccd152e17b625e557949a2e7b72472",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84209": {
+  "sha": "8b4bc5b5a26906e3202746b13c2ac5048bad8b1b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84246": {
+  "sha": "fd90005f5760f94728afdd8c32dcf3060ee4c77f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84249": {
+  "sha": "1c03094556cac54bf0c92788f27e3570730c9869",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-56857": {
+  "sha": "bb7fb42b06f067fc99c6d25ed5001e83ce5194a0",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-77900": {
+  "sha": "94c4514009be7504635407450fa338988c731863",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-88131": {
+  "sha": "7957e5a544feddc2270d5fc103b899f2daf2396e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-5759": {
+  "sha": "05ec04a8ca88749146029bb2bccb09247a16e4fb",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107908": {
+  "sha": "033e4d249eafb2429618d5aa55d8ae97dae0cd08",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76779": {
+  "sha": "141ae8c0b440122f429920f95a1468cfd13a2afc",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85531": {
+  "sha": "91efdacb0ba262389e687be07ff134791170aa7c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-86405": {
+  "sha": "97953d1f0d3ccb24a4698b7d2831307c9c5e7ae8",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-100730": {
+  "sha": "132fe7b2a79c993bfb2d7b9f75f3e734bedb99e3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105278": {
+  "sha": "546c9979da367660271621e5ca33459baedeeb58",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108107": {
+  "sha": "be8d890fda8ffc383f53194dde8c058d790cfea6",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-15340": {
+  "sha": "474f95f0d538622c55db18a19b4d6e9052cf65f5",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-78835": {
+  "sha": "0ed5aea96cc9674ccb7253954a7d503c7a1642c7",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-78796": {
+  "sha": "47011dc08b31c076c36154b390893adec7f312da",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-78797": {
+  "sha": "138e9ba0e6c84ad2f95fab5593caef91fb945aef",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104732": {
+  "sha": "f0106d30bee3b7e0021c1feae4a6959121bbcca1",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108474": {
+  "sha": "4e37f2475639b3f84cc32a766a2b7a78738d1714",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-94589": {
+  "sha": "7e30014f52f82be9b22131bd403e7d5685ec2f8f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104803": {
+  "sha": "6f1defdb245ee00d76af9c625066656c5792fb57",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103889": {
+  "sha": "972d6f2e955afe21e8026af2f70a881b1527d3e5",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62045": {
+  "sha": "b16c229a9b3fcda2dac17927a6618a989b157a6e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62046": {
+  "sha": "ea65dae9f3f02621e72b5b970517e39b0fbae96b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93927": {
+  "sha": "89411694d99f7864f76df04a2c8c77836fddd406",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93929": {
+  "sha": "f4dee39d0c2302101c3eb94a9ef6631fa2b77caf",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93930": {
+  "sha": "8ca046f755f3f743ea529f2a74741d84a66a294e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93931": {
+  "sha": "2029e9b522de05afebaec732f5d922af07e16b0b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93932": {
+  "sha": "3fc579127ed62f026cb32f34e9b6b5723cd1a99f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93933": {
+  "sha": "624f6a7b1e3c672584d825746b5089ee218ca5ef",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93934": {
+  "sha": "2342d65f10651e6dae3580ff5da3a714d351b9f3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93935": {
+  "sha": "42840c7c9491b893d00b297d1e87007f7792f3ae",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93936": {
+  "sha": "8a6eb78f17e4110707707e81e150826924c6aed5",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93937": {
+  "sha": "a4c177a2bd2c8d283f063698769b8dd7754769c9",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93938": {
+  "sha": "217ceb6cc6fc30f2f24d3e45bf8f1a0d50fac27c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93940": {
+  "sha": "e3259c4463101f280972227dd097dbf1b7a68b3d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93941": {
+  "sha": "7eb191b006e7d80c184eae2f7106f877e647057a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93942": {
+  "sha": "6b7a44c855847fa7d7ccfd25fcf79d8b1b103e75",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93943": {
+  "sha": "15b0120ddd23b50c492f75e1b874a8b5670a0904",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93944": {
+  "sha": "7dcc42f7a3006a5e7e97ea1648db2a2d19819317",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93945": {
+  "sha": "61fd7ee823d326d7c5cb92cdf575bd706c3d4e4a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103501": {
+  "sha": "25d8fa02daed81496dcf6c3b993472d8f9e3e79d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108551": {
+  "sha": "7785eb206d326c5f425f40b98637de99bef64d5a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104398": {
+  "sha": "6ad5c28b162218df9e680d1d5bc602fe7995ba6a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105892": {
+  "sha": "4d1de070c2d8a947eece8a857404d342822aa072",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106610": {
+  "sha": "88056dedd683e9d46b5dd1aeb97333333224798a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108598": {
+  "sha": "3628b078c834c63b379dcd31a1e76203e52a5553",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-39801": {
+  "sha": "3f097da88824f06e9ea29c1b1a664dfdd62e449e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-42716": {
+  "sha": "b68463d6869936da7d237f3f88cc44d0e86e1393",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-42718": {
+  "sha": "a4d4a130c064d242fc5d43eba9506b372df70766",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-42719": {
+  "sha": "1ba73ab71bc4574e704210284bad1d10a48eac8b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62022": {
+  "sha": "af2a3b77142005b75eb205998f205deb4cc2c2c7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-42723": {
+  "sha": "cd56d4039cfa2c5c3aadd12fe2349364d57da02c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62032": {
+  "sha": "c31103ed1d3b2e0330a03efb75d9be212a9ce5b6",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62050": {
+  "sha": "1b3db5fbc82bcfad6ce1d7603040cfdd7a414ccc",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62051": {
+  "sha": "e133feb914a0a7306a18c3a2fd6d166f5b3bc6c6",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62052": {
+  "sha": "28b27600d8477e60844a337645767295207cd323",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62053": {
+  "sha": "538b377d1ee757cc35a09d165851794e85c3bccb",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62054": {
+  "sha": "9c593eb8009e6ff103edeb00aa5623b0739b05c7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62076": {
+  "sha": "e35f23e6efe3f0b6d66717a8266b0e5771e3900f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62077": {
+  "sha": "ef371e424f7df4319f640230307aa15d22edb476",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62086": {
+  "sha": "bf315d4404e943140aa388f7736c905dcc0ba2a3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62087": {
+  "sha": "fcc86bbf5738ea8072572f05c5d8e395719a6c96",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62090": {
+  "sha": "08f4b54363e5f8a1143b933349eb79d70c45a2c6",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62120": {
+  "sha": "7356608fa68a9df1c85a2f8e20872ce8d2aa5461",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62123": {
+  "sha": "990360c22575494a90cb404ab87dbce71058cb95",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62124": {
+  "sha": "070e3feb87b64aaaa913f2ee77478960cb2bbef9",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62125": {
+  "sha": "04cc061bc084ea197a2472c53a6ea5dd2ebe09f4",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-66482": {
+  "sha": "c07bf6d1b35e5ced0fffe292af51c95eab038c72",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-66483": {
+  "sha": "43ba1329114c157c36f8770f6a836af483d3b613",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-66563": {
+  "sha": "d448911a87f989872096ddaae6aafe6eb498b8f8",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-66564": {
+  "sha": "b59e18a78290929cb5c92c18eda09597b4b55364",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-66565": {
+  "sha": "95cc49ec94448d3a3e0030d8166c8a74311eb521",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-66567": {
+  "sha": "2b65539045e4da01c272a5d04af35a6a7fa93d0a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-66568": {
+  "sha": "5924cba502e2526ee27e2aaebfcb21a5e77293cc",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-66569": {
+  "sha": "89f070906cf73a6fe191f4a51775b094a4b22328",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-78529": {
+  "sha": "7eb6447153911985b60fda2c4648303c88d7fd2a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-78531": {
+  "sha": "14e9f6c2dd413f0c0d65e940bb7672dc3171f147",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-78533": {
+  "sha": "337c24281db8199b5dbc959085ba75c38ac6410d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-78535": {
+  "sha": "96ca6cd51abc4fa2280375420bae38ed73521964",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-81797": {
+  "sha": "43b344f1ab74bdfaf13cd8a100ed0b841a78c26b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108707": {
+  "sha": "51602d49e4161be774e40c581d479fd855aa3cd9",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104028": {
+  "sha": "2dce7dd0374df62fb9d550c760b6b6a819e3425f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84251": {
+  "sha": "de2336e1ef5573c28a1915c77bae6bc3a8b2ffcd",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84252": {
+  "sha": "7bc52c8f8657c332ffb0a9e4cd4b5c56ece0bded",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84253": {
+  "sha": "a5b00caff186b7d6ecec4c0e408e73205bd96af9",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84734": {
+  "sha": "ea56760c2f11bae185255fcbfc94194b47e8fdff",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84254": {
+  "sha": "1a0eba2137abc827cb75fd5a553eb68661d7d619",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84737": {
+  "sha": "ba83a414baeaa2d0cc550d897d77d33af2ec2fd4",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-66086": {
+  "sha": "2262f836435343d3961c96c01232f78adc8feea4",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85118": {
+  "sha": "319ffa16b8a78a6392b4c6f23f80d2582540e24a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109390": {
+  "sha": "18becb39ec9c6c271b193af4dbe2c19ac066fddd",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-57118": {
+  "sha": "621aca203d9b62b02b3ff4fc916071a6908347d6",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84286": {
+  "sha": "6e2a92557ea390e1b98476bf16f7bf558d8b877c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2025-71429": {
+  "sha": "09d2861937b17b8d3c20fe5bdb589b0f0940f8a2",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109575": {
+  "sha": "2d86eda80418021fdd48ab68331f9500a3b38df5",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109566": {
+  "sha": "5014189d5a30e57d664ed46252e5ff5141380204",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-90920": {
+  "sha": "309f6ef35b7da1aa8c9bf033a83458cf4d65a4b1",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-19622": {
+  "sha": "7513678be81c969fc388cc4497f1ab8a1ddcd856",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-87689": {
+  "sha": "ba62201ba79f61a7a7384b50a60d30f18030065a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109774": {
+  "sha": "c2819a11d20f959ac91db5ad9ccccf391cce50a9",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109780": {
+  "sha": "d32515fce98abd8cfb15ea8d815191d7b1a016ea",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2024-34320": {
+  "sha": "d08f9d7022bbf4eb07829a2f59588782241b2531",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-53709": {
+  "sha": "f8dfd2bbe2ec69452cc0b5c02d3584cb3815b770",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-78802": {
+  "sha": "e72ad0ddd8f63a5f6d876f8fd6cecb07d858e509",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79608": {
+  "sha": "22c9cc36a4dd7cde096f2fbb9ea10e6ae359850b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-69227": {
+  "sha": "2ea7d7ad8f8b5b6bad29f40bb849cbf7c0dece1b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-78799": {
+  "sha": "e1abe4acf89942affed9e0db36fc0a7e57b48745",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-37107": {
+  "sha": "7338d0af250ec2a87840901675ce74116fb7af40",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-100219": {
+  "sha": "d01bd8a6e782456925e2f1b60cce629cf4eda627",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-100202": {
+  "sha": "43d713192d2580d8c9261de2c5fb74a07ea145cd",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-100222": {
+  "sha": "bffb7668a53b85946c351627fec814631344f4dd",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-102210": {
+  "sha": "e3b85a0714a8727bf38752170da97bccc74377a2",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105016": {
+  "sha": "04e9d9a8df23219c387242a619bbc4fea18d5295",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105723": {
+  "sha": "31d2d9e24059bf51f1b8fe78743889edfe579291",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-69634": {
+  "sha": "dfe3ba6c856dc09edbe19998db62aed423822d88",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-69639": {
+  "sha": "6219f87763335a38e87a672fba18e60728d8edaf",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-69705": {
+  "sha": "783f2b4b173fe31adf8374e0d397f5caa0d9c1ad",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-69883": {
+  "sha": "dfa6bcea87316ad31542dc9b326504110575d17d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-69886": {
+  "sha": "a63ecaecf30130452d8ae2efc0c460d0fd16674e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105010": {
+  "sha": "77553bf46c2393918b1786c3d26379b5071117f9",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-70024": {
+  "sha": "e4c93d0bf56c1cb4ddf7990942a204c7d1d5c013",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-70096": {
+  "sha": "ec7f3a69c70949e40552d9aec395b622ba06afb7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-70147": {
+  "sha": "2f43c99807d238fff707605e866a41798b0218e8",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-70242": {
+  "sha": "ff2594117ab4ccade685b6a1a1d2fbb0f3373c14",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-70291": {
+  "sha": "b309a0b1c2917e7882df3437def038300cfd9ea3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-70153": {
+  "sha": "00e5a2dd936741806ecdf6af2460846c2e208a8d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-70157": {
+  "sha": "95c43de226fe3efc06cc81e5e379abc06149306f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-70300": {
+  "sha": "fc2f5d63d70624945e933d179730b17ba553abd9",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-70262": {
+  "sha": "d6e978bf0e92599145dc9f0a759a6570b4dbcfb2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-70275": {
+  "sha": "994ad1e8980e906c9d481f2891a72517c4d761b0",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83517": {
+  "sha": "ef609a5d0d172e6f206f28910e345c09d68b82ca",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83693": {
+  "sha": "b9ff9bf0935a1b3463b8f3e04a95924924824ec9",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83748": {
+  "sha": "da10912b7dddc4fef5f9ff616aa5a204c548ff62",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83782": {
+  "sha": "80b86f31a53f25f778c56777df946e73b5b3ec2e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83523": {
+  "sha": "19818a3b77aef0d1e656a3abe84831050b446673",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83519": {
+  "sha": "63f99c1776d4d0daa926ca9a3da43d6abbf4a062",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83888": {
+  "sha": "e4adbf2e697986456dd06250c1c18657322d575d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-83780": {
+  "sha": "1346364bfd3282b055a3b4bac65c9718ecc1836e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83578": {
+  "sha": "5cdc338120e18c73f1f9c488dba4b5717014a30c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83770": {
+  "sha": "fa20ff320df95996effd9027e6b5a8edfd943f4e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83910": {
+  "sha": "4c428ae4893e914d4533f68b00f9143c1a4d173c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83789": {
+  "sha": "ed5e646c99e77006f018d478b76c897df50e10fd",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85809": {
+  "sha": "5856f35f1c9695576b31631524448726656ed27d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83935": {
+  "sha": "84e209e7fdc2ad26f7014fcf1068d441efbadcc5",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84015": {
+  "sha": "f23af6c5b8c16b24516c44e49bbd287416b5d8ea",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85814": {
+  "sha": "0a08a83a238e5a42afefb9da604f455d2cacef37",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85806": {
+  "sha": "9ec726263c3be27ff8fde3005ac5893e2010e0e8",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83869": {
+  "sha": "d9f8c0223f97bd3b8b5329ff1dafec90ddd20d23",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85928": {
+  "sha": "1f69a2b2a6f8859674385ad5d761181653603051",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-88102": {
+  "sha": "57adcbce318b2d56e0ff2cd16ccc5d9d06db7164",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-88156": {
+  "sha": "48b68547d173e9a9fd42ec1ea4f62de1748f56f8",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-88178": {
+  "sha": "bcf4c18661360371107395c717217b5585710776",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-92909": {
+  "sha": "cb4f7a2f7cb8b4f18a1d176162a383e05154ec3a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-96096": {
+  "sha": "5a39c9c7a6a4d6590aa2cb4e8266c906fae7d4eb",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-96113": {
+  "sha": "ec41b37cb996d186a00b3422558d3040d412112b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-96320": {
+  "sha": "b46688a768a348c75c3dcdf1a667dd3652965684",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-96219": {
+  "sha": "d041ef97b27bdab8c962ddab216c4a0118b2432a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-96864": {
+  "sha": "5c0f0f217ff2aa0fb1ab01244f8f49b6d76f54dd",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-96909": {
+  "sha": "ec74ca6ac2455193a53a36260c3f9b4502b2c402",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-96924": {
+  "sha": "55fdd55bfcb43e90c1fddf31a00a139478eca082",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-96934": {
+  "sha": "4a9c445ad762202963749c55430013b506c8b319",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85792": {
+  "sha": "48f6b97ab9dd2afb1eb05175cfc298994258ea3a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-97016": {
+  "sha": "104bc44af51372c7f4ac80cef51723c6b5608e42",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-97805": {
+  "sha": "dd2372e89bc5257e8f4b1c5775d975f51c4ee347",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-97749": {
+  "sha": "6a40ff1aee0150d83344454cced56538986ebe5a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-97814": {
+  "sha": "ba0d5f137ce93e040a171f0c4abaa5b8ba61be5c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-97816": {
+  "sha": "1da244a6bb6c2ef3cc0db8ad23d3178f96e9ab90",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104585": {
+  "sha": "b774cb7c41518da487cfd6ebd500b8483ccb53f4",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-63146": {
+  "sha": "3caae7c20e2d9d4fa7ba35172de6581c34bf83a0",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104252": {
+  "sha": "99b5c877cb68a54d32b110a7744d0c921c079ac2",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-97815": {
+  "sha": "65ef265fce8c2e7c3dffcce962d5571057fd9936",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-49950": {
+  "sha": "50c336babc5303417134c3da92a1fa66fc16fc8d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110392": {
+  "sha": "8f35db5aeaefd4ed589bdcd2cfaa523048aa232c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93388": {
+  "sha": "e602cc090a6d76f2d6568f552a66ec5b95586aca",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110002": {
+  "sha": "bab367117e024580d929747c8ca405ddfe8ddf40",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-97668": {
+  "sha": "9de52ff3f0f975a14da7d948e63f9721b320701c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104800": {
+  "sha": "912d9e86a1c9d7ad6e49acd686c08e6807f9b48d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-87855": {
+  "sha": "e622222fc4b681cd9f55d3db995e01bf8ce87143",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104748": {
+  "sha": "caad34d6ac9192b940db166f946850073abc3ac0",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107424": {
+  "sha": "826dc37fefcbf1faaad00a29a670d174f5fc8aab",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108291": {
+  "sha": "95a19b976a7d2303aba3a2d3c3fda57b09c20b25",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-16740": {
+  "sha": "80f9b402510ddfab004116b631fa4ac347f86a97",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-16741": {
+  "sha": "dfe0c5ebf7213695350bb15a1886a28230733d01",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108065": {
+  "sha": "56cd74b82eab5ae3a845ed822bce22a0b62c6ec7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110631": {
+  "sha": "7be33831c51cbb96600062fff3ee284f283198fb",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2020-37282": {
+  "sha": "4bed4acdbf11e189e2ba4b333005633edfea438c",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110636": {
+  "sha": "cf55a9220dfbf0dc3df3520ce59112326ada8b17",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110638": {
+  "sha": "3a59dfe75bbd96c8680d4184e7b9acb04d5528b1",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110640": {
+  "sha": "c19134764d490ecc9362fc14fa6281ac0920a25d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110643": {
+  "sha": "bbccba60d0e8e96ce76ff64a6a0554b8cf437b2e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110649": {
+  "sha": "3cb3090fcb4be32b2d629ccd32a06db640962045",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-89068": {
+  "sha": "7bd215d547b0315a5704d66c6312276df8f3dde3",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-59774": {
+  "sha": "93f55dd7927d0d733a4822b93449815027162459",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-89073": {
+  "sha": "998150976f36b08c520faea39385d476d5fbe339",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101950": {
+  "sha": "d05aac0a76f5b0d2c84f2d3f392203a8c84b6c76",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101956": {
+  "sha": "8e2e04eef2050ce45da744b8cf7eb0cde900463f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101980": {
+  "sha": "d980793242bba595de7b1bae72e3964d0f3bbe3c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-102031": {
+  "sha": "60a80d2c7ad04b8a830361c2e72769268ca3f5db",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101990": {
+  "sha": "abe88183d1fa6bbf1e9375464d4456b7c46cfceb",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101986": {
+  "sha": "b2cf3721f9fe156e8aa13dc40113c664cffcf9af",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-102175": {
+  "sha": "330880bafc20f6d837b2b59a824a1b68b685367b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-102178": {
+  "sha": "9e44f77870f9366a80ce2704d5cd359fe46b6df9",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110635": {
+  "sha": "d303deb619852922f1a4a73084832b211d47b78d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-102182": {
+  "sha": "2c43c487d95aae02d7d439adf650f64233993ede",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-33792": {
+  "sha": "eb307e8d7d0c4f8692581f1aa65ff38e0561afac",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109439": {
+  "sha": "114dd8defe34558c36e1a158198eb31a550c81b3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-33789": {
+  "sha": "ccdc384e20d778556822c6785f47fa65b5ad5442",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-33796": {
+  "sha": "77b6f9d1787a95988150ac3d2a834d07869fcd02",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101954": {
+  "sha": "86649edb16538830ffe4fa449ef64f1bf3186834",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101982": {
+  "sha": "603012ecb79bfdd1b0cc2fe64453662f0a8dddf3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101983": {
+  "sha": "779afa9681f029c90b8ec38b99e486b638937d4c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-55573": {
+  "sha": "fca3e86fc165faf3cbd752f233a71ad5dc97c2f4",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110911": {
+  "sha": "213990d7071473b012c4d513f49b42dbe5174a3a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-55683": {
+  "sha": "acc29edd01625a7e00b9feda8e67730cd3a92449",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108587": {
+  "sha": "aa6067b50ab3f715c97c00fb2154884f47604b44",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-55684": {
+  "sha": "b73f602dacdb4c152dfe761ffc88d9e5fd890d5d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101306": {
+  "sha": "20d0c8e24f779f493dc0e1c4297857aeff96d30e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109145": {
+  "sha": "565d45dacd9d9b0c6da2126adb0253a3acc4a07e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109694": {
+  "sha": "790fe80e5ad6cc64345ace0777114a4052023972",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109686": {
+  "sha": "dc8b9992058121cbf6ec097d0771affeaefebc6f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109892": {
+  "sha": "1b6f06f58fe4f45d6a0d8bddf1b688b897da8f09",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104586": {
+  "sha": "1689daf2ca4c8c63e1571978ab39b29a2aba01aa",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84731": {
+  "sha": "b4dc42415c340d5402c87b49b59eef8132a60551",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111094": {
+  "sha": "554b0fd1b09c8b2d801266f9a4fa53b669714158",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105038": {
+  "sha": "0cf2913a7ea84ee2429a055b503323ff55b6ae4d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111281": {
+  "sha": "7ac9a2fe02adb0f8f8fd87ce9240652e98722007",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111322": {
+  "sha": "accd72da0f88c8d875fdbff5b0a1833f562ec19c",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111329": {
+  "sha": "a8082fa322e31c288f2ebba0b0aad5f4f7c4e9c6",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104798": {
+  "sha": "0ab6c7ec75c326cb72104e0aaeae750cd2a86a89",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111444": {
+  "sha": "88693ddc80b4ae6f6420cb60d0bee7b69e7373af",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109515": {
+  "sha": "4941ac47ceb043b49323baa2c452189dc2200af0",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109219": {
+  "sha": "96a8a2a467c48f095588a07ae623d3b8429c0b3a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103768": {
+  "sha": "5ade821a5e5066649196be33eefe03ca6def7978",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-89079": {
+  "sha": "d3286e4a14968671225e536423b12b95124b14c5",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104730": {
+  "sha": "dbb53780bf4ee6e21c968a8064b9fcac4271264f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-64959": {
+  "sha": "5c04df4c9c03dc2901062c883a5954e4b1fa85f0",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107617": {
+  "sha": "f42bdf2d1ef4546749f7e6ffc247a33b230fc222",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-26846": {
+  "sha": "91f471eff995c52d43cbe4e4ba014abda48d8480",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-49868": {
+  "sha": "c76f9c4d3955d2b9b2d20fe6359783a32e83f369",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111641": {
+  "sha": "9314e75ba8b7a4807e8fdcb47e10fab9ea58f838",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111643": {
+  "sha": "4729488a802f5673c779ca2ae60a769e695919d5",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111673": {
+  "sha": "44fb38537236ce03842e530704c592c9915f33be",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111687": {
+  "sha": "a4facf0d864ea0ecde0154e4ab457121885571e4",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111690": {
+  "sha": "31b1aec41830be784158b7b658cd718e8d4592ae",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111692": {
+  "sha": "ec3e9ba490573ef939d6373c60dcd64ac7605c26",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111693": {
+  "sha": "ed684b3c65522ee11575bc39dbbddb0bc5fd71c5",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111708": {
+  "sha": "fa39edb06bffdd1b9b3845b854827aaa14c1043b",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111711": {
+  "sha": "13307fdd04d1fff6651bb1a2b01402e58ba2aee5",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108709": {
+  "sha": "cbc1ae624015e52d7fc623d07a252a6114c00dd5",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-64610": {
+  "sha": "421fbb40e3492a82e8dcb14117ef09e9a0d02279",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-68573": {
+  "sha": "836b6d229f2439e1252b63cb0c08171308d93850",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110753": {
+  "sha": "e9ff3f0f74366fe35f2258c68ad2229a6d0a5b37",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110756": {
+  "sha": "08d17c02194f44ede0a6120c92e0209caad2c154",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110757": {
+  "sha": "8d8f3313fa44b3ba1fa75bde61eee4bbfe0e7793",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111823": {
+  "sha": "d98019fbfa32e9496910009a3049c6e0a66f9bfa",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110759": {
+  "sha": "8fa59b4ba23e6ae897d975faa1446a4804c6d6eb",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104736": {
+  "sha": "022c491a1fb50b413b3e5008d3f2e2f76c9ec941",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111911": {
+  "sha": "1ad4f83455c37fb87b8397d08702e1b52a0686d8",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110886": {
+  "sha": "70b790cf1b168c951f6ec89ab7b6c47855e08283",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110372": {
+  "sha": "2bcf8fb03cc6ba03e1bde4e64373f685337677f1",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111998": {
+  "sha": "fbec1779465d651e836db7deef5691aac530ff6f",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-108771": {
+  "sha": "03eb9c8459166aa2012a5b063a11701031bfd4e5",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-71253": {
+  "sha": "32a3869c7dbd2d388c1116e55ead11faa57902ba",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-90910": {
+  "sha": "09bbfb0d554920e73904c16a655c946617c70519",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112292": {
+  "sha": "f6f057a5e26426c158f03521793b7a37f9f8efba",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112296": {
+  "sha": "13e09061156bd38efc54fd33260c7310618e1f70",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109432": {
+  "sha": "6d7283c9b69fabe5f9576161b0dea1449ec8dd4d",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111058": {
+  "sha": "d184df04109a312811e8097892dfb0264e46c00b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107083": {
+  "sha": "00da81a031f0177c4f835abc1d9f7ded687d96f4",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111862": {
+  "sha": "bd2be85368148b2aec53ae9d34a66fb765be794f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109437": {
+  "sha": "142cd61c7fb12dfcdbe2b97af833b9a8120dc6e6",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112776": {
+  "sha": "e18e51502305b9b12ea52e32b72b08dfc88afe13",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112779": {
+  "sha": "10f7233edf7c19133b0cc469055192ea6f2456d2",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112393": {
+  "sha": "b45f16d6f41f404e9aafb68d907a6bc93d52a7ac",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112398": {
+  "sha": "667de57ff3973aefb892fd14719d512748ece033",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112403": {
+  "sha": "791b52975ff6a21c63c7423725ecfe7c35161fca",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112900": {
+  "sha": "27312467cc9d7d50a62a7d8127acfc9616dd1fe5",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-75128": {
+  "sha": "eeeb63d122f03cf9342878bfbd107685bc58d289",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109444": {
+  "sha": "2e30c51c285084cd905fbe4e8e1c025c66f16298",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109442": {
+  "sha": "57cdf83bef2a8be42780959a7da1633a063d34e1",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-77930": {
+  "sha": "5f3d08911f2b33e8c0df212aeac99af42dc58a33",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-77932": {
+  "sha": "c55cb09bddd45189f3b1a15c51fd2b726424a0b8",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-77933": {
+  "sha": "b7b01ad517cff2dc3d0329a711f694f565ccf582",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113620": {
+  "sha": "b2022aaacf2e9e870fcf088a321809d79dc0ae87",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-77936": {
+  "sha": "6e5f5201edd55c59049f0cb1b5bb9b7a40333e8b",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101499": {
+  "sha": "e86a5db2b9959c4d6e3ccddeb0f45337408fc4c3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113802": {
+  "sha": "7c3d6e0e03f68821fc06537a38cae7cbc7d0851a",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101484": {
+  "sha": "13a03c6077b32a7bf96fdfbf055215a51b40747b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101537": {
+  "sha": "b99f880aebf164cad9ccf6a7ee21a08782271d8f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101763": {
+  "sha": "3d7158dc7d468498b9304152ae14f7349f5a7676",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-60432": {
+  "sha": "ab7643678f20e5162742c1a9fbee29ca51e7c0e4",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101767": {
+  "sha": "e3d8f6ed59f3900678ccd8f901cb86cb679c7353",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83396": {
+  "sha": "2c7ee16ec726b7d048cd8a5da74b762cbe3ee2c2",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83397": {
+  "sha": "7ecd456b66fca3e3271a5f55bc448f705e16c5e5",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-83399": {
+  "sha": "bf89d66c49e676cfe734f1a4540c25ea5c1fd966",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-87251": {
+  "sha": "71cee5e29cebe00337c57982d7183db1192dd94e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91214": {
+  "sha": "386877fd7af081ca5ee4af7f4819f749defbc474",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91220": {
+  "sha": "0bed86ed35b74681ccc7e0bd4227910901c0cdbf",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91233": {
+  "sha": "35d697509a91e7bb065daa6feff2f49422aeba16",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91234": {
+  "sha": "887afe2119c8c738e0edbfe05ad82f7e3ef2f5cb",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91235": {
+  "sha": "f7e3704292aaaf4dcfd16b5f98d8bb15e4491294",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91236": {
+  "sha": "30a40f22c4b14d342570d1c617ae69b13073cdab",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91323": {
+  "sha": "93f41bbd5296281107542a2ca09dcbb29dca3ef4",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101521": {
+  "sha": "f321cc4dee336ea05206e9475c3489f1e32fef22",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91408": {
+  "sha": "b094dab181649909e0e22994998a470548a42091",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91491": {
+  "sha": "655955f54cd3836887d6c8f4f11f3c1192b32dcb",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91495": {
+  "sha": "200f493b0fb7112c040ae6658a19099a384fc7db",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91665": {
+  "sha": "f68e9de186e120a8d17eb04f717c2c9862399b51",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-92559": {
+  "sha": "e3ad2274d86a5d3162816ab140fe5f3e9049f96c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113736": {
+  "sha": "31c19bd8849fb742c8d5a21468eddd6728758a11",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76474": {
+  "sha": "a89cc458298f2e9925de58d2808b36ce6b57e5c3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-114119": {
+  "sha": "b927ae1eb8cfe05e8bafa19f5f65799e65ae447a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76473": {
+  "sha": "7d8bf519c587be5b6c8e4ff9e2124f9b5954935b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-58663": {
+  "sha": "439558f9a9f7f563fe4b31820e17a209f6c27294",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-111183": {
+  "sha": "51ef568b1908f9f2c1bfcb0d05f6b45de066412a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-96639": {
+  "sha": "bf73236c04fe4c688ace42a9cfaa4e1c0e9e656a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76301": {
+  "sha": "570922a5a6cb1ef6ceb1345214b68ec73c6e7545",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76408": {
+  "sha": "2f68af979bf7e02f2f78c30a51d6ddc4bfb25cbb",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76529": {
+  "sha": "b371d3bad52ce36a94939428511d66b0a3f3242b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76527": {
+  "sha": "1f579bd954b699221a1dc4600522706d2ad05f3d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112241": {
+  "sha": "9dc8699072756d5decacedca1c12cb767f514dc3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2021-48016": {
+  "sha": "e6cb9d56dd3fecf77917ec886c2c169d38ffb142",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2021-48014": {
+  "sha": "1af1d37fbf6c2000ecfc0f809e4eaedad5e91ac8",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112832": {
+  "sha": "cc361b2425a89a93f0d8c1155af6cd6a76b5ea3b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85079": {
+  "sha": "5073abd224332aa548e35d7e2411fbe6aa58b40e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-94502": {
+  "sha": "09647a3fab125b71bbf97d2657f7df5ea2ceb7c2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2022-51026": {
+  "sha": "68aedfa17d55ff1f5c90499421a5d0fe81bbe981",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79852": {
+  "sha": "bf3bcfbe623a9b3f8822c3e4aa96d9c47f947140",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-78846": {
+  "sha": "07083784a12fa4034a01a5d7e60e81e39a33d266",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79855": {
+  "sha": "f9b050cc2d4639499757f66aee0e47f64ff775b9",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79854": {
+  "sha": "77703c14f93ccc62227d0d5b08a71240337a8494",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79856": {
+  "sha": "ef0506079c9c981d6e58ff13573cd0ffb1eeb6a3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79859": {
+  "sha": "dcc1fbf93fa9c680fe198e107dd53e146efd1899",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79857": {
+  "sha": "b6a8080d0a25980b551b485455fe97be60d0dec0",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112846": {
+  "sha": "b306c9e388efe40ba58dadb72c4cdddd80f93e8f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79860": {
+  "sha": "a1d84a8156ef5eb09598dd5c7747f12ffe604371",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79861": {
+  "sha": "a0ff4a5dcdf04e98869e987ba08d3a508bf84f8b",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112847": {
+  "sha": "9ed625cf871a34bbde84cf76be101c57f42b4af1",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112862": {
+  "sha": "a3900c301d635a16e5904393f63fdc15fef9ea86",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112848": {
+  "sha": "3bf38df9a13feb0a69d311cb25ba2187a64389a4",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112851": {
+  "sha": "04f2f2552b2b0e6c8d90aedf88d18629758e0c3f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112853": {
+  "sha": "3e4010b894216c3a954b3b519d6dfb9bc3236d05",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112856": {
+  "sha": "f1d9f19560376702abf9e5855a3f393a965d41a5",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112855": {
+  "sha": "e68ecb110da2262f4db23ff972235353503c2f17",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112858": {
+  "sha": "0134a5d5c7be19816703541419c37af6af404ac6",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112857": {
+  "sha": "507271e5f857ae845d97b3fcf7b1b29edd3b76a9",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112854": {
+  "sha": "272a578564cc60cd4def05699b2008cad580ecf8",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-57116": {
+  "sha": "2c1337805165bc5a9ab91ab0659ce7d66eb9f8bb",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-53921": {
+  "sha": "dcaae917a5c5cb4a2053192474e43fd0f1d98835",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-46651": {
+  "sha": "e089d858314a20779f8976deb9982b1169e518b3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-46652": {
+  "sha": "09a3a24e707a8f28044c1d2b4b5e09bdfd73a6b7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110956": {
+  "sha": "e5ee8ebde93b79d0285c0fdfbb0b5042439bf865",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-114196": {
+  "sha": "f31a59f86f1b38b448c10add1aeb2acf749b7d6a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-115806": {
+  "sha": "9089b3c56e8f642170ba0cfeaa6cdebf2bdb73b2",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-94075": {
+  "sha": "80b95dfc3a3dbf708ddfccce21987ca656b3429f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-115214": {
+  "sha": "97d41319ce418014a66721b96bceffc3a71b8987",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107092": {
+  "sha": "63cff63e5ecdd6f8e7285474251aae60e2d947e0",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-59106": {
+  "sha": "a12f666aba464134c1823b36108aaa495a4629dc",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-65184": {
+  "sha": "74c2e79826a229c3a52393c82765fdf217bec536",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-31158": {
+  "sha": "ab6d49e77fffed79924c963bf2095efedbf7185a",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-10757": {
+  "sha": "e6d1be614b79fa2e69eee797857d42e463a9d827",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-92885": {
+  "sha": "e8e71a794f928db0809d4887f2f8940d6124109e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112859": {
+  "sha": "422269d3255f2cde11b6ed81a6ac20372bca1639",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-117564": {
+  "sha": "9106f1c2b4b9ba89112c5aaef5fdb213669e34e3",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-84999": {
+  "sha": "2bb35e97324c064dd2a7179b743286097e6e6467",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-78845": {
+  "sha": "e14ef5ab2f81a604e967b0ac736bb6cee3fea138",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106013": {
+  "sha": "87660f9d49bea7462ec3731d2101260bb7aaccb0",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103688": {
+  "sha": "94555afb5057f288e04f0e15745c40af3655a8f4",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109218": {
+  "sha": "313e0c43e87d16c9c17b90a9759d8bd237700837",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-86397": {
+  "sha": "a96b800baf1600259f6e4ab99f4358086a786de7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-86400": {
+  "sha": "9d640f31e6f729791641c0c7d017760c6b8e80ed",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103780": {
+  "sha": "6c9e9d24bd37d416198c5b211e9d9c2a4fdfbb71",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-86384": {
+  "sha": "c170a1ed2dbb8b74d478de2c4c55752c26ac22e7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-115968": {
+  "sha": "7c30b1e52cb3af2d416ecb8e728e1266cfd27b86",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-118690": {
+  "sha": "fbeb71130cf6423015c5189703c613625f8c733d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107656": {
+  "sha": "374eaec6c2b5a0175c10f6208f127113aeb2feb5",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-118579": {
+  "sha": "61dfd10a467acb0ca90ddddc387ac8afbf5055cb",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109516": {
+  "sha": "8064aea07ccaa9000a6dcf1224f0db6b810e37fa",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-42922": {
+  "sha": "b89cb231d4abbf97b4d60416ab925aac1bfd685e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-115245": {
+  "sha": "5e121794858c97f13dc91d82073ea3013f37b526",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113616": {
+  "sha": "4132cf0825128f7c2b2dc4b3aee623fdf2a0a6c8",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-97854": {
+  "sha": "e40dd1076dc1f8017bda929a582c9f7c776a8a2d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104317": {
+  "sha": "fdd721888e5c146da1c1ee94fc2520b2a252480c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104339": {
+  "sha": "f9548244109e352a319cc4da48c7e1c8cdcd1267",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-18894": {
+  "sha": "c7ac08918fec0f0e453ffd2287352c7058cea9e4",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-110186": {
+  "sha": "9aa0b24461516f18c4e484f3eb855be6c11a77e7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-54856": {
+  "sha": "45e4155b72360e604431c7a3d2dc852d61d2b14f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-54857": {
+  "sha": "f7824cd1ca511cd7897dbfdfa3118cf90e9d9271",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-54858": {
+  "sha": "5a441f1224b4cec568644feecb1b2715d4a71c6a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-61992": {
+  "sha": "77b077c2c561adf5797bc9f818cfcea0aab3af5a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-54860": {
+  "sha": "c160ea1565403f40403af0b89ae087c111216e72",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-61997": {
+  "sha": "550df26ae35eba8d353ca4bfbc7cbd47bd83bd72",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62001": {
+  "sha": "4c46a2fff15aa8465591d3791032e98d7307cff0",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-61998": {
+  "sha": "280c568ec9fb240ec3b57c2a490fffea8c877c66",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62002": {
+  "sha": "b95e33935655a639941549dea2af1409a6b8a5c7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62005": {
+  "sha": "cce1e358bd049fbbc74bc61b5bffd54ab6db8479",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62003": {
+  "sha": "772afb8bf812f40a254e6dedeaa92218cf6925fa",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62004": {
+  "sha": "3801d56f6b8d91c0637092466db88283c3f34837",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62008": {
+  "sha": "23156063b0cd1efc9aa2c1669480dbe85f88fd07",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62006": {
+  "sha": "2fb55fac0374ffd60ed5be56e7f66e0dd3087b11",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62010": {
+  "sha": "cf006556730a4e29fe31c2fcda3dce06816a542c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62009": {
+  "sha": "d931ccbba6d97a42861a13f999b5c7cbf2b99966",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62011": {
+  "sha": "599c779eae18570066472d4ec4f57c5956a2f8d2",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62015": {
+  "sha": "f4d9e221aedf437466fe49ff18c752c5ec7f5618",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62014": {
+  "sha": "1ecdaa21e4ec19cfef8290d13831a0fba76da26e",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62016": {
+  "sha": "66a3bb21377b4172323266fddd5f5aca5a33e127",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62012": {
+  "sha": "208537b0765a56306e2619bd4093378af7e79e4c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62017": {
+  "sha": "2e29161915b65cfe13d9b506c3ba6714fa0c1175",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62131": {
+  "sha": "de8ff9c2763acced88ae04eb510ebcdbfcf1e26d",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-62018": {
+  "sha": "6a6006b981fc1200b8ca14d68921c45ef2187930",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107058": {
+  "sha": "159f52d0765ca75e43311701b1dad2dca7f78283",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2025-31704": {
+  "sha": "5815bfba8f6ba361cf2ce288aacfb9cb8846d52f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93680": {
+  "sha": "6539303b18ccce99fae2fb5a65042e9392d0b27a",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103039": {
+  "sha": "346922f2ca94d28b03fa5ba5847b42b7b35c7ad7",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110799": {
+  "sha": "a18ec4b0fbc6fade2bdaad8703d1a6e641745ee5",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-61737": {
+  "sha": "d39aa0cce769cc3bc7e220ac7fe8346c7ccf2b8f",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-119706": {
+  "sha": "f717a9fa5f3565b6e1e3c8a0377180da1d00ee23",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-116386": {
+  "sha": "2bfc37fe9e10fa0edf67c7863d6e6821cbdd06cb",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103626": {
+  "sha": "a36c47b7ffa96cb61d17a6c95f0e0d162529099a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-56662": {
+  "sha": "d80c3dad895dade32c163d8e950b165bfbf06fe8",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103628": {
+  "sha": "ec34bc78a2f63fb1637e1c70e34c37074cff330d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103630": {
+  "sha": "a614310f8ca2d82f3ab0caedaad0548cb750c0ea",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105209": {
+  "sha": "35c5a81a7f5f9ee2e13f565295322564401ad8db",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-105637": {
+  "sha": "d6a668763db45a2c091885935aee6c03e1b17c33",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105763": {
+  "sha": "13f467a63cea73bd838a964fb01d01b9a76e765f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91140": {
+  "sha": "3d58c302e5af0323b746c42f9ef198dda98efe65",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-67273": {
+  "sha": "196f51a5a4ff796ad0b4f5bd6f7e0500296307c6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-63691": {
+  "sha": "fef4d13c33c825bdee1b827301398e88b46b6b91",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-102322": {
+  "sha": "fff4c482aaf56524161f8b70fb4967c4fe786191",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106197": {
+  "sha": "d93ed1b61cee14680033f5c417ed5674e429c1b6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105848": {
+  "sha": "6d53724b1f097f055b8b6f10d58c5a3ca657550f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106211": {
+  "sha": "4266c229f872d5a37f3436b12eb1ba6a73d387da",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106234": {
+  "sha": "2544231235e218f92c78df295098dedd4b36a20e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106227": {
+  "sha": "4b549da94ac848948d0c4f55388443cb3c93f372",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106237": {
+  "sha": "088a289a6a15de3ff35e8928586c3e7ca7f14918",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106239": {
+  "sha": "e907520d1c6eab67f867c82d282bf0bfc5514396",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106241": {
+  "sha": "3e096dd68befdb67cb06626020871d7eb1d0e23b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106281": {
+  "sha": "a95a0d848ef831a29b423895ee93d53ce5773b1b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106298": {
+  "sha": "0828edc93b1227208fdb12ae11de52f4ac76e604",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106323": {
+  "sha": "efd7e590824a6915387fa836dfb703e1aad2d242",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106329": {
+  "sha": "f225e31b5d4d279979150ba76373b5cbfb2d8bd5",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106358": {
+  "sha": "0f3773c9c0accfb191e6f031fc0feee245295f69",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106372": {
+  "sha": "0ede6171356f01fccd5b0831eeae42de47ce30ec",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106401": {
+  "sha": "c49f99278d8c68a0a4ad49a2099683e272883ec7",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106375": {
+  "sha": "81b0963edaa5390d988ca955c2b56fdfdafd2a23",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106382": {
+  "sha": "47628c7bb8cd1e0c993cab70829f86cc281cdc71",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106414": {
+  "sha": "5b4078dc377fbc54fd60672366ee3c456a16948d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106417": {
+  "sha": "5e1e6fce2ff7434ca21110a717c084d486807522",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106419": {
+  "sha": "d7b05dfbbbd46374dc6a62e61f1f84382c93564c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-86360": {
+  "sha": "1e7b34557ff2890b42a6f95971d5c07a639d7a4b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76745": {
+  "sha": "5a7140a4d5f60eea3e83ca104c574ef7100c84c4",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106501": {
+  "sha": "1f88553c53769eee3331666f606f031174f0bc7a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-76464": {
+  "sha": "c911f2899112c22a9a805bece77dccdb7de09917",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-85956": {
+  "sha": "d8f19e9f220e837344c07fc3d17899c05a0dc9ff",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-9191": {
+  "sha": "824c33b17f0fa9b9e414c0d75fd5818b8da1e1ae",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-82101": {
+  "sha": "99dc512f94de085448f53bf2cf7490c21a5ab720",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-108971": {
+  "sha": "f11f216244105346f63898a590b4f0b6b0ee3348",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-63350": {
+  "sha": "b7bbafa12e1b6947f63146ebb9fec662e8f164ba",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-63353": {
+  "sha": "68b78e25654996e5cea4d603a9793a5d102f6c20",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109707": {
+  "sha": "7c9199a0616b4c7f32d63aee108e2cec788bac31",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109705": {
+  "sha": "4c14090b1a66608c2bc11d40f05244036f9cac8a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109708": {
+  "sha": "b059bc8ef96d4ae1d1c4737898bb0d242827ec10",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109740": {
+  "sha": "30d31eb911c2227793da52e33e82f808e0b91ffe",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109745": {
+  "sha": "6f0e3c29810d40bb5588ea17a0df5545614717d8",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109750": {
+  "sha": "f9d66dfb3229985bf71a7ce1f48261f07d9df86d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-109755": {
+  "sha": "b4c7801a4af9efd1c2efe337bba28b49c438ee92",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104192": {
+  "sha": "cf3da7d7fa4d76f2b8ccd0161d9b50a2c017090f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-102238": {
+  "sha": "a4ce4e4443c728be16af3429a8a59596e36ce690",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-90531": {
+  "sha": "a2ebe3e97e5a0982953a85bfc4c71c1822c237c6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110136": {
+  "sha": "91493fc7810734dd6d5fd2fa0b55fa81287b4122",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-75994": {
+  "sha": "fb7c204c13db6ead6d96c10232e375163de4c549",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110142": {
+  "sha": "915ef02a9452bd3efb32b6832c011c24a6923cd7",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110149": {
+  "sha": "4330fa395a14d3447b0262fc1511dfb201dabc8b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110152": {
+  "sha": "6c6413755950786779cd2f70b1785dd976dc29a1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110159": {
+  "sha": "62116c77721b61f5b5259bc9815325cbde49ac04",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105039": {
+  "sha": "73570c3f74fd5f35afd930ea73691842733c77c7",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110161": {
+  "sha": "96203f750b3904778d2be076a8e2c0e54ea33061",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110165": {
+  "sha": "a217e6dd345f4fb046727599fc0890d8bbb266b4",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-110916": {
+  "sha": "01e95934821acbd8cdf92ebb364a50259001e3d6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-18516": {
+  "sha": "b84e390b22d5a0b05a43a0335231a084c19f10cf",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-102693": {
+  "sha": "03bec67c966c1bb2a8a72648679feb576365d428",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-57169": {
+  "sha": "9d0ad7ec7c4a930c77b87b6f1a1c308ff13f9f9c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107188": {
+  "sha": "c84fb8f47febc96adf5f7ebc417eb8a0e11da978",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-101420": {
+  "sha": "69cf2c41b87a588ad51ec5908d0c0a0070fe4470",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-55183": {
+  "sha": "cdbe2639062b7fda28a596cf46f766c46dd12bbe",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-106620": {
+  "sha": "d5df221ad14f8b5d1b1406d8232f3d34cce84163",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113007": {
+  "sha": "ee5c978acc559512acc4b7ae0f52d2fcbd351ee4",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-112992": {
+  "sha": "d7af9c5c549fce4c2c80fe22cd0e6317d4cc9365",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113014": {
+  "sha": "1bd62f88ac9bca4677c8c8b9fe62979447518c75",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113020": {
+  "sha": "6810887e7c08756c66979e9f68aa6580514d01b7",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113023": {
+  "sha": "23713535752d98a6267c9bb9e3bc42fc02219701",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113072": {
+  "sha": "dc5302963928fc7c152e88e245a37b7a56259690",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113056": {
+  "sha": "337baac8ae3a132f7690af84855f989b2345401a",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113078": {
+  "sha": "0fe1caf8856890ac3f9d242700d15a1181a7241d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113084": {
+  "sha": "2f3839cb7f6f720ebf4b5c4d69fbca11675cd9a2",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113089": {
+  "sha": "216ee2e458ef3a6ecd3d96fc1f7f22e2beb65284",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113116": {
+  "sha": "a9f79c8c14bdf9f267091b8eb22857617e2a5a4e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113138": {
+  "sha": "4cd3666daf6da9a8ebe63619a28ef4427fbd5238",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113126": {
+  "sha": "06a475ad75e91db38bdb09e17a04f618d87b9c7d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113169": {
+  "sha": "731249fee16d68cde6799940a6cfc94c23f1c546",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113171": {
+  "sha": "f6421c73ed80f35f52975873f5dc225951070ce5",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113186": {
+  "sha": "c3c8c620ce7a363327cbf94e201074f7070f5f8d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113189": {
+  "sha": "fb2f58dd470bca586faacfbabfa0e67652e9c96b",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113211": {
+  "sha": "9630c05875b56a4365b9c76da1266e944ce282bc",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113222": {
+  "sha": "87bd45c92768977cfba110bee608677d70ad35eb",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113235": {
+  "sha": "7a243b4ddeb7c75ce1016c1d987217ec5df9f344",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113261": {
+  "sha": "1b5c8fac41d69bac2b3f1906eaa05e05a80f064f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113252": {
+  "sha": "33bc6b869756209df04396526b7c2efa5b43a3d3",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113263": {
+  "sha": "3cd3ddd2436efe9af16dac50734eea48d7b8fab6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113270": {
+  "sha": "791d3473e3728a0c070c5d22e0880dfa613e3e01",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113283": {
+  "sha": "36d12f6114577aea4d6d46276653b640e95b3429",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113300": {
+  "sha": "3c2f4fa341fc0c44891350cff03052b53d572da8",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113328": {
+  "sha": "9ee33dc1cdb2ce77c6ccb39726dfa7e2218470c3",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113336": {
+  "sha": "bf927b77084ae01e80d0cbdbab8b0f527194a6d5",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-87347": {
+  "sha": "7bf23261457dbe07bd559f067ca2195a005a7ffd",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91218": {
+  "sha": "988c40884dac18cb8312010438cf4468c0f66be9",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-113342": {
+  "sha": "fe55688426f122a518c33c78fcdaaa49216d7196",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-91243": {
+  "sha": "7f23bb6b793d38424e93f99229ecb3270609d23f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-65200": {
+  "sha": "b6fedf0ceddbde48fd109e65832f8b548abe57ba",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79862": {
+  "sha": "758292ff926073253db94c910248a16a803e276e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79863": {
+  "sha": "a5ba2292fea07947ae400d736d13801690f85da1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79865": {
+  "sha": "66f71aa1bebff3588ef2e34552a67aaff5452cf1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79864": {
+  "sha": "18e1b9c7ec3e45c518f7517b3d110331133c9561",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-79866": {
+  "sha": "59dc0149cadeeec5e06bbe4a863774d2bcff9ccc",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-54630": {
+  "sha": "caef6d7ed132fd4dbf5257c3a7848053c6f37518",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-115995": {
+  "sha": "4c0eda86e0517a159994a9121e6280e24b4bd434",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-116863": {
+  "sha": "5ab3e710c1aec110728f3431f31c07316f151495",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-116111": {
+  "sha": "6638616c8382070b4af5e0cf460660cc39af940e",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "partial"
+ },
+ "CVE-2026-48360": {
+  "sha": "881866bf8699a0ac4c248ccb613d9fbe3cd0b4e6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-118305": {
+  "sha": "40b990b19fed401cf30d90478b7095d8feb277aa",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-118306": {
+  "sha": "bbc64178a924f1e041d776dc3c7c48c88c386b27",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-118309": {
+  "sha": "e55b85ca2d21da1e62450b9d6095648487fc3b1c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-118308": {
+  "sha": "ee4c3c45ba5c76bfc35d2243687a6f3e6477ef2c",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-118310": {
+  "sha": "ed6379905fd86a4306ed6093ebb36e16018cca72",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-118312": {
+  "sha": "c2268c9155224d05bb0e637b5ee02b71810c17fd",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-118340": {
+  "sha": "b30f1ed214f2ad5acd2feb9eaa229ca4fe2e2f5f",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-118355": {
+  "sha": "be4c1880e253024a55d388f6b370ba3ccbfb3979",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103792": {
+  "sha": "1166a5c24188b912398cfc525e293a879313bbd3",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-119261": {
+  "sha": "1209fab909e83d3d048313f22c5b6bb739f8e04e",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-119263": {
+  "sha": "c34ba377fdea152a9d0f405fd1e0532d8f2c8a13",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104848": {
+  "sha": "2e39d01540d42fbaebbdee3432c1b85d59a2a47f",
+  "exploitation": "poc",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104849": {
+  "sha": "754d5e451330c3212ff7db1cd6f6b51b9e4fcf52",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103510": {
+  "sha": "4daf3119ef29649fd9852541abe557f9489d3f54",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-100102": {
+  "sha": "37413f50bc5d2852cbaeac498c829ceabb5ffd0d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107406": {
+  "sha": "cac33ed3921d900acd202ea1c4bf03b63fa69f44",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93483": {
+  "sha": "fc106702cc7b1424e6630bd8ed3a6f91b2d18bc3",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-116366": {
+  "sha": "ea53c7eafda6f5c8f7268d63f6b0c6f9a33c0029",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-94620": {
+  "sha": "d4a4f9ebd4416d8dd327f12a7369c690c23d8943",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-14984": {
+  "sha": "c94fb68410d01939499386ee5386209b4043f416",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-55395": {
+  "sha": "64de234c39d73ab1f5765d3b6ea0e3908a41b1aa",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-18397": {
+  "sha": "81748b52fec5ea3b146796b6f9d9381687080e09",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103765": {
+  "sha": "92d74a394372803e11d3e1c809eff8ee7f100c49",
+  "exploitation": "poc",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-86325": {
+  "sha": "ec92b7266b583259835a7e0c8009964bc5b9d44d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-104480": {
+  "sha": "8dd0cb10b558eab436d8b5864c28c471aa57f381",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-75937": {
+  "sha": "ed96a55d7a7d85cbacef6422b3a1e2cbde7db0e1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105863": {
+  "sha": "8196aa7eca617dd4c0603613917f2c2771b48f68",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-95102": {
+  "sha": "92346ec19b7f1181e1424d3eb7eddde9e2831ac3",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-64393": {
+  "sha": "69cf2a6d1506bad51605b574fc2d8a83725ba558",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-107282": {
+  "sha": "4214124e422ed46bedde7e7ad83b169f206a9607",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-96408": {
+  "sha": "b3a5a951f29d0fea5148bdae4c291909863050fc",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-93582": {
+  "sha": "3e810e97b0a338ca558c381a4a60a05ca5165257",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-103663": {
+  "sha": "2157db1c2e36d1a14f097ffe3603d0e4911954a6",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105445": {
+  "sha": "57ddfd2ffec6ed2ea3f11de4357e61a7d51a7bbf",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-88092": {
+  "sha": "44e466d7eb1a4d78142ccddece47658f4299ac7c",
+  "exploitation": "none",
+  "automatable": "yes",
+  "technical_impact": "total"
+ },
+ "CVE-2026-16438": {
+  "sha": "a2381bf88f23bf3765d23f448a46d6294c24980d",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-50612": {
+  "sha": "43bbebe9013136dcd1d843a0af8f8b4a34663bbb",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-30047": {
+  "sha": "d0923e65a6972defcbde0bdc4197ba07deb5e8cf",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2026-105474": {
+  "sha": "56df491e74872ab7d70537bc45990a0c38f95c21",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ },
+ "CVE-2025-30050": {
+  "sha": "92568c747f2d18355417f3fd0305f21db08586b1",
+  "exploitation": "none",
+  "automatable": "no",
+  "technical_impact": "total"
+ }
+}

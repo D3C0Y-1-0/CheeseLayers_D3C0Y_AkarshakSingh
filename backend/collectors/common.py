@@ -8,12 +8,15 @@ import json
 import logging
 import os
 import time
+from collections import defaultdict
 from pathlib import Path
 from urllib.parse import urlparse
 
 import httpx
 from pydantic_core import to_jsonable_python
 from tenacity import retry, retry_if_exception, stop_after_attempt, wait_exponential
+
+from .schema import IOC, ThreatItem
 
 BASE = Path(__file__).resolve().parent.parent  # backend/
 RAW = BASE / "data" / "raw"
@@ -73,6 +76,12 @@ def request(method: str, url: str, *, min_interval: float = 1.0, **kw) -> httpx.
     return r
 
 
+def github_headers() -> dict:
+    # Optional token lifts GitHub's API limit from 60 to 5000 requests/hour.
+    token = env("GITHUB_TOKEN")
+    return {"Authorization": f"Bearer {token}"} if token else {}
+
+
 def get(url: str, **kw) -> httpx.Response:
     return request("GET", url, **kw)
 
@@ -103,3 +112,23 @@ def save_cache(source: str, items) -> Path:
 def load_cache(source: str):
     path = CACHE / f"{source}.json"
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
+
+
+def ioc_batches(iocs: list[IOC], urls: dict[str, str], label: str) -> list[ThreatItem]:
+    """One 'ioc_batch' ThreatItem per feed + malware family ("threatfox: 120 Cobalt Strike indicators"),
+    and point each IOC at it so a log hit on the IOC can be traced back to a threat."""
+    groups: dict[tuple[str, str], list[IOC]] = defaultdict(list)
+    for i in iocs:
+        groups[(i.source, i.malware_family or "unknown")].append(i)
+    items = []
+    for (src, family), group in groups.items():
+        tid = f"{src}:{family.lower().replace(' ', '_')}"
+        for i in group:
+            i.related_threat_id = tid
+        items.append(ThreatItem(
+            id=tid, source=src, type="ioc_batch", title=f"{src}: {len(group)} {family} indicators",
+            description=f"{len(group)} indicators of compromise linked to {family}, reported by {label} {src}.",
+            published_at=max((i.first_seen for i in group if i.first_seen), default=None),
+            url=urls.get(src), tags=[label, src, family],
+        ))
+    return items

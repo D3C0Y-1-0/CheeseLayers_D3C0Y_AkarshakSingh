@@ -1,0 +1,6755 @@
+{
+ "CVE-2024-34102": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2019-13608": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1046",
+   "name": "Network Service Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-4671": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-21608": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-3038": [
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1204.001",
+   "name": "Malicious Link",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-37975": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1059.007",
+   "name": "JavaScript",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-30554": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.007",
+   "name": "JavaScript",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-29256": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-28550": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-22893": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-21206": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.007",
+   "name": "JavaScript",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2018-4878": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1041",
+   "name": "Exfiltration Over C2 Channel",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1219",
+   "name": "Remote Access Software",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2018-15982": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2016-7855": [
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2016-0984": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2015-5119": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1071.001",
+   "name": "Web Protocols",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1055.001",
+   "name": "Dynamic-link Library Injection",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1204.001",
+   "name": "Malicious Link",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.007",
+   "name": "JavaScript",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1566.002",
+   "name": "Spearphishing Link",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2015-0313": [
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2014-0496": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2009-4324": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1071.001",
+   "name": "Web Protocols",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-27038": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-21335": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-21334": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-24085": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-32709": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1543",
+   "name": "Create or Modify System Process",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1608.001",
+   "name": "Upload Malware",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-32701": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1543",
+   "name": "Create or Modify System Process",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1003.001",
+   "name": "LSASS Memory",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1608.001",
+   "name": "Upload Malware",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-30400": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1112",
+   "name": "Modify Registry",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-29464": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1202",
+   "name": "Indirect Command Execution",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-3129": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-27860": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-22900": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-22005": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2018-15961": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1491.002",
+   "name": "External Defacement",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-57968": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-31324": [
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1602",
+   "name": "Data from Configuration Repository",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-5274": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2024-4947": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2017-11292": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1566.001",
+   "name": "Spearphishing Attachment",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-6554": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-30397": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-48788": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-34362": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1531",
+   "name": "Account Access Removal",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1136",
+   "name": "Create Account",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1082",
+   "name": "System Information Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-42258": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-27101": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2025-25257": [
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.004",
+   "name": "Unix Shell",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1485",
+   "name": "Data Destruction",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2025-25181": [
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1485",
+   "name": "Data Destruction",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2020-29574": [
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-38112": [
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1204.001",
+   "name": "Malicious Link",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-24054": [
+  {
+   "id": "T1566",
+   "name": "Phishing",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1555",
+   "name": "Credentials from Password Stores",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-21893": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1555",
+   "name": "Credentials from Password Stores",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-27103": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-21975": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-21973": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1046",
+   "name": "Network Service Discovery",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-2533": [
+  {
+   "id": "T1566.002",
+   "name": "Spearphishing Link",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1547",
+   "name": "Boot or Logon Autostart Execution",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-34028": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.007",
+   "name": "JavaScript",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-21715": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-31207": [
+  {
+   "id": "T1565",
+   "name": "Data Manipulation",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1548.002",
+   "name": "Bypass User Account Control",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2015-0310": [
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-31201": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1562",
+   "name": "Impair Defenses",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1106",
+   "name": "Native API",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1001",
+   "name": "Data Obfuscation",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1557",
+   "name": "Adversary-in-the-Middle",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2025-0411": [
+  {
+   "id": "T1566.001",
+   "name": "Spearphishing Attachment",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1553.005",
+   "name": "Mark-of-the-Web Bypass",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1588.001",
+   "name": "Malware",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-21413": [
+  {
+   "id": "T1566.002",
+   "name": "Spearphishing Link",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2014-0546": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1497",
+   "name": "Virtualization/Sandbox Evasion",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-2783": [
+  {
+   "id": "T1497",
+   "name": "Virtualization/Sandbox Evasion",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1548",
+   "name": "Abuse Elevation Control Mechanism",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-21166": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1059.007",
+   "name": "JavaScript",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-27524": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-50302": [
+  {
+   "id": "T1091",
+   "name": "Replication Through Removable Media",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1011",
+   "name": "Exfiltration Over Other Network Medium",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-38080": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-30051": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-20359": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1037",
+   "name": "Boot or Logon Initialization Scripts",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-28252": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1021",
+   "name": "Remote Services",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1136",
+   "name": "Create Account",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-28229": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-23397": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1550.002",
+   "name": "Pass the Hash",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-21674": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-20198": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1136",
+   "name": "Create Account",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-41125": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-41073": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-41033": [
+  {
+   "id": "T1566.001",
+   "name": "Spearphishing Attachment",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-37969": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-26904": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-24521": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-22960": [
+  {
+   "id": "T1222",
+   "name": "File and Directory Permissions Modification",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-22718": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-22047": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1547.001",
+   "name": "Registry Run Keys / Startup Folder",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-21999": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1136.001",
+   "name": "Local Account",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1211",
+   "name": "Exploitation for Defense Evasion",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-21919": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-41379": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-40449": [
+  {
+   "id": "T1566",
+   "name": "Phishing",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1573.001",
+   "name": "Symmetric Cryptography",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1071.001",
+   "name": "Web Protocols",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1016",
+   "name": "System Network Configuration Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1082",
+   "name": "System Information Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059.003",
+   "name": "Windows Command Shell",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1027",
+   "name": "Obfuscated Files or Information",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-36934": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-34523": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-33739": [
+  {
+   "id": "T1598.002",
+   "name": "Spearphishing Attachment",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2020-1472": [
+  {
+   "id": "T1087.002",
+   "name": "Domain Account",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1087.002",
+   "name": "Domain Account",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1021",
+   "name": "Remote Services",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1110",
+   "name": "Brute Force",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2019-0211": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-21391": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1485",
+   "name": "Data Destruction",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1490",
+   "name": "Inhibit System Recovery",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-1976": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-12686": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-0386": [
+  {
+   "id": "T1055.012",
+   "name": "Process Hollowing",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1548.001",
+   "name": "Setuid and Setgid",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1543",
+   "name": "Create or Modify System Process",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1562",
+   "name": "Impair Defenses",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2014-8439": [
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2018-4990": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.007",
+   "name": "JavaScript",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2024-4978": [
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1071.001",
+   "name": "Web Protocols",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1195.002",
+   "name": "Compromise Software Supply Chain",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2024-23692": [
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1082",
+   "name": "System Information Discovery",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1221",
+   "name": "Template Injection",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-44487": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1499",
+   "name": "Endpoint Denial of Service",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-36845": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-36844": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-20821": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2020-8515": [
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2009-1862": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2008-0655": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-0111": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-58136": [
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-45195": [
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1498.001",
+   "name": "Direct Network Flood",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-38475": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1528",
+   "name": "Steal Application Access Token",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-29059": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-48365": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-23748": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-48928": [
+  {
+   "id": "T1212",
+   "name": "Exploitation for Credential Access",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1555",
+   "name": "Credentials from Password Stores",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-48927": [
+  {
+   "id": "T1212",
+   "name": "Exploitation for Credential Access",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1555",
+   "name": "Credentials from Password Stores",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-3928": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2025-35939": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2025-33053": [
+  {
+   "id": "T1566.001",
+   "name": "Spearphishing Attachment",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1056.001",
+   "name": "Keylogging",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1041",
+   "name": "Exfiltration Over C2 Channel",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1543",
+   "name": "Create or Modify System Process",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2017-11882": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1566.001",
+   "name": "Spearphishing Attachment",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2015-3043": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1499.004",
+   "name": "Application or System Exploitation",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2013-3346": [
+  {
+   "id": "T1059.007",
+   "name": "JavaScript",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2013-0640": [
+  {
+   "id": "T1566.001",
+   "name": "Spearphishing Attachment",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2012-2034": [
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2012-0754": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2010-1297": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-31200": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1562",
+   "name": "Impair Defenses",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1106",
+   "name": "Native API",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1001",
+   "name": "Data Obfuscation",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1557",
+   "name": "Adversary-in-the-Middle",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2025-21480": [
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1495",
+   "name": "Firmware Corruption",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2011-2462": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-2136": [
+  {
+   "id": "T1204.001",
+   "name": "Malicious Link",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2016-1010": [
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2015-8651": [
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2012-5054": [
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-24985": [
+  {
+   "id": "T1091",
+   "name": "Replication Through Removable Media",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-26169": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1112",
+   "name": "Modify Registry",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-20269": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2020-0787": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-22948": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1212",
+   "name": "Exploitation for Credential Access",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2019-5591": [
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1557",
+   "name": "Adversary-in-the-Middle",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2024-4577": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1112",
+   "name": "Modify Registry",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1053",
+   "name": "Scheduled Task/Job",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1543",
+   "name": "Create or Modify System Process",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1033",
+   "name": "System Owner/User Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1071.001",
+   "name": "Web Protocols",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1570",
+   "name": "Lateral Tool Transfer",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1003.001",
+   "name": "LSASS Memory",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1041",
+   "name": "Exfiltration Over C2 Channel",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-21887": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1552",
+   "name": "Unsecured Credentials",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-20399": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-49897": [
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1498",
+   "name": "Network Denial of Service",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-47565": [
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1498",
+   "name": "Network Denial of Service",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-20887": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-20273": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-1389": [
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1041",
+   "name": "Exfiltration Over C2 Channel",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1070",
+   "name": "Indicator Removal",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1498",
+   "name": "Network Denial of Service",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1106",
+   "name": "Native API",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-36804": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-29303": [
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1505",
+   "name": "Server Software Component",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-27104": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-27102": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-22899": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.003",
+   "name": "Windows Command Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-1498": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-1497": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2020-25506": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1584.005",
+   "name": "Botnet",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-20337": [
+  {
+   "id": "T1106",
+   "name": "Native API",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-20281": [
+  {
+   "id": "T1106",
+   "name": "Native API",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-6047": [
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-50603": [
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-41710": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-12987": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-11120": [
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1498",
+   "name": "Network Denial of Service",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-44221": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1548",
+   "name": "Abuse Elevation Control Mechanism",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.004",
+   "name": "Unix Shell",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1543",
+   "name": "Create or Modify System Process",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-39780": [
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1588",
+   "name": "Obtain Capabilities",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.004",
+   "name": "Unix Shell",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1021.004",
+   "name": "SSH",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-33538": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-20035": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-33246": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1608.001",
+   "name": "Upload Malware",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-42237": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-1316": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-40891": [
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1011",
+   "name": "Exfiltration Over Other Network Medium",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-40890": [
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1011",
+   "name": "Exfiltration Over Other Network Medium",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-7024": [
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-6549": [
+  {
+   "id": "T1499",
+   "name": "Endpoint Denial of Service",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-5217": [
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1204.001",
+   "name": "Malicious Link",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-4966": [
+  {
+   "id": "T1134.001",
+   "name": "Token Impersonation/Theft",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-27997": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1136",
+   "name": "Create Account",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-42475": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1071.001",
+   "name": "Web Protocols",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1622",
+   "name": "Debugger Evasion",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-20708": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-20703": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-20701": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-20700": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.004",
+   "name": "Unix Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-20699": [
+  {
+   "id": "T1059.004",
+   "name": "Unix Shell",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-22894": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-21148": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1059.007",
+   "name": "JavaScript",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-21017": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2020-5735": [
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1499",
+   "name": "Endpoint Denial of Service",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2020-29557": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1584.005",
+   "name": "Botnet",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2018-6789": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2015-3113": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1622",
+   "name": "Debugger Evasion",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1497",
+   "name": "Virtualization/Sandbox Evasion",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1071.001",
+   "name": "Web Protocols",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2013-0641": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1048",
+   "name": "Exfiltration Over Alternative Protocol",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2010-2883": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1027",
+   "name": "Obfuscated Files or Information",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2007-5659": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-24993": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1204",
+   "name": "User Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1565",
+   "name": "Data Manipulation",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2025-21333": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-21418": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-22457": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-0282": [
+  {
+   "id": "T1595",
+   "name": "Active Scanning",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1046",
+   "name": "Network Service Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1018",
+   "name": "Remote System Discovery",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2025-6543": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1498",
+   "name": "Network Denial of Service",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2025-42599": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1588.006",
+   "name": "Vulnerabilities",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1499",
+   "name": "Endpoint Denial of Service",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-32756": [
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1608.001",
+   "name": "Upload Malware",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1046",
+   "name": "Network Service Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1070.004",
+   "name": "File Deletion",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1041",
+   "name": "Exfiltration Over C2 Channel",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2025-32706": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1543",
+   "name": "Create or Modify System Process",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1003.001",
+   "name": "LSASS Memory",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1608.001",
+   "name": "Upload Malware",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-7101": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-41179": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-38831": [
+  {
+   "id": "T1204",
+   "name": "User Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1041",
+   "name": "Exfiltration Over C2 Channel",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1112",
+   "name": "Modify Registry",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1053",
+   "name": "Scheduled Task/Job",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059.004",
+   "name": "Unix Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-36884": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1489",
+   "name": "Service Stop",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1490",
+   "name": "Inhibit System Recovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1566",
+   "name": "Phishing",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1070.001",
+   "name": "Clear Windows Event Logs",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1553.005",
+   "name": "Mark-of-the-Web Bypass",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-22952": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1530",
+   "name": "Data from Cloud Storage",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1021.001",
+   "name": "Remote Desktop Protocol",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1482",
+   "name": "Domain Trust Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1083",
+   "name": "File and Directory Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1562.001",
+   "name": "Disable or Modify Tools",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1070.004",
+   "name": "File Deletion",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-0669": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1210",
+   "name": "Exploitation of Remote Services",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-47966": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1136.001",
+   "name": "Local Account",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-42948": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-41128": [
+  {
+   "id": "T1566",
+   "name": "Phishing",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1070",
+   "name": "Indicator Removal",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2022-41082": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1567",
+   "name": "Exfiltration Over Web Service",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1482",
+   "name": "Domain Trust Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1087",
+   "name": "Account Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059.001",
+   "name": "PowerShell",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1059.001",
+   "name": "PowerShell",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-35914": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-35405": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-34713": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1566",
+   "name": "Phishing",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2022-30190": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-28810": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-26501": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1036",
+   "name": "Masquerading",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1048",
+   "name": "Exfiltration Over Alternative Protocol",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2022-26500": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1036",
+   "name": "Masquerading",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1048",
+   "name": "Exfiltration Over Alternative Protocol",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2022-26258": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1499.002",
+   "name": "Service Exhaustion Flood",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2022-26134": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-22965": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-22963": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059.007",
+   "name": "JavaScript",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-21971": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1204.001",
+   "name": "Malicious Link",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-45382": [
+  {
+   "id": "T1071",
+   "name": "Application Layer Protocol",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1499.002",
+   "name": "Service Exhaustion Flood",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1543",
+   "name": "Create or Modify System Process",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1070",
+   "name": "Indicator Removal",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-44228": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1608.001",
+   "name": "Upload Malware",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-44077": [
+  {
+   "id": "T1087.002",
+   "name": "Domain Account",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1573.001",
+   "name": "Symmetric Cryptography",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1560.001",
+   "name": "Archive via Utility",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1070.004",
+   "name": "File Deletion",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1047",
+   "name": "Windows Management Instrumentation",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1003.003",
+   "name": "NTDS",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1136",
+   "name": "Create Account",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1218",
+   "name": "System Binary Proxy Execution",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1140",
+   "name": "Deobfuscate/Decode Files or Information",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1027",
+   "name": "Obfuscated Files or Information",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-42321": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-39144": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-35464": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-35394": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1499",
+   "name": "Endpoint Denial of Service",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1569.002",
+   "name": "Service Execution",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1071.001",
+   "name": "Web Protocols",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-34473": [
+  {
+   "id": "T1053.005",
+   "name": "Scheduled Task",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1048.003",
+   "name": "Exfiltration Over Unencrypted Non-C2 Protocol",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1136",
+   "name": "Create Account",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-31166": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-27065": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-27059": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-26858": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-26857": [
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-26855": [
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1090",
+   "name": "Proxy",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-22986": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1485",
+   "name": "Data Destruction",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1090",
+   "name": "Proxy",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-22205": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1498",
+   "name": "Network Denial of Service",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1498",
+   "name": "Network Denial of Service",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-22204": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-21972": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2020-5902": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1562.001",
+   "name": "Disable or Modify Tools",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1070.004",
+   "name": "File Deletion",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1552",
+   "name": "Unsecured Credentials",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2020-17530": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2020-15505": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2020-0688": [
+  {
+   "id": "T1114",
+   "name": "Email Collection",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1110",
+   "name": "Brute Force",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2019-19781": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1083",
+   "name": "File and Directory Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2019-17558": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2019-11634": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1046",
+   "name": "Network Service Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2019-11580": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2019-0708": [
+  {
+   "id": "T1498",
+   "name": "Network Denial of Service",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059.004",
+   "name": "Unix Shell",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2019-0604": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1041",
+   "name": "Exfiltration Over C2 Channel",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1608.001",
+   "name": "Upload Malware",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2018-7600": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1485",
+   "name": "Data Destruction",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2018-11776": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2017-9822": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2017-6742": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1542.005",
+   "name": "TFTP Boot",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1048",
+   "name": "Exfiltration Over Alternative Protocol",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2017-5638": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2016-4437": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2016-4117": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2016-1019": [
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2015-7645": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2014-7169": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.004",
+   "name": "Unix Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2014-6271": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.004",
+   "name": "Unix Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2012-1535": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2011-0611": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2010-0188": [
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2009-3953": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-20118": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2016-10033": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.004",
+   "name": "Unix Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-5217": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-4879": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-2868": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1566.001",
+   "name": "Spearphishing Attachment",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1041",
+   "name": "Exfiltration Over C2 Channel",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2022-3075": [
+  {
+   "id": "T1204.001",
+   "name": "Malicious Link",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-24086": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1213",
+   "name": "Data from Information Repositories",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1027",
+   "name": "Obfuscated Files or Information",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2020-0069": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2008-2992": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-6558": [
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1497",
+   "name": "Virtualization/Sandbox Evasion",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-47812": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-4761": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2024-21762": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1547.009",
+   "name": "Shortcut Modification",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-34048": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1588.001",
+   "name": "Malware",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-26369": [
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-20109": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1499",
+   "name": "Endpoint Denial of Service",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-4034": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-43200": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-5419": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-22226": [
+  {
+   "id": "T1611",
+   "name": "Escape to Host",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-27363": [
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1499.004",
+   "name": "Application or System Exploitation",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1204.002",
+   "name": "Malicious File",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-24201": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-22225": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1611",
+   "name": "Escape to Host",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-22224": [
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1611",
+   "name": "Escape to Host",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-24991": [
+  {
+   "id": "T1091",
+   "name": "Replication Through Removable Media",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-53197": [
+  {
+   "id": "T1091",
+   "name": "Replication Through Removable Media",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-53150": [
+  {
+   "id": "T1091",
+   "name": "Replication Through Removable Media",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1011",
+   "name": "Exfiltration Over Other Network Medium",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-53104": [
+  {
+   "id": "T1091",
+   "name": "Replication Through Removable Media",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-5777": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1555",
+   "name": "Credentials from Password Stores",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-4358": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2024-37085": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1608.001",
+   "name": "Upload Malware",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-27198": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-46805": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1555",
+   "name": "Credentials from Password Stores",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-42793": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.003",
+   "name": "Windows Command Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-38035": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1571",
+   "name": "Non-Standard Port",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1071.001",
+   "name": "Web Protocols",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1018",
+   "name": "Remote System Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1046",
+   "name": "Network Service Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1557.001",
+   "name": "LLMNR/NBT-NS Poisoning and SMB Relay",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-35078": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1213",
+   "name": "Data from Information Repositories",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1136",
+   "name": "Create Account",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-20867": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2022-40684": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1098.004",
+   "name": "SSH Authorized Keys",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-23131": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1548",
+   "name": "Abuse Elevation Control Mechanism",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-1040": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1040",
+   "name": "Network Sniffing",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1557",
+   "name": "Adversary-in-the-Middle",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-44515": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1069",
+   "name": "Permission Groups Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1087",
+   "name": "Account Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-40539": [
+  {
+   "id": "T1087.002",
+   "name": "Domain Account",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1573.001",
+   "name": "Symmetric Cryptography",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1560.001",
+   "name": "Archive via Utility",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1070.004",
+   "name": "File Deletion",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1047",
+   "name": "Windows Management Instrumentation",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1003.003",
+   "name": "NTDS",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1136",
+   "name": "Create Account",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1218",
+   "name": "System Binary Proxy Execution",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1140",
+   "name": "Deobfuscate/Decode Files or Information",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1027",
+   "name": "Obfuscated Files or Information",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-39226": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1485",
+   "name": "Data Destruction",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-37415": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2020-8193": [
+  {
+   "id": "T1556",
+   "name": "Modify Authentication Process",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2020-12812": [
+  {
+   "id": "T1556",
+   "name": "Modify Authentication Process",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1556",
+   "name": "Modify Authentication Process",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2013-0632": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2013-0625": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-0108": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1565.001",
+   "name": "Stored Data Manipulation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-55591": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1555",
+   "name": "Credentials from Password Stores",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1021",
+   "name": "Remote Services",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-54085": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1495",
+   "name": "Firmware Corruption",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1608.001",
+   "name": "Upload Malware",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1210",
+   "name": "Exploitation of Remote Services",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1499",
+   "name": "Endpoint Denial of Service",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-43939": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-32030": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1040",
+   "name": "Network Sniffing",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1098",
+   "name": "Account Manipulation",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-54309": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1567",
+   "name": "Exfiltration Over Web Service",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1021",
+   "name": "Remote Services",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2025-4427": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2025-31161": [
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1136",
+   "name": "Create Account",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-24919": [
+  {
+   "id": "T1202",
+   "name": "Indirect Command Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1003.003",
+   "name": "NTDS",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1003.008",
+   "name": "/etc/passwd and /etc/shadow",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059.004",
+   "name": "Unix Shell",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-49103": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1552",
+   "name": "Unsecured Credentials",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-38205": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-29298": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-27350": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-22518": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1033",
+   "name": "System Owner/User Discovery",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-22515": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059.007",
+   "name": "JavaScript",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1136",
+   "name": "Create Account",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-44168": [
+  {
+   "id": "T1078.003",
+   "name": "Local Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1601",
+   "name": "Modify System Image",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-40655": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-26085": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-22017": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1090.001",
+   "name": "Internal Proxy",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2020-8196": [
+  {
+   "id": "T1056",
+   "name": "Input Capture",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1082",
+   "name": "System Information Discovery",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2020-8195": [
+  {
+   "id": "T1056",
+   "name": "Input Capture",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1082",
+   "name": "System Information Discovery",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2019-1653": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1007",
+   "name": "System Service Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1082",
+   "name": "System Information Discovery",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2019-11510": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1083",
+   "name": "File and Directory Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1552.001",
+   "name": "Credentials In Files",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2013-0631": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1592",
+   "name": "Gather Victim Host Information",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2009-3960": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-53704": [
+  {
+   "id": "T1199",
+   "name": "Trusted Relationship",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1212",
+   "name": "Exploitation for Credential Access",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1078.004",
+   "name": "Cloud Accounts",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1083",
+   "name": "File and Directory Discovery",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1021.001",
+   "name": "Remote Desktop Protocol",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-49035": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1530",
+   "name": "Data from Cloud Storage",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1195",
+   "name": "Supply Chain Compromise",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-49706": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1505",
+   "name": "Server Software Component",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1059.003",
+   "name": "Windows Command Shell",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2025-3935": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-20353": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1608.001",
+   "name": "Upload Malware",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1653",
+   "name": "Power Settings",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1037",
+   "name": "Boot or Logon Initialization Scripts",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2022-0028": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1498",
+   "name": "Network Denial of Service",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2018-0296": [
+  {
+   "id": "T1202",
+   "name": "Indirect Command Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-6548": [
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-3519": [
+  {
+   "id": "T1087.002",
+   "name": "Domain Account",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-22947": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2021-44529": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1195.002",
+   "name": "Compromise Software Supply Chain",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-21590": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-56145": [
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-43769": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-49704": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.003",
+   "name": "Windows Command Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-4428": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1543",
+   "name": "Create or Modify System Process",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-5631": [
+  {
+   "id": "T1041",
+   "name": "Exfiltration Over C2 Channel",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059.007",
+   "name": "JavaScript",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1204.001",
+   "name": "Malicious Link",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-43770": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1082",
+   "name": "System Information Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1189",
+   "name": "Drive-by Compromise",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-39197": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-24682": [
+  {
+   "id": "T1185",
+   "name": "Browser Session Hijacking",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059.007",
+   "name": "JavaScript",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1204.001",
+   "name": "Malicious Link",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2020-3580": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1217",
+   "name": "Browser Information Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1204.001",
+   "name": "Malicious Link",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2012-0767": [
+  {
+   "id": "T1114.002",
+   "name": "Remote Email Collection",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1098",
+   "name": "Account Manipulation",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1185",
+   "name": "Browser Session Hijacking",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1204.001",
+   "name": "Malicious Link",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2024-42009": [
+  {
+   "id": "T1566.002",
+   "name": "Spearphishing Link",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1114",
+   "name": "Email Collection",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1056",
+   "name": "Input Capture",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-27443": [
+  {
+   "id": "T1566.002",
+   "name": "Spearphishing Link",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.004",
+   "name": "Unix Shell",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1114",
+   "name": "Email Collection",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1041",
+   "name": "Exfiltration Over C2 Channel",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-11182": [
+  {
+   "id": "T1566",
+   "name": "Phishing",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1567",
+   "name": "Exfiltration Over Web Service",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-34192": [
+  {
+   "id": "T1055",
+   "name": "Process Injection",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1185",
+   "name": "Browser Session Hijacking",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-46604": [
+  {
+   "id": "T1053.005",
+   "name": "Scheduled Task",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.004",
+   "name": "Unix Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-40044": [
+  {
+   "id": "T1202",
+   "name": "Indirect Command Execution",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1071.002",
+   "name": "File Transfer Protocols",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-38203": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-29492": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2023-29300": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-26360": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1071.001",
+   "name": "Web Protocols",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1046",
+   "name": "Network Service Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1003.001",
+   "name": "LSASS Memory",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1036.005",
+   "name": "Match Legitimate Name or Location",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1484.001",
+   "name": "Group Policy Modification",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059.007",
+   "name": "JavaScript",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-26359": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-45046": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2019-18935": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1041",
+   "name": "Exfiltration Over C2 Channel",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2018-4939": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2017-9805": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-23006": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-0994": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-20953": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-24016": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1078",
+   "name": "Valid Accounts",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-53770": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-42999": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-36851": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-36847": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-36846": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-27532": [
+  {
+   "id": "T1486",
+   "name": "Data Encrypted for Impact",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1087",
+   "name": "Account Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1555",
+   "name": "Credentials from Password Stores",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1087.001",
+   "name": "Local Account",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059.003",
+   "name": "Windows Command Shell",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-1388": [
+  {
+   "id": "T1548",
+   "name": "Abuse Elevation Control Mechanism",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2025-3248": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-32433": [
+  {
+   "id": "T1021.004",
+   "name": "SSH",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-35081": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-32315": [
+  {
+   "id": "T1087.002",
+   "name": "Domain Account",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1202",
+   "name": "Indirect Command Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2022-41328": [
+  {
+   "id": "T1049",
+   "name": "System Network Connections Discovery",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1565.001",
+   "name": "Stored Data Manipulation",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1037",
+   "name": "Boot or Logon Initialization Scripts",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1574",
+   "name": "Hijack Execution Flow",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-42013": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1210",
+   "name": "Exploitation of Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-41773": [
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1210",
+   "name": "Exploitation of Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2020-3452": [
+  {
+   "id": "T1202",
+   "name": "Indirect Command Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2019-3398": [
+  {
+   "id": "T1202",
+   "name": "Indirect Command Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2018-13379": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2013-0629": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1202",
+   "name": "Indirect Command Execution",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2010-2861": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1119",
+   "name": "Automated Collection",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1105",
+   "name": "Ingress Tool Transfer",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-57727": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1552.001",
+   "name": "Credentials In Files",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1552.004",
+   "name": "Private Keys",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-55550": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1041",
+   "name": "Exfiltration Over C2 Channel",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-4885": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-48248": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1003",
+   "name": "OS Credential Dumping",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-41713": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2024-13161": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1558",
+   "name": "Steal or Forge Kerberos Tickets",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1550.002",
+   "name": "Pass the Hash",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1087",
+   "name": "Account Discovery",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-13160": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1558",
+   "name": "Steal or Forge Kerberos Tickets",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1550.002",
+   "name": "Pass the Hash",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1087",
+   "name": "Account Discovery",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-13159": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1558",
+   "name": "Steal or Forge Kerberos Tickets",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1550.002",
+   "name": "Pass the Hash",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1087",
+   "name": "Account Discovery",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2024-0769": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2023-38950": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1005",
+   "name": "Data from Local System",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2017-12637": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1083",
+   "name": "File and Directory Discovery",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1592",
+   "name": "Gather Victim Host Information",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1555",
+   "name": "Credentials from Password Stores",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2025-4632": [
+  {
+   "id": "T1068",
+   "name": "Exploitation for Privilege Escalation",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1608.001",
+   "name": "Upload Malware",
+   "mapping_type": "secondary_impact"
+  }
+ ],
+ "CVE-2023-22527": [
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1221",
+   "name": "Template Injection",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-22954": [
+  {
+   "id": "T1505.003",
+   "name": "Web Shell",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1221",
+   "name": "Template Injection",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2021-36380": [
+  {
+   "id": "T1190",
+   "name": "Exploit Public-Facing Application",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059.004",
+   "name": "Unix Shell",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2021-26084": [
+  {
+   "id": "T1496",
+   "name": "Resource Hijacking",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2019-3396": [
+  {
+   "id": "T1202",
+   "name": "Indirect Command Execution",
+   "mapping_type": "secondary_impact"
+  },
+  {
+   "id": "T1090",
+   "name": "Proxy",
+   "mapping_type": "primary_impact"
+  },
+  {
+   "id": "T1133",
+   "name": "External Remote Services",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2022-26138": [
+  {
+   "id": "T1552.001",
+   "name": "Credentials In Files",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2020-8657": [
+  {
+   "id": "T1106",
+   "name": "Native API",
+   "mapping_type": "exploitation_technique"
+  }
+ ],
+ "CVE-2024-20439": [
+  {
+   "id": "T1552",
+   "name": "Unsecured Credentials",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1106",
+   "name": "Native API",
+   "mapping_type": "primary_impact"
+  }
+ ],
+ "CVE-2025-30406": [
+  {
+   "id": "T1203",
+   "name": "Exploitation for Client Execution",
+   "mapping_type": "exploitation_technique"
+  },
+  {
+   "id": "T1059",
+   "name": "Command and Scripting Interpreter",
+   "mapping_type": "primary_impact"
+  }
+ ]
+}

@@ -169,8 +169,15 @@ worked example: CVE-2024-21762 (CVSS 9.8, EPSS 0.846, KEV) on PWR-FW-01 (critica
 ## 10. AI components
 1. **LLM analyst summary** per alert: what it is, why it matters to *these* assets, recommended actions (patch version / block IOCs / investigate host), mapped ATT&CK techniques. Strict JSON output, validated.
 2. **Campaign detection:** TF-IDF/embeddings + clustering (e.g. HDBSCAN/KMeans) over advisory/pulse text + shared CVEs/IOCs → group related threats into "emerging campaigns".
-3. **Log anomaly detection:** Isolation Forest on simulated auth/firewall logs (failed logins, rare ports, IOC hits) → suspicious-activity alerts.
-   **Status: evaluated, NOT enabled** (rules alone 8/8, 0 false positives; + Isolation Forest 8/8, 4 false positives). Live detection is rules (Shadow Watch, Attack Lab). See `docs/SCORING_AND_AI.md`.
+3. **Log anomaly detection (Shadow Watch):** five detectors: `SW-HTTP-001`, `SW-PROC-001`, `SW-NET-001`,
+   `SW-AUTH-001` (10+ failed logins/min) and `SW-ML-001` (Isolation Forest).
+   **Isolation Forest status:** enabled **only on the two real SecRepo sensors** (secrepo.com web server Dec 2016,
+   AWS sshd Nov-Dec 2014), trained on the **first 70% of each sensor's minutes**, scoring only that sensor.
+   **Not used on the synthetic scenarios**: there it added 4/142 false positives with no recall gain (rules alone
+   8/8, 0 FP), so they stay rules-only. ML findings are **low severity, low confidence ("unusual, needs review")**
+   and never escalate alone. SecRepo has **no ground-truth labels**, so ML flags are outliers, not confirmed attacks.
+   Evidence: `artifacts/shadow_evaluation.json` (synthetic), `artifacts/shadow_evaluation_real.json` (real). See
+   `README_MEMBER4.md`, `docs/SCORING_AND_AI.md`.
 4. **ATT&CK mapping:** use OTX tags where present; else keyword/embedding match of CVE/advisory text against ATT&CK technique descriptions.
 5. **Early warning rule:** threat becomes a warning when risk ≥ threshold OR (in_kev AND matches any asset) OR campaign volume spikes.
 

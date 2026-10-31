@@ -293,7 +293,7 @@ export function BlueprintFooter() {
       </div>
 
       <div className="bp-bar">
-        <p className="bp-note">©2026 Vectra. Built by team CheeseLayers for D3COY 1.0, problem statement 01.</p>
+        <p className="bp-note">©2026 Vectra. Built by team Vectra for D3COY 1.0, problem statement 01.</p>
         <nav aria-label="Footer" className="bp-links">
           <RollLink to="/app">Dashboard</RollLink>
           <RollLink href="#score">Risk score</RollLink>

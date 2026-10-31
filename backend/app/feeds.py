@@ -8,6 +8,7 @@ from pydantic import BaseModel
 from sqlalchemy import case, delete, func, or_, select
 from sqlalchemy.orm import Session
 
+from ai.grounded import llm_status
 from collectors.schema import ThreatItem
 
 from . import hooks
@@ -26,6 +27,7 @@ class Health(BaseModel):
     threats: int
     time: datetime
     scheduler: list[dict] | None  # [{id, every_hours, next_run_time}]; null = disabled (DEMO_MODE)
+    llm: dict | None = None  # {cloud_enabled, provider, reason, cached_reports}: drives the UI AI badge
 
 
 class ThreatPage(BaseModel):
@@ -107,7 +109,7 @@ def health(request: Request, db: Session = Depends(get_db)):
     jobs = [{"id": j.id, "every_hours": j.trigger.interval.total_seconds() / 3600,
              "next_run_time": j.next_run_time.isoformat() if j.next_run_time else None} for j in sched.get_jobs()] if sched else None
     return Health(status="ok", demo_mode=DEMO_MODE, threats=db.scalar(select(func.count()).select_from(Threat)),
-                  time=datetime.now(timezone.utc), scheduler=jobs)
+                  time=datetime.now(timezone.utc), scheduler=jobs, llm=llm_status())
 
 
 @router.get("/api/threats", response_model=ThreatPage, tags=["threats"])
@@ -370,7 +372,7 @@ def simulate_signal(body: SimulateRequest, db: Session = Depends(get_db)):
         details |= {"cve_id": row.cve_id, "kev_date_added": str(row.kev_date_added or today), "title": row.title}
     elif typ == "new_public_exploit":
         old = None
-        new = {"source": "github_poc", "repo": f"netrax-demo/{row.threat_id.lower()}-poc"}
+        new = {"source": "github_poc", "repo": f"vectra-demo/{row.threat_id.lower()}-poc"}
         if synthetic:
             row.public_exploit = True
         details |= new | {"quality_filtered": True}

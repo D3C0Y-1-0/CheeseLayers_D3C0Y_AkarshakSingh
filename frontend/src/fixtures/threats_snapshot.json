@@ -282,7 +282,7 @@
 {
 "threat_id": "DEMO-VULN-001",
 "cve_id": null,
-"source": "netrax_synthetic",
+"source": "vectra_synthetic",
 "title": "[SIMULATED] GridView HMI unauthenticated remote command execution",
 "description": "SIMULATED advisory for demo only. A crafted request to the HMI web service lets an unauthenticated attacker run commands. Matches PWR-HMI-01 (4.2.1).",
 "cvss": 9.8,
@@ -294,9 +294,9 @@
 "public_exploit": null,
 "affected_configurations": [
 {
-"vendor": "netrax_demo_vendor",
+"vendor": "vectra_demo_vendor",
 "product": "gridview_hmi",
-"cpe": "cpe:2.3:a:netrax_demo_vendor:gridview_hmi:*:*:*:*:*:*:*:*",
+"cpe": "cpe:2.3:a:vectra_demo_vendor:gridview_hmi:*:*:*:*:*:*:*:*",
 "version_start_including": "4.0.0",
 "version_start_excluding": null,
 "version_end_including": null,
@@ -316,7 +316,7 @@
 {
 "threat_id": "DEMO-VULN-002",
 "cve_id": null,
-"source": "netrax_synthetic",
+"source": "vectra_synthetic",
 "title": "[SIMULATED] CoreLink Banking Gateway authentication bypass",
 "description": "SIMULATED advisory for demo only. Missing check on an internal API allows session forgery. Matches BNK-CBS-01 (3.0.5).",
 "cvss": 8.1,
@@ -328,9 +328,9 @@
 "public_exploit": null,
 "affected_configurations": [
 {
-"vendor": "netrax_demo_vendor",
+"vendor": "vectra_demo_vendor",
 "product": "corelink_banking_gateway",
-"cpe": "cpe:2.3:a:netrax_demo_vendor:corelink_banking_gateway:*:*:*:*:*:*:*:*",
+"cpe": "cpe:2.3:a:vectra_demo_vendor:corelink_banking_gateway:*:*:*:*:*:*:*:*",
 "version_start_including": null,
 "version_start_excluding": null,
 "version_end_including": "3.0.5",
@@ -350,7 +350,7 @@
 {
 "threat_id": "DEMO-VULN-003",
 "cve_id": null,
-"source": "netrax_synthetic",
+"source": "vectra_synthetic",
 "title": "[SIMULATED] MediVault PACS path traversal (CVSS not yet assigned)",
 "description": "SIMULATED advisory for demo only. Path traversal in DICOM export. Vendor has not published a score. HLT-PACS-01 runs it but its version is unknown -> requires manual review.",
 "cvss": null,
@@ -362,9 +362,9 @@
 "public_exploit": null,
 "affected_configurations": [
 {
-"vendor": "netrax_demo_vendor",
+"vendor": "vectra_demo_vendor",
 "product": "medivault_pacs",
-"cpe": "cpe:2.3:a:netrax_demo_vendor:medivault_pacs:*:*:*:*:*:*:*:*",
+"cpe": "cpe:2.3:a:vectra_demo_vendor:medivault_pacs:*:*:*:*:*:*:*:*",
 "version_start_including": null,
 "version_start_excluding": null,
 "version_end_including": null,

@@ -1,4 +1,4 @@
-"""Pydantic v2 models for the shared NETRA-X contracts.
+"""Pydantic v2 models for the shared Vectra contracts.
 
 data/contracts.json is the source of truth. These models mirror it field-for-field; nothing in it is
 renamed here. Member 3 needs a few extra fields (the 3 decoupled scores, a 6-stage lifecycle, a 4-state

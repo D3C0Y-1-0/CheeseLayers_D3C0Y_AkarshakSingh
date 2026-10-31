@@ -1,7 +1,7 @@
 {
     "threat_id": "DEMO-VULN-003",
     "cve_id": null,
-    "source": "netrax_synthetic",
+    "source": "vectra_synthetic",
     "title": "[SIMULATED] MediVault PACS path traversal (CVSS not yet assigned)",
     "description": "SIMULATED advisory for demo only. Path traversal in DICOM export. Vendor has not published a score. HLT-PACS-01 runs it but its version is unknown -> requires manual review.",
     "cvss": null,
@@ -13,13 +13,13 @@
     "public_exploit": null,
     "affected_configurations": [
         {
-            "vendor": "netrax_demo_vendor",
+            "vendor": "vectra_demo_vendor",
             "product": "medivault_pacs",
             "version_start_including": null,
             "version_start_excluding": null,
             "version_end_including": null,
             "version_end_excluding": "6.1.0",
-            "cpe": "cpe:2.3:a:netrax_demo_vendor:medivault_pacs:*:*:*:*:*:*:*:*",
+            "cpe": "cpe:2.3:a:vectra_demo_vendor:medivault_pacs:*:*:*:*:*:*:*:*",
             "versions_text": null
         }
     ],
@@ -45,7 +45,7 @@
     "raw_payloads": [
         {
             "id": 65,
-            "source": "netrax_synthetic",
+            "source": "vectra_synthetic",
             "path": "data/threats_synthetic.json",
             "sha256": "e447390975164d91125390571fc5fa2b0c4c58c59df7288d76e5229a3bc8f77d",
             "size_bytes": 4186,

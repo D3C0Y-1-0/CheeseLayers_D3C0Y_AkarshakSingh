@@ -1,9 +1,10 @@
 import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { fixtures, useAlerts, useData, useOverview, when, type Threat } from './api'
+import { ThreatAiSummary } from './AiSummary'
 import { DataNotice, Empty, PageHead, Panel, safeReference, SeverityBadge, Unknown } from './ui'
 
-const SOURCE_NAMES: Record<string, string> = { 'nvd+kev': 'NVD + KEV', nvd: 'NVD', kev: 'CISA KEV', certin: 'CERT-In', otx: 'AlienVault OTX', netrax_synthetic: 'Demo fixture' }
+const SOURCE_NAMES: Record<string, string> = { 'nvd+kev': 'NVD + KEV', nvd: 'NVD', kev: 'CISA KEV', certin: 'CERT-In', otx: 'AlienVault OTX', vectra_synthetic: 'Demo fixture' }
 const name = (s: string) => SOURCE_NAMES[s] ?? s
 type ThreatPage = { items: Threat[]; total: number; page: number; pages: number }
 const sample: ThreatPage = { items: fixtures.threats, total: fixtures.threats.length, page: 1, pages: 1 }
@@ -18,7 +19,8 @@ function ThreatDetail({ threat, connected, close }: { threat: Threat; connected:
     <p>ATT&amp;CK techniques: {threat.attack_techniques.length ? threat.attack_techniques.join(', ') : 'No verified mapping supplied'}</p>
     <ul className="space-y-1">{threat.references.filter(safeReference).map((url) => <li key={url} className="break-all"><a className="text-blue-300 underline" href={url} target="_blank" rel="noreferrer">{url}</a></li>)}</ul>
     {!!record.data.raw_payloads?.length && <details><summary className="cursor-pointer text-blue-300">Raw payload provenance</summary><ul className="mt-3 space-y-2 text-xs">{record.data.raw_payloads.map((r) => <li key={r.path} className="break-all">{r.path} · {r.sha256 ? `SHA-256: ${r.sha256}` : 'Original raw file absent; hash not verified'}</li>)}</ul></details>}
-    {connected && <a className="btn-line inline-block" download={`netrax-${threat.threat_id}.json`} href={`/api/export/stix?threat_id=${encodeURIComponent(threat.threat_id)}`}>Export STIX 2.1</a>}
+    {connected && <a className="btn-line inline-block" download={`vectra-${threat.threat_id}.json`} href={`/api/export/stix?threat_id=${encodeURIComponent(threat.threat_id)}`}>Export STIX 2.1</a>}
+    <ThreatAiSummary threatId={threat.threat_id} enabled={connected} />
   </div></Panel>
 }
 

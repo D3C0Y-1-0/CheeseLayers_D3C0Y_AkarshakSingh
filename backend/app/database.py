@@ -1,4 +1,4 @@
-"""SQLAlchemy engine + session. SQLite file at backend/data/netrax.db (override with NETRAX_DB_URL, e.g. for tests)."""
+"""SQLAlchemy engine + session. SQLite file at backend/data/vectra.db (override with VECTRA_DB_URL, e.g. for tests)."""
 import os
 from datetime import datetime, timezone
 from pathlib import Path
@@ -11,7 +11,7 @@ from collectors.common import DEMO_MODE  # noqa: F401  (one place reads .env + D
 
 BACKEND = Path(__file__).resolve().parent.parent
 ROOT = BACKEND.parent
-DB_URL = os.getenv("NETRAX_DB_URL", f"sqlite:///{BACKEND / 'data' / 'netrax.db'}")
+DB_URL = os.getenv("VECTRA_DB_URL", f"sqlite:///{BACKEND / 'data' / 'vectra.db'}")
 
 engine = create_engine(DB_URL, connect_args={"check_same_thread": False} if DB_URL.startswith("sqlite") else {})
 SessionLocal = sessionmaker(engine, expire_on_commit=False)

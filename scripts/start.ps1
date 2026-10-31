@@ -14,6 +14,6 @@ if (-not $SkipBuild) {
 }
 $env:DEMO_MODE = 'true'
 $env:PYTHONUTF8 = '1'
-Write-Host "Vectra / NETRA-X demo: http://127.0.0.1:$Port/app"
+Write-Host "Vectra demo: http://127.0.0.1:$Port/app"
 Write-Host 'Offline cache mode. Press Ctrl+C to stop.'
 & $pythonPath -X utf8 -m uvicorn app.main:app --app-dir (Join-Path $projectRoot 'backend') --host 127.0.0.1 --port $Port

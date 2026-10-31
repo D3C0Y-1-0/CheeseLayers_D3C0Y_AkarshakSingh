@@ -1,0 +1,74 @@
+{
+  "threat_id": "CVE-2024-21762",
+  "cve_id": "CVE-2024-21762",
+  "is_simulated": false,
+  "summary": "CVE-2024-21762: Fortinet FortiOS Out-of-Bound Write Vulnerability. critical severity, CVSS 9.8. Source: kev.",
+  "affected_summary": "2 asset(s) run an affected version: PWR-FW-01 (nrldc-edge-fw01, 7.2.6, internet-facing), BNK-FW-01 (bank-dc-fw01, 7.0.13, internet-facing).",
+  "exploit_summary": "Listed in CISA KEV (exploited in the wild, added 2024-02-09); EPSS 0.846 (percentile 0.997); public exploit code reported.",
+  "why_it_matters": "Actively exploited elsewhere and present in our inventory: highest remediation priority.",
+  "recommended_actions": [
+    "Plan remediation for PWR-FW-01: upgrade to 7.2.7 or later, or apply the vendor mitigation",
+    "Plan remediation for BNK-FW-01: upgrade to 7.0.14 or later, or apply the vendor mitigation",
+    "Restrict internet exposure of affected interfaces until patched",
+    "Review the source references and the linked incident(s) before acting"
+  ],
+  "affected_assets": [
+    {
+      "asset_id": "PWR-FW-01",
+      "hostname": "nrldc-edge-fw01",
+      "sector": "power",
+      "internet_facing": true,
+      "criticality": 5,
+      "installed": "7.2.6",
+      "match_detail": "confirmed_affected",
+      "fixed_in": "7.2.7",
+      "reason": "installed 7.2.6 is inside the vulnerable range (>= 7.2.0, < 7.2.7)"
+    },
+    {
+      "asset_id": "BNK-FW-01",
+      "hostname": "bank-dc-fw01",
+      "sector": "banking",
+      "internet_facing": true,
+      "criticality": 5,
+      "installed": "7.0.13",
+      "match_detail": "confirmed_affected",
+      "fixed_in": "7.0.14",
+      "reason": "installed 7.0.13 is inside the vulnerable range (>= 7.0.0, < 7.0.14)"
+    }
+  ],
+  "alert_ids": [],
+  "exploit_signals": {
+    "kev_listed": true,
+    "epss": 0.84589,
+    "public_exploit": true,
+    "evidence": {
+      "exploitdb": false,
+      "exploitdb_date": null,
+      "github_poc_ok": null,
+      "github_poc_repo": null
+    },
+    "signals": []
+  },
+  "sources": {
+    "references": [
+      "https://nvd.nist.gov/vuln/detail/CVE-2024-21762",
+      "https://fortiguard.fortinet.com/psirt/FG-IR-24-015",
+      "https://fortiguard.com/psirt/FG-IR-24-015",
+      "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-21762"
+    ],
+    "raw_refs": [
+      "backend/data/raw/kev/latest.json",
+      "backend/data/raw/nvd_kev/all_0.json"
+    ]
+  },
+  "language": "en",
+  "analyst_review_required": true,
+  "generated_by": "template",
+  "fallback_reason": "offline_mode",
+  "validation": {
+    "passed": null,
+    "checked_tokens": 0,
+    "rejected_tokens": [],
+    "note": "Deterministic template built only from stored facts; no language model involved."
+  }
+}

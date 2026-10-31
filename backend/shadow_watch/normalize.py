@@ -52,7 +52,7 @@ def adapt_shared_events(records: list[dict], *, ingested_at: str, raw_ref: str) 
             accepted.append({"event_id": raw["event_id"], "asset_id": raw["asset_id"],
                              "sensor_id": raw["source_sensor"], "observed_at": raw["timestamp"],
                              "ingested_at": ingested_at, "event_type": event_type, "source_type": source_type,
-                             "is_simulated": raw["is_simulated"], "source": "netrax_synthetic", "raw_ref": raw_ref, "details": mapped})
+                             "is_simulated": raw["is_simulated"], "source": "vectra_synthetic", "raw_ref": raw_ref, "details": mapped})
             EVENT.validate_python(accepted[-1])
         except (ValueError, KeyError, ValidationError) as exc:
             if accepted and accepted[-1].get("event_id") == raw.get("event_id"):

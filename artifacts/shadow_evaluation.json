@@ -10,7 +10,7 @@
     "new_outbound_destinations",
     "unexpected_child_processes"
   ],
-  "feature_schema": "netrax-one-minute-v1",
+  "feature_schema": "vectra-one-minute-v1",
   "seed": 42,
   "n_estimators": 100,
   "contamination": 0.02,

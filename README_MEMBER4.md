@@ -1,4 +1,4 @@
-# NETRA-X Member 4: Shadow Watch and investigation
+# Vectra Member 4: Shadow Watch and investigation
 
 Three deterministic rules, immutable evidence-linked findings, offline investigation reports,
 and a constrained optional Groq assistant, in the existing FastAPI app. No new database,

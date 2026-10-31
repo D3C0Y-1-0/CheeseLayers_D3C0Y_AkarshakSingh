@@ -1,4 +1,4 @@
-# Vectra / NETRA-X
+# Vectra
 
 The integrated React dashboard and FastAPI backend: cached public intelligence, simulated asset
 inventory, explainable scoring/correlation, Shadow Watch and grounded SOC investigation.

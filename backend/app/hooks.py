@@ -1,7 +1,7 @@
 """Integration hooks between members. Member 2 calls them; owners fill them in."""
 import logging
 
-log = logging.getLogger("netrax.hooks")
+log = logging.getLogger("vectra.hooks")
 
 
 def on_new_threat(threat_id: str, signal_type: str) -> None:

@@ -14,7 +14,7 @@
         "ingested_at": "2026-10-30T20:30:02Z",
         "source_type": "synthetic_change",
         "is_simulated": true,
-        "source": "netrax_synthetic",
+        "source": "vectra_synthetic",
         "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0004",
         "event_type": "maintenance_window",
         "details": {
@@ -33,7 +33,7 @@
         "ingested_at": "2026-10-30T20:50:02Z",
         "source_type": "synthetic_http",
         "is_simulated": true,
-        "source": "netrax_synthetic",
+        "source": "vectra_synthetic",
         "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0005",
         "event_type": "http_window",
         "details": {
@@ -53,7 +53,7 @@
         "ingested_at": "2026-10-30T21:05:02Z",
         "source_type": "synthetic_host",
         "is_simulated": true,
-        "source": "netrax_synthetic",
+        "source": "vectra_synthetic",
         "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0006",
         "event_type": "process_start",
         "details": {
@@ -88,7 +88,7 @@
         "asset_id": "BNK-NET-01",
         "observed_at": "2026-10-30T20:30:00Z",
         "sensor_id": "synthetic_change-01",
-        "source": "netrax_synthetic",
+        "source": "vectra_synthetic",
         "retrieved_at": "2026-10-30T20:30:02Z",
         "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0004",
         "event_type": "maintenance_window"
@@ -98,7 +98,7 @@
         "asset_id": "BNK-NET-01",
         "observed_at": "2026-10-30T20:50:00Z",
         "sensor_id": "synthetic_http-01",
-        "source": "netrax_synthetic",
+        "source": "vectra_synthetic",
         "retrieved_at": "2026-10-30T20:50:02Z",
         "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0005",
         "event_type": "http_window"
@@ -108,7 +108,7 @@
         "asset_id": "BNK-NET-01",
         "observed_at": "2026-10-30T21:05:00Z",
         "sensor_id": "synthetic_host-01",
-        "source": "netrax_synthetic",
+        "source": "vectra_synthetic",
         "retrieved_at": "2026-10-30T21:05:02Z",
         "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0006",
         "event_type": "process_start"

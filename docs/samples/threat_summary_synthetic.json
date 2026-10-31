@@ -1,0 +1,50 @@
+{
+  "threat_id": "DEMO-VULN-001",
+  "cve_id": null,
+  "is_simulated": true,
+  "summary": "DEMO-VULN-001 (synthetic demo record, not a real CVE): [SIMULATED] GridView HMI unauthenticated remote command execution. critical severity, CVSS 9.8. Source: netrax_synthetic.",
+  "affected_summary": "1 asset(s) run an affected version: PWR-HMI-01 (scada-hmi-01, 4.2.1, internal).",
+  "exploit_summary": "Not listed in CISA KEV; EPSS unknown; public exploit status unknown.",
+  "why_it_matters": "Present in our inventory; exploitation in the wild is not established by these facts.",
+  "recommended_actions": [
+    "Plan remediation for PWR-HMI-01: upgrade to 4.2.3 or later, or apply the vendor mitigation",
+    "Review the source references and the linked incident(s) before acting"
+  ],
+  "affected_assets": [
+    {
+      "asset_id": "PWR-HMI-01",
+      "hostname": "scada-hmi-01",
+      "sector": "power",
+      "internet_facing": false,
+      "criticality": 5,
+      "installed": "4.2.1",
+      "match_detail": "confirmed_affected",
+      "fixed_in": "4.2.3",
+      "reason": "installed 4.2.1 is inside the vulnerable range (>= 4.0.0, < 4.2.3)"
+    }
+  ],
+  "alert_ids": [],
+  "exploit_signals": {
+    "kev_listed": false,
+    "epss": null,
+    "public_exploit": null,
+    "evidence": null,
+    "signals": []
+  },
+  "sources": {
+    "references": [],
+    "raw_refs": [
+      "data/threats_synthetic.json"
+    ]
+  },
+  "language": "en",
+  "analyst_review_required": true,
+  "generated_by": "template",
+  "fallback_reason": "offline_mode",
+  "validation": {
+    "passed": null,
+    "checked_tokens": 0,
+    "rejected_tokens": [],
+    "note": "Deterministic template built only from stored facts; no language model involved."
+  }
+}

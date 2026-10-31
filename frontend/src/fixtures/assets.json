@@ -51,10 +51,10 @@
     "os": "Windows Server 2022",
     "software": [
       {
-        "vendor": "netrax_demo_vendor",
+        "vendor": "vectra_demo_vendor",
         "product": "gridview_hmi",
         "version": "4.2.1",
-        "cpe": "cpe:2.3:a:netrax_demo_vendor:gridview_hmi:4.2.1:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:a:vectra_demo_vendor:gridview_hmi:4.2.1:*:*:*:*:*:*:*"
       }
     ],
     "criticality": 5,
@@ -198,10 +198,10 @@
     "os": "Red Hat Enterprise Linux 9.4",
     "software": [
       {
-        "vendor": "netrax_demo_vendor",
+        "vendor": "vectra_demo_vendor",
         "product": "corelink_banking_gateway",
         "version": "3.0.5",
-        "cpe": "cpe:2.3:a:netrax_demo_vendor:corelink_banking_gateway:3.0.5:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:a:vectra_demo_vendor:corelink_banking_gateway:3.0.5:*:*:*:*:*:*:*"
       }
     ],
     "criticality": 5,
@@ -448,10 +448,10 @@
     "os": "Windows Server 2022",
     "software": [
       {
-        "vendor": "netrax_demo_vendor",
+        "vendor": "vectra_demo_vendor",
         "product": "medivault_pacs",
         "version": null,
-        "cpe": "cpe:2.3:a:netrax_demo_vendor:medivault_pacs:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:a:vectra_demo_vendor:medivault_pacs:*:*:*:*:*:*:*:*"
       }
     ],
     "criticality": 4,

@@ -75,8 +75,9 @@ class InvestigationReport(FrozenDTO):
     limitations: tuple[str, ...]
     recommended_actions: tuple[str, ...]
     references: tuple[str, ...]
-    generated_by: Literal["template", "llm"]
+    generated_by: Literal["template", "llm", "llm_cached"]
     is_simulated: bool
     integration_status: Literal["demo_adapter", "persisted"]
+    validation: dict | None = None  # grounding check result (ai/grounded.py): passed, checked_tokens, rejected_tokens, note
     fallback_reason: Literal["disabled", "offline_mode", "unconfigured", "timeout", "invalid_output", "provider_error"] | None = None
     analyst_review_required: bool = True

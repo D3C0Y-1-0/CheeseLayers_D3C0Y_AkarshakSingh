@@ -12,8 +12,8 @@ def smoke() -> dict:
     # Set before importing the existing app/database configuration.
     os.environ["DEMO_MODE"] = "true"
     from tempfile import TemporaryDirectory
-    with TemporaryDirectory(prefix="netrax-shadow-smoke-") as directory:
-        os.environ["NETRAX_DB_URL"] = "sqlite:///" + (Path(directory) / "smoke.db").as_posix()
+    with TemporaryDirectory(prefix="vectra-shadow-smoke-") as directory:
+        os.environ["VECTRA_DB_URL"] = "sqlite:///" + (Path(directory) / "smoke.db").as_posix()
         from fastapi.testclient import TestClient
         from app.main import app
         from app.database import engine

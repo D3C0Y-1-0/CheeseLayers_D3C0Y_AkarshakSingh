@@ -77,8 +77,19 @@ export type StoredEvent = { event_id: string; asset_id: string | null; timestamp
   normalized_event?: { raw_ref: string; source: string; ingested_at: string };
   shadow_findings?: { finding_id: string; detector_id: string; reason: string; confidence: string; evidence_ids: string[] }[] }
 export type Report = { incident_id: string; summary: string; assessment: string; evidence_ids: string[]; why_relevant: string;
-  limitations: string[]; recommended_actions: string[]; references: string[]; generated_by: 'template' | 'llm';
-  is_simulated: boolean; integration_status: string; analyst_review_required: boolean; fallback_reason: string | null }
+  limitations: string[]; recommended_actions: string[]; references: string[]; generated_by: GeneratedBy;
+  is_simulated: boolean; integration_status: string; analyst_review_required: boolean; fallback_reason: string | null
+  validation?: Validation | null }
+export type GeneratedBy = 'template' | 'llm' | 'llm_cached'
+export type Validation = { passed: boolean | null; checked_tokens: number; rejected_tokens: string[]; note: string }
+export type Translation = { status: string; label?: string; note?: string }
+// POST /api/threats/{id}/summary. Narrative may be LLM-worded; every other field is a stored fact.
+export type ThreatSummary = { threat_id: string; cve_id: string | null; is_simulated: boolean; summary: string
+  affected_summary: string; exploit_summary: string; why_it_matters: string; recommended_actions: string[]
+  affected_assets: { asset_id: string; hostname: string; installed: string | null; match_detail: string; internet_facing: boolean }[]
+  alert_ids: string[]; sources: { references: string[]; raw_refs: string[] }
+  generated_by: GeneratedBy; validation: Validation | null; fallback_reason: string | null
+  language: string; translation?: Translation; analyst_review_required: boolean }
 export type DemoResult = { alert_ids: string[]; incident_id: string; handoff_status: string; findings: unknown[];
   evidence: unknown[]; scenario: string }
 
@@ -146,12 +157,12 @@ export function useData<T>(path: string, sample: T, parse: (json: unknown) => T,
 
   useEffect(() => {
     const first = setTimeout(load, 0)
-    window.addEventListener('netrax:refresh', load)
+    window.addEventListener('vectra:refresh', load)
     const timer = pollMs ? setInterval(load, pollMs) : undefined
     return () => {
       clearTimeout(first)
       clearInterval(timer)
-      window.removeEventListener('netrax:refresh', load)
+      window.removeEventListener('vectra:refresh', load)
       sequence.current++
     }
   }, [load, pollMs])
@@ -178,8 +189,9 @@ export const parseOverview = (json: unknown): Overview => {
     }) }
 }
 export const useOverview = () => useData<Overview>('/api/overview', fixtures.overview, parseOverview, 10000)
-export const useHealth = () => useData<{ demo_mode: boolean }>('/health', { demo_mode: false }, (j) => j as { demo_mode: boolean }, 5000)
-export const notifyRefresh = () => window.dispatchEvent(new Event('netrax:refresh'))
+export type Health = { demo_mode: boolean; llm?: { cloud_enabled: boolean; reason: string | null; cached_reports: number } | null }
+export const useHealth = () => useData<Health>('/health', { demo_mode: false }, (j) => j as Health, 5000)
+export const notifyRefresh = () => window.dispatchEvent(new Event('vectra:refresh'))
 
 export const post = (path: string, body?: unknown) =>
   getJson(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined })

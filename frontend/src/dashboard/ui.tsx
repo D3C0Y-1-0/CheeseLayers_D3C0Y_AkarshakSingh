@@ -1,5 +1,5 @@
 import { AlertOctagon, AlertTriangle, ChevronDown, ChevronUp, Info, Minus } from 'lucide-react'
-import type { Alert, Mode, Priority } from './api'
+import type { Alert, GeneratedBy, Mode, Priority, Validation } from './api'
 
 // Status colours always come with an icon and a word, so colour never carries the meaning alone.
 const PRIORITY: Record<Priority, { label: string; icon: typeof Info }> = {
@@ -54,4 +54,14 @@ export function Panel({ title, children, className = '' }: { title?: string; chi
 
 export function Empty({ children }: { children: React.ReactNode }) {
   return <p className="px-4 py-8 text-center text-grey-300">{children}</p>
+}
+
+const AI_LABEL: Record<GeneratedBy, string> = { llm: 'LLM · grounding checked', llm_cached: 'LLM-cached · grounding checked', template: 'Template · deterministic' }
+
+// Who wrote the narrative, and what the grounding check found. Facts (IDs, assets, evidence) are never model-written.
+export function AiBadge({ generatedBy, validation, fallbackReason }: { generatedBy: GeneratedBy; validation?: Validation | null; fallbackReason?: string | null }) {
+  return <div className="grid gap-1">
+    <span className="flex flex-wrap gap-2"><span className="tag">{AI_LABEL[generatedBy] ?? generatedBy}</span>{fallbackReason && <span className="tag">LLM not used: {fallbackReason.replaceAll('_', ' ')}</span>}</span>
+    {validation?.note && <p className="text-xs text-grey-300">{validation.passed === false ? 'Validation failed: ' : validation.passed ? 'Validation passed: ' : ''}{validation.note}</p>}
+  </div>
 }

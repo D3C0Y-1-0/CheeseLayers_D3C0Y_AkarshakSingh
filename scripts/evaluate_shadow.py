@@ -50,7 +50,7 @@ def evaluate(path: Path) -> dict:
     before, after = metrics(truth, baseline), metrics(truth, combined)
     improvement = after["true_positives"] > before["true_positives"] and after["false_positives"] <= before["false_positives"]
     return {"is_simulated": True, "dataset": path.name, "dataset_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
-            "features": list(FEATURES), "feature_schema": "netrax-one-minute-v1", "seed": 42,
+            "features": list(FEATURES), "feature_schema": "vectra-one-minute-v1", "seed": 42,
             "n_estimators": 100, "contamination": .02, "sklearn_version": sklearn.__version__,
             "train_count": len(train), "train_normal_count": len(train), "test_count": len(test),
             "test_normal_count": truth.count(False), "test_suspicious_count": truth.count(True),

@@ -8,8 +8,8 @@
             "id": "identity--29371cba-0d8c-5979-8173-e06124770661",
             "created": "2026-10-31T00:00:00.000Z",
             "modified": "2026-10-31T00:00:00.000Z",
-            "name": "NETRA-X",
-            "description": "NETRA-X national cyber threat early-warning prototype (D3COY hackathon, PS 01).",
+            "name": "Vectra",
+            "description": "Vectra national cyber threat early-warning prototype (D3COY hackathon, PS 01).",
             "identity_class": "system"
         },
         {
@@ -134,7 +134,7 @@
             ],
             "external_references": [
                 {
-                    "source_name": "netrax",
+                    "source_name": "vectra",
                     "external_id": "DEMO-VULN-001"
                 }
             ],

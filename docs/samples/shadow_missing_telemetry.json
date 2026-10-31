@@ -21,7 +21,7 @@
         "reason": "200/300 HTTP 4xx responses (66.7%) in 60s (300.0 requests/min)",
         "confidence": "medium",
         "is_simulated": true,
-        "source": "netrax_synthetic",
+        "source": "vectra_synthetic",
         "retrieved_at": "2026-10-31T10:00:02Z",
         "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0007",
         "maintenance_evidence_ids": [],
@@ -43,7 +43,7 @@
         "reason": "First-seen outbound destination 203.0.113.250:4444 on protected asset",
         "confidence": "low",
         "is_simulated": true,
-        "source": "netrax_synthetic",
+        "source": "vectra_synthetic",
         "retrieved_at": "2026-10-31T10:02:02Z",
         "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0008",
         "maintenance_evidence_ids": [],
@@ -62,7 +62,7 @@
         "ingested_at": "2026-10-31T10:00:02Z",
         "source_type": "synthetic_http",
         "is_simulated": true,
-        "source": "netrax_synthetic",
+        "source": "vectra_synthetic",
         "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0007",
         "event_type": "http_window",
         "details": {
@@ -82,7 +82,7 @@
         "ingested_at": "2026-10-31T10:02:02Z",
         "source_type": "synthetic_network",
         "is_simulated": true,
-        "source": "netrax_synthetic",
+        "source": "vectra_synthetic",
         "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0008",
         "event_type": "network_connection",
         "details": {
@@ -117,7 +117,7 @@
         "asset_id": "HLT-WEB-01",
         "observed_at": "2026-10-31T10:00:00Z",
         "sensor_id": "synthetic_http-01",
-        "source": "netrax_synthetic",
+        "source": "vectra_synthetic",
         "retrieved_at": "2026-10-31T10:00:02Z",
         "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0007",
         "event_type": "http_window"
@@ -127,7 +127,7 @@
         "asset_id": "HLT-WEB-01",
         "observed_at": "2026-10-31T10:02:00Z",
         "sensor_id": "synthetic_network-01",
-        "source": "netrax_synthetic",
+        "source": "vectra_synthetic",
         "retrieved_at": "2026-10-31T10:02:02Z",
         "raw_ref": "data/fixtures/events_shadow.json#SW-EV-0008",
         "event_type": "network_connection"

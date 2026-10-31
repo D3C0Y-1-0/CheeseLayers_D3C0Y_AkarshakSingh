@@ -253,9 +253,9 @@ def india(limit: int = Query(10, ge=1, le=50, description="Max CERT-In advisorie
 # =====================================================================================================
 NS = uuid.UUID("6f1b3c1e-7d4a-4c1e-9a55-4e45545241ff")  # fixed namespace -> same object, same STIX id on every export
 EPOCH = datetime(2026, 10, 31, tzinfo=timezone.utc)
-IDENTITY = stix2.Identity(id=f"identity--{uuid.uuid5(NS, 'NETRA-X')}", name="NETRA-X", identity_class="system",
+IDENTITY = stix2.Identity(id=f"identity--{uuid.uuid5(NS, 'Vectra')}", name="Vectra", identity_class="system",
                           created=EPOCH, modified=EPOCH,
-                          description="NETRA-X national cyber threat early-warning prototype (D3COY hackathon, PS 01).")
+                          description="Vectra national cyber threat early-warning prototype (D3COY hackathon, PS 01).")
 MAX_IDS = 50
 MAX_INDICATORS = 1000  # per threat; a Note in the bundle says when we truncated
 PATTERN = {"ip": "ipv4-addr:value", "cidr": "ipv4-addr:value", "domain": "domain-name:value", "url": "url:value",
@@ -287,7 +287,7 @@ def build_bundle(db: Session, threats: list[Threat]) -> stix2.Bundle:
         refs = [{"source_name": t.source, "url": u} for u in t.references[:20]]
 
         def vuln(cve: str | None, key: str) -> str:
-            ext = [{"source_name": "cve", "external_id": cve}] if cve else [{"source_name": "netrax", "external_id": key}]
+            ext = [{"source_name": "cve", "external_id": cve}] if cve else [{"source_name": "vectra", "external_id": key}]
             v = stix2.Vulnerability(id=sid("vulnerability", key), name=cve or key, external_references=ext + (refs if key == t.threat_id else []),
                                     description=t.description if key == t.threat_id else None, **common)
             return objs.setdefault(v.id, v).id
@@ -340,7 +340,7 @@ def build_bundle(db: Session, threats: list[Threat]) -> stix2.Bundle:
 def export_stix(threat_id: str | None = Query(None, description="One threat_id"),
                 ids: str | None = Query(None, description=f"Comma-separated threat_ids (max {MAX_IDS})"),
                 db: Session = Depends(get_db)):
-    """STIX 2.1 bundle: identity NETRA-X, vulnerability (CVE external ref) / campaign / report, ATT&CK attack-patterns,
+    """STIX 2.1 bundle: identity Vectra, vulnerability (CVE external ref) / campaign / report, ATT&CK attack-patterns,
     indicators for linked IOCs, and relationships. Deterministic IDs: re-exporting the same threat gives the same objects."""
     wanted = list(dict.fromkeys(([threat_id] if threat_id else []) + [i.strip() for i in (ids or "").split(",") if i.strip()]))
     if not wanted or len(wanted) > MAX_IDS:

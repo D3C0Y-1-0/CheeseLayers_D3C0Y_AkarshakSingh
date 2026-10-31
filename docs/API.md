@@ -1,4 +1,4 @@
-# NETRA-X API: feeds, signals, assets, alerts, analytics, Shadow Watch and investigation
+# Vectra API: feeds, signals, assets, alerts, analytics, Shadow Watch and investigation
 
 ## Member 4 endpoints
 
@@ -35,23 +35,51 @@ Samples (each includes injection and investigation):
 ### `POST /api/alerts/{id}/investigate`
 
 No body. Use the injection's `incident_id` for a demo preview or an authorised persisted central
-alert ID after Member 3 integration. Demo mode prohibits cloud LLM calls regardless of keys.
+alert ID after Member 3 integration. Cloud LLM calls happen only with `LLM_ALLOW_CLOUD=true` AND
+`LLM_API_KEY` set (also in demo mode); otherwise a cached LLM report or the template is returned.
 
 Returns `incident_id`, `assessment` (`vulnerability_exposure`, `suspected_activity`,
 `needs_verification`), `summary`, `asset_ids`, `verified_cve_ids`, `evidence_ids`, `evidence`,
-`why_relevant`, `limitations`, `recommended_actions`, `references`, `generated_by` (`template`
-or `llm`), `is_simulated`, `integration_status`, `fallback_reason`, `analyst_review_required`.
+`why_relevant`, `limitations`, `recommended_actions`, `references`, `generated_by` (`template`,
+`llm` or `llm_cached`), `validation` (grounding check, see "AI narrative" below), `is_simulated`,
+`integration_status`, `fallback_reason`, `analyst_review_required`.
 Each evidence citation includes ID, asset, event type, observation time, sensor, source,
 retrieval/ingestion time and raw provenance pointer. Unknown CVE association is an empty array.
 
-Template reports always work offline. Optional consent-gated Groq generation can only select a
-permitted summary and reorder prevalidated review steps; factual fields must match trusted
-context exactly. Every action is a suggestion. `fallback_reason` is null or `offline_mode`,
+Template reports always work offline. Optional consent-gated Groq generation may reword only
+`summary`, `why_relevant` and `recommended_actions`; every other field must match trusted context
+exactly, and the narrative passes the grounding check. Every action is a suggestion. `fallback_reason` is null or `offline_mode`,
 `disabled`, `unconfigured`, `timeout`, `invalid_output`, `provider_error`. Model errors return
 a normal 200 template report. Missing demo preview returns 404; scope denial returns 403;
 invalid IDs return 422. The default persisted provider permits synthetic incidents in demo mode
 and denies real incidents or access outside demo mode. Real deployments must supply an
 authenticated scope factory. No evidence is inferred from missing telemetry or absent feeds.
+
+### AI narrative: grounding, `generated_by`, cache (`backend/ai/grounded.py`)
+
+Every AI text (investigation, threat summary, CERT-In draft, Hindi translation) starts from a
+deterministic template built only from stored facts. The LLM may reword the narrative fields only.
+Its output is rejected → template, `fallback_reason: "invalid_output"` if it:
+contains a CVE/asset/evidence/alert ID, ATT&CK ID, version (x.y.z), IP or URL **not present in the
+input**; changes any non-narrative field; claims compromise/exploitation/zero-day/attribution the
+facts don't state; or contains a command. `generated_by`: `llm` (fresh, validated), `llm_cached`
+(validated earlier, served from `backend/data/cache/ai_reports/<sha256 of normalised input>.json`,
+works offline), `template`. `validation`: `{passed: true|false|null, checked_tokens,
+rejected_tokens[], note}` (`null` = template, no model involved). `GET /health` → `llm:
+{cloud_enabled, provider, reason, cached_reports}`. Pre-fill the cache for the demo with
+`backend/.venv/bin/python scripts/pregenerate_ai.py` (needs the key; `--dry-run` lists what it would do).
+
+### `POST /api/threats/{threat_id}/summary?lang=en|hi`
+
+No body. Grounded summary of one threat. Narrative (LLM-wordable): `summary` (what it is),
+`affected_summary` (who in our inventory), `exploit_summary` (KEV/EPSS/public exploit/signals),
+`why_it_matters`, `recommended_actions[]`. Facts: `affected_assets[]` (Member 3's matcher run
+read-only, `confirmed_affected` or `needs_verification`, with `installed` and `fixed_in`),
+`alert_ids[]`, `exploit_signals` `{kev_listed, epss, public_exploit, evidence, signals[]}`,
+`sources` `{references[], raw_refs[]}`, `is_simulated`, `language`, plus `generated_by`,
+`validation`, `fallback_reason`, `analyst_review_required: true`. Synthetic threats say "synthetic
+demo record, not a real CVE"; null CVSS/EPSS/KEV read "unknown". 404 unknown threat.
+Sample: `docs/samples/threat_summary.json`.
 
 ### `GET /api/alerts/{id}/evidence`
 
@@ -115,7 +143,7 @@ injected demo CVE shows at the top. Samples: `samples/threats.json`, `threats_fi
 
 | Param | Type | Example | Notes |
 |---|---|---|---|
-| `source` | csv | `kev,certin` | nvd, kev, nvd+kev, certin, otx, ransomware, threatfox, urlhaus, malwarebazaar, feodotracker, tor_exit, spamhaus_drop, openphish, netrax_synthetic |
+| `source` | csv | `kev,certin` | nvd, kev, nvd+kev, certin, otx, ransomware, threatfox, urlhaus, malwarebazaar, feodotracker, tor_exit, spamhaus_drop, openphish, vectra_synthetic |
 | `severity` | csv | `critical,unknown` | `unknown` matches `severity = null`. Anything else → 422 |
 | `kev` | bool | `true` | `false` = checked and not listed (`null` excluded) |
 | `min_epss` | 0–1 | `0.5` | threats with `epss = null` are excluded |
@@ -312,7 +340,7 @@ India-first panel. Sample: `samples/india.json`
 ### `GET /api/export/stix?threat_id=…` or `?ids=a,b,c`
 A STIX 2.1 bundle (`application/stix+json;version=2.1`) built with the `stix2` library, for SIEMs, TAXII or other CERTs.
 Samples: `samples/stix_cve.json`, `samples/stix_bundle.json`.
-- `identity` **NETRA-X** is the `created_by_ref` of every object. Everything is marked TLP:WHITE.
+- `identity` **Vectra** is the `created_by_ref` of every object. Everything is marked TLP:WHITE.
 - `vulnerability` gets an `external_references` entry `{"source_name": "cve", "external_id": "CVE-…"}`. Synthetic `DEMO-VULN-*`
   threats get **no** CVE ref and `labels: ["simulated"]`. Advisories become a `report` plus a `vulnerability` per CVE.
   Campaigns and IOC batches become a `campaign` that `targets` its vulnerabilities.

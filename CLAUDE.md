@@ -8,8 +8,8 @@
 - **Priority:** a flawless, offline-safe demo beats feature count. Every feature must show up on the dashboard.
 - **Scope right now: BACKEND ONLY.** Do not create or edit anything in `frontend/`. A teammate builds the UI later against our API. So every feature must be exposed through a documented REST endpoint, with the contract in `docs/API.md` and example responses saved in `docs/samples/*.json` (the frontend dev mocks from these).
 
-## 1b. Team plan — NETRA-X (this OVERRIDES the folder ownership/phases below where they conflict)
-- **Product name:** NETRA-X. Branches: `frontend`, `feeds`, `correlation`, `ai`.
+## 1b. Team plan — Vectra (this OVERRIDES the folder ownership/phases below where they conflict)
+- **Product name:** Vectra. Branches: `frontend`, `feeds`, `correlation`, `ai`.
 - **Member 1:** React dashboard + demo. **Member 2:** FastAPI app, SQLite DB, threat-intel ingestion, source health. **Member 3:** asset inventory, version matching, risk scoring, incident correlation (integration lead). **Member 4:** Shadow Watch (behaviour rules + Isolation Forest), SOC investigation agent, LLM fallback.
 - **API ownership:** M2 → `/health`, `/api/overview`, `/api/threats`, `/api/threats/{id}`, `/api/source-status`, `POST /api/demo/inject-cve`. M3 → `/api/assets`, `/api/alerts`, `/api/alerts/{id}`, `POST /api/alerts/{id}/acknowledge`. M4 → `POST /api/demo/inject-behaviour`, `POST /api/alerts/{id}/investigate`.
 - **Shared fixtures (team starter ZIP):** `data/assets.json` (40 assets), `data/threats_synthetic.json`, `data/events.json`, `data/windows.csv`, `data/contracts.json`. **`data/contracts.json` is the source of truth for field names** — align our schemas to it; never rename shared fields unilaterally.

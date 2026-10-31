@@ -17,6 +17,7 @@ export default function Shell() {
   const { pathname } = useLocation()
   const [online, setOnline] = useState<boolean | null>(null)
   const [demo, setDemo] = useState(false)
+  const [cloud, setCloud] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -24,7 +25,7 @@ export default function Shell() {
 
   useEffect(() => {
     const check = () => fetch('/health', { signal: AbortSignal.timeout(2500) })
-      .then(async (r) => { if (!r.ok) throw new Error('unavailable'); const h = await r.json(); setOnline(h.status === 'ok'); setDemo(h.demo_mode === true) })
+      .then(async (r) => { if (!r.ok) throw new Error('unavailable'); const h = await r.json(); setOnline(h.status === 'ok'); setDemo(h.demo_mode === true); setCloud(h.llm?.cloud_enabled === true) })
       .catch(() => setOnline(false))
     check()
     const t = setInterval(check, 5000)
@@ -48,7 +49,7 @@ export default function Shell() {
         </nav>
       </aside>
       <div className="min-w-0">
-        {online && demo && <p className="border-b border-rule px-5 py-2 text-xs text-grey-300">Offline-safe demo · cached public intelligence · simulated assets and behaviour · cloud LLM disabled</p>}
+        {online && demo && <p className="border-b border-rule px-5 py-2 text-xs text-grey-300">Offline-safe demo · cached public intelligence · simulated assets and behaviour · {cloud ? 'cloud LLM enabled (opt-in), output grounding-checked' : 'cloud LLM off: template or cached AI text'}</p>}
         {online === false && (
           <p role="status" className="dash-banner">
             Backend not connected. Showing bundled sample data: real feed records, simulated assets and hand-built sample alerts.

@@ -20,7 +20,7 @@ def generate() -> dict:
         observed = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
         events.append(dict(event_id=eid, asset_id=asset, event_type=kind, sensor_id=source_type + "-01",
                            observed_at=observed.isoformat(), ingested_at=(observed + timedelta(seconds=2)).isoformat(),
-                           source_type=source_type, source="netrax_synthetic", is_simulated=True,
+                           source_type=source_type, source="vectra_synthetic", is_simulated=True,
                            raw_ref=f"data/fixtures/events_shadow.json#{eid}", details=details))
 
     def http(count, errors):

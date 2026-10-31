@@ -80,15 +80,46 @@ def test_valid_grounded_output(monkeypatch):
     monkeypatch.setenv("DEMO_MODE", "false")
     _, ctx, tools = setup()
 
+    first = ctx.evidence[0].event_id
+
     async def completion(prompt, settings):
         payload = json.loads(prompt)
-        data = payload["report"]
-        data["summary"] = payload["permitted_summaries"][1]
-        data["recommended_actions"].reverse()
-        return json.dumps(data)
+        actions = list(payload["template"]["recommended_actions"])[::-1]
+        return json.dumps({"summary": f"Stored observations on {ctx.asset_ids[0]} starting with {first} need analyst review.",
+                           "why_relevant": "The pattern differs from the asset baseline; compromise is not established.",
+                           "recommended_actions": actions})
     report = asyncio.run(investigate(ctx.incident_id, tools, settings=config(), completion=completion))
     assert report.generated_by == "llm" and report.analyst_review_required
+    assert report.summary.startswith("Stored observations on") and report.validation["passed"] is True
     assert set(report.evidence_ids) == {e.event_id for e in ctx.evidence}
+
+
+@pytest.mark.parametrize("invented", ["CVE-2099-0001", "ZZZ-NONE-99", "https://evil.invalid/fix", "9.9.9"])
+def test_llm_narrative_with_invented_identifier_is_rejected(monkeypatch, invented):
+    monkeypatch.setenv("DEMO_MODE", "false")
+    _, ctx, tools = setup()
+
+    async def completion(prompt, settings):
+        return json.dumps({"summary": f"Activity resembles {invented}.", "why_relevant": "Review needed.",
+                           "recommended_actions": ["Review stored evidence"]})
+    report = asyncio.run(investigate(ctx.incident_id, tools, settings=config(), completion=completion))
+    assert report.generated_by == "template" and report.fallback_reason == "invalid_output"
+    assert report.validation["passed"] is False and invented in report.validation["rejected_tokens"]
+
+
+def test_demo_mode_cloud_needs_explicit_consent_and_key(monkeypatch):
+    monkeypatch.setenv("DEMO_MODE", "true")
+    _, ctx, tools = setup()
+    calls = []
+
+    async def completion(prompt, settings):
+        calls.append(1)
+        return json.dumps({"summary": f"Review {ctx.asset_ids[0]}.", "why_relevant": "Baseline deviation.",
+                           "recommended_actions": ["Review stored evidence"]})
+    report = asyncio.run(investigate(ctx.incident_id, tools, settings=config(), completion=completion))
+    assert calls and report.generated_by == "llm"  # DEMO_MODE + LLM_ALLOW_CLOUD + key -> allowed
+    cached = asyncio.run(investigate(ctx.incident_id, tools, settings=LLMSettings(), completion=completion))
+    assert len(calls) == 1 and cached.generated_by == "llm_cached" and cached.summary == report.summary
 
 
 @pytest.mark.parametrize("mode", ["offline", "template", "no_key", "no_consent"])
@@ -96,7 +127,8 @@ def test_disabled_modes_never_call_llm(monkeypatch, mode):
     monkeypatch.setenv("DEMO_MODE", "true" if mode == "offline" else "false")
     _, ctx, tools = setup()
     settings = {"template": LLMSettings(), "no_key": LLMSettings(provider="groq", model="test", allow_cloud=True),
-                "no_consent": LLMSettings(provider="groq", model="test", api_key="test")}.get(mode, config())
+                "no_consent": LLMSettings(provider="groq", model="test", api_key="test"),
+                "offline": LLMSettings(provider="groq", model="test", api_key="test")}[mode]
 
     async def must_not_call(*args):
         pytest.fail("disabled LLM attempted network/generation")

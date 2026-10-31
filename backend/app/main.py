@@ -1,4 +1,4 @@
-"""NETRA-X API.   cd backend && .venv/bin/uvicorn app.main:app --reload   ->  http://localhost:8000/docs
+"""Vectra API.   cd backend && .venv/bin/uvicorn app.main:app --reload   ->  http://localhost:8000/docs
 
 On startup: create tables; if the DB has no threats yet, load the cache + fixtures (works fully offline).
 Each member adds their own router file here (M3: alerts/assets, M4: behaviour/investigate).
@@ -10,14 +10,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import func, select
 
-from . import alerts, analytics, assets, feeds, frontend, insights
+from . import alerts, analytics, assets, feeds, frontend, insights, summaries
 from .database import SessionLocal, init_db
 from .models import Threat
 from routes import investigation, shadow_watch
 from shadow_watch.demo import DemoAdapter
 from shadow_watch.integration import DatabaseFindingSink, demo_investigation_factory
 
-log = logging.getLogger("netrax")
+log = logging.getLogger("vectra")
 
 
 @asynccontextmanager
@@ -45,7 +45,7 @@ async def lifespan(app: FastAPI):
             delattr(app.state, name)
 
 
-app = FastAPI(title="NETRA-X API", version="0.1.0", lifespan=lifespan,
+app = FastAPI(title="Vectra API", version="0.1.0", lifespan=lifespan,
               description="National cyber threat early-warning API. Contract: data/contracts.json · docs/API.md")
 app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],  # Vite dev server
                    allow_methods=["*"], allow_headers=["*"])
@@ -57,4 +57,5 @@ app.include_router(analytics.router)  # Member 3
 app.state.shadow_demo_adapter = DemoAdapter()
 app.include_router(shadow_watch.router)
 app.include_router(investigation.router)
+app.include_router(summaries.router)  # AI threat summaries
 app.include_router(frontend.router)  # Last: API routes must win over the SPA history fallback.

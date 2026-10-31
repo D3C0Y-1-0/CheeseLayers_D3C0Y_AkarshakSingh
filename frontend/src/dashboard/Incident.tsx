@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, Sparkles } from 'lucide-react'
 import { fixtures, notifyRefresh, parseList, post, toTitle, useData, when, type Alert, type Report, type StoredEvent } from './api'
 import { ThreatAiSummary } from './AiSummary'
+import { CertInDraft } from './CertInDraft'
 import { AiBadge, DataNotice, Empty, PageHead, Panel, PriorityBadge, Provenance, safeReference, Unknown } from './ui'
 
 const STAGES = ['detected', 'investigating', 'confirmed', 'action_required', 'mitigated', 'closed']
@@ -94,6 +95,7 @@ export default function Incident() {
       {refs.length > 0 && <Panel title="Source references"><ul className="space-y-2 p-4">{refs.map((r) => <li key={r} className="break-all"><a href={r} target="_blank" rel="noreferrer" className="text-blue-300 underline">{r}</a></li>)}</ul></Panel>}
     </div><div className="grid gap-3">
       <AgentExplanation key={id} alert={alert} enabled={incident.mode === 'live' && !incident.error} onReport={setReport} />
+      <CertInDraft key={`c-${id}`} alertId={id} enabled={incident.mode === 'live' && !incident.error} />
       {alert.kind === 'vulnerability' && alert.threat_ids[0] && <ThreatAiSummary key={`t-${id}`} threatId={alert.threat_ids[0]} enabled={incident.mode === 'live'} />}
       <Panel title="Reasons and limits"><div className="space-y-3 p-4"><ul className="list-inside list-disc space-y-1 text-white">{alert.reasons.map((r) => <li key={r}>{r}</li>)}</ul><ul className="space-y-1">{alert.limitations.map((l) => <li key={l}>{l}</li>)}</ul></div></Panel>
       <EvidenceTimeline key={id} alert={alert} />

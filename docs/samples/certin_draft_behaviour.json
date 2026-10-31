@@ -1,0 +1,117 @@
+{
+  "alert_id": "ALR-EDB7AF1F",
+  "status": "draft_for_analyst_review",
+  "sent": false,
+  "reportability_assessment": "potential security incident — analyst must determine reportability",
+  "suggested_category": {
+    "number": 10,
+    "category": "Attacks on Application such as E-Governance, E-Commerce etc.",
+    "reason": "Suspicious HTTP requests against an application",
+    "status": "analyst to confirm"
+  },
+  "category_candidates": [
+    {
+      "number": 10,
+      "category": "Attacks on Application such as E-Governance, E-Commerce etc.",
+      "reason": "Suspicious HTTP requests against an application",
+      "status": "analyst to confirm"
+    },
+    {
+      "number": 5,
+      "category": "Malicious code attacks such as spreading of virus/worm/Trojan/Bots/Spyware/Ransomware/Cryptominers",
+      "reason": "Unexpected process plus new outbound connection: possible malicious code",
+      "status": "analyst to confirm"
+    },
+    {
+      "number": 3,
+      "category": "Unauthorised access of IT systems/data",
+      "reason": "Default for suspicious activity of unconfirmed nature",
+      "status": "analyst to confirm"
+    }
+  ],
+  "category_source": "CERT-In Directions under sub-section (6) of section 70B of the IT Act, 2000, dated 28 April 2022, Annexure I. Verify against the current official text before filing.",
+  "time_of_detection": "2026-10-31T17:31:37.169148Z",
+  "incident_description": "Suspicious activity on HLT-WEB-01 (patient-portal, health): 3 stored observation(s) (http, network, process). Compromise is not confirmed.",
+  "affected_assets": [
+    {
+      "asset_id": "HLT-WEB-01",
+      "hostname": "patient-portal",
+      "ip": "198.51.100.40",
+      "organisation": "Sim District Hospital",
+      "sector": "health",
+      "role": "Patient appointment portal",
+      "criticality": 3,
+      "internet_facing": true,
+      "is_simulated": true
+    }
+  ],
+  "observed_evidence": [
+    {
+      "evidence_id": "9652e455c013b7e4db1ee316:SW-EV-0001",
+      "event_type": "http",
+      "observed_at": "2026-10-31T09:32:10Z",
+      "asset_id": "HLT-WEB-01",
+      "sensor": "synthetic_http-01",
+      "note": null,
+      "is_simulated": true
+    },
+    {
+      "evidence_id": "9652e455c013b7e4db1ee316:SW-EV-0002",
+      "event_type": "process",
+      "observed_at": "2026-10-31T09:33:40Z",
+      "asset_id": "HLT-WEB-01",
+      "sensor": "synthetic_host-01",
+      "note": null,
+      "is_simulated": true
+    },
+    {
+      "evidence_id": "9652e455c013b7e4db1ee316:SW-EV-0003",
+      "event_type": "network",
+      "observed_at": "2026-10-31T09:36:05Z",
+      "asset_id": "HLT-WEB-01",
+      "sensor": "synthetic_network-01",
+      "note": null,
+      "is_simulated": true
+    }
+  ],
+  "related_threats": [],
+  "actions_taken_so_far": [
+    {
+      "at": null,
+      "action": "None recorded in the dashboard"
+    }
+  ],
+  "recommended_next_actions": [
+    "Confirm scope: verify the affected assets and whether the activity/exposure is real",
+    "Preserve relevant logs (CERT-In Directions require ICT system logs to be retained for 180 days)",
+    "Contain if confirmed: isolate the host per your incident response plan",
+    "Decide reportability now: if a listed incident type is confirmed, the 6-hour window applies"
+  ],
+  "missing_information": [
+    "Reporting organisation, point of contact and designation",
+    "Whether exploitation, data access or data exfiltration occurred",
+    "Business impact and number of affected users/systems in production",
+    "Availability of firewall, proxy, authentication and host logs for the period"
+  ],
+  "contact": {
+    "organisation": "[ORGANISATION NAME]",
+    "point_of_contact": "[NAME, DESIGNATION]",
+    "phone": "[PHONE]",
+    "email": "[EMAIL]",
+    "certin_submission": "[per current CERT-In reporting guidance]"
+  },
+  "disclaimer": "DRAFT for analyst review; not sent to CERT-In or anyone else. The 6-hour reporting obligation in the CERT-In Directions (28 April 2022) applies only to the reportable incident types listed in their Annexure I, counted from when the incident is noticed or brought to notice. A vulnerability on its own is not one of those types. Category suggestions are heuristics: the analyst must confirm. Assets and behaviour in this demo are simulated.",
+  "is_simulated": true,
+  "analyst_review_required": true,
+  "generated_by": "template",
+  "fallback_reason": "offline_mode",
+  "validation": {
+    "passed": null,
+    "checked_tokens": 0,
+    "rejected_tokens": [],
+    "note": "Deterministic template built only from stored facts; no language model involved."
+  },
+  "language": "en",
+  "generated_at": "2026-10-31T17:31:37.182138+00:00",
+  "markdown": "# CERT-In incident report — DRAFT (ALR-EDB7AF1F)\n\n> DRAFT for analyst review; not sent to CERT-In or anyone else. The 6-hour reporting obligation in the CERT-In Directions (28 April 2022) applies only to the reportable incident types listed in their Annexure I, counted from when the incident is noticed or brought to notice. A vulnerability on its own is not one of those types. Category suggestions are heuristics: the analyst must confirm. Assets and behaviour in this demo are simulated.\n\n**Reportability assessment:** potential security incident — analyst must determine reportability\n\n**Suggested incident category (analyst to confirm):** 10. Attacks on Application such as E-Governance, E-Commerce etc. — Suspicious HTTP requests against an application\n\n**Time of detection:** 2026-10-31T17:31:37.169148Z\n\n## Description\nSuspicious activity on HLT-WEB-01 (patient-portal, health): 3 stored observation(s) (http, network, process). Compromise is not confirmed.\n\n## Affected assets\n- HLT-WEB-01 · patient-portal · 198.51.100.40 · Sim District Hospital · health · Patient appointment portal · simulated\n\n## Observed evidence\n- 9652e455c013b7e4db1ee316:SW-EV-0001 · http · 2026-10-31T09:32:10Z · synthetic_http-01\n- 9652e455c013b7e4db1ee316:SW-EV-0002 · process · 2026-10-31T09:33:40Z · synthetic_host-01\n- 9652e455c013b7e4db1ee316:SW-EV-0003 · network · 2026-10-31T09:36:05Z · synthetic_network-01\n\n## Actions taken so far\n- None recorded in the dashboard\n\n## Recommended next actions\n- Confirm scope: verify the affected assets and whether the activity/exposure is real\n- Preserve relevant logs (CERT-In Directions require ICT system logs to be retained for 180 days)\n- Contain if confirmed: isolate the host per your incident response plan\n- Decide reportability now: if a listed incident type is confirmed, the 6-hour window applies\n\n## Missing information (complete before filing)\n- Reporting organisation, point of contact and designation\n- Whether exploitation, data access or data exfiltration occurred\n- Business impact and number of affected users/systems in production\n- Availability of firewall, proxy, authentication and host logs for the period\n\n## Contact\n- Organisation: [ORGANISATION NAME]\n- Point Of Contact: [NAME, DESIGNATION]\n- Phone: [PHONE]\n- Email: [EMAIL]\n- Certin Submission: [per current CERT-In reporting guidance]\n\n## Other candidate categories\n- 5. Malicious code attacks such as spreading of virus/worm/Trojan/Bots/Spyware/Ransomware/Cryptominers — Unexpected process plus new outbound connection: possible malicious code\n- 3. Unauthorised access of IT systems/data — Default for suspicious activity of unconfirmed nature\n\n_Category list: CERT-In Directions under sub-section (6) of section 70B of the IT Act, 2000, dated 28 April 2022, Annexure I. Verify against the current official text before filing._\n_Text generated by: template_\n"
+}

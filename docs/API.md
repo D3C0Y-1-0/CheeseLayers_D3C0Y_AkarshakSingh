@@ -545,3 +545,24 @@ published_at, is_simulated, shared_keys[]}` (`shared_keys` = this member's keys 
 campaign's link reasons; empty = grouped by text similarity). 404 unknown.
 Sample: `docs/samples/campaign_detail.json`. `GET /api/threats/{id}` now also returns
 `campaign_ids[]` (additive).
+
+# CERT-In Incident Report Assistant (`backend/app/certin_draft.py`)
+
+### `POST /api/alerts/{alert_id}/certin-draft?format=json|markdown&lang=en|hi`
+
+No body. A **draft for analyst review; never sent** (`sent: false`, `status:
+"draft_for_analyst_review"`). Fields: `reportability_assessment` ("vulnerability exposure only —
+not by itself a reportable incident" for vulnerability alerts; "potential security incident —
+analyst must determine reportability" for behaviour alerts), `suggested_category` +
+`category_candidates[]` (`{number, category, reason, status: "analyst to confirm"}`, from the CERT-In
+Directions of 28 April 2022, Annexure I; `category_source`), `time_of_detection` (alert
+`created_at`), `incident_description`, `affected_assets[]`, `observed_evidence[]` (stored event IDs),
+`related_threats[]`, `actions_taken_so_far[]` (lifecycle changes from the alert timeline),
+`recommended_next_actions[]`, `missing_information[]`, `contact` (placeholders), `disclaimer`
+(the 6-hour obligation applies only to reportable incident types), `markdown`, `generated_at`, plus
+`generated_by`/`validation`/`fallback_reason`. An LLM may reword only `incident_description` and
+`recommended_next_actions` (grounding rules above). `format=markdown` returns `text/markdown` with
+`Content-Disposition: attachment; filename="certin-draft-<id>.md"`. Demo mode: simulated alerts
+only (403 otherwise); outside demo mode the authenticated incident factory must allow it.
+404 unknown alert. Samples: `docs/samples/certin_draft_vulnerability.json`,
+`docs/samples/certin_draft_behaviour.json`.

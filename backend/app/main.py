@@ -10,7 +10,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import func, select
 
-from . import alerts, analytics, assets, attack_lab, campaigns, feeds, frontend, insights, summaries
+from . import alerts, analytics, assets, attack_lab, campaigns, certin_draft, feeds, frontend, insights, summaries
 from .database import SessionLocal, init_db
 from .models import Threat
 from routes import investigation, shadow_watch
@@ -61,4 +61,5 @@ app.include_router(shadow_watch.router)
 app.include_router(investigation.router)
 app.include_router(summaries.router)  # AI threat summaries
 app.include_router(campaigns.router)  # emerging campaigns
+app.include_router(certin_draft.router)  # CERT-In report assistant
 app.include_router(frontend.router)  # Last: API routes must win over the SPA history fallback.

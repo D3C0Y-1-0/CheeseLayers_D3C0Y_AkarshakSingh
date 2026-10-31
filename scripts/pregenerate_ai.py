@@ -81,6 +81,7 @@ def main() -> int:
         alert_ids = sorted(set(alert_ids) | {a["alert_id"] for a in c.get("/api/alerts").json()["items"]})
         for aid in alert_ids:
             run(f"investigation {aid}", "POST", f"/api/alerts/{aid}/investigate{q}")
+            run(f"CERT-In draft {aid}", "POST", f"/api/alerts/{aid}/certin-draft{q}")
 
     w = max(len(r["item"]) for r in rows)
     for r in rows:

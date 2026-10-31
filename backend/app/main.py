@@ -10,7 +10,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import func, select
 
-from . import alerts, assets, feeds, insights
+from . import alerts, analytics, assets, feeds, insights
 from .database import SessionLocal, init_db
 from .models import Threat
 
@@ -40,3 +40,4 @@ app.include_router(feeds.router)
 app.include_router(insights.router)
 app.include_router(assets.router)  # Member 3
 app.include_router(alerts.router)  # Member 3
+app.include_router(analytics.router)  # Member 3

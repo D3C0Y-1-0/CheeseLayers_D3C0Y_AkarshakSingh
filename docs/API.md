@@ -343,3 +343,32 @@ Sample: `samples/correlate_events.json`.
 ### `POST /api/demo/reset-alerts`
 Deletes all alerts and ingested events. Member 2's `/api/demo/reset` leaves our tables alone, so a full demo reset
 calls both.
+
+### `GET /api/sectors/posture` (heatmap)
+Per-sector exposure built from the synthetic inventory plus every **active** alert (`status != resolved`). Sorted by
+`weighted_sector_risk_score`, highest first. **Always show the `data_classification` label in the UI.** Sample: `samples/sectors_posture.json`.
+```json
+{"data_classification": "Simulated Sector Exposure (Synthetic Asset Inventory)", "is_simulated": true, "formula": "…",
+ "sectors": [{"sector": "power", "label": "Power/Energy", "total_assets": 7, "confirmed_affected_assets": 2,
+   "needs_verification_assets": 0, "active_incidents": 2, "active_critical_high_incidents": 2,
+   "max_asset_priority_score": 99.4, "weighted_sector_risk_score": 29.2, "top_threat_ids": ["CVE-2024-21762", "DEMO-VULN-001"]}]}
+```
+`weighted_sector_risk_score` = Σ(criticality × the asset's worst active `risk_score`) / Σ criticality, over all assets in the
+sector. Assets with no active alert count as 0.
+
+### `POST /api/simulation/patch-impact` (what-if)
+Body: `{"threat_id": "CVE-2024-21762", "patched_version": "7.4.11"}`. Add `"asset_ids": [...]` to limit which assets
+are simulated. If you send only `asset_ids`, it simulates the threats behind their open vulnerability alerts. It copies the assets
+in memory, upgrades every package the threat targets, and re-runs the **real** matcher and scorer. **Nothing live
+changes.** Sample: `samples/patch_impact.json`.
+```json
+{"before_affected_count": 2, "after_affected_count": 0, "before_aggregate_exposure_score": 198.8,
+ "after_aggregate_exposure_score": 0.0, "modelled_exposure_reduction_pct": 100.0,
+ "transitions": [{"asset_id": "PWR-FW-01", "summary": "PWR-FW-01: confirmed_affected (score 99.4) -> confirmed_unaffected (score 0)",
+                  "before": {...}, "after": {...}, "changed_software": ["fortinet/fortios 7.2.6 -> 7.4.11"]}],
+ "notes": []}
+```
+A version that is still vulnerable stays affected and gets a note. A non-standard version (`7.4.11-custombuild`) becomes
+`needs_verification` and keeps a non-zero score: we never claim a patch is safe without proof. Errors: neither target given → 422,
+unknown threat or asset → 404, assets with no open alerts and no `threat_id` → 400. Threats come from the DB, falling back to the
+demo fixture files.

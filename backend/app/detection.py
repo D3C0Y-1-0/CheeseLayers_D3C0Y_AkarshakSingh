@@ -25,6 +25,9 @@ CONFIG = {
     "port_scan_distinct_ports": 15,  # distinct destination ports from one source inside the window
     "exfil_min_bytes": 10000,  # an injected request returning this much (and 5x the normal page) = data came back
     "exfil_vs_median": 5,
+    "recon_min_requests": 5,  # requests for well-known secret/admin paths from one source = wordlist scanning
+    "login_hammer_min": 20,  # connection attempts to remote-login ports from one source
+    "login_ports": [22, 23, 2222, 3389, 5900],
 }
 
 MITRE = {
@@ -37,6 +40,8 @@ MITRE = {
     "T1059.004": ("Command and Scripting Interpreter: Unix Shell", "Execution"),
     "T1095": ("Non-Application Layer Protocol (reverse shell)", "Command and Control"),
     "T1189": ("Drive-by Compromise (XSS)", "Initial Access"),
+    "T1595.003": ("Active Scanning: Wordlist Scanning", "Reconnaissance"),
+    "T1110": ("Brute Force", "Credential Access"),
 }
 
 
@@ -136,6 +141,31 @@ SIGNATURES = [
 ]
 
 
+# Published exploit paths seen in REAL honeypot traffic (SANS ISC) -> the CVE each one exploits. Every CVE here is in
+# our NVD/KEV feed, which is how a real attack request gets linked to KEV / EPSS / our asset inventory. First match wins.
+KNOWN_EXPLOITS = [(re.compile(p, re.I), cve, name) for p, cve, name in [
+    (r"eval-stdin\.php", "CVE-2017-9841", "PHPUnit eval-stdin remote code execution"),
+    (r"/remote/fgt_lang", "CVE-2018-13379", "FortiOS SSL-VPN path traversal (credential theft)"),
+    (r"%ad-d|%ad%2dd", "CVE-2024-4577", "PHP-CGI argument injection (soft hyphen)"),
+    (r"allow_url_include", "CVE-2012-1823", "PHP-CGI query-string argument injection"),
+    (r"%%32%65", "CVE-2021-42013", "Apache HTTP Server path traversal / RCE"),
+    (r"/cgi-bin/(?:\.%2e|%2e%2e)", "CVE-2021-41773", "Apache HTTP Server path traversal / RCE"),
+    (r"/actuator/gateway/routes", "CVE-2022-22947", "Spring Cloud Gateway code injection"),
+    (r"luci/;stok=/locale", "CVE-2023-1389", "TP-Link Archer command injection"),
+    (r"ViewLog\.asp", "CVE-2017-18368", "Zyxel router command injection"),
+    (r"GponForm/diag_Form", "CVE-2018-10562", "Dasan GPON router command injection"),
+    (r"invokefunction.{0,40}call_user_func_array", "CVE-2018-20062", "ThinkPHP remote code execution"),
+]]
+# Well-known sensitive / admin paths that wordlist scanners request (secrets, config, admin panels).
+RECON_PATHS = re.compile(r"/\.env\b|/\.git/|/\.aws/|/\.ssh/|id_rsa|wp-config|phpinfo|/server-status|wp-login\.php|"
+                         r"xmlrpc\.php|/owa/|/solr/|/remote/login|/boaform/|/actuator\b", re.I)
+
+
+def known_exploit(path: str) -> tuple[str, str] | None:
+    """(cve, exploit name) if this request path is a published exploit for a specific CVE."""
+    return next(((cve, name) for p, cve, name in KNOWN_EXPLOITS if p.search(path)), None)
+
+
 def signature_hits(text: str) -> list[dict]:
     hits = []
     for s in SIGNATURES:
@@ -162,6 +192,23 @@ RULES = [
      "logic": f"One source touches {CONFIG['port_scan_distinct_ports']}+ different destination ports within "
               f"{CONFIG['window_seconds']}s.",
      "why_it_works": "Real clients connect to the one service they need. Knocking on many ports is mapping what is open."},
+    {"rule_id": "WEB-EXPLOIT-001", "name": "Known-CVE exploit attempt", "log_source": "web access log",
+     "kind": "signature", "signal": "exploit_attempt", "mitre": ["T1190"],
+     "logic": "Request path is a published exploit for a specific CVE: " +
+              "; ".join(f"{cve} {name}" for _, cve, name in KNOWN_EXPLOITS) + ".",
+     "why_it_works": "Exploit kits request the exact vulnerable file or parameter; the path itself names the CVE, which "
+                     "we then look up in our NVD/KEV feed and match against our asset inventory."},
+    {"rule_id": "WEB-RECON-001", "name": "Vulnerability & secrets scanning", "log_source": "web access log",
+     "kind": "threshold", "signal": "recon_probe", "mitre": ["T1595.003"],
+     "logic": f"{CONFIG['recon_min_requests']}+ requests from ONE source for well-known sensitive or admin paths "
+              "(.env, .git, phpinfo, wp-login, OWA, Solr, actuator ...).",
+     "why_it_works": "Real users never ask for /.env or /.git/config. A tool walking a wordlist of secret files does."},
+    {"rule_id": "NET-LOGIN-001", "name": "Login-port hammering", "log_source": "firewall", "kind": "threshold",
+     "signal": "login_hammering", "mitre": ["T1110"],
+     "logic": f"{CONFIG['login_hammer_min']}+ connection attempts from ONE source to remote-login ports "
+              f"({', '.join(map(str, CONFIG['login_ports']))}).",
+     "why_it_works": "Repeated connections to SSH / Telnet / RDP / VNC from one address is password guessing at scale "
+                     "(the firewall sees the connections, not the passwords)."},
     {"rule_id": "WEB-SQLI-001", "name": "SQL injection attempt", "log_source": "web access log", "kind": "signature",
      "signal": "sql_injection", "mitre": ["T1190"],
      "logic": "URL-decoded request matches a SQL injection signature: " +
@@ -200,7 +247,9 @@ LABELS = {"brute_force": "Brute-force login", "password_spraying": "Password spr
           "credential_compromise": "Account compromised by brute force", "port_scan": "Port scan",
           "sql_injection": "SQL injection", "data_exposure": "SQL injection: data extracted",
           "command_injection": "Command injection", "reverse_shell": "Reverse shell",
-          "path_traversal": "Path traversal", "xss": "Cross-site scripting"}
+          "path_traversal": "Path traversal", "xss": "Cross-site scripting",
+          "known_exploit": "Known-CVE exploit attempt", "recon_scanning": "Vulnerability & secrets scanning",
+          "login_hammering": "Login-port hammering"}
 STAGES = {"recon": "Reconnaissance", "attempt": "Attack attempt", "success": "Compromise likely"}
 
 

@@ -2,12 +2,19 @@
 
     cd backend && python -m collectors.run_all          # live
     DEMO_MODE=true python -m collectors.run_all         # offline, from data/cache only
+    python -m collectors.run_all --from-raw             # offline: re-parse data/raw/* with the collectors' own
+                                                        # parsers (after a schema change), enrichment from cache
 """
+import sys
 import time
 from datetime import datetime, timezone
 
-from . import abusech, attack, attack_mappings, certin, epss, exploits, ip_reputation, kev, nvd, nvd_kev, otx, ransomware
-from .common import DEMO_MODE, Skipped, cache_mtime, load_cache, log, save_cache
+from . import (abusech, attack, attack_mappings, certin, epss, exploits, history, ip_reputation, kev, nvd, nvd_kev,
+               otx, ransomware)
+from .common import BASE, DEMO_MODE, Skipped, cache_mtime, load_cache, log, mtime, save_cache
+
+FROM_RAW = "--from-raw" in sys.argv
+OFFLINE = DEMO_MODE or FROM_RAW
 from .schema import IOC, ThreatItem
 
 summary: list[tuple[str, str, str, float]] = []
@@ -41,11 +48,30 @@ def _stamp(data, at: datetime) -> None:
             x.retrieved_at = at
 
 
-def run(name: str, fn, *args):
-    """Run one collector in isolation. Failure falls back to its last cache, so one dead feed never stops the rest."""
+def _stamp_from_raw(data) -> datetime | None:
+    # Rebuilt records arrived when their raw file was saved, not now.
+    seen: dict[str, datetime] = {}
+    for x in data.get("items", []) + data.get("iocs", []):
+        if x.raw_ref:
+            x.retrieved_at = seen.setdefault(x.raw_ref, mtime(BASE.parent / x.raw_ref))
+    return max(seen.values(), default=None)
+
+
+def run(name: str, fn, *args, raw=None):
+    """Run one collector in isolation. Failure falls back to its last cache, so one dead feed never stops the rest.
+    raw = the collector's from_raw(), used by --from-raw."""
     t0, started = time.monotonic(), datetime.now(timezone.utc)
     error, attempted, succeeded = None, None, None
-    if DEMO_MODE:
+    if FROM_RAW and raw:
+        try:
+            data = raw()
+            succeeded = _stamp_from_raw(data)
+            save_cache(name, data)
+            status = "cache"
+        except Exception as e:
+            log.warning("%s: rebuild from raw failed: %r — using last cache", name, e)
+            data, status, error, succeeded = load_cache(name), "stale", repr(e)[:500], cache_mtime(name)
+    elif OFFLINE:
         data = load_cache(name)
         status = "cache" if data is not None else "failed"
         error = None if data is not None else "DEMO_MODE and no cache file"
@@ -84,6 +110,9 @@ def merge(nvd_items, nvd_kev_items, kev_items, other_items, scores, signals=None
             k.cvss, k.cvss_version, k.severity = n.cvss, n.cvss_version, n.severity
             k.affected_configurations = n.affected_configurations or k.affected_configurations
             k.references = list(dict.fromkeys(k.references + n.references))
+            # Original publication = NVD's date; KEV's own date stays in kev_date_added.
+            k.published_at, k.nvd_published_at = n.published_at, n.nvd_published_at
+            k.raw_refs = list(dict.fromkeys(k.raw_refs + n.raw_refs))  # KEV dump first (primary), then the NVD page
             k.tags = sorted(set(k.tags) | set(n.tags))
     items = kev_items + [i for i in nvd_items if i.threat_id not in kev_set] + other_items
     scored = {c: i for c, i in nvd_by_cve.items() if i.cvss is not None}
@@ -102,14 +131,14 @@ def merge(nvd_items, nvd_kev_items, kev_items, other_items, scores, signals=None
 
 def main() -> None:
     log.info("collectors starting (DEMO_MODE=%s)", DEMO_MODE)
-    nvd_d = run("nvd", nvd.fetch)
-    nvd_kev_d = run("nvd_kev", nvd_kev.fetch)
-    kev_d = run("kev", kev.fetch)
-    certin_d = run("certin", certin.fetch)
-    abuse_d = run("abusech", abusech.fetch)
-    otx_d = run("otx", otx.fetch)
-    rep_d = run("ip_reputation", ip_reputation.fetch)
-    ransom_d = run("ransomware", ransomware.fetch)
+    nvd_d = run("nvd", nvd.fetch, raw=nvd.from_raw)
+    nvd_kev_d = run("nvd_kev", nvd_kev.fetch, raw=nvd_kev.from_raw)
+    kev_d = run("kev", kev.fetch, raw=kev.from_raw)
+    certin_d = run("certin", certin.fetch, raw=certin.from_raw)
+    abuse_d = run("abusech", abusech.fetch, raw=abusech.from_raw)
+    otx_d = run("otx", otx.fetch, raw=otx.from_raw)
+    rep_d = run("ip_reputation", ip_reputation.fetch, raw=ip_reputation.from_raw)
+    ransom_d = run("ransomware", ransomware.fetch, raw=ransomware.from_raw)
     run("attack_techniques", attack.fetch)
     attack_map = run("kev_attack_map", attack_mappings.fetch) or {}
 
@@ -124,6 +153,9 @@ def main() -> None:
     by_cvss = [i.threat_id for i in sorted(nvd_items, key=lambda i: i.cvss or 0, reverse=True)]
     targets = [c for c in dict.fromkeys(certin_cves + by_cvss) if c not in kev_set]
     signals = run("exploit_signals", exploits.fetch, targets) or {}
+    # Lead-time backtest history (what was knowable before each KEV date). Incremental: only missing keys are fetched.
+    run("epss_history", history.epss_history, kev_items)
+    run("github_poc_dates", history.poc_dates, kev_items, signals)
 
     t0 = time.monotonic()
     items = merge(nvd_items, nvd_kev_items, kev_items, other, epss_d["scores"], signals, attack_map)

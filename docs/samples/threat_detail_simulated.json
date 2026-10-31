@@ -28,18 +28,28 @@
         "T1083"
     ],
     "published_at": "2026-10-31T05:30:00Z",
+    "nvd_published_at": null,
+    "kev_date_added": null,
     "retrieved_at": "2026-10-31T08:30:00Z",
     "raw_ref": "data/threats_synthetic.json",
+    "raw_refs": [
+        "data/threats_synthetic.json"
+    ],
     "is_simulated": true,
     "type": "vulnerability",
     "cve_ids": [],
-    "tags": [],
-    "raw_payload": {
-        "id": 64,
-        "source": "netrax_synthetic",
-        "path": "data/threats_synthetic.json",
-        "sha256": "df02f6077190a52bb0f94692b3ffa3aa80c3d61c252870bedb4e2392168ed1a5",
-        "size_bytes": 3433,
-        "fetched_at": "2026-10-31T11:38:31.037216Z"
-    }
+    "tags": [
+        "simulated",
+        "demo"
+    ],
+    "raw_payloads": [
+        {
+            "id": 65,
+            "source": "netrax_synthetic",
+            "path": "data/threats_synthetic.json",
+            "sha256": "e447390975164d91125390571fc5fa2b0c4c58c59df7288d76e5229a3bc8f77d",
+            "size_bytes": 4186,
+            "fetched_at": "2026-10-31T12:18:07.584823Z"
+        }
+    ]
 }

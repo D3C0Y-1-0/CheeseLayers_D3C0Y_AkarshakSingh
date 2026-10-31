@@ -8,7 +8,7 @@ import json
 import re
 import sys
 from collections import Counter
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 
 DATA = Path(__file__).resolve().parent
@@ -29,7 +29,7 @@ def check(v, spec: dict, path: str) -> None:
             errors.append(f"{path}: null not allowed")
         return
     t = spec["type"]
-    ok = {"string": isinstance(v, str), "datetime": isinstance(v, str), "ipv4": isinstance(v, str), "enum": isinstance(v, str),
+    ok = {"string": isinstance(v, str), "datetime": isinstance(v, str), "date": isinstance(v, str), "ipv4": isinstance(v, str), "enum": isinstance(v, str),
           "integer": isinstance(v, int) and not isinstance(v, bool),
           "number": isinstance(v, (int, float)) and not isinstance(v, bool),
           "boolean": isinstance(v, bool), "array": isinstance(v, list), "object": isinstance(v, dict)}[t]
@@ -44,6 +44,11 @@ def check(v, spec: dict, path: str) -> None:
                 errors.append(f"{path}: timestamp has no UTC offset: {v}")
         except ValueError:
             errors.append(f"{path}: not ISO 8601: {v}")
+    if t == "date":
+        try:
+            date.fromisoformat(v)
+        except ValueError:
+            errors.append(f"{path}: not YYYY-MM-DD: {v}")
     if t == "ipv4":
         try:
             ipaddress.IPv4Address(v)

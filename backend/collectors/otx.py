@@ -1,7 +1,9 @@
 """AlienVault OTX: community 'pulses' = write-ups of an attack campaign, with IOCs and MITRE ATT&CK technique tags."""
 from datetime import datetime, timedelta, timezone
 
-from .common import Skipped, env, get, save_raw
+import json
+
+from .common import Skipped, env, get, raw_pages, ref, save_raw
 from .schema import IOC, ThreatItem
 
 SOURCE = "otx"
@@ -39,6 +41,10 @@ def fetch() -> dict:
     # 'subscribed' = pulses from authors we follow; a fresh account follows nobody, so fall back to global activity.
     pulses = _pulses("/pulses/subscribed", headers) or _pulses("/pulses/activity", headers)
     return parse(pulses)
+
+
+def from_raw() -> dict:
+    return parse([(p, ref(f)) for f in raw_pages(SOURCE) for p in json.loads(f.read_text()).get("results", [])])
 
 
 def parse(pulses: list[tuple[dict, str]]) -> dict:

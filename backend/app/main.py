@@ -10,7 +10,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import func, select
 
-from . import feeds
+from . import feeds, insights
 from .database import SessionLocal, init_db
 from .models import Threat
 
@@ -19,7 +19,7 @@ log = logging.getLogger("netrax")
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    init_db()
+    init_db()  # also rebuilds Member 2's derived tables if their columns changed -> they come back empty
     with SessionLocal() as s:
         empty = not s.scalar(select(func.count()).select_from(Threat))
     if empty:
@@ -33,3 +33,4 @@ app = FastAPI(title="NETRA-X API", version="0.1.0", lifespan=lifespan,
 app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],  # Vite dev server
                    allow_methods=["*"], allow_headers=["*"])
 app.include_router(feeds.router)
+app.include_router(insights.router)

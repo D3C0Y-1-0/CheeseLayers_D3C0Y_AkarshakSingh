@@ -53,9 +53,23 @@ def test_endpoints_200(client, path):
     assert r.status_code == 200, r.text
 
 
-def test_threat_detail_has_raw_payload(client):
+def test_threat_detail_has_raw_payloads(client):
     t = client.get("/api/threats/CVE-2024-21762").json()
-    assert t["raw_payload"]["path"] == t["raw_ref"] and t["raw_payload"]["sha256"]
+    assert [r["path"] for r in t["raw_payloads"]] == t["raw_refs"] and t["raw_refs"][0] == t["raw_ref"]
+    assert len(t["raw_refs"]) == 2 and all(r["sha256"] for r in t["raw_payloads"])  # KEV dump + NVD page
+    assert t["kev_date_added"] == "2024-02-09" and t["published_at"].startswith("2024-02-09T09:15")  # NVD date, not KEV's
+
+
+def test_api_output_matches_contract(client):
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "data"))
+    import validate as V
+    V.errors.clear()
+    page = client.get("/api/threats", params={"page_size": 200}).json()["items"]
+    page += client.get("/api/threats", params={"simulated": "true"}).json()["items"]
+    V.check_file("threat", page)
+    assert not V.errors, V.errors[:5]
 
 
 def test_overview_member3_fields_null(client):

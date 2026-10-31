@@ -30,12 +30,20 @@
             "T1059"
         ],
         "published_at": "2026-10-31T09:30:00+05:30",
-        "retrieved_at": "2026-10-31T11:54:33.155172Z",
+        "nvd_published_at": null,
+        "kev_date_added": null,
+        "retrieved_at": "2026-10-31T12:32:40.756840Z",
         "raw_ref": "data/threats_synthetic.json",
+        "raw_refs": [
+            "data/threats_synthetic.json"
+        ],
         "is_simulated": true,
         "type": "vulnerability",
         "cve_ids": [],
-        "tags": []
+        "tags": [
+            "simulated",
+            "demo"
+        ]
     },
     "fixture_file": "data/threats_synthetic.json",
     "hook_called": "on_new_threat"

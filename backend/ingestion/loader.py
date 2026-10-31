@@ -61,8 +61,8 @@ def _raw_payloads(s, refs: dict[str, str]) -> dict[str, int]:
 
 
 def upsert_threats(s, items: list[ThreatItem]) -> None:
-    ids = _raw_payloads(s, {t.raw_ref: t.source for t in items if t.raw_ref})
-    _upsert(s, Threat, [{**t.model_dump(), "raw_payload_id": ids.get(t.raw_ref)} for t in items], ["threat_id"])
+    _raw_payloads(s, {r: t.source for t in items for r in t.raw_refs})
+    _upsert(s, Threat, [t.model_dump() for t in items], ["threat_id"])
 
 
 def load() -> dict[str, int]:

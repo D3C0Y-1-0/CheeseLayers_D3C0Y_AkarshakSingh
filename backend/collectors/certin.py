@@ -10,7 +10,7 @@ from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
 
-from .common import get, log, save_raw
+from .common import RAW, get, log, ref, save_raw
 from .schema import AffectedConfiguration, ThreatItem, severity
 
 SOURCE = "certin"
@@ -62,7 +62,22 @@ def _detail(url: str, kind: str, code: str) -> ThreatItem:
         x.decompose()
     text = soup.get_text("\n", strip=True)
     body = text[text.find(code):]  # skip the site's navigation menu
-    ref = save_raw(SOURCE, body, code)
+    return parse(body, url, kind, code, save_raw(SOURCE, body, code))
+
+
+# Detail-page URL is fixed per document type (seen Oct 2026), so it can be rebuilt for raw files.
+DETAIL = {"CIAD": ("advisory", "PUBVLNOTES02"), "CIVN": ("vulnerability_note", "PUBVLNOTES01")}
+
+
+def from_raw() -> dict:
+    items = []
+    for f in sorted((RAW / SOURCE).glob("CI*.txt")):
+        kind, page = DETAIL[f.stem[:4]]
+        items.append(parse(f.read_text(), f"{HOME}s2cMainServlet?pageid={page}&VLCODE={f.stem}", kind, f.stem, ref(f)))
+    return {"items": items}
+
+
+def parse(body: str, url: str, kind: str, code: str, raw_ref: str) -> ThreatItem:
     lines = [re.sub(r"\s+", " ", l) for l in body.splitlines()]
     title = lines[1] if len(lines) > 1 else code
     date = re.search(r"Original Issue Date:\s*([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})", body)
@@ -75,7 +90,7 @@ def _detail(url: str, kind: str, code: str) -> ThreatItem:
         references=[url], cve_ids=sorted(set(CVE_RE.findall(body))),
         severity=severity(sev.group(1)) if sev else None,
         affected_configurations=[_affected(l) for l in _section(lines, "Software Affected", ("Overview", "Description"))],
-        tags=["cert-in", kind, "india"], raw_ref=ref,
+        tags=["cert-in", kind, "india"], raw_ref=raw_ref,
     )
 
 

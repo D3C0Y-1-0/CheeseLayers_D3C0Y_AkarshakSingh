@@ -1,7 +1,9 @@
 """NVD (US National Vulnerability Database): every CVE published in the last N days, with CVSS + CPEs."""
 from datetime import datetime, timedelta, timezone
 
-from .common import env, get, log, save_raw
+import json
+
+from .common import env, get, log, raw_pages, ref, save_raw
 from .schema import AffectedConfiguration, ThreatItem, severity
 
 SOURCE = "nvd"
@@ -52,7 +54,7 @@ def _item(cve: dict, raw_ref: str) -> ThreatItem:
     return ThreatItem(
         threat_id=cve["id"], cve_id=cve["id"], source=SOURCE, type="vulnerability",
         title=f"{cve['id']}: {short}" if short else cve["id"],
-        description=desc, published_at=cve["published"] + "Z",  # NVD timestamps are UTC without a suffix
+        description=desc, published_at=cve["published"] + "Z", nvd_published_at=cve["published"] + "Z",  # NVD: UTC, no suffix
         references=list(dict.fromkeys([f"https://nvd.nist.gov/vuln/detail/{cve['id']}"] + [r["url"] for r in cve.get("references", [])])),
         cve_ids=[cve["id"]], cvss=cvss, cvss_version=version, severity=sev, affected_configurations=_affected(cve),
         tags=cwes,  # CWE = the *kind* of bug (CWE-79 XSS, CWE-787 out-of-bounds write…)
@@ -76,6 +78,11 @@ def query(params: dict, source: str = SOURCE, url: str = URL) -> list[ThreatItem
         idx += PAGE
         if idx >= data["totalResults"]:
             return items
+
+
+def from_raw(source: str = SOURCE) -> dict:
+    """Rebuild from the newest saved run's pages in data/raw/<source>/ (no network)."""
+    return {"items": [_item(v["cve"], ref(f)) for f in raw_pages(source) for v in json.loads(f.read_text())["vulnerabilities"]]}
 
 
 def fetch() -> dict:

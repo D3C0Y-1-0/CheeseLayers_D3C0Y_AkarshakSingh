@@ -17,8 +17,10 @@ def test() -> None:
     a = _affected("Mozilla Firefox versions prior to 159")
     assert (a.vendor, a.product, a.versions_text, a.version_end_excluding) == ("Mozilla", "Firefox", "prior to 159", None)
 
-    nvd = [T("CVE-1", "nvd", cve_id="CVE-1", cve_ids=["CVE-1"], cvss=9.8, cvss_version="3.1", severity="critical")]
-    kev = [T("CVE-1", "kev", cve_id="CVE-1", cve_ids=["CVE-1"], kev_listed=True, description="x\nRequired action: patch", tags=["kev"]),
+    nvd = [T("CVE-1", "nvd", cve_id="CVE-1", cve_ids=["CVE-1"], cvss=9.8, cvss_version="3.1", severity="critical",
+             published_at="2024-01-01T10:00:00Z", nvd_published_at="2024-01-01T10:00:00Z", raw_ref="raw/nvd_0.json")]
+    kev = [T("CVE-1", "kev", cve_id="CVE-1", cve_ids=["CVE-1"], kev_listed=True, description="x\nRequired action: patch", tags=["kev"],
+             kev_date_added="2024-02-09", raw_ref="raw/kev.json"),
            T("CVE-0", "kev", cve_id="CVE-0", cve_ids=["CVE-0"], kev_listed=True)]
     adv = [T("CIAD-1", "certin", type="advisory", cve_ids=["CVE-1", "CVE-9"]),
            T("CIAD-2", "certin", type="advisory", cve_ids=["CVE-7"]),
@@ -33,6 +35,11 @@ def test() -> None:
     assert out["CIAD-1"].kev_listed and out["CIAD-1"].cvss == 9.8 and (out["CIAD-1"].epss, out["CIAD-1"].epss_percentile) == (0.9, 0.99)
     assert out["CIAD-1"].public_exploit and out["CVE-1"].public_exploit is False  # SSVC "poc" counts; checked-and-absent = False
     assert out["CVE-1"].attack_techniques == ["T1190"]
+    # Dates stay separate; every contributing raw payload is listed, KEV (base record) first.
+    c1 = out["CVE-1"]
+    assert c1.published_at.isoformat() == c1.nvd_published_at.isoformat() == "2024-01-01T10:00:00+00:00"
+    assert str(c1.kev_date_added) == "2024-02-09" and c1.raw_refs == ["raw/kev.json", "raw/nvd_0.json"] and c1.raw_ref == "raw/kev.json"
+    assert out["CVE-0"].published_at is None and out["CVE-0"].nvd_published_at is None  # KEV-only: NVD date unknown
     # Null preservation: unknown stays None, never 0 / False.
     c2 = out["CIAD-2"]  # CVE we have no NVD/EPSS data for
     assert c2.kev_listed is False and c2.cvss is None and c2.epss is None and c2.epss_percentile is None and c2.severity is None

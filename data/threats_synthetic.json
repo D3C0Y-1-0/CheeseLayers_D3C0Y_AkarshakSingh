@@ -17,6 +17,7 @@
         "vendor": "netrax_demo_vendor",
         "product": "gridview_hmi",
         "cpe": "cpe:2.3:a:netrax_demo_vendor:gridview_hmi:*:*:*:*:*:*:*:*",
+        "versions_text": null,
         "version_start_including": "4.0.0",
         "version_start_excluding": null,
         "version_end_including": null,
@@ -29,9 +30,20 @@
       "T1059"
     ],
     "published_at": "2026-10-31T09:30:00+05:30",
+    "nvd_published_at": null,
+    "kev_date_added": null,
     "retrieved_at": "2026-10-31T14:00:00+05:30",
     "raw_ref": "data/threats_synthetic.json",
-    "is_simulated": true
+    "raw_refs": [
+      "data/threats_synthetic.json"
+    ],
+    "is_simulated": true,
+    "type": "vulnerability",
+    "cve_ids": [],
+    "tags": [
+      "simulated",
+      "demo"
+    ]
   },
   {
     "threat_id": "DEMO-VULN-002",
@@ -51,6 +63,7 @@
         "vendor": "netrax_demo_vendor",
         "product": "corelink_banking_gateway",
         "cpe": "cpe:2.3:a:netrax_demo_vendor:corelink_banking_gateway:*:*:*:*:*:*:*:*",
+        "versions_text": null,
         "version_start_including": null,
         "version_start_excluding": null,
         "version_end_including": "3.0.5",
@@ -63,9 +76,20 @@
       "T1078"
     ],
     "published_at": "2026-10-31T10:15:00+05:30",
+    "nvd_published_at": null,
+    "kev_date_added": null,
     "retrieved_at": "2026-10-31T14:00:00+05:30",
     "raw_ref": "data/threats_synthetic.json",
-    "is_simulated": true
+    "raw_refs": [
+      "data/threats_synthetic.json"
+    ],
+    "is_simulated": true,
+    "type": "vulnerability",
+    "cve_ids": [],
+    "tags": [
+      "simulated",
+      "demo"
+    ]
   },
   {
     "threat_id": "DEMO-VULN-003",
@@ -85,6 +109,7 @@
         "vendor": "netrax_demo_vendor",
         "product": "medivault_pacs",
         "cpe": "cpe:2.3:a:netrax_demo_vendor:medivault_pacs:*:*:*:*:*:*:*:*",
+        "versions_text": null,
         "version_start_including": null,
         "version_start_excluding": null,
         "version_end_including": null,
@@ -96,8 +121,19 @@
       "T1083"
     ],
     "published_at": "2026-10-31T11:00:00+05:30",
+    "nvd_published_at": null,
+    "kev_date_added": null,
     "retrieved_at": "2026-10-31T14:00:00+05:30",
     "raw_ref": "data/threats_synthetic.json",
-    "is_simulated": true
+    "raw_refs": [
+      "data/threats_synthetic.json"
+    ],
+    "is_simulated": true,
+    "type": "vulnerability",
+    "cve_ids": [],
+    "tags": [
+      "simulated",
+      "demo"
+    ]
   }
 ]

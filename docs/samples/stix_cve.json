@@ -1,0 +1,124 @@
+{
+    "type": "bundle",
+    "id": "bundle--935ab6cf-927d-5319-ae6e-c0b364168d39",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "name": "NETRA-X",
+            "description": "NETRA-X national cyber threat early-warning prototype (D3COY hackathon, PS 01).",
+            "identity_class": "system"
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--e6808729-90bf-5e99-9ff5-5d4c34aa0f0f",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2024-02-09T09:15:08.087Z",
+            "modified": "2026-10-31T12:29:37.56423Z",
+            "name": "CVE-2024-21762",
+            "description": "A out-of-bounds write vulnerability in Fortinet FortiOS 7.4.0 through 7.4.2, FortiOS 7.2.0 through 7.2.6, FortiOS 7.0.0 through 7.0.13, FortiOS 6.4.0 through 6.4.14, FortiOS 6.2.0 through 6.2.15, FortiOS 6.0 all versions, FortiProxy 7.4.0 through 7.4.2, FortiProxy 7.2.0 through 7.2.8, FortiProxy 7.0.0 through 7.0.14, FortiProxy 2.0.0 through 2.0.13, FortiProxy 01.02 all versions, FortiProxy 1.2 all versions, FortiProxy 01.01 all versions, FortiProxy 1.1 all versions, FortiProxy 01.00 all versions allows attacker to execute unauthorized code or commands via specifically crafted requests",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2024-21762"
+                },
+                {
+                    "source_name": "nvd+kev",
+                    "url": "https://fortiguard.com/psirt/FG-IR-24-015"
+                },
+                {
+                    "source_name": "nvd+kev",
+                    "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-21762"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--872a662f-7a14-5707-a12a-7dcf41c02e82",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "name": "Exploit Public-Facing Application",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1190/",
+                    "external_id": "T1190"
+                }
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--87bef2a0-8fda-50bb-8773-fa0581d2c513",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--872a662f-7a14-5707-a12a-7dcf41c02e82",
+            "target_ref": "vulnerability--e6808729-90bf-5e99-9ff5-5d4c34aa0f0f"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--5c688465-a999-5d9e-acae-ab3f1a8c1c3c",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "name": "Hijack Execution Flow",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1574/",
+                    "external_id": "T1574"
+                }
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4d1454e9-68ee-56a4-bee0-38f466bfe629",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--5c688465-a999-5d9e-acae-ab3f1a8c1c3c",
+            "target_ref": "vulnerability--e6808729-90bf-5e99-9ff5-5d4c34aa0f0f"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--9317d532-85ea-56a6-ab34-dced8256ee79",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "name": "Shortcut Modification",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1547/009/",
+                    "external_id": "T1547.009"
+                }
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c22cfb3f-55f4-539e-997e-5d7008afec6d",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--9317d532-85ea-56a6-ab34-dced8256ee79",
+            "target_ref": "vulnerability--e6808729-90bf-5e99-9ff5-5d4c34aa0f0f"
+        }
+    ]
+}

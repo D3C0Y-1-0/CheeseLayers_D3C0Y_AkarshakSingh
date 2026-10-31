@@ -1,12 +1,12 @@
 """Normalised schemas. Field names/enums come from data/contracts.json (team source of truth) — change it there first.
 
 Rule: None = unknown / not checked. Never store 0 or False for "we don't know".
-Fields marked "extra" are our additions on top of the contract (allowed; never rename a contract field).
+Every field here is in the contract (v1.1: type, cve_ids, tags, versions_text, raw_refs, dates were added officially).
 """
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 Severity = Literal["critical", "high", "medium", "low", "none"]
 
@@ -31,7 +31,7 @@ class AffectedConfiguration(BaseModel):
     version_end_including: str | None = None
     version_end_excluding: str | None = None
     cpe: str | None = None
-    versions_text: str | None = None  # extra: free-text range we couldn't parse (CERT-In: "prior to 159")
+    versions_text: str | None = None  # free-text range we couldn't parse (CERT-In: "prior to 159")
 
 
 class ThreatItem(BaseModel):
@@ -50,18 +50,29 @@ class ThreatItem(BaseModel):
     affected_configurations: list[AffectedConfiguration] = []
     references: list[str] = []
     attack_techniques: list[str] = []  # MITRE ATT&CK IDs, e.g. T1190
-    published_at: datetime | None = None
-    retrieved_at: datetime = Field(default_factory=now)  # when we fetched it (run_all stamps one time per source run)
-    raw_ref: str | None = None  # repo-relative path of the raw payload, e.g. backend/data/raw/kev/latest.json
+    # Three different dates, never mixed up (the lead-time backtest depends on it):
+    published_at: datetime | None = None  # original publication: NVD's date for a CVE, the advisory/pulse date otherwise
+    nvd_published_at: datetime | None = None  # when NVD published the CVE
+    kev_date_added: date | None = None  # when CISA added it to KEV (= "confirmed exploited in the wild" date)
+    retrieved_at: datetime = Field(default_factory=now)  # when WE fetched it (one stamp per source run)
+    raw_ref: str | None = None  # primary raw payload (= raw_refs[0]), repo-relative
+    raw_refs: list[str] = []  # every raw payload that contributed (e.g. KEV dump + NVD page)
     is_simulated: bool = False
-    # --- extras (not in contract) ---
     type: Literal["vulnerability", "advisory", "campaign", "ioc_batch"]
     cve_ids: list[str] = []  # every CVE this threat mentions (drives KEV/EPSS/exploit enrichment)
     tags: list[str] = []
 
+    @model_validator(mode="after")
+    def _sync_raw(self):
+        # raw_ref and raw_refs always agree: raw_ref is the first (primary) payload.
+        if self.raw_ref and self.raw_ref not in self.raw_refs:
+            self.raw_refs = [self.raw_ref, *self.raw_refs]
+        self.raw_ref = self.raw_refs[0] if self.raw_refs else None
+        return self
+
 
 class IOC(BaseModel):
-    # Not in data/contracts.json yet (see CLAUDE.md §8). Indicator of Compromise: something seen in an attack
+    # contracts.json entity `ioc`. Indicator of Compromise: something seen in an attack
     # that we can look for in our own logs.
     value: str
     ioc_type: Literal["ip", "cidr", "domain", "url", "sha256", "md5"]  # cidr = whole IP range, e.g. 1.10.16.0/20

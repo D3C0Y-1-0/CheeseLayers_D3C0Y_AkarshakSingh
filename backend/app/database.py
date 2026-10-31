@@ -3,7 +3,7 @@ import os
 from datetime import datetime, timezone
 from pathlib import Path
 
-from sqlalchemy import DateTime, create_engine
+from sqlalchemy import DateTime, create_engine, inspect
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 from sqlalchemy.types import TypeDecorator
 
@@ -35,9 +35,20 @@ class UTCDateTime(TypeDecorator):
         return v.replace(tzinfo=timezone.utc) if v else None
 
 
+# Tables owned by Member 2 hold only data derived from backend/data/cache (+ source_status, rewritten every run),
+# so when their columns change we drop and rebuild them instead of writing migrations. Never touches other tables.
+DERIVED = ("threats", "iocs", "raw_payloads", "source_status")
+
+
 def init_db() -> None:
+    """Create tables (rebuilding Member 2's derived tables, empty, if their columns changed)."""
     from . import models  # noqa: F401  (registers tables)
     (BACKEND / "data").mkdir(exist_ok=True)
+    insp = inspect(engine)
+    stale = [t for t in DERIVED if insp.has_table(t)
+             and {c["name"] for c in insp.get_columns(t)} != set(Base.metadata.tables[t].columns.keys())]
+    if stale:
+        Base.metadata.drop_all(engine, tables=[Base.metadata.tables[t] for t in DERIVED if insp.has_table(t)])
     Base.metadata.create_all(engine)
 
 

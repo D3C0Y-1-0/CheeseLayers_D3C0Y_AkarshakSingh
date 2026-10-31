@@ -1,7 +1,9 @@
 """CISA KEV (Known Exploited Vulnerabilities): CVEs attackers are exploiting right now. Strongest 'act now' signal."""
 import re
 
-from .common import get, save_raw
+import json
+
+from .common import get, raw_file, ref, save_raw
 from .schema import AffectedConfiguration, ThreatItem
 
 SOURCE = "kev"
@@ -13,7 +15,12 @@ def fetch() -> dict:
     return parse(data, save_raw(SOURCE, data))
 
 
-def parse(data: dict, ref: str) -> dict:
+def from_raw() -> dict:
+    f = raw_file(SOURCE, "latest.json")
+    return parse(json.loads(f.read_text()), ref(f))
+
+
+def parse(data: dict, raw_ref: str) -> dict:
     items = []
     for v in data["vulnerabilities"]:
         ransomware = v.get("knownRansomwareCampaignUse") == "Known"
@@ -23,12 +30,12 @@ def parse(data: dict, ref: str) -> dict:
             title=f"{v['cveID']}: {v['vulnerabilityName']}",
             # requiredAction/dueDate: what US federal agencies must do and by when — a good default remediation.
             description=f"{v['shortDescription']}\nRequired action: {v['requiredAction']} (due {v['dueDate']})",
-            published_at=v["dateAdded"] + "T00:00:00Z",
+            kev_date_added=v["dateAdded"],  # published_at stays None here: run_all fills it from NVD
             references=list(dict.fromkeys([f"https://nvd.nist.gov/vuln/detail/{v['cveID']}"] + notes)),
             cve_ids=[v["cveID"]], kev_listed=True,
             affected_configurations=[AffectedConfiguration(vendor=v["vendorProject"], product=v["product"])],
             tags=["kev"] + (["ransomware"] if ransomware else []) + v.get("cwes", []),
-            raw_ref=ref,
+            raw_ref=raw_ref,
         ))
     return {"items": items}
 

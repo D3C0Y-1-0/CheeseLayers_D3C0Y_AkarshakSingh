@@ -1,5 +1,5 @@
 {
-  "contract_version": "1.0.0",
+  "contract_version": "1.1.0",
   "product": "NETRA-X",
   "description": "Single source of truth for shared field names, types and enums across all 4 members. Change a field here first, tell the team, then change code. data/validate.py checks every fixture against this file.",
   "rules": [
@@ -9,7 +9,8 @@
     "Every record carries is_simulated. Threats also carry source, retrieved_at and raw_ref (link to the raw payload it came from).",
     "Synthetic threat IDs (DEMO-VULN-NNN) are never real CVEs: their cve_id is always null and their title starts with [SIMULATED].",
     "Timestamps are ISO 8601 with a UTC offset (e.g. 2026-10-31T14:00:00+05:30 or ...Z). Naive timestamps are invalid.",
-    "Version bounds in affected_configurations follow NVD cpeMatch semantics. If all four bounds are null, the cpe's version field (5th) is the exact affected version, and '*' means every version."
+    "Version bounds in affected_configurations follow NVD cpeMatch semantics. If all four bounds are null, the cpe's version field (5th) is the exact affected version, and '*' means every version.",
+    "Three dates on a threat are never mixed: published_at = original publication (NVD's date for a CVE, the advisory/pulse date otherwise); nvd_published_at = NVD's date; kev_date_added = when CISA listed it. retrieved_at = when WE fetched it."
   ],
   "types": {
     "string": "JSON string",
@@ -20,40 +21,273 @@
     "ipv4": "dotted-quad IPv4 string",
     "enum": "string from the listed values",
     "array": "JSON array; 'items' describes each element",
-    "object": "JSON object; 'fields' describes required keys (none listed = free-form)"
+    "object": "JSON object; 'fields' describes required keys (none listed = free-form)",
+    "date": "YYYY-MM-DD string (calendar date, no time)"
   },
   "entities": {
     "threat": {
       "file": "data/threats_synthetic.json (+ every threat returned by /api/threats)",
       "id_field": "threat_id",
       "fields": {
-        "threat_id": {"type": "string", "nullable": false, "description": "Unique. CVE ID for CVEs, DEMO-VULN-NNN for synthetic, source-prefixed ID otherwise."},
-        "cve_id": {"type": "string", "nullable": true, "pattern": "^CVE-\\d{4}-\\d{4,}$", "description": "Real CVE only. null for synthetic or non-CVE threats."},
-        "source": {"type": "string", "nullable": false, "description": "Feed that produced it: nvd, kev, nvd+kev, certin, otx, abusech, netrax_synthetic, ..."},
-        "title": {"type": "string", "nullable": false},
-        "description": {"type": "string", "nullable": true},
-        "cvss": {"type": "number", "nullable": true, "min": 0, "max": 10, "description": "Base score; how bad it could be."},
-        "cvss_version": {"type": "enum", "nullable": true, "enum": ["2.0", "3.0", "3.1", "4.0"]},
-        "severity": {"type": "enum", "nullable": true, "enum": ["critical", "high", "medium", "low", "none"]},
-        "epss": {"type": "number", "nullable": true, "min": 0, "max": 1, "description": "FIRST probability of exploitation in next 30 days."},
-        "epss_percentile": {"type": "number", "nullable": true, "min": 0, "max": 1},
-        "kev_listed": {"type": "boolean", "nullable": true, "description": "In CISA Known Exploited Vulnerabilities = exploited in the wild."},
-        "public_exploit": {"type": "boolean", "nullable": true, "description": "Public exploit code seen (Exploit-DB, GitHub PoC, Nuclei, CISA SSVC)."},
-        "affected_configurations": {"type": "array", "nullable": false, "items": {"type": "object", "fields": {
-          "vendor": {"type": "string", "nullable": false},
-          "product": {"type": "string", "nullable": false},
-          "version_start_including": {"type": "string", "nullable": true},
-          "version_start_excluding": {"type": "string", "nullable": true},
-          "version_end_including": {"type": "string", "nullable": true},
-          "version_end_excluding": {"type": "string", "nullable": true},
-          "cpe": {"type": "string", "nullable": true, "pattern": "^cpe:2\\.3:[aoh]:"}
-        }}},
-        "references": {"type": "array", "nullable": false, "items": {"type": "string"}},
-        "attack_techniques": {"type": "array", "nullable": false, "items": {"type": "string", "pattern": "^T\\d{4}(\\.\\d{3})?$"}, "description": "MITRE ATT&CK technique IDs."},
-        "published_at": {"type": "datetime", "nullable": true},
-        "retrieved_at": {"type": "datetime", "nullable": false, "description": "When WE fetched/created it (drives 'just arrived')."},
-        "raw_ref": {"type": "string", "nullable": true, "description": "Repo-relative path of the raw payload."},
-        "is_simulated": {"type": "boolean", "nullable": false}
+        "threat_id": {
+          "type": "string",
+          "nullable": false,
+          "description": "Unique. CVE ID for CVEs, DEMO-VULN-NNN for synthetic, source-prefixed ID otherwise."
+        },
+        "cve_id": {
+          "type": "string",
+          "nullable": true,
+          "pattern": "^CVE-\\d{4}-\\d{4,}$",
+          "description": "Real CVE only. null for synthetic or non-CVE threats."
+        },
+        "source": {
+          "type": "string",
+          "nullable": false,
+          "description": "Feed that produced it: nvd, kev, nvd+kev, certin, otx, abusech, netrax_synthetic, ..."
+        },
+        "title": {
+          "type": "string",
+          "nullable": false
+        },
+        "description": {
+          "type": "string",
+          "nullable": true
+        },
+        "cvss": {
+          "type": "number",
+          "nullable": true,
+          "min": 0,
+          "max": 10,
+          "description": "Base score; how bad it could be."
+        },
+        "cvss_version": {
+          "type": "enum",
+          "nullable": true,
+          "enum": [
+            "2.0",
+            "3.0",
+            "3.1",
+            "4.0"
+          ]
+        },
+        "severity": {
+          "type": "enum",
+          "nullable": true,
+          "enum": [
+            "critical",
+            "high",
+            "medium",
+            "low",
+            "none"
+          ]
+        },
+        "epss": {
+          "type": "number",
+          "nullable": true,
+          "min": 0,
+          "max": 1,
+          "description": "FIRST probability of exploitation in next 30 days."
+        },
+        "epss_percentile": {
+          "type": "number",
+          "nullable": true,
+          "min": 0,
+          "max": 1
+        },
+        "kev_listed": {
+          "type": "boolean",
+          "nullable": true,
+          "description": "In CISA Known Exploited Vulnerabilities = exploited in the wild."
+        },
+        "public_exploit": {
+          "type": "boolean",
+          "nullable": true,
+          "description": "Public exploit code seen (Exploit-DB, GitHub PoC, Nuclei, CISA SSVC)."
+        },
+        "affected_configurations": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "object",
+            "fields": {
+              "vendor": {
+                "type": "string",
+                "nullable": false
+              },
+              "product": {
+                "type": "string",
+                "nullable": false
+              },
+              "version_start_including": {
+                "type": "string",
+                "nullable": true
+              },
+              "version_start_excluding": {
+                "type": "string",
+                "nullable": true
+              },
+              "version_end_including": {
+                "type": "string",
+                "nullable": true
+              },
+              "version_end_excluding": {
+                "type": "string",
+                "nullable": true
+              },
+              "cpe": {
+                "type": "string",
+                "nullable": true,
+                "pattern": "^cpe:2\\.3:[aoh]:"
+              },
+              "versions_text": {
+                "type": "string",
+                "nullable": true,
+                "description": "Free-text version range that could not be parsed into bounds (CERT-In: 'prior to 159')."
+              }
+            }
+          }
+        },
+        "references": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "string"
+          }
+        },
+        "attack_techniques": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "string",
+            "pattern": "^T\\d{4}(\\.\\d{3})?$"
+          },
+          "description": "MITRE ATT&CK technique IDs."
+        },
+        "published_at": {
+          "type": "datetime",
+          "nullable": true,
+          "description": "Original publication: NVD's published date for a CVE; the advisory / pulse / victim-post date otherwise. null if unknown (e.g. KEV CVE NVD hasn't published)."
+        },
+        "nvd_published_at": {
+          "type": "datetime",
+          "nullable": true,
+          "description": "When NVD published the CVE. null for non-CVE threats or CVEs NVD lacks."
+        },
+        "kev_date_added": {
+          "type": "date",
+          "nullable": true,
+          "description": "When CISA added the CVE to KEV. null = not in KEV (or not a single-CVE threat)."
+        },
+        "retrieved_at": {
+          "type": "datetime",
+          "nullable": false,
+          "description": "When WE fetched/created it (drives 'just arrived')."
+        },
+        "raw_ref": {
+          "type": "string",
+          "nullable": true,
+          "description": "Primary raw payload = raw_refs[0] (kept for convenience)."
+        },
+        "raw_refs": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "string"
+          },
+          "description": "Every raw payload that contributed, repo-relative (e.g. KEV dump + NVD page). Empty only if none exists."
+        },
+        "is_simulated": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "type": {
+          "type": "enum",
+          "nullable": false,
+          "enum": [
+            "vulnerability",
+            "advisory",
+            "campaign",
+            "ioc_batch"
+          ]
+        },
+        "cve_ids": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "string",
+            "pattern": "^CVE-\\d{4}-\\d{4,}$"
+          },
+          "description": "Every CVE the threat mentions (advisories have several; cve_id is then null)."
+        },
+        "tags": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "string"
+          },
+          "description": "Free-form labels: kev, ransomware, CWE-79, group:<gang>, sector:<x>, country:<ISO>, target:<country>, india, ..."
+        }
+      }
+    },
+    "ioc": {
+      "file": "backend/data/cache/iocs.json (+ /api IOC payloads)",
+      "id_field": "value",
+      "description": "Indicator of Compromise: something seen in an attack that can be searched for in our own logs. Unique by (ioc_type, value).",
+      "fields": {
+        "value": {
+          "type": "string",
+          "nullable": false
+        },
+        "ioc_type": {
+          "type": "enum",
+          "nullable": false,
+          "enum": [
+            "ip",
+            "cidr",
+            "domain",
+            "url",
+            "sha256",
+            "md5"
+          ],
+          "description": "cidr = whole IP range, e.g. 1.10.16.0/20"
+        },
+        "source": {
+          "type": "string",
+          "nullable": false,
+          "description": "threatfox, urlhaus, malwarebazaar, feodotracker, otx, tor_exit, spamhaus_drop, openphish"
+        },
+        "malware_family": {
+          "type": "string",
+          "nullable": true
+        },
+        "first_seen": {
+          "type": "datetime",
+          "nullable": true
+        },
+        "confidence": {
+          "type": "integer",
+          "nullable": true,
+          "min": 0,
+          "max": 100,
+          "description": "Feed's own confidence; null = feed gives none."
+        },
+        "related_threat_id": {
+          "type": "string",
+          "nullable": true,
+          "description": "threat_id of the ioc_batch / campaign it belongs to."
+        },
+        "retrieved_at": {
+          "type": "datetime",
+          "nullable": false
+        },
+        "raw_ref": {
+          "type": "string",
+          "nullable": true
+        },
+        "is_simulated": {
+          "type": "boolean",
+          "nullable": false
+        }
       }
     },
     "demo_cve": {
@@ -62,75 +296,310 @@
       "id_field": "threat_id",
       "description": "Real KEV CVEs chosen for Scenario A, with the assets that must and must not match.",
       "fields": {
-        "vulnerable_asset_ids": {"type": "array", "nullable": false, "items": {"type": "string"}, "ref": "asset"},
-        "patched_asset_ids": {"type": "array", "nullable": false, "items": {"type": "string"}, "ref": "asset"},
-        "why_chosen": {"type": "string", "nullable": false}
+        "vulnerable_asset_ids": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "string"
+          },
+          "ref": "asset"
+        },
+        "patched_asset_ids": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "string"
+          },
+          "ref": "asset"
+        },
+        "why_chosen": {
+          "type": "string",
+          "nullable": false
+        }
       }
     },
     "asset": {
       "file": "data/assets.json",
       "id_field": "asset_id",
       "fields": {
-        "asset_id": {"type": "string", "nullable": false},
-        "hostname": {"type": "string", "nullable": false},
-        "ip": {"type": "ipv4", "nullable": false},
-        "organisation": {"type": "string", "nullable": false},
-        "sector": {"type": "enum", "nullable": false, "enum": ["power", "banking", "govt", "health", "telecom", "water"]},
-        "role": {"type": "string", "nullable": false},
-        "os": {"type": "string", "nullable": true},
-        "software": {"type": "array", "nullable": false, "items": {"type": "object", "fields": {
-          "vendor": {"type": "string", "nullable": false},
-          "product": {"type": "string", "nullable": false},
-          "version": {"type": "string", "nullable": true, "description": "null = version not known -> match must be uncertain/manual review."},
-          "cpe": {"type": "string", "nullable": true, "pattern": "^cpe:2\\.3:[aoh]:"}
-        }}},
-        "criticality": {"type": "integer", "nullable": false, "min": 1, "max": 5, "description": "5 = outage hurts people/national services."},
-        "internet_facing": {"type": "boolean", "nullable": false},
-        "owner": {"type": "string", "nullable": true},
-        "is_simulated": {"type": "boolean", "nullable": false}
+        "asset_id": {
+          "type": "string",
+          "nullable": false
+        },
+        "hostname": {
+          "type": "string",
+          "nullable": false
+        },
+        "ip": {
+          "type": "ipv4",
+          "nullable": false
+        },
+        "organisation": {
+          "type": "string",
+          "nullable": false
+        },
+        "sector": {
+          "type": "enum",
+          "nullable": false,
+          "enum": [
+            "power",
+            "banking",
+            "govt",
+            "health",
+            "telecom",
+            "water"
+          ]
+        },
+        "role": {
+          "type": "string",
+          "nullable": false
+        },
+        "os": {
+          "type": "string",
+          "nullable": true
+        },
+        "software": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "object",
+            "fields": {
+              "vendor": {
+                "type": "string",
+                "nullable": false
+              },
+              "product": {
+                "type": "string",
+                "nullable": false
+              },
+              "version": {
+                "type": "string",
+                "nullable": true,
+                "description": "null = version not known -> match must be uncertain/manual review."
+              },
+              "cpe": {
+                "type": "string",
+                "nullable": true,
+                "pattern": "^cpe:2\\.3:[aoh]:"
+              }
+            }
+          }
+        },
+        "criticality": {
+          "type": "integer",
+          "nullable": false,
+          "min": 1,
+          "max": 5,
+          "description": "5 = outage hurts people/national services."
+        },
+        "internet_facing": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "owner": {
+          "type": "string",
+          "nullable": true
+        },
+        "is_simulated": {
+          "type": "boolean",
+          "nullable": false
+        }
       }
     },
     "event": {
       "file": "data/events.json",
       "id_field": "event_id",
       "fields": {
-        "event_id": {"type": "string", "nullable": false},
-        "asset_id": {"type": "string", "nullable": true, "ref": "asset", "description": "null = sensor could not tell which asset."},
-        "timestamp": {"type": "datetime", "nullable": false},
-        "event_type": {"type": "enum", "nullable": false, "enum": ["http", "process", "network", "auth", "maintenance"]},
-        "source_sensor": {"type": "string", "nullable": false},
-        "details": {"type": "object", "nullable": false, "description": "Free-form, sensor-specific. Missing values inside are null."},
-        "is_simulated": {"type": "boolean", "nullable": false}
+        "event_id": {
+          "type": "string",
+          "nullable": false
+        },
+        "asset_id": {
+          "type": "string",
+          "nullable": true,
+          "ref": "asset",
+          "description": "null = sensor could not tell which asset."
+        },
+        "timestamp": {
+          "type": "datetime",
+          "nullable": false
+        },
+        "event_type": {
+          "type": "enum",
+          "nullable": false,
+          "enum": [
+            "http",
+            "process",
+            "network",
+            "auth",
+            "maintenance"
+          ]
+        },
+        "source_sensor": {
+          "type": "string",
+          "nullable": false
+        },
+        "details": {
+          "type": "object",
+          "nullable": false,
+          "description": "Free-form, sensor-specific. Missing values inside are null."
+        },
+        "is_simulated": {
+          "type": "boolean",
+          "nullable": false
+        }
       }
     },
     "alert": {
       "file": "none (produced at runtime by Member 3 / Member 4)",
       "id_field": "alert_id",
       "fields": {
-        "alert_id": {"type": "string", "nullable": false},
-        "kind": {"type": "enum", "nullable": false, "enum": ["vulnerability", "behaviour"]},
-        "priority": {"type": "enum", "nullable": false, "enum": ["low", "medium", "high", "critical"]},
-        "status": {"type": "enum", "nullable": false, "enum": ["new", "ack", "resolved"]},
-        "asset_ids": {"type": "array", "nullable": false, "items": {"type": "string"}, "ref": "asset"},
-        "threat_ids": {"type": "array", "nullable": false, "items": {"type": "string"}},
-        "evidence_ids": {"type": "array", "nullable": false, "items": {"type": "string"}, "description": "event_ids backing the alert."},
-        "risk_score": {"type": "number", "nullable": true, "min": 0, "max": 100},
-        "factors": {"type": "object", "nullable": false, "fields": {
-          "severity": {"type": "number", "nullable": true, "min": 0, "max": 1},
-          "exploitation": {"type": "number", "nullable": true, "min": 0, "max": 1},
-          "criticality": {"type": "number", "nullable": true, "min": 0, "max": 1},
-          "exposure": {"type": "number", "nullable": true, "min": 0, "max": 1},
-          "confidence": {"type": "number", "nullable": true, "min": 0, "max": 1}
-        }},
-        "match_status": {"type": "enum", "nullable": true, "enum": ["confirmed", "uncertain", "requires_manual_review"], "description": "null for behaviour alerts with no version match."},
-        "reasons": {"type": "array", "nullable": false, "items": {"type": "string"}},
-        "limitations": {"type": "array", "nullable": false, "items": {"type": "string"}, "description": "What we could NOT verify."},
-        "timeline": {"type": "array", "nullable": false, "items": {"type": "object", "fields": {
-          "at": {"type": "datetime", "nullable": false},
-          "event": {"type": "string", "nullable": false},
-          "ref": {"type": "string", "nullable": true}
-        }}},
-        "created_at": {"type": "datetime", "nullable": false}
+        "alert_id": {
+          "type": "string",
+          "nullable": false
+        },
+        "kind": {
+          "type": "enum",
+          "nullable": false,
+          "enum": [
+            "vulnerability",
+            "behaviour"
+          ]
+        },
+        "priority": {
+          "type": "enum",
+          "nullable": false,
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "status": {
+          "type": "enum",
+          "nullable": false,
+          "enum": [
+            "new",
+            "ack",
+            "resolved"
+          ]
+        },
+        "asset_ids": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "string"
+          },
+          "ref": "asset"
+        },
+        "threat_ids": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_ids": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "string"
+          },
+          "description": "event_ids backing the alert."
+        },
+        "risk_score": {
+          "type": "number",
+          "nullable": true,
+          "min": 0,
+          "max": 100
+        },
+        "factors": {
+          "type": "object",
+          "nullable": false,
+          "fields": {
+            "severity": {
+              "type": "number",
+              "nullable": true,
+              "min": 0,
+              "max": 1
+            },
+            "exploitation": {
+              "type": "number",
+              "nullable": true,
+              "min": 0,
+              "max": 1
+            },
+            "criticality": {
+              "type": "number",
+              "nullable": true,
+              "min": 0,
+              "max": 1
+            },
+            "exposure": {
+              "type": "number",
+              "nullable": true,
+              "min": 0,
+              "max": 1
+            },
+            "confidence": {
+              "type": "number",
+              "nullable": true,
+              "min": 0,
+              "max": 1
+            }
+          }
+        },
+        "match_status": {
+          "type": "enum",
+          "nullable": true,
+          "enum": [
+            "confirmed",
+            "uncertain",
+            "requires_manual_review"
+          ],
+          "description": "null for behaviour alerts with no version match."
+        },
+        "reasons": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "string"
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "string"
+          },
+          "description": "What we could NOT verify."
+        },
+        "timeline": {
+          "type": "array",
+          "nullable": false,
+          "items": {
+            "type": "object",
+            "fields": {
+              "at": {
+                "type": "datetime",
+                "nullable": false
+              },
+              "event": {
+                "type": "string",
+                "nullable": false
+              },
+              "ref": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        },
+        "created_at": {
+          "type": "datetime",
+          "nullable": false
+        }
       }
     },
     "window": {
@@ -138,16 +607,62 @@
       "id_field": "window_id",
       "description": "One-minute behaviour windows for the anomaly model. Train split is normal only.",
       "fields": {
-        "window_id": {"type": "string", "nullable": false},
-        "asset_id": {"type": "string", "nullable": false, "ref": "asset"},
-        "requests_per_minute": {"type": "integer", "nullable": false, "min": 0},
-        "http_4xx_ratio": {"type": "number", "nullable": false, "min": 0, "max": 1},
-        "failed_logins": {"type": "integer", "nullable": false, "min": 0},
-        "unique_client_ips": {"type": "integer", "nullable": false, "min": 0},
-        "new_outbound_destinations": {"type": "integer", "nullable": false, "min": 0},
-        "unexpected_child_processes": {"type": "integer", "nullable": false, "min": 0},
-        "label": {"type": "enum", "nullable": false, "enum": ["normal", "suspicious"]},
-        "split": {"type": "enum", "nullable": false, "enum": ["train", "test"]}
+        "window_id": {
+          "type": "string",
+          "nullable": false
+        },
+        "asset_id": {
+          "type": "string",
+          "nullable": false,
+          "ref": "asset"
+        },
+        "requests_per_minute": {
+          "type": "integer",
+          "nullable": false,
+          "min": 0
+        },
+        "http_4xx_ratio": {
+          "type": "number",
+          "nullable": false,
+          "min": 0,
+          "max": 1
+        },
+        "failed_logins": {
+          "type": "integer",
+          "nullable": false,
+          "min": 0
+        },
+        "unique_client_ips": {
+          "type": "integer",
+          "nullable": false,
+          "min": 0
+        },
+        "new_outbound_destinations": {
+          "type": "integer",
+          "nullable": false,
+          "min": 0
+        },
+        "unexpected_child_processes": {
+          "type": "integer",
+          "nullable": false,
+          "min": 0
+        },
+        "label": {
+          "type": "enum",
+          "nullable": false,
+          "enum": [
+            "normal",
+            "suspicious"
+          ]
+        },
+        "split": {
+          "type": "enum",
+          "nullable": false,
+          "enum": [
+            "train",
+            "test"
+          ]
+        }
       }
     }
   }

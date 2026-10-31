@@ -20,7 +20,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "6.0.18",
-        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+        "versions_text": null
       },
       {
         "vendor": "fortinet",
@@ -29,7 +30,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "6.2.16",
-        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+        "versions_text": null
       },
       {
         "vendor": "fortinet",
@@ -38,7 +40,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "6.4.15",
-        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+        "versions_text": null
       },
       {
         "vendor": "fortinet",
@@ -47,7 +50,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "7.0.14",
-        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+        "versions_text": null
       },
       {
         "vendor": "fortinet",
@@ -56,7 +60,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "7.2.7",
-        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+        "versions_text": null
       },
       {
         "vendor": "fortinet",
@@ -65,7 +70,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "7.4.3",
-        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+        "versions_text": null
       }
     ],
     "references": [
@@ -78,9 +84,24 @@
       "T1547.009"
     ],
     "published_at": "2024-02-09T09:15:08.087Z",
-    "retrieved_at": "2026-10-31T11:07:38.704420+00:00",
-    "raw_ref": "backend/data/raw/nvd_kev/all_0.json",
+    "nvd_published_at": "2024-02-09T09:15:08.087Z",
+    "kev_date_added": "2024-02-09",
+    "retrieved_at": "2026-10-31T11:47:36.620964+00:00",
+    "raw_ref": "backend/data/raw/kev/latest.json",
+    "raw_refs": [
+      "backend/data/raw/kev/latest.json",
+      "backend/data/raw/nvd_kev/all_0.json"
+    ],
     "is_simulated": false,
+    "type": "vulnerability",
+    "cve_ids": [
+      "CVE-2024-21762"
+    ],
+    "tags": [
+      "CWE-787",
+      "kev",
+      "ransomware"
+    ],
     "vulnerable_asset_ids": [
       "PWR-FW-01",
       "BNK-FW-01"
@@ -112,7 +133,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "8.1.29",
-        "cpe": "cpe:2.3:a:php:php:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:a:php:php:*:*:*:*:*:*:*:*",
+        "versions_text": null
       },
       {
         "vendor": "php",
@@ -121,7 +143,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "8.2.20",
-        "cpe": "cpe:2.3:a:php:php:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:a:php:php:*:*:*:*:*:*:*:*",
+        "versions_text": null
       },
       {
         "vendor": "php",
@@ -130,7 +153,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "8.3.8",
-        "cpe": "cpe:2.3:a:php:php:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:a:php:php:*:*:*:*:*:*:*:*",
+        "versions_text": null
       }
     ],
     "references": [
@@ -173,9 +197,24 @@
       "T1041"
     ],
     "published_at": "2024-06-09T20:15:09.550Z",
-    "retrieved_at": "2026-10-31T11:07:38.704420+00:00",
-    "raw_ref": "backend/data/raw/nvd_kev/all_0.json",
+    "nvd_published_at": "2024-06-09T20:15:09.550Z",
+    "kev_date_added": "2024-06-12",
+    "retrieved_at": "2026-10-31T11:47:36.620964+00:00",
+    "raw_ref": "backend/data/raw/kev/latest.json",
+    "raw_refs": [
+      "backend/data/raw/kev/latest.json",
+      "backend/data/raw/nvd_kev/all_0.json"
+    ],
     "is_simulated": false,
+    "type": "vulnerability",
+    "cve_ids": [
+      "CVE-2024-4577"
+    ],
+    "tags": [
+      "CWE-78",
+      "kev",
+      "ransomware"
+    ],
     "vulnerable_asset_ids": [
       "GOV-WEB-01"
     ],
@@ -205,7 +244,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "8.3.3",
-        "cpe": "cpe:2.3:a:atlassian:confluence_data_center:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:a:atlassian:confluence_data_center:*:*:*:*:*:*:*:*",
+        "versions_text": null
       },
       {
         "vendor": "atlassian",
@@ -214,7 +254,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "8.4.3",
-        "cpe": "cpe:2.3:a:atlassian:confluence_data_center:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:a:atlassian:confluence_data_center:*:*:*:*:*:*:*:*",
+        "versions_text": null
       },
       {
         "vendor": "atlassian",
@@ -223,7 +264,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "8.5.2",
-        "cpe": "cpe:2.3:a:atlassian:confluence_data_center:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:a:atlassian:confluence_data_center:*:*:*:*:*:*:*:*",
+        "versions_text": null
       },
       {
         "vendor": "atlassian",
@@ -232,7 +274,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "8.3.3",
-        "cpe": "cpe:2.3:a:atlassian:confluence_server:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:a:atlassian:confluence_server:*:*:*:*:*:*:*:*",
+        "versions_text": null
       },
       {
         "vendor": "atlassian",
@@ -241,7 +284,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "8.4.3",
-        "cpe": "cpe:2.3:a:atlassian:confluence_server:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:a:atlassian:confluence_server:*:*:*:*:*:*:*:*",
+        "versions_text": null
       },
       {
         "vendor": "atlassian",
@@ -250,7 +294,8 @@
         "version_start_excluding": null,
         "version_end_including": null,
         "version_end_excluding": "8.5.2",
-        "cpe": "cpe:2.3:a:atlassian:confluence_server:*:*:*:*:*:*:*:*"
+        "cpe": "cpe:2.3:a:atlassian:confluence_server:*:*:*:*:*:*:*:*",
+        "versions_text": null
       }
     ],
     "references": [
@@ -268,9 +313,24 @@
       "T1136"
     ],
     "published_at": "2023-10-04T14:15:10.440Z",
-    "retrieved_at": "2026-10-31T11:07:38.704420+00:00",
-    "raw_ref": "backend/data/raw/nvd_kev/all_0.json",
+    "nvd_published_at": "2023-10-04T14:15:10.440Z",
+    "kev_date_added": "2023-10-05",
+    "retrieved_at": "2026-10-31T11:47:36.620964+00:00",
+    "raw_ref": "backend/data/raw/kev/latest.json",
+    "raw_refs": [
+      "backend/data/raw/kev/latest.json",
+      "backend/data/raw/nvd_kev/all_0.json"
+    ],
     "is_simulated": false,
+    "type": "vulnerability",
+    "cve_ids": [
+      "CVE-2023-22515"
+    ],
+    "tags": [
+      "CWE-20",
+      "kev",
+      "ransomware"
+    ],
     "vulnerable_asset_ids": [
       "TEL-WIKI-01"
     ],

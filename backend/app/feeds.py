@@ -45,7 +45,7 @@ class RawPayloadRef(BaseModel):
 
 
 class ThreatDetail(ThreatItem):
-    raw_payload: RawPayloadRef | None
+    raw_payloads: list[RawPayloadRef]  # one per raw_refs entry, same order (primary first)
 
 
 class SourceStatusOut(BaseModel):
@@ -148,12 +148,13 @@ def list_threats(
 
 @router.get("/api/threats/{threat_id}", response_model=ThreatDetail, tags=["threats"], responses={404: {"description": "Unknown threat_id"}})
 def get_threat(threat_id: str, db: Session = Depends(get_db)):
-    """One threat with every contract field plus a reference to the raw payload it was parsed from."""
+    """One threat with every contract field plus references to every raw payload it was built from."""
     row = db.get(Threat, threat_id)
     if not row:
         raise HTTPException(404, f"threat {threat_id!r} not found")
-    raw = db.get(RawPayload, row.raw_payload_id) if row.raw_payload_id else None
-    return ThreatDetail(**_threat(row).model_dump(), raw_payload=RawPayloadRef.model_validate(raw, from_attributes=True) if raw else None)
+    by_path = {r.path: r for r in db.scalars(select(RawPayload).where(RawPayload.path.in_(row.raw_refs or [])))}
+    raws = [RawPayloadRef.model_validate(by_path[p], from_attributes=True) for p in row.raw_refs or [] if p in by_path]
+    return ThreatDetail(**_threat(row).model_dump(), raw_payloads=raws)
 
 
 @router.get("/api/source-status", response_model=list[SourceStatusOut], tags=["system"])

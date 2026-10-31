@@ -7,7 +7,9 @@ Each victim -> ThreatItem type "campaign", tags: group:<gang>, sector:<sector>, 
 import hashlib
 from datetime import datetime, timedelta, timezone
 
-from .common import get, log, save_raw
+import json
+
+from .common import RAW, get, log, raw_file, ref, save_raw
 from .schema import ThreatItem
 
 SOURCE = "ransomware"
@@ -47,6 +49,14 @@ def fetch() -> dict:
         log.warning("ransomware: India list failed (%s), global list only", e)
         india = []
     return parse(recent, recent_ref, india, india_ref)
+
+
+def from_raw() -> dict:
+    recent = raw_file(SOURCE, "recentvictims.json")
+    india = RAW / SOURCE / "india.json"
+    india_data = json.loads(india.read_text()) if india.exists() else []
+    return parse(json.loads(recent.read_text()), ref(recent), india_data if isinstance(india_data, list) else [],
+                 ref(india) if india.exists() else None)
 
 
 def parse(recent: list, recent_ref: str, india: list, india_ref: str | None) -> dict:

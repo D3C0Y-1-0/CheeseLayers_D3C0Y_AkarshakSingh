@@ -98,37 +98,33 @@ docs/              # pitch notes, architecture diagram, scoring explanation
 
 **Rules for every collector:** timeout + retry with backoff · respect rate limits · save raw response to `data/raw/` · write normalised output to `data/cache/<source>.json` · log counts · never crash the pipeline if one source fails. `DEMO_MODE=true` → read only from `data/cache/` (no network).
 
-## 8. Normalised schemas → **`data/contracts.json` is the source of truth**
-Field names, types and enums for `threat`, `asset`, `event`, `alert`, `window` live in `data/contracts.json`
-(check any fixture with `.venv/bin/python data/validate.py`). Don't restate them here: change the contract
-first, tell the team, then change code. Key rule: **`null` = unknown/unverified, never 0/false.**
+## 8. Normalised schemas → **`data/contracts.json` (v1.1) is the source of truth**
+Field names, types and enums for `threat`, `ioc`, `asset`, `event`, `alert`, `window` live in `data/contracts.json`
+(check fixtures with `.venv/bin/python data/validate.py`). Don't restate them here: change the contract first,
+tell the team, then change code. Key rule: **`null` = unknown/unverified, never 0/false.**
 
-Backend implementation (Member 2): `backend/collectors/schema.py` → `ThreatItem` (contract `threat` fields
-exactly) and `IOC`. Renamed vs the old schema: `id→threat_id`, `in_kev→kev_listed`, `affected→affected_configurations`
-(NVD bounds `version_start_including/…_excluding/version_end_including/…_excluding`, one entry per NVD cpeMatch),
-`url→references[]`; new `cve_id`, `cvss_version`, `epss_percentile`, `retrieved_at`, `is_simulated`; severity is
-lowercase `critical|high|medium|low|none` or `null`. §9 below still says `in_kev` — read it as `kev_listed`.
+Backend (Member 2): `backend/collectors/schema.py` → `ThreatItem` (= contract `threat`) and `IOC` (= contract `ioc`).
+Every collector builds these directly (no post-conversion). After a schema change, rebuild the cache offline with
+`python -m collectors.run_all --from-raw`: it re-parses `backend/data/raw/*` with each collector's own parser.
+§9 below still says `in_kev`; read it as **`kev_listed`**.
 
-Extras we add on top of the contract (allowed, never rename a contract field):
-`type` (vulnerability|advisory|campaign|ioc_batch), `cve_ids[]` (every CVE a threat mentions — drives KEV/EPSS/exploit
-enrichment), `tags[]`, and `affected_configurations[].versions_text` (unparsed free-text range).
+v1.1 changes (31 Oct): added entity `ioc`; made `type`, `cve_ids[]`, `tags[]` and `affected_configurations[].versions_text`
+official threat fields; split dates (`published_at` = original publication: NVD's date for CVEs, advisory/pulse date
+otherwise · `nvd_published_at` · `kev_date_added` (YYYY-MM-DD) · `retrieved_at` = when we fetched it); added `raw_refs[]`
+(every contributing raw payload; `raw_ref` = `raw_refs[0]`, the primary one).
 
-**Where our cache doesn't fit the contract cleanly** (checked 31 Oct, 19,640 merged threats, 0 validation errors):
-1. **IOC has no contract entity.** Our IOC: `value, ioc_type(ip|cidr|domain|url|sha256|md5), source, malware_family,
-   first_seen, confidence(0-100), related_threat_id, retrieved_at, raw_ref, is_simulated`. → propose adding `ioc` to contracts.json.
-2. **No `type` / multi-CVE field in the contract.** CERT-In advisories and OTX pulses cover several CVEs, so their
-   `cve_id` is `null` (605 threats) and the CVEs live in the extra `cve_ids[]`.
-3. **CERT-In version ranges are free text** ("prior to 159", "3.4.5 to 6.1.0 with OpenSSL TLS build"): all four bounds
-   null, text in `versions_text` (101 entries). Vendor/product are guessed from the text, not CPE names, and `cpe` is null.
-4. **KEV-based records: `published_at` = date CISA added it to KEV**, not NVD's publish date; `raw_ref` points at the
-   KEV dump even though CVSS/CPEs were merged in from the NVD dump.
-5. **`kev_listed` / `public_exploit` are `null` for 500 threats with no CVE at all** (ransomware victims, OTX pulses without
-   CVEs, IOC batches): not checkable, so not `false`.
-6. **Not yet scored upstream:** `cvss`/`cvss_version` null 2,528, `severity` null 2,586, `epss` null 1,495.
-   `cvss_version` mixes 3.1 / 3.0 / 4.0 (1,345 are CVSS v4-only), so scores aren't strictly comparable.
+**What still doesn't fit perfectly** (checked 31 Oct on the merged cache, 0 contract errors):
+1. **Multi-CVE threats:** CERT-In advisories and OTX pulses have `cve_id: null`; their CVEs are in `cve_ids[]`.
+   `kev_date_added`/`nvd_published_at` stay null on them (those are per-CVE facts; look up the CVE's own record).
+2. **CERT-In version ranges are free text** → all four bounds null, text in `versions_text`. Vendor/product are guessed
+   from the text, not CPE names; `cpe` is null.
+3. **`kev_listed` / `public_exploit` are `null` for threats with no CVE** (ransomware victims, most pulses, IOC batches): not checkable.
+4. **Not yet scored upstream:** many NVD CVEs have no `cvss`/`severity`/`epss` yet (null). `cvss_version` mixes 3.1/3.0/4.0.
+5. **KEV CVEs that NVD hasn't published** keep `published_at`/`nvd_published_at` null (KEV's date is only in `kev_date_added`).
+6. **`raw_refs` covers payloads we store:** KEV dump + NVD page. EPSS / exploit-signal / ATT&CK enrichment comes from
+   caches with no per-record raw file, so it isn't listed there.
 7. **`published_at` null** for the 3 reputation-list batches (Tor, Spamhaus DROP, OpenPhish publish no dates).
-8. **`retrieved_at` is per source run**, not per record (one timestamp per collector fetch).
-9. OTX sometimes sends an empty ATT&CK ID: now dropped by the collector (the only contract error found).
+8. **`retrieved_at` is per source run**, not per record.
 
 ## 9. Risk scoring (explainable — show every factor in the UI)
 ```

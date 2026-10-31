@@ -154,7 +154,9 @@ def build_demo_cves() -> list[dict]:
     nvd = {v["cve"]["id"]: v["cve"] for v in json.loads(raw_path.read_text())["vulnerabilities"]}
     epss = json.loads((BACKEND / "data/cache/epss.json").read_text())["scores"]
     # merged cache = KEV title + exploit signals + CTID ATT&CK mapping already joined per CVE
-    kev = {i["id"]: i for i in json.loads((BACKEND / "data/cache/threat_items.json").read_text())}
+    kev = {i["threat_id"]: i for i in json.loads((BACKEND / "data/cache/threat_items.json").read_text())}
+    kev_raw = BACKEND / "data/raw/kev/latest.json"
+    kev_added = {v["cveID"]: v["dateAdded"] for v in json.loads(kev_raw.read_text())["vulnerabilities"]}
     retrieved = datetime.fromtimestamp(raw_path.stat().st_mtime, timezone.utc).isoformat()
     out = []
     for cve_id, demo in DEMO_CVES.items():
@@ -171,7 +173,7 @@ def build_demo_cves() -> list[dict]:
                                         "version_start_excluding": m.get("versionStartExcluding"),
                                         "version_end_including": m.get("versionEndIncluding"),
                                         "version_end_excluding": m.get("versionEndExcluding"),
-                                        "cpe": m["criteria"]})
+                                        "cpe": m["criteria"], "versions_text": None})
         e = epss.get(cve_id) or {}
         out.append({
             "threat_id": cve_id, "cve_id": cve_id, "source": "nvd+kev",
@@ -184,8 +186,10 @@ def build_demo_cves() -> list[dict]:
             "affected_configurations": configs,
             "references": list(dict.fromkeys(r["url"] for r in c["references"])),
             "attack_techniques": kev[cve_id].get("attack_techniques", []),
-            "published_at": c["published"] + "Z", "retrieved_at": retrieved,
-            "raw_ref": str(raw_path.relative_to(ROOT)), "is_simulated": False,
+            "published_at": c["published"] + "Z", "nvd_published_at": c["published"] + "Z",
+            "kev_date_added": kev_added[cve_id], "retrieved_at": retrieved,
+            "raw_ref": str(kev_raw.relative_to(ROOT)), "raw_refs": [str(kev_raw.relative_to(ROOT)), str(raw_path.relative_to(ROOT))],
+            "is_simulated": False, "type": "vulnerability", "cve_ids": [cve_id], "tags": kev[cve_id].get("tags", []),
             "vulnerable_asset_ids": demo["vulnerable"], "patched_asset_ids": demo["patched"], "why_chosen": demo["why"],
         })
     return out
@@ -198,9 +202,11 @@ def demo_vuln(n, title, desc, vendor, product, ranges, cvss, sev, techniques, pu
         "cvss": cvss, "cvss_version": "3.1" if cvss is not None else None, "severity": sev,
         "epss": None, "epss_percentile": None,  # FIRST has never scored a fake vuln -> unknown, not 0
         "kev_listed": False, "public_exploit": None,
-        "affected_configurations": [{"vendor": vendor, "product": product, "cpe": cpe("a", vendor, product, None), **ranges}],
+        "affected_configurations": [{"vendor": vendor, "product": product, "cpe": cpe("a", vendor, product, None), "versions_text": None, **ranges}],
         "references": [], "attack_techniques": techniques,
-        "published_at": published, "retrieved_at": GENERATED_AT, "raw_ref": "data/threats_synthetic.json", "is_simulated": True,
+        "published_at": published, "nvd_published_at": None, "kev_date_added": None,  # fictional: never in NVD/KEV
+        "retrieved_at": GENERATED_AT, "raw_ref": "data/threats_synthetic.json", "raw_refs": ["data/threats_synthetic.json"],
+        "is_simulated": True, "type": "vulnerability", "cve_ids": [], "tags": ["simulated", "demo"],
     }
 
 

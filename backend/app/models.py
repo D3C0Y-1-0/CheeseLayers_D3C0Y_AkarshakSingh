@@ -1,5 +1,5 @@
-"""DB tables. Threat columns = data/contracts.json `threat` fields (+ our extras type, cve_ids, tags)."""
-from sqlalchemy import JSON, Boolean, Float, ForeignKey, Integer, String, Text, UniqueConstraint
+"""DB tables. Threat columns = data/contracts.json `threat` fields; IOCRow = `ioc`."""
+from sqlalchemy import JSON, Boolean, Date, Float, ForeignKey, Integer, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 
 from .database import Base, UTCDateTime
@@ -34,14 +34,15 @@ class Threat(Base):
     references: Mapped[list] = mapped_column(JSON, default=list)
     attack_techniques: Mapped[list] = mapped_column(JSON, default=list)
     published_at: Mapped[object | None] = mapped_column(UTCDateTime, index=True)
+    nvd_published_at: Mapped[object | None] = mapped_column(UTCDateTime)
+    kev_date_added: Mapped[object | None] = mapped_column(Date, index=True)
     retrieved_at: Mapped[object] = mapped_column(UTCDateTime, index=True)
     raw_ref: Mapped[str | None] = mapped_column(String)
+    raw_refs: Mapped[list] = mapped_column(JSON, default=list)  # -> raw_payloads.path (every contributing payload)
     is_simulated: Mapped[bool] = mapped_column(Boolean, index=True, default=False)
-    # extras
     type: Mapped[str] = mapped_column(String)
     cve_ids: Mapped[list] = mapped_column(JSON, default=list)
     tags: Mapped[list] = mapped_column(JSON, default=list)
-    raw_payload_id: Mapped[int | None] = mapped_column(ForeignKey("raw_payloads.id"))
 
 
 class IOCRow(Base):

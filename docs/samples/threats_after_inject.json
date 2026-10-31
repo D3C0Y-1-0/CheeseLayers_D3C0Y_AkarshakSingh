@@ -31,12 +31,20 @@
                 "T1059"
             ],
             "published_at": "2026-10-31T04:00:00Z",
-            "retrieved_at": "2026-10-31T11:54:33.155172Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:32:40.756840Z",
             "raw_ref": "data/threats_synthetic.json",
+            "raw_refs": [
+                "data/threats_synthetic.json"
+            ],
             "is_simulated": true,
             "type": "vulnerability",
             "cve_ids": [],
-            "tags": []
+            "tags": [
+                "simulated",
+                "demo"
+            ]
         },
         {
             "threat_id": "CVE-2024-21762",
@@ -123,14 +131,24 @@
                 "T1547.009"
             ],
             "published_at": "2024-02-09T09:15:08.087000Z",
-            "retrieved_at": "2026-10-31T11:54:33.127092Z",
-            "raw_ref": "backend/data/raw/nvd_kev/all_0.json",
+            "nvd_published_at": "2024-02-09T09:15:08.087000Z",
+            "kev_date_added": "2024-02-09",
+            "retrieved_at": "2026-10-31T12:32:40.723130Z",
+            "raw_ref": "backend/data/raw/kev/latest.json",
+            "raw_refs": [
+                "backend/data/raw/kev/latest.json",
+                "backend/data/raw/nvd_kev/all_0.json"
+            ],
             "is_simulated": false,
             "type": "vulnerability",
             "cve_ids": [
                 "CVE-2024-21762"
             ],
-            "tags": []
+            "tags": [
+                "CWE-787",
+                "kev",
+                "ransomware"
+            ]
         },
         {
             "threat_id": "ransomware:cf8e88e5820e",
@@ -151,8 +169,13 @@
             ],
             "attack_techniques": [],
             "published_at": "2026-10-31T07:27:18.307305Z",
-            "retrieved_at": "2026-10-31T11:49:21.927867Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:20:45.792656Z",
             "raw_ref": "backend/data/raw/ransomware/india.json",
+            "raw_refs": [
+                "backend/data/raw/ransomware/india.json"
+            ],
             "is_simulated": false,
             "type": "campaign",
             "cve_ids": [],
@@ -165,8 +188,8 @@
             ]
         }
     ],
-    "total": 19643,
+    "total": 19635,
     "page": 1,
     "page_size": 3,
-    "pages": 6548
+    "pages": 6545
 }

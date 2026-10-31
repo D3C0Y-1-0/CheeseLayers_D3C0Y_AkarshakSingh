@@ -1,71 +1,158 @@
 {
     "items": [
         {
-            "threat_id": "ransomware:cf8e88e5820e",
+            "threat_id": "DEMO-VULN-001",
             "cve_id": null,
-            "source": "ransomware",
-            "title": "thegentlemen ransomware claims WABAG (IN)",
-            "description": "wabag.in VA Tech WABAG is the world's leading pure-play water technology company, founded in 1924 and headquartered in Chennai, India, operating in over 25 countries with 2000 engineers and over 1500 plants delivered. Listed on NSE and BSE, it posted record FY2026 revenue of 3944 crore rupees with PAT of 371 crore and has been net cash positive for 6 straight years with a credit rating of AA minus stable. Its order book surged to an all time high of 19400 crore rupees in Q1 FY2027, over 4 times annual revenue, backed by World Bank, ADB and JICA funded projects across India, the Middle East, Africa and Southeast Asia. Key projects include Southeast Asia's largest 400 MLD desalination plant in Chennai and a 300 MLD mega desalination order in Saudi Arabia. The company holds 125 plus proprietary patents and ranks 3rd globally among private water operators and desalination suppliers per Global Water Intelligence. Led by Chairman Rajiv Mittal.",
-            "cvss": null,
-            "cvss_version": null,
-            "severity": null,
+            "source": "netrax_synthetic",
+            "title": "[SIMULATED] GridView HMI unauthenticated remote command execution",
+            "description": "SIMULATED advisory for demo only. A crafted request to the HMI web service lets an unauthenticated attacker run commands. Matches PWR-HMI-01 (4.2.1).",
+            "cvss": 9.8,
+            "cvss_version": "3.1",
+            "severity": "critical",
             "epss": null,
             "epss_percentile": null,
-            "kev_listed": null,
+            "kev_listed": false,
             "public_exploit": null,
-            "affected_configurations": [],
-            "references": [
-                "https://www.ransomware.live/group/thegentlemen"
+            "affected_configurations": [
+                {
+                    "vendor": "netrax_demo_vendor",
+                    "product": "gridview_hmi",
+                    "version_start_including": "4.0.0",
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": "4.2.3",
+                    "cpe": "cpe:2.3:a:netrax_demo_vendor:gridview_hmi:*:*:*:*:*:*:*:*",
+                    "versions_text": null
+                }
             ],
-            "attack_techniques": [],
-            "published_at": "2026-10-31T07:27:18.307305Z",
-            "retrieved_at": "2026-10-31T11:49:21.927867Z",
-            "raw_ref": "backend/data/raw/ransomware/india.json",
-            "is_simulated": false,
-            "type": "campaign",
+            "references": [],
+            "attack_techniques": [
+                "T1190",
+                "T1059"
+            ],
+            "published_at": "2026-10-31T04:00:00Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:29:37.604578Z",
+            "raw_ref": "data/threats_synthetic.json",
+            "raw_refs": [
+                "data/threats_synthetic.json"
+            ],
+            "is_simulated": true,
+            "type": "vulnerability",
             "cve_ids": [],
             "tags": [
-                "ransomware",
-                "group:thegentlemen",
-                "sector:Energy & Utilities",
-                "country:IN",
-                "india"
+                "simulated",
+                "demo"
             ]
         },
         {
-            "threat_id": "ransomware:47e47b5244df",
-            "cve_id": null,
-            "source": "ransomware",
-            "title": "thegentlemen ransomware claims First Dental (US)",
-            "description": "myfirstdental.com First Dental Care is a dental practice network in Massachusetts founded by Dr. Farshad Ghobbeh, who opened his first clinic in Medford in 2008 and expanded to Somerville in 2012 and four more locations including Arlington, Watertown, Acton and Bedford. With over 20,000 patients and 18 years of experience, it offers general and cosmetic dentistry, dental implants, Invisalign, emergency care and smile makeovers across six clinics. Its Smile Now Pay Later model with Klarna makes implants available from 58 dollars per month and whitening at 149 dollars instead of 500. The team is multilingual speaking English, Spanish, Portuguese, Russian, Chinese and Persian to serve diverse Massachusetts communities. It accepts over 15 insurance plans including Aetna, Blue Cross Blue Shield, Delta Dental and MassHealth. Key strengths are 18 years of community trust, multi-location accessibility, affordable payment plans and Dr. Ghobbeh's personal commitment to quality oral health.",
-            "cvss": null,
-            "cvss_version": null,
-            "severity": null,
-            "epss": null,
-            "epss_percentile": null,
-            "kev_listed": null,
-            "public_exploit": null,
-            "affected_configurations": [],
-            "references": [
-                "https://www.ransomware.live/id/Rmlyc3QgRGVudGFsQHRoZWdlbnRsZW1lbg=="
+            "threat_id": "CVE-2024-21762",
+            "cve_id": "CVE-2024-21762",
+            "source": "nvd+kev",
+            "title": "CVE-2024-21762: Fortinet FortiOS Out-of-Bound Write Vulnerability",
+            "description": "A out-of-bounds write vulnerability in Fortinet FortiOS 7.4.0 through 7.4.2, FortiOS 7.2.0 through 7.2.6, FortiOS 7.0.0 through 7.0.13, FortiOS 6.4.0 through 6.4.14, FortiOS 6.2.0 through 6.2.15, FortiOS 6.0 all versions, FortiProxy 7.4.0 through 7.4.2, FortiProxy 7.2.0 through 7.2.8, FortiProxy 7.0.0 through 7.0.14, FortiProxy 2.0.0 through 2.0.13, FortiProxy 01.02 all versions, FortiProxy 1.2 all versions, FortiProxy 01.01 all versions, FortiProxy 1.1 all versions, FortiProxy 01.00 all versions allows attacker to execute unauthorized code or commands via specifically crafted requests",
+            "cvss": 9.8,
+            "cvss_version": "3.1",
+            "severity": "critical",
+            "epss": 0.84589,
+            "epss_percentile": 0.99703,
+            "kev_listed": true,
+            "public_exploit": true,
+            "affected_configurations": [
+                {
+                    "vendor": "fortinet",
+                    "product": "fortios",
+                    "version_start_including": "6.0.0",
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": "6.0.18",
+                    "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+                    "versions_text": null
+                },
+                {
+                    "vendor": "fortinet",
+                    "product": "fortios",
+                    "version_start_including": "6.2.0",
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": "6.2.16",
+                    "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+                    "versions_text": null
+                },
+                {
+                    "vendor": "fortinet",
+                    "product": "fortios",
+                    "version_start_including": "6.4.0",
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": "6.4.15",
+                    "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+                    "versions_text": null
+                },
+                {
+                    "vendor": "fortinet",
+                    "product": "fortios",
+                    "version_start_including": "7.0.0",
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": "7.0.14",
+                    "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+                    "versions_text": null
+                },
+                {
+                    "vendor": "fortinet",
+                    "product": "fortios",
+                    "version_start_including": "7.2.0",
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": "7.2.7",
+                    "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+                    "versions_text": null
+                },
+                {
+                    "vendor": "fortinet",
+                    "product": "fortios",
+                    "version_start_including": "7.4.0",
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": "7.4.3",
+                    "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*",
+                    "versions_text": null
+                }
             ],
-            "attack_techniques": [],
-            "published_at": "2026-10-31T07:21:56.012217Z",
-            "retrieved_at": "2026-10-31T11:49:21.927867Z",
-            "raw_ref": "backend/data/raw/ransomware/recentvictims.json",
+            "references": [
+                "https://fortiguard.com/psirt/FG-IR-24-015",
+                "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-21762"
+            ],
+            "attack_techniques": [
+                "T1190",
+                "T1574",
+                "T1547.009"
+            ],
+            "published_at": "2024-02-09T09:15:08.087000Z",
+            "nvd_published_at": "2024-02-09T09:15:08.087000Z",
+            "kev_date_added": "2024-02-09",
+            "retrieved_at": "2026-10-31T12:29:37.564230Z",
+            "raw_ref": "backend/data/raw/kev/latest.json",
+            "raw_refs": [
+                "backend/data/raw/kev/latest.json",
+                "backend/data/raw/nvd_kev/all_0.json"
+            ],
             "is_simulated": false,
-            "type": "campaign",
-            "cve_ids": [],
+            "type": "vulnerability",
+            "cve_ids": [
+                "CVE-2024-21762"
+            ],
             "tags": [
-                "ransomware",
-                "group:thegentlemen",
-                "sector:Healthcare",
-                "country:US"
+                "CWE-787",
+                "kev",
+                "ransomware"
             ]
         }
     ],
-    "total": 19643,
+    "total": 19635,
     "page": 1,
     "page_size": 2,
-    "pages": 9822
+    "pages": 9818
 }

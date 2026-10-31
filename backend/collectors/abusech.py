@@ -9,7 +9,9 @@ All three main APIs need a free Auth-Key (https://auth.abuse.ch/). The old no-ke
 (threatfox .../export/json/recent/, urlhaus .../downloads/csv_recent/) return 410 Gone since 2025,
 so without a key we fall back to Feodo Tracker only.
 """
-from .common import Skipped, env, get, ioc_batches, log, request, save_raw
+import json
+
+from .common import RAW, Skipped, env, get, ioc_batches, log, ref, request, save_raw
 from .schema import IOC
 
 SOURCE = "abusech"
@@ -86,6 +88,17 @@ def fetch() -> dict:
     if not iocs:
         raise Skipped("no abuse.ch data (add ABUSECH_AUTH_KEY)")
 
+    return {"items": ioc_batches(iocs, URLS, "abuse.ch"), "iocs": iocs}
+
+
+def from_raw() -> dict:
+    iocs: list[IOC] = []
+    for name, parse in (("threatfox", parse_threatfox), ("urlhaus", parse_urlhaus), ("malwarebazaar", parse_bazaar), ("feodo", parse_feodo)):
+        f = RAW / SOURCE / f"{name}.json"
+        if f.exists():
+            iocs += parse(json.loads(f.read_text()), ref(f))
+    if not iocs:
+        raise Skipped("no abuse.ch raw files")
     return {"items": ioc_batches(iocs, URLS, "abuse.ch"), "iocs": iocs}
 
 

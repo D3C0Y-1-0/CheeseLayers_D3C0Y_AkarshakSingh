@@ -7,7 +7,7 @@
 """
 import json
 
-from .common import get, ioc_batches, log, save_raw
+from .common import RAW, get, ioc_batches, log, ref, save_raw
 from .schema import IOC
 
 SOURCE = "ip_reputation"
@@ -57,6 +57,17 @@ def _openphish() -> list[IOC]:
 def parse_openphish(text: str, ref: str) -> list[IOC]:
     return [IOC(value=u, ioc_type="url", source="openphish", malware_family="phishing", confidence=80, raw_ref=ref)
             for u in sorted(set(text.split()))]
+
+
+def from_raw() -> dict:
+    iocs: list[IOC] = []
+    for name, parse in (("tor", parse_tor), ("spamhaus_drop", parse_drop), ("openphish", parse_openphish)):
+        f = RAW / SOURCE / f"{name}.txt"
+        if f.exists():
+            iocs += parse(f.read_text(), ref(f))
+    if not iocs:
+        raise RuntimeError("no ip_reputation raw files")
+    return {"items": ioc_batches(iocs, URLS, "reputation"), "iocs": iocs}
 
 
 def fetch() -> dict:

@@ -104,7 +104,33 @@ def save_raw(source: str, payload, name: str = "latest") -> str:
     ext = "txt" if isinstance(payload, str) else "json"
     path = RAW / source / f"{name}.{ext}"
     _write(path, payload if isinstance(payload, str) else json.dumps(payload))
+    return ref(path)
+
+
+def ref(path: Path) -> str:
     return str(path.relative_to(BASE.parent))  # repo-relative, e.g. backend/data/raw/kev/latest.json
+
+
+def raw_file(source: str, name: str) -> Path:
+    """A saved raw payload, for collectors' from_raw() (offline rebuild of the cache from data/raw)."""
+    path = RAW / source / name
+    if not path.exists():
+        raise Skipped(f"no raw file {ref(path)}")
+    return path
+
+
+def raw_pages(source: str) -> list[Path]:
+    """Paged raw files (<prefix>_<n>.json) from the newest saved run of `source`, in page order.
+    Older runs with another prefix (e.g. a different NVD start date) are ignored."""
+    pages = [f for f in (RAW / source).glob("*_*.json") if f.stem.rsplit("_", 1)[1].isdigit()]
+    if not pages:
+        raise Skipped(f"no raw pages for {source}")
+    prefix = max(pages, key=lambda f: f.stat().st_mtime).stem.rsplit("_", 1)[0]
+    return sorted((f for f in pages if f.stem.rsplit("_", 1)[0] == prefix), key=lambda f: int(f.stem.rsplit("_", 1)[1]))
+
+
+def mtime(path: Path) -> datetime:
+    return datetime.fromtimestamp(path.stat().st_mtime, timezone.utc)
 
 
 def save_cache(source: str, items) -> Path:
@@ -116,7 +142,7 @@ def save_cache(source: str, items) -> Path:
 
 def cache_mtime(source: str) -> datetime | None:
     path = CACHE / f"{source}.json"
-    return datetime.fromtimestamp(path.stat().st_mtime, timezone.utc) if path.exists() else None
+    return mtime(path) if path.exists() else None
 
 
 def load_cache(source: str):
@@ -139,6 +165,7 @@ def ioc_batches(iocs: list[IOC], urls: dict[str, str], label: str) -> list[Threa
             threat_id=tid, source=src, type="ioc_batch", title=f"{src}: {len(group)} {family} indicators",
             description=f"{len(group)} indicators of compromise linked to {family}, reported by {label} {src}.",
             published_at=max((i.first_seen for i in group if i.first_seen), default=None),
-            references=[urls[src]] if src in urls else [], tags=[label, src, family], raw_ref=group[0].raw_ref,
+            references=[urls[src]] if src in urls else [], tags=[label, src, family],
+            raw_refs=sorted({i.raw_ref for i in group if i.raw_ref}),
         ))
     return items

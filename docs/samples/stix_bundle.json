@@ -1,0 +1,1010 @@
+{
+    "type": "bundle",
+    "id": "bundle--5592e988-87a3-5719-9929-925de4016f60",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "name": "NETRA-X",
+            "description": "NETRA-X national cyber threat early-warning prototype (D3COY hackathon, PS 01).",
+            "identity_class": "system"
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--e6808729-90bf-5e99-9ff5-5d4c34aa0f0f",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2024-02-09T09:15:08.087Z",
+            "modified": "2026-10-31T12:29:37.56423Z",
+            "name": "CVE-2024-21762",
+            "description": "A out-of-bounds write vulnerability in Fortinet FortiOS 7.4.0 through 7.4.2, FortiOS 7.2.0 through 7.2.6, FortiOS 7.0.0 through 7.0.13, FortiOS 6.4.0 through 6.4.14, FortiOS 6.2.0 through 6.2.15, FortiOS 6.0 all versions, FortiProxy 7.4.0 through 7.4.2, FortiProxy 7.2.0 through 7.2.8, FortiProxy 7.0.0 through 7.0.14, FortiProxy 2.0.0 through 2.0.13, FortiProxy 01.02 all versions, FortiProxy 1.2 all versions, FortiProxy 01.01 all versions, FortiProxy 1.1 all versions, FortiProxy 01.00 all versions allows attacker to execute unauthorized code or commands via specifically crafted requests",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2024-21762"
+                },
+                {
+                    "source_name": "nvd+kev",
+                    "url": "https://fortiguard.com/psirt/FG-IR-24-015"
+                },
+                {
+                    "source_name": "nvd+kev",
+                    "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-21762"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--872a662f-7a14-5707-a12a-7dcf41c02e82",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "name": "Exploit Public-Facing Application",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1190/",
+                    "external_id": "T1190"
+                }
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--87bef2a0-8fda-50bb-8773-fa0581d2c513",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--872a662f-7a14-5707-a12a-7dcf41c02e82",
+            "target_ref": "vulnerability--e6808729-90bf-5e99-9ff5-5d4c34aa0f0f"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--5c688465-a999-5d9e-acae-ab3f1a8c1c3c",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "name": "Hijack Execution Flow",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1574/",
+                    "external_id": "T1574"
+                }
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4d1454e9-68ee-56a4-bee0-38f466bfe629",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--5c688465-a999-5d9e-acae-ab3f1a8c1c3c",
+            "target_ref": "vulnerability--e6808729-90bf-5e99-9ff5-5d4c34aa0f0f"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--9317d532-85ea-56a6-ab34-dced8256ee79",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "name": "Shortcut Modification",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1547/009/",
+                    "external_id": "T1547.009"
+                }
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c22cfb3f-55f4-539e-997e-5d7008afec6d",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--9317d532-85ea-56a6-ab34-dced8256ee79",
+            "target_ref": "vulnerability--e6808729-90bf-5e99-9ff5-5d4c34aa0f0f"
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--2b59d1d7-e2d8-5c4c-b48d-a9b71394f85d",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T04:00:00.000Z",
+            "modified": "2026-10-31T12:29:37.604578Z",
+            "name": "DEMO-VULN-001",
+            "description": "SIMULATED advisory for demo only. A crafted request to the HMI web service lets an unauthenticated attacker run commands. Matches PWR-HMI-01 (4.2.1).",
+            "labels": [
+                "simulated"
+            ],
+            "external_references": [
+                {
+                    "source_name": "netrax",
+                    "external_id": "DEMO-VULN-001"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2319bb9a-9ebe-5d44-8aa1-9c5639d3a111",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--872a662f-7a14-5707-a12a-7dcf41c02e82",
+            "target_ref": "vulnerability--2b59d1d7-e2d8-5c4c-b48d-a9b71394f85d"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--494a988c-c541-557c-8088-6e0d655a05df",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "name": "Command and Scripting Interpreter",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1059/",
+                    "external_id": "T1059"
+                }
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--035f51cc-5d2b-59ff-bb0f-b430d8d11ca7",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--494a988c-c541-557c-8088-6e0d655a05df",
+            "target_ref": "vulnerability--2b59d1d7-e2d8-5c4c-b48d-a9b71394f85d"
+        },
+        {
+            "type": "campaign",
+            "spec_version": "2.1",
+            "id": "campaign--7c8f32b6-94db-5071-8002-3f18dd7b92b2",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-03-04T14:28:39.000Z",
+            "modified": "2026-10-31T12:20:22.08192Z",
+            "name": "feodotracker: 4 QakBot indicators",
+            "description": "4 indicators of compromise linked to QakBot, reported by abuse.ch feodotracker.",
+            "external_references": [
+                {
+                    "source_name": "feodotracker",
+                    "url": "https://feodotracker.abuse.ch/"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9db34935-9462-55f2-aefa-b76a2f735db5",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T12:20:22.08192Z",
+            "modified": "2026-10-31T12:20:22.08192Z",
+            "name": "50.16.16.211",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ipv4-addr:value = '50.16.16.211']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "valid_from": "2025-12-30T13:56:31Z",
+            "labels": [
+                "feodotracker",
+                "QakBot"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a78e7368-47cc-5010-bda8-fc0f0707b94f",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--9db34935-9462-55f2-aefa-b76a2f735db5",
+            "target_ref": "campaign--7c8f32b6-94db-5071-8002-3f18dd7b92b2"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c8441d42-f205-5d53-a958-98a666600611",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T12:20:22.08192Z",
+            "modified": "2026-10-31T12:20:22.08192Z",
+            "name": "34.204.119.63",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ipv4-addr:value = '34.204.119.63']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "valid_from": "2026-01-13T21:41:15Z",
+            "labels": [
+                "feodotracker",
+                "QakBot"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a64ce1e2-6b55-5eab-9c3d-16f718ae3570",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c8441d42-f205-5d53-a958-98a666600611",
+            "target_ref": "campaign--7c8f32b6-94db-5071-8002-3f18dd7b92b2"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--66dc7378-3d56-5c89-9029-739cc23576ec",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T12:20:22.08192Z",
+            "modified": "2026-10-31T12:20:22.08192Z",
+            "name": "178.62.3.223",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ipv4-addr:value = '178.62.3.223']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "valid_from": "2026-02-17T05:41:23Z",
+            "labels": [
+                "feodotracker",
+                "QakBot"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--33c95b86-aa22-5dff-9712-d7c9e210649c",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--66dc7378-3d56-5c89-9029-739cc23576ec",
+            "target_ref": "campaign--7c8f32b6-94db-5071-8002-3f18dd7b92b2"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d25000c0-f2c5-5d3d-98a4-d4c08f5ac246",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T12:20:22.08192Z",
+            "modified": "2026-10-31T12:20:22.08192Z",
+            "name": "27.133.154.218",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ipv4-addr:value = '27.133.154.218']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "valid_from": "2026-03-04T14:28:39Z",
+            "labels": [
+                "feodotracker",
+                "QakBot"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--13b1d08b-19e2-5e1e-bd6e-dbb5fe88bccc",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-31T00:00:00.000Z",
+            "modified": "2026-10-31T00:00:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--d25000c0-f2c5-5d3d-98a4-d4c08f5ac246",
+            "target_ref": "campaign--7c8f32b6-94db-5071-8002-3f18dd7b92b2"
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--33fa1bb1-0eaf-5ed5-b1bb-ed9dbfeb860d",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108426",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108426"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--94d30a44-68c1-5fae-a793-ec0daf976402",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108427",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108427"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--3de5c699-44e2-5440-b867-6c98eb252add",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108428",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108428"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--f75bf62b-fe6f-5a44-aac3-5e6e0fb456a1",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108429",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108429"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--ed628148-0f5a-5ef9-914b-c1b662b788ec",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108430",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108430"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--24ad95f5-4e9d-5ca6-b273-865cda74154d",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108431",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108431"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--d69b42ed-7bca-5ddc-ac61-47f919a987d4",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108432",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108432"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--256e0e8d-6450-5bcf-a229-9d791cbe522a",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108433",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108433"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--9a4652b0-f0df-5857-af7f-cb428643dc15",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108434",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108434"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--08f47fe6-d808-528b-bef7-199d506836a8",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108435",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108435"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--84b2011e-4317-5735-9522-294dc7403f38",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108436",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108436"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--bf5e8577-1078-556c-a3ee-47592b555059",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108437",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108437"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--d2bf323e-1fab-5cfc-a9c5-333a495932fc",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108438",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108438"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--a251f014-119c-508e-b30c-d45a442e9eeb",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108439",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108439"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--34d6e2f2-d7a0-5356-b7be-cb543df881eb",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108440",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108440"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--36b4c030-32e7-5985-a8e1-28c4fec15d6e",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108441",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108441"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--8c041e3b-cb4c-5b56-bd42-15975ef9474c",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108442",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108442"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--7a565427-bcdf-505d-a613-fbaf999cae80",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108443",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108443"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--6e54292e-dec4-54ef-abba-7bf272ec3fde",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108444",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108444"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--7b9869c7-cbbf-52c2-afa9-bafa9600e83f",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108445",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108445"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--bba3216c-4d57-5af4-853a-cf1e52998cf7",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108446",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108446"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--54d94220-790b-5070-8183-27c793c924e5",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108447",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108447"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--16c1a48e-5c3c-5d92-8af4-34cedcff693e",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108448",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108448"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--08cfeeee-f3e0-58e3-837f-5ba0f6a4f175",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108449",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108449"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--b51e3dae-589a-5806-8b45-f9bbcd2f425b",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108450",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108450"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--da7d2350-437c-5ac2-9265-391ab7a9c19b",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108451",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108451"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--d5739756-7eec-5bea-91ad-eeaf2431a4c8",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108452",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108452"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--6bee2a7f-553b-542c-8a2f-0e7e3294275d",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108453",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108453"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--329b3fa4-0fd2-54bf-aaca-8982aaa58de7",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108454",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108454"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--66fc299e-a48a-51c0-abd7-d53ed1143040",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-108455",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-108455"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--50522b31-5f76-5303-92bc-6ed3fb8db941",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-109461",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-109461"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--fd242af8-cdd3-5223-bb07-01f786ff863b",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-109468",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-109468"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--d6cb3bad-1bf5-508b-b085-2048ce99eade",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-80092",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-80092"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--eaf09f18-181f-5ee6-8767-ff4bda3b7b82",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CVE-2026-96202",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2026-96202"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--df95c198-4465-5137-8c87-7032895162b6",
+            "created_by_ref": "identity--29371cba-0d8c-5979-8173-e06124770661",
+            "created": "2026-10-21T18:30:00.000Z",
+            "modified": "2026-10-31T12:20:07.963191Z",
+            "name": "CIVN-2026-0514: Multiple Vulnerabilities in Microsoft Products",
+            "description": "Multiple vulnerabilities have been reported in Microsoft products which could allow a remote attacker to elevate privileges, execute arbitrary code, disclose sensitive information, perform spoofing or cause denial of services on the affected systems.",
+            "report_types": [
+                "vulnerability"
+            ],
+            "published": "2026-10-21T18:30:00Z",
+            "object_refs": [
+                "vulnerability--33fa1bb1-0eaf-5ed5-b1bb-ed9dbfeb860d",
+                "vulnerability--94d30a44-68c1-5fae-a793-ec0daf976402",
+                "vulnerability--3de5c699-44e2-5440-b867-6c98eb252add",
+                "vulnerability--f75bf62b-fe6f-5a44-aac3-5e6e0fb456a1",
+                "vulnerability--ed628148-0f5a-5ef9-914b-c1b662b788ec",
+                "vulnerability--24ad95f5-4e9d-5ca6-b273-865cda74154d",
+                "vulnerability--d69b42ed-7bca-5ddc-ac61-47f919a987d4",
+                "vulnerability--256e0e8d-6450-5bcf-a229-9d791cbe522a",
+                "vulnerability--9a4652b0-f0df-5857-af7f-cb428643dc15",
+                "vulnerability--08f47fe6-d808-528b-bef7-199d506836a8",
+                "vulnerability--84b2011e-4317-5735-9522-294dc7403f38",
+                "vulnerability--bf5e8577-1078-556c-a3ee-47592b555059",
+                "vulnerability--d2bf323e-1fab-5cfc-a9c5-333a495932fc",
+                "vulnerability--a251f014-119c-508e-b30c-d45a442e9eeb",
+                "vulnerability--34d6e2f2-d7a0-5356-b7be-cb543df881eb",
+                "vulnerability--36b4c030-32e7-5985-a8e1-28c4fec15d6e",
+                "vulnerability--8c041e3b-cb4c-5b56-bd42-15975ef9474c",
+                "vulnerability--7a565427-bcdf-505d-a613-fbaf999cae80",
+                "vulnerability--6e54292e-dec4-54ef-abba-7bf272ec3fde",
+                "vulnerability--7b9869c7-cbbf-52c2-afa9-bafa9600e83f",
+                "vulnerability--bba3216c-4d57-5af4-853a-cf1e52998cf7",
+                "vulnerability--54d94220-790b-5070-8183-27c793c924e5",
+                "vulnerability--16c1a48e-5c3c-5d92-8af4-34cedcff693e",
+                "vulnerability--08cfeeee-f3e0-58e3-837f-5ba0f6a4f175",
+                "vulnerability--b51e3dae-589a-5806-8b45-f9bbcd2f425b",
+                "vulnerability--da7d2350-437c-5ac2-9265-391ab7a9c19b",
+                "vulnerability--d5739756-7eec-5bea-91ad-eeaf2431a4c8",
+                "vulnerability--6bee2a7f-553b-542c-8a2f-0e7e3294275d",
+                "vulnerability--329b3fa4-0fd2-54bf-aaca-8982aaa58de7",
+                "vulnerability--66fc299e-a48a-51c0-abd7-d53ed1143040",
+                "vulnerability--50522b31-5f76-5303-92bc-6ed3fb8db941",
+                "vulnerability--fd242af8-cdd3-5223-bb07-01f786ff863b",
+                "vulnerability--d6cb3bad-1bf5-508b-b085-2048ce99eade",
+                "vulnerability--eaf09f18-181f-5ee6-8767-ff4bda3b7b82"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "external_references": [
+                {
+                    "source_name": "certin",
+                    "url": "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0514"
+                }
+            ]
+        }
+    ]
+}

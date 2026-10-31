@@ -1,0 +1,2585 @@
+{
+    "certin_advisories": [
+        {
+            "threat_id": "CIVN-2026-0533",
+            "cve_id": null,
+            "source": "certin",
+            "title": "CIVN-2026-0533: Multiple Vulnerabilities in Mozilla Products",
+            "description": "Multiple vulnerabilities have been reported in Mozilla products which could allow a remote attacker to gain elevated privileges, bypass security restrictions, disclose sensitive information, manipulate data, and conduct spoofing attacks on the targeted system.",
+            "cvss": null,
+            "cvss_version": null,
+            "severity": "critical",
+            "epss": null,
+            "epss_percentile": null,
+            "kev_listed": null,
+            "public_exploit": null,
+            "affected_configurations": [
+                {
+                    "vendor": "Mozilla",
+                    "product": "Firefox",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 159"
+                },
+                {
+                    "vendor": "Mozilla",
+                    "product": "Firefox ESR",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 115.44 and 153.6"
+                },
+                {
+                    "vendor": "Mozilla",
+                    "product": "Thunderbird",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 153.6 and 159"
+                }
+            ],
+            "references": [
+                "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0533"
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-10-29T18:30:00Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:19:36.840825Z",
+            "raw_ref": "backend/data/raw/certin/CIVN-2026-0533.txt",
+            "raw_refs": [
+                "backend/data/raw/certin/CIVN-2026-0533.txt"
+            ],
+            "is_simulated": false,
+            "type": "advisory",
+            "cve_ids": [],
+            "tags": [
+                "cert-in",
+                "vulnerability_note",
+                "india"
+            ]
+        },
+        {
+            "threat_id": "CIVN-2026-0532",
+            "cve_id": null,
+            "source": "certin",
+            "title": "CIVN-2026-0532: Multiple Vulnerabilities in Apache Tomcat",
+            "description": "Multiple vulnerabilities have been reported in Apache Tomcat which could allow a remote attacker to bypass authentication and cause requests/responses to be incorrectly associated with different users.",
+            "cvss": 9.1,
+            "cvss_version": "4.0",
+            "severity": "critical",
+            "epss": 0.00627,
+            "epss_percentile": 0.50041,
+            "kev_listed": false,
+            "public_exploit": false,
+            "affected_configurations": [
+                {
+                    "vendor": "Apache",
+                    "product": "Tomcat 11.0.x",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "11.0.26 and prior"
+                },
+                {
+                    "vendor": "Apache",
+                    "product": "Tomcat 10.1.x",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "10.1.60 and prior"
+                },
+                {
+                    "vendor": "Apache",
+                    "product": "Tomcat 9.0.x",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "9.0.122 and prior"
+                }
+            ],
+            "references": [
+                "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0532"
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-10-28T18:30:00Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:19:38.396070Z",
+            "raw_ref": "backend/data/raw/certin/CIVN-2026-0532.txt",
+            "raw_refs": [
+                "backend/data/raw/certin/CIVN-2026-0532.txt"
+            ],
+            "is_simulated": false,
+            "type": "advisory",
+            "cve_ids": [
+                "CVE-2026-101296",
+                "CVE-2026-101356"
+            ],
+            "tags": [
+                "cert-in",
+                "vulnerability_note",
+                "india"
+            ]
+        },
+        {
+            "threat_id": "CIAD-2026-0057",
+            "cve_id": null,
+            "source": "certin",
+            "title": "CIAD-2026-0057: Multiple vulnerabilities in GoAhead Web Server",
+            "description": "Multiple vulnerabilities have been reported in GoAhead Web Server which could allow a remote attacker to bypass security restrictions, obtain sensitive information, decrypt certain TLS-encrypted communications, or unauthorized access to affected services on the targeted system.",
+            "cvss": null,
+            "cvss_version": null,
+            "severity": "critical",
+            "epss": null,
+            "epss_percentile": null,
+            "kev_listed": false,
+            "public_exploit": false,
+            "affected_configurations": [
+                {
+                    "vendor": "GoAhead",
+                    "product": "Web Server",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "3.4.5 to 6.1.0 with OpenSSL TLS build"
+                },
+                {
+                    "vendor": "GoAhead",
+                    "product": "Web Server",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "4.0.2 to 6.1.0 with Mbed TLS build"
+                },
+                {
+                    "vendor": "GoAhead",
+                    "product": "Web Server",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "6.1.0 and prior with LibreSSL Legacy TLS build"
+                }
+            ],
+            "references": [
+                "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0057"
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-10-27T18:30:00Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:19:02.619800Z",
+            "raw_ref": "backend/data/raw/certin/CIAD-2026-0057.txt",
+            "raw_refs": [
+                "backend/data/raw/certin/CIAD-2026-0057.txt"
+            ],
+            "is_simulated": false,
+            "type": "advisory",
+            "cve_ids": [
+                "CVE-2026-115881",
+                "CVE-2026-115884"
+            ],
+            "tags": [
+                "cert-in",
+                "advisory",
+                "india"
+            ]
+        },
+        {
+            "threat_id": "CIVN-2026-0531",
+            "cve_id": null,
+            "source": "certin",
+            "title": "CIVN-2026-0531: Multiple Vulnerabilities in Mozilla Products",
+            "description": "Multiple vulnerabilities have been reported in Mozilla products which could allow an attacker to execute arbitrary code, obtain sensitive information, or cause denial of service (DoS) conditions on the targeted system.",
+            "cvss": 9.8,
+            "cvss_version": "3.1",
+            "severity": "high",
+            "epss": 0.00489,
+            "epss_percentile": 0.4205,
+            "kev_listed": false,
+            "public_exploit": false,
+            "affected_configurations": [
+                {
+                    "vendor": "Mozilla",
+                    "product": "Firefox",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 158.0.1"
+                },
+                {
+                    "vendor": "Mozilla",
+                    "product": "Firefox ESR",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 153.5.1 and versions prior to 115.43.1"
+                },
+                {
+                    "vendor": "Mozilla",
+                    "product": "Thunderbird",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 158.0.1 and Thunderbird versions prior to 153.5.1"
+                }
+            ],
+            "references": [
+                "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0531"
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-10-27T18:30:00Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:19:39.769669Z",
+            "raw_ref": "backend/data/raw/certin/CIVN-2026-0531.txt",
+            "raw_refs": [
+                "backend/data/raw/certin/CIVN-2026-0531.txt"
+            ],
+            "is_simulated": false,
+            "type": "advisory",
+            "cve_ids": [
+                "CVE-2026-113399",
+                "CVE-2026-113400",
+                "CVE-2026-113401",
+                "CVE-2026-113470",
+                "CVE-2026-113866",
+                "CVE-2026-113867",
+                "CVE-2026-113868"
+            ],
+            "tags": [
+                "cert-in",
+                "vulnerability_note",
+                "india"
+            ]
+        },
+        {
+            "threat_id": "CIVN-2026-0530",
+            "cve_id": null,
+            "source": "certin",
+            "title": "CIVN-2026-0530: Multiple Vulnerabilities in Zoom Workplace Clients",
+            "description": "Multiple vulnerabilities have been reported in Zoom Workplace Clients, which could be exploited by an attacker to trigger elevation of privilege and obtain sensitive information on the targeted system.",
+            "cvss": 8.1,
+            "cvss_version": "3.1",
+            "severity": "high",
+            "epss": 0.00315,
+            "epss_percentile": 0.24458,
+            "kev_listed": false,
+            "public_exploit": false,
+            "affected_configurations": [
+                {
+                    "vendor": "Zoom",
+                    "product": "Workplace for Android",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 7.2.1"
+                },
+                {
+                    "vendor": "Zoom",
+                    "product": "Workplace for Windows, MacOS and Linux",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 7.2.0 (including the 7.1.9 branch)"
+                },
+                {
+                    "vendor": "Zoom",
+                    "product": "Workplace for iOS",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 7.2.0"
+                },
+                {
+                    "vendor": "Zoom",
+                    "product": "Workplace VDI Client for Windows",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "7.0.11 up to 7.0.13"
+                },
+                {
+                    "vendor": "Zoom",
+                    "product": "Rooms for Windows",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "7.0.0 up to 7.1.7"
+                }
+            ],
+            "references": [
+                "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0530"
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-10-27T18:30:00Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:19:41.412103Z",
+            "raw_ref": "backend/data/raw/certin/CIVN-2026-0530.txt",
+            "raw_refs": [
+                "backend/data/raw/certin/CIVN-2026-0530.txt"
+            ],
+            "is_simulated": false,
+            "type": "advisory",
+            "cve_ids": [
+                "CVE-2026-108184",
+                "CVE-2026-108185",
+                "CVE-2026-53418",
+                "CVE-2026-53420"
+            ],
+            "tags": [
+                "cert-in",
+                "vulnerability_note",
+                "india"
+            ]
+        },
+        {
+            "threat_id": "CIAD-2026-0056",
+            "cve_id": null,
+            "source": "certin",
+            "title": "CIAD-2026-0056: Multiple Vulnerabilities in Apple Products",
+            "description": "Multiple vulnerabilities have been reported in Apple products, which could allow an attacker to execute arbitrary code, escalate privileges, disclose sensitive information, bypass security restrictions or cause denial-of-service conditions on the targeted system.",
+            "cvss": 8.8,
+            "cvss_version": "3.1",
+            "severity": "high",
+            "epss": 0.26166,
+            "epss_percentile": 0.97992,
+            "kev_listed": true,
+            "public_exploit": true,
+            "affected_configurations": [
+                {
+                    "vendor": "Safari",
+                    "product": "Safari",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 27.2"
+                },
+                {
+                    "vendor": "MacOS",
+                    "product": "Sequoia",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 15.8.2"
+                },
+                {
+                    "vendor": "MacOS",
+                    "product": "Tahoe",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 26.7.2"
+                },
+                {
+                    "vendor": "MacOS",
+                    "product": "Golden Gate",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 27.2"
+                },
+                {
+                    "vendor": "iOS",
+                    "product": "iOS",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 18.7.11 and iPadOS versions prior to 18.7.11"
+                },
+                {
+                    "vendor": "iOS",
+                    "product": "iOS",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 26.7.2 and iPadOS versions prior to 26.7.2"
+                },
+                {
+                    "vendor": "iOS",
+                    "product": "iOS",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 27.2 and iPadOS versions prior to 27.2"
+                },
+                {
+                    "vendor": "WatchOS",
+                    "product": "WatchOS",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 27.2"
+                },
+                {
+                    "vendor": "TvOS",
+                    "product": "TvOS",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 27.2"
+                },
+                {
+                    "vendor": "VisionOS",
+                    "product": "VisionOS",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 27.2"
+                }
+            ],
+            "references": [
+                "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0056"
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-10-26T18:30:00Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:19:04.371991Z",
+            "raw_ref": "backend/data/raw/certin/CIAD-2026-0056.txt",
+            "raw_refs": [
+                "backend/data/raw/certin/CIAD-2026-0056.txt"
+            ],
+            "is_simulated": false,
+            "type": "advisory",
+            "cve_ids": [
+                "CVE-2019-5598",
+                "CVE-2022-26704",
+                "CVE-2026-112410",
+                "CVE-2026-112414",
+                "CVE-2026-112416",
+                "CVE-2026-112421",
+                "CVE-2026-112424",
+                "CVE-2026-112427",
+                "CVE-2026-112429",
+                "CVE-2026-112432",
+                "CVE-2026-112434",
+                "CVE-2026-112438",
+                "CVE-2026-112441",
+                "CVE-2026-112443",
+                "CVE-2026-112446",
+                "CVE-2026-112449",
+                "CVE-2026-112453",
+                "CVE-2026-112455",
+                "CVE-2026-112457",
+                "CVE-2026-112461",
+                "CVE-2026-112464",
+                "CVE-2026-112467",
+                "CVE-2026-112469",
+                "CVE-2026-112471",
+                "CVE-2026-112474",
+                "CVE-2026-112476",
+                "CVE-2026-112478",
+                "CVE-2026-112480",
+                "CVE-2026-112482",
+                "CVE-2026-112484",
+                "CVE-2026-112486",
+                "CVE-2026-112488",
+                "CVE-2026-112492",
+                "CVE-2026-112494",
+                "CVE-2026-112497",
+                "CVE-2026-112498",
+                "CVE-2026-112501",
+                "CVE-2026-112504",
+                "CVE-2026-112506",
+                "CVE-2026-112508",
+                "CVE-2026-112511",
+                "CVE-2026-112513",
+                "CVE-2026-112515",
+                "CVE-2026-112517",
+                "CVE-2026-112521",
+                "CVE-2026-112524",
+                "CVE-2026-112529",
+                "CVE-2026-112532",
+                "CVE-2026-112535",
+                "CVE-2026-112537",
+                "CVE-2026-112540",
+                "CVE-2026-112543",
+                "CVE-2026-112546",
+                "CVE-2026-112550",
+                "CVE-2026-112553",
+                "CVE-2026-112556",
+                "CVE-2026-112560",
+                "CVE-2026-112563",
+                "CVE-2026-112568",
+                "CVE-2026-112576",
+                "CVE-2026-112595",
+                "CVE-2026-112604",
+                "CVE-2026-112609",
+                "CVE-2026-112610",
+                "CVE-2026-112614",
+                "CVE-2026-112617",
+                "CVE-2026-112620",
+                "CVE-2026-112624",
+                "CVE-2026-112628",
+                "CVE-2026-112632",
+                "CVE-2026-112638",
+                "CVE-2026-112642",
+                "CVE-2026-112651",
+                "CVE-2026-112655",
+                "CVE-2026-112659",
+                "CVE-2026-112660",
+                "CVE-2026-112668",
+                "CVE-2026-112670",
+                "CVE-2026-112675",
+                "CVE-2026-112678",
+                "CVE-2026-112682",
+                "CVE-2026-112685",
+                "CVE-2026-112688",
+                "CVE-2026-112695",
+                "CVE-2026-112701",
+                "CVE-2026-112706",
+                "CVE-2026-113896",
+                "CVE-2026-113898",
+                "CVE-2026-113901",
+                "CVE-2026-113906",
+                "CVE-2026-113910",
+                "CVE-2026-113914",
+                "CVE-2026-113934",
+                "CVE-2026-113936",
+                "CVE-2026-113938",
+                "CVE-2026-113940",
+                "CVE-2026-113941",
+                "CVE-2026-113942",
+                "CVE-2026-113943",
+                "CVE-2026-113944",
+                "CVE-2026-113945",
+                "CVE-2026-113946",
+                "CVE-2026-113947",
+                "CVE-2026-113948",
+                "CVE-2026-113949",
+                "CVE-2026-113950",
+                "CVE-2026-113952",
+                "CVE-2026-20648",
+                "CVE-2026-20649",
+                "CVE-2026-28864",
+                "CVE-2026-28991",
+                "CVE-2026-43736",
+                "CVE-2026-64750",
+                "CVE-2026-64759",
+                "CVE-2026-64767",
+                "CVE-2026-64789",
+                "CVE-2026-65327",
+                "CVE-2026-65339",
+                "CVE-2026-65350",
+                "CVE-2026-65363",
+                "CVE-2026-65368",
+                "CVE-2026-65373",
+                "CVE-2026-65384",
+                "CVE-2026-65385",
+                "CVE-2026-65392",
+                "CVE-2026-65397",
+                "CVE-2026-84493",
+                "CVE-2026-84494",
+                "CVE-2026-84495",
+                "CVE-2026-84496",
+                "CVE-2026-84498",
+                "CVE-2026-84528",
+                "CVE-2026-84539",
+                "CVE-2026-84542",
+                "CVE-2026-84545",
+                "CVE-2026-84590",
+                "CVE-2026-84594",
+                "CVE-2026-84595",
+                "CVE-2026-84599",
+                "CVE-2026-84604",
+                "CVE-2026-84605",
+                "CVE-2026-84610",
+                "CVE-2026-84614",
+                "CVE-2026-84627",
+                "CVE-2026-86880",
+                "CVE-2026-86896",
+                "CVE-2026-86916",
+                "CVE-2026-86920",
+                "CVE-2026-86923",
+                "CVE-2026-86925",
+                "CVE-2026-86929",
+                "CVE-2026-86931",
+                "CVE-2026-86936",
+                "CVE-2026-86937",
+                "CVE-2026-86939",
+                "CVE-2026-86941",
+                "CVE-2026-86942",
+                "CVE-2026-86943",
+                "CVE-2026-86945",
+                "CVE-2026-86946",
+                "CVE-2026-86950",
+                "CVE-2026-86954",
+                "CVE-2026-86958",
+                "CVE-2026-86964",
+                "CVE-2026-86966",
+                "CVE-2026-86968",
+                "CVE-2026-86969",
+                "CVE-2026-86970",
+                "CVE-2026-86971",
+                "CVE-2026-86972",
+                "CVE-2026-86973",
+                "CVE-2026-86974",
+                "CVE-2026-86978",
+                "CVE-2026-86984",
+                "CVE-2026-86985",
+                "CVE-2026-86987",
+                "CVE-2026-86988",
+                "CVE-2026-86990",
+                "CVE-2026-86991",
+                "CVE-2026-86992"
+            ],
+            "tags": [
+                "cert-in",
+                "advisory",
+                "india"
+            ]
+        },
+        {
+            "threat_id": "CIAD-2026-0055",
+            "cve_id": null,
+            "source": "certin",
+            "title": "CIAD-2026-0055: Out-of-Bounds Write Vulnerability in Google Brotli Decoder",
+            "description": "A buffer overflow vulnerability in the Brotli decoder (c/dec/decode.c) in Google Brotli versions 1.0.3 through 1.2.0 on all platforms allows a remote unauthenticated attacker to corrupt adjacent decoder state memory, disclose sensitive memory contents, cause a denial of service, or potentially execute arbitrary code using a crafted Brotli-compressed stream.",
+            "cvss": 9.8,
+            "cvss_version": "3.1",
+            "severity": "critical",
+            "epss": 0.82641,
+            "epss_percentile": 0.99666,
+            "kev_listed": true,
+            "public_exploit": true,
+            "affected_configurations": [],
+            "references": [
+                "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES02&VLCODE=CIAD-2026-0055"
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-10-26T18:30:00Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:19:05.865671Z",
+            "raw_ref": "backend/data/raw/certin/CIAD-2026-0055.txt",
+            "raw_refs": [
+                "backend/data/raw/certin/CIAD-2026-0055.txt"
+            ],
+            "is_simulated": false,
+            "type": "advisory",
+            "cve_ids": [
+                "CVE-2026-111497"
+            ],
+            "tags": [
+                "cert-in",
+                "advisory",
+                "india"
+            ]
+        },
+        {
+            "threat_id": "CIVN-2026-0529",
+            "cve_id": null,
+            "source": "certin",
+            "title": "CIVN-2026-0529: SQL Injection Vulnerability in Radius Xenia M2M Platform",
+            "description": "A vulnerability has been reported in Radius Xenia M2M Platform, which could allow an unauthenticated remote attacker to gain unauthorized access to sensitive information, or modify database records on the targeted system.",
+            "cvss": 9.3,
+            "cvss_version": "4.0",
+            "severity": "high",
+            "epss": 0.00502,
+            "epss_percentile": 0.42948,
+            "kev_listed": false,
+            "public_exploit": false,
+            "affected_configurations": [],
+            "references": [
+                "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0529"
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-10-26T18:30:00Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:19:43.872590Z",
+            "raw_ref": "backend/data/raw/certin/CIVN-2026-0529.txt",
+            "raw_refs": [
+                "backend/data/raw/certin/CIVN-2026-0529.txt"
+            ],
+            "is_simulated": false,
+            "type": "advisory",
+            "cve_ids": [
+                "CVE-2026-114358"
+            ],
+            "tags": [
+                "cert-in",
+                "vulnerability_note",
+                "india"
+            ]
+        },
+        {
+            "threat_id": "CIVN-2026-0528",
+            "cve_id": null,
+            "source": "certin",
+            "title": "CIVN-2026-0528: Remote Code Execution Vulnerability in PHP",
+            "description": "A vulnerability has been reported in PHP which could allow a remote attacker to gain access to sensitive information or execute arbitrary code on the targeted system.",
+            "cvss": 8.1,
+            "cvss_version": "3.1",
+            "severity": "critical",
+            "epss": 0.99999,
+            "epss_percentile": 0.99999,
+            "kev_listed": true,
+            "public_exploit": true,
+            "affected_configurations": [
+                {
+                    "vendor": "PHP",
+                    "product": "8.2",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 8.2.35"
+                },
+                {
+                    "vendor": "PHP",
+                    "product": "8.3",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 8.3.36"
+                },
+                {
+                    "vendor": "PHP",
+                    "product": "8.4",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 8.4.27"
+                },
+                {
+                    "vendor": "PHP",
+                    "product": "8.5",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to 8.5.12"
+                }
+            ],
+            "references": [
+                "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0528"
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-10-26T18:30:00Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:19:45.380923Z",
+            "raw_ref": "backend/data/raw/certin/CIVN-2026-0528.txt",
+            "raw_refs": [
+                "backend/data/raw/certin/CIVN-2026-0528.txt"
+            ],
+            "is_simulated": false,
+            "type": "advisory",
+            "cve_ids": [
+                "CVE-2026-109619"
+            ],
+            "tags": [
+                "cert-in",
+                "vulnerability_note",
+                "india"
+            ]
+        },
+        {
+            "threat_id": "CIVN-2026-0527",
+            "cve_id": null,
+            "source": "certin",
+            "title": "CIVN-2026-0527: DLL Sideloading Vulnerability in Siemens Software Center",
+            "description": "A vulnerability has been reported in Siemens Software Center which could allow an attacker to execute arbitrary code on the targeted system.",
+            "cvss": 6.7,
+            "cvss_version": "3.1",
+            "severity": "high",
+            "epss": 0.00967,
+            "epss_percentile": 0.6171,
+            "kev_listed": true,
+            "public_exploit": true,
+            "affected_configurations": [
+                {
+                    "vendor": "Siemens",
+                    "product": "Software Center",
+                    "version_start_including": null,
+                    "version_start_excluding": null,
+                    "version_end_including": null,
+                    "version_end_excluding": null,
+                    "cpe": null,
+                    "versions_text": "prior to V4.0.9.8"
+                }
+            ],
+            "references": [
+                "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0527"
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-10-25T18:30:00Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:19:45.760102Z",
+            "raw_ref": "backend/data/raw/certin/CIVN-2026-0527.txt",
+            "raw_refs": [
+                "backend/data/raw/certin/CIVN-2026-0527.txt"
+            ],
+            "is_simulated": false,
+            "type": "advisory",
+            "cve_ids": [
+                "CVE-2026-110936"
+            ],
+            "tags": [
+                "cert-in",
+                "vulnerability_note",
+                "india"
+            ]
+        }
+    ],
+    "ransomware_victims_total": 71,
+    "ransomware_by_sector": {
+        "Manufacturing": 16,
+        "Technology": 13,
+        "Education": 6,
+        "Retail & E-Commerce": 6,
+        "Other": 6,
+        "Financial Services": 4,
+        "Healthcare": 4,
+        "unknown": 4,
+        "Hospitality": 3,
+        "Energy & Utilities": 3,
+        "Transportation": 3,
+        "Professional Services": 2,
+        "Government & Defense": 1
+    },
+    "ransomware_by_group": {
+        "thegentlemen": 11,
+        "krybit": 9,
+        "Vexy Ransomware": 6,
+        "Eclipse": 4,
+        "clop": 4,
+        "Orova": 4,
+        "everest": 3,
+        "medusalocker": 2,
+        "orion": 2,
+        "Global Secret Group": 2,
+        "Scarlettgroup": 2,
+        "Doommageddon": 2,
+        "Majinahanashi": 2,
+        "AuditTeam": 2,
+        "qilin": 2,
+        "incransom": 2,
+        "UmBra": 2,
+        "emperador": 2,
+        "direwolf": 1,
+        "HYFLOCK": 1,
+        "unsafe": 1,
+        "blackwater": 1,
+        "DYSPHOR1A": 1,
+        "L Group": 1,
+        "N0n": 1,
+        "lockbit5": 1
+    },
+    "ransomware_groups": [
+        {
+            "sector": "Healthcare",
+            "group": "krybit",
+            "count": 4,
+            "victims": [
+                {
+                    "threat_id": "ransomware:488b5acd9e29",
+                    "title": "krybit ransomware claims seashellhospital.com (IN)",
+                    "published_at": "2026-09-01T09:02:54.914837Z",
+                    "references": [
+                        "https://www.ransomware.live/group/krybit"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:e02b858619b8",
+                    "title": "krybit ransomware claims karkinos.in (IN)",
+                    "published_at": "2026-08-26T15:55:40.862185Z",
+                    "references": [
+                        "https://www.ransomware.live/group/krybit"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:d0f55281b711",
+                    "title": "krybit ransomware claims jindallifescience.com (IN)",
+                    "published_at": "2026-08-26T15:27:59.170968Z",
+                    "references": [
+                        "https://www.ransomware.live/group/krybit"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:639fd65548f4",
+                    "title": "krybit ransomware claims labindia.com (IN)",
+                    "published_at": "2026-08-12T12:27:05.157188Z",
+                    "references": [
+                        "https://www.ransomware.live/group/krybit"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Technology",
+            "group": "thegentlemen",
+            "count": 4,
+            "victims": [
+                {
+                    "threat_id": "ransomware:109723eba567",
+                    "title": "thegentlemen ransomware claims Netcore Unbxd (IN)",
+                    "published_at": "2026-10-16T09:37:47.271557Z",
+                    "references": [
+                        "https://www.ransomware.live/group/thegentlemen"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:35c4845f2126",
+                    "title": "thegentlemen ransomware claims Indic (IN)",
+                    "published_at": "2026-09-15T07:16:43.518010Z",
+                    "references": [
+                        "https://www.ransomware.live/group/thegentlemen"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:9f81ea65c67e",
+                    "title": "thegentlemen ransomware claims Seasia Infotech (IN)",
+                    "published_at": "2026-09-02T10:30:50.512757Z",
+                    "references": [
+                        "https://www.ransomware.live/group/thegentlemen"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:e96e2ff9825e",
+                    "title": "thegentlemen ransomware claims Lancesoft India (IN)",
+                    "published_at": "2026-08-10T08:11:14.331438Z",
+                    "references": [
+                        "https://www.ransomware.live/group/thegentlemen"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Education",
+            "group": "UmBra",
+            "count": 2,
+            "victims": [
+                {
+                    "threat_id": "ransomware:56916b7af349",
+                    "title": "UmBra ransomware claims Manipal Academy of Higher Edu (IN)",
+                    "published_at": "2026-10-08T20:29:01.377809Z",
+                    "references": [
+                        "https://www.ransomware.live/group/umbra"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:3656c5e391d2",
+                    "title": "UmBra ransomware claims IIT Roorkee (IN)",
+                    "published_at": "2026-10-08T20:28:18.438174Z",
+                    "references": [
+                        "https://www.ransomware.live/group/umbra"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Education",
+            "group": "krybit",
+            "count": 2,
+            "victims": [
+                {
+                    "threat_id": "ransomware:0a7f98f02bfd",
+                    "title": "krybit ransomware claims sai.org.in (IN)",
+                    "published_at": "2026-10-02T09:30:27.520644Z",
+                    "references": [
+                        "https://www.ransomware.live/group/krybit"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:5a0529896d5d",
+                    "title": "krybit ransomware claims vedantaainstitute.in (IN)",
+                    "published_at": "2026-09-01T08:57:18.981540Z",
+                    "references": [
+                        "https://www.ransomware.live/group/krybit"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Energy & Utilities",
+            "group": "thegentlemen",
+            "count": 2,
+            "victims": [
+                {
+                    "threat_id": "ransomware:cf8e88e5820e",
+                    "title": "thegentlemen ransomware claims WABAG (IN)",
+                    "published_at": "2026-10-31T07:27:18.307305Z",
+                    "references": [
+                        "https://www.ransomware.live/group/thegentlemen"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:4fd27e970758",
+                    "title": "thegentlemen ransomware claims BGR Energy Systems (IN)",
+                    "published_at": "2026-09-15T07:11:20.946749Z",
+                    "references": [
+                        "https://www.ransomware.live/group/thegentlemen"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Hospitality",
+            "group": "thegentlemen",
+            "count": 2,
+            "victims": [
+                {
+                    "threat_id": "ransomware:94b8c3c5dc49",
+                    "title": "thegentlemen ransomware claims Majestic Holidays India Private Limited (IN)",
+                    "published_at": "2026-10-09T19:22:36.213075Z",
+                    "references": [
+                        "https://www.ransomware.live/group/thegentlemen"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:d8d7c9f90071",
+                    "title": "thegentlemen ransomware claims AGS Cinemas (IN)",
+                    "published_at": "2026-08-23T06:34:52.340155Z",
+                    "references": [
+                        "https://www.ransomware.live/group/thegentlemen"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Manufacturing",
+            "group": "Eclipse",
+            "count": 2,
+            "victims": [
+                {
+                    "threat_id": "ransomware:bfdd4cc21fb7",
+                    "title": "Eclipse ransomware claims simplexengg.in (IN)",
+                    "published_at": "2026-10-08T17:53:39.641217Z",
+                    "references": [
+                        "https://www.ransomware.live/group/eclipse"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:6d7808622e0a",
+                    "title": "Eclipse ransomware claims Simplex Engineering (IN)",
+                    "published_at": "2026-08-26T15:21:59.281974Z",
+                    "references": [
+                        "https://www.ransomware.live/group/eclipse"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Manufacturing",
+            "group": "clop",
+            "count": 2,
+            "victims": [
+                {
+                    "threat_id": "ransomware:2d207f2a321f",
+                    "title": "clop ransomware claims QCPL.IN (IN)",
+                    "published_at": "2026-08-12T15:47:31.046408Z",
+                    "references": [
+                        "https://www.ransomware.live/group/clop"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:90229269c1e7",
+                    "title": "clop ransomware claims ATOMBERG.COM (IN)",
+                    "published_at": "2026-08-12T15:37:54.784736Z",
+                    "references": [
+                        "https://www.ransomware.live/group/clop"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Manufacturing",
+            "group": "thegentlemen",
+            "count": 2,
+            "victims": [
+                {
+                    "threat_id": "ransomware:84cd6a8e653a",
+                    "title": "thegentlemen ransomware claims G R Infraprojects (IN)",
+                    "published_at": "2026-08-30T09:54:19.716946Z",
+                    "references": [
+                        "https://www.ransomware.live/group/thegentlemen"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:b5b145e1c0f1",
+                    "title": "thegentlemen ransomware claims RAK Construction (IN)",
+                    "published_at": "2026-08-10T08:11:32.673553Z",
+                    "references": [
+                        "https://www.ransomware.live/group/thegentlemen"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Other",
+            "group": "Vexy Ransomware",
+            "count": 2,
+            "victims": [
+                {
+                    "threat_id": "ransomware:d2b906534137",
+                    "title": "Vexy Ransomware ransomware claims United Group (IN)",
+                    "published_at": "2026-09-07T17:54:08.633023Z",
+                    "references": [
+                        "https://www.ransomware.live/group/vexy ransomware"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:cf732ffc40e3",
+                    "title": "Vexy Ransomware ransomware claims Sancity (IN)",
+                    "published_at": "2026-09-06T15:00:28.254541Z",
+                    "references": [
+                        "https://www.ransomware.live/group/vexy ransomware"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Retail & E-Commerce",
+            "group": "Vexy Ransomware",
+            "count": 2,
+            "victims": [
+                {
+                    "threat_id": "ransomware:e2967c7eacfa",
+                    "title": "Vexy Ransomware ransomware claims Enchanted Fine Jewellery (IN)",
+                    "published_at": "2026-10-15T11:22:07.165500Z",
+                    "references": [
+                        "https://www.ransomware.live/group/vexy ransomware"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:829d6f4284da",
+                    "title": "Vexy Ransomware ransomware claims Annapurna Fashion (IN)",
+                    "published_at": "2026-09-04T16:23:32.912477Z",
+                    "references": [
+                        "https://www.ransomware.live/group/vexy ransomware"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Technology",
+            "group": "Eclipse",
+            "count": 2,
+            "victims": [
+                {
+                    "threat_id": "ransomware:52a6f0ae1daa",
+                    "title": "Eclipse ransomware claims part02.simplexengg.in (IN)",
+                    "published_at": "2026-10-05T15:22:43.914417Z",
+                    "references": [
+                        "https://www.ransomware.live/group/eclipse"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:61f076608400",
+                    "title": "Eclipse ransomware claims part1.simplexengg.in (IN)",
+                    "published_at": "2026-09-02T13:21:21.433862Z",
+                    "references": [
+                        "https://www.ransomware.live/group/eclipse"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Technology",
+            "group": "Orova",
+            "count": 2,
+            "victims": [
+                {
+                    "threat_id": "ransomware:4a20d73ae74c",
+                    "title": "Orova ransomware claims Libre Wireless Technologies (IN)",
+                    "published_at": "2026-10-12T23:52:42.554318Z",
+                    "references": [
+                        "https://www.ransomware.live/group/orova"
+                    ]
+                },
+                {
+                    "threat_id": "ransomware:02ad6d6d615f",
+                    "title": "Orova ransomware claims Amantya Technologies (IN)",
+                    "published_at": "2026-10-12T23:52:10.977860Z",
+                    "references": [
+                        "https://www.ransomware.live/group/orova"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Education",
+            "group": "AuditTeam",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:85c57ae94944",
+                    "title": "AuditTeam ransomware claims vit.ac.in (IN)",
+                    "published_at": "2026-09-22T11:51:00.276184Z",
+                    "references": [
+                        "https://www.ransomware.live/group/auditteam"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Education",
+            "group": "DYSPHOR1A",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:1d6d1ca67bd9",
+                    "title": "DYSPHOR1A ransomware claims The University of Delhi (DU) (IN)",
+                    "published_at": "2026-08-20T20:50:28.210031Z",
+                    "references": [
+                        "https://www.ransomware.live/group/dysphor1a"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Energy & Utilities",
+            "group": "Orova",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:f8f41e72dbac",
+                    "title": "Orova ransomware claims Siddhi Green Excellence Pvt. Ltd (IN)",
+                    "published_at": "2026-09-20T14:21:12.939737Z",
+                    "references": [
+                        "https://www.ransomware.live/group/orova"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Financial Services",
+            "group": "Global Secret Group",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:0f920e8bf5de",
+                    "title": "Global Secret Group ransomware claims CO-OP URBAN BANK LTD (IN)",
+                    "published_at": "2026-09-10T22:53:11.852172Z",
+                    "references": [
+                        "https://www.ransomware.live/group/global secret group"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Financial Services",
+            "group": "Scarlettgroup",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:6c934f6e6b6a",
+                    "title": "Scarlettgroup ransomware claims au.bank.in (IN)",
+                    "published_at": "2026-10-29T15:45:17.986426Z",
+                    "references": [
+                        "https://www.ransomware.live/group/scarlettgroup"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Financial Services",
+            "group": "clop",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:ac830b8d99c3",
+                    "title": "clop ransomware claims JPMGROUP.CO.IN (IN)",
+                    "published_at": "2026-08-12T15:36:39.783024Z",
+                    "references": [
+                        "https://www.ransomware.live/group/clop"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Financial Services",
+            "group": "direwolf",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:73542f7d1499",
+                    "title": "direwolf ransomware claims DodoPayments (IN)",
+                    "published_at": "2026-08-15T20:27:05.382904Z",
+                    "references": [
+                        "https://www.ransomware.live/group/direwolf"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Government & Defense",
+            "group": "Scarlettgroup",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:440da3b3e233",
+                    "title": "Scarlettgroup ransomware claims police.rajasthan.gov.in (IN)",
+                    "published_at": "2026-10-21T04:46:40.372313Z",
+                    "references": [
+                        "https://www.ransomware.live/group/scarlettgroup"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Hospitality",
+            "group": "medusalocker",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:a08412ce16ac",
+                    "title": "medusalocker ransomware claims Praveg Caves Jawai (IN)",
+                    "published_at": "2026-09-12T09:00:10.314816Z",
+                    "references": [
+                        "https://www.ransomware.live/group/medusalocker"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Manufacturing",
+            "group": "Doommageddon",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:9d4af4de6e43",
+                    "title": "Doommageddon ransomware claims Chem Process Systems Pvt. Ltd. (IN)",
+                    "published_at": "2026-09-28T18:46:12.359388Z",
+                    "references": [
+                        "https://www.ransomware.live/group/doommageddon"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Manufacturing",
+            "group": "Global Secret Group",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:82ec3cbffc38",
+                    "title": "Global Secret Group ransomware claims R L Fine Chem Pvt. Ltd. (IN)",
+                    "published_at": "2026-08-31T17:51:51.237652Z",
+                    "references": [
+                        "https://www.ransomware.live/group/global secret group"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Manufacturing",
+            "group": "Orova",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:2992d2a910aa",
+                    "title": "Orova ransomware claims Durga Bearings (IN)",
+                    "published_at": "2026-10-13T14:57:30.066827Z",
+                    "references": [
+                        "https://www.ransomware.live/group/orova"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Manufacturing",
+            "group": "Vexy Ransomware",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:0961f0e04c80",
+                    "title": "Vexy Ransomware ransomware claims Palsana Enviro (PEPL) (IN)",
+                    "published_at": "2026-09-04T16:23:53.260819Z",
+                    "references": [
+                        "https://www.ransomware.live/group/vexy ransomware"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Manufacturing",
+            "group": "emperador",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:dec468cf2e72",
+                    "title": "emperador ransomware claims Universal Starch-Chem Allied Ltd (IN)",
+                    "published_at": "2026-09-09T11:52:14.589272Z",
+                    "references": [
+                        "https://www.ransomware.live/group/emperador"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Manufacturing",
+            "group": "everest",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:cc108a5f4bbb",
+                    "title": "everest ransomware claims Powerweave (IN)",
+                    "published_at": "2026-08-05T13:07:22.715560Z",
+                    "references": [
+                        "https://www.ransomware.live/group/everest"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Manufacturing",
+            "group": "krybit",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:457a5208cfaa",
+                    "title": "krybit ransomware claims swadeshicipl.com (IN)",
+                    "published_at": "2026-09-12T10:26:18.791267Z",
+                    "references": [
+                        "https://www.ransomware.live/group/krybit"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Manufacturing",
+            "group": "lockbit5",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:474c1ddca61d",
+                    "title": "lockbit5 ransomware claims pcclimitedindia.com (IN)",
+                    "published_at": "2026-08-03T05:07:28.043760Z",
+                    "references": [
+                        "https://www.ransomware.live/group/lockbit5"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Manufacturing",
+            "group": "orion",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:74760a63cb3c",
+                    "title": "orion ransomware claims Nitrex Chemicals India (IN)",
+                    "published_at": "2026-08-05T19:57:11.123023Z",
+                    "references": [
+                        "https://www.ransomware.live/group/orion"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Manufacturing",
+            "group": "qilin",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:51facc078f7e",
+                    "title": "qilin ransomware claims Gindre India (IN)",
+                    "published_at": "2026-08-21T11:57:12.828596Z",
+                    "references": [
+                        "https://www.ransomware.live/group/qilin"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Other",
+            "group": "Doommageddon",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:62d9cd937a04",
+                    "title": "Doommageddon ransomware claims INCOR Group (IN)",
+                    "published_at": "2026-09-13T00:53:02.200383Z",
+                    "references": [
+                        "https://www.ransomware.live/group/doommageddon"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Other",
+            "group": "Majinahanashi",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:9d7b01239b62",
+                    "title": "Majinahanashi ransomware claims BONJOUR GROUP (IN)",
+                    "published_at": "2026-10-10T20:48:13.941072Z",
+                    "references": [
+                        "https://www.ransomware.live/group/majinahanashi"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Other",
+            "group": "medusalocker",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:a5291015cf6f",
+                    "title": "medusalocker ransomware claims Licindia (IN)",
+                    "published_at": "2026-09-02T09:29:09.492860Z",
+                    "references": [
+                        "https://www.ransomware.live/group/medusalocker"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Other",
+            "group": "thegentlemen",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:7dad11db8bc0",
+                    "title": "thegentlemen ransomware claims Soni Dwarkadas Virchand (IN)",
+                    "published_at": "2026-09-07T21:53:44.917197Z",
+                    "references": [
+                        "https://www.ransomware.live/group/thegentlemen"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Professional Services",
+            "group": "everest",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:bc157e65cf60",
+                    "title": "everest ransomware claims Aptara (IN)",
+                    "published_at": "2026-08-05T13:08:03.823756Z",
+                    "references": [
+                        "https://www.ransomware.live/group/everest"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Professional Services",
+            "group": "krybit",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:f766243f0128",
+                    "title": "krybit ransomware claims southsign.in (IN)",
+                    "published_at": "2026-09-01T08:55:26.679557Z",
+                    "references": [
+                        "https://www.ransomware.live/group/krybit"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Retail & E-Commerce",
+            "group": "HYFLOCK",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:746ebfdfbd6b",
+                    "title": "HYFLOCK ransomware claims ocean beverages (IN)",
+                    "published_at": "2026-10-13T17:13:38.510831Z",
+                    "references": [
+                        "https://www.ransomware.live/group/hyflock"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Retail & E-Commerce",
+            "group": "Majinahanashi",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:754ca1e9f9d6",
+                    "title": "Majinahanashi ransomware claims WONDR DIAMONDS & D GEM MOUNT (IN)",
+                    "published_at": "2026-10-10T20:45:28.283206Z",
+                    "references": [
+                        "https://www.ransomware.live/group/majinahanashi"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Retail & E-Commerce",
+            "group": "krybit",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:8bba52e1a0c7",
+                    "title": "krybit ransomware claims www.raajratna.com (IN)",
+                    "published_at": "2026-10-02T09:31:28.585730Z",
+                    "references": [
+                        "https://www.ransomware.live/group/krybit"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Retail & E-Commerce",
+            "group": "orion",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:f2e62056bcb3",
+                    "title": "orion ransomware claims udhaiyamdhall.com (IN)",
+                    "published_at": "2026-08-05T20:00:08.663755Z",
+                    "references": [
+                        "https://www.ransomware.live/group/orion"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Technology",
+            "group": "Vexy Ransomware",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:8059151152d9",
+                    "title": "Vexy Ransomware ransomware claims i2k2 Networks (IN)",
+                    "published_at": "2026-09-10T21:27:11.565115Z",
+                    "references": [
+                        "https://www.ransomware.live/group/vexy ransomware"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Technology",
+            "group": "clop",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:c6fe29d4be75",
+                    "title": "clop ransomware claims 9ALTITUDES.COM (IN)",
+                    "published_at": "2026-08-12T15:40:14.041173Z",
+                    "references": [
+                        "https://www.ransomware.live/group/clop"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Technology",
+            "group": "everest",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:08870b9e39ad",
+                    "title": "everest ransomware claims Greenbotz (IN)",
+                    "published_at": "2026-08-05T13:13:44.424688Z",
+                    "references": [
+                        "https://www.ransomware.live/group/everest"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Technology",
+            "group": "qilin",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:78b4d0f2ddad",
+                    "title": "qilin ransomware claims WalkingTree Technologies (IN)",
+                    "published_at": "2026-10-19T15:59:19.631587Z",
+                    "references": [
+                        "https://www.ransomware.live/group/qilin"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Technology",
+            "group": "unsafe",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:460fcdd2f503",
+                    "title": "unsafe ransomware claims DECK APP TECHNOLOGIES PTE. LTD (IN)",
+                    "published_at": "2026-08-10T08:12:56.263236Z",
+                    "references": [
+                        "https://www.ransomware.live/group/unsafe"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Transportation",
+            "group": "AuditTeam",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:8002bf6ca403",
+                    "title": "AuditTeam ransomware claims vi***in (IN)",
+                    "published_at": "2026-09-13T09:50:31.693860Z",
+                    "references": [
+                        "https://www.ransomware.live/group/auditteam"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Transportation",
+            "group": "N0n",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:da9c12cada8c",
+                    "title": "N0n ransomware claims NCT Kandla (container terminal operations) (IN)",
+                    "published_at": "2026-10-12T14:03:56.988627Z",
+                    "references": [
+                        "https://www.ransomware.live/group/n0n"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "Transportation",
+            "group": "incransom",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:13da24f10172",
+                    "title": "incransom ransomware claims ATMS (IN)",
+                    "published_at": "2026-08-07T12:27:11.963336Z",
+                    "references": [
+                        "https://www.ransomware.live/group/incransom"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "unknown",
+            "group": "L Group",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:de66e9c3254c",
+                    "title": "L Group ransomware claims ratnasagar.com (IN)",
+                    "published_at": "2026-08-07T08:37:05.240968Z",
+                    "references": [
+                        "https://www.ransomware.live/group/l group"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "unknown",
+            "group": "blackwater",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:f3f4307c026c",
+                    "title": "blackwater ransomware claims www.shalina.com (IN)",
+                    "published_at": "2026-08-15T09:23:19.928820Z",
+                    "references": [
+                        "https://www.ransomware.live/group/blackwater"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "unknown",
+            "group": "emperador",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:0b58d1aafa3a",
+                    "title": "emperador ransomware claims Nexbex Solutions Private Limited (IN)",
+                    "published_at": "2026-09-12T13:51:54.425309Z",
+                    "references": [
+                        "https://www.ransomware.live/group/emperador"
+                    ]
+                }
+            ]
+        },
+        {
+            "sector": "unknown",
+            "group": "incransom",
+            "count": 1,
+            "victims": [
+                {
+                    "threat_id": "ransomware:ced0cd347c26",
+                    "title": "incransom ransomware claims Great Lakes (IN)",
+                    "published_at": "2026-10-13T15:11:46.608489Z",
+                    "references": [
+                        "https://www.ransomware.live/group/incransom"
+                    ]
+                }
+            ]
+        }
+    ],
+    "otx_pulses": [
+        {
+            "threat_id": "otx:6ae205cc6609fd489e50c1b4",
+            "cve_id": null,
+            "source": "otx",
+            "title": "False Protection, Emptied Accounts: The Seven Android Trojan Families Targeting Indian Banking Apps",
+            "description": "Group-IB's Threat Intelligence team uncovered a sophisticated Android malware campaign systematically targeting India's financial services sector since July 2025, orchestrated by the financially-motivated threat cluster CyberDakait. The operation distributes seven distinct malware families through coordinated smishing and vishing campaigns, impersonating bank representatives to trick victims into installing malicious APKs. These trojans harvest sensitive banking credentials, credit card details, and outstanding balances through overlay attacks while simultaneously conducting cryptojacking using XMRig. The malicious applications are hosted on GitHub repositories to maintain legitimacy, with the initial APK functioning as a dropper for the main payload and cryptocurrency mining module. Analysis revealed at least 17,960 compromised devices with 7.6 million intercepted SMS messages, including OTPs and transaction notifications. Attackers primarily target victims through fraudulent Credit Card Protection Plan s...",
+            "cvss": null,
+            "cvss_version": null,
+            "severity": null,
+            "epss": null,
+            "epss_percentile": null,
+            "kev_listed": null,
+            "public_exploit": null,
+            "affected_configurations": [],
+            "references": [
+                "https://otx.alienvault.com/pulse/6ae205cc6609fd489e50c1b4",
+                "https://www.group-ib.com/blog/cyberdakait-seven-android-trojans-indian-banking/"
+            ],
+            "attack_techniques": [
+                "T1522"
+            ],
+            "published_at": "2026-10-28T14:25:16Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:20:23.410914Z",
+            "raw_ref": "backend/data/raw/otx/pulses_subscribed_0.json",
+            "raw_refs": [
+                "backend/data/raw/otx/pulses_subscribed_0.json"
+            ],
+            "is_simulated": false,
+            "type": "campaign",
+            "cve_ids": [],
+            "tags": [
+                "xmrig",
+                "ghostgrab",
+                "credential theft",
+                "tenxen",
+                "cyb3rx",
+                "banking fraud",
+                "cryptojacking",
+                "android trojan",
+                "godz",
+                "ghostbat",
+                "overlay attack",
+                "vishing",
+                "d-miner",
+                "d-passive",
+                "india",
+                "d-shine",
+                "btmob",
+                "smishing",
+                "appkjl",
+                "GhostBat",
+                "GhostGrab",
+                "cyb3rx",
+                "d-passive",
+                "d-shine",
+                "tenxen",
+                "appkjl",
+                "godz",
+                "d-miner",
+                "XMRig",
+                "BTMOB"
+            ]
+        },
+        {
+            "threat_id": "otx:6ae1c2df52dc75787f8e7d74",
+            "cve_id": null,
+            "source": "otx",
+            "title": "Inside \"MR ROBOT\" - Anatomy of a Malware-as-a-Service Operation Targeting Indian Bank Customers",
+            "description": "A sophisticated Android Malware-as-a-Service operation called MR ROBOT is actively targeting Indian bank customers through a subscription-based model. The platform enables cybercriminals to rent customized banking trojans distributed via fake Play Store pages and messaging apps. The operation uses a multi-stage dropper that decrypts encrypted payloads to deploy banking trojans capable of intercepting SMS and OTPs, silently enabling call forwarding using the *21# carrier code to bypass phone-based two-factor authentication, and overlaying phishing screens to harvest card details, CVV, ATM PINs, UPI credentials, and identity documents. One tracked affiliate compromised 153 devices and intercepted 5,407 SMS messages across multiple Indian banks. The operation features a Telegram bot storefront offering approximately 36 fake applications impersonating banks, utility providers, and government services, with stolen data exfiltrated to Firebase Realtime Database and Telegram channels.",
+            "cvss": null,
+            "cvss_version": null,
+            "severity": null,
+            "epss": null,
+            "epss_percentile": null,
+            "kev_listed": null,
+            "public_exploit": null,
+            "affected_configurations": [],
+            "references": [
+                "https://otx.alienvault.com/pulse/6ae1c2df52dc75787f8e7d74",
+                "https://www.cloudsek.com/blog/inside-mr-robot-malware-as-a-service-targeting-indian-bank-customers"
+            ],
+            "attack_techniques": [
+                "T1417",
+                "T1398",
+                "T1521",
+                "T1437",
+                "T1407",
+                "T1406",
+                "T1582"
+            ],
+            "published_at": "2026-10-28T09:39:43Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:20:23.410914Z",
+            "raw_ref": "backend/data/raw/otx/pulses_subscribed_0.json",
+            "raw_refs": [
+                "backend/data/raw/otx/pulses_subscribed_0.json"
+            ],
+            "is_simulated": false,
+            "type": "campaign",
+            "cve_ids": [],
+            "tags": [
+                "maas",
+                "firebase exfiltration",
+                "malware-as-a-service",
+                "mr robot",
+                "android banking trojan",
+                "sms interception",
+                "MR ROBOT",
+                "target:British Indian Ocean Territory",
+                "target:India"
+            ]
+        },
+        {
+            "threat_id": "otx:6ae10d3bd4b201062c857223",
+            "cve_id": null,
+            "source": "otx",
+            "title": "SkyW4lker Phishing Kit: Microsoft 365 Threat to US Firms",
+            "description": "SkyW4lker is an active device-code phishing kit exploiting Microsoft 365 authentication processes across the United States, Europe, and other regions. Operating since June 2026, it bypasses MFA by abusing legitimate OAuth 2.0 device-code flows, granting attackers access to corporate accounts without stealing passwords. The kit uses phishing emails with password-protected attachments containing links that lead victims through CAPTCHA pages to malicious sites requesting Microsoft device codes. Analysis revealed 618 sandbox submissions between June and October 2026, with 46% originating from US organizations. Monthly activity surged from 20 cases in June to 200 in September. Technical investigation uncovered shared infrastructure and code similarities with the Gabagool credential phishing kit, suggesting common development. The kit employs obfuscated JavaScript, IP-based geolocation, and PHP backends to track victim authentication status, primarily targeting technology, manufacturing, and government sectors.",
+            "cvss": null,
+            "cvss_version": null,
+            "severity": null,
+            "epss": null,
+            "epss_percentile": null,
+            "kev_listed": null,
+            "public_exploit": null,
+            "affected_configurations": [],
+            "references": [
+                "https://otx.alienvault.com/pulse/6ae10d3bd4b201062c857223",
+                "https://any.run/cybersecurity-blog/skyw4lker-phishing-kit-analysis/"
+            ],
+            "attack_techniques": [],
+            "published_at": "2026-10-27T20:44:43Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:20:23.410914Z",
+            "raw_ref": "backend/data/raw/otx/pulses_subscribed_0.json",
+            "raw_refs": [
+                "backend/data/raw/otx/pulses_subscribed_0.json"
+            ],
+            "is_simulated": false,
+            "type": "campaign",
+            "cve_ids": [],
+            "tags": [
+                "enterprise targeting",
+                "device-code phishing",
+                "gabagool",
+                "microsoft 365",
+                "credential theft",
+                "phishing kit",
+                "oauth 2.0",
+                "skyw4lker",
+                "SkyW4lker",
+                "Gabagool",
+                "target:United States of America",
+                "target:British Indian Ocean Territory",
+                "target:Canada",
+                "target:India",
+                "target:United Kingdom of Great Britain and Northern Ireland"
+            ]
+        },
+        {
+            "threat_id": "otx:6ae095cebdd5fe9e0d5209f2",
+            "cve_id": null,
+            "source": "otx",
+            "title": "Domain Shadowing: Attackers Abuse Institutional Domains",
+            "description": "Two unrelated operations exploited domain shadowing techniques to place illegal gambling content beneath legitimate educational and government domains in Bangladesh, India, and Mexico. Unauthorized parties gained access to DNS administration, creating records beneath established institutional namespaces to leverage their reputation for search engine optimization. Hidden Hawk added individual CNAME records mapping institutional hostnames to gambling pages hosted primarily on Cloudflare Pages, affecting over 850 entry points across eight domains. A separate campaign targeting Maharashtra government domains delegated entire subzones to third-party nameservers using wildcards, enabling external management of numerous hostnames. Both operations served Indonesian and Indian illegal gambling content worth an estimated $6 trillion globally in unregulated markets, exploiting institutional trust to boost search rankings and acquire traffic while leaving primary websites intact and potentially unnoticed by domain own...",
+            "cvss": null,
+            "cvss_version": null,
+            "severity": null,
+            "epss": null,
+            "epss_percentile": null,
+            "kev_listed": null,
+            "public_exploit": null,
+            "affected_configurations": [],
+            "references": [
+                "https://otx.alienvault.com/pulse/6ae095cebdd5fe9e0d5209f2",
+                "https://www.infoblox.com/blog/threat-intelligence/borrowed-reputation-domain-shadowing-and-gambling-seo/"
+            ],
+            "attack_techniques": [
+                "T1204.002",
+                "T1071.004",
+                "T1583.006",
+                "T1189",
+                "T1584.001",
+                "T1586.002",
+                "T1566.002",
+                "T1598.003",
+                "T1583.001"
+            ],
+            "published_at": "2026-10-27T12:15:10Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:20:23.410914Z",
+            "raw_ref": "backend/data/raw/otx/pulses_subscribed_0.json",
+            "raw_refs": [
+                "backend/data/raw/otx/pulses_subscribed_0.json"
+            ],
+            "is_simulated": false,
+            "type": "campaign",
+            "cve_ids": [],
+            "tags": [
+                "cname abuse",
+                "ns delegation",
+                "dns hijacking",
+                "gambling seo",
+                "domain shadowing",
+                "parasite seo",
+                "target:Bangladesh",
+                "target:British Indian Ocean Territory",
+                "target:India",
+                "target:Mexico"
+            ]
+        },
+        {
+            "threat_id": "otx:6adc07f41102c5c37a64cd50",
+            "cve_id": null,
+            "source": "otx",
+            "title": "Suspected DPRK Campaign staging PHP2Shell Targeting against Global PHP infrastructure",
+            "description": "A Korean-speaking threat actor, tracked as the June 2026 Minjun campaign and linked with moderate confidence to North Korea's Lazarus Group, is actively planning targeted exploitation of two critical PHP vulnerabilities (CVE-2026-109618 and CVE-2026-109619) that enable unauthenticated remote code execution. The campaign prioritizes government agencies, financial institutions, manufacturing, logistics, aviation, and trading platforms across the US, Japan, Thailand, Indonesia, Korea, Australia, Taiwan, India, Singapore, UAE, Saudi Arabia, and the EU. Operators are using AI-assisted reconnaissance to rank public exploit code and plan sector-specific attacks. Exploitation attempts have been observed globally since 17 October 2026, with 17 suspected source IPs identified conducting web shell deployment and session poisoning. The vulnerabilities affect all internet-facing PHP installations below version 8.5.12, 8.4.27, 8.3.36, or 8.2.35, with Apache mod_php at highest risk.",
+            "cvss": 9.8,
+            "cvss_version": "3.1",
+            "severity": null,
+            "epss": 0.99999,
+            "epss_percentile": 0.99998,
+            "kev_listed": true,
+            "public_exploit": true,
+            "affected_configurations": [],
+            "references": [
+                "https://otx.alienvault.com/pulse/6adc07f41102c5c37a64cd50",
+                "https://www.cyfirma.com/research/cyfirma-threat-advisory-suspected-dprk-campaign-staging-php2shell-targeting-against-glocal-php-infrastructure/"
+            ],
+            "attack_techniques": [
+                "T1590.005",
+                "T1053.003",
+                "T1005",
+                "T1608.001",
+                "T1190",
+                "T1595.002",
+                "T1505.003",
+                "T1583.004",
+                "T1098.004",
+                "T1552.001",
+                "T1041",
+                "T1210",
+                "T1059.004",
+                "T1486",
+                "T1496",
+                "T1105",
+                "T1588.005"
+            ],
+            "published_at": "2026-10-24T01:20:52Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:20:24.243104Z",
+            "raw_ref": "backend/data/raw/otx/pulses_subscribed_1.json",
+            "raw_refs": [
+                "backend/data/raw/otx/pulses_subscribed_1.json"
+            ],
+            "is_simulated": false,
+            "type": "campaign",
+            "cve_ids": [
+                "CVE-2026-109618",
+                "CVE-2026-109619"
+            ],
+            "tags": [
+                "php2shell",
+                "cve-2026-109618",
+                "web shell",
+                "dprk",
+                "target:United States of America",
+                "target:Australia",
+                "target:British Indian Ocean Territory",
+                "target:India",
+                "target:Indonesia",
+                "target:Japan",
+                "target:Saudi Arabia",
+                "target:Singapore",
+                "target:Taiwan",
+                "target:Thailand",
+                "target:United Arab Emirates"
+            ]
+        },
+        {
+            "threat_id": "otx:6ad964720fdac83866db4a7d",
+            "cve_id": null,
+            "source": "otx",
+            "title": "Inside a Global AI-Assisted Hacking Campaign",
+            "description": "In October 2026, a Chinese-speaking threat actor conducted widespread AI-assisted cyberattacks combining the ARTEX penetration testing framework with multiple AI coding assistants including Claude Code, Codex, and Grok. The attacks, initially reported as targeting South Korean financial institutions, affected organizations globally across multiple industries including finance, retail, education, cryptocurrency, and telecommunications. Custom synchronization scripts maintained investigation context across AI sessions, while specialized agents divided reconnaissance and exploitation tasks. Prompts revealed requests for bulk personal data, transaction records, and mobile phone numbers, alongside questions about selling stolen information on underground markets. The workflow incorporated peer review between AI models, with GLM instructed to audit DeepSeek findings. Targeting spanned over 20 countries across Asia, Africa, Europe, and North America, indicating financially-motivated opportunistic attacks.",
+            "cvss": null,
+            "cvss_version": null,
+            "severity": null,
+            "epss": null,
+            "epss_percentile": null,
+            "kev_listed": null,
+            "public_exploit": null,
+            "affected_configurations": [],
+            "references": [
+                "https://otx.alienvault.com/pulse/6ad964720fdac83866db4a7d",
+                "https://www.zscaler.com/blogs/security-research/inside-global-ai-assisted-hacking-campaign"
+            ],
+            "attack_techniques": [
+                "T1592",
+                "T1133",
+                "T1594",
+                "T1135",
+                "T1071",
+                "T1190",
+                "T1567",
+                "T1589",
+                "T1596",
+                "T1595",
+                "T1087",
+                "T1090",
+                "T1083",
+                "T1590",
+                "T1210",
+                "T1593",
+                "T1573",
+                "T1213",
+                "T1018",
+                "T1046"
+            ],
+            "published_at": "2026-10-22T01:18:42Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:20:24.243104Z",
+            "raw_ref": "backend/data/raw/otx/pulses_subscribed_1.json",
+            "raw_refs": [
+                "backend/data/raw/otx/pulses_subscribed_1.json"
+            ],
+            "is_simulated": false,
+            "type": "campaign",
+            "cve_ids": [],
+            "tags": [
+                "global targeting",
+                "multi-model orchestration",
+                "ai-assisted attacks",
+                "automated reconnaissance",
+                "artex framework",
+                "chinese-speaking operator",
+                "artex",
+                "financial crime",
+                "data theft",
+                "ARTEX",
+                "target:United States of America",
+                "target:British Indian Ocean Territory",
+                "target:Canada",
+                "target:China",
+                "target:Cuba",
+                "target:Hong Kong",
+                "target:India",
+                "target:Indonesia",
+                "target:Japan",
+                "target:Kazakhstan",
+                "target:Kenya",
+                "target:Malaysia",
+                "target:Nigeria",
+                "target:South Africa",
+                "target:Taiwan",
+                "target:Thailand",
+                "target:United Arab Emirates",
+                "target:United Kingdom of Great Britain and Northern Ireland"
+            ]
+        },
+        {
+            "threat_id": "otx:6ad8d884cb22f07021380605",
+            "cve_id": null,
+            "source": "otx",
+            "title": "\"Next Exploit Opportunities\": How a Threat Actor Used AI to Help Plan and Execute Multiple Types of Cybercrime Activities",
+            "description": "A financially motivated threat actor operating under the handle BUGSTER leveraged jailbroken AI assistants, specifically the Hermes Agent framework with DeepSeek V4, to conduct multiple cybercrime operations across India. The actor, demonstrating limited technical skills but relying heavily on AI-generated scripts and reconnaissance, successfully exfiltrated over 5,200 personal records from a university database, conducted WordPress brute force attacks, and planned VoIP telecommunications fraud. Additional activities included Wi-Fi password cracking requiring physical proximity to targets, cryptocurrency whale reconnaissance, and development of credential scanning toolkits. The actor configured specialized AI bot profiles providing step-by-step criminal guidance, including fraud traffic ratios and carrier evasion techniques, demonstrating how AI lowers the skill barrier for cybercrime operations.",
+            "cvss": 9.8,
+            "cvss_version": "3.1",
+            "severity": null,
+            "epss": 0.99999,
+            "epss_percentile": 0.99998,
+            "kev_listed": true,
+            "public_exploit": true,
+            "affected_configurations": [],
+            "references": [
+                "https://otx.alienvault.com/pulse/6ad8d884cb22f07021380605",
+                "https://unit42.paloaltonetworks.com/ai-assisted-cybercrime-analysis/"
+            ],
+            "attack_techniques": [
+                "T1110.001",
+                "T1087.001",
+                "T1021.004",
+                "T1040",
+                "T1071",
+                "T1567",
+                "T1552",
+                "T1021",
+                "T1552.004",
+                "T1087",
+                "T1059",
+                "T1552.001",
+                "T1087.004",
+                "T1059.001",
+                "T1110",
+                "T1078",
+                "T1059.006",
+                "T1059.003",
+                "T1071.001",
+                "T1105"
+            ],
+            "published_at": "2026-10-21T15:21:40Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:20:24.243104Z",
+            "raw_ref": "backend/data/raw/otx/pulses_subscribed_1.json",
+            "raw_refs": [
+                "backend/data/raw/otx/pulses_subscribed_1.json"
+            ],
+            "is_simulated": false,
+            "type": "campaign",
+            "cve_ids": [
+                "CVE-2026-109618",
+                "CVE-2026-109619"
+            ],
+            "tags": [
+                "ai-enabled attacks",
+                "deepseek",
+                "hermes agent",
+                "target:British Indian Ocean Territory",
+                "target:India"
+            ]
+        },
+        {
+            "threat_id": "otx:6acf85338bff164de62a2759",
+            "cve_id": null,
+            "source": "otx",
+            "title": "Hirudo: From Fake Updates to Patched Banking Apps",
+            "description": "A new Android banking remote access trojan named Hirudo has been identified, combining credential theft with live remote control. It is delivered through shopping and entertainment apps that act as droppers, installing the trojan as a separate package behind fake update prompts. The malware replaces legitimate banking applications with patched versions that disable security checks from within the app itself. Eight Indonesian banking apps covering seven banks have been targeted with purpose-built replacements embedding a hooking engine. The campaign uses real advertising infrastructure including Amazon CloudFront for distribution, with targeting extending beyond Indonesia to China, India, Mexico, Morocco, Thailand, and Malaysia. Backend data from August 2026 revealed thousands of stolen credentials and device records.",
+            "cvss": null,
+            "cvss_version": null,
+            "severity": null,
+            "epss": null,
+            "epss_percentile": null,
+            "kev_listed": null,
+            "public_exploit": null,
+            "affected_configurations": [],
+            "references": [
+                "https://otx.alienvault.com/pulse/6acf85338bff164de62a2759",
+                "https://www.threatfabric.com/blogs/hirudo-from-fake-updates-to-patched-banking-apps"
+            ],
+            "attack_techniques": [
+                "T1056"
+            ],
+            "published_at": "2026-10-14T13:35:47Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:20:25.678259Z",
+            "raw_ref": "backend/data/raw/otx/pulses_subscribed_2.json",
+            "raw_refs": [
+                "backend/data/raw/otx/pulses_subscribed_2.json"
+            ],
+            "is_simulated": false,
+            "type": "campaign",
+            "cve_ids": [],
+            "tags": [
+                "device takeover",
+                "indonesia targeting",
+                "android banking trojan",
+                "app patching",
+                "hirudo",
+                "rat",
+                "fake updates",
+                "credential theft",
+                "Hirudo",
+                "target:British Indian Ocean Territory",
+                "target:China",
+                "target:India",
+                "target:Indonesia",
+                "target:Malaysia",
+                "target:Mexico",
+                "target:Morocco",
+                "target:Thailand"
+            ]
+        },
+        {
+            "threat_id": "otx:6ab2691621023818faaf620e",
+            "cve_id": null,
+            "source": "otx",
+            "title": "Open Season on Kapibala: Attacker Steals Over 18,000 Government Records Through WordPress Exploitation",
+            "description": "A suspected Chinese-speaking threat actor, operating from UTC+8 timezone and linked to Red Heron, conducted extensive exploitation campaigns from May through September 2026. The adversary maintained persistent use of a single IP address to target multiple technologies including WordPress, ZyXEL switches, and various enterprise platforms. In the most severe incident, the attacker exploited WordPress vulnerabilities CVE-2026-63030 and CVE-2026-60137 to breach a western government organization, stealing over 18,000 sensitive records containing credentials and personally identifiable information. Additionally, the actor exploited CVE-2026-7273 in ZyXEL GS1900 switches, compromising 996 devices across 48 countries and exfiltrating configurations and credentials. The attacker demonstrated sophisticated capabilities including custom tool development possibly leveraging large language models, privilege escalation attempts, and systematic data exfiltration using PowerShell-based collection and staging techniques.",
+            "cvss": 10.0,
+            "cvss_version": "3.1",
+            "severity": null,
+            "epss": 0.92795,
+            "epss_percentile": 0.99828,
+            "kev_listed": true,
+            "public_exploit": true,
+            "affected_configurations": [],
+            "references": [
+                "https://otx.alienvault.com/pulse/6ab2691621023818faaf620e",
+                "https://www.greynoise.io/blog/open-season-on-kapibala-attacker-steals-government-records-wordpress-exploitation"
+            ],
+            "attack_techniques": [
+                "T1560.001",
+                "T1033",
+                "T1548.002",
+                "T1003.002",
+                "T1087.001",
+                "T1082",
+                "T1005",
+                "T1190",
+                "T1555",
+                "T1021.002",
+                "T1505.003",
+                "T1136.001",
+                "T1003.001",
+                "T1110.003",
+                "T1083",
+                "T1552.001",
+                "T1059.001",
+                "T1078",
+                "T1567.002",
+                "T1105"
+            ],
+            "published_at": "2026-09-22T11:40:06Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:20:24.243104Z",
+            "raw_ref": "backend/data/raw/otx/pulses_subscribed_1.json",
+            "raw_refs": [
+                "backend/data/raw/otx/pulses_subscribed_1.json"
+            ],
+            "is_simulated": false,
+            "type": "campaign",
+            "cve_ids": [
+                "CVE-2022-0847",
+                "CVE-2023-54391",
+                "CVE-2026-34908",
+                "CVE-2026-34909",
+                "CVE-2026-34910",
+                "CVE-2026-54569",
+                "CVE-2026-56271",
+                "CVE-2026-60004",
+                "CVE-2026-60137",
+                "CVE-2026-63030",
+                "CVE-2026-7273",
+                "CVE-2026-79756"
+            ],
+            "tags": [
+                "cve-2026-60004",
+                "government breach",
+                "cve-2022-0847",
+                "cve-2023-54391",
+                "cve-2026-34909",
+                "cve-2026-60137",
+                "cve-2026-7273",
+                "kapibala",
+                "cve-2026-63030",
+                "cve-2026-34910",
+                "zyxel switches",
+                "privilege escalation",
+                "data exfiltration",
+                "cve-2026-79756",
+                "cve-2026-54569",
+                "chinese-speaking actor",
+                "cve-2026-34908",
+                "cve-2026-56271",
+                "wordpress exploitation",
+                "target:United States of America",
+                "target:Albania",
+                "target:Australia",
+                "target:Austria",
+                "target:Belarus",
+                "target:Belgium",
+                "target:Brazil",
+                "target:British Indian Ocean Territory",
+                "target:Bulgaria",
+                "target:Chile",
+                "target:China",
+                "target:Colombia",
+                "target:Costa Rica",
+                "target:Czechia",
+                "target:Denmark",
+                "target:Estonia",
+                "target:Finland",
+                "target:France",
+                "target:Germany",
+                "target:Greece",
+                "target:Guadeloupe",
+                "target:Hong Kong",
+                "target:Hungary",
+                "target:Iceland",
+                "target:India",
+                "target:Iran, Islamic Republic of",
+                "target:Ireland",
+                "target:Italy",
+                "target:Japan",
+                "target:Latvia",
+                "target:Lithuania",
+                "target:Madagascar",
+                "target:Malaysia",
+                "target:Malta",
+                "target:Martinique",
+                "target:Monaco",
+                "target:Mongolia",
+                "target:Netherlands",
+                "target:Norway",
+                "target:Pakistan",
+                "target:Panama",
+                "target:Philippines",
+                "target:Poland",
+                "target:Portugal",
+                "target:Romania",
+                "target:Russian Federation",
+                "target:Slovakia",
+                "target:Slovenia",
+                "target:South Africa",
+                "target:Spain",
+                "target:Sweden",
+                "target:Switzerland",
+                "target:Taiwan",
+                "target:Thailand",
+                "target:Ukraine",
+                "target:United Arab Emirates",
+                "target:United Kingdom of Great Britain and Northern Ireland",
+                "target:Uzbekistan"
+            ]
+        },
+        {
+            "threat_id": "otx:6aae4b5f7a0d5f15edf2a5f1",
+            "cve_id": null,
+            "source": "otx",
+            "title": "Don't Call Us, We'll Call Your APIs | TraderTraitor Backdoors Resurface on Victim With No Crypto Ties",
+            "description": "In 2026, the DPRK-sponsored Lazarus subgroup TraderTraitor continued campaigns targeting cryptocurrency entities, including a high-profile attack on LayerZero resulting in $292 million theft from KelpDAO. Following this disclosure, an additional victim was identified: a smaller IT services provider in India with no cryptocurrency connections. The compromise involved a DevOps engineer targeted through fake job interview lures containing weaponized Terraform coding projects. Malicious GitHub repositories used typosquatted provider domains to deliver macOS backdoors FLATROOF and ROOFDECK when victims executed terraform init. The backdoors enabled reconnaissance, credential theft, and cloud environment escalation. One day after LayerZero's public disclosure, attackers deployed an updated stripped version of ROOFDECK and removed earlier implants. Activity continued until June 2026, suggesting the threat actor ultimately abandoned the intrusion after determining insufficient value from the smaller target.",
+            "cvss": null,
+            "cvss_version": null,
+            "severity": null,
+            "epss": null,
+            "epss_percentile": null,
+            "kev_listed": null,
+            "public_exploit": null,
+            "affected_configurations": [],
+            "references": [
+                "https://otx.alienvault.com/pulse/6aae4b5f7a0d5f15edf2a5f1",
+                "https://www.sentinelone.com/labs/dont-call-us-well-call-your-apis-tradertraitor-backdoors-resurface-on-victim-with-no-crypto-ties/"
+            ],
+            "attack_techniques": [
+                "T1132.001",
+                "T1195.001",
+                "T1555.001",
+                "T1204.002",
+                "T1566.001",
+                "T1119",
+                "T1082",
+                "T1005",
+                "T1140",
+                "T1112",
+                "T1083",
+                "T1053.004",
+                "T1041",
+                "T1059.004",
+                "T1027",
+                "T1573.002",
+                "T1543.001",
+                "T1070.004",
+                "T1189",
+                "T1071.001"
+            ],
+            "published_at": "2026-09-19T08:44:15Z",
+            "nvd_published_at": null,
+            "kev_date_added": null,
+            "retrieved_at": "2026-10-31T12:20:24.243104Z",
+            "raw_ref": "backend/data/raw/otx/pulses_subscribed_1.json",
+            "raw_refs": [
+                "backend/data/raw/otx/pulses_subscribed_1.json"
+            ],
+            "is_simulated": false,
+            "type": "campaign",
+            "cve_ids": [],
+            "tags": [
+                "dprk",
+                "cryptocurrency theft",
+                "social engineering",
+                "roofdeck",
+                "lazarus",
+                "macos.gaslight",
+                "supply chain",
+                "terraform weaponization",
+                "north korea",
+                "flatroof",
+                "fake job interviews",
+                "macos backdoors",
+                "devops targeting",
+                "FLATROOF",
+                "ROOFDECK",
+                "macOS.Gaslight",
+                "target:British Indian Ocean Territory",
+                "target:India"
+            ]
+        }
+    ],
+    "notes": [
+        "Ransomware victims come from ransomware.live (country = IN). Links point to ransomware.live, never the leak site.",
+        "OTX pulses count if a tag / targeted country is exactly India or the title says 'India'."
+    ]
+}

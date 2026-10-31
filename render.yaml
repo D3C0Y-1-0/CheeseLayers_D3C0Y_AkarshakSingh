@@ -1,0 +1,28 @@
+# Render Blueprint: one web service that serves the FastAPI API and the built React dashboard from the same origin.
+# Deploy: Render dashboard -> New -> Blueprint -> pick this repo. Dashboard at /app, health at /health.
+#
+# Runs in DEMO_MODE: no outbound network, everything comes from the committed cache in backend/data/cache/.
+# The SQLite DB is rebuilt from that cache on every start (Render's disk is ephemeral), so a restart also
+# resets demo injections. Attack Lab only works in DEMO_MODE; LLM summaries use templates + cached reports.
+services:
+  - type: web
+    name: vectra
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: >-
+      pip install -r backend/requirements.txt &&
+      python -X utf8 scripts/export_scoring_config.py &&
+      cd frontend && npm ci && npm run build
+    startCommand: cd backend && python -X utf8 -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: NODE_VERSION
+        value: 22.12.0
+      - key: DEMO_MODE
+        value: "true"
+      - key: PYTHONUTF8
+        value: "1"

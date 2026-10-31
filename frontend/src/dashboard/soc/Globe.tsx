@@ -67,23 +67,24 @@ export function Globe({ arcs, satellites, spin }: { arcs: Arc[]; satellites: Sat
 
     function draw(time: number) {
       const { arcs: A, satellites: S } = data.current
-      const R = Math.min(w * 0.3, h * 0.46)
-      const cx = w * 0.56
-      const cy = h * 0.5
+      // Leave headroom so orbit arcs and labels stay inside the canvas (it sits below the page title).
+      const R = Math.min(w * 0.28, h * 0.38)
+      const cx = w * 0.5  // centred in the stage
+      const cy = h * 0.54
       ctx.clearRect(0, 0, w, h)
 
       // Stars
       for (const s of STARS) {
         const tw = reduce ? 0.5 : 0.35 + 0.35 * Math.sin(time * 1.3 + s.s * 20)
-        ctx.fillStyle = `rgb(150 255 240 / ${0.12 + tw * 0.35 * s.s})`
+        ctx.fillStyle = `rgb(170 205 255 / ${0.12 + tw * 0.35 * s.s})`
         ctx.fillRect(s.x * w, s.y * h, 1.2, 1.2)
       }
 
       // Atmosphere glow behind the sphere
       const halo = ctx.createRadialGradient(cx, cy, R * 0.9, cx, cy, R * 1.32)
-      halo.addColorStop(0, 'rgb(46 214 196 / 0.45)')
-      halo.addColorStop(0.25, 'rgb(46 214 196 / 0.14)')
-      halo.addColorStop(1, 'rgb(46 214 196 / 0)')
+      halo.addColorStop(0, 'rgb(61 139 255 / 0.45)')
+      halo.addColorStop(0.25, 'rgb(61 139 255 / 0.14)')
+      halo.addColorStop(1, 'rgb(61 139 255 / 0)')
       ctx.fillStyle = halo
       ctx.beginPath()
       ctx.arc(cx, cy, R * 1.32, 0, Math.PI * 2)
@@ -91,9 +92,9 @@ export function Globe({ arcs, satellites, spin }: { arcs: Arc[]; satellites: Sat
 
       // Ocean
       const sea = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.4, R * 0.1, cx, cy, R)
-      sea.addColorStop(0, '#11606a')
-      sea.addColorStop(0.55, '#07303a')
-      sea.addColorStop(1, '#020b0d')
+      sea.addColorStop(0, '#123f8a')
+      sea.addColorStop(0.55, '#0a2150')
+      sea.addColorStop(1, '#020615')
       ctx.fillStyle = sea
       ctx.beginPath()
       ctx.arc(cx, cy, R, 0, Math.PI * 2)
@@ -107,15 +108,15 @@ export function Globe({ arcs, satellites, spin }: { arcs: Arc[]; satellites: Sat
         if (z <= 0) continue
         const lit = Math.max(0, x * L[0] + y * L[1] + z * L[2])
         const a = 0.3 + 0.7 * Math.min(1, lit * 1.25) * (0.45 + 0.55 * z)
-        ctx.fillStyle = `rgb(${70 + lit * 90} ${200 + lit * 55} ${200 + lit * 40} / ${a})`
+        ctx.fillStyle = `rgb(${60 + lit * 86} ${130 + lit * 65} ${220 + lit * 35} / ${a})`
         ctx.fillRect(cx + x * R - size / 2, cy - y * R - size / 2, size, size)
       }
 
       // Rim light
       ctx.save()
-      ctx.strokeStyle = 'rgb(140 255 238 / 0.55)'
+      ctx.strokeStyle = 'rgb(146 195 255 / 0.55)'
       ctx.lineWidth = 1.4
-      ctx.shadowColor = 'rgb(46 214 196 / 0.9)'
+      ctx.shadowColor = 'rgb(61 139 255 / 0.9)'
       ctx.shadowBlur = 18
       ctx.beginPath()
       ctx.arc(cx, cy, R, 0, Math.PI * 2)
@@ -145,7 +146,7 @@ export function Globe({ arcs, satellites, spin }: { arcs: Arc[]; satellites: Sat
         ctx.lineWidth = 1
         for (let k = 1; k < pts.length; k++) {
           if (pts[k].hidden || pts[k - 1].hidden) continue
-          ctx.strokeStyle = 'rgb(160 255 240 / 0.32)'
+          ctx.strokeStyle = 'rgb(160 200 255 / 0.32)'
           ctx.beginPath()
           ctx.moveTo(pts[k - 1].x, pts[k - 1].y)
           ctx.lineTo(pts[k].x, pts[k].y)
@@ -158,7 +159,7 @@ export function Globe({ arcs, satellites, spin }: { arcs: Arc[]; satellites: Sat
           const q = pts[k - 1]
           if (!p || !q || p.hidden || q.hidden) continue
           const f = 1 - (head - k) / 8
-          ctx.strokeStyle = `rgb(220 255 250 / ${Math.max(0, f)})`
+          ctx.strokeStyle = `rgb(220 235 255 / ${Math.max(0, f)})`
           ctx.lineWidth = 2
           ctx.beginPath()
           ctx.moveTo(q.x, q.y)
@@ -167,12 +168,12 @@ export function Globe({ arcs, satellites, spin }: { arcs: Arc[]; satellites: Sat
         }
         const o = pts[0]
         if (!o.hidden) {
-          ctx.fillStyle = '#dffff9'
+          ctx.fillStyle = '#e3efff'
           ctx.beginPath()
           ctx.arc(o.x, o.y, 2.6, 0, Math.PI * 2)
           ctx.fill()
           ctx.font = '500 10px ui-monospace, SFMono-Regular, monospace'
-          ctx.fillStyle = 'rgb(205 255 246 / 0.85)'
+          ctx.fillStyle = 'rgb(205 225 255 / 0.85)'
           ctx.fillText(arc.label, o.x + 6, o.y - 6)
         }
       })
@@ -189,12 +190,12 @@ export function Globe({ arcs, satellites, spin }: { arcs: Arc[]; satellites: Sat
       nodes.forEach((a, i) => {
         const b = nodes[(i + 1) % n]
         const c = nodes[(i + 2) % n]
-        ctx.strokeStyle = 'rgb(120 240 225 / 0.28)'
+        ctx.strokeStyle = 'rgb(146 195 255 / 0.28)'
         if (b && n > 1) { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke() }
-        if (c && n > 3 && i % 2 === 0) { ctx.strokeStyle = 'rgb(120 240 225 / 0.12)'; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(c.x, c.y); ctx.stroke() }
+        if (c && n > 3 && i % 2 === 0) { ctx.strokeStyle = 'rgb(146 195 255 / 0.12)'; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(c.x, c.y); ctx.stroke() }
         if (!home.hidden) {
           const red = a.s.tone === 'red'
-          ctx.strokeStyle = red ? 'rgb(255 96 80 / 0.55)' : a.s.active ? 'rgb(120 240 225 / 0.42)' : 'rgb(120 240 225 / 0.1)'
+          ctx.strokeStyle = red ? 'rgb(255 96 80 / 0.55)' : a.s.active ? 'rgb(146 195 255 / 0.42)' : 'rgb(146 195 255 / 0.1)'
           ctx.setLineDash(red ? [4, 4] : [])
           ctx.lineDashOffset = red ? -time * 18 : 0
           ctx.beginPath()
@@ -206,7 +207,7 @@ export function Globe({ arcs, satellites, spin }: { arcs: Arc[]; satellites: Sat
       })
       ctx.font = '500 10px ui-monospace, SFMono-Regular, monospace'
       for (const { s, x, y } of nodes) {
-        const col = s.tone === 'red' ? '255 96 80' : s.tone === 'amber' ? '255 190 110' : '110 245 225'
+        const col = s.tone === 'red' ? '255 96 80' : s.tone === 'amber' ? '255 190 110' : '110 170 255'
         const r = 2.5 + s.weight * 4
         ctx.save()
         ctx.shadowColor = `rgb(${col})`
@@ -219,7 +220,7 @@ export function Globe({ arcs, satellites, spin }: { arcs: Arc[]; satellites: Sat
         if (w < 520) continue // too narrow for labels; the dots and links still show
         const right = x >= cx
         ctx.textAlign = right ? 'left' : 'right'
-        ctx.fillStyle = `rgb(225 245 242 / ${s.active ? 0.92 : 0.45})`
+        ctx.fillStyle = `rgb(225 235 250 / ${s.active ? 0.92 : 0.45})`
         ctx.fillText(s.label, x + (right ? 9 : -9), y - 2)
         ctx.fillStyle = `rgb(${col} / ${s.active ? 0.85 : 0.4})`
         ctx.fillText(s.sub, x + (right ? 9 : -9), y + 10)
@@ -229,14 +230,14 @@ export function Globe({ arcs, satellites, spin }: { arcs: Arc[]; satellites: Sat
       // India marker
       if (!home.hidden) {
         const pulse = reduce ? 0.5 : (time * 0.8) % 1
-        ctx.strokeStyle = `rgb(140 255 238 / ${1 - pulse})`
+        ctx.strokeStyle = `rgb(146 195 255 / ${1 - pulse})`
         ctx.lineWidth = 1.2
         ctx.beginPath()
         ctx.arc(home.x, home.y, 4 + pulse * 18, 0, Math.PI * 2)
         ctx.stroke()
         ctx.save()
-        ctx.fillStyle = '#eafffb'
-        ctx.shadowColor = '#5ff5dd'
+        ctx.fillStyle = '#eaf3ff'
+        ctx.shadowColor = '#6fa8ff'
         ctx.shadowBlur = 16
         ctx.beginPath()
         ctx.arc(home.x, home.y, 3.6, 0, Math.PI * 2)

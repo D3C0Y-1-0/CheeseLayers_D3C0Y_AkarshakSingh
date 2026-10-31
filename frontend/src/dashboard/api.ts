@@ -106,6 +106,11 @@ export type Overview = {
   threats_received: number
   trend: { date: string; count: number }[]
   sources: { source: string; name: string; records: number | null; newest_record: string | null; status: string }[]
+  // Live counts from /api/overview (absent in older bundled samples).
+  ioc_count?: number
+  iocs_by_type?: Record<string, number>
+  kev_count?: number
+  public_exploit_count?: number
 }
 
 export const fixtures = {
@@ -181,12 +186,14 @@ const uniqueAlerts = (json: unknown) => [...new Map(listOf<Alert>(json).map((a) 
 export const useAlerts = () => useData<Alert[]>('/api/alerts', fixtures.alerts, uniqueAlerts, 3000)
 export const useThreats = () => useData<Threat[]>('/api/threats', fixtures.threats, listOf<Threat>)
 export const useAssets = () => useData<Asset[]>('/api/assets', fixtures.assets, listOf<Asset>)
-type BackendOverview = { threats_total: number; newest_retrieved_at: string | null; trend: Overview['trend'];
+type BackendOverview = { threats_total: number; newest_retrieved_at: string | null; trend: Overview['trend']; ioc_count?: number
+  iocs_by_type?: Record<string, number>; kev_count?: number; public_exploit_count?: number;
   threats_by_source: Record<string, number>; sources: { source: string; status: string; last_success: string | null; record_count: number | null }[] }
 export const parseOverview = (json: unknown): Overview => {
   const j = json as BackendOverview
   if (typeof j.threats_total !== 'number' || !Array.isArray(j.trend)) throw new Error('Unsupported overview response')
-  return { threats_received: j.threats_total, snapshot_at: j.newest_retrieved_at, trend: j.trend,
+  return { threats_received: j.threats_total, snapshot_at: j.newest_retrieved_at, trend: j.trend, ioc_count: j.ioc_count,
+    iocs_by_type: j.iocs_by_type, kev_count: j.kev_count, public_exploit_count: j.public_exploit_count,
     sources: [...new Set([...Object.keys(j.threats_by_source), ...j.sources.map((s) => s.source)])].map((source) => {
       const health = j.sources.find((s) => s.source === source)
       return { source, name: source, records: j.threats_by_source[source] ?? health?.record_count ?? null,

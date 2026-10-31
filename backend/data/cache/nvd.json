@@ -1,467 +1,6 @@
 {
  "items": [
   {
-   "id": "CVE-2026-100179",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-100179: The Calculated Fields Form – AI Form Builder for WordPress – Contact, Payment, Quote, Quiz & More pl…",
-   "description": "The Calculated Fields Form – AI Form Builder for WordPress – Contact, Payment, Quote, Quiz & More plugin for WordPress is vulnerable to Reflected DOM-Based Cross-Site Scripting via the 'x (any URL parameter consumed by the form's calculated equation)' parameter in all versions up to, and including, 5.5.1.3 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that execute if they can successfully trick a user into performing an action such as clicking on a link. Exploitation requires the target site to have a public form configured with a Select2-enabled dropdown whose choices are populated via a calculated equation that pipes a URL parameter through GETURLPARAMETER() into setChoices({texts:[...]}); given that configuration, exploitation requires only a single crafted link.",
-   "published_at": "2026-10-01T09:17:06.227000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-100179",
-   "cve_ids": [
-    "CVE-2026-100179"
-   ],
-   "cvss": 6.1,
-   "severity": "Medium",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-100184",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-100184: The Calculated Fields Form – AI Form Builder for WordPress – Contact, Payment, Quote, Quiz & More pl…",
-   "description": "The Calculated Fields Form – AI Form Builder for WordPress – Contact, Payment, Quote, Quiz & More plugin for WordPress is vulnerable to Reflected DOM-Based Cross-Site Scripting via the 'x (attacker-chosen name matching the form's url.<name> predefined value)' parameter in all versions up to, and including, 5.5.1.3 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that execute if they can successfully trick a user into performing an action such as clicking on a link. Exploitation requires that the targeted form has a Text Area field configured with a 'url.<name>' Predefined Value and predefinedClick disabled, which is a documented and commonly used plugin feature.",
-   "published_at": "2026-10-01T09:17:07.423000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-100184",
-   "cve_ids": [
-    "CVE-2026-100184"
-   ],
-   "cvss": 4.7,
-   "severity": "Medium",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-101925",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-101925: The bbp style pack plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'displa…",
-   "description": "The bbp style pack plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'display_name (via /wp-admin/profile.php) + bbp_reply_content (via bbPress reply form)' parameter in all versions up to, and including, 6.4.8 due to insufficient input sanitization and output escaping. This makes it possible for authenticated attackers, with subscriber-level access and above, to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Successful exploitation requires the attacker to wrap their crafted reply in a &lt;pre&gt; block, which prevents WordPress's wpautop/wptexturize processors from converting straight double quotes in the stored display name into typographic curly-quote entities that would otherwise neutralize the attribute-injection.",
-   "published_at": "2026-10-01T09:17:07.563000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-101925",
-   "cve_ids": [
-    "CVE-2026-101925"
-   ],
-   "cvss": 6.4,
-   "severity": "Medium",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-103431",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-103431: colmux in collectl before 4.3.20.2 does not sanitize ANSI/VT100 terminal escape sequences in data re…",
-   "description": "colmux in collectl before 4.3.20.2 does not sanitize ANSI/VT100 terminal escape sequences in data received from remote collectl instances before displaying it, allowing a local user on a monitored host to inject escape sequences into the terminal of an operator running colmux, via a crafted process name (argv[0]).",
-   "published_at": "2026-10-01T09:17:07.717000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103431",
-   "cve_ids": [
-    "CVE-2026-103431"
-   ],
-   "cvss": 7.7,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-150"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-103655",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-103655: MISP contains a vulnerability in its two-factor authentication (TOTP) verification process that perm…",
-   "description": "MISP contains a vulnerability in its two-factor authentication (TOTP) verification process that permits a valid one-time code to be accepted more than once within its time-based validity window.\n\nThe issue exists in the user login flow where a TOTP code is verified as a second authentication factor. Because the system did not record whether a given TOTP period had already been consumed, the same code remained valid for its entire time window (typically 30 seconds). An attacker who captures a legitimate code during a user's login could replay it to authenticate a second session as that user.\n\nPreconditions:\n\n- The target user has TOTP-based two-factor authentication enabled.\n\n- The attacker is in a position to observe or intercept the TOTP code during a legitimate login (e.g., network-level interception, shoulder surfing, or a compromised client).\n\n- The replay must occur within the TOTP validity period.\n\nSecurity impact:\n\n- Unauthorized account access by replaying a captured one-time code.\n\n- Potential compromise of threat-intelligence data and administrative functions accessible to the targeted user.\n\nAffected versions: <v2.5.48.",
-   "published_at": "2026-10-01T09:17:07.867000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103655",
-   "cve_ids": [
-    "CVE-2026-103655"
-   ],
-   "cvss": 9.3,
-   "severity": "Critical",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-294"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-103656",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-103656: Rejected reason: this is rejected",
-   "description": "Rejected reason: this is rejected",
-   "published_at": "2026-10-01T09:17:08.120000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103656",
-   "cve_ids": [
-    "CVE-2026-103656"
-   ],
-   "cvss": null,
-   "severity": "Unknown",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-103659",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-103659: MISP contains an authorization bypass in the event flattening feature. When a user requests an event…",
-   "description": "MISP contains an authorization bypass in the event flattening feature. When a user requests an event with the flatten option enabled, the application removes the Object containment from the query and returns object attributes as top-level event attributes. In doing so, the object-level distribution and sharing-group access control check was not re-applied to those attributes.\n\nAs a result, a user who can view a community-distributed event could retrieve attributes belonging to organisation-only objects (distribution level 0) or objects restricted to a specific sharing group, even though the user's organisation does not have access to those objects. This constitutes an unauthorized disclosure of sensitive threat intelligence data.\n\nA secondary issue was introduced by the initial remediation: the fix reused the full Object contain conditions (including soft-delete state) as the gate for flattened attributes, causing an event owner requesting deleted attributes to lose all attributes whose parent object was still live. The final fix isolates the distribution ACL condition as the sole gate.\n\nPreconditions:\n\n- An authenticated user with access to a community-distributed event\n\n- The event contains at least one object with a distribution level or sharing group that restricts access beyond the event's own distribution\n\nImpact:\n\n- Unauthorized disclosure of attributes belonging to restricted objects\n\n- Potential exposure of organisation-specific threat intelligence to other organisations\n\nAffected versions: <2.5.48",
-   "published_at": "2026-10-01T09:17:08.213000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103659",
-   "cve_ids": [
-    "CVE-2026-103659"
-   ],
-   "cvss": 7.1,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-285",
-    "CWE-862"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-103662",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-103662: MISP contains a reflected cross-site scripting (XSS) vulnerability in the legacy taxonomy tag manage…",
-   "description": "MISP contains a reflected cross-site scripting (XSS) vulnerability in the legacy taxonomy tag management confirmation forms (add tag and disable tag).\n\nThe affected forms echoed a user-supplied tag name value from the request unescaped into the rendered HTML output. An attacker who can induce a site administrator to visit a crafted URL containing a malicious tag name parameter can execute arbitrary JavaScript in the administrator's browser session.\n\nPreconditions:\n\n- The target must be running a MISP instance with the legacy taxonomy tag confirmation views enabled.\n\n- The victim must be an authenticated site administrator.\n\n- The victim must navigate to the attacker-crafted URL (e.g., via a phishing link).\n\nSecurity impact:\n\n- Execution of arbitrary client-side script in the context of the administrator's browser.\n\n- Potential theft of session tokens, CSRF tokens, or other sensitive data accessible from the page.\n\n- Potential for performing privileged actions on behalf of the administrator within the MISP interface.\n\nAffected versions: <2.5.48.",
-   "published_at": "2026-10-01T09:17:08.487000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103662",
-   "cve_ids": [
-    "CVE-2026-103662"
-   ],
-   "cvss": 5.1,
-   "severity": "Medium",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-103664",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-103664: MISP contains a reflected cross-site scripting (XSS) vulnerability in the analyst data notes panel. …",
-   "description": "MISP contains a reflected cross-site scripting (XSS) vulnerability in the analyst data notes panel. The seed path parameter, supplied by the user via the URL, was passed directly into inline JavaScript within the rendered HTML response without any sanitization or type enforcement.\n\nAn attacker who can convince an authenticated MISP user to navigate to a crafted URL (for example, via a phishing link) can inject arbitrary JavaScript that executes in the victim's browser context. This may allow the attacker to read session tokens, manipulate the page, or perform actions on behalf of the victim.\n\nPreconditions:\n\n- The victim must be authenticated to MISP and access the analyst data view for an attribute or object.\n\n- The attacker must supply a malicious seed value in the URL path.\n\nImpact:\n\n- Execution of arbitrary JavaScript in the victim's browser session.\n\n- Potential theft of session credentials or sensitive data visible in the page.\n\n- Manipulation of the analyst data interface.\n\nAffected: MISP versions prior to the fix (commit 58925dbf0, post v2.5.48).",
-   "published_at": "2026-10-01T09:17:08.713000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103664",
-   "cve_ids": [
-    "CVE-2026-103664"
-   ],
-   "cvss": 4.8,
-   "severity": "Medium",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-14995",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-14995: The Autoptimize plugin for WordPress is vulnerable to Stored Cross-Site Scripting via REQUEST_URI Pa…",
-   "description": "The Autoptimize plugin for WordPress is vulnerable to Stored Cross-Site Scripting via REQUEST_URI Path in all versions up to, and including, 3.1.15.1 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Exploitation requires the Critical CSS feature to be active with a valid API key configured, as this is the precondition for unauthenticated frontend requests to trigger queue entries via ao_ccss_enqueue().",
-   "published_at": "2026-10-01T09:17:08.967000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-14995",
-   "cve_ids": [
-    "CVE-2026-14995"
-   ],
-   "cvss": 7.2,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-15983",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-15983: The Super Forms – Drag & Drop Form Builder plugin for WordPress is vulnerable to Arbitrary File/Dire…",
-   "description": "The Super Forms – Drag & Drop Form Builder plugin for WordPress is vulnerable to Arbitrary File/Directory Deletion in all versions up to, and including, 6.3.316. This is due to the `super_save_form` AJAX handler performing no capability check — allowing Subscriber-level authenticated users to create or modify Super Forms and enable the `file_upload_submission_delete` setting — combined with the `super_submit_form` handler's `submit_form` function passing the attacker-controlled `files[].subdir` value from `$_POST['data']` directly into `SUPER_Common::delete_dir()` without sanitization, and a trivially bypassed `ABSPATH` guard that a `subdir` value of `wp-config.php` defeats because `dirname(realpath(ABSPATH . $subdir))` resolves to the WordPress root while the naive `ABSPATH !== $dir` string check fails to match due to a trailing-slash mismatch. This makes it possible for authenticated attackers, with Subscriber-level access and above, to recursively delete arbitrary files and directories on the server, up to and including the entire WordPress installation, resulting in full site takedown and potential remote code execution if critical files such as `wp-config.php` are removed and the site is subsequently re-installed by another party.",
-   "published_at": "2026-10-01T09:17:09.223000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-15983",
-   "cve_ids": [
-    "CVE-2026-15983"
-   ],
-   "cvss": 8.1,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-73"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-85235",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-85235: The Forminator Forms – Contact Form, Payment Form & Custom Form Builder plugin for WordPress is vuln…",
-   "description": "The Forminator Forms – Contact Form, Payment Form & Custom Form Builder plugin for WordPress is vulnerable to Stored Cross-Site Scripting via Rich-Text Textarea Field in all versions up to, and including, 1.57.2 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Successful exploitation requires an administrator to open the stored submission entry in the Forminator Entries view and interact with the planted link, at which point WordPress core's jQuery-based click handler on `.contextual-help-tabs a` evaluates the entity-decoded href as HTML, firing the attacker's payload in the administrator's authenticated wp-admin session.",
-   "published_at": "2026-10-01T09:17:09.400000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-85235",
-   "cve_ids": [
-    "CVE-2026-85235"
-   ],
-   "cvss": 7.2,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-89424",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-89424: The Duplicate Post plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'noti_t…",
-   "description": "The Duplicate Post plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'noti_token' parameter in all versions up to, and including, 1.5.6 due to insufficient input sanitization and output escaping. This makes it possible for authenticated attackers, with subscriber-level access and above, to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. This requires that the site owner has enabled the plugin's User Level Permissions for the Subscriber role, as this grants access to the i_saw_this_noti AJAX branch needed to deliver the payload.",
-   "published_at": "2026-10-01T09:17:09.570000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-89424",
-   "cve_ids": [
-    "CVE-2026-89424"
-   ],
-   "cvss": 6.4,
-   "severity": "Medium",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-89427",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-89427: The Ad Inserter – Ad Manager & AdSense Ads plugin for WordPress is vulnerable to Reflected Cross-Sit…",
-   "description": "The Ad Inserter – Ad Manager & AdSense Ads plugin for WordPress is vulnerable to Reflected Cross-Site Scripting via 's' Search Parameter in all versions up to, and including, 2.8.18 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that execute if they can successfully trick a user into performing an action such as clicking on a link. Exploitation requires that a site administrator has configured at least one Ad Inserter block using the {title} or {short-title} placeholder with that block enabled for search pages, which is a standard, documented plugin feature.",
-   "published_at": "2026-10-01T09:17:09.753000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-89427",
-   "cve_ids": [
-    "CVE-2026-89427"
-   ],
-   "cvss": 6.1,
-   "severity": "Medium",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-90992",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-90992: The Redux Framework plugin for WordPress is vulnerable to Stored Cross-Site Scripting via User Meta …",
-   "description": "The Redux Framework plugin for WordPress is vulnerable to Stored Cross-Site Scripting via User Meta Merge via 'user-mediaurl' Media Field in all versions up to, and including, 4.5.14 due to insufficient input sanitization and output escaping. This makes it possible for authenticated attackers, with Subscriber-level access and above, to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. This is exploitable by Subscriber-level users who can store a payload in user meta fields such as the biography, session_tokens (via a crafted User-Agent at login), or persisted_preferences (via the REST API), which are then promoted to the site-wide redux_demo option when a media URL repair is triggered on the demo panel.",
-   "published_at": "2026-10-01T09:17:09.927000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-90992",
-   "cve_ids": [
-    "CVE-2026-90992"
-   ],
-   "cvss": 6.4,
-   "severity": "Medium",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-92244",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-92244: The PDF Invoices & Packing Slips for WooCommerce plugin for WordPress is vulnerable to Stored Cross-…",
-   "description": "The PDF Invoices & Packing Slips for WooCommerce plugin for WordPress is vulnerable to Stored Cross-Site Scripting via Billing First Name / Last Name / Company Fields in all versions up to, and including, 5.16.1 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. The payload survives initial storage because WooCommerce's sanitize_text_field() and wc_clean() do not strip entity-encoded strings containing no literal '<' character, allowing unauthenticated guest-checkout orders to plant the malicious content.",
-   "published_at": "2026-10-01T09:17:10.087000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-92244",
-   "cve_ids": [
-    "CVE-2026-92244"
-   ],
-   "cvss": 7.2,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-95687",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-95687: The WPC Shop as a Customer for WooCommerce plugin for WordPress is vulnerable to privilege escalatio…",
-   "description": "The WPC Shop as a Customer for WooCommerce plugin for WordPress is vulnerable to privilege escalation via account takeover in all versions up to, and including, 2.0.0 This is due to the plugin not properly validating the target user's role prior to issuing a new authentication session, allowing an authenticated attacker to log in as any WordPress Administrator by directly supplying an Administrator's user ID to the wpcsa_login endpoint and receiving a full Administrator session cookie without supplying the Administrator's password. This makes it possible for authenticated attackers to perform a direct session takeover, gaining full Administrator-level access to the site.",
-   "published_at": "2026-10-01T09:17:10.273000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-95687",
-   "cve_ids": [
-    "CVE-2026-95687"
-   ],
-   "cvss": 8.8,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-269"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-96268",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-96268: The Awesome Support – WordPress HelpDesk & Support Plugin plugin for WordPress is vulnerable to Stor…",
-   "description": "The Awesome Support – WordPress HelpDesk & Support Plugin plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'gdpr-data' parameter in all versions up to, and including, 6.4.0 due to insufficient input sanitization and output escaping. This makes it possible for authenticated attackers, with subscriber-level access and above, to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. This is exploitable by Subscriber-level users against other accounts because the AJAX handlers accept an arbitrary gdpr-user ID without verifying it belongs to the requester, and the required wpas-gdpr-nonce is emitted via wp_localize_script to every logged-in user on frontend plugin pages and on /wp-admin/profile.php.",
-   "published_at": "2026-10-01T09:17:10.433000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-96268",
-   "cve_ids": [
-    "CVE-2026-96268"
-   ],
-   "cvss": 6.4,
-   "severity": "Medium",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-96573",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-96573: The Appointment Hour Booking – Booking Calendar plugin for WordPress is vulnerable to Stored DOM-Bas…",
-   "description": "The Appointment Hour Booking – Booking Calendar plugin for WordPress is vulnerable to Stored DOM-Based Cross-Site Scripting via Booking Form Single-Line Field via Schedule Calendar List Renderer in all versions up to, and including, 1.5.97 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Exploitation requires the 'list_readmore_numberofwords' Other Parameters setting to be configured with a positive integer value; the default value of 0 bypasses the decode-and-truncate branch entirely and is not exploitable through this sink.",
-   "published_at": "2026-10-01T09:17:10.647000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-96573",
-   "cve_ids": [
-    "CVE-2026-96573"
-   ],
-   "cvss": 7.2,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-96813",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-96813: The Form Maker by 10Web – Mobile-Friendly Drag & Drop Contact Form Builder plugin for WordPress is v…",
-   "description": "The Form Maker by 10Web – Mobile-Friendly Drag & Drop Contact Form Builder plugin for WordPress is vulnerable to Stored Cross-Site Scripting via Mark on Map Longitude/Latitude Fields in all versions up to, and including, 1.15.47 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page.",
-   "published_at": "2026-10-01T09:17:10.837000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-96813",
-   "cve_ids": [
-    "CVE-2026-96813"
-   ],
-   "cvss": 7.2,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
-   "id": "CVE-2026-97661",
-   "source": "nvd",
-   "type": "vulnerability",
-   "title": "CVE-2026-97661: The Business Essentials for Contact Form 7 plugin for WordPress is vulnerable to Stored Cross-Site S…",
-   "description": "The Business Essentials for Contact Form 7 plugin for WordPress is vulnerable to Stored Cross-Site Scripting via 'gateway' Form Field in all versions up to, and including, 1.2.1 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Exploitation requires the Payments module to be enabled and a form to be configured to accept both PayPal and Stripe as payment gateways.",
-   "published_at": "2026-10-01T09:17:11.043000Z",
-   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-97661",
-   "cve_ids": [
-    "CVE-2026-97661"
-   ],
-   "cvss": 7.2,
-   "severity": "High",
-   "epss": null,
-   "in_kev": false,
-   "affected": [],
-   "attack_techniques": [],
-   "tags": [
-    "CWE-79"
-   ],
-   "raw_ref": "data/raw/nvd/20261001_0.json"
-  },
-  {
    "id": "CVE-2026-103488",
    "source": "nvd",
    "type": "vulnerability",
@@ -71894,7 +71433,7 @@
    "tags": [
     "CWE-367"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106301",
@@ -71925,7 +71464,7 @@
    "tags": [
     "CWE-441"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106302",
@@ -71956,7 +71495,7 @@
    "tags": [
     "CWE-451"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106303",
@@ -71987,7 +71526,7 @@
    "tags": [
     "CWE-203"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106304",
@@ -72018,7 +71557,7 @@
    "tags": [
     "CWE-125"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106305",
@@ -72049,7 +71588,7 @@
    "tags": [
     "CWE-451"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106306",
@@ -72080,7 +71619,7 @@
    "tags": [
     "CWE-863"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106307",
@@ -72111,7 +71650,7 @@
    "tags": [
     "CWE-863"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106308",
@@ -72142,7 +71681,7 @@
    "tags": [
     "CWE-706"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106309",
@@ -72173,7 +71712,7 @@
    "tags": [
     "CWE-863"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106310",
@@ -72204,7 +71743,7 @@
    "tags": [
     "CWE-672"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106311",
@@ -72235,7 +71774,7 @@
    "tags": [
     "CWE-1021"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106312",
@@ -72266,7 +71805,7 @@
    "tags": [
     "CWE-862"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106313",
@@ -72297,7 +71836,7 @@
    "tags": [
     "CWE-863"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106314",
@@ -72328,7 +71867,7 @@
    "tags": [
     "CWE-863"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106315",
@@ -72359,7 +71898,7 @@
    "tags": [
     "CWE-416"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106316",
@@ -72390,7 +71929,7 @@
    "tags": [
     "CWE-451"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106317",
@@ -72421,7 +71960,7 @@
    "tags": [
     "CWE-451"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106318",
@@ -72452,7 +71991,7 @@
    "tags": [
     "CWE-416"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106320",
@@ -72483,7 +72022,7 @@
    "tags": [
     "CWE-672"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106321",
@@ -72514,7 +72053,7 @@
    "tags": [
     "CWE-200"
    ],
-   "raw_ref": "data/raw/nvd/20261001_2000.json"
+   "raw_ref": "data/raw/nvd/20261001_0.json"
   },
   {
    "id": "CVE-2026-106322",
@@ -122568,7 +122107,7 @@
    "tags": [
     "CWE-89"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-89283",
@@ -122590,7 +122129,7 @@
    "tags": [
     "CWE-862"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-89285",
@@ -122612,7 +122151,7 @@
    "tags": [
     "CWE-89"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-89287",
@@ -122634,7 +122173,7 @@
    "tags": [
     "CWE-89"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-89297",
@@ -122656,7 +122195,7 @@
    "tags": [
     "CWE-89"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-89299",
@@ -122678,7 +122217,7 @@
    "tags": [
     "CWE-89"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-89302",
@@ -122700,7 +122239,7 @@
    "tags": [
     "CWE-89"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-89304",
@@ -122722,7 +122261,7 @@
    "tags": [
     "CWE-89"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-89305",
@@ -122744,7 +122283,7 @@
    "tags": [
     "CWE-89"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-91829",
@@ -122766,7 +122305,7 @@
    "tags": [
     "CWE-79"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-93550",
@@ -122788,7 +122327,7 @@
    "tags": [
     "CWE-434"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-94235",
@@ -122810,7 +122349,7 @@
    "tags": [
     "CWE-862"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-96227",
@@ -122832,7 +122371,7 @@
    "tags": [
     "CWE-79"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-97183",
@@ -122854,7 +122393,7 @@
    "tags": [
     "CWE-200"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-108542",
@@ -122876,7 +122415,7 @@
    "tags": [
     "CWE-918"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-108543",
@@ -122898,7 +122437,7 @@
    "tags": [
     "CWE-22"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-108544",
@@ -122920,7 +122459,7 @@
    "tags": [
     "CWE-22"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-108566",
@@ -122943,7 +122482,7 @@
     "CWE-79",
     "CWE-94"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-108567",
@@ -122965,7 +122504,7 @@
    "tags": [
     "CWE-22"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-108568",
@@ -122987,7 +122526,7 @@
    "tags": [
     "CWE-345"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-108569",
@@ -123010,7 +122549,7 @@
     "CWE-74",
     "CWE-89"
    ],
-   "raw_ref": "data/raw/nvd/20261001_4000.json"
+   "raw_ref": "data/raw/nvd/20261001_2000.json"
   },
   {
    "id": "CVE-2026-108570",
@@ -206565,7 +206104,7 @@
    "tags": [
     "CWE-125"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83568",
@@ -206628,7 +206167,7 @@
    "tags": [
     "CWE-862"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83569",
@@ -206739,7 +206278,7 @@
    "tags": [
     "CWE-122"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83570",
@@ -206874,7 +206413,7 @@
    "tags": [
     "CWE-416"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83571",
@@ -207010,7 +206549,7 @@
    "tags": [
     "CWE-476"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83573",
@@ -207146,7 +206685,7 @@
    "tags": [
     "CWE-190"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83574",
@@ -207282,7 +206821,7 @@
    "tags": [
     "CWE-416"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83575",
@@ -207418,7 +206957,7 @@
    "tags": [
     "CWE-416"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83578",
@@ -207556,7 +207095,7 @@
     "CWE-190",
     "CWE-191"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83579",
@@ -207692,7 +207231,7 @@
    "tags": [
     "CWE-122"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83580",
@@ -207828,7 +207367,7 @@
    "tags": [
     "CWE-122"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83582",
@@ -207964,7 +207503,7 @@
    "tags": [
     "CWE-416"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83583",
@@ -208091,7 +207630,7 @@
    "tags": [
     "CWE-862"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83584",
@@ -208227,7 +207766,7 @@
    "tags": [
     "CWE-416"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83585",
@@ -208363,7 +207902,7 @@
    "tags": [
     "CWE-134"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83586",
@@ -208434,7 +207973,7 @@
    "tags": [
     "CWE-1390"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83587",
@@ -208561,7 +208100,7 @@
    "tags": [
     "CWE-822"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83588",
@@ -208697,7 +208236,7 @@
    "tags": [
     "CWE-122"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83634",
@@ -208776,7 +208315,7 @@
    "tags": [
     "CWE-415"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83635",
@@ -208840,7 +208379,7 @@
    "tags": [
     "CWE-125"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83636",
@@ -208935,7 +208474,7 @@
    "tags": [
     "CWE-476"
    ],
-   "raw_ref": "data/raw/nvd/20261001_6000.json"
+   "raw_ref": "data/raw/nvd/20261001_4000.json"
   },
   {
    "id": "CVE-2026-83637",
@@ -321078,7 +320617,7 @@
    "tags": [
     "CWE-125"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-76667",
@@ -321100,7 +320639,7 @@
    "tags": [
     "CWE-125"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-110923",
@@ -321120,7 +320659,7 @@
    "affected": [],
    "attack_techniques": [],
    "tags": [],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-110925",
@@ -321140,7 +320679,7 @@
    "affected": [],
    "attack_techniques": [],
    "tags": [],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-110926",
@@ -321160,7 +320699,7 @@
    "affected": [],
    "attack_techniques": [],
    "tags": [],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-15090",
@@ -321182,7 +320721,7 @@
    "tags": [
     "CWE-89"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-15180",
@@ -321204,7 +320743,7 @@
    "tags": [
     "CWE-79"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-17001",
@@ -321226,7 +320765,7 @@
    "tags": [
     "CWE-79"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-17031",
@@ -321248,7 +320787,7 @@
    "tags": [
     "CWE-862"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-18548",
@@ -321270,7 +320809,7 @@
    "tags": [
     "CWE-79"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-18557",
@@ -321292,7 +320831,7 @@
    "tags": [
     "CWE-79"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-18586",
@@ -321314,7 +320853,7 @@
    "tags": [
     "CWE-79"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-78001",
@@ -321336,7 +320875,7 @@
    "tags": [
     "CWE-79"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-78087",
@@ -321358,7 +320897,7 @@
    "tags": [
     "CWE-79"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-86803",
@@ -321380,7 +320919,7 @@
    "tags": [
     "CWE-94"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2026-88043",
@@ -321402,7 +320941,7 @@
    "tags": [
     "CWE-79"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2025-29895",
@@ -321424,7 +320963,7 @@
    "tags": [
     "CWE-476"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2025-29896",
@@ -321446,7 +320985,7 @@
    "tags": [
     "CWE-476"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2025-29897",
@@ -321469,7 +321008,7 @@
     "CWE-120",
     "CWE-121"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2025-66272",
@@ -321500,7 +321039,7 @@
    "tags": [
     "CWE-22"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2025-66275",
@@ -321531,7 +321070,7 @@
    "tags": [
     "CWE-22"
    ],
-   "raw_ref": "data/raw/nvd/20261001_8000.json"
+   "raw_ref": "data/raw/nvd/20261001_6000.json"
   },
   {
    "id": "CVE-2025-68403",
@@ -367961,7 +367500,7 @@
    "tags": [
     "CWE-416"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-109434",
@@ -367983,7 +367522,7 @@
    "tags": [
     "CWE-451"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-109437",
@@ -368006,7 +367545,7 @@
     "CWE-1188",
     "CWE-306"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110672",
@@ -368028,7 +367567,7 @@
    "tags": [
     "CWE-401"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110673",
@@ -368050,7 +367589,7 @@
    "tags": [
     "CWE-674"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110674",
@@ -368073,7 +367612,7 @@
     "CWE-176",
     "CWE-843"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110675",
@@ -368095,7 +367634,7 @@
    "tags": [
     "CWE-1286"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110676",
@@ -368117,7 +367656,7 @@
    "tags": [
     "CWE-405"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110677",
@@ -368139,7 +367678,7 @@
    "tags": [
     "CWE-401"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110678",
@@ -368161,7 +367700,7 @@
    "tags": [
     "CWE-770"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110680",
@@ -368183,7 +367722,7 @@
    "tags": [
     "CWE-787"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110681",
@@ -368205,7 +367744,7 @@
    "tags": [
     "CWE-416"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110682",
@@ -368227,7 +367766,7 @@
    "tags": [
     "CWE-436"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110684",
@@ -368249,7 +367788,7 @@
    "tags": [
     "CWE-401"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110685",
@@ -368271,7 +367810,7 @@
    "tags": [
     "CWE-401"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110686",
@@ -368293,7 +367832,7 @@
    "tags": [
     "CWE-416"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110687",
@@ -368315,7 +367854,7 @@
    "tags": [
     "CWE-176"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-110688",
@@ -368337,7 +367876,7 @@
    "tags": [
     "CWE-407"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-112249",
@@ -368360,7 +367899,7 @@
     "CWE-79",
     "CWE-94"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-112251",
@@ -368382,7 +367921,7 @@
    "tags": [
     "CWE-601"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-112252",
@@ -368405,7 +367944,7 @@
     "CWE-74",
     "CWE-89"
    ],
-   "raw_ref": "data/raw/nvd/20261001_10000.json"
+   "raw_ref": "data/raw/nvd/20261001_8000.json"
   },
   {
    "id": "CVE-2026-112259",
@@ -416677,7 +416216,7 @@
    "tags": [
     "CWE-284"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91495",
@@ -416700,7 +416239,7 @@
     "CWE-287",
     "CWE-306"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91496",
@@ -416722,7 +416261,7 @@
    "tags": [
     "CWE-284"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91497",
@@ -416753,7 +416292,7 @@
    "tags": [
     "CWE-284"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91499",
@@ -416775,7 +416314,7 @@
    "tags": [
     "CWE-269"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91501",
@@ -416797,7 +416336,7 @@
    "tags": [
     "CWE-284"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91502",
@@ -416819,7 +416358,7 @@
    "tags": [
     "CWE-306"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91503",
@@ -416841,7 +416380,7 @@
    "tags": [
     "CWE-284"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91504",
@@ -416863,7 +416402,7 @@
    "tags": [
     "CWE-284"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91505",
@@ -416895,7 +416434,7 @@
    "tags": [
     "CWE-284"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91506",
@@ -416917,7 +416456,7 @@
    "tags": [
     "CWE-306"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91511",
@@ -416939,7 +416478,7 @@
    "tags": [
     "CWE-284"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91512",
@@ -416961,7 +416500,7 @@
    "tags": [
     "CWE-284"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91514",
@@ -416983,7 +416522,7 @@
    "tags": [
     "CWE-200"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91515",
@@ -417005,7 +416544,7 @@
    "tags": [
     "CWE-306"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91517",
@@ -417027,7 +416566,7 @@
    "tags": [
     "CWE-284"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91518",
@@ -417049,7 +416588,7 @@
    "tags": [
     "CWE-284"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91519",
@@ -417081,7 +416620,7 @@
     "CWE-284",
     "CWE-863"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91520",
@@ -417103,7 +416642,7 @@
    "tags": [
     "CWE-284"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91521",
@@ -417125,7 +416664,7 @@
    "tags": [
     "CWE-306"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91523",
@@ -417147,7 +416686,7 @@
    "tags": [
     "CWE-284"
    ],
-   "raw_ref": "data/raw/nvd/20261001_12000.json"
+   "raw_ref": "data/raw/nvd/20261001_10000.json"
   },
   {
    "id": "CVE-2026-91524",
@@ -462417,7 +461956,7 @@
    "tags": [
     "CWE-770"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-111103",
@@ -462439,7 +461978,7 @@
    "tags": [
     "CWE-460"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-111590",
@@ -462459,7 +461998,7 @@
    "affected": [],
    "attack_techniques": [],
    "tags": [],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-112880",
@@ -462481,7 +462020,7 @@
    "tags": [
     "CWE-113"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-113436",
@@ -462503,7 +462042,7 @@
    "tags": [
     "CWE-407"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-113440",
@@ -462525,7 +462064,7 @@
    "tags": [
     "CWE-522"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-114213",
@@ -462547,7 +462086,7 @@
    "tags": [
     "CWE-770"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-114216",
@@ -462569,7 +462108,7 @@
    "tags": [
     "CWE-444"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-115188",
@@ -462592,7 +462131,7 @@
     "CWE-434",
     "CWE-94"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-115189",
@@ -462614,7 +462153,7 @@
    "tags": [
     "CWE-1336"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-115190",
@@ -462636,7 +462175,7 @@
    "tags": [
     "CWE-502"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-115191",
@@ -462658,7 +462197,7 @@
    "tags": [
     "CWE-89"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-115192",
@@ -462680,7 +462219,7 @@
    "tags": [
     "CWE-89"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-115193",
@@ -462702,7 +462241,7 @@
    "tags": [
     "CWE-79"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-115194",
@@ -462724,7 +462263,7 @@
    "tags": [
     "CWE-22"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-115195",
@@ -462746,7 +462285,7 @@
    "tags": [
     "CWE-862"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-115196",
@@ -462768,7 +462307,7 @@
    "tags": [
     "CWE-601"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-115269",
@@ -462791,7 +462330,7 @@
     "CWE-770",
     "CWE-835"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-115693",
@@ -462813,7 +462352,7 @@
    "tags": [
     "CWE-295"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-115700",
@@ -462836,7 +462375,7 @@
     "CWE-436",
     "CWE-918"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-116210",
@@ -462858,7 +462397,7 @@
    "tags": [
     "CWE-352"
    ],
-   "raw_ref": "data/raw/nvd/20261001_14000.json"
+   "raw_ref": "data/raw/nvd/20261001_12000.json"
   },
   {
    "id": "CVE-2026-116212",
@@ -505757,7 +505296,7 @@
    "tags": [
     "CWE-863"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-118686",
@@ -505779,7 +505318,7 @@
    "tags": [
     "CWE-1333"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-118687",
@@ -505801,7 +505340,7 @@
    "tags": [
     "CWE-441"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-118688",
@@ -505823,7 +505362,7 @@
    "tags": [
     "CWE-61"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2025-14260",
@@ -505845,7 +505384,7 @@
    "tags": [
     "CWE-918"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-109411",
@@ -505867,7 +505406,7 @@
    "tags": [
     "CWE-178"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-115415",
@@ -505887,7 +505426,7 @@
    "affected": [],
    "attack_techniques": [],
    "tags": [],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-117574",
@@ -505909,7 +505448,7 @@
    "tags": [
     "CWE-639"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-118266",
@@ -505931,7 +505470,7 @@
    "tags": [
     "CWE-352"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-118650",
@@ -505954,7 +505493,7 @@
     "CWE-177",
     "CWE-863"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-118651",
@@ -505976,7 +505515,7 @@
    "tags": [
     "CWE-346"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-118652",
@@ -505998,7 +505537,7 @@
    "tags": [
     "CWE-79"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-118653",
@@ -506020,7 +505559,7 @@
    "tags": [
     "CWE-290"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-118654",
@@ -506042,7 +505581,7 @@
    "tags": [
     "CWE-22"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-118655",
@@ -506064,7 +505603,7 @@
    "tags": [
     "CWE-174"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-11854",
@@ -506086,7 +505625,7 @@
    "tags": [
     "CWE-79"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-13451",
@@ -506108,7 +505647,7 @@
    "tags": [
     "CWE-918"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-3583",
@@ -506130,7 +505669,7 @@
    "tags": [
     "CWE-613"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-54162",
@@ -506152,7 +505691,7 @@
    "tags": [
     "CWE-150"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-61529",
@@ -506174,7 +505713,7 @@
    "tags": [
     "CWE-918"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-61542",
@@ -506196,7 +505735,7 @@
    "tags": [
     "CWE-306"
    ],
-   "raw_ref": "data/raw/nvd/20261001_16000.json"
+   "raw_ref": "data/raw/nvd/20261001_14000.json"
   },
   {
    "id": "CVE-2026-63190",
@@ -536428,6 +535967,270 @@
    "attack_techniques": [],
    "tags": [
     "CWE-269"
+   ],
+   "raw_ref": "data/raw/nvd/20261001_16000.json"
+  },
+  {
+   "id": "CVE-2026-101325",
+   "source": "nvd",
+   "type": "vulnerability",
+   "title": "CVE-2026-101325: The Newsletters plugin for WordPress is vulnerable to time-based SQL Injection via the 'id' paramete…",
+   "description": "The Newsletters plugin for WordPress is vulnerable to time-based SQL Injection via the 'id' parameter in all versions up to, and including, 4.18.1 due to insufficient escaping on the user supplied parameter and lack of sufficient preparation on the existing SQL query. This makes it possible for authenticated attackers, with subscriber-level access and above, to append additional SQL queries into already existing queries that can be used to extract sensitive information from the database. An attacker can obtain the required nonce and subscriberauth cookie without a WordPress account by simply subscribing through the public newsletter form and opening the management link sent via email; the ownership check verifies only the subscriber_id field and does not validate that the injected id parameter belongs to the authenticated subscriber.",
+   "published_at": "2026-10-31T09:16:32.323000Z",
+   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-101325",
+   "cve_ids": [
+    "CVE-2026-101325"
+   ],
+   "cvss": 5.3,
+   "severity": "Medium",
+   "epss": null,
+   "in_kev": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "CWE-89"
+   ],
+   "raw_ref": "data/raw/nvd/20261001_16000.json"
+  },
+  {
+   "id": "CVE-2026-103882",
+   "source": "nvd",
+   "type": "vulnerability",
+   "title": "CVE-2026-103882: The Acadlix LMS – AI Quiz Maker, Online Exam & Course Plugin for WordPress plugin for WordPress is v…",
+   "description": "The Acadlix LMS – AI Quiz Maker, Online Exam & Course Plugin for WordPress plugin for WordPress is vulnerable to arbitrary file deletion due to insufficient file path validation in the post_delete_assessment_file_by_id function in all versions up to, and including, 1.1.9. This makes it possible for authenticated attackers, with subscriber-level access and above, to delete arbitrary files on the server, which can easily lead to remote code execution when the right file is deleted (such as wp-config.php). The route's permission callback only verifies a generic wp_rest nonce that the plugin itself emits inside the public acadlixOptions JavaScript object on every frontend page, effectively reducing the authentication requirement to unauthenticated.",
+   "published_at": "2026-10-31T09:16:32.510000Z",
+   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103882",
+   "cve_ids": [
+    "CVE-2026-103882"
+   ],
+   "cvss": 9.1,
+   "severity": "Critical",
+   "epss": null,
+   "in_kev": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "CWE-22"
+   ],
+   "raw_ref": "data/raw/nvd/20261001_16000.json"
+  },
+  {
+   "id": "CVE-2026-103915",
+   "source": "nvd",
+   "type": "vulnerability",
+   "title": "CVE-2026-103915: The Booking for Appointments and Events Calendar – Amelia plugin for WordPress is vulnerable to Sens…",
+   "description": "The Booking for Appointments and Events Calendar – Amelia plugin for WordPress is vulnerable to Sensitive Information Exposure in all versions up to, and including, 2.4.12 via the 'page' parameter. This makes it possible for unauthenticated attackers to extract staff personally identifiable information — including full name, email address, phone number, gender, and timezone — as well as administrator-authored internal notes for every published event, all serialized into the JSON response because the raw providers array is never stripped before output.",
+   "published_at": "2026-10-31T09:16:32.653000Z",
+   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103915",
+   "cve_ids": [
+    "CVE-2026-103915"
+   ],
+   "cvss": 5.3,
+   "severity": "Medium",
+   "epss": null,
+   "in_kev": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "CWE-200"
+   ],
+   "raw_ref": "data/raw/nvd/20261001_16000.json"
+  },
+  {
+   "id": "CVE-2026-109367",
+   "source": "nvd",
+   "type": "vulnerability",
+   "title": "CVE-2026-109367: The All in One SEO – AI SEO Plugin to Boost SEO Rankings & Traffic (Schema, Local SEO, Sitemap & SEO…",
+   "description": "The All in One SEO – AI SEO Plugin to Boost SEO Rankings & Traffic (Schema, Local SEO, Sitemap & SEO Insights) plugin for WordPress is vulnerable to Sensitive Information Exposure in all versions up to, and including, 5.0.3 via the 's' parameter. This makes it possible for unauthenticated attackers to extract arbitrary non-public post meta values, including sensitive custom fields such as API keys and internal notes, emitted verbatim into the HTML title element and JSON-LD SearchResultsPage schema.",
+   "published_at": "2026-10-31T09:16:32.793000Z",
+   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-109367",
+   "cve_ids": [
+    "CVE-2026-109367"
+   ],
+   "cvss": 5.3,
+   "severity": "Medium",
+   "epss": null,
+   "in_kev": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "CWE-200"
+   ],
+   "raw_ref": "data/raw/nvd/20261001_16000.json"
+  },
+  {
+   "id": "CVE-2026-110530",
+   "source": "nvd",
+   "type": "vulnerability",
+   "title": "CVE-2026-110530: The FeedWordPress plugin for WordPress is vulnerable to Stored Cross-Site Scripting in versions up t…",
+   "description": "The FeedWordPress plugin for WordPress is vulnerable to Stored Cross-Site Scripting in versions up to, and including, 2026.0517 via syndicated RSS/Atom feed content. The plugin's SyndicatedPost::sanitize_content() function only strips the 'target' attribute (the lines that would strip 'style' and 'on[a-z]+' event-handler attributes are commented out), and SyndicatedPost::insert_post() deliberately removes WordPress's wp_filter_kses and wp_filter_post_kses filters from content_save_pre before persisting imported feed items via wp_insert_post(). This makes it possible for unauthenticated attackers who control an external feed that a site has already subscribed to to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page.",
+   "published_at": "2026-10-31T09:16:32.933000Z",
+   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-110530",
+   "cve_ids": [
+    "CVE-2026-110530"
+   ],
+   "cvss": 7.2,
+   "severity": "High",
+   "epss": null,
+   "in_kev": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "CWE-79"
+   ],
+   "raw_ref": "data/raw/nvd/20261001_16000.json"
+  },
+  {
+   "id": "CVE-2026-114217",
+   "source": "nvd",
+   "type": "vulnerability",
+   "title": "CVE-2026-114217: A flaw was found in konflux-ci. Continuous Integration (CI) automation scripts store sensitive GitHu…",
+   "description": "A flaw was found in konflux-ci. Continuous Integration (CI) automation scripts store sensitive GitHub access tokens in plaintext on the runner without cleaning them up after execution. A local attacker with access to the CI environment can read these stored credentials to gain unauthorized repository access, potentially allowing them to modify source code or release artifacts.",
+   "published_at": "2026-10-31T09:16:33.077000Z",
+   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114217",
+   "cve_ids": [
+    "CVE-2026-114217"
+   ],
+   "cvss": 8.6,
+   "severity": "High",
+   "epss": null,
+   "in_kev": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "CWE-312"
+   ],
+   "raw_ref": "data/raw/nvd/20261001_16000.json"
+  },
+  {
+   "id": "CVE-2026-116086",
+   "source": "nvd",
+   "type": "vulnerability",
+   "title": "CVE-2026-116086: A flaw was found in konflux-ci. An attacker with permission to trigger automated workflow runs can c…",
+   "description": "A flaw was found in konflux-ci. An attacker with permission to trigger automated workflow runs can cause an information disclosure by providing crafted issue titles to workflow scripts. The affected script incorporates user-provided titles directly into data queries without adequate sanitization, allowing the attacker to inject malicious filter commands. As a result, sensitive information such as API credentials, deployment keys, and internal notes returned from repository queries may be exposed in workflow logs.",
+   "published_at": "2026-10-31T09:16:33.223000Z",
+   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-116086",
+   "cve_ids": [
+    "CVE-2026-116086"
+   ],
+   "cvss": 8.8,
+   "severity": "High",
+   "epss": null,
+   "in_kev": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "CWE-94"
+   ],
+   "raw_ref": "data/raw/nvd/20261001_16000.json"
+  },
+  {
+   "id": "CVE-2026-116964",
+   "source": "nvd",
+   "type": "vulnerability",
+   "title": "CVE-2026-116964: A flaw was found in konflux-ci. An attacker with repository write access can achieve arbitrary code …",
+   "description": "A flaw was found in konflux-ci. An attacker with repository write access can achieve arbitrary code execution within the Continuous Integration and Continuous Delivery (CI/CD) workflow environment. By injecting shell commands into environment export scripts, the attacker causes manifest synchronization scripts to dynamically evaluate unvalidated script output. Successful exploitation allows the attacker to compromise CI/CD pipelines, steal sensitive authentication tokens and deployment credentials, and gain unauthorized access to production systems.",
+   "published_at": "2026-10-31T09:16:33.357000Z",
+   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-116964",
+   "cve_ids": [
+    "CVE-2026-116964"
+   ],
+   "cvss": 8.4,
+   "severity": "High",
+   "epss": null,
+   "in_kev": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "CWE-94"
+   ],
+   "raw_ref": "data/raw/nvd/20261001_16000.json"
+  },
+  {
+   "id": "CVE-2026-117681",
+   "source": "nvd",
+   "type": "vulnerability",
+   "title": "CVE-2026-117681: A flaw was found in konflux-ci. This vulnerability allows privilege escalation when the user interfa…",
+   "description": "A flaw was found in konflux-ci. This vulnerability allows privilege escalation when the user interface proxy automatically disables Transport Layer Security (TLS) certificate verification for connections to internal backend services in environments lacking a default service certificate authority. Because the proxy attaches a cluster-scoped authentication token with user impersonation rights to these requests, an adjacent network attacker capable of intercepting traffic can capture the credentials to gain full administrative control of the cluster.",
+   "published_at": "2026-10-31T09:16:33.487000Z",
+   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117681",
+   "cve_ids": [
+    "CVE-2026-117681"
+   ],
+   "cvss": 8.0,
+   "severity": "High",
+   "epss": null,
+   "in_kev": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "CWE-295"
+   ],
+   "raw_ref": "data/raw/nvd/20261001_16000.json"
+  },
+  {
+   "id": "CVE-2026-118235",
+   "source": "nvd",
+   "type": "vulnerability",
+   "title": "CVE-2026-118235: The SimpleForm – Form Maker to Chat Apps with Quiz, Poll and Multi Lead Notifications plugin for Wor…",
+   "description": "The SimpleForm – Form Maker to Chat Apps with Quiz, Poll and Multi Lead Notifications plugin for WordPress is vulnerable to Arbitrary File Upload in all versions up to, and including, 3.10.2 via the handle_upload function. This is due to missing server-side file key allowlist and pre-sanitization extension derivation that allows a trailing-dot filename to bypass all extension and MIME validation in handle_upload. This makes it possible for unauthenticated attackers to upload files that may be executable, which makes remote code execution possible. The only access control is a nonce that is printed into every public form's data-nonce attribute, making it trivially obtainable by any unauthenticated visitor on a page embedding the form shortcode.",
+   "published_at": "2026-10-31T09:16:33.620000Z",
+   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118235",
+   "cve_ids": [
+    "CVE-2026-118235"
+   ],
+   "cvss": 9.8,
+   "severity": "Critical",
+   "epss": null,
+   "in_kev": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "CWE-434"
+   ],
+   "raw_ref": "data/raw/nvd/20261001_16000.json"
+  },
+  {
+   "id": "CVE-2026-119160",
+   "source": "nvd",
+   "type": "vulnerability",
+   "title": "CVE-2026-119160: The Smart Post – Post Grid, Post Carousel, Post Slider Gutenberg Blocks for Blog & News plugin for W…",
+   "description": "The Smart Post – Post Grid, Post Carousel, Post Slider Gutenberg Blocks for Blog & News plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'display_name' parameter in all versions up to, and including, 4.0.9 due to insufficient input sanitization and output escaping. This makes it possible for authenticated attackers, with subscriber-level access and above, to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Exploitation requires the victim page to contain an Author Filter block alongside a grid or live-filter block, and execution is triggered by a visitor clicking the attacker's author entry in the dropdown — a standard filter interaction requiring no elevated privileges from the victim.",
+   "published_at": "2026-10-31T09:16:33.760000Z",
+   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119160",
+   "cve_ids": [
+    "CVE-2026-119160"
+   ],
+   "cvss": 6.4,
+   "severity": "Medium",
+   "epss": null,
+   "in_kev": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "CWE-79"
+   ],
+   "raw_ref": "data/raw/nvd/20261001_16000.json"
+  },
+  {
+   "id": "CVE-2026-120075",
+   "source": "nvd",
+   "type": "vulnerability",
+   "title": "CVE-2026-120075: The WP Activity Log plugin for WordPress is vulnerable to Stored Cross-Site Scripting in all version…",
+   "description": "The WP Activity Log plugin for WordPress is vulnerable to Stored Cross-Site Scripting in all versions up to, and including, 5.6.1 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page.",
+   "published_at": "2026-10-31T09:16:33.897000Z",
+   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120075",
+   "cve_ids": [
+    "CVE-2026-120075"
+   ],
+   "cvss": 7.2,
+   "severity": "High",
+   "epss": null,
+   "in_kev": false,
+   "affected": [],
+   "attack_techniques": [],
+   "tags": [
+    "CWE-79"
    ],
    "raw_ref": "data/raw/nvd/20261001_16000.json"
   }

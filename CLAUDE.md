@@ -6,6 +6,7 @@
 - **Team:** 4 people. 1 frontend dev (hand-codes UI), 3 full-stack devs (vibe-coding with Claude Code).
 - **Team knowledge:** little/no cybersecurity background. Keep code and explanations plain; add short comments explaining security concepts where they're used.
 - **Priority:** a flawless, offline-safe demo beats feature count. Every feature must show up on the dashboard.
+- **Scope right now: BACKEND ONLY.** Do not create or edit anything in `frontend/`. A teammate builds the UI later against our API. So every feature must be exposed through a documented REST endpoint, with the contract in `docs/API.md` and example responses saved in `docs/samples/*.json` (the frontend dev mocks from these).
 
 ## 2. Problem Statement — PS 01: AI-Based National Cyber Threat Early Warning System
 Build an AI-powered system that **collects threat intelligence from multiple sources, finds emerging attack patterns and vulnerable systems, scores risk, and issues early warnings with explanations and mitigations** — proactive, not reactive.

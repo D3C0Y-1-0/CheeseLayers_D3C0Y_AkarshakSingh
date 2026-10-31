@@ -1,4 +1,9 @@
 """Shared plumbing for every collector: HTTP with retry/backoff/rate limits, raw + cache files, logging."""
+from dotenv import find_dotenv, load_dotenv
+
+# Find .env by walking up from the working directory (it lives at the repo root, not in backend/).
+load_dotenv(find_dotenv(usecwd=True), override=True)
+
 import json
 import logging
 import os
@@ -7,14 +12,12 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import httpx
-from dotenv import load_dotenv
 from pydantic_core import to_jsonable_python
 from tenacity import retry, retry_if_exception, stop_after_attempt, wait_exponential
 
 BASE = Path(__file__).resolve().parent.parent  # backend/
 RAW = BASE / "data" / "raw"
 CACHE = BASE / "data" / "cache"
-load_dotenv(BASE / ".env")
 
 # DEMO_MODE: no network at all, everything comes from data/cache (a flaky venue wifi can't kill the demo).
 DEMO_MODE = os.getenv("DEMO_MODE", "false").lower() in ("1", "true", "yes")

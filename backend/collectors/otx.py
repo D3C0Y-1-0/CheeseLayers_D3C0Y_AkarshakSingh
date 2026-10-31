@@ -11,6 +11,11 @@ OTX_TYPES = {"IPv4": "ip", "domain": "domain", "hostname": "domain", "URL": "url
              "FileHash-SHA256": "sha256", "FileHash-MD5": "md5"}
 
 
+def _names(values: list, key: str) -> list[str]:
+    # /pulses/subscribed sends plain strings ("T1190"); other endpoints send objects ({"id": "T1190", ...}).
+    return [v if isinstance(v, str) else v[key] for v in values]
+
+
 def _pulses(path: str, headers: dict) -> list[dict]:
     since = (datetime.now(timezone.utc) - timedelta(days=30)).strftime("%Y-%m-%dT%H:%M:%S")
     url, out = f"{API}{path}", []
@@ -42,12 +47,12 @@ def fetch() -> dict:
             url=f"https://otx.alienvault.com/pulse/{p['id']}",
             cve_ids=sorted({i["indicator"].upper() for i in inds if i["type"] == "CVE"}),
             # ATT&CK IDs like T1566 (phishing) let us map the campaign onto the ATT&CK heatmap.
-            attack_techniques=[a["id"] for a in p.get("attack_ids", [])],
-            tags=p.get("tags", []) + [m["display_name"] for m in p.get("malware_families", [])]
+            attack_techniques=_names(p.get("attack_ids", []), "id"),
+            tags=p.get("tags", []) + _names(p.get("malware_families", []), "display_name")
                  + [f"target:{c}" for c in p.get("targeted_countries", [])],
         ))
         iocs += [IOC(value=i["indicator"], ioc_type=OTX_TYPES[i["type"]], source=SOURCE,
-                     malware_family=next((m["display_name"] for m in p.get("malware_families", [])), None),
+                     malware_family=next(iter(_names(p.get("malware_families", []), "display_name")), None),
                      first_seen=i.get("created", "")[:19] + "Z" if i.get("created") else None, related_threat_id=tid)
                  for i in inds if i["type"] in OTX_TYPES]
     return {"items": items, "iocs": iocs}

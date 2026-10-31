@@ -39,7 +39,7 @@ def _threatfox(key: str) -> list[IOC]:
 
 
 def _urlhaus(key: str) -> list[IOC]:
-    data = request("POST", "https://urlhaus-api.abuse.ch/v1/urls/recent/", headers={"Auth-Key": key}).json()
+    data = get("https://urlhaus-api.abuse.ch/v1/urls/recent/", headers={"Auth-Key": key}).json()  # GET-only endpoint
     save_raw(SOURCE, data, "urlhaus")
     return [IOC(value=r["url"], ioc_type="url", source="urlhaus", malware_family=(r.get("tags") or [None])[0],
                 first_seen=_ts(r.get("date_added"))) for r in data.get("urls") or []]

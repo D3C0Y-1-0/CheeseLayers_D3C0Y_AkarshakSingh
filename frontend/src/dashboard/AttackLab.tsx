@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import { notifyRefresh, post, useAssets, useData, useHealth, type Alert } from './api'
-import { Empty, PageHead, Panel, PriorityBadge } from './ui'
+import AttackGraph from './attack/AttackGraph'
+import { Empty, PageHead, Panel } from './ui'
 
 // Attack Lab: the backend writes the log lines a real server would record for a simple attack, a separate
 // detector reads ONLY that text and names the attack, then the correlator scores it as an incident.
@@ -17,8 +17,9 @@ type Verdict = { attack_detected: boolean; headline: string; attack_types: strin
   mitre: Mitre[]; attacker_ips: string[]; decision_path: string[] }
 type Analysis = { lines: Line[]; detections: Detection[]; checks: Check[]; verdict: Verdict; parsed: Record<string, number> }
 type Step = { title: string; detail: string; actor: string; line_nos: number[] }
-type RunResult = Analysis & { run_id: string; name: string; data_classification: string; steps: Step[];
+type RunResult = Analysis & { run_id: string; scenario: string; name: string; data_classification: string; steps: Step[];
   target: { asset_id: string; hostname: string; role: string }; correlation: { created: string[]; note: string; incidents: Alert[] } }
+type RuleBook = { rules: Rule[]; thresholds?: { brute_force_failures?: number; port_scan_distinct_ports?: number } }
 type Rule = { rule_id: string; name: string; log_source: string; kind: string; logic: string; why_it_works: string; mitre: Mitre[] }
 
 const STAGE_TONE: Record<string, string> = { Reconnaissance: 'medium', 'Attack attempt': 'high', 'Compromise likely': 'critical' }
@@ -108,47 +109,21 @@ function VerdictPanel({ v, children }: { v: Verdict; children?: React.ReactNode 
   )
 }
 
-function Incident({ result }: { result: RunResult }) {
-  const inc = result.correlation.incidents[0]
-  return (
-    <div className="grid gap-2 border-t border-rule pt-3">
-      <p className="text-sm tracking-wide text-grey-300 uppercase">Incident in the SOC queue</p>
-      {!inc ? <p>{result.correlation.note}</p> : <>
-        <div className="flex flex-wrap items-center gap-3">
-          <PriorityBadge priority={inc.priority} />
-          <Link className="text-blue-300 underline" to={`/app/incidents/${inc.alert_id}`}>{inc.alert_id}: {inc.title}</Link>
-        </div>
-        <p className="text-grey-200">Behaviour score {inc.behavioural_suspicion_score} · evidence confidence {inc.evidence_confidence_score} · {result.correlation.note}</p>
-      </>}
-    </div>
-  )
-}
-
 export default function AttackLab() {
   const health = useHealth()
   const assets = useAssets()
   const playbooks = useData<Playbook[]>('/api/attack-lab/playbooks', [], (j) => j as Playbook[])
-  const rules = useData<{ rules: Rule[] }>('/api/attack-lab/rules', { rules: [] }, (j) => j as { rules: Rule[] })
+  const rules = useData<RuleBook>('/api/attack-lab/rules', { rules: [] }, (j) => j as RuleBook)
   const [scenario, setScenario] = useState('sql_injection')
   const [target, setTarget] = useState('')
   const [succeed, setSucceed] = useState(true)
   const [state, setState] = useState<{ busy?: boolean; result?: RunResult; error?: string }>({})
-  const [shown, setShown] = useState(0)  // steps revealed so far (replay)
-  const [replay, setReplay] = useState(0)
   const [text, setText] = useState(EXAMPLES['SQL injection'])
   const [mine, setMine] = useState<{ busy?: boolean; result?: Analysis; error?: string }>({})
 
   const pb = playbooks.data.find((p) => p.scenario === scenario)
   const enabled = health.mode === 'live' && health.data.demo_mode
   const result = state.result
-
-  useEffect(() => {
-    if (!result) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setShown(result.steps.length); return }
-    setShown(1)
-    const t = setInterval(() => setShown((n) => (n >= result.steps.length ? (clearInterval(t), n) : n + 1)), 900)
-    return () => clearInterval(t)
-  }, [result, replay])
 
   const run = async () => {
     setState({ busy: true })
@@ -167,7 +142,6 @@ export default function AttackLab() {
     try { setMine({ result: await post('/api/attack-lab/analyze', { lines: text.split('\n').filter((l) => l.trim()) }) as Analysis }) }
     catch (e) { setMine({ error: e instanceof Error ? e.message : 'Analysis failed' }) }
   }
-  const lineByNo = new Map(result?.lines.map((l) => [l.line_no, l]))
 
   return <>
     <PageHead title="Attack simulation" />
@@ -207,31 +181,11 @@ export default function AttackLab() {
     </Panel>
 
     {result && <>
-      <div className="mt-4"><VerdictPanel v={result.verdict}><Incident result={result} /></VerdictPanel></div>
-      <div className="mt-4 grid items-start gap-4 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
-        <Panel title={`2 · What happened, and what the logs recorded · ${result.target.hostname} (${result.target.asset_id})`}>
-          <ol className="divide-y divide-rule">
-            {result.steps.slice(0, shown).map((s, i) => (
-              <li key={i} className="lab-step p-4">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="lab-no">{i + 1}</span>
-                  <b className="text-white">{s.title}</b>
-                  <span className={`tag ${s.actor === 'attacker' ? 'tag-attacker' : ''}`}>{s.actor}</span>
-                </div>
-                <p className="mt-1">{s.detail}</p>
-                {s.line_nos.length > 0 && <ul className="lab-log mt-2">
-                  {s.line_nos.slice(0, 14).map((n) => { const l = lineByNo.get(n); return l ? <LogLine key={n} line={l} /> : null })}
-                  {s.line_nos.length > 14 && <li className="px-3 py-1 text-grey-400">… {s.line_nos.length - 14} more similar lines</li>}
-                </ul>}
-              </li>
-            ))}
-          </ol>
-          {shown < result.steps.length
-            ? <p className="p-4 text-grey-400">Replaying…</p>
-            : <button type="button" className="m-4 text-blue-300 underline" onClick={() => setReplay((n) => n + 1)}>Replay</button>}
-        </Panel>
-        <div><Detections result={result} /></div>
-      </div>
+      <div className="mt-4"><AttackGraph key={result.run_id} run={result} thresholds={rules.data.thresholds ?? {}} /></div>
+      <details className="mt-4">
+        <summary className="cursor-pointer text-blue-300">Rule-by-rule details</summary>
+        <div className="mt-2"><Detections result={result} /></div>
+      </details>
       <p className="mt-2 text-sm text-grey-400">{result.data_classification} · run {result.run_id} · parsed {Object.entries(result.parsed).filter(([, n]) => n).map(([s, n]) => `${n} ${s}`).join(', ')}</p>
     </>}
 

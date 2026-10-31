@@ -566,3 +566,11 @@ Directions of 28 April 2022, Annexure I; `category_source`), `time_of_detection`
 only (403 otherwise); outside demo mode the authenticated incident factory must allow it.
 404 unknown alert. Samples: `docs/samples/certin_draft_vulnerability.json`,
 `docs/samples/certin_draft_behaviour.json`.
+
+# Remediation targets (organisation policy)
+
+Every alert (`GET /api/alerts`, `GET /api/alerts/{id}`) now also carries, computed on read
+(additive, contract v1.3 `alert`): `remediation_target_at` (`created_at` + days for the priority),
+`remediation_target_days`, `overdue` (past the target and lifecycle not `mitigated`/`closed`) and
+`remediation_policy: "organisation-defined policy, not a regulatory deadline"`. Defaults in
+`backend/app/scoring.py` `CONFIG.remediation_targets_days`: critical 7, high 14, medium 30, low 90.

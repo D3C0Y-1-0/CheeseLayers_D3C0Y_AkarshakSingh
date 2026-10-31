@@ -57,6 +57,9 @@ CONFIG: dict[str, Any] = {
     },
     "priority_thresholds": {"critical": 80, "high": 55, "medium": 30},  # score >= threshold
     "needs_verification_cap": "high",  # an unconfirmed version match can never be "critical"
+    # Organisation-defined remediation policy (days from detection), NOT a regulatory deadline.
+    "remediation_targets_days": {"critical": 7, "high": 14, "medium": 30, "low": 90},
+    "remediation_policy_label": "organisation-defined policy, not a regulatory deadline",
 }
 
 _LEVELS: list[str] = ["low", "medium", "high", "critical"]

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { toTitle, useAlerts, when } from './api'
-import { DataNotice, Empty, PageHead, Panel, PriorityBadge, Provenance } from './ui'
+import { DataNotice, Empty, PageHead, Panel, PriorityBadge, Provenance, TargetCell } from './ui'
 
 const RANK = { critical: 0, high: 1, medium: 2, low: 3 }
 const STATUS = { new: 'New', ack: 'Acknowledged', resolved: 'Resolved' }
@@ -23,12 +23,13 @@ export default function Incidents() {
         </div>
       </PageHead>
       <DataNotice mode={mode} error={error} />
+      <p className="mb-3 text-sm">Remediation targets follow organisation-defined policy (Critical 7 days, High 14, Medium 30, Low 90 from detection), not a regulatory deadline.</p>
       <Panel>
         {rows.length === 0 ? <Empty>No incidents of this type yet.</Empty> : (
           <ul>
             {rows.map((a) => (
               <li key={a.alert_id}>
-                <Link to={`/app/incidents/${encodeURIComponent(a.alert_id)}`} className="row-link grid items-center gap-x-4 gap-y-1 md:grid-cols-[5.75rem_3rem_1fr_auto_6.5rem]">
+                <Link to={`/app/incidents/${encodeURIComponent(a.alert_id)}`} className="row-link grid items-center gap-x-4 gap-y-1 md:grid-cols-[5.75rem_3rem_1fr_auto_7.5rem_6.5rem]">
                   <PriorityBadge priority={a.priority} />
                   <span className="font-display text-xl font-light text-white tabular-nums">{a.risk_score ?? <span className="text-grey-400">n/a</span>}</span>
                   <span className="min-w-0">
@@ -36,6 +37,7 @@ export default function Incidents() {
                     <span className="block truncate text-[0.875rem] text-grey-300">{a.asset_ids.join(', ')}, {when(a.created_at)}</span>
                   </span>
                   <Provenance alert={a} />
+                  <span className="text-grey-200"><TargetCell alert={a} /></span>
                   <span className="text-grey-200 md:text-right">{STATUS[a.status]}</span>
                 </Link>
               </li>

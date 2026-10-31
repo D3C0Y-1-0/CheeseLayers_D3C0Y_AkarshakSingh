@@ -4,7 +4,7 @@ import { ArrowLeft, Sparkles } from 'lucide-react'
 import { fixtures, notifyRefresh, parseList, post, toTitle, useData, when, type Alert, type Report, type StoredEvent } from './api'
 import { ThreatAiSummary } from './AiSummary'
 import { CertInDraft } from './CertInDraft'
-import { AiBadge, DataNotice, Empty, PageHead, Panel, PriorityBadge, Provenance, safeReference, Unknown } from './ui'
+import { AiBadge, TargetCell, DataNotice, Empty, PageHead, Panel, PriorityBadge, Provenance, safeReference, Unknown } from './ui'
 
 const STAGES = ['detected', 'investigating', 'confirmed', 'action_required', 'mitigated', 'closed']
 const detail = (json: unknown) => json as Alert
@@ -87,7 +87,7 @@ export default function Incident() {
     <Link to="/app/incidents" className="mb-3 inline-flex items-center gap-2 text-blue-300"><ArrowLeft className="size-4" />Incidents</Link>
     <PageHead title={toTitle(alert)}>{next && <button type="button" className="btn-line" disabled={ack.busy || incident.mode !== 'live' || !!incident.error} onClick={acknowledge}>{ack.busy ? 'Saving…' : current === 'detected' ? 'Acknowledge' : `Mark ${next.replaceAll('_', ' ')}`}</button>}</PageHead>
     <DataNotice mode={incident.mode} error={incident.error} />
-    <div className="mb-4 flex flex-wrap items-center gap-2"><PriorityBadge priority={alert.priority} /><Provenance alert={alert} /><span className="tag">{current.replaceAll('_', ' ')}</span>{alert.match_detail && <span className="tag">{alert.match_detail.replaceAll('_', ' ')}</span>}{ack.error && <p role="alert" className="text-sev-high">{ack.error}</p>}</div>
+    <div className="mb-4 flex flex-wrap items-center gap-2"><PriorityBadge priority={alert.priority} /><Provenance alert={alert} /><span className="tag">{current.replaceAll('_', ' ')}</span>{alert.remediation_target_at && <span className="tag" title={alert.remediation_policy}>Remediation target: <TargetCell alert={alert} /> ({alert.remediation_policy})</span>}{alert.match_detail && <span className="tag">{alert.match_detail.replaceAll('_', ' ')}</span>}{ack.error && <p role="alert" className="text-sev-high">{ack.error}</p>}</div>
     <div className="grid items-start gap-3 lg:grid-cols-2"><div className="grid gap-3">
       <RiskBreakdown alert={alert} />
       <Panel title="Proposed investigation and remediation">{actions.length ? <ul className="list-inside list-disc space-y-2 p-4 text-white">{actions.map((a) => <li key={a}>{a}</li>)}</ul> : <Empty>Run an investigation to receive evidence-grounded review steps.</Empty>}</Panel>

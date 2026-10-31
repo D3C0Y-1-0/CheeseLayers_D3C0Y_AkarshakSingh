@@ -54,6 +54,18 @@ def _now() -> datetime:
     return datetime.now(timezone.utc)
 
 
+def remediation(a: dict, now: datetime | None = None) -> dict:
+    """Target date = detection + CONFIG days for the priority. Overdue = past target and not yet mitigated/closed."""
+    days = CONFIG["remediation_targets_days"].get(a.get("priority"))
+    if days is None or not a.get("created_at"):
+        return {"remediation_target_at": None, "overdue": None, "remediation_policy": CONFIG["remediation_policy_label"]}
+    target = datetime.fromisoformat(a["created_at"]) + timedelta(days=days)
+    done = a.get("lifecycle_status") in ("mitigated", "closed")
+    return {"remediation_target_at": target.isoformat(), "remediation_target_days": days,
+            "overdue": (not done) and (now or _now()) > target,
+            "remediation_policy": CONFIG["remediation_policy_label"]}
+
+
 def _alert_id(dedup_key: str) -> str:
     return "ALR-" + hashlib.sha1(dedup_key.encode()).hexdigest()[:8].upper()
 
@@ -86,8 +98,9 @@ class CorrelationEngine:
 
     @staticmethod
     def to_alert(row: AlertRow) -> dict:
-        """API view: the alert without internal bookkeeping fields."""
-        return {k: v for k, v in row.data.items() if k not in ("audit", "event_timeline")}
+        """API view: the alert without internal bookkeeping fields, plus its remediation target (computed on read)."""
+        a = {k: v for k, v in row.data.items() if k not in ("audit", "event_timeline")}
+        return a | remediation(a)
 
     # --- CVE-driven alerts ---------------------------------------------------------------------------
 

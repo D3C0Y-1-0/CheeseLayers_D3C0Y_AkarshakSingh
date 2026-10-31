@@ -70,6 +70,11 @@ export type Alert = {
   suppressed?: boolean
   assets?: Asset[]
   threats?: Partial<Threat>[]
+  // Organisation-defined remediation policy, not a regulatory deadline.
+  remediation_target_at?: string | null
+  remediation_target_days?: number
+  overdue?: boolean | null
+  remediation_policy?: string
 }
 
 export type StoredEvent = { event_id: string; asset_id: string | null; timestamp: string; event_type: string;

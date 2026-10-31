@@ -656,6 +656,16 @@
         "created_at": {
           "type": "datetime",
           "nullable": false
+        },
+        "remediation_target_at": {
+          "type": "datetime",
+          "nullable": true,
+          "description": "v1.3, additive, computed on read: created_at + remediation_targets_days[priority] (Critical 7, High 14, Medium 30, Low 90). Organisation-defined policy, not a regulatory deadline."
+        },
+        "overdue": {
+          "type": "boolean",
+          "nullable": true,
+          "description": "v1.3: past remediation_target_at and lifecycle not mitigated/closed; null = no target."
         }
       }
     },

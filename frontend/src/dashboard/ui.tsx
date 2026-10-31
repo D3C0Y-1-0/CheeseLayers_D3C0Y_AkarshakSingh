@@ -65,3 +65,8 @@ export function AiBadge({ generatedBy, validation, fallbackReason }: { generated
     {validation?.note && <p className="text-xs text-grey-300">{validation.passed === false ? 'Validation failed: ' : validation.passed ? 'Validation passed: ' : ''}{validation.note}</p>}
   </div>
 }
+
+export function TargetCell({ alert }: { alert: Alert }) {
+  if (!alert.remediation_target_at) return <Unknown />
+  return <span title={alert.remediation_policy}>{alert.overdue ? <b className="text-sev-high">Overdue</b> : 'Due'} {new Date(alert.remediation_target_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}</span>
+}

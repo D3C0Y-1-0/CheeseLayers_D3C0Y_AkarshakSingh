@@ -144,6 +144,8 @@ class IncidentAlert(_Model):
     # Additions (Member 3).
     title: str = ""
     lifecycle_status: LifecycleStatus = "detected"  # fine-grained status; `status` is derived from it
+    remediation_target_at: AwareDatetime | None = None  # v1.3: computed on read (correlator.remediation)
+    overdue: bool | None = None
     match_detail: MatchDetail | None = None  # fine-grained match_status
     vulnerability_priority_score: float = Field(default=0, ge=0, le=100)
     behavioural_suspicion_score: float = Field(default=0, ge=0, le=100)

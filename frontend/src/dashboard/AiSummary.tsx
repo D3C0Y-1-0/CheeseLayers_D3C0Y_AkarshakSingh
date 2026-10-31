@@ -7,17 +7,15 @@ import { AiBadge, Panel, safeReference } from './ui'
 // Grounded threat summary (POST /api/threats/{id}/summary). Works offline: template or cached LLM wording.
 export function ThreatAiSummary({ threatId, enabled }: { threatId: string; enabled: boolean }) {
   const [state, setState] = useState<{ busy?: boolean; s?: ThreatSummary; error?: string }>({})
-  const [lang, setLang] = useState<'en' | 'hi'>('en')
-  const run = async (l: 'en' | 'hi' = lang) => {
+  const run = async () => {
     setState({ busy: true })
-    try { setState({ s: await post(`/api/threats/${encodeURIComponent(threatId)}/summary?lang=${l}`) as ThreatSummary }) }
+    try { setState({ s: await post(`/api/threats/${encodeURIComponent(threatId)}/summary`) as ThreatSummary }) }
     catch (e) { setState({ error: e instanceof Error ? e.message : 'Summary unavailable' }) }
   }
   const s = state.s
   return <Panel title="AI summary"><div className="grid gap-3 p-4 leading-snug">
     <div className="flex flex-wrap items-center gap-2">
       <button type="button" className="btn" disabled={!enabled || state.busy} onClick={() => run()}><Sparkles aria-hidden className="size-4" />{state.busy ? 'Summarising…' : s ? 'Refresh summary' : 'Generate AI summary'}</button>
-      <select aria-label="Summary language" className="dash-select" value={lang} onChange={(e) => { const l = e.target.value as 'en' | 'hi'; setLang(l); if (s) run(l) }}><option value="en">English</option><option value="hi">हिन्दी (machine translation)</option></select>
     </div>
     {!enabled && <p className="text-sm">Connect the backend to generate a summary.</p>}
     {state.error && <p role="alert" className="text-sev-high">{state.error}</p>}

@@ -14,7 +14,7 @@ Pop-Location
 .\scripts\start.ps1
 ```
 
-Open **http://127.0.0.1:8000/app**. The script builds React and serves it with the API from one
+`start.ps1` uses `backend\.venv` if it works, else `.venv`. Open **http://127.0.0.1:8000/app**. The script builds React and serves it with the API from one
 address in `DEMO_MODE=true`. Initial startup loads bundled caches into SQLite; wait for
 "Application startup complete". Subsequent starts reuse the database. Use `-SkipBuild` for an
 already built frontend or `-Port 8001` for another port. Your root `.env` stays private and ignored;
@@ -39,7 +39,7 @@ Verify on macOS: `backend/.venv/bin/python -m pytest backend/tests -q -p no:cach
 
 ## Connected features
 
-- Command Center: real API counts, publication trend, source health, four predefined scenarios,
+- Command Center: real API counts, publication trend, source health, seven scenarios (three on real SecRepo logs),
   persisted incident links and a repeatable alert/event reset.
 - Threat Intelligence: server pagination/search/filtering, asset relevance, source references,
   ATT&CK labels and STIX 2.1 export.
@@ -49,6 +49,10 @@ Verify on macOS: `backend/.venv/bin/python -m pytest backend/tests -q -p no:cach
 - Early warnings: signal history, thresholds and explicitly synthetic signal simulation.
 - Exposure & impact: sector posture, read-only patch what-if, lead-time analysis and cached
   CERT-In/India-related intelligence.
+- Attack simulation: real attackers from SANS ISC honeypots/firewall sensors replayed against an asset; detection
+  from log text, each exploited CVE linked to KEV/EPSS and our matcher, animated replay and threat-intel panel.
+- Campaigns: TF-IDF + shared CVE/IOC grouping, patch batches separated, ranked by actionability.
+- Security Operations: globe view of sector risk and attacker sources.
 
 The suspicious chain creates a persisted no-CVE incident. Benign maintenance retains all events
 without escalation. Missing host telemetry remains a visibility gap. Replay/restart is idempotent;
@@ -57,12 +61,14 @@ demo alert reset also clears the preview cache so a scenario can be replayed aft
 Shadow Watch stores normalized envelopes/findings in Member 3's existing event JSON. There is no
 second database or score engine. Template reports work offline. The default scope permits
 persisted simulated incidents in demo mode; real incidents require an authenticated scope factory.
-Demo mode disables the feed scheduler and cloud LLM. The optional provider remains explicitly
-opt-in outside demo mode. No suggested remediation is executed.
+Demo mode disables the feed scheduler. The cloud LLM (Groq) is used only when `.env` sets
+`LLM_ALLOW_CLOUD=true` and a key (`LLM_API_KEY`, `GROQ_API_KEY` or `GROQ_API_KEY1..9`); otherwise cached
+LLM reports or templates are shown. No suggested remediation is executed.
 
 The UI labels bundled fallback samples and never fakes successful mutations. Public intelligence
 and synthetic activity remain distinct. Isolation Forest added false positives on the synthetic
-fixture, so it is not enabled. See [Member 4 runbook](README_MEMBER4.md),
+fixture, so synthetic scenarios stay rules-only; it runs only on the two real SecRepo sensors as a
+low-severity "needs review" signal (no ground-truth labels: outliers, not confirmed attacks). See [Member 4 runbook](README_MEMBER4.md),
 [integration](docs/INTEGRATION.md), and [API contract](docs/API.md).
 
 ## Verify

@@ -11,7 +11,7 @@ const STEPS = [
   { q: 'Which assets are at risk?', a: 'Each threat is matched to your inventory by product and version, then ranked by what it could do to you.' },
   { q: 'What should we do first?', a: 'Each warning explains itself in plain language and says exactly what to patch, block or check.' },
 ]
-const CYCLE = 7
+const STEP_VH = 70  // scroll distance (in vh) that advances one question; 3 questions = 3 scrolls, then the page moves on
 
 const label = (p: string) => p[0].toUpperCase() + p.slice(1)
 const feed = threats.filter((t) => t.cve_id && t.severity).slice(0, 5)
@@ -76,42 +76,39 @@ export function Preview() {
   const screen = useRef<HTMLDivElement>(null)
   const bar = useRef<HTMLSpanElement>(null)
   const [active, setActive] = useState(0)
-  const [auto, setAuto] = useState(true)
-  const [inView, setInView] = useState(false)
   const [reduced] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
 
-  // The window starts tilted back and lies flat as it rises into view. Nothing pins, so no extra scroll.
+  // The section is pinned while the user scrolls through the three questions: each STEP_VH of scroll moves to the
+  // next one, and after the third the page continues. The window also starts tilted back and lies flat as it arrives.
   useEffect(() => {
     const el = section.current!
     const update = () => {
       const box = el.getBoundingClientRect()
       const vh = window.innerHeight
-      const p = reduced ? 1 : Math.min(1, Math.max(0, (vh - box.top - vh * 0.1) / (vh * 0.75)))
-      el.style.setProperty('--tilt', p.toFixed(3))
+      el.style.setProperty('--tilt', (reduced ? 1 : Math.min(1, Math.max(0, (vh - box.top - vh * 0.1) / (vh * 0.75)))).toFixed(3))
+      if (reduced) return
+      const nav = (parseFloat(getComputedStyle(el).getPropertyValue('--nav')) || 0) * parseFloat(getComputedStyle(document.documentElement).fontSize)  // --nav is in rem
+      const p = Math.min(0.9999, Math.max(0, (nav - box.top) / Math.max(1, el.offsetHeight - (vh - nav))))
+      const f = p * STEPS.length
+      setActive(Math.floor(f))
+      if (bar.current) bar.current.style.transform = `scaleX(${(f % 1).toFixed(3)})`
     }
     update()
     window.addEventListener('scroll', update, { passive: true })
     window.addEventListener('resize', update)
-    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.45 })
-    io.observe(el)
     return () => {
       window.removeEventListener('scroll', update)
       window.removeEventListener('resize', update)
-      io.disconnect()
     }
   }, [reduced])
 
-  // Moves through the questions on its own until someone picks one.
-  useEffect(() => {
-    if (!auto || !inView || reduced) return
-    const tween = gsap.fromTo(bar.current, { scaleX: 0 }, {
-      scaleX: 1,
-      duration: CYCLE,
-      ease: 'none',
-      onComplete: () => setActive((a) => (a + 1) % STEPS.length),
-    })
-    return () => { tween.kill() }
-  }, [active, auto, inView, reduced])
+  // Clicking a question scrolls to its part of the pinned section (or just switches when motion is reduced).
+  const pick = (i: number) => {
+    if (reduced) return setActive(i)
+    const el = section.current!
+    const top = window.scrollY + el.getBoundingClientRect().top
+    window.scrollTo({ top: top + (i + 0.05) * (window.innerHeight * STEP_VH / 100), behavior: 'smooth' })
+  }
 
   useLayoutEffect(() => {
     if (reduced) return
@@ -122,17 +119,18 @@ export function Preview() {
   }, [active, reduced])
 
   return (
-    <section ref={section} id="dashboard" className="scroll-mt-[var(--nav)] grid items-center gap-x-12 gap-y-8 px-5 py-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.75fr)] lg:px-8">
+    <section ref={section} id="dashboard" className="scroll-mt-[var(--nav)]" style={reduced ? undefined : { height: `calc(100svh + ${STEPS.length * STEP_VH}vh)` }}>
+     <div className={`grid items-center gap-x-12 gap-y-8 px-5 py-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.75fr)] lg:px-8 ${reduced ? '' : 'sticky top-[var(--nav)] min-h-[calc(100svh-var(--nav))]'}`}>
       <div>
         <h2 className="section-title mb-6 text-ink">One screen for the three questions that matter</h2>
         <div role="tablist" aria-label="Analyst questions" className="mb-7 border-t border-rule">
           {STEPS.map((s, i) => (
             <div key={s.q} className="relative border-b border-rule">
-              <button type="button" role="tab" aria-selected={i === active} className={`pv-tab ${i === active ? 'is-on' : ''}`} onClick={() => { setActive(i); setAuto(false) }}>
+              <button type="button" role="tab" aria-selected={i === active} className={`pv-tab ${i === active ? 'is-on' : ''}`} onClick={() => pick(i)}>
                 {s.q}
               </button>
               <div className={`pv-answer ${i === active ? 'is-on' : ''}`}><div className="min-h-0 overflow-hidden"><p className="pb-4 leading-snug text-muted">{s.a}</p></div></div>
-              {i === active && auto && !reduced && <span ref={bar} aria-hidden className="pv-progress" />}
+              {i === active && !reduced && <span ref={bar} aria-hidden className="pv-progress" style={{ transform: 'scaleX(0)' }} />}
             </div>
           ))}
         </div>
@@ -153,6 +151,7 @@ export function Preview() {
           </div>
         </div>
       </div>
+     </div>
     </section>
   )
 }

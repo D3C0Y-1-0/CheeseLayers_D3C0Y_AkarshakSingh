@@ -303,6 +303,11 @@ def _batch_day(mrows) -> str | None:
     return day.isoformat() if n >= CONFIG["patch_batch_same_day_share"] * len(mrows) else None
 
 
+def _clip(text: str, limit: int = 120) -> str:
+    """Shorten at a word boundary with an ellipsis (never mid-word)."""
+    return text if len(text) <= limit else text[:limit].rsplit(" ", 1)[0].rstrip(" ,:;-('") + "…"
+
+
 def _title(mrows, kind: str, day: str | None, anchor) -> str:
     n = len(mrows)
     if kind == "patch_batch":
@@ -326,11 +331,11 @@ def _title(mrows, kind: str, day: str | None, anchor) -> str:
     # A threat report's own headline says what the campaign is ("PEERSTITCH, a Stealthy FortiGate Implant").
     pulses = sorted((r for r in mrows if r.source == "otx"), key=lambda r: (-len(r.cve_ids or []), r.threat_id))
     if pulses:
-        return pulses[0].title[:90]
+        return _clip(pulses[0].title)
     top = [p for p, k in Counter(p for r in mrows for p in _products(r)).most_common(2) if k >= 2]
     if top:
         return " · ".join(_pretty(p) for p in top)
-    return anchor.title[:90]
+    return _clip(anchor.title)
 
 
 def _unique_titles(out: list[dict]) -> None:

@@ -2,7 +2,7 @@
   "injected": {
     "threat_id": "DEMO-VULN-002",
     "cve_id": null,
-    "source": "netrax_synthetic",
+    "source": "vectra_synthetic",
     "title": "[SIMULATED] CoreLink Banking Gateway authentication bypass",
     "description": "SIMULATED advisory for demo only. Missing check on an internal API allows session forgery. Matches BNK-CBS-01 (3.0.5).",
     "cvss": 8.1,

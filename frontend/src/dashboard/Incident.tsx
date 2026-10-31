@@ -51,7 +51,7 @@ function AgentExplanation({ alert, enabled, onReport }: { alert: Alert; enabled:
     } catch (e) { setState({ error: e instanceof Error ? e.message : 'Investigation unavailable' }) }
   }
   const r = state.report
-  return <Panel title="AI summary · SOC investigation"><div className="p-4">
+  return <Panel title="SOC investigation (AI)"><div className="p-4">
     <button type="button" className="btn" disabled={!enabled || state.busy} onClick={run}><Sparkles aria-hidden className="size-4" />{state.busy ? 'Investigating…' : r ? 'Refresh investigation' : 'Investigate incident'}</button>
     {state.error && <p role="alert" className="mt-3 text-sev-high">{state.error}. Stored reasons and evidence remain available below.</p>}
     {r && <div className="mt-4 grid gap-3 leading-snug">
@@ -96,7 +96,7 @@ export default function Incident() {
     </div><div className="grid gap-3">
       <AgentExplanation key={id} alert={alert} enabled={incident.mode === 'live' && !incident.error} onReport={setReport} />
       <CertInDraft key={`c-${id}`} alertId={id} enabled={incident.mode === 'live' && !incident.error} />
-      {alert.kind === 'vulnerability' && alert.threat_ids[0] && <ThreatAiSummary key={`t-${id}`} threatId={alert.threat_ids[0]} enabled={incident.mode === 'live'} />}
+      {alert.kind === 'vulnerability' && alert.threat_ids[0] && <ThreatAiSummary key={`t-${id}`} threatId={alert.threat_ids[0]} enabled={incident.mode === 'live'} title={`Threat summary (AI) · ${alert.threat_ids[0]}`} />}
       <Panel title="Reasons and limits"><div className="space-y-3 p-4"><ul className="list-inside list-disc space-y-1 text-white">{alert.reasons.map((r) => <li key={r}>{r}</li>)}</ul><ul className="space-y-1">{alert.limitations.map((l) => <li key={l}>{l}</li>)}</ul></div></Panel>
       <EvidenceTimeline key={id} alert={alert} />
     </div></div>

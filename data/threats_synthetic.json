@@ -2,7 +2,7 @@
   {
     "threat_id": "DEMO-VULN-001",
     "cve_id": null,
-    "source": "netrax_synthetic",
+    "source": "vectra_synthetic",
     "title": "[SIMULATED] GridView HMI unauthenticated remote command execution",
     "description": "SIMULATED advisory for demo only. A crafted request to the HMI web service lets an unauthenticated attacker run commands. Matches PWR-HMI-01 (4.2.1).",
     "cvss": 9.8,
@@ -48,7 +48,7 @@
   {
     "threat_id": "DEMO-VULN-002",
     "cve_id": null,
-    "source": "netrax_synthetic",
+    "source": "vectra_synthetic",
     "title": "[SIMULATED] CoreLink Banking Gateway authentication bypass",
     "description": "SIMULATED advisory for demo only. Missing check on an internal API allows session forgery. Matches BNK-CBS-01 (3.0.5).",
     "cvss": 8.1,
@@ -94,7 +94,7 @@
   {
     "threat_id": "DEMO-VULN-003",
     "cve_id": null,
-    "source": "netrax_synthetic",
+    "source": "vectra_synthetic",
     "title": "[SIMULATED] MediVault PACS path traversal (CVSS not yet assigned)",
     "description": "SIMULATED advisory for demo only. Path traversal in DICOM export. Vendor has not published a score. HLT-PACS-01 runs it but its version is unknown -> requires manual review.",
     "cvss": null,

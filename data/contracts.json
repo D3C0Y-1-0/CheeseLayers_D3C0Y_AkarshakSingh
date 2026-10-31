@@ -44,7 +44,7 @@
         "source": {
           "type": "string",
           "nullable": false,
-          "description": "Feed that produced it: nvd, kev, nvd+kev, certin, otx, abusech, netrax_synthetic, ..."
+          "description": "Feed that produced it: nvd, kev, nvd+kev, certin, otx, abusech, vectra_synthetic, ..."
         },
         "title": {
           "type": "string",

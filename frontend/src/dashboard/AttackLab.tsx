@@ -207,8 +207,8 @@ export default function AttackLab() {
   }
 
   return <>
-    <PageHead title="Attack simulation" classic />
-    <p className="mb-4 max-w-4xl">
+    <PageHead title="Attack simulation" />
+    <p className="mb-4 max-w-4xl text-grey-300">
       <b className="text-white">Real attackers, real traffic.</b> These requests and connection attempts hit SANS Internet
       Storm Center honeypots and firewall sensors on the internet. We replay one attacker against an asset in our
       (simulated) inventory: the detector reads only the log text, each exploited CVE is looked up in our NVD / CISA KEV

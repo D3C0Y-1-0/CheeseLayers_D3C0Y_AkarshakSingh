@@ -534,3 +534,45 @@ li:last-child > .row-link {
 .page-actions .seg {
   padding: 0.35rem 0.8rem;
 }
+
+/* Attack simulation: same glass as the other sections. */
+.glass .lab-card {
+  border: 1px solid var(--glass-edge);
+  border-radius: 14px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.glass .lab-card:hover {
+  background: var(--glass-strong);
+}
+.glass .lab-log {
+  border: 1px solid var(--glass-edge);
+  border-radius: 12px;
+  background: rgb(2 6 20 / 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.glass .lab-verdict {
+  border-radius: 12px;
+}
+.glass .lab-rule,
+.glass .lab-mark {
+  border-radius: 6px;
+}
+.glass .lab-card.is-on {
+  border-color: rgb(146 195 255 / 0.6);
+  background: linear-gradient(150deg, rgb(61 139 255 / 0.32), rgb(34 113 227 / 0.16));
+  box-shadow: 0 6px 18px rgb(61 139 255 / 0.25), inset 0 1px 0 rgb(255 255 255 / 0.15);
+}
+
+/* Threat Intelligence table: compact cells so all 8 columns fit at 1440px (it still scrolls if narrower). */
+.ti-table th,
+.ti-table td {
+  padding-inline: 0.65rem;
+}
+.ti-table .tag {
+  white-space: nowrap;
+}

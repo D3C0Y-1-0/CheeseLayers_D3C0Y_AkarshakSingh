@@ -4,7 +4,7 @@ import { fixtures, useAlerts, useData, useOverview, when, type Threat } from './
 import { ThreatAiSummary } from './AiSummary'
 import { DataNotice, Empty, PageHead, Panel, safeReference, SeverityBadge, Unknown } from './ui'
 
-const SOURCE_NAMES: Record<string, string> = { 'nvd+kev': 'NVD + KEV', nvd: 'NVD', kev: 'CISA KEV', certin: 'CERT-In', otx: 'AlienVault OTX', vectra_synthetic: 'Demo fixture' }
+const SOURCE_NAMES: Record<string, string> = { 'nvd+kev': 'NVD + KEV', nvd: 'NVD', kev: 'CISA KEV', certin: 'CERT-In', otx: 'AlienVault OTX', vectra_synthetic: 'Demo fixture', netrax_synthetic: 'Demo fixture' }
 const name = (s: string) => SOURCE_NAMES[s] ?? s
 type ThreatPage = { items: Threat[]; total: number; page: number; pages: number }
 const sample: ThreatPage = { items: fixtures.threats, total: fixtures.threats.length, page: 1, pages: 1 }
@@ -85,12 +85,12 @@ export default function Threats() {
       <Panel>
         {rows.length === 0 ? <Empty>No threats match these filters. Clear a filter to see more.</Empty> : (
           <div className="overflow-x-auto">
-            <table className="dash-table">
+            <table className="dash-table ti-table">
               <thead><tr><th>Threat</th><th>Source</th><th>Severity</th><th className="num">CVSS</th><th>KEV</th><th className="num">EPSS</th><th className="num">Affected assets</th><th>Published</th></tr></thead>
               <tbody>
                 {rows.map((t) => (
                   <tr key={t.threat_id}>
-                    <td className="max-w-[26rem]">
+                    <td className="max-w-[20rem]">
                       <button type="button" className="block font-medium text-blue-300 underline" onClick={() => setSelected(t)}>{t.cve_id ?? t.threat_id}</button>
                       <span className="block truncate text-[0.875rem] text-grey-300">{t.title}</span>
                     </td>

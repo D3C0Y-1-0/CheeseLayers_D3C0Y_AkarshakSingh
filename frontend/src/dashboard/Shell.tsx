@@ -34,7 +34,7 @@ export default function Shell() {
   }, [])
 
   return (
-    <div className={`dash ${pathname.startsWith('/app/attack-lab') ? '' : 'glass'}`}>
+    <div className="dash glass">
       <aside className="dash-side">
         <Link to="/" className="flex items-center gap-2 px-4 pt-4 pb-5 font-display text-xl font-medium text-white">
           <Mark className="size-5 text-blue" />

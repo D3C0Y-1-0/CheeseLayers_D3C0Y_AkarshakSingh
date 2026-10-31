@@ -614,3 +614,24 @@ before_kev, days_before_kev}` for NVD publication, EPSS crossing 0.1 and 0.5 (fi
 EPSS history cache), first quality GitHub PoC (flagged when not counted), Exploit-DB entry, CERT-In
 advisory, and the KEV addition. Same numbers as the backtest row. Sample:
 `docs/samples/lead_time_examples.json`.
+
+# IP geolocation of malicious indicators (`backend/collectors/geo.py`, PLAN_ip_geolocation.md)
+
+Offline lookup in DB-IP Lite (`backend/data/geo/dbip-city-lite.mmdb` + `dbip-asn-lite.mmdb`, CC BY 4.0,
+gitignored, ~140 MB; download from https://db-ip.com/db/lite.php). It gives where an IP is **registered**
+(country, approximate city, network owner/ASN), not where an attacker sits. Private, loopback and
+documentation addresses (e.g. the simulated `198.51.100.x`/`203.0.113.x`) → `null`. Missing database → `null`
+everywhere, `available: false`. The loader adds `geo` to every `ip`/`cidr` IOC at load time (contract v1.3
+`ioc.geo`); `hosting` = network-owner name matches a cloud/hosting provider (heuristic).
+
+### `GET /api/geo/ip/{ip}`
+Any IP or CIDR → `{ip, geo: {country, country_code, city, latitude, longitude, asn, asn_org, hosting,
+geo_source, accuracy} | null, reason, note, attribution}`. 422 if not an IP. Sample: `docs/samples/geo_ip.json`.
+
+### `GET /api/insights/ioc-geo?points=300`
+`{total_ip_indicators, located, unknown, by_country[15], top_networks[10], hosting_share_pct,
+hosting_method, by_source, points[] ({lat, lon, count, country, city, sources, top_family, examples[3]},
+grouped per ~10 km cell, largest first), geo_source, available, attribution, note}`. Current cache: 6,530
+malicious IPs/networks (ThreatFox, Spamhaus DROP, Tor exits, OTX, Feodo), all located; 39% on hosting
+networks. Shown on the Security Operations globe (red dots) and its "Where malicious IPs are registered" card.
+Sample: `docs/samples/ioc_geo.json`.

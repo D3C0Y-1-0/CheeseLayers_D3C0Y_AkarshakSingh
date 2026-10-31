@@ -5,7 +5,7 @@ import { post, type ThreatSummary } from './api'
 import { AiBadge, Panel, safeReference } from './ui'
 
 // Grounded threat summary (POST /api/threats/{id}/summary). Works offline: template or cached LLM wording.
-export function ThreatAiSummary({ threatId, enabled }: { threatId: string; enabled: boolean }) {
+export function ThreatAiSummary({ threatId, enabled, title = 'AI summary' }: { threatId: string; enabled: boolean; title?: string }) {
   const [state, setState] = useState<{ busy?: boolean; s?: ThreatSummary; error?: string }>({})
   const run = async () => {
     setState({ busy: true })
@@ -13,7 +13,7 @@ export function ThreatAiSummary({ threatId, enabled }: { threatId: string; enabl
     catch (e) { setState({ error: e instanceof Error ? e.message : 'Summary unavailable' }) }
   }
   const s = state.s
-  return <Panel title="AI summary"><div className="grid gap-3 p-4 leading-snug">
+  return <Panel title={title}><div className="grid gap-3 p-4 leading-snug">
     <div className="flex flex-wrap items-center gap-2">
       <button type="button" className="btn" disabled={!enabled || state.busy} onClick={() => run()}><Sparkles aria-hidden className="size-4" />{state.busy ? 'Summarising…' : s ? 'Refresh summary' : 'Generate AI summary'}</button>
     </div>

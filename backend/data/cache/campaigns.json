@@ -726,7 +726,7 @@
   },
   {
    "campaign_id": "CMP-266EA63B",
-   "title": "Exposing AdFection: How Discover-Tech Turned Targeted Ads Into a Pipeline for Zero-Click M",
+   "title": "Exposing AdFection: How Discover-Tech Turned Targeted Ads Into a Pipeline for Zero-Click Mercenary Spyware",
    "kind": "campaign",
    "size": 7,
    "threat_ids": [
@@ -803,7 +803,7 @@
   },
   {
    "campaign_id": "CMP-883F6D3F",
-   "title": "Mind the (Patch) Gap: Multiple Chinese Threat Actors Chain 0-day Exploits in Chrome & Wind",
+   "title": "Mind the (Patch) Gap: Multiple Chinese Threat Actors Chain 0-day Exploits in Chrome & Windows",
    "kind": "campaign",
    "size": 7,
    "threat_ids": [
@@ -1144,7 +1144,7 @@
   },
   {
    "campaign_id": "CMP-79AA87E0",
-   "title": "Artifactory Under Attack: In-the-Wild Exploitation of CVE-2026-42016, CVE-2026-42018 & CVE",
+   "title": "Artifactory Under Attack: In-the-Wild Exploitation of CVE-2026-42016, CVE-2026-42018 & CVE-2026-82329",
    "kind": "campaign",
    "size": 4,
    "threat_ids": [
@@ -1830,7 +1830,7 @@
   },
   {
    "campaign_id": "CMP-B1B71EFF",
-   "title": "Mozilla Firefox \u00b7 Mozilla Firefox esr",
+   "title": "Mozilla Firefox \u00b7 Mozilla Thunderbird",
    "kind": "campaign",
    "size": 12,
    "threat_ids": [
@@ -2014,7 +2014,7 @@
   },
   {
    "campaign_id": "CMP-36421476",
-   "title": "CVE-2026-62059: Improper Neutralization of Special Elements used in an SQL Command ('SQL I",
+   "title": "CVE-2026-62059: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability i\u2026",
    "kind": "campaign",
    "size": 4,
    "threat_ids": [
@@ -2057,7 +2057,7 @@
   },
   {
    "campaign_id": "CMP-3243F4C8",
-   "title": "CVE-2026-91403: Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalV",
+   "title": "CVE-2026-91403: Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition produ\u2026",
    "kind": "campaign",
    "size": 3,
    "threat_ids": [
@@ -2106,7 +2106,7 @@
   },
   {
    "campaign_id": "CMP-94B10E8A",
-   "title": "CVE-2026-106173: A improper limitation of a pathname to a restricted directory ('path trav",
+   "title": "CVE-2026-106173: A improper limitation of a pathname to a restricted directory ('path traversal') vulnerability in Fo\u2026",
    "kind": "campaign",
    "size": 3,
    "threat_ids": [

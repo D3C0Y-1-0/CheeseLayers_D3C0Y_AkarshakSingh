@@ -198,7 +198,7 @@ def build_demo_cves() -> list[dict]:
 def demo_vuln(n, title, desc, vendor, product, ranges, cvss, sev, techniques, published):
     return {
         "threat_id": f"DEMO-VULN-00{n}", "cve_id": None,  # synthetic: never pretend to be a CVE
-        "source": "netrax_synthetic", "title": f"[SIMULATED] {title}", "description": f"SIMULATED advisory for demo only. {desc}",
+        "source": "vectra_synthetic", "title": f"[SIMULATED] {title}", "description": f"SIMULATED advisory for demo only. {desc}",
         "cvss": cvss, "cvss_version": "3.1" if cvss is not None else None, "severity": sev,
         "epss": None, "epss_percentile": None,  # FIRST has never scored a fake vuln -> unknown, not 0
         "kev_listed": False, "public_exploit": None,

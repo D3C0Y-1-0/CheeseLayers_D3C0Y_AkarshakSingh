@@ -116,7 +116,7 @@ def test_stix_errors(client, params, code):
 # ---------- collectors emit contract names natively: re-parsing raw reproduces the cache ----------
 @pytest.mark.parametrize("name,mod", [("nvd", nvd), ("nvd_kev", nvd_kev), ("kev", kev), ("certin", certin), ("otx", otx),
                                       ("abusech", abusech), ("ip_reputation", ip_reputation), ("ransomware", ransomware)])
-@pytest.mark.skipif(not RAW.exists() or not any(RAW.iterdir()),
+@pytest.mark.skipif(not all((RAW / s).exists() and any((RAW / s).iterdir()) for s in ("nvd", "nvd_kev", "kev", "certin", "otx", "abusech", "ip_reputation", "ransomware")),
                     reason="backend/data/raw/ is gitignored and absent in this checkout; run a live collector first")
 def test_from_raw_matches_cache(name, mod):
     cached = load_cache(name)

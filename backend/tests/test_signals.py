@@ -221,11 +221,13 @@ def test_inject_records_one_labelled_signal(client, hook_calls):
     s = r["signal"]
     assert s["signal_type"] == "new_kev" and s["is_simulated"] and s["details"]["replay"] and s["details"]["simulated"]
     assert hook_calls == [("CVE-2024-21762", "demo_inject")]  # the matcher runs once, not once more for the signal
-    feed = client.get("/api/signals").json()["items"]
-    assert [x["signal_id"] for x in feed if x["threat_id"] == "CVE-2024-21762"] == [s["signal_id"]]
+    # Only demo signals: earlier tests leave REAL signals for this CVE, which a demo reset rightly keeps.
+    demo = lambda: [x["signal_id"] for x in client.get("/api/signals", params={"simulated": "true", "limit": 500}).json()["items"]  # noqa: E731
+                    if x["threat_id"] == "CVE-2024-21762"]
+    assert demo() == [s["signal_id"]]
     again = client.post("/api/demo/inject-cve", json={"fixture_id": "CVE-2024-21762"}).json()["signal"]
     assert again["signal_id"] == s["signal_id"] and again["detected_at"] >= s["detected_at"]  # refreshed, not duplicated
-    assert client.get("/api/signals/summary").json()["last_24h"]["new_kev"] == 1
+    assert demo() == [s["signal_id"]]
 
 
 @pytest.mark.parametrize("fid,typ", [("DEMO-VULN-001", "new_critical_cve"), ("DEMO-VULN-002", None), ("DEMO-VULN-003", None)])
@@ -248,8 +250,10 @@ def test_seed_is_idempotent_reseedable_and_creates_no_alerts(client, hook_calls)
     second = client.post("/api/demo/seed").json()
     assert counts()["threat_signals"] == n
     assert sorted(s["signal_id"] for s in second["seeded"]) == sorted(s["signal_id"] for s in first["seeded"])
-    summary = client.get("/api/signals/summary").json()["last_24h"]
-    assert summary["new_kev"] == 2 and summary["new_public_exploit"] == 2 and summary["new_critical_cve"] == 1
+    seeded = [x for x in client.get("/api/signals", params={"simulated": "true", "limit": 500}).json()["items"]
+              if x["details"].get("purpose") == "seed"]
+    assert sorted(x["signal_type"] for x in seeded) == ["new_critical_cve", "new_kev", "new_kev",
+                                                       "new_public_exploit", "new_public_exploit"]
     assert hook_calls == [] and client.get("/api/alerts").json()["total"] == 0  # incidents still start clean
     assert client.post("/api/demo/reset").json()["deleted_simulated_signals"] == 5
     assert len(client.post("/api/demo/seed").json()["seeded"]) == 5  # re-seedable after reset

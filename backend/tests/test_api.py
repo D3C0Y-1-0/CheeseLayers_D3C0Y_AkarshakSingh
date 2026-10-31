@@ -55,7 +55,7 @@ def test_endpoints_200(client, path):
     assert r.status_code == 200, r.text
 
 
-@pytest.mark.skipif(not (Path(__file__).resolve().parents[1] / "data" / "raw").exists(),
+@pytest.mark.skipif(not all((Path(__file__).resolve().parents[1] / "data" / "raw" / s).exists() for s in ("kev", "nvd_kev")),
                     reason="backend/data/raw/ is gitignored and absent in this checkout: raw payload hashes can't be checked")
 def test_threat_detail_has_raw_payloads(client):
     t = client.get("/api/threats/CVE-2024-21762").json()

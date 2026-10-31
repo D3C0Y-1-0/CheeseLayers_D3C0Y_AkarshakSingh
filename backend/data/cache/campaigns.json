@@ -1579,7 +1579,7 @@
   },
   {
    "campaign_id": "CMP-554584FB",
-   "title": "Borat RAT + BTMOB RAT indicators",
+   "title": "BTMOB RAT + Borat RAT indicators",
    "kind": "campaign",
    "size": 10,
    "threat_ids": [
@@ -1830,7 +1830,7 @@
   },
   {
    "campaign_id": "CMP-B1B71EFF",
-   "title": "Mozilla Firefox \u00b7 Mozilla Thunderbird",
+   "title": "Mozilla Firefox \u00b7 Mozilla Firefox esr",
    "kind": "campaign",
    "size": 12,
    "threat_ids": [
@@ -1924,7 +1924,7 @@
   },
   {
    "campaign_id": "CMP-BCB8803B",
-   "title": "Mongodb Libmongocrypt \u00b7 Mongodb GO Driver",
+   "title": "Mongodb GO Driver \u00b7 Mongodb Libmongocrypt",
    "kind": "campaign",
    "size": 8,
    "threat_ids": [

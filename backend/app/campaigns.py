@@ -290,6 +290,11 @@ def build(db: Session) -> dict:
             "campaigns": out}
 
 
+
+def _top(counter: Counter, n: int) -> list:
+    """most_common(n) with ties broken alphabetically: Counter/set order varies between runs, titles must not."""
+    return sorted(counter.items(), key=lambda kv: (-kv[1], str(kv[0])))[:n]
+
 def _batch_day(mrows) -> str | None:
     """The release day if this group is one vendor's batch of vulnerability records, else None."""
     if not mrows or any(r.source in ACTIVITY_SOURCES or r.type == "ioc_batch" for r in mrows):
@@ -299,7 +304,7 @@ def _batch_day(mrows) -> str | None:
     days = Counter(r.published_at.date() for r in mrows if r.published_at)
     if not days:
         return None
-    day, n = days.most_common(1)[0]
+    day, n = _top(days, 1)[0]
     return day.isoformat() if n >= CONFIG["patch_batch_same_day_share"] * len(mrows) else None
 
 
@@ -315,24 +320,24 @@ def _title(mrows, kind: str, day: str | None, anchor) -> str:
         vendors = Counter(v for r in mrows for v in {c["vendor"].lower() for c in r.affected_configurations or []
                                                      if c.get("cpe") and c.get("vendor")}
                           if v not in CONFIG["redistributor_vendors"])
-        top = vendors.most_common(2)
+        top = _top(vendors, 2)
         if top and top[0][1] >= 2 and (len(top) == 1 or top[0][1] > top[1][1]):
             return f"{top[0][0].capitalize()} patch release {day} ({n} vulnerabilities)"
         return f"Vulnerability batch published {day} ({n} vulnerabilities)"  # no single vendor: not "a release"
     groups = Counter(t.split(":", 1)[1] for r in mrows if r.source == "ransomware" for t in r.tags or []
                      if t.startswith("group:"))
     if groups and sum(r.source == "ransomware" for r in mrows) * 2 >= n:
-        g, k = groups.most_common(1)[0]
+        g, k = _top(groups, 1)[0]
         return f"{g.capitalize()} ransomware activity ({k} victim claims)"
     feed_words = {"abuse.ch", "threatfox", "urlhaus", "malwarebazaar"}
     families = Counter(t for r in mrows if r.type == "ioc_batch" for t in r.tags or [] if t.lower() not in feed_words)
     if families:
-        return " + ".join(f for f, _ in families.most_common(2)) + " indicators"
+        return " + ".join(f for f, _ in _top(families, 2)) + " indicators"
     # A threat report's own headline says what the campaign is ("PEERSTITCH, a Stealthy FortiGate Implant").
     pulses = sorted((r for r in mrows if r.source == "otx"), key=lambda r: (-len(r.cve_ids or []), r.threat_id))
     if pulses:
         return _clip(pulses[0].title)
-    top = [p for p, k in Counter(p for r in mrows for p in _products(r)).most_common(2) if k >= 2]
+    top = [p for p, k in _top(Counter(p for r in mrows for p in _products(r)), 2) if k >= 2]
     if top:
         return " · ".join(_pretty(p) for p in top)
     return _clip(anchor.title)

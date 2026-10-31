@@ -487,46 +487,37 @@ A version that is still vulnerable stays affected and gets a note. A non-standar
 unknown threat or asset → 404, assets with no open alerts and no `threat_id` → 400. Threats come from the DB, falling back to the
 demo fixture files.
 
-## Member 3: Attack Lab (attack simulation + detection)
+## Member 3: Attack Lab (REAL attack traffic, detection, intel links)
 
-Simulates simple attacks as the raw log lines a real server would write, detects them **from the text alone**
-(the detector is never told which attack ran), names the attack type with MITRE ATT&CK, and feeds what fired into
-the correlation engine as a normal behaviour incident. Dashboard: `/app/attack-lab`. Code: `backend/app/attack_lab.py`
-(playbooks + API), `backend/app/detection.py` (parsers, rules, verdict).
+Replays a **real attacker's real traffic** against one of our assets. Source: SANS Internet Storm Center (DShield)
+honeypots and firewall sensors, CC BY-NC-SA 4.0, collected by `backend/collectors/isc.py` into
+`backend/data/cache/isc.json` (refresh: `DEMO_MODE=false backend/.venv/bin/python -m collectors.isc`; the demo reads
+only the cache). Real: request URLs, user agents, source IPs, dates, target ports, attacker reputation, and the CVE /
+KEV / EPSS facts. Not real: the target (an asset from our simulated inventory) and the time of day (ISC gives dates only;
+replays keep the original order and timed rules say "on <date>"). Incidents from replays are `is_simulated: true`.
 
 | Method | Path | What |
 |---|---|---|
-| GET | `/api/attack-lab/playbooks` | Attacks we can simulate: `brute_force`, `sql_injection`, `port_scan`, `command_injection`, `normal_traffic` (control: must not fire) |
-| GET | `/api/attack-lab/rules` | The rulebook: every rule's exact logic, threshold, reason it works, MITRE technique; SQLi/CMDi signature regexes |
-| POST | `/api/attack-lab/run` | `{scenario, target_asset_id?, succeed?}` → steps, raw lines, detections, verdict, events sent, incident. **DEMO_MODE only** (403 otherwise) |
-| POST | `/api/attack-lab/analyze` | `{lines: [...]}` (≤ 500 lines, ≤ 4096 chars each, else 422) → same detection on pasted log lines / URLs. Stateless, nothing stored |
+| GET | `/api/attack-lab/attackers` | Real attackers from the cache, each with `kind` (web/login/scan), the rules our detector fires on their traffic, `cve_ids` they exploit, country / AS / ISC threat feeds, `default_target` (an asset our matcher says is vulnerable to the exploited CVE, when one exists) |
+| POST | `/api/attack-lab/run` | `{attacker_ip, target_asset_id?}` -> `steps`, real `lines`, `detections`, `verdict`, **`intel`**, events, incident. DEMO_MODE only (403); unknown attacker/asset 404 |
+| POST | `/api/attack-lab/analyze` | `{lines: [...]}` (<= 500 lines, <= 4096 chars each, else 422): detection on pasted lines / URLs. Stateless |
+| GET | `/api/attack-lab/rules` | Rulebook (logic, thresholds, why it works, MITRE), signatures, `known_exploits` (path -> CVE table) |
 
-Pipeline: **parse** (web access, sshd auth, firewall, process audit, conntrack; anything else is checked as raw request
-text) → **per-line signatures** (SQLi, command injection, traversal, XSS on the URL-decoded request) → **per-source
-thresholds** (10+ failed logins / 60s, 15+ ports / 60s) → **sequence rules** (login success after failures; injected
-request returning 5x a normal page; web server → shell; outbound to attacker-named IP) → **verdict** (attack type,
-stage recon/attempt/compromise, confidence, decision path).
+**`intel`** (the link to our threat intelligence):
+- `attacker`: `reputation` (ISC: AS, country, reports, `threat_feeds`), `location` (DB-IP Lite when downloaded, else
+  ISC), `our_ioc_hits` (rows of our IOC table with this IP).
+- `cves[]`: per exploited CVE: `in_feed`, `title`, `kev_listed`, `epss`, `cvss`, **`target_match`** (matcher verdict for
+  the target: confirmed_affected / needs_verification / confirmed_unaffected) and `other_exposed_assets`.
+- If the target is vulnerable to an exploited CVE, the run also creates that CVE's vulnerability alert
+  (`correlation.vulnerability_alerts`) and the exploit event becomes `exploit_on_vulnerable_asset` (severity 0.9).
+  Example on the cached data: 51.159.5.6 sends a real CVE-2024-4577 exploit; GOV-WEB-01 is vulnerable -> critical.
 
-| Rule | Detects | Signal → score |
-|---|---|---|
-| AUTH-BF-001 | brute force / password spraying (T1110) | `brute_force` 0.6 |
-| AUTH-BF-002 | success after brute force (T1078) | `credential_compromise` 0.95 |
-| NET-SCAN-001 | port scan (T1046) | `port_scan` 0.45 |
-| WEB-SQLI-001 | SQL injection (T1190) | `sql_injection` 0.75 |
-| WEB-SQLI-002 | injected query returned data (T1213) | `data_exposure` 0.95 |
-| WEB-CMDI-001 | command injection (T1190) | `command_injection` 0.85 |
-| WEB-TRAV-001 / WEB-XSS-001 | path traversal / XSS | `http_anomaly` 0.5 |
-| HOST-PROC-001 | web server spawned a shell (T1059.004) | `unexpected_process` 0.8 |
-| NET-C2-001 | reverse-shell outbound (T1095) | `outbound_connection` 0.7 |
-
-Each fired rule becomes one `SecurityEvent` (`rule_id`, `confidence`, `details.attack_signal/attack_label/
-detection_reason/mitre/src_ip`). Behaviour alerts built from them get a title naming the attack
-(e.g. `SQL injection + SQL injection: data extracted on netbanking-web (BNK-NET-01)`), plus
-`attack_classification` and `indicators.src_ips`. Re-running on the same asset within 15 minutes joins the open
-incident (`correlation.note` says so); `POST /api/demo/reset-alerts` starts clean.
-
-Expected results: brute force → medium (blocked) / critical (password guessed); SQL injection → high / critical (data
-extracted); port scan → medium; command injection → high / critical (shell + call-home); normal traffic → no incident.
+Rules added for real traffic: `WEB-EXPLOIT-001` (published exploit path -> specific CVE: CVE-2017-9841, CVE-2018-13379,
+CVE-2024-4577, CVE-2012-1823, CVE-2021-41773/42013, CVE-2022-22947, CVE-2023-1389, CVE-2017-18368, CVE-2018-10562,
+CVE-2018-20062; all in our KEV feed), `WEB-RECON-001` (5+ secret/admin-path requests from one source, T1595.003),
+`NET-LOGIN-001` (20+ connections to 22/23/2222/3389/5900 from one source, T1110). Existing signature/threshold rules
+(SQLi, command injection, traversal, XSS, port scan, brute force) are unchanged. Signal severities:
+`exploit_attempt` 0.7, `exploit_on_vulnerable_asset` 0.9, `login_hammering` 0.5, `recon_probe` 0.35.
 
 # Emerging campaigns (`backend/app/campaigns.py`, contract v1.3 entity `campaign`)
 

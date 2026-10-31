@@ -5,146 +5,97 @@ import type { Alert } from '../api'
 import { PriorityBadge } from '../ui'
 import './attack.css'
 
-// Animated replay of one Attack Lab run. Everything shown comes from the backend response: the log lines the lab
-// wrote, the rules that fired on them, and the incident the correlator created. Nothing here decides anything.
+// Animated replay of one Attack Lab run: a REAL attacker's real traffic (SANS ISC sensors) replayed against one of our
+// simulated assets. Everything shown comes from the backend response; nothing here decides anything.
 
-type Match = { start: number; end: number; text: string; technique: string }
+type Match = { start: number; end: number; text: string; technique: string; family?: string; signature?: string }
 export type GraphLine = { line_no: number; raw: string; source: string; flagged_by: string | null; decoded: string | null; matches: Match[] }
 type Mitre = { id: string; name: string }
 type Detection = { rule_id: string; name: string; label: string; stage: string; reason: string; mitre: Mitre[]; evidence: { line_no: number }[] }
 type Check = { rule_id: string; fired: boolean; observed: string; threshold: string }
 type Step = { title: string; detail: string; actor: string; line_nos: number[] }
+export type IntelCve = { cve_id: string; in_feed: boolean; title?: string; kev_listed?: boolean | null; epss?: number | null; cvss?: number | null
+  target_match?: string; target_reason?: string; other_exposed_assets?: string[] }
 export type GraphRun = {
-  run_id: string; scenario: string; steps: Step[]; lines: GraphLine[]; detections: Detection[]; checks: Check[]
+  run_id: string; kind: string; steps: Step[]; lines: GraphLine[]; detections: Detection[]; checks: Check[]
   verdict: { attack_detected: boolean; headline: string; attacker_ips: string[] }
+  attacker: { ip: string; country: string | null; as_name: string | null }
   target: { asset_id: string; hostname: string; role: string }
-  correlation: { note: string; incidents: Alert[] }
+  intel: { cves: IntelCve[] }
+  correlation: { note: string; incidents: Alert[]; vulnerability_alerts?: string[] }
 }
-type Thresholds = { brute_force_failures?: number; port_scan_distinct_ports?: number }
+type Thresholds = { brute_force_failures?: number; port_scan_distinct_ports?: number; recon_min_requests?: number
+  login_hammer_min?: number; login_ports?: number[] }
 
-type NodeKind = 'attacker' | 'users' | 'asset' | 'data' | 'external'
+type NodeKind = 'attacker' | 'asset' | 'data' | 'intel'
 type GNode = { id: string; x: number; y: number; label: string; sub?: string; kind: NodeKind }
 type Tone = 'bad' | 'warn' | 'good' | 'calm' | 'data'
 type Hop = { from: string; to: string; tone: Tone; label?: string }
 type Effect = { node: string; tone: Tone; badge: string }
-type Routed = { hops: Hop[]; effect?: Effect; port?: { port: number; open: boolean } }
+type Routed = { hops: Hop[]; effect?: Effect; port?: number; family: 'exploit' | 'inject' | 'recon' | 'web' | 'login' | 'port' }
 
 const STAGES = ['recon', 'attempt', 'success'] as const
 const STAGE_LABEL = { recon: 'Reconnaissance', attempt: 'Attack attempt', success: 'Compromise likely' }
+const VULNERABLE = new Set(['confirmed_affected', 'needs_verification'])
 
-// --- parsing the raw log text (same formats the backend writes) ----------------------------------------------
-const webFields = (raw: string) => {
-  const m = raw.match(/" (\d{3}) (\d+)/)
-  return { status: m ? +m[1] : 0, bytes: m ? +m[2] : 0 }
-}
-const kb = (n: number) => (n >= 1024 ? `${(n / 1024).toFixed(0)} KB` : `${n} B`)
+const clip = (s: string, n: number) => (s.length > n ? `${s.slice(0, n - 1)}…` : s)
+const pathOf = (l: GraphLine) => (l.decoded ?? l.raw.match(/"GET (\S+)/)?.[1] ?? '').split('?')[0]
 
-// --- scenario layouts: where the boxes sit and which way each log line travels ------------------------------
-function layout(run: GraphRun): { nodes: GNode[]; edges: [string, string][]; route: (l: GraphLine, actor: string) => Routed } {
-  const atk = run.verdict.attacker_ips[0] ?? 'attacker'
+// Where the boxes sit and which way each real log line travels, from what is in this run's data.
+function layout(run: GraphRun, loginPorts: number[]) {
   const host = run.target.hostname
-  const attacker: GNode = { id: 'atk', x: 95, y: 110, label: 'Attacker', sub: atk, kind: 'attacker' }
-  switch (run.scenario) {
-    case 'brute_force':
-      return {
-        nodes: [attacker, { id: 'usr', x: 95, y: 290, label: 'Staff', sub: 'internal users', kind: 'users' },
-          { id: 'login', x: 430, y: 200, label: 'Login service', sub: `${host} · sshd`, kind: 'asset' },
-          { id: 'acct', x: 780, y: 200, label: 'admin account', sub: 'privileged access', kind: 'data' }],
-        edges: [['atk', 'login'], ['usr', 'login'], ['login', 'acct']],
-        route: (l, actor) => {
-          const ok = /Accepted/.test(l.raw)
-          const user = l.raw.match(/for (?:invalid user )?(\S+)/)?.[1] ?? ''
-          if (actor !== 'attacker') return { hops: [{ from: 'usr', to: 'login', tone: ok ? 'good' : 'calm', label: ok ? `✓ ${user}` : `✗ ${user}` }] }
-          return ok
-            ? { hops: [{ from: 'atk', to: 'login', tone: 'bad', label: `✓ ${user}` }, { from: 'login', to: 'acct', tone: 'bad', label: 'logged in' }],
-                effect: { node: 'acct', tone: 'bad', badge: 'COMPROMISED' } }
-            : { hops: [{ from: 'atk', to: 'login', tone: 'warn', label: `✗ ${user}` }] }
-        },
-      }
-    case 'port_scan':
-      return {
-        nodes: [attacker, { id: 'usr', x: 95, y: 290, label: 'Visitors', sub: 'HTTPS clients', kind: 'users' },
-          { id: 'fw', x: 400, y: 200, label: 'Firewall', sub: host, kind: 'asset' }],
-        edges: [['atk', 'fw'], ['usr', 'fw']],
-        route: (l, actor) => {
-          if (l.source === 'firewall') {
-            const port = +(l.raw.match(/DPT=(\d+)/)?.[1] ?? 0)
-            const open = /ACTION=ACCEPT/.test(l.raw)
-            return actor === 'attacker'
-              ? { hops: [{ from: 'atk', to: 'fw', tone: 'warn', label: `:${port}` }], port: { port, open } }
-              : { hops: [{ from: 'usr', to: 'fw', tone: 'calm', label: ':443' }] }
-          }
-          return { hops: [{ from: 'atk', to: 'fw', tone: 'warn', label: 'GET / (fingerprint)' }] }
-        },
-      }
-    case 'command_injection':
-      return {
-        nodes: [attacker, { id: 'web', x: 360, y: 200, label: 'Web server', sub: host, kind: 'asset' },
-          { id: 'sh', x: 620, y: 200, label: 'Shell', sub: '/bin/sh on the server', kind: 'data' },
-          { id: 'c2', x: 880, y: 110, label: 'Attacker listener', sub: '198.51.100.7:4444', kind: 'external' }],
-        edges: [['atk', 'web'], ['web', 'sh'], ['sh', 'c2']],
-        route: (l) => {
-          if (l.source === 'process') return { hops: [{ from: 'web', to: 'sh', tone: 'bad', label: 'php-fpm → sh' }], effect: { node: 'sh', tone: 'bad', badge: 'SHELL RUNNING' } }
-          if (l.source === 'network') return { hops: [{ from: 'sh', to: 'c2', tone: 'bad', label: 'connect :4444' }], effect: { node: 'c2', tone: 'bad', badge: 'REMOTE CONTROL' } }
-          const { status } = webFields(l.raw)
-          const injected = l.matches.length > 0
-          if (!injected) return { hops: [{ from: 'atk', to: 'web', tone: 'calm', label: 'ping 8.8.8.8' }] }
-          return status === 403
-            ? { hops: [{ from: 'atk', to: 'web', tone: 'bad', label: short(l) }], effect: { node: 'web', tone: 'good', badge: 'BLOCKED 403' } }
-            : { hops: [{ from: 'atk', to: 'web', tone: 'bad', label: short(l) }] }
-        },
-      }
-    case 'normal_traffic':
-      return {
-        nodes: [{ id: 'usr', x: 110, y: 200, label: 'Citizens & staff', sub: 'normal users', kind: 'users' },
-          { id: 'web', x: 520, y: 95, label: 'Web portal', sub: host, kind: 'asset' },
-          { id: 'login', x: 520, y: 200, label: 'Login service', sub: 'sshd', kind: 'asset' },
-          { id: 'fw', x: 520, y: 305, label: 'Firewall', sub: 'port 443', kind: 'asset' }],
-        edges: [['usr', 'web'], ['usr', 'login'], ['usr', 'fw']],
-        route: (l) => {
-          const to = l.source === 'auth' ? 'login' : l.source === 'firewall' ? 'fw' : 'web'
-          const label = l.source === 'auth' ? (/Accepted/.test(l.raw) ? '✓ login' : '✗ typo') : l.source === 'web' ? path(l) : ':443'
-          return { hops: [{ from: 'usr', to, tone: /Accepted/.test(l.raw) ? 'good' : 'calm', label }] }
-        },
-      }
-    default: // sql_injection
-      return {
-        nodes: [attacker, { id: 'usr', x: 95, y: 290, label: 'Customers', sub: 'internet banking users', kind: 'users' },
-          { id: 'web', x: 430, y: 200, label: 'Web app', sub: host, kind: 'asset' },
-          { id: 'db', x: 790, y: 200, label: 'Database', sub: 'customers table', kind: 'data' }],
-        edges: [['atk', 'web'], ['usr', 'web'], ['web', 'db']],
-        route: (l, actor) => {
-          const { status, bytes } = webFields(l.raw)
-          if (actor !== 'attacker' || !l.matches.length) {
-            return { hops: [{ from: actor === 'attacker' ? 'atk' : 'usr', to: 'web', tone: 'calm', label: path(l) }, { from: 'web', to: 'db', tone: 'calm' }] }
-          }
-          const hops: Hop[] = [{ from: 'atk', to: 'web', tone: 'bad', label: short(l) }]
-          if (status === 403) return { hops, effect: { node: 'web', tone: 'good', badge: 'BLOCKED 403' } }
-          hops.push({ from: 'web', to: 'db', tone: 'bad', label: 'injected query' })
-          if (status === 200 && bytes >= 10000) {
-            hops.push({ from: 'db', to: 'web', tone: 'data', label: kb(bytes) }, { from: 'web', to: 'atk', tone: 'data', label: `${kb(bytes)} out` })
-            return { hops, effect: { node: 'db', tone: 'bad', badge: 'DATA LEAKED' } }
-          }
-          return { hops, effect: status >= 500 ? { node: 'web', tone: 'warn', badge: `ERROR ${status}` } : undefined }
-        },
-      }
+  const nodes: GNode[] = [{ id: 'atk', x: 110, y: 200, label: run.attacker.ip, sub: [run.attacker.country, run.attacker.as_name].filter(Boolean).join(' · ') || 'real attacker', kind: 'attacker' }]
+  const edges: [string, string][] = []
+  const hasWeb = run.lines.some((l) => l.source === 'web')
+  const hasFw = run.lines.some((l) => l.source === 'firewall')
+  const hasLogin = run.lines.some((l) => loginPorts.includes(+(l.raw.match(/DPT=(\d+)/)?.[1] ?? -1)))
+  const cves = run.intel.cves.filter((c) => c.in_feed)
+  if (hasWeb) {
+    nodes.push({ id: 'web', x: 470, y: hasFw ? 120 : 200, label: 'Web server', sub: host, kind: 'asset' })
+    edges.push(['atk', 'web'])
+    if (cves.length) {
+      nodes.push({ id: 'intel', x: 840, y: hasFw ? 120 : 200, label: 'Our threat intel', sub: `${cves.length} CVE(s) · NVD + CISA KEV`, kind: 'intel' })
+      edges.push(['web', 'intel'])
+    }
   }
+  if (hasFw) {
+    nodes.push({ id: 'fw', x: 470, y: hasWeb ? 290 : 200, label: 'Firewall', sub: host, kind: 'asset' })
+    edges.push(['atk', 'fw'])
+    if (hasLogin) {
+      nodes.push({ id: 'login', x: 840, y: hasWeb ? 290 : 200, label: 'Login services', sub: 'SSH · Telnet · RDP · VNC', kind: 'data' })
+      edges.push(['fw', 'login'])
+    }
+  }
+  const vulnerable = cves.some((c) => VULNERABLE.has(c.target_match ?? ''))
+  const route = (l: GraphLine): Routed => {
+    if (l.source === 'firewall') {
+      const port = +(l.raw.match(/DPT=(\d+)/)?.[1] ?? 0)
+      return loginPorts.includes(port)
+        ? { family: 'login', hops: [{ from: 'atk', to: 'fw', tone: 'warn', label: `:${port}` }, { from: 'fw', to: 'login', tone: 'warn' }] }
+        : { family: 'port', port, hops: [{ from: 'atk', to: 'fw', tone: 'warn', label: `:${port}` }] }
+    }
+    const fam = new Set(l.matches.map((m) => m.family))
+    const exploit = l.matches.find((m) => m.family === 'known_exploit')
+    if (exploit) {
+      const cve = run.intel.cves.find((c) => c.cve_id === exploit.signature)
+      const hops: Hop[] = [{ from: 'atk', to: 'web', tone: 'bad', label: exploit.signature }]
+      if (cve?.in_feed) hops.push({ from: 'web', to: 'intel', tone: 'data', label: `KEV ${cve.kev_listed ? '✓' : '✗'} · EPSS ${cve.epss != null ? Math.round(cve.epss * 100) + '%' : '?'}` })
+      const hit = cve && VULNERABLE.has(cve.target_match ?? '')
+      return { family: 'exploit', hops, effect: cve?.in_feed ? { node: 'intel', tone: hit ? 'bad' : 'good', badge: hit ? 'WE ARE VULNERABLE' : 'NOT VULNERABLE' } : undefined }
+    }
+    const sig = l.matches.find((m) => m.family && m.family !== 'recon')
+    if (sig) return { family: 'inject', hops: [{ from: 'atk', to: 'web', tone: 'bad', label: clip(sig.text, 24) }] }
+    if (fam.has('recon')) return { family: 'recon', hops: [{ from: 'atk', to: 'web', tone: 'warn', label: clip(pathOf(l), 24) }] }
+    return { family: 'web', hops: [{ from: 'atk', to: 'web', tone: 'calm', label: clip(pathOf(l), 22) }] }
+  }
+  return { nodes, edges, route, vulnerable }
 }
 
-function short(l: GraphLine) {
-  const m = l.matches[0]
-  return m ? (m.text.length > 26 ? `${m.text.slice(0, 24)}…` : m.text) : path(l)
-}
-function path(l: GraphLine) {
-  const p = (l.decoded ?? l.raw.match(/"GET (\S+)/)?.[1] ?? '').split('?')[0]
-  return p.length > 22 ? `${p.slice(0, 20)}…` : p
-}
-
-// Draw the decoded request with every signature match highlighted.
+// Draw the decoded request with every match highlighted.
 function Highlighted({ text, matches }: { text: string; matches: Match[] }) {
   const parts: React.ReactNode[] = []
   let at = 0
-  for (const m of [...matches].sort((a, b) => a.start - b.start)) {
+  for (const m of [...matches].filter((m) => m.end > m.start).sort((a, b) => a.start - b.start)) {
     if (m.start < at) continue
     parts.push(text.slice(at, m.start), <mark key={m.start} className="lab-mark" title={m.technique}>{text.slice(m.start, m.end)}</mark>)
     at = m.end
@@ -153,47 +104,49 @@ function Highlighted({ text, matches }: { text: string; matches: Match[] }) {
   return <>{parts}</>
 }
 
-const W = 1000, H = 380, NODE_W = 170, NODE_H = 64
+const W = 1000, H = 400, NODE_W = 190, NODE_H = 64
 
 export default function AttackGraph({ run, thresholds }: { run: GraphRun; thresholds: Thresholds }) {
   const lines = run.lines
   const total = lines.length
   const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  const [cursor, setCursor] = useState(reduced ? total : 0)  // number of lines that have happened
+  const [cursor, setCursor] = useState(reduced ? total : 0)  // number of real log lines replayed so far
   const [playing, setPlaying] = useState(!reduced)
   const [speed, setSpeed] = useState(1)
   const [focus, setFocus] = useState<string | null>(null)  // selected rule or node
   const logRef = useRef<HTMLOListElement>(null)
 
-  const { nodes, edges, route } = useMemo(() => layout(run), [run])
+  const loginPorts = useMemo(() => thresholds.login_ports ?? [22, 23, 2222, 3389, 5900], [thresholds])
+  const { nodes, edges, route } = useMemo(() => layout(run, loginPorts), [run, loginPorts])
   const byId = useMemo(() => Object.fromEntries(nodes.map((n) => [n.id, n])), [nodes])
-  const actorOf = useMemo(() => {
-    const m = new Map<number, string>()
-    run.steps.forEach((s) => s.line_nos.forEach((n) => m.set(n, s.actor)))
-    return m
-  }, [run])
-  const routed = useMemo(() => lines.map((l) => route(l, actorOf.get(l.line_no) ?? 'attacker')), [lines, route, actorOf])
+  const routed = useMemo(() => lines.map(route), [lines, route])
 
-  // When does each rule "trip"? Threshold rules trip on the line that crosses the threshold, others on their first evidence.
+  // The line on which each rule "trips": threshold rules on the line that crosses the threshold, others on first evidence.
   const trips = useMemo(() => {
     const t = new Map<string, number>()
-    const atkFails: number[] = [], ports = new Set<number>(), portLines: number[] = []
-    lines.forEach((l, i) => {
-      if (actorOf.get(l.line_no) === 'attacker' && /Failed password/.test(l.raw)) atkFails.push(i)
-      const p = routed[i].port
-      if (p && !ports.has(p.port)) { ports.add(p.port); portLines.push(i) }
-    })
+    const nth = (pred: (r: Routed) => boolean, n?: number) => {
+      if (!n) return undefined
+      let k = 0
+      for (let i = 0; i < routed.length; i++) if (pred(routed[i]) && ++k === n) return i
+      return undefined
+    }
+    const seen = new Set<number>()
+    const distinct = (r: Routed) => r.port !== undefined && !seen.has(r.port) && (seen.add(r.port), true)
+    const special: Record<string, number | undefined> = {
+      'WEB-RECON-001': nth((r) => r.family === 'recon', thresholds.recon_min_requests),
+      'NET-LOGIN-001': nth((r) => r.family === 'login', thresholds.login_hammer_min),
+      'NET-SCAN-001': nth(distinct, thresholds.port_scan_distinct_ports),
+    }
     for (const d of run.detections) {
-      let idx = Math.min(...d.evidence.map((e) => lines.findIndex((l) => l.line_no === e.line_no)).filter((x) => x >= 0))
-      if (d.rule_id === 'AUTH-BF-001' && thresholds.brute_force_failures) idx = atkFails[thresholds.brute_force_failures - 1] ?? idx
-      if (d.rule_id === 'NET-SCAN-001' && thresholds.port_scan_distinct_ports) idx = portLines[thresholds.port_scan_distinct_ports - 1] ?? idx
-      if (!t.has(d.rule_id) && Number.isFinite(idx)) t.set(d.rule_id, idx)
+      const first = Math.min(...d.evidence.map((e) => lines.findIndex((l) => l.line_no === e.line_no)).filter((x) => x >= 0))
+      const idx = special[d.rule_id] ?? first
+      if (Number.isFinite(idx)) t.set(d.rule_id, idx)
     }
     return t
-  }, [run, lines, routed, actorOf, thresholds])
+  }, [run, lines, routed, thresholds])
 
-  // Playback: one log line per tick; the tick length scales so every attack replays in roughly 12 seconds.
-  const tick = Math.min(950, Math.max(260, 12000 / Math.max(total, 1))) / speed
+  // Playback: one real log line per tick, scaled so a run replays in roughly 12-20 seconds.
+  const tick = Math.min(950, Math.max(90, 15000 / Math.max(total, 1))) / speed
   useEffect(() => {
     if (!playing) return
     if (cursor >= total) { setPlaying(false); return }
@@ -203,34 +156,36 @@ export default function AttackGraph({ run, thresholds }: { run: GraphRun; thresh
   useEffect(() => { setCursor(reduced ? total : 0); setPlaying(!reduced); setFocus(null) }, [run, reduced, total])
   useEffect(() => { const el = logRef.current; if (el) el.scrollTop = el.scrollHeight }, [cursor])
 
-  // Everything below is derived from "the first `cursor` lines have happened".
+  // Everything below is derived from "the first `cursor` real lines have happened".
   const done = routed.slice(0, cursor)
   const current = cursor > 0 ? routed[cursor - 1] : null
   const lit = run.detections.filter((d) => (trips.get(d.rule_id) ?? Infinity) < cursor)
   const stage = lit.reduce((s, d) => Math.max(s, STAGES.indexOf(d.stage as (typeof STAGES)[number])), -1)
   const finished = cursor >= total
   const edgeUse = new Map<string, Tone>()
+  const rank: Tone[] = ['calm', 'good', 'warn', 'data', 'bad']
   done.forEach((r) => r.hops.forEach((h) => {
     const k = [h.from, h.to].sort().join('|')
     const prev = edgeUse.get(k)
-    edgeUse.set(k, prev === 'bad' || h.tone === 'bad' ? 'bad' : prev === 'data' || h.tone === 'data' ? 'data' : h.tone === 'warn' || prev === 'warn' ? 'warn' : 'calm')
+    if (!prev || rank.indexOf(h.tone) > rank.indexOf(prev)) edgeUse.set(k, h.tone)
   }))
   const effects = new Map<string, Effect>()
-  done.forEach((r) => { if (r.effect) effects.set(r.effect.node, r.effect) })
+  // Worst outcome wins: once one exploited CVE hits a vulnerable version, the node stays red.
+  done.forEach((r) => { if (r.effect && effects.get(r.effect.node)?.tone !== 'bad') effects.set(r.effect.node, r.effect) })
   const alarm = new Set<string>()
   for (const d of lit) for (const e of d.evidence) {
     const i = lines.findIndex((l) => l.line_no === e.line_no)
-    routed[i]?.hops.forEach((h) => { if (h.to !== 'atk') alarm.add(h.to) })
+    routed[i]?.hops.forEach((h) => { if (h.to !== 'atk' && h.to !== 'intel') alarm.add(h.to) })
   }
   const stepIdx = cursor === 0 ? 0 : Math.max(0, run.steps.findIndex((s) => s.line_nos.includes(lines[cursor - 1].line_no)))
   const step = run.steps[stepIdx]
-  const ports = done.filter((r) => r.port).map((r) => r.port!)
-  const atkFails = lines.slice(0, cursor).filter((l) => actorOf.get(l.line_no) === 'attacker' && /Failed password/.test(l.raw)).length
+  const count = (f: Routed['family']) => done.filter((r) => r.family === f).length
+  const ports = [...new Set(done.filter((r) => r.port !== undefined).map((r) => r.port!))]
+  const allPorts = useMemo(() => [...new Set(routed.filter((r) => r.port !== undefined).map((r) => r.port!))].sort((a, b) => a - b).slice(0, 48), [routed])
   const focusRule = run.detections.find((d) => d.rule_id === focus)
   const focusLines = new Set(focusRule ? focusRule.evidence.map((e) => e.line_no)
     : focus ? lines.filter((_, i) => routed[i].hops.some((h) => h.to === focus || h.from === focus)).map((l) => l.line_no) : [])
   const incident = run.correlation.incidents[0]
-  // Every rule that was checked, plus follow-up rules that fired (e.g. WEB-SQLI-002) placed next to their family.
   const tripwires = useMemo(() => {
     const out: Check[] = [...run.checks]
     for (const d of run.detections) {
@@ -239,8 +194,17 @@ export default function AttackGraph({ run, thresholds }: { run: GraphRun; thresh
       const at = out.map((c) => c.rule_id.startsWith(family)).lastIndexOf(true)
       out.splice(at >= 0 ? at + 1 : out.length, 0, { rule_id: d.rule_id, fired: true, observed: d.reason, threshold: '' })
     }
-    return out
+    // Fired rules first so the story reads left to right.
+    return out.sort((a, b) => +!!run.detections.find((d) => d.rule_id === b.rule_id) - +!!run.detections.find((d) => d.rule_id === a.rule_id))
   }, [run])
+
+  const gauges: { label: string; value: number; max: number; mark?: number }[] = []
+  if (routed.some((r) => r.family === 'exploit')) gauges.push({ label: 'Exploit requests (known CVEs)', value: count('exploit'), max: Math.max(5, routed.filter((r) => r.family === 'exploit').length) })
+  if (routed.some((r) => r.family === 'inject')) gauges.push({ label: 'Injection / traversal payloads', value: count('inject'), max: Math.max(5, routed.filter((r) => r.family === 'inject').length) })
+  if (routed.some((r) => r.family === 'recon')) gauges.push({ label: 'Secret / admin-path requests', value: count('recon'), max: Math.max(10, routed.filter((r) => r.family === 'recon').length), mark: thresholds.recon_min_requests })
+  if (routed.some((r) => r.family === 'login')) gauges.push({ label: 'Login-port connections', value: count('login'), max: Math.max(25, routed.filter((r) => r.family === 'login').length), mark: thresholds.login_hammer_min })
+  if (allPorts.length) gauges.push({ label: 'Distinct ports probed', value: ports.length, max: Math.max(20, allPorts.length), mark: thresholds.port_scan_distinct_ports })
+  if (!gauges.length) gauges.push({ label: 'Requests replayed', value: cursor, max: total })
 
   const jump = (to: number) => { setPlaying(false); setCursor(Math.max(0, Math.min(total, to))) }
   const replay = () => { setCursor(0); setPlaying(true) }
@@ -249,8 +213,8 @@ export default function AttackGraph({ run, thresholds }: { run: GraphRun; thresh
     <section className="panel ag">
       <header className="ag-head">
         <div className="min-w-0">
-          <p className="ag-kicker">Step {Math.min(stepIdx + 1, run.steps.length)} of {run.steps.length} · {step?.actor}</p>
-          <h2 className="ag-title">{step?.title}</h2>
+          <p className="ag-kicker">Real traffic · {step ? `${step.title} (${Math.min(stepIdx + 1, run.steps.length)} of ${run.steps.length})` : 'no requests'}</p>
+          <h2 className="ag-title">{run.attacker.ip} → {run.target.hostname} ({run.target.asset_id})</h2>
           <p className="ag-detail">{step?.detail}</p>
         </div>
         <Meter stage={stage} finished={finished} detected={run.verdict.attack_detected} />
@@ -258,15 +222,11 @@ export default function AttackGraph({ run, thresholds }: { run: GraphRun; thresh
 
       <div className="ag-stage">
         <svg viewBox={`0 0 ${W} ${H}`} className="ag-svg" role="img" aria-label={`Animated replay: ${run.verdict.headline}`}>
-          <defs>
-            <pattern id="ag-grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" className="ag-grid" /></pattern>
-          </defs>
+          <defs><pattern id="ag-grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" className="ag-grid" /></pattern></defs>
           <rect width={W} height={H} fill="url(#ag-grid)" />
-          {run.scenario === 'command_injection' && <path d={`M${byId.c2.x} ${byId.c2.y - NODE_H / 2} C ${byId.c2.x - 120} 0, ${byId.atk.x + 160} 0, ${byId.atk.x + 40} ${byId.atk.y - NODE_H / 2}`}
-            className={`ag-edge ${edgeUse.has('c2|sh') ? 'is-bad ag-dash' : ''}`} />}
           {edges.map(([a, b]) => {
             const tone = edgeUse.get([a, b].sort().join('|'))
-            return <line key={a + b} x1={byId[a].x} y1={byId[a].y} x2={byId[b].x} y2={byId[b].y} className={`ag-edge ${tone ? `is-${tone}` : ''}`} />
+            return <line key={a + b} x1={byId[a].x} y1={byId[a].y} x2={byId[b].x} y2={byId[b].y} className={`ag-edge ${tone ? `is-${tone}` : ''} ${b === 'intel' ? 'ag-dash' : ''}`} />
           })}
           {nodes.map((n) => {
             const fx = effects.get(n.id)
@@ -276,15 +236,16 @@ export default function AttackGraph({ run, thresholds }: { run: GraphRun; thresh
                 <title>{`${n.label}${n.sub ? ` · ${n.sub}` : ''} — click to highlight its log lines`}</title>
                 {alarm.has(n.id) && <rect className="ag-ring" x={-6} y={-6} width={NODE_W + 12} height={NODE_H + 12} rx={14} />}
                 <rect className="ag-box" width={NODE_W} height={NODE_H} rx={10} />
-                <text x={14} y={27} className="ag-label">{n.label}</text>
-                <text x={14} y={47} className="ag-sub">{n.sub}</text>
-                {fx && <g transform={`translate(${NODE_W / 2} ${NODE_H + 18})`}><rect x={-62} y={-12} width={124} height={22} rx={11} className={`ag-badge t-${fx.tone}`} />
+                <text x={14} y={27} className="ag-label">{clip(n.label, 22)}</text>
+                <text x={14} y={47} className="ag-sub">{clip(n.sub ?? '', 28)}</text>
+                {fx && <g transform={`translate(${NODE_W / 2} ${NODE_H + 18})`}><rect x={-72} y={-12} width={144} height={22} rx={11} className={`ag-badge t-${fx.tone}`} />
                   <text textAnchor="middle" y={4} className="ag-badge-text">{fx.badge}</text></g>}
               </g>
             )
           })}
           {current?.hops.map((h, i) => {
             const a = byId[h.from], b = byId[h.to]
+            if (!a || !b) return null
             const dur = (tick * 0.85) / current.hops.length
             return (
               <g key={`${cursor}-${i}`} className={`ag-pkt t-${h.tone}`}
@@ -295,10 +256,20 @@ export default function AttackGraph({ run, thresholds }: { run: GraphRun; thresh
             )
           })}
         </svg>
-        {run.scenario === 'port_scan' && <PortGrid ports={ports} />}
+        {allPorts.length > 0 && <PortGrid all={allPorts} seen={new Set(ports)} />}
       </div>
 
-      <Gauges run={run} thresholds={thresholds} atkFails={atkFails} ports={ports.length} done={done} />
+      <div className="ag-gauges">
+        {gauges.map((x) => (
+          <div key={x.label} className="ag-gauge">
+            <div className="flex justify-between gap-2 text-sm"><span>{x.label}</span><b className="text-white">{x.value}{x.mark ? ` / threshold ${x.mark}` : ''}</b></div>
+            <div className="ag-bar">
+              <span style={{ width: `${Math.min(100, (100 * x.value) / x.max)}%` }} className={x.mark && x.value >= x.mark ? 'is-over' : ''} />
+              {x.mark ? <i style={{ left: `${Math.min(100, (100 * x.mark) / x.max)}%` }} title={`rule threshold: ${x.mark}`} /> : null}
+            </div>
+          </div>
+        ))}
+      </div>
 
       <div className="ag-trips" aria-label="Detection rules">
         {tripwires.map((c) => {
@@ -322,7 +293,7 @@ export default function AttackGraph({ run, thresholds }: { run: GraphRun; thresh
         </button>
         <button type="button" className="ag-btn" onClick={() => jump(cursor + 1)} aria-label="Next line"><SkipForward className="size-4" /></button>
         <input type="range" min={0} max={total} value={cursor} onChange={(e) => jump(+e.target.value)} className="ag-scrub" aria-label="Timeline" />
-        <span className="ag-count">{cursor}/{total} log lines</span>
+        <span className="ag-count">{cursor}/{total} real log lines</span>
         <div className="ag-speed" role="group" aria-label="Speed">
           {[0.5, 1, 2, 4].map((s) => <button key={s} type="button" className={speed === s ? 'is-on' : ''} onClick={() => setSpeed(s)}>{s}×</button>)}
         </div>
@@ -331,17 +302,17 @@ export default function AttackGraph({ run, thresholds }: { run: GraphRun; thresh
       <div className="ag-bottom">
         <ol ref={logRef} className="lab-log ag-log" aria-label="Log stream">
           {lines.slice(0, cursor).map((l, i) => (
-            <li key={l.line_no} className={`lab-line ${l.flagged_by ? 'is-hit' : actorOf.get(l.line_no) === 'attacker' ? 'is-attacker' : ''} ${i === cursor - 1 ? 'is-now' : ''} ${focusLines.has(l.line_no) ? 'is-focus' : ''}`}
+            <li key={l.line_no} className={`lab-line ${l.flagged_by ? 'is-hit' : routed[i].family !== 'web' ? 'is-attacker' : ''} ${i === cursor - 1 ? 'is-now' : ''} ${focusLines.has(l.line_no) ? 'is-focus' : ''}`}
               onClick={() => jump(i + 1)}>
               <span className="lab-no">{l.line_no}</span>
               <span className="min-w-0">
                 <span className="block break-all">{l.raw}</span>
-                {l.matches.length > 0 && l.decoded && <span className="mt-1 block break-all text-grey-200">decoded: <Highlighted text={l.decoded} matches={l.matches} /></span>}
+                {l.matches.some((m) => m.end > m.start) && l.decoded && <span className="mt-1 block break-all text-grey-200">decoded: <Highlighted text={l.decoded} matches={l.matches} /></span>}
               </span>
               {l.flagged_by && <span className="lab-rule">{l.flagged_by}</span>}
             </li>
           ))}
-          {cursor === 0 && <li className="px-3 py-2 text-grey-400">Press play: log lines stream in as the attack happens.</li>}
+          {cursor === 0 && <li className="px-3 py-2 text-grey-400">Press play: the attacker's real requests stream in, in their original order.</li>}
         </ol>
         <aside className={`ag-outcome ${finished ? 'is-in' : ''}`}>
           {!finished ? <p className="text-grey-400">The verdict and the incident appear when the replay ends.</p> : <>
@@ -350,6 +321,7 @@ export default function AttackGraph({ run, thresholds }: { run: GraphRun; thresh
             {incident ? <>
               <div className="mt-3 flex flex-wrap items-center gap-2"><PriorityBadge priority={incident.priority} /><span className="tag">score {incident.risk_score}</span></div>
               <Link className="mt-2 block text-blue-300 underline" to={`/app/incidents/${incident.alert_id}`}>{incident.alert_id}: {incident.title}</Link>
+              {!!run.correlation.vulnerability_alerts?.length && <p className="mt-2 text-sm text-sev-high">Also raised the CVE alert(s) for this asset: {run.correlation.vulnerability_alerts.join(', ')}</p>}
               <p className="mt-2 text-sm text-grey-400">{run.correlation.note}</p>
             </> : <p className="mt-2 text-grey-200">{run.correlation.note}</p>}
           </>}
@@ -360,7 +332,7 @@ export default function AttackGraph({ run, thresholds }: { run: GraphRun; thresh
 }
 
 function Meter({ stage, finished, detected }: { stage: number; finished: boolean; detected: boolean }) {
-  if (finished && !detected) return <div className="ag-meter is-clean"><span>✓ No attack detected</span></div>
+  if (finished && !detected) return <div className="ag-meter is-clean"><span>✓ No rule fired</span></div>
   return (
     <div className="ag-meter" aria-label="Attack stage">
       {STAGES.map((s, i) => <span key={s} className={`ag-seg s-${s} ${i === stage ? 'is-on' : i < stage ? 'is-past' : ''}`}>{STAGE_LABEL[s]}</span>)}
@@ -368,47 +340,13 @@ function Meter({ stage, finished, detected }: { stage: number; finished: boolean
   )
 }
 
-function Gauges({ run, thresholds, atkFails, ports, done }: { run: GraphRun; thresholds: Thresholds; atkFails: number; ports: number; done: Routed[] }) {
-  const g: { label: string; value: number; max: number; mark?: number; unit?: string }[] = []
-  if (run.scenario === 'brute_force') g.push({ label: 'Failed logins from the attacker', value: atkFails, max: 40, mark: thresholds.brute_force_failures })
-  if (run.scenario === 'port_scan') g.push({ label: 'Distinct ports probed', value: ports, max: 30, mark: thresholds.port_scan_distinct_ports })
-  if (run.scenario === 'sql_injection' || run.scenario === 'command_injection') {
-    const bad = done.filter((r) => r.hops.some((h) => h.from === 'atk' && h.tone === 'bad')).length
-    const blocked = done.filter((r) => r.effect?.badge.startsWith('BLOCKED')).length
-    g.push({ label: 'Malicious requests', value: bad, max: 6 }, { label: 'Blocked by the firewall', value: blocked, max: 6 })
-  }
-  if (run.scenario === 'sql_injection') {
-    const out = done.flatMap((r) => r.hops).filter((h) => h.from === 'web' && h.to === 'atk' && h.tone === 'data')
-      .reduce((n, h) => n + (parseFloat(h.label ?? '0') || 0), 0)
-    g.push({ label: 'Data returned to the attacker', value: out, max: 70, unit: 'KB' })
-  }
-  if (run.scenario === 'normal_traffic') g.push({ label: 'Requests checked', value: done.length, max: run.lines.length })
-  return (
-    <div className="ag-gauges">
-      {g.map((x) => (
-        <div key={x.label} className="ag-gauge">
-          <div className="flex justify-between gap-2 text-sm"><span>{x.label}</span><b className="text-white">{x.value}{x.unit ? ` ${x.unit}` : ''}{x.mark ? ` / threshold ${x.mark}` : ''}</b></div>
-          <div className="ag-bar">
-            <span style={{ width: `${Math.min(100, (100 * x.value) / x.max)}%` }} className={x.mark && x.value >= x.mark ? 'is-over' : ''} />
-            {x.mark && <i style={{ left: `${(100 * x.mark) / x.max}%` }} title={`rule threshold: ${x.mark}`} />}
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-function PortGrid({ ports }: { ports: { port: number; open: boolean }[] }) {
-  const seen = new Map(ports.map((p) => [p.port, p.open]))
-  const all = [21, 22, 23, 25, 53, 80, 110, 111, 135, 139, 143, 443, 445, 993, 995, 1433, 1521, 2049, 3306, 3389, 5432, 5900,
-    6379, 8080, 8443, 9200, 11211, 27017]
+function PortGrid({ all, seen }: { all: number[]; seen: Set<number> }) {
   return (
     <div className="ag-ports" aria-label="Ports probed">
-      <p className="ag-kicker">Ports on the target</p>
+      <p className="ag-kicker">Ports this attacker probed</p>
       <div className="ag-port-grid">
-        {all.map((p) => <span key={p} className={`ag-port ${seen.has(p) ? (seen.get(p) ? 'is-open' : 'is-drop') : ''}`} title={seen.has(p) ? (seen.get(p) ? 'open (ACCEPT)' : 'dropped') : 'not probed yet'}>{p}</span>)}
+        {all.map((p) => <span key={p} className={`ag-port ${seen.has(p) ? 'is-drop' : ''}`} title={seen.has(p) ? 'probed (blocked by the sensor)' : 'not yet in the replay'}>{p}</span>)}
       </div>
-      <p className="mt-2 text-xs text-grey-400"><span className="ag-port is-open">open</span> <span className="ag-port is-drop">dropped</span></p>
     </div>
   )
 }

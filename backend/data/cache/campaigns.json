@@ -1,6 +1,6 @@
 {
  "as_of": "2026-10-31T13:03:06+00:00",
- "fingerprint": "8945b0789271fc8847d4b84e403f5c4a3e4a5d5f4aed7cadbabb65d5709963ab",
+ "fingerprint": "9b1db5515c5487585c90a0e806dd8cbee173c7fdb44227b6c99f347369080f07",
  "config": {
   "window_days": 30,
   "tfidf_threshold": 0.6,

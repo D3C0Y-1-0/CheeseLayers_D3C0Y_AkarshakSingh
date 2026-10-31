@@ -105,3 +105,5 @@
   .ag-pkt, .ag-ring, .ag-dash, .ag-seg.is-on.s-success { animation: none; }
   .ag-pkt { opacity: 0; }
 }
+.k-intel .ag-box { fill: #0d1f2e; stroke: #f4d35e; stroke-dasharray: 5 4; }
+.lab-intel .dash-table td, .lab-intel .dash-table th { padding: 0.45rem 0.6rem; }

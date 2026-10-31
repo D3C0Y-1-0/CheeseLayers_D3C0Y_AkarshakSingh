@@ -143,7 +143,12 @@ def intel(db: Session, ip: str, asset: Asset, dets: list[dict]) -> dict:
         cves.append({"cve_id": cve, "in_feed": True, "title": row.title, "source": row.source, "kev_listed": row.kev_listed,
                      "epss": row.epss, "cvss": row.cvss, "kev_date_added": str(row.kev_date_added) if row.kev_date_added else None,
                      "target_match": m.match_detail, "target_reason": m.reason, "other_exposed_assets": others})
-    return {"attacker": {"ip": ip, "reputation": data.get("reputation", {}).get(ip), "our_ioc_hits": iocs,
+    from collectors import geo  # DB-IP Lite, if downloaded; else ISC's own country / network owner
+    rep = data.get("reputation", {}).get(ip) or {}
+    where = (geo.lookup(ip) if geo.available() else None) or (
+        {"country_code": rep.get("country"), "asn": rep.get("asn"), "asn_org": rep.get("as_name"), "geo_source": "isc"}
+        if rep else None)
+    return {"attacker": {"ip": ip, "reputation": rep or None, "location": where, "our_ioc_hits": iocs,
                          "source": "SANS Internet Storm Center (CC BY-NC-SA 4.0) + our abuse.ch/OTX/IP-reputation IOCs"},
             "cves": cves}
 

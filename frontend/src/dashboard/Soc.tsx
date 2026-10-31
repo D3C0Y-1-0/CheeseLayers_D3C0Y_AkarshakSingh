@@ -28,7 +28,8 @@ const IOC_FEEDS = new Set(['abusech', 'threatfox', 'urlhaus', 'ip_reputation', '
 const FEED_NAME: Record<string, string> = { nvd: 'NVD', kev: 'CISA KEV', certin: 'CERT-In', otx: 'AlienVault OTX', threatfox: 'ThreatFox', urlhaus: 'URLhaus', abusech: 'abuse.ch', ransomware: 'Ransomware', epss: 'EPSS', ip_reputation: 'IP reputation', attack_techniques: 'MITRE ATT&CK' }
 const SUGGEST = ['CVE-2024-21762', 'patient-portal', 'Fortinet', 'ransomware']
 const fmt = (n: number) => n.toLocaleString('en-IN')
-const healthy = (status: string) => !/fail|error|stale|down/i.test(status)
+// Only a successful live fetch counts as healthy; "cache" (offline demo) is served data, not proof the feed works.
+const healthy = (status: string) => status === 'ok'
 
 function Select<T extends string>({ label, value, options, onChange }: { label: string; value: T; options: [T, string][]; onChange: (v: T) => void }) {
   return (
@@ -133,6 +134,7 @@ export default function Soc() {
 
   // Side panel: plain counts, all from the API.
   const feedsOk = overview.data.sources.filter((s) => healthy(s.status)).length
+  const feedsCached = overview.data.sources.filter((s) => s.status === 'cache').length
   const iocTotal = overview.data.ioc_count ?? sources.filter((s) => IOC_FEEDS.has(s.source)).reduce((n, s) => n + (s.records ?? 0), 0)
   const trend = overview.data.trend
   const levels = [
@@ -256,7 +258,9 @@ export default function Soc() {
             <div><dt>New on the latest day</dt><dd>+{fmt(trend[trend.length - 1]?.count ?? 0)}</dd></div>
             {overview.data.kev_count !== undefined && <div><dt>Actively exploited (CISA KEV)</dt><dd>{fmt(overview.data.kev_count)}</dd></div>}
             {overview.data.public_exploit_count !== undefined && <div><dt>Public exploit code exists</dt><dd>{fmt(overview.data.public_exploit_count)}</dd></div>}
-            <div><dt>Feeds healthy</dt><dd>{feedsOk} of {overview.data.sources.length}</dd></div>
+            {feedsOk || !feedsCached
+              ? <div><dt>Feeds healthy</dt><dd>{feedsOk} of {overview.data.sources.length}</dd></div>
+              : <div><dt>Feeds served from cache</dt><dd>{feedsCached} of {overview.data.sources.length}</dd></div>}
           </dl>
           <p className="soc-muted">Newest record received {when(overview.data.snapshot_at)} · refreshes every 10 s</p>
         </Card>

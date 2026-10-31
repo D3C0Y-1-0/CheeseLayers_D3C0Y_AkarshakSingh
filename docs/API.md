@@ -574,3 +574,13 @@ Every alert (`GET /api/alerts`, `GET /api/alerts/{id}`) now also carries, comput
 `remediation_target_days`, `overdue` (past the target and lifecycle not `mitigated`/`closed`) and
 `remediation_policy: "organisation-defined policy, not a regulatory deadline"`. Defaults in
 `backend/app/scoring.py` `CONFIG.remediation_targets_days`: critical 7, high 14, medium 30, low 90.
+
+### `GET /api/insights/lead-time/examples?days=90`
+
+Three CVEs from the lead-time backtest (new-CVE cohort when possible): `largest_lead`,
+`near_zero_lead` and `miss`. Each: `cve_id`, `title`, `cohort`, `kev_date_added`, `flagged_at`,
+`lead_days`, `first_signal`, `explanation`, `timeline[]` = `{date, event, detail, signal,
+before_kev, days_before_kev}` for NVD publication, EPSS crossing 0.1 and 0.5 (first day, from the
+EPSS history cache), first quality GitHub PoC (flagged when not counted), Exploit-DB entry, CERT-In
+advisory, and the KEV addition. Same numbers as the backtest row. Sample:
+`docs/samples/lead_time_examples.json`.

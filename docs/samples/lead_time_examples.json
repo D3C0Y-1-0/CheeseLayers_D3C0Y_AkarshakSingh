@@ -1,0 +1,110 @@
+{
+  "window_days": 90,
+  "as_of": "2026-10-31",
+  "examples": [
+    {
+      "example": "largest_lead",
+      "cve_id": "CVE-2025-39964",
+      "title": "CVE-2025-39964: Linux Kernel Race Condition Vulnerability",
+      "cohort": "new_cves",
+      "kev_date_added": "2026-09-18",
+      "flagged_at": "2025-11-13",
+      "lead_days": 309,
+      "first_signal": "github_poc",
+      "timeline": [
+        {
+          "date": "2025-10-13",
+          "event": "NVD publication",
+          "detail": null,
+          "signal": null,
+          "before_kev": true,
+          "days_before_kev": 340
+        },
+        {
+          "date": "2025-11-13",
+          "event": "First quality GitHub PoC",
+          "detail": "n1k0oowang/CVE-2025-39964_EXP",
+          "signal": "github_poc",
+          "before_kev": true,
+          "days_before_kev": 309
+        },
+        {
+          "date": "2026-09-18",
+          "event": "Added to CISA KEV (exploitation confirmed)",
+          "detail": null,
+          "signal": null,
+          "before_kev": false,
+          "days_before_kev": 0
+        }
+      ],
+      "explanation": "Flagged 309 day(s) before KEV by github_poc."
+    },
+    {
+      "example": "near_zero_lead",
+      "cve_id": "CVE-2026-59310",
+      "title": "CVE-2026-59310: Broadcom VMware vCenter Path Traversal Vulnerability",
+      "cohort": "new_cves",
+      "kev_date_added": "2026-08-18",
+      "flagged_at": "2026-08-17",
+      "lead_days": 1,
+      "first_signal": "github_poc",
+      "timeline": [
+        {
+          "date": "2026-07-30",
+          "event": "NVD publication",
+          "detail": null,
+          "signal": null,
+          "before_kev": true,
+          "days_before_kev": 19
+        },
+        {
+          "date": "2026-08-17",
+          "event": "First quality GitHub PoC",
+          "detail": "HORKimhab/CVE-2026-59310",
+          "signal": "github_poc",
+          "before_kev": true,
+          "days_before_kev": 1
+        },
+        {
+          "date": "2026-08-18",
+          "event": "Added to CISA KEV (exploitation confirmed)",
+          "detail": null,
+          "signal": null,
+          "before_kev": false,
+          "days_before_kev": 0
+        }
+      ],
+      "explanation": "Flagged 1 day(s) before KEV by github_poc."
+    },
+    {
+      "example": "miss",
+      "cve_id": "CVE-2026-111357",
+      "title": "CVE-2026-111357: Ivanti Connect Secure Missing Authentication for Critical Function Vulnerability",
+      "cohort": "new_cves",
+      "kev_date_added": "2026-10-30",
+      "flagged_at": null,
+      "lead_days": null,
+      "first_signal": null,
+      "timeline": [
+        {
+          "date": "2026-10-15",
+          "event": "NVD publication",
+          "detail": null,
+          "signal": null,
+          "before_kev": true,
+          "days_before_kev": 15
+        },
+        {
+          "date": "2026-10-30",
+          "event": "Added to CISA KEV (exploitation confirmed)",
+          "detail": null,
+          "signal": null,
+          "before_kev": false,
+          "days_before_kev": 0
+        }
+      ],
+      "explanation": "Missed: no early signal fired before the KEV listing."
+    }
+  ],
+  "note": "Backtest on cached public data; signals are counted only strictly before the KEV date."
+}

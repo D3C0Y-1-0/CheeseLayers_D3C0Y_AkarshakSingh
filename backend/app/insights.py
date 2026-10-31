@@ -350,3 +350,63 @@ def export_stix(threat_id: str | None = Query(None, description="One threat_id")
         raise HTTPException(404, f"unknown threat_id(s): {missing}")
     bundle = build_bundle(db, [rows[w] for w in wanted])
     return Response(bundle.serialize(pretty=True), media_type="application/stix+json;version=2.1")
+
+
+# =====================================================================================================
+# Lead-time example timelines (3 CVEs from the backtest above)
+# =====================================================================================================
+@router.get("/api/insights/lead-time/examples", tags=["insights"])
+def lead_time_examples(days: int = Query(90, ge=1, le=LEAD_TIME["max_window_days"]), db: Session = Depends(get_db)) -> dict:
+    """Three CVEs from the backtest: largest lead, near-zero lead, and a miss, each with a dated signal timeline.
+    Picks from the new-CVE cohort when possible (old CVEs with years-old exploits inflate leads)."""
+    rep = lead_time(days=days, db=db)
+    pool = [r for r in rep.rows if r.cohort == "new_cves"] or rep.rows
+    flagged = [r for r in pool if r.lead_days is not None]
+    picks = []
+    if flagged:
+        picks.append(("largest_lead", max(flagged, key=lambda r: (r.lead_days, r.cve_id))))
+        near = min(flagged, key=lambda r: (r.lead_days, r.cve_id))
+        if near.cve_id != picks[0][1].cve_id:
+            picks.append(("near_zero_lead", near))
+    miss = sorted((r for r in pool if r.lead_days is None), key=lambda r: (r.kev_date_added, r.cve_id), reverse=True)
+    if miss:
+        picks.append(("miss", miss[0]))
+    epss_hist = load_cache("epss_history") or {}
+    exploit = load_cache("exploit_signals") or {}
+    poc = load_cache("github_poc_quality") or {}
+    certin = _certin_dates(db)
+    out = []
+    for kind, r in picks:
+        t = db.get(Threat, r.cve_id)
+        kd = r.kev_date_added
+        ev = []
+
+        def add(d, what, detail=None, signal=None):
+            if d:
+                d = d.date() if isinstance(d, datetime) else d if isinstance(d, date) else date.fromisoformat(str(d)[:10])
+                ev.append({"date": d.isoformat(), "event": what, "detail": detail, "signal": signal,
+                           "before_kev": d < kd, "days_before_kev": (kd - d).days})
+        add(t.nvd_published_at if t else None, "NVD publication")
+        h = sorted((d, v) for d, v in (epss_hist.get(r.cve_id) or {}).items() if v is not None)
+        for line in (LEAD_TIME["epss_threshold"], 0.5):  # first day EPSS crossed each line upwards
+            first = next(((d, v) for d, v in h if v >= line), None)
+            if first:
+                add(first[0], f"EPSS crossed {line}", f"epss={first[1]:.3f}", "epss" if line == LEAD_TIME["epss_threshold"] else None)
+        q = poc.get(r.cve_id) or {}
+        if q.get("ok") and q.get("first_ok_created_at"):
+            counted = r.signals.get("github_poc") is not None
+            add(q["first_ok_created_at"], "First quality GitHub PoC", q.get("first_ok_repo")
+                + ("" if counted else " (not counted: on/after KEV or before the publication grace window)"), "github_poc")
+        if (exploit.get(r.cve_id) or {}).get("exploitdb_date"):
+            add(exploit[r.cve_id]["exploitdb_date"], "Exploit-DB entry", None, "exploitdb")
+        if r.cve_id in certin:
+            add(certin[r.cve_id][0], "CERT-In advisory", certin[r.cve_id][1], "certin")
+        add(kd, "Added to CISA KEV (exploitation confirmed)")
+        ev.sort(key=lambda e: (e["date"], e["event"] != "NVD publication"))
+        out.append({"example": kind, "cve_id": r.cve_id, "title": r.title, "cohort": r.cohort,
+                    "kev_date_added": kd.isoformat(), "flagged_at": r.flagged_at.isoformat() if r.flagged_at else None,
+                    "lead_days": r.lead_days, "first_signal": r.first_signal, "timeline": ev,
+                    "explanation": (f"Flagged {r.lead_days} day(s) before KEV by {r.first_signal}." if r.lead_days is not None
+                                    else "Missed: no early signal fired before the KEV listing.")})
+    return {"window_days": days, "as_of": rep.as_of.isoformat(), "examples": out,
+            "note": "Backtest on cached public data; signals are counted only strictly before the KEV date."}

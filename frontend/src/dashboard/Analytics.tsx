@@ -12,6 +12,27 @@ type Cohort = { population: number; flagged_before_kev: number; pct_flagged_befo
 type Lead = { population: number; flagged_before_kev: number; cohorts: { new_cves?: Cohort }; methodology: string[]; limitations: string[] }
 type India = { certin_advisories: Threat[]; otx_pulses: Threat[]; ransomware_victims_total: number;
   ransomware_by_sector: Record<string, number>; ransomware_by_group: Record<string, number> }
+type TimelineEvent = { date: string; event: string; detail: string | null; signal: string | null; before_kev: boolean; days_before_kev: number }
+type Example = { example: string; cve_id: string; title: string; lead_days: number | null; first_signal: string | null; explanation: string; timeline: TimelineEvent[] }
+const EXAMPLE_LABEL: Record<string, string> = { largest_lead: 'Largest lead', near_zero_lead: 'Near-zero lead', miss: 'Missed' }
+
+// Dated signal timeline for three backtest CVEs: shows what "flagged N days before KEV" actually looked like.
+function LeadTimelines() {
+  const ex = useData<{ examples: Example[]; note: string }>('/api/insights/lead-time/examples?days=90', { examples: [], note: '' }, (j) => j as { examples: Example[]; note: string })
+  return <Panel title="Lead-time examples · dated timelines" className="xl:col-span-2"><div className="p-4">
+    <DataNotice mode={ex.mode} error={ex.error} />
+    {ex.data.examples.length === 0 ? <Empty>No example CVEs in the backtest window.</Empty> : <div className="grid gap-4 lg:grid-cols-3">{ex.data.examples.map((e) => <div key={e.example}>
+      <h3 className="text-white">{EXAMPLE_LABEL[e.example] ?? e.example}: <Link className="text-blue-300 underline" to={`/app/threats?search=${encodeURIComponent(e.cve_id)}`}>{e.cve_id}</Link></h3>
+      <p className="mb-2 text-sm">{e.explanation}</p>
+      <ol className="border-l border-blue-300/40">{e.timeline.map((t, i) => <li key={`${t.date}-${i}`} className="relative py-1.5 pl-4">
+        <span aria-hidden className={`absolute top-3 -left-1 size-2 ${t.event.startsWith('Added to CISA KEV') ? 'bg-sev-high' : t.signal && t.before_kev ? 'bg-blue' : 'bg-white/30'}`} />
+        <span className="block text-xs text-grey-300">{t.date}{t.before_kev && t.days_before_kev > 0 ? ` · ${t.days_before_kev} days before KEV` : ''}</span>
+        <span className="block text-white">{t.event}</span>{t.detail && <span className="block break-all text-xs">{t.detail}</span>}
+      </li>)}</ol>
+    </div>)}</div>}
+    {ex.data.note && <p className="mt-3 text-sm">{ex.data.note}</p>}
+  </div></Panel>
+}
 const blankPosture: Posture = { sectors: [], data_classification: '', formula: '' }
 const blankLead: Lead = { population: 0, flagged_before_kev: 0, cohorts: {}, methodology: [], limitations: [] }
 const blankIndia: India = { certin_advisories: [], otx_pulses: [], ransomware_victims_total: 0, ransomware_by_sector: {}, ransomware_by_group: {} }
@@ -48,6 +69,7 @@ export default function Analytics() {
         {cohort ? <><p className="font-display text-3xl text-white">{cohort.flagged_before_kev} / {cohort.population}</p><p>Newly published CVEs flagged before KEV confirmation ({cohort.pct_flagged_before_kev}%). Median lead: {cohort.median_lead_days ?? 'unknown'} days among flagged cases.</p><p className="text-sm">New CVEs are the relevant cohort; old vulnerabilities with years-old public exploits can inflate aggregate lead time.</p></> : <Empty>No evaluated cohort available.</Empty>}
         <details><summary className="cursor-pointer text-blue-300">Method and limitations</summary><ul className="mt-3 list-inside list-disc space-y-2">{[...lead.data.methodology, ...lead.data.limitations].map((n) => <li key={n}>{n}</li>)}</ul></details>
       </div></Panel>
+      <LeadTimelines />
       <Panel title="India-focused intelligence" className="xl:col-span-2"><div className="space-y-4 p-4">
         <DataNotice mode={india.mode} error={india.error} />
         <p>{india.mode === 'live' ? india.data.ransomware_victims_total : '—'} public ransomware victim records in the cached dataset. These are source reports, not evidence of compromise in our simulated organisation.</p>

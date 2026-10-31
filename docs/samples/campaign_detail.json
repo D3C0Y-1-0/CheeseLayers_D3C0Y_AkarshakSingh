@@ -1,0 +1,196 @@
+{
+  "campaign_id": "CMP-A1077A0C",
+  "title": "fortinet fortios \u00b7 fortinet fortiproxy",
+  "size": 50,
+  "threat_ids": [
+    "CVE-2017-11317",
+    "CVE-2017-9248",
+    "CVE-2018-13374",
+    "CVE-2018-13379",
+    "CVE-2018-13382",
+    "CVE-2018-13383",
+    "CVE-2018-20250",
+    "CVE-2019-1652"
+  ],
+  "sources": {
+    "kev": 35,
+    "otx": 15
+  },
+  "link_reasons": [
+    {
+      "type": "text_similarity",
+      "key": "TF-IDF cosine >= 0.6",
+      "count": 21,
+      "text": "21 have near-identical descriptions (TF-IDF cosine >= 0.6)"
+    },
+    {
+      "type": "product",
+      "key": "fortinet fortios",
+      "count": 17,
+      "text": "17 share fortinet fortios"
+    },
+    {
+      "type": "product",
+      "key": "fortinet fortiproxy",
+      "count": 10,
+      "text": "10 share fortinet fortiproxy"
+    },
+    {
+      "type": "product",
+      "key": "citrix application_delivery_controller_firmware",
+      "count": 5,
+      "text": "5 share citrix application_delivery_controller_firmware"
+    },
+    {
+      "type": "product",
+      "key": "citrix gateway_firmware",
+      "count": 5,
+      "text": "5 share citrix gateway_firmware"
+    },
+    {
+      "type": "technique",
+      "key": "T1556",
+      "count": 5,
+      "text": "5 share T1556"
+    },
+    {
+      "type": "product",
+      "key": "citrix netscaler_gateway_firmware",
+      "count": 4,
+      "text": "4 share citrix netscaler_gateway_firmware"
+    },
+    {
+      "type": "technique",
+      "key": "T1547.009",
+      "count": 4,
+      "text": "4 share T1547.009"
+    }
+  ],
+  "first_seen": "2017-07-03T19:29:00.270000+00:00",
+  "last_seen": "2026-10-30T09:31:38+00:00",
+  "growth_7d": {
+    "last_7d": 2,
+    "prev_7d": 5,
+    "ratio": 0.4
+  },
+  "is_emerging": false,
+  "kev_listed_members": 39,
+  "affected_asset_ids": [
+    "BNK-FW-01",
+    "PWR-FW-01"
+  ],
+  "affected_asset_count": 2,
+  "top_recommended_action": "Patch the 2 exposed asset(s) first: the campaign includes KEV-listed vulnerabilities",
+  "is_simulated": false,
+  "as_of": "2026-10-31T13:03:06+00:00",
+  "members": [
+    {
+      "threat_id": "CVE-2017-11317",
+      "title": "CVE-2017-11317: Telerik UI for ASP.NET AJAX Unrestricted File Upload Vulnerability",
+      "source": "kev",
+      "type": "vulnerability",
+      "severity": "critical",
+      "cvss": 9.8,
+      "kev_listed": true,
+      "published_at": "2017-08-23T17:29:00.177000+00:00",
+      "is_simulated": false,
+      "shared_keys": []
+    },
+    {
+      "threat_id": "CVE-2017-9248",
+      "title": "CVE-2017-9248: Progress Telerik UI for ASP.NET AJAX and Sitefinity Cryptographic Weakness Vulnerability",
+      "source": "kev",
+      "type": "vulnerability",
+      "severity": "critical",
+      "cvss": 9.8,
+      "kev_listed": true,
+      "published_at": "2017-07-03T19:29:00.270000+00:00",
+      "is_simulated": false,
+      "shared_keys": []
+    },
+    {
+      "threat_id": "CVE-2018-13374",
+      "title": "CVE-2018-13374: Fortinet FortiOS and FortiADC Improper Access Control Vulnerability",
+      "source": "kev",
+      "type": "vulnerability",
+      "severity": "medium",
+      "cvss": 4.3,
+      "kev_listed": true,
+      "published_at": "2019-01-22T14:29:00.220000+00:00",
+      "is_simulated": false,
+      "shared_keys": [
+        "product: fortinet fortios"
+      ]
+    },
+    {
+      "threat_id": "CVE-2018-13379",
+      "title": "CVE-2018-13379: Fortinet FortiOS SSL VPN Path Traversal Vulnerability",
+      "source": "kev",
+      "type": "vulnerability",
+      "severity": "critical",
+      "cvss": 9.8,
+      "kev_listed": true,
+      "published_at": "2019-06-04T21:29:00.233000+00:00",
+      "is_simulated": false,
+      "shared_keys": [
+        "product: fortinet fortios",
+        "product: fortinet fortiproxy"
+      ]
+    },
+    {
+      "threat_id": "CVE-2018-13382",
+      "title": "CVE-2018-13382: Fortinet FortiOS and FortiProxy Improper Authorization",
+      "source": "kev",
+      "type": "vulnerability",
+      "severity": "high",
+      "cvss": 7.5,
+      "kev_listed": true,
+      "published_at": "2019-06-04T21:29:00.373000+00:00",
+      "is_simulated": false,
+      "shared_keys": [
+        "product: fortinet fortios",
+        "product: fortinet fortiproxy"
+      ]
+    },
+    {
+      "threat_id": "CVE-2018-13383",
+      "title": "CVE-2018-13383: Fortinet FortiOS and FortiProxy Out-of-bounds Write",
+      "source": "kev",
+      "type": "vulnerability",
+      "severity": "medium",
+      "cvss": 6.5,
+      "kev_listed": true,
+      "published_at": "2019-05-29T18:29:00.693000+00:00",
+      "is_simulated": false,
+      "shared_keys": [
+        "product: fortinet fortios",
+        "product: fortinet fortiproxy"
+      ]
+    },
+    {
+      "threat_id": "CVE-2018-20250",
+      "title": "CVE-2018-20250: WinRAR Absolute Path Traversal Vulnerability",
+      "source": "kev",
+      "type": "vulnerability",
+      "severity": "high",
+      "cvss": 7.8,
+      "kev_listed": true,
+      "published_at": "2019-02-05T20:29:00.243000+00:00",
+      "is_simulated": false,
+      "shared_keys": []
+    },
+    {
+      "threat_id": "CVE-2019-1652",
+      "title": "CVE-2019-1652: Cisco Small Business Routers Improper Input Validation Vulnerability",
+      "source": "kev",
+      "type": "vulnerability",
+      "severity": "high",
+      "cvss": 7.2,
+      "kev_listed": true,
+      "published_at": "2019-01-24T15:29:00.953000+00:00",
+      "is_simulated": false,
+      "shared_keys": []
+    }
+  ],
+  "_sample_note": "members/threat_ids truncated to 8 in this sample"
+}

@@ -1,5 +1,5 @@
 {
-  "contract_version": "1.2.0",
+  "contract_version": "1.3.0",
   "product": "NETRA-X",
   "description": "Single source of truth for shared field names, types and enums across all 4 members. Change a field here first, tell the team, then change code. data/validate.py checks every fixture against this file.",
   "rules": [
@@ -719,6 +719,82 @@
             "train",
             "test"
           ]
+        }
+      }
+    },
+    "campaign": {
+      "file": "backend/data/cache/campaigns.json (GET /api/campaigns)",
+      "id_field": "campaign_id",
+      "description": "v1.3: group of related threats (shared CVE/IOC/ATT&CK technique/vendor+product or TF-IDF text similarity; connected components >= min_size). Statistical link between public reports, not attribution.",
+      "fields": {
+        "campaign_id": {
+          "type": "string",
+          "nullable": false,
+          "description": "CMP- + hash of the earliest member's threat_id"
+        },
+        "title": {
+          "type": "string",
+          "nullable": false,
+          "description": "Top shared products, else most distinctive words"
+        },
+        "size": {
+          "type": "integer",
+          "nullable": false
+        },
+        "threat_ids": {
+          "type": "array",
+          "nullable": false,
+          "items": "string"
+        },
+        "sources": {
+          "type": "object",
+          "nullable": false,
+          "description": "source -> member count"
+        },
+        "link_reasons": {
+          "type": "array",
+          "nullable": false,
+          "description": "[{type: cve|ioc|technique|product|text_similarity, key, count, text}]",
+          "items": "object"
+        },
+        "first_seen": {
+          "type": "datetime",
+          "nullable": true
+        },
+        "last_seen": {
+          "type": "datetime",
+          "nullable": true
+        },
+        "growth_7d": {
+          "type": "object",
+          "nullable": false,
+          "description": "{last_7d, prev_7d, ratio|null}; days counted back from the newest record in the data"
+        },
+        "is_emerging": {
+          "type": "boolean",
+          "nullable": false
+        },
+        "kev_listed_members": {
+          "type": "integer",
+          "nullable": false
+        },
+        "affected_asset_ids": {
+          "type": "array",
+          "nullable": false,
+          "items": "string"
+        },
+        "affected_asset_count": {
+          "type": "integer",
+          "nullable": false,
+          "description": "Assets Member 3's matcher marks confirmed_affected or needs_verification"
+        },
+        "top_recommended_action": {
+          "type": "string",
+          "nullable": false
+        },
+        "is_simulated": {
+          "type": "boolean",
+          "nullable": false
         }
       }
     }

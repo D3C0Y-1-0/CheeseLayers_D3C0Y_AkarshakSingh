@@ -508,3 +508,40 @@ incident (`correlation.note` says so); `POST /api/demo/reset-alerts` starts clea
 
 Expected results: brute force → medium (blocked) / critical (password guessed); SQL injection → high / critical (data
 extracted); port scan → medium; command injection → high / critical (shell + call-home); normal traffic → no incident.
+
+# Emerging campaigns (`backend/app/campaigns.py`, contract v1.3 entity `campaign`)
+
+Relationships between threats (PS objective 2). Scope: threats published in the last 30 days **of
+the data** (anchored to the newest `published_at`, so an offline cache gives the same answer every
+day) plus every KEV entry, OTX pulse, CERT-In advisory and ransomware record. Plain NVD CVEs count
+only with activity (KEV, public exploit, EPSS ≥ 0.1) or when another in-scope item names them.
+
+Links, applied strongest first: shared CVE > shared IOC value > shared vendor+product > shared
+ATT&CK technique > TF-IDF cosine of title+description ≥ `tfidf_threshold`. Keys held by more than
+`max_key_members` (techniques: `max_technique_members`) threats are generic (T1190, "microsoft
+windows") and ignored (`meta.skipped_generic_keys`). Single-linkage with a size cap
+(`max_campaign_size`): a link that would grow a group past it is not applied, so boilerplate text
+can't chain thousands of advisories together. Campaigns = groups with ≥ `min_size` members.
+`is_emerging`: ≥ `emerging_min_new` members in the last 7 days and ≥ `emerging_growth` × the
+previous 7 days. Every threshold is in `CONFIG` (echoed as `config`). Deterministic; cached in
+`backend/data/cache/campaigns.json` with a fingerprint of the in-scope data; recomputed at
+startup (background) and after every ingest (`collectors/run_all.py`) only when that data changed.
+Shared IOC links exist in the rule but the current cache has no IOC value in two threats.
+
+### `GET /api/campaigns?emerging=true|false&limit=50`
+
+`{as_of, config, meta: {threats_in_scope, links_by_type, skipped_generic_keys[], method},
+total, emerging_total, items: [campaign]}`; campaign = `campaign_id`, `title`, `size`,
+`threat_ids[]`, `sources{}`, `link_reasons[]` (`{type, key, count, text}` e.g. "17 share fortinet
+fortios"), `first_seen`, `last_seen`, `growth_7d {last_7d, prev_7d, ratio}`, `is_emerging`,
+`kev_listed_members`, `affected_asset_ids[]`/`affected_asset_count` (Member 3's matcher,
+read-only), `top_recommended_action`, `is_simulated`. Emerging first, then most exposed assets.
+Sample: `docs/samples/campaigns.json`.
+
+### `GET /api/campaigns/{campaign_id}`
+
+The campaign + `members[]`: `{threat_id, title, source, type, severity, cvss, kev_listed,
+published_at, is_simulated, shared_keys[]}` (`shared_keys` = this member's keys among the
+campaign's link reasons; empty = grouped by text similarity). 404 unknown.
+Sample: `docs/samples/campaign_detail.json`. `GET /api/threats/{id}` now also returns
+`campaign_ids[]` (additive).

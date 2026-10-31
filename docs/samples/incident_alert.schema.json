@@ -1,0 +1,319 @@
+{
+  "$defs": {
+    "AlertFactors": {
+      "additionalProperties": true,
+      "description": "Contract factors, each normalised 0..1. None = could not be determined.",
+      "properties": {
+        "severity": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Severity"
+        },
+        "exploitation": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exploitation"
+        },
+        "criticality": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Criticality"
+        },
+        "exposure": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exposure"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        }
+      },
+      "title": "AlertFactors",
+      "type": "object"
+    },
+    "TimelineEntry": {
+      "additionalProperties": true,
+      "properties": {
+        "at": {
+          "format": "date-time",
+          "title": "At",
+          "type": "string"
+        },
+        "event": {
+          "title": "Event",
+          "type": "string"
+        },
+        "ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ref"
+        }
+      },
+      "required": [
+        "at",
+        "event"
+      ],
+      "title": "TimelineEntry",
+      "type": "object"
+    }
+  },
+  "additionalProperties": true,
+  "properties": {
+    "alert_id": {
+      "title": "Alert Id",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "vulnerability",
+        "behaviour"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "priority": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "title": "Priority",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "new",
+        "ack",
+        "resolved"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "asset_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Asset Ids",
+      "type": "array"
+    },
+    "threat_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Threat Ids",
+      "type": "array"
+    },
+    "evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "risk_score": {
+      "anyOf": [
+        {
+          "maximum": 100,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Risk Score"
+    },
+    "factors": {
+      "$ref": "#/$defs/AlertFactors"
+    },
+    "match_status": {
+      "anyOf": [
+        {
+          "enum": [
+            "confirmed",
+            "uncertain",
+            "requires_manual_review"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Match Status"
+    },
+    "reasons": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "timeline": {
+      "items": {
+        "$ref": "#/$defs/TimelineEntry"
+      },
+      "title": "Timeline",
+      "type": "array"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "title": {
+      "default": "",
+      "title": "Title",
+      "type": "string"
+    },
+    "lifecycle_status": {
+      "default": "detected",
+      "enum": [
+        "detected",
+        "investigating",
+        "confirmed",
+        "action_required",
+        "mitigated",
+        "closed"
+      ],
+      "title": "Lifecycle Status",
+      "type": "string"
+    },
+    "match_detail": {
+      "anyOf": [
+        {
+          "enum": [
+            "confirmed_affected",
+            "confirmed_unaffected",
+            "needs_verification",
+            "no_cve_behavioural"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Match Detail"
+    },
+    "vulnerability_priority_score": {
+      "default": 0,
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Vulnerability Priority Score",
+      "type": "number"
+    },
+    "behavioural_suspicion_score": {
+      "default": 0,
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Behavioural Suspicion Score",
+      "type": "number"
+    },
+    "evidence_confidence_score": {
+      "default": 0,
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Evidence Confidence Score",
+      "type": "number"
+    },
+    "score_factors": {
+      "additionalProperties": true,
+      "title": "Score Factors",
+      "type": "object"
+    },
+    "escalation_reasons": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Escalation Reasons",
+      "type": "array"
+    },
+    "is_simulated": {
+      "default": true,
+      "title": "Is Simulated",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "alert_id",
+    "kind",
+    "priority",
+    "status",
+    "asset_ids",
+    "threat_ids",
+    "evidence_ids",
+    "risk_score",
+    "factors",
+    "match_status",
+    "reasons",
+    "limitations",
+    "timeline",
+    "created_at"
+  ],
+  "title": "IncidentAlert",
+  "type": "object"
+}

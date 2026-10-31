@@ -1,0 +1,843 @@
+[
+  {
+    "asset_id": "PWR-FW-01",
+    "hostname": "nrldc-edge-fw01",
+    "ip": "203.0.113.10",
+    "organisation": "Sim Northern Grid Utility",
+    "sector": "power",
+    "role": "Perimeter firewall / SSL-VPN",
+    "os": "FortiOS 7.2.6",
+    "software": [
+      {
+        "vendor": "fortinet",
+        "product": "fortios",
+        "version": "7.2.6",
+        "cpe": "cpe:2.3:o:fortinet:fortios:7.2.6:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 5,
+    "internet_facing": true,
+    "owner": "grid-netops",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "PWR-FW-02",
+    "hostname": "nrldc-edge-fw02",
+    "ip": "203.0.113.11",
+    "organisation": "Sim Northern Grid Utility",
+    "sector": "power",
+    "role": "Perimeter firewall / SSL-VPN (patched twin)",
+    "os": "FortiOS 7.4.11",
+    "software": [
+      {
+        "vendor": "fortinet",
+        "product": "fortios",
+        "version": "7.4.11",
+        "cpe": "cpe:2.3:o:fortinet:fortios:7.4.11:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 5,
+    "internet_facing": true,
+    "owner": "grid-netops",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "PWR-HMI-01",
+    "hostname": "scada-hmi-01",
+    "ip": "10.10.1.21",
+    "organisation": "Sim Northern Grid Utility",
+    "sector": "power",
+    "role": "SCADA HMI workstation",
+    "os": "Windows Server 2022",
+    "software": [
+      {
+        "vendor": "netrax_demo_vendor",
+        "product": "gridview_hmi",
+        "version": "4.2.1",
+        "cpe": "cpe:2.3:a:netrax_demo_vendor:gridview_hmi:4.2.1:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 5,
+    "internet_facing": false,
+    "owner": "ot-control-room",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "PWR-HIST-01",
+    "hostname": "scada-historian-01",
+    "ip": "10.10.1.30",
+    "organisation": "Sim Northern Grid Utility",
+    "sector": "power",
+    "role": "Process historian",
+    "os": "Red Hat Enterprise Linux 9.4",
+    "software": [
+      {
+        "vendor": "postgresql",
+        "product": "postgresql",
+        "version": "16.4",
+        "cpe": "cpe:2.3:a:postgresql:postgresql:16.4:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 4,
+    "internet_facing": false,
+    "owner": "ot-control-room",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "PWR-JUMP-01",
+    "hostname": "ot-jumphost-01",
+    "ip": "10.10.0.5",
+    "organisation": "Sim Northern Grid Utility",
+    "sector": "power",
+    "role": "OT jump host",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "openbsd",
+        "product": "openssh",
+        "version": "9.9",
+        "cpe": "cpe:2.3:a:openbsd:openssh:9.9:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 4,
+    "internet_facing": false,
+    "owner": "ot-control-room",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "PWR-WEB-01",
+    "hostname": "outage-portal",
+    "ip": "203.0.113.15",
+    "organisation": "Sim Southern Power Discom",
+    "sector": "power",
+    "role": "Public outage-map portal",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "f5",
+        "product": "nginx",
+        "version": "1.27.2",
+        "cpe": "cpe:2.3:a:f5:nginx:1.27.2:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 3,
+    "internet_facing": true,
+    "owner": "discom-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "PWR-MAIL-01",
+    "hostname": "discom-mail",
+    "ip": "10.12.0.25",
+    "organisation": "Sim Southern Power Discom",
+    "sector": "power",
+    "role": "Mail relay",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "postfix",
+        "product": "postfix",
+        "version": "3.8.6",
+        "cpe": "cpe:2.3:a:postfix:postfix:3.8.6:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 2,
+    "internet_facing": false,
+    "owner": "discom-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "BNK-FW-01",
+    "hostname": "bank-dc-fw01",
+    "ip": "203.0.113.20",
+    "organisation": "Sim Cooperative Bank",
+    "sector": "banking",
+    "role": "Data-centre firewall / SSL-VPN",
+    "os": "FortiOS 7.0.13",
+    "software": [
+      {
+        "vendor": "fortinet",
+        "product": "fortios",
+        "version": "7.0.13",
+        "cpe": "cpe:2.3:o:fortinet:fortios:7.0.13:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 5,
+    "internet_facing": true,
+    "owner": "bank-secops",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "BNK-FW-02",
+    "hostname": "bank-dr-fw01",
+    "ip": "203.0.113.21",
+    "organisation": "Sim Cooperative Bank",
+    "sector": "banking",
+    "role": "DR-site firewall / SSL-VPN (patched twin)",
+    "os": "FortiOS 7.6.6",
+    "software": [
+      {
+        "vendor": "fortinet",
+        "product": "fortios",
+        "version": "7.6.6",
+        "cpe": "cpe:2.3:o:fortinet:fortios:7.6.6:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 5,
+    "internet_facing": true,
+    "owner": "bank-secops",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "BNK-CBS-01",
+    "hostname": "cbs-gateway-01",
+    "ip": "10.20.1.10",
+    "organisation": "Sim Cooperative Bank",
+    "sector": "banking",
+    "role": "Core-banking API gateway",
+    "os": "Red Hat Enterprise Linux 9.4",
+    "software": [
+      {
+        "vendor": "netrax_demo_vendor",
+        "product": "corelink_banking_gateway",
+        "version": "3.0.5",
+        "cpe": "cpe:2.3:a:netrax_demo_vendor:corelink_banking_gateway:3.0.5:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 5,
+    "internet_facing": false,
+    "owner": "bank-core-team",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "BNK-DB-01",
+    "hostname": "cbs-db-01",
+    "ip": "10.20.1.20",
+    "organisation": "Sim Cooperative Bank",
+    "sector": "banking",
+    "role": "Core-banking database",
+    "os": "Red Hat Enterprise Linux 9.4",
+    "software": [
+      {
+        "vendor": "oracle",
+        "product": "database_server",
+        "version": "19.24",
+        "cpe": "cpe:2.3:a:oracle:database_server:19.24:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 5,
+    "internet_facing": false,
+    "owner": "bank-dba",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "BNK-NET-01",
+    "hostname": "netbanking-web",
+    "ip": "203.0.113.25",
+    "organisation": "Sim Cooperative Bank",
+    "sector": "banking",
+    "role": "Internet-banking web front end",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "f5",
+        "product": "nginx",
+        "version": "1.27.2",
+        "cpe": "cpe:2.3:a:f5:nginx:1.27.2:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "apache",
+        "product": "tomcat",
+        "version": "10.1.40",
+        "cpe": "cpe:2.3:a:apache:tomcat:10.1.40:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 5,
+    "internet_facing": true,
+    "owner": "bank-digital",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "BNK-UPI-01",
+    "hostname": "upi-switch-01",
+    "ip": "10.20.2.10",
+    "organisation": "Sim Cooperative Bank",
+    "sector": "banking",
+    "role": "UPI switch",
+    "os": "Red Hat Enterprise Linux 9.4",
+    "software": [
+      {
+        "vendor": "apache",
+        "product": "tomcat",
+        "version": "10.1.40",
+        "cpe": "cpe:2.3:a:apache:tomcat:10.1.40:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 5,
+    "internet_facing": false,
+    "owner": "bank-payments",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "BNK-ATM-01",
+    "hostname": "atm-controller",
+    "ip": "10.20.3.5",
+    "organisation": "Sim Cooperative Bank",
+    "sector": "banking",
+    "role": "ATM network controller",
+    "os": "Windows Server 2022",
+    "software": [],
+    "criticality": 4,
+    "internet_facing": false,
+    "owner": "bank-payments",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "GOV-WEB-01",
+    "hostname": "citizen-portal-01",
+    "ip": "198.51.100.10",
+    "organisation": "Sim State e-Governance Dept",
+    "sector": "govt",
+    "role": "Citizen services portal (PHP on Windows/IIS, CGI)",
+    "os": "Windows Server 2022",
+    "software": [
+      {
+        "vendor": "php",
+        "product": "php",
+        "version": "8.1.28",
+        "cpe": "cpe:2.3:a:php:php:8.1.28:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 4,
+    "internet_facing": true,
+    "owner": "egov-webteam",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "GOV-WEB-02",
+    "hostname": "citizen-portal-02",
+    "ip": "198.51.100.11",
+    "organisation": "Sim State e-Governance Dept",
+    "sector": "govt",
+    "role": "Citizen services portal (patched twin)",
+    "os": "Windows Server 2022",
+    "software": [
+      {
+        "vendor": "php",
+        "product": "php",
+        "version": "8.2.35",
+        "cpe": "cpe:2.3:a:php:php:8.2.35:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 4,
+    "internet_facing": true,
+    "owner": "egov-webteam",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "GOV-MAIL-01",
+    "hostname": "egov-mail",
+    "ip": "198.51.100.25",
+    "organisation": "Sim State e-Governance Dept",
+    "sector": "govt",
+    "role": "Webmail",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "roundcube",
+        "product": "webmail",
+        "version": "1.6.12",
+        "cpe": "cpe:2.3:a:roundcube:webmail:1.6.12:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 3,
+    "internet_facing": true,
+    "owner": "egov-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "GOV-DNS-01",
+    "hostname": "egov-dns",
+    "ip": "10.30.0.53",
+    "organisation": "Sim State e-Governance Dept",
+    "sector": "govt",
+    "role": "Internal DNS",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "isc",
+        "product": "bind",
+        "version": "9.20.3",
+        "cpe": "cpe:2.3:a:isc:bind:9.20.3:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 4,
+    "internet_facing": false,
+    "owner": "egov-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "GOV-AD-01",
+    "hostname": "egov-dc01",
+    "ip": "10.30.0.10",
+    "organisation": "Sim State e-Governance Dept",
+    "sector": "govt",
+    "role": "Active Directory domain controller",
+    "os": "Windows Server 2022",
+    "software": [],
+    "criticality": 5,
+    "internet_facing": false,
+    "owner": "egov-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "GOV-LAND-01",
+    "hostname": "land-records-app",
+    "ip": "10.30.1.40",
+    "organisation": "Sim District Land Records Office",
+    "sector": "govt",
+    "role": "Land-records application",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "apache",
+        "product": "http_server",
+        "version": "2.4.62",
+        "cpe": "cpe:2.3:a:apache:http_server:2.4.62:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "postgresql",
+        "product": "postgresql",
+        "version": "16.4",
+        "cpe": "cpe:2.3:a:postgresql:postgresql:16.4:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 3,
+    "internet_facing": false,
+    "owner": "land-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "GOV-VPN-01",
+    "hostname": "egov-vpn",
+    "ip": "198.51.100.30",
+    "organisation": "Sim State e-Governance Dept",
+    "sector": "govt",
+    "role": "Remote-access VPN",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "openvpn",
+        "product": "openvpn",
+        "version": "2.6.12",
+        "cpe": "cpe:2.3:a:openvpn:openvpn:2.6.12:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 4,
+    "internet_facing": true,
+    "owner": "egov-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "HLT-PACS-01",
+    "hostname": "pacs-01",
+    "ip": "10.40.1.15",
+    "organisation": "Sim District Hospital",
+    "sector": "health",
+    "role": "Radiology PACS server",
+    "os": "Windows Server 2022",
+    "software": [
+      {
+        "vendor": "netrax_demo_vendor",
+        "product": "medivault_pacs",
+        "version": null,
+        "cpe": "cpe:2.3:a:netrax_demo_vendor:medivault_pacs:*:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 4,
+    "internet_facing": false,
+    "owner": "hospital-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "HLT-WEB-01",
+    "hostname": "patient-portal",
+    "ip": "198.51.100.40",
+    "organisation": "Sim District Hospital",
+    "sector": "health",
+    "role": "Patient appointment portal",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "f5",
+        "product": "nginx",
+        "version": "1.27.2",
+        "cpe": "cpe:2.3:a:f5:nginx:1.27.2:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "php",
+        "product": "php",
+        "version": "8.3.36",
+        "cpe": "cpe:2.3:a:php:php:8.3.36:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 3,
+    "internet_facing": true,
+    "owner": "hospital-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "HLT-HIS-01",
+    "hostname": "his-app-01",
+    "ip": "10.40.1.20",
+    "organisation": "Sim District Hospital",
+    "sector": "health",
+    "role": "Hospital information system",
+    "os": "Red Hat Enterprise Linux 9.4",
+    "software": [
+      {
+        "vendor": "apache",
+        "product": "tomcat",
+        "version": "10.1.40",
+        "cpe": "cpe:2.3:a:apache:tomcat:10.1.40:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "postgresql",
+        "product": "postgresql",
+        "version": "16.4",
+        "cpe": "cpe:2.3:a:postgresql:postgresql:16.4:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 5,
+    "internet_facing": false,
+    "owner": "hospital-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "HLT-LAB-01",
+    "hostname": "lis-01",
+    "ip": "10.40.1.25",
+    "organisation": "Sim District Hospital",
+    "sector": "health",
+    "role": "Lab information system",
+    "os": "Windows Server 2022",
+    "software": [],
+    "criticality": 3,
+    "internet_facing": false,
+    "owner": "hospital-lab",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "HLT-VPN-01",
+    "hostname": "hospital-vpn",
+    "ip": "198.51.100.45",
+    "organisation": "Sim District Hospital",
+    "sector": "health",
+    "role": "Telemedicine VPN",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "openvpn",
+        "product": "openvpn",
+        "version": "2.6.12",
+        "cpe": "cpe:2.3:a:openvpn:openvpn:2.6.12:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 3,
+    "internet_facing": true,
+    "owner": "hospital-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "HLT-BKP-01",
+    "hostname": "backup-01",
+    "ip": "10.40.2.10",
+    "organisation": "Sim District Hospital",
+    "sector": "health",
+    "role": "Backup server",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "openbsd",
+        "product": "openssh",
+        "version": "9.9",
+        "cpe": "cpe:2.3:a:openbsd:openssh:9.9:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 4,
+    "internet_facing": false,
+    "owner": "hospital-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "HLT-MAIL-01",
+    "hostname": "hospital-mail",
+    "ip": "10.40.0.25",
+    "organisation": "Sim District Hospital",
+    "sector": "health",
+    "role": "Mail relay",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "postfix",
+        "product": "postfix",
+        "version": "3.8.6",
+        "cpe": "cpe:2.3:a:postfix:postfix:3.8.6:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 2,
+    "internet_facing": false,
+    "owner": "hospital-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "TEL-WIKI-01",
+    "hostname": "noc-wiki-01",
+    "ip": "203.0.113.30",
+    "organisation": "Sim Regional Telecom Operator",
+    "sector": "telecom",
+    "role": "NOC knowledge base (Confluence)",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "atlassian",
+        "product": "confluence_data_center",
+        "version": "8.5.1",
+        "cpe": "cpe:2.3:a:atlassian:confluence_data_center:8.5.1:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 3,
+    "internet_facing": true,
+    "owner": "noc-tools",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "TEL-WIKI-02",
+    "hostname": "noc-wiki-02",
+    "ip": "203.0.113.31",
+    "organisation": "Sim Regional Telecom Operator",
+    "sector": "telecom",
+    "role": "NOC knowledge base (patched twin)",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "atlassian",
+        "product": "confluence_data_center",
+        "version": "9.2.26",
+        "cpe": "cpe:2.3:a:atlassian:confluence_data_center:9.2.26:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 3,
+    "internet_facing": true,
+    "owner": "noc-tools",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "TEL-BSS-01",
+    "hostname": "bss-billing-01",
+    "ip": "10.50.1.10",
+    "organisation": "Sim Regional Telecom Operator",
+    "sector": "telecom",
+    "role": "Billing / BSS",
+    "os": "Red Hat Enterprise Linux 9.4",
+    "software": [
+      {
+        "vendor": "oracle",
+        "product": "database_server",
+        "version": "19.24",
+        "cpe": "cpe:2.3:a:oracle:database_server:19.24:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 4,
+    "internet_facing": false,
+    "owner": "telco-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "TEL-DNS-01",
+    "hostname": "telco-dns",
+    "ip": "203.0.113.53",
+    "organisation": "Sim Regional Telecom Operator",
+    "sector": "telecom",
+    "role": "Public recursive DNS",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "isc",
+        "product": "bind",
+        "version": "9.20.3",
+        "cpe": "cpe:2.3:a:isc:bind:9.20.3:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 4,
+    "internet_facing": true,
+    "owner": "telco-netops",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "TEL-RTR-01",
+    "hostname": "core-rtr-01",
+    "ip": "10.50.0.1",
+    "organisation": "Sim Regional Telecom Operator",
+    "sector": "telecom",
+    "role": "Core router",
+    "os": "Cisco IOS XE 17.18.2",
+    "software": [
+      {
+        "vendor": "cisco",
+        "product": "ios_xe",
+        "version": "17.18.2",
+        "cpe": "cpe:2.3:o:cisco:ios_xe:17.18.2:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 5,
+    "internet_facing": false,
+    "owner": "telco-netops",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "TEL-NMS-01",
+    "hostname": "nms-01",
+    "ip": "10.50.0.20",
+    "organisation": "Sim Regional Telecom Operator",
+    "sector": "telecom",
+    "role": "Network monitoring",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "zabbix",
+        "product": "zabbix",
+        "version": "7.0.5",
+        "cpe": "cpe:2.3:a:zabbix:zabbix:7.0.5:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 3,
+    "internet_facing": false,
+    "owner": "telco-netops",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "WTR-HMI-01",
+    "hostname": "wtp-hmi-01",
+    "ip": "10.60.1.21",
+    "organisation": "Sim Municipal Water Board",
+    "sector": "water",
+    "role": "Treatment-plant HMI",
+    "os": "Windows Server 2022",
+    "software": [],
+    "criticality": 5,
+    "internet_facing": false,
+    "owner": "water-ot",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "WTR-WEB-01",
+    "hostname": "water-billing",
+    "ip": "198.51.100.60",
+    "organisation": "Sim Municipal Water Board",
+    "sector": "water",
+    "role": "Online bill payment",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "apache",
+        "product": "http_server",
+        "version": "2.4.62",
+        "cpe": "cpe:2.3:a:apache:http_server:2.4.62:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "php",
+        "product": "php",
+        "version": "8.3.36",
+        "cpe": "cpe:2.3:a:php:php:8.3.36:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 3,
+    "internet_facing": true,
+    "owner": "water-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "WTR-HIST-01",
+    "hostname": "wtp-historian",
+    "ip": "10.60.1.30",
+    "organisation": "Sim Municipal Water Board",
+    "sector": "water",
+    "role": "SCADA historian",
+    "os": "Red Hat Enterprise Linux 9.4",
+    "software": [
+      {
+        "vendor": "postgresql",
+        "product": "postgresql",
+        "version": "16.4",
+        "cpe": "cpe:2.3:a:postgresql:postgresql:16.4:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 4,
+    "internet_facing": false,
+    "owner": "water-ot",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "WTR-JUMP-01",
+    "hostname": "water-jumphost",
+    "ip": "10.60.0.5",
+    "organisation": "Sim Municipal Water Board",
+    "sector": "water",
+    "role": "OT jump host",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "openbsd",
+        "product": "openssh",
+        "version": "9.9",
+        "cpe": "cpe:2.3:a:openbsd:openssh:9.9:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 4,
+    "internet_facing": false,
+    "owner": "water-ot",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "WTR-FS-01",
+    "hostname": "water-files",
+    "ip": "10.60.0.40",
+    "organisation": "Sim Municipal Water Board",
+    "sector": "water",
+    "role": "File server",
+    "os": "Windows Server 2022",
+    "software": [],
+    "criticality": 2,
+    "internet_facing": false,
+    "owner": "water-it",
+    "is_simulated": true
+  },
+  {
+    "asset_id": "WTR-GIS-01",
+    "hostname": "pipeline-gis",
+    "ip": "10.60.0.50",
+    "organisation": "Sim Municipal Water Board",
+    "sector": "water",
+    "role": "Pipeline GIS",
+    "os": "Ubuntu 24.04",
+    "software": [
+      {
+        "vendor": "postgresql",
+        "product": "postgresql",
+        "version": "16.4",
+        "cpe": "cpe:2.3:a:postgresql:postgresql:16.4:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "geoserver",
+        "product": "geoserver",
+        "version": "2.26.2",
+        "cpe": "cpe:2.3:a:geoserver:geoserver:2.26.2:*:*:*:*:*:*:*"
+      }
+    ],
+    "criticality": 3,
+    "internet_facing": false,
+    "owner": "water-it",
+    "is_simulated": true
+  }
+]

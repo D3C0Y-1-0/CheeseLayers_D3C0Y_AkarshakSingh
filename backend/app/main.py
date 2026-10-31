@@ -10,7 +10,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import func, select
 
-from . import feeds, insights
+from . import assets, feeds, insights
 from .database import SessionLocal, init_db
 from .models import Threat
 
@@ -38,3 +38,4 @@ app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173", "http
                    allow_methods=["*"], allow_headers=["*"])
 app.include_router(feeds.router)
 app.include_router(insights.router)
+app.include_router(assets.router)  # Member 3

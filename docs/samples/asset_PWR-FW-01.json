@@ -1,0 +1,21 @@
+{
+  "asset_id": "PWR-FW-01",
+  "hostname": "nrldc-edge-fw01",
+  "ip": "203.0.113.10",
+  "organisation": "Sim Northern Grid Utility",
+  "sector": "power",
+  "role": "Perimeter firewall / SSL-VPN",
+  "os": "FortiOS 7.2.6",
+  "software": [
+    {
+      "vendor": "fortinet",
+      "product": "fortios",
+      "version": "7.2.6",
+      "cpe": "cpe:2.3:o:fortinet:fortios:7.2.6:*:*:*:*:*:*:*"
+    }
+  ],
+  "criticality": 5,
+  "internet_facing": true,
+  "owner": "grid-netops",
+  "is_simulated": true
+}

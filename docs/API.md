@@ -255,3 +255,36 @@ Samples: `samples/stix_cve.json`, `samples/stix_bundle.json`.
 - IDs are deterministic (UUIDv5), so re-exporting gives the same objects and a SIEM dedupes them.
 - No ID → 400. More than 50 IDs → 400. Any unknown ID → 404.
 - Validated in tests with the official `stix2-validator` (pinned to 3.2.0: the 3.3.1 wheel ships without its schemas).
+
+---
+
+# Member 3 endpoints (assets, matching, scoring, alerts)
+Models: `backend/app/contracts.py` (`Asset`, `ThreatRecord` = Member 2's `ThreatItem` + matcher hints, `SecurityEvent`, `IncidentAlert`).
+
+### `GET /api/assets`
+JSON array of assets (contract entity `asset`). Sample: `samples/assets.json`.
+
+| Param | Type | Meaning |
+|---|---|---|
+| `sector` | `power` \| `banking` \| `govt` \| `health` \| `telecom` \| `water` | Only this sector |
+| `criticality` | int 1–5 | Exact criticality |
+| `min_criticality` | int 1–5 | Criticality ≥ this |
+| `internet_facing` | bool | Only exposed / only internal |
+
+Invalid values → 422. `software[].version: null` = version unknown (any match on it needs manual review).
+
+### `GET /api/assets/{asset_id}`
+One asset, or 404. Sample: `samples/asset_PWR-FW-01.json`.
+
+### Alert object (`IncidentAlert`), endpoints in progress
+JSON Schema: `samples/incident_alert.schema.json`. Every contract `alert` field, plus these Member 3 additions:
+
+| Field | Meaning |
+|---|---|
+| `title` | Human-readable headline |
+| `lifecycle_status` | `detected → investigating → confirmed → action_required → mitigated → closed`. Contract `status` is derived from it: detected=`new`, the middle three=`ack`, mitigated/closed=`resolved`. |
+| `match_detail` | `confirmed_affected` \| `confirmed_unaffected` \| `needs_verification` \| `no_cve_behavioural`. It is the detailed form of contract `match_status`. |
+| `vulnerability_priority_score`, `behavioural_suspicion_score`, `evidence_confidence_score` | Three separate 0–100 scores, never merged into one |
+| `score_factors` | Breakdown of each score's inputs and weights, for display |
+| `escalation_reasons` | Audit trail explaining the priority |
+| `is_simulated` | True when built on synthetic data |

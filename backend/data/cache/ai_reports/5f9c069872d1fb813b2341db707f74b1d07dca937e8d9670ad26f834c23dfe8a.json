@@ -1,0 +1,21 @@
+{
+ "key": "5f9c069872d1fb813b2341db707f74b1d07dca937e8d9670ad26f834c23dfe8a",
+ "kind": "investigation",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:16:17.724310+00:00",
+ "narrative": {
+  "summary": "No behavioural observations were supplied for asset GOV-WEB-01. Review the verified vulnerability exposure context. The asset is associated with CVE-2024-4577.",
+  "why_relevant": "The verified association with CVE-2024-4577 is relevant for exposure review but does not indicate exploitation.",
+  "recommended_actions": [
+   "Review the stored source evidence and validate sensor coverage.",
+   "Verify asset applicability and consult the supplied vendor guidance before planning remediation."
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 3,
+  "rejected_tokens": [],
+  "note": "All 3 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

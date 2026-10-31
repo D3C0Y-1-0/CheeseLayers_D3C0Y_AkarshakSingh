@@ -1,0 +1,22 @@
+{
+ "key": "3a8e46237d995aabbaaa7f375e5e307c9674e6bcf2d74a316fc3b9dc6244fea1",
+ "kind": "certin_draft",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:16:29.495373+00:00",
+ "narrative": {
+  "incident_description": "The asset PWR-FW-01 (hostname nrldc-edge-fw01, IP 203.0.113.10) in the power sector is confirmed affected by CVE-2024-21762 (Fortinet FortiOS Out-of-Bound Write Vulnerability). No evidence of exploitation has been observed.",
+  "recommended_next_actions": [
+   "Verify the scope by confirming which assets are truly affected and whether the exposure is real.",
+   "Preserve relevant logs; CERT-In Directions require ICT system logs to be retained for 180 days.",
+   "Apply the vendor patch or mitigation, or otherwise restrict exposure until the patch is applied.",
+   "Conduct a hunt for signs of exploitation; if exploitation is found, reassess reportability, noting that the 6-hour reporting clock starts when the incident is noticed."
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 3,
+  "rejected_tokens": [],
+  "note": "All 3 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

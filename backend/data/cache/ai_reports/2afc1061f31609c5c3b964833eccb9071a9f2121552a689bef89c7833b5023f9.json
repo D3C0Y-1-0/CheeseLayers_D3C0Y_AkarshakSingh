@@ -1,0 +1,20 @@
+{
+ "key": "2afc1061f31609c5c3b964833eccb9071a9f2121552a689bef89c7833b5023f9",
+ "kind": "investigation",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:08:31.329640+00:00",
+ "narrative": {
+  "summary": "No behavioural observations were supplied for asset BNK-CBS-01. The verified vulnerability exposure context has been reviewed, and no known CVE linkage was identified.",
+  "why_relevant": "The verified vulnerability association justifies reviewing exposure, but it does not confirm exploitation.",
+  "recommended_actions": [
+   "Review the stored source evidence and validate sensor coverage."
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 1,
+  "rejected_tokens": [],
+  "note": "All 1 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

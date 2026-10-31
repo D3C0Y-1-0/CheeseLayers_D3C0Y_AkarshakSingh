@@ -1,0 +1,22 @@
+{
+ "key": "9fbd3ea0b9f6e5019cf95d4378432264a131f4e25b83326a123475e3a1d2b988",
+ "kind": "certin_draft",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:15:57.803139+00:00",
+ "narrative": {
+  "incident_description": "Vulnerability exposure: CVE-2024-21762 matches software on asset BNK-FW-01 (hostname bank-dc-fw01) belonging to Sim Cooperative Bank in the banking sector. The FortiOS version 7.0.13 is within the vulnerable range (>=7.0.0, <7.0.14). The asset is internet-facing and critical (criticality 5). No exploitation has been observed in the stored evidence.",
+  "recommended_next_actions": [
+   "Confirm scope: verify the affected assets and whether the activity/exposure is real.",
+   "Preserve relevant logs (CERT-In Directions require ICT system logs to be retained for 180 days).",
+   "Apply the vendor patch or mitigation, or restrict exposure until patched.",
+   "Hunt for signs of exploitation; if found, reassess reportability (the 6-hour clock starts when noticed)."
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 5,
+  "rejected_tokens": [],
+  "note": "All 5 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

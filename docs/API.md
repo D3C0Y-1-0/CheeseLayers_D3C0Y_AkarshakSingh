@@ -10,10 +10,26 @@ Available only with `DEMO_MODE=true`; otherwise 404. Request:
 {"scenario":"no_cve_suspicious_chain","run_id":"demo-session-1"}
 ```
 
-`scenario` is required and must be `no_cve_suspicious_chain`, `benign_maintenance`, or
-`missing_telemetry`. Optional `run_id` defaults as above; 1-128 characters from letters,
+`scenario` is required and must be `no_cve_suspicious_chain`, `benign_maintenance`,
+`missing_telemetry`, or one of the **real-data** scenarios below. Optional `run_id` defaults as above; 1-128 characters from letters,
 digits, `_`, `.`, `:`, `-`, beginning with a letter/digit. Extra fields and malformed input
 return 422. Invalid/missing synthetic fixtures or unavailable Member 3 sink return 503.
+
+**Real-data scenarios** (Member 3, `shadow_watch/real.py`): real one-minute windows from SecRepo logs (CC BY 4.0;
+`backend/collectors/secrepo.py` -> `backend/data/cache/secrepo.json`), replayed against one of our assets (events stay
+`is_simulated: true` because the traffic never reached OUR asset; counts, usernames and timestamps are real):
+
+| Scenario | Real window | Detected by |
+|---|---|---|
+| `real_ssh_bruteforce` | AWS sshd, 2014-12-02 04:14-04:17: one IP, ~70 failed logins/min over 13 usernames | `SW-AUTH-001` (10+ failed logins in a minute), asset GOV-VPN-01 |
+| `real_ssh_distributed_spray` | 2014-12-29 13:53: 7 IPs, 7 attempts on admin/ubnt/support/test/user | `SW-ML-001` only (under the rule threshold) |
+| `real_web_crawler` | secrepo.com, 2016-12-24 17:33: a Java client walking the site, 46 of 51 requests 404 | `SW-ML-001` only (no payload), asset HLT-WEB-01 |
+
+New event type `auth_window` (`source_type: "auth_sensor"`; details `failed_count`, `invalid_user_count`,
+`unique_source_count`, `unique_user_count`, `window_seconds`, `top_users`), mapped to the shared contract as
+`event_type: "auth"`. New detectors: `SW-AUTH-001` (`login_failure_burst`) and `SW-ML-001` (`statistical_anomaly`,
+`detector_version: "iforest-v1"`, always severity low / confidence low, only for real-sensor windows no rule flagged).
+Incident titles name the finding (e.g. "SSH password guessing on egov-vpn (GOV-VPN-01)").
 
 Response fields: `scenario`, `run_id`, `incident_id`, `alert_ids`, `findings`, `evidence`,
 `integration_status`, `handoff_status`, `is_simulated`, `note`. Evidence is the typed Member 4

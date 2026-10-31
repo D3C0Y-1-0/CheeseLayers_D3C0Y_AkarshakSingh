@@ -1,0 +1,22 @@
+{
+ "key": "31bc53f881a89d35e0b599c514d05a6d14eda60d51258ffd160fa0fe682c4395",
+ "kind": "investigation",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:15:54.008795+00:00",
+ "narrative": {
+  "summary": "On 2014-12-02 between 04:14 and 04:17 UTC, the SW-AUTH-001 detector (rules-v1) recorded four bursts of failed SSH logins on asset GOV-VPN-01. The bursts were: 74 failures in 60 s (all for non-existent users) from one source targeting 13 usernames (markus, mira, oi-dev, ondra, plugins); 71 failures in 60 s from one source targeting 13 usernames (compras, deisimar, desliga, esau, gerencia); 65 failures in 60 s from one source targeting 15 usernames (tiago, vendas, samba, apache, exclusive_table); and 24 failures in 60 s from one source targeting 4 usernames (kushal, rashiya, root2, santosh). The events are identified by evidence IDs 55b2d9fb92cbe3b3c81b6639:SR-SSH-20141202T0414, 55b2d9fb92cbe3b3c81b6639:SR-SSH-20141202T0415, 55b2d9fb92cbe3b3c81b6639:SR-SSH-20141202T0416, 55b2d9fb92cbe3b3c81b6639:SR-SSH-20141202T0417.",
+  "why_relevant": "These stored observations merit analyst review because they show repeated authentication attempts against non-existent accounts from a single source within short windows. The heuristic suggests possible brute-force activity, but the data do not confirm a successful compromise; the sensor records only failures and does not capture any later successful logins or related process telemetry. No known CVE linkage or vendor patch is associated with these events.",
+  "recommended_actions": [
+   "Review the stored source evidence and validate sensor coverage",
+   "Check the login service's success log for the same window: failures alone do not show whether a guess worked",
+   "Rate-limit or block the failing sources at the edge and confirm no listed username exists with a weak password"
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 6,
+  "rejected_tokens": [],
+  "note": "All 6 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

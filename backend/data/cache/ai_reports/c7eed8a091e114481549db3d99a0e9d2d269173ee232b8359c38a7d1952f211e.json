@@ -1,0 +1,23 @@
+{
+ "key": "c7eed8a091e114481549db3d99a0e9d2d269173ee232b8359c38a7d1952f211e",
+ "kind": "investigation",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:12:29.249740+00:00",
+ "narrative": {
+  "summary": "Detection by SW-ML-001 (Isolation Forest) flagged an outlier on sensor secrepo-sshd for asset GOV-VPN-01 at 2014-12-29T13:53:00Z. The model reported the event is more unusual than 99.3% of 1,768 training minutes (outlier score -0.074) with 7 failed logins, 7 unique sources, 5 unique users, and an invalid-user ratio of 1.0. Evidence ID 63fda41e4468020f31269b6c:SR-SSH-20141229T1353 (auth_window) is linked. No known CVE linkage is present.",
+  "why_relevant": "The stored observations constitute a statistical anomaly that warrants analyst review. While the event is temporally close to the observed window, this does not prove causality. Limitations include that the outlier is based only on this sensor's history, no rule fired on the window, and process-to-network causality is unverified. Compromise is not confirmed.",
+  "recommended_actions": [
+   "Review the stored source evidence and validate sensor coverage",
+   "Check the login service's success log for the same window: failures alone do not show whether a guess succeeded",
+   "Rate-limit or block the failing sources at the edge and confirm no listed username exists with a weak password",
+   "Read the raw log lines for the flagged minute: a statistical outlier is a lead for review, not evidence of compromise"
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 3,
+  "rejected_tokens": [],
+  "note": "All 3 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

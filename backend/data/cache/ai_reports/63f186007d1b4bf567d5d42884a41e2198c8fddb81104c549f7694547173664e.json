@@ -1,0 +1,21 @@
+{
+ "key": "63f186007d1b4bf567d5d42884a41e2198c8fddb81104c549f7694547173664e",
+ "kind": "investigation",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:08:40.177266+00:00",
+ "narrative": {
+  "summary": "No behavioural observations were supplied. Review the verified vulnerability exposure context. Verified CVE association: CVE-2023-22515.",
+  "why_relevant": "The verified CVE-2023-22515 association supports reviewing exposure, but does not indicate exploitation.",
+  "recommended_actions": [
+   "Review the stored source evidence and validate sensor coverage.",
+   "Verify asset applicability and consult the supplied vendor guidance before planning remediation."
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 2,
+  "rejected_tokens": [],
+  "note": "All 2 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

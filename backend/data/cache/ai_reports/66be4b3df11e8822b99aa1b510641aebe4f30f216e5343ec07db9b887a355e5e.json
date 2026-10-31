@@ -1,0 +1,22 @@
+{
+ "key": "66be4b3df11e8822b99aa1b510641aebe4f30f216e5343ec07db9b887a355e5e",
+ "kind": "investigation",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:07:49.236017+00:00",
+ "narrative": {
+  "summary": "On 2016-12-24 at 17:33 UTC the sensor secrepo-web recorded an HTTP window event (ID 2e80703733b802b62f0d6cb2:SR-WEB-20161224T1733) for asset HLT-WEB-01. The Isolation Forest detector SW-ML-001 flagged this minute as a statistical outlier, more unusual than 99.8 % of the 4,477 training minutes (outlier score -0.0755). Metrics: 51 requests per minute, 90.2 % HTTP 4xx responses, a single unique client, and zero failed authentications. No known CVE linkage is present.",
+  "why_relevant": "The outlier metrics exceed the normal baseline and therefore warrant analyst review, but the statistical nature alone does not prove an attack. No rule fired for this window, and causality with any process or network activity has not been verified.",
+  "recommended_actions": [
+   "Review the stored source evidence and validate sensor coverage",
+   "Examine application request logs and compare this HTTP window with the normal baseline",
+   "Inspect the raw log lines for the flagged minute; treat the statistical outlier as a lead, not definitive evidence of compromise"
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 3,
+  "rejected_tokens": [],
+  "note": "All 3 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

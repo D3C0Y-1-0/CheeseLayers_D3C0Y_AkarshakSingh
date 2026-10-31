@@ -31,19 +31,29 @@ from `backend/app/scoring.py` `CONFIG` (`scripts/gen_scoring_doc.py`), and a tes
 | Risk scoring (`app/scoring.py`) | Transparent weighted formula (section 3). Not learned: every factor is shown in the UI. | Rules | On |
 | Early-warning signals (`ingestion/changes.py`) | Diffs between feed runs: new KEV entry, EPSS +0.2 or crossing 0.5, quality-filtered public exploit, CERT-In advisory, CVSS ≥ 9 on a recent CVE. | Rules | On |
 | Behaviour detection (Shadow Watch, Attack Lab `app/detection.py`) | Signatures (SQL injection, command injection...), thresholds (10+ failed logins / 60 s, 15+ ports / 60 s), sequences (login after brute force, web server → shell). MITRE ATT&CK mapping. | Rules | On |
-| **Isolation Forest** (Member 4) | Anomaly detection over one-minute windows (6 features). | **ML** | **Evaluated, not enabled** (below) |
-| **LLM narrative** (`ai/grounded.py`) | Optional (Groq). It may only **reword** a deterministic template built from stored facts. | **LLM** | Off in demo mode; template or cached text shown |
+| **Isolation Forest** (`shadow_watch/ml.py`) | Anomaly detection over one-minute windows of REAL logs, one model per real sensor, temporal split. | **ML** | **On as a triage signal** (SW-ML-001, low severity; never escalates alone) |
+| **LLM narrative** (`ai/grounded.py`) | Groq `openai/gpt-oss-120b`. It may only **reword** a deterministic template built from stored facts. | **LLM** | On when `LLM_ALLOW_CLOUD=true`; validated answers cached for offline replay |
 
-**Isolation Forest result.** On the synthetic `windows.csv` benchmark (350 normal training windows; 150 test
-windows: 142 normal, 8 suspicious), the rules alone found **8/8 with 0 false positives**. Rules + Isolation Forest
-(100 trees, contamination 0.02) also found 8/8 but added **4 false positives** (false-positive rate 2.8%). No recall
-gain, more noise, so the model is not used live (`artifacts/shadow_evaluation.json`). This is a synthetic
-development benchmark, not a real-world accuracy estimate.
+**Isolation Forest, two evaluations.**
+1. *Synthetic benchmark* (`windows.csv`, Member 4): rules alone 8/8 with 0 false positives; rules + model 8/8 with
+   **4 false positives** and no recall gain, so on that data the model added only noise (`artifacts/shadow_evaluation.json`).
+2. *Real logs* (SecRepo, CC BY 4.0: secrepo.com's web server Dec 2016, 27,532 requests; an AWS sshd 30 Nov - 31 Dec
+   2014, 14,798 failed logins). Trained on the first 70% of each sensor's minutes, tested on the rest
+   (`scripts/evaluate_shadow_real.py` -> `artifacts/shadow_evaluation_real.json`). There is no ground truth for real
+   logs, so we compare with what our rules flag on the same held-out minutes:
+   - web (1,920 test minutes): rules flag 21 (attack payloads), the model 65; they overlap on 1. The model's extra
+     finds are volume anomalies with no payload, e.g. an automated Java crawler guessing paths (46 of 51 requests 404).
+   - ssh (759 test minutes): rules flag 226 bursts, the model 113, overlapping on 112. The model's one extra find is a
+     **distributed spray**: 7 IPs, 7 attempts on admin/ubnt/support/test/user in one minute, under the rule threshold.
+   So the two are complementary: rules catch payloads and bursts, the model catches what thresholds miss. It is
+   enabled only as a low-severity "unusual, needs review" finding, only on the sensor it was trained on.
 
 **LLM guard rails.** The template (always correct, works offline) is the source of truth. The model's rewording is
 rejected and the template shown if it adds any CVE/asset ID, version, IP or URL that is not in the stored facts,
-changes a fact field, claims a "confirmed breach" or "zero-day", or includes commands. Each panel shows
-`generated_by` (template / llm / llm_cached) and the validation result. Demo mode makes no cloud calls.
+changes a fact field, claims a "confirmed breach" or "zero-day", or includes commands. Look-alike characters
+(non-breaking hyphens, en dashes) are folded to ASCII first, so `GOV‑VPN‑01` cannot hide an invented ID from the
+check. Each panel shows `generated_by` (template / llm / llm_cached) and the validation result. Validated answers are
+cached (`scripts/pregenerate_ai.py`) so the offline demo shows real LLM text.
 
 ## 3. Risk scoring (generated from CONFIG)
 

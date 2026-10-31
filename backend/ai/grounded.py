@@ -13,6 +13,7 @@ import hashlib
 import json
 import os
 import re
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Awaitable, Callable
@@ -86,6 +87,19 @@ def llm_status() -> dict:
     config, reason = disabled_reason(None)
     return {"cloud_enabled": reason is None, "provider": config.provider if config else None, "reason": reason,
             "cached_reports": len(list(CACHE_DIR.glob("*.json"))) if CACHE_DIR.exists() else 0}
+
+
+LOOKALIKE = str.maketrans({c: "-" for c in "‐‑‒–—―−﹣－"}
+                          | {c: " " for c in "     "} | {"­": "", "​": ""})
+
+
+def plain(v):
+    """Fold look-alike dashes/spaces to ASCII in model text (strings, or lists of strings)."""
+    if isinstance(v, str):
+        return unicodedata.normalize("NFKC", v).translate(LOOKALIKE)
+    if isinstance(v, list):
+        return [plain(x) for x in v]
+    return v
 
 
 def ungrounded(texts: list[str], corpus: str) -> list[str]:
@@ -180,7 +194,9 @@ async def narrate(kind: str, facts: dict, template: dict, fields: dict[str, str]
         return fallback("provider_error", _validation(False, "LLM provider error; template shown."))
     changed = [k for k, v in data.items() if k not in names and k not in VOLATILE and k in template
                and json.dumps(v, sort_keys=True, default=str) != json.dumps(template[k], sort_keys=True, default=str)]
-    narrative = {k: data.get(k) for k in names}
+    # Look-alike characters (non-breaking hyphen U+2011, en dash, NBSP...) would hide identifiers from the grounding
+    # check ("GOV‑VPN‑01" is not "GOV-VPN-01"), so fold them to ASCII before checking and before display.
+    narrative = {k: plain(data.get(k)) for k in names}
     problems, bad = check(narrative, fields, corpus)
     if changed:
         problems.append("tried to change factual fields: " + ", ".join(changed))

@@ -1,0 +1,22 @@
+{
+ "key": "15104eca2dcb172e63b041fc0094e955ccb994c2b57ac806aab28a5ecf691f50",
+ "kind": "certin_draft",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:12:14.909383+00:00",
+ "narrative": {
+  "incident_description": "Suspicious activity on asset HLT-WEB-01 (hostname patient-portal, IP 198.51.100.40, organisation Sim District Hospital, sector health) was detected at 2026-10-31T21:12:12.818136Z. An isolation-forest statistical anomaly (alert ALR-383D1317) flagged HTTP traffic with 51.0 requests per minute, a 0.902 ratio of 4xx responses, a single unique client and no failed authentications. The anomaly score places the activity above 99.8% of the sensor's 4,477 minutes of historical data, but no rule fired and the behavior remains unconfirmed; the data are simulated.",
+  "recommended_next_actions": [
+   "Confirm the scope by verifying that HLT-WEB-01 is the affected asset and determining whether the observed activity is real.",
+   "Preserve relevant logs, noting that CERT-In Directions require ICT system logs to be retained for 180 days.",
+   "If the activity is confirmed, contain it by isolating the host according to the incident response plan.",
+   "Decide on reportability now: if a listed incident type is confirmed, the 6-hour reporting window applies."
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 4,
+  "rejected_tokens": [],
+  "note": "All 4 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

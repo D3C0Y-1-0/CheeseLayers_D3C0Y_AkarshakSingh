@@ -23,10 +23,12 @@ def build_fallback_report(incident_context: IncidentContext | dict) -> Investiga
         limitations.append("Synthetic demo preview in memory; Member 3 persistence/correlation and final priority are not connected")
     if citations:
         span = f"{citations[0].observed_at.isoformat()} to {citations[-1].observed_at.isoformat()}"
-        facts = "; ".join(f"{e.evidence_id}: {e.event_type} on {e.asset_id or 'unknown asset'} at {e.observed_at.isoformat()}" for e in citations[:10])
-        summary = f"{len(citations)} stored observations ({span}). {facts}."
-        if len(citations) > 10:
-            limitations.append("Summary shows first 10 observations; complete bounded evidence citations are included")
+        facts = "; ".join(f"{e.evidence_id}: {e.event_type} on {e.asset_id or 'unknown asset'} at {e.observed_at.isoformat()}" for e in citations[:5])
+        # Lead with what the detectors found (their own reasons carry the real counts), then the evidence trail.
+        found = "; ".join(dict.fromkeys(f"{f.detector_id}: {f.reason}" for f in ctx.findings[:3]))
+        summary = (f"Detected: {found}. " if found else "") + f"{len(citations)} stored observations ({span}). {facts}."
+        if len(citations) > 5:
+            limitations.append("Summary shows first 5 observations; complete bounded evidence citations are included")
     else:
         summary = "No behavioural observations were supplied. Review the verified vulnerability exposure context."
     if ctx.verified_cve_ids:
@@ -48,6 +50,11 @@ def build_fallback_report(incident_context: IncidentContext | dict) -> Investiga
         actions.append("Validate process ancestry against authorised service and change records")
     if types & {"network_connection", "network"}:
         actions.append("Verify outbound destination purpose using authorised connection logs")
+    if types & {"auth_window", "auth"}:
+        actions.append("Check the login service's success log for the same window: failures alone do not show whether a guess worked")
+        actions.append("Rate-limit or block the failing sources at the edge and confirm no listed username exists with a weak password")
+    if any(f.detector_id == "SW-ML-001" for f in ctx.findings):
+        actions.append("Read the raw log lines for the flagged minute: a statistical outlier is a lead for review, not evidence of compromise")
     if maintenance:
         actions.append("Confirm the approved maintenance window and load-test scope with change records")
     if ctx.verified_cve_ids:

@@ -1,0 +1,22 @@
+{
+ "key": "8e2c335c3489f0d9121ad06a0e9fa128a17188f0bcc1edfde980d7c0dcbe73d4",
+ "kind": "certin_draft",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:12:26.429662+00:00",
+ "narrative": {
+  "incident_description": "Suspicious authentication activity detected on asset GOV-VPN-01 (hostname egov-vpn, sector govt). Four auth events were logged by sensor secrepo-sshd on 2014-12-02 between 04:14 and 04:17 UTC. No successful login or compromise has been confirmed.",
+  "recommended_next_actions": [
+   "Confirm scope: verify the affected assets and whether the activity/exposure is real",
+   "Preserve relevant logs (CERT-In Directions require ICT system logs to be retained for 180 days)",
+   "Contain if confirmed: isolate the host per your incident response plan",
+   "Decide reportability now: if a listed incident type is confirmed, the 6-hour window applies"
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 1,
+  "rejected_tokens": [],
+  "note": "All 1 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "key": "09fea58deb5cebf667f7ccaca939a0f65d7dfa54d377f9859290a861db6b0931",
+ "kind": "threat_summary",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:05:36.389422+00:00",
+ "narrative": {
+  "summary": "DEMO-VULN-002 (synthetic demo) - [SIMULATED] CoreLink Banking Gateway authentication bypass. Severity: high (CVSS 8.1). Source: netrax_synthetic.",
+  "affected_summary": "One asset is affected: BNK-CBS-01 (hostname cbs-gateway-01) running version 3.0.5 in the banking sector (internal, criticality 5).",
+  "exploit_summary": "Not listed in CISA KEV; EPSS unknown; public exploit unknown.",
+  "why_it_matters": "The vulnerable component is present in our inventory; there is no evidence of active exploitation.",
+  "recommended_actions": [
+   "Plan remediation for BNK-CBS-01 using the vendor advisory",
+   "Review the source references and the linked incident(s) before acting"
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 4,
+  "rejected_tokens": [],
+  "note": "All 4 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

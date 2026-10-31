@@ -1,0 +1,22 @@
+{
+ "key": "c24c2dc15a6ee3da766cc1dcd8788980a84a430e330adeffbc03a265d46da342",
+ "kind": "certin_draft",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:16:15.752280+00:00",
+ "narrative": {
+  "incident_description": "Vulnerability exposure: CVE-2023-22515 matches software on asset TEL-WIKI-01 (hostname noc-wiki-01, sector telecom). The installed Confluence version 8.5.1 falls within the vulnerable range (>=8.5.0, <8.5.2). The asset is internet-facing and simulated. No exploitation has been observed in the evidence.",
+  "recommended_next_actions": [
+   "Confirm scope: verify the affected assets and whether the activity/exposure is real",
+   "Preserve relevant logs (CERT-In Directions require ICT system logs to be retained for 180 days)",
+   "Apply the vendor patch or mitigation, or restrict exposure until patched",
+   "Hunt for signs of exploitation; if found, reassess reportability (6-hour clock starts when noticed)"
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 5,
+  "rejected_tokens": [],
+  "note": "All 5 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

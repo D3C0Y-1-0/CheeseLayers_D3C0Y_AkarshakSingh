@@ -1,0 +1,22 @@
+{
+ "key": "30f01796a621a2a45cd992170daeeed6a2f8f291af3926d0843ec4f6d9cafcf9",
+ "kind": "certin_draft",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:16:11.490470+00:00",
+ "narrative": {
+  "incident_description": "Vulnerability exposure: DEMO-VULN-002 matches software on asset BNK-CBS-01 (hostname cbs-gateway-01, sector banking) and is confirmed affected. No exploitation has been observed in the available evidence.",
+  "recommended_next_actions": [
+   "Confirm the scope by verifying the affected asset BNK-CBS-01 and determining whether the exposure is real.",
+   "Preserve relevant ICT system logs for at least 180 days as required by CERT-In Directions.",
+   "Apply the vendor patch or implement mitigation measures, or otherwise restrict exposure until the patch can be applied.",
+   "Search for any signs of exploitation; if exploitation is detected, reassess reportability and note that the 6-hour reporting clock would start at detection."
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 3,
+  "rejected_tokens": [],
+  "note": "All 3 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

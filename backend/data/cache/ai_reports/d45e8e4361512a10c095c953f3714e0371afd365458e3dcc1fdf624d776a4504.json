@@ -1,0 +1,24 @@
+{
+ "key": "d45e8e4361512a10c095c953f3714e0371afd365458e3dcc1fdf624d776a4504",
+ "kind": "threat_summary",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:05:23.314944+00:00",
+ "narrative": {
+  "summary": "CVE-2024-4577 is a critical PHP-CGI OS command injection vulnerability (CVSS 9.8) listed in the KEV database.",
+  "affected_summary": "One asset is affected: GOV-WEB-01 (hostname citizen-portal-01) running PHP 8.1.28, internet-facing, criticality 4. The installed version falls within the vulnerable range (>=8.1.0, <8.1.29).",
+  "exploit_summary": "The vulnerability is listed in the CISA KEV (added 2024-06-12) with EPSS 0.99987 (percentile 0.99984). A public exploit exists; Exploit-DB entry dated 2025-06-15. Early-warning signals include a new KEV entry and a new public exploit detection on 2026-10-31 (both simulated).",
+  "why_it_matters": "It is actively exploited elsewhere and present in our environment, making it a highest-priority remediation item.",
+  "recommended_actions": [
+   "Upgrade GOV-WEB-01 to PHP 8.1.29 or later, or apply the vendor-provided mitigation.",
+   "Limit internet exposure of the affected service until the patch is applied.",
+   "Review the referenced sources for additional context before taking action."
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 7,
+  "rejected_tokens": [],
+  "note": "All 7 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

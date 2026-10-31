@@ -1,0 +1,23 @@
+{
+ "key": "23a6b8ed6512653b00f528082665edf6538eef543e8b84af96b9468a0a82226c",
+ "kind": "threat_summary",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:10:00.611451+00:00",
+ "narrative": {
+  "summary": "DEMO-VULN-001 (synthetic demo record, not a real CVE): [SIMULATED] GridView HMI unauthenticated remote command execution. Critical severity, CVSS 9.8. Source: netrax_synthetic.",
+  "affected_summary": "One asset is affected: PWR-HMI-01 (hostname scada-hmi-01) runs version 4.2.1, which is within the vulnerable range (>=4.0.0, <4.2.3). The asset is internal, sector power, criticality 5.",
+  "exploit_summary": "The vulnerability is not listed in CISA KEV; EPSS is unknown; public exploit is unknown. One early-warning signal was observed: new_critical_cve (detected 2026-10-31T19:18:10.311105+00:00, simulated).",
+  "why_it_matters": "The vulnerable HMI is present in our inventory. There is no evidence of active exploitation, but the high severity and remote command execution capability warrant remediation.",
+  "recommended_actions": [
+   "Plan remediation for PWR-HMI-01: upgrade to 4.2.3 or later, or apply the vendor mitigation",
+   "Review the source references and the linked incident(s) before acting"
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 7,
+  "rejected_tokens": [],
+  "note": "All 7 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

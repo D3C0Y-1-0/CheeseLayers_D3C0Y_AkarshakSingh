@@ -1,0 +1,24 @@
+{
+ "key": "0e1cece364cde2a64921b78a6cd9909d7ba5d6a6779b62a89317b2dc6949970b",
+ "kind": "threat_summary",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:05:26.165036+00:00",
+ "narrative": {
+  "summary": "CVE-2023-22515 - Atlassian Confluence Data Center and Server broken access control vulnerability. Critical severity, CVSS 9.8 (v3.1). Source: kev.",
+  "affected_summary": "One asset is affected: TEL-WIKI-01 (hostname noc-wiki-01, sector telecom, internet-facing, installed version 8.5.1, criticality 3). The version falls within the vulnerable range (>= 8.5.0, < 8.5.2); a fix is available in version 8.5.2.",
+  "exploit_summary": "The vulnerability is listed in the CISA KEV catalog (added 2023-10-05) and has an EPSS score of 0.99223 (percentile 0.99935). Public exploit code is reported. Early-warning signals include a new KEV entry and a new public exploit signal detected on 2026-10-31 (simulated). No exploit database entry or GitHub proof-of-concept is recorded.",
+  "why_it_matters": "The vulnerability is actively exploited in the wild and is present in our environment, making it a top remediation priority.",
+  "recommended_actions": [
+   "Upgrade TEL-WIKI-01 to Confluence version 8.5.2 or later, or apply the vendor-provided mitigation.",
+   "Limit internet exposure of the affected service until the patch is applied.",
+   "Review the referenced advisories and any related incident reports before taking action."
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 8,
+  "rejected_tokens": [],
+  "note": "All 8 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

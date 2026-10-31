@@ -20,7 +20,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BACKEND = ROOT / "backend"
-SCENARIOS = ("no_cve_suspicious_chain", "benign_maintenance", "missing_telemetry")
+SCENARIOS = ("no_cve_suspicious_chain", "benign_maintenance", "missing_telemetry",
+             "real_ssh_bruteforce", "real_ssh_distributed_spray", "real_web_crawler")  # real: SecRepo logs
 
 
 def main() -> int:

@@ -21,6 +21,7 @@ class LLMSettings:
     api_key: str = field(default="", repr=False)
     allow_cloud: bool = False
     timeout_seconds: float = 5.0
+    spare_keys: tuple[str, ...] = field(default=(), repr=False)  # tried in order when a key is rate-limited (429)
 
     def __post_init__(self):
         if not 0 < self.timeout_seconds <= 30:
@@ -28,13 +29,36 @@ class LLMSettings:
 
     @classmethod
     def from_env(cls):
+        # LLM_API_KEY, or GROQ_API_KEY, or numbered GROQ_API_KEY1..9 (several free-tier keys = more rate limit).
+        names = ["LLM_API_KEY", "GROQ_API_KEY"] + [f"GROQ_API_KEY{i}" for i in range(1, 10)]
+        keys = list(dict.fromkeys(k.strip() for k in (os.getenv(n, "") for n in names) if k and k.strip()))
         return cls(provider=os.getenv("LLM_PROVIDER", "template").lower(),
-                   model=os.getenv("LLM_MODEL", ""), api_key=os.getenv("LLM_API_KEY", ""),
+                   model=os.getenv("LLM_MODEL", ""), api_key=keys[0] if keys else "", spare_keys=tuple(keys[1:]),
                    allow_cloud=os.getenv("LLM_ALLOW_CLOUD", "false").lower() == "true",
                    timeout_seconds=float(os.getenv("LLM_TIMEOUT_SECONDS", "5")))
 
 
 async def complete_json(prompt: str, settings: LLMSettings) -> str:
+    """On HTTP 429 (free-tier rate limit) try the next configured key; with one key, wait <= 3 s and retry once.
+    Anything else fails to the template."""
+    import asyncio
+    from dataclasses import replace
+    keys = [settings.api_key, *settings.spare_keys]
+    for i, key in enumerate(keys):
+        try:
+            return await _complete_json(prompt, replace(settings, api_key=key))
+        except httpx.HTTPStatusError as e:
+            if e.response.status_code != 429:
+                raise
+            if i == len(keys) - 1:
+                if len(keys) > 1:
+                    raise
+                await asyncio.sleep(min(float(e.response.headers.get("retry-after") or 2), 3))
+                return await _complete_json(prompt, settings)
+    raise PermissionError("cloud LLM disabled")
+
+
+async def _complete_json(prompt: str, settings: LLMSettings) -> str:
     if not settings.allow_cloud or not settings.api_key or settings.provider != "groq":
         raise PermissionError("cloud LLM disabled")
     # Fixed endpoint, bounded request/output, no redirects or model-selected URLs.

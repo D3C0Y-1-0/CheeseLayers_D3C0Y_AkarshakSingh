@@ -1,0 +1,22 @@
+{
+ "key": "3e6b3ca442f829e35cb0b62b4efc240a13f4d3c0e0f9d306863d4545b7633edb",
+ "kind": "investigation",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:07:44.150307+00:00",
+ "narrative": {
+  "summary": "On 2026-10-31, synthetic sensors recorded two events on asset HLT-WEB-01. Event 5445f2604cbbc56e7824ec34:SW-EV-0007 (http_window) showed 200 of 300 HTTP requests returning 4xx status (66.7%) within a 60-second window, flagged by detector SW-HTTP-001 (rules-v1) as an unusual_http_window (severity medium, confidence medium). Event 5445f2604cbbc56e7824ec34:SW-EV-0008 (network_connection) reported a first-seen outbound connection to 203.0.113.250:4444, flagged by detector SW-NET-001 (rules-v1) as a new_outbound_destination (severity low, confidence low). Both findings are simulated and stored for review.",
+  "why_relevant": "The stored observations share the same asset and a close time window, indicating a potential anomalous pattern that warrants analyst investigation. Heuristic evidence does not confirm compromise, and no process telemetry or known CVE linkage is available. The lack of confirmed malicious activity means the events should be validated before any escalation.",
+  "recommended_actions": [
+   "Review the stored source evidence and validate sensor coverage",
+   "Review application request logs and compare the HTTP window with the normal baseline",
+   "Verify outbound destination purpose using authorised connection logs"
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 6,
+  "rejected_tokens": [],
+  "note": "All 6 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

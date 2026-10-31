@@ -99,3 +99,37 @@ def test_real_scenarios_are_described():
     for s in real.SCENARIOS:
         d = real.describe(s)
         assert d["windows"] >= 1 and d["first_minute"] and d["target"] in ("GOV-VPN-01", "HLT-WEB-01")
+
+
+def test_lookalike_hyphens_cannot_hide_identifiers_from_the_grounding_check():
+    from ai.grounded import plain, ungrounded
+    text = plain("SW\u2011AUTH\u2011001 on GOV\u2011VPN\u201101, also FAKE\u2011ASSET\u201199")
+    assert "\u2011" not in text and ungrounded([text], "SW-AUTH-001 GOV-VPN-01") == ["FAKE-ASSET-99"]
+
+
+def test_investigation_template_leads_with_what_was_detected():
+    b = inject("real_ssh_bruteforce")
+    report = client.post(f"/api/alerts/{b['alert_ids'][0]}/investigate").json()
+    if report["generated_by"] == "template":  # tests never call the cloud; the template must carry the substance
+        assert report["summary"].startswith("Detected: SW-AUTH-001:") and "failed logins" in report["summary"]
+        assert any("success log" in a for a in report["recommended_actions"])
+
+
+def test_rate_limited_key_falls_over_to_the_next(monkeypatch):
+    import asyncio
+
+    import httpx
+
+    from ai import llm
+    used = []
+
+    async def fake(prompt, settings):
+        used.append(settings.api_key)
+        if settings.api_key == "k1":
+            raise httpx.HTTPStatusError("429", request=httpx.Request("POST", "https://x"),
+                                        response=httpx.Response(429, request=httpx.Request("POST", "https://x")))
+        return '{"summary": "ok"}'
+    monkeypatch.setattr(llm, "_complete_json", fake)
+    s = llm.LLMSettings(provider="groq", model="m", api_key="k1", spare_keys=("k2",), allow_cloud=True)
+    assert asyncio.run(llm.complete_json("p", s)) == '{"summary": "ok"}' and used == ["k1", "k2"]
+    assert "k1" not in repr(s) and "k2" not in repr(s)  # keys never appear in logs/reprs

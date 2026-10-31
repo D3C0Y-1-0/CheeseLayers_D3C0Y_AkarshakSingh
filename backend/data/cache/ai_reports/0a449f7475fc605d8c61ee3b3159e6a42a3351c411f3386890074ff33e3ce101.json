@@ -1,0 +1,22 @@
+{
+ "key": "0a449f7475fc605d8c61ee3b3159e6a42a3351c411f3386890074ff33e3ce101",
+ "kind": "certin_draft",
+ "lang": "en",
+ "model": "openai/gpt-oss-120b",
+ "created_at": "2026-10-31T21:08:11.962071+00:00",
+ "narrative": {
+  "incident_description": "Suspicious activity detected on asset GOV-VPN-01 (hostname egov-vpn, sector govt). One authentication event was recorded. Compromise has not been confirmed.",
+  "recommended_next_actions": [
+   "Confirm the scope by verifying the affected assets and determining if the observed activity is genuine.",
+   "Preserve all relevant logs; CERT-In directions mandate retention of ICT system logs for 180 days.",
+   "If the activity is confirmed malicious, isolate the host according to the incident response plan.",
+   "Assess reportability immediately; if the incident matches a listed type, the six-hour reporting window applies."
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 1,
+  "rejected_tokens": [],
+  "note": "All 1 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

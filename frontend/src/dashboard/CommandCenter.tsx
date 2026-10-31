@@ -13,6 +13,10 @@ const SIMS = [
   { label: 'Inject suspicious behaviour', path: '/api/demo/inject-behaviour', body: { scenario: 'no_cve_suspicious_chain' } },
   { label: 'Inject benign maintenance', path: '/api/demo/inject-behaviour', body: { scenario: 'benign_maintenance' } },
   { label: 'Missing telemetry', path: '/api/demo/inject-behaviour', body: { scenario: 'missing_telemetry' } },
+  // Real logs (SecRepo): a real sshd and a real web server, replayed against one of our assets.
+  { label: 'Real SSH brute force', path: '/api/demo/inject-behaviour', body: { scenario: 'real_ssh_bruteforce' } },
+  { label: 'Real distributed spray (ML)', path: '/api/demo/inject-behaviour', body: { scenario: 'real_ssh_distributed_spray' } },
+  { label: 'Real crawler anomaly (ML)', path: '/api/demo/inject-behaviour', body: { scenario: 'real_web_crawler' } },
 ]
 
 // These always call the real backend. They never fake a result in the browser.

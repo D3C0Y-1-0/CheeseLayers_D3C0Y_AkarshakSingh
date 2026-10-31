@@ -1,157 +1,5 @@
 [
   {
-    "alert_id": "ALR-EDB7AF1F",
-    "kind": "behaviour",
-    "priority": "critical",
-    "status": "new",
-    "asset_ids": [
-      "HLT-WEB-01"
-    ],
-    "threat_ids": [],
-    "evidence_ids": [
-      "9652e455c013b7e4db1ee316:SW-EV-0001",
-      "9652e455c013b7e4db1ee316:SW-EV-0002",
-      "9652e455c013b7e4db1ee316:SW-EV-0003"
-    ],
-    "risk_score": 88.0,
-    "factors": {
-      "severity": null,
-      "exploitation": null,
-      "criticality": 0.6,
-      "exposure": null,
-      "confidence": 0.35
-    },
-    "match_status": null,
-    "reasons": [
-      "9652e455c013b7e4db1ee316:SW-EV-0001: 240/340 HTTP 4xx responses (70.6%) in 60s (340.0 requests/min)",
-      "9652e455c013b7e4db1ee316:SW-EV-0002: Host sensor observed unexpected process relationship: php-fpm8.3 -> sh",
-      "9652e455c013b7e4db1ee316:SW-EV-0003: First-seen outbound destination 203.0.113.250:4444 on protected asset",
-      "behavioural suspicion 88.0 -> critical (3 signal type(s): http_anomaly, outbound_connection, unexpected_process)",
-      "priority critical (driven by behaviour)"
-    ],
-    "limitations": [
-      "Heuristic observation; compromise not confirmed",
-      "Heuristic observation; compromise not confirmed",
-      "Heuristic observation; compromise not confirmed",
-      "New destination alone does not establish malicious activity; no destination was contacted"
-    ],
-    "timeline": [
-      {
-        "at": "2026-10-31T09:32:10Z",
-        "event": "http_anomaly: 240/340 HTTP 4xx responses (70.6%) in 60s (340.0 requests/min)",
-        "ref": "9652e455c013b7e4db1ee316:SW-EV-0001"
-      },
-      {
-        "at": "2026-10-31T09:33:40Z",
-        "event": "unexpected_process: Host sensor observed unexpected process relationship: php-fpm8.3 -> sh",
-        "ref": "9652e455c013b7e4db1ee316:SW-EV-0002"
-      },
-      {
-        "at": "2026-10-31T09:36:05Z",
-        "event": "outbound_connection: First-seen outbound destination 203.0.113.250:4444 on protected asset",
-        "ref": "9652e455c013b7e4db1ee316:SW-EV-0003"
-      },
-      {
-        "at": "2026-10-31T17:31:37.169148Z",
-        "event": "incident opened from 3 event(s) on HLT-WEB-01",
-        "ref": null
-      }
-    ],
-    "created_at": "2026-10-31T17:31:37.169148Z",
-    "title": "Suspicious activity on patient-portal (HLT-WEB-01): http_anomaly, outbound_connection, unexpected_process",
-    "lifecycle_status": "detected",
-    "match_detail": "no_cve_behavioural",
-    "vulnerability_priority_score": 0.0,
-    "behavioural_suspicion_score": 88.0,
-    "evidence_confidence_score": 35.0,
-    "score_factors": {
-      "vulnerability": {
-        "score": 0.0,
-        "reason": "no known vulnerability",
-        "weights": {
-          "severity": 0.3,
-          "exploitation": 0.35,
-          "criticality": 0.2,
-          "exposure": 0.15
-        }
-      },
-      "behaviour": {
-        "score": 88.0,
-        "signals": [
-          {
-            "event_id": "9652e455c013b7e4db1ee316:SW-EV-0001",
-            "signal": "http_anomaly",
-            "severity": 0.5,
-            "reason": "240/340 HTTP 4xx responses (70.6%) in 60s (340.0 requests/min)",
-            "in_maintenance": false
-          },
-          {
-            "event_id": "9652e455c013b7e4db1ee316:SW-EV-0002",
-            "signal": "unexpected_process",
-            "severity": 0.8,
-            "reason": "Host sensor observed unexpected process relationship: php-fpm8.3 -> sh",
-            "in_maintenance": false
-          },
-          {
-            "event_id": "9652e455c013b7e4db1ee316:SW-EV-0003",
-            "signal": "outbound_connection",
-            "severity": 0.7,
-            "reason": "First-seen outbound destination 203.0.113.250:4444 on protected asset",
-            "in_maintenance": false
-          }
-        ],
-        "distinct_signal_types": [
-          "http_anomaly",
-          "outbound_connection",
-          "unexpected_process"
-        ],
-        "worst_signal_severity": 0.64,
-        "diversity_bonus": 0.4,
-        "maintenance_windows": [],
-        "maintenance_damping_applied": false,
-        "config": {
-          "base_weight": 0.75,
-          "diversity_bonus": 0.2,
-          "maintenance_damping": 0.3
-        }
-      },
-      "confidence": {
-        "score": 35.0,
-        "provenance": 20,
-        "provenance_reason": "local sensor telemetry",
-        "match_certainty": 0,
-        "telemetry_corroboration": 30,
-        "incomplete_evidence_penalty": 15
-      },
-      "priority": {
-        "driver": "behaviour",
-        "vulnerability_level": "low",
-        "behaviour_level": "critical",
-        "thresholds": {
-          "critical": 80,
-          "high": 55,
-          "medium": 30
-        }
-      }
-    },
-    "escalation_reasons": [
-      "behavioural suspicion 88.0 -> critical (3 signal type(s): http_anomaly, outbound_connection, unexpected_process)",
-      "priority critical (driven by behaviour)"
-    ],
-    "is_simulated": true,
-    "related_alert_ids": [],
-    "indicators": {
-      "dest_ips": [
-        "203.0.113.250"
-      ]
-    },
-    "suppressed": false,
-    "remediation_target_at": "2026-11-07T17:31:37.169148+00:00",
-    "remediation_target_days": 7,
-    "overdue": false,
-    "remediation_policy": "organisation-defined policy, not a regulatory deadline"
-  },
-  {
     "alert_id": "ALR-9423EFA2",
     "kind": "vulnerability",
     "priority": "critical",
@@ -163,10 +11,10 @@
       "CVE-2024-21762"
     ],
     "evidence_ids": [],
-    "risk_score": 99.4,
+    "risk_score": 99.0,
     "factors": {
       "severity": 0.98,
-      "exploitation": 1.0,
+      "exploitation": 0.984,
       "criticality": 1.0,
       "exposure": 1.0,
       "confidence": 0.7
@@ -174,32 +22,34 @@
     "match_status": "confirmed",
     "reasons": [
       "installed 7.0.13 is inside the vulnerable range (>= 7.0.0, < 7.0.14)",
-      "vulnerability priority 99.4 -> critical",
+      "vulnerability priority 99.0 -> critical",
       "priority critical (driven by vulnerability)"
     ],
     "limitations": [],
     "timeline": [
       {
-        "at": "2026-10-31T17:31:37.155529Z",
-        "event": "detected (demo_inject): installed 7.0.13 is inside the vulnerable range (>= 7.0.0, < 7.0.14)",
+        "at": "2026-10-31T18:53:38.969848Z",
+        "event": "detected (api): installed 7.0.13 is inside the vulnerable range (>= 7.0.0, < 7.0.14)",
         "ref": "CVE-2024-21762"
       }
     ],
-    "created_at": "2026-10-31T17:31:37.155529Z",
+    "created_at": "2026-10-31T18:53:38.969848Z",
     "title": "CVE-2024-21762 on bank-dc-fw01 (BNK-FW-01)",
     "lifecycle_status": "detected",
+    "remediation_target_at": "2026-11-07T18:53:38.969848+00:00",
+    "overdue": false,
     "match_detail": "confirmed_affected",
-    "vulnerability_priority_score": 99.4,
+    "vulnerability_priority_score": 99.0,
     "behavioural_suspicion_score": 0.0,
     "evidence_confidence_score": 70.0,
     "score_factors": {
       "vulnerability": {
-        "score": 99.4,
+        "score": 99.0,
         "weights": {
-          "severity": 0.3,
-          "exploitation": 0.35,
-          "criticality": 0.2,
-          "exposure": 0.15
+          "severity": 0.25,
+          "exploitation": 0.3,
+          "criticality": 0.25,
+          "exposure": 0.2
         },
         "inputs": {
           "cvss": 9.8,
@@ -212,17 +62,17 @@
         },
         "factors": {
           "severity": 0.98,
-          "exploitation": 1.0,
+          "exploitation": 0.984,
           "criticality": 1.0,
           "exposure": 1.0
         },
         "contributions": {
-          "severity": 29.4,
-          "exploitation": 35.0,
-          "criticality": 20.0,
-          "exposure": 15.0
+          "severity": 24.5,
+          "exploitation": 29.5,
+          "criticality": 25.0,
+          "exposure": 20.0
         },
-        "exploitation_reason": "CISA KEV: exploited in the wild"
+        "exploitation_reason": "CISA KEV: exploited in the wild (floor 0.8) + EPSS 0.846 spreads the rest -> 0.98"
       },
       "behaviour": {
         "score": 0.0,
@@ -249,14 +99,120 @@
       }
     },
     "escalation_reasons": [
-      "vulnerability priority 99.4 -> critical",
+      "vulnerability priority 99.0 -> critical",
       "priority critical (driven by vulnerability)"
     ],
     "is_simulated": true,
     "related_alert_ids": [],
-    "remediation_target_at": "2026-11-07T17:31:37.155529+00:00",
     "remediation_target_days": 7,
+    "remediation_policy": "organisation-defined policy, not a regulatory deadline"
+  },
+  {
+    "alert_id": "ALR-D6B33680",
+    "kind": "vulnerability",
+    "priority": "critical",
+    "status": "new",
+    "asset_ids": [
+      "PWR-FW-01"
+    ],
+    "threat_ids": [
+      "CVE-2024-21762"
+    ],
+    "evidence_ids": [],
+    "risk_score": 99.0,
+    "factors": {
+      "severity": 0.98,
+      "exploitation": 0.984,
+      "criticality": 1.0,
+      "exposure": 1.0,
+      "confidence": 0.7
+    },
+    "match_status": "confirmed",
+    "reasons": [
+      "installed 7.2.6 is inside the vulnerable range (>= 7.2.0, < 7.2.7)",
+      "vulnerability priority 99.0 -> critical",
+      "priority critical (driven by vulnerability)"
+    ],
+    "limitations": [],
+    "timeline": [
+      {
+        "at": "2026-10-31T18:53:38.969848Z",
+        "event": "detected (api): installed 7.2.6 is inside the vulnerable range (>= 7.2.0, < 7.2.7)",
+        "ref": "CVE-2024-21762"
+      }
+    ],
+    "created_at": "2026-10-31T18:53:38.969848Z",
+    "title": "CVE-2024-21762 on nrldc-edge-fw01 (PWR-FW-01)",
+    "lifecycle_status": "detected",
+    "remediation_target_at": "2026-11-07T18:53:38.969848+00:00",
     "overdue": false,
+    "match_detail": "confirmed_affected",
+    "vulnerability_priority_score": 99.0,
+    "behavioural_suspicion_score": 0.0,
+    "evidence_confidence_score": 70.0,
+    "score_factors": {
+      "vulnerability": {
+        "score": 99.0,
+        "weights": {
+          "severity": 0.25,
+          "exploitation": 0.3,
+          "criticality": 0.25,
+          "exposure": 0.2
+        },
+        "inputs": {
+          "cvss": 9.8,
+          "epss": 0.84589,
+          "kev_listed": true,
+          "public_exploit": true,
+          "criticality": 5,
+          "internet_facing": true,
+          "match_detail": "confirmed_affected"
+        },
+        "factors": {
+          "severity": 0.98,
+          "exploitation": 0.984,
+          "criticality": 1.0,
+          "exposure": 1.0
+        },
+        "contributions": {
+          "severity": 24.5,
+          "exploitation": 29.5,
+          "criticality": 25.0,
+          "exposure": 20.0
+        },
+        "exploitation_reason": "CISA KEV: exploited in the wild (floor 0.8) + EPSS 0.846 spreads the rest -> 0.98"
+      },
+      "behaviour": {
+        "score": 0.0,
+        "reason": "no suspicious activity on this asset",
+        "signals": []
+      },
+      "confidence": {
+        "score": 70.0,
+        "provenance": 30,
+        "provenance_reason": "CISA KEV (government-verified exploitation)",
+        "match_certainty": 40,
+        "telemetry_corroboration": 0,
+        "incomplete_evidence_penalty": 0
+      },
+      "priority": {
+        "driver": "vulnerability",
+        "vulnerability_level": "critical",
+        "behaviour_level": "low",
+        "thresholds": {
+          "critical": 80,
+          "high": 55,
+          "medium": 30
+        }
+      }
+    },
+    "escalation_reasons": [
+      "vulnerability priority 99.0 -> critical",
+      "priority critical (driven by vulnerability)"
+    ],
+    "is_simulated": true,
+    "related_alert_ids": [],
+    "remediation_target_days": 7,
     "remediation_policy": "organisation-defined policy, not a regulatory deadline"
   }
 ]

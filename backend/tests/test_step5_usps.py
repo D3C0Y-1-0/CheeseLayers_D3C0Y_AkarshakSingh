@@ -56,7 +56,7 @@ def test_posture_reflects_active_alerts():
         assert s[sec]["max_asset_priority_score"] >= 95
     assert s["health"]["needs_verification_assets"] == 1 and s["health"]["active_incidents"] == 2
     assert s["water"]["active_incidents"] == 0
-    # weighted mean over all 7 power assets: one crit-5 asset at 99.4 out of total criticality 28
+    # weighted mean over all 7 power assets: one crit-5 asset at ~99 out of total criticality 28
     power_crit = sum(a.criticality for a in get_asset_store().by_sector("power"))
     assert s["power"]["weighted_sector_risk_score"] == round(5 * s["power"]["max_asset_priority_score"] / power_crit, 1)
     assert body["sectors"][0]["weighted_sector_risk_score"] >= body["sectors"][-1]["weighted_sector_risk_score"]
@@ -83,7 +83,8 @@ def test_patching_to_a_fixed_version_drops_risk_to_zero():
     assert b["modelled_exposure_reduction_pct"] == 100.0
     by = {t["asset_id"]: t for t in b["transitions"]}
     assert set(by) == {"PWR-FW-01", "BNK-FW-01"}
-    assert by["PWR-FW-01"]["summary"] == "PWR-FW-01: confirmed_affected (score 99.4) -> confirmed_unaffected (score 0)"
+    before = by["PWR-FW-01"]["before"]["score"]
+    assert before >= 95 and by["PWR-FW-01"]["summary"] ==         f"PWR-FW-01: confirmed_affected (score {before:g}) -> confirmed_unaffected (score 0)"
     assert by["PWR-FW-01"]["before"]["version"] == "7.2.6" and by["PWR-FW-01"]["after"]["version"] == "7.4.11"
     # nothing live changed
     assert [a.model_dump() for a in get_asset_store().all()] == before_inventory

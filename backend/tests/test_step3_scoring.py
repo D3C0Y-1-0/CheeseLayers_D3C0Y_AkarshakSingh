@@ -51,9 +51,13 @@ def test_not_kev_listed_does_not_zero_high_epss():
     assert r.priority == "critical"
 
 
-def test_kev_listed_is_maximum_exploitation():
-    r = score(asset(), threat(kev_listed=True, epss=0.01))
-    assert r.score_factors["vulnerability"]["factors"]["exploitation"] == 1.0
+def test_kev_sets_an_exploitation_floor_and_epss_spreads_the_rest():
+    low = score(asset(), threat(kev_listed=True, epss=0.01))
+    high = score(asset(), threat(kev_listed=True, epss=0.94))
+    assert low.score_factors["vulnerability"]["factors"]["exploitation"] == 0.82  # 0.8 + 0.2 * sqrt(0.01)
+    assert high.vulnerability_priority_score > low.vulnerability_priority_score  # KEV alone no longer ties
+    not_kev = score(asset(), threat(epss=0.5))
+    assert low.score_factors["vulnerability"]["factors"]["exploitation"] >         not_kev.score_factors["vulnerability"]["factors"]["exploitation"]  # KEV still outranks a high EPSS alone
 
 
 def test_critical_internet_facing_beats_internal_low_criticality():
@@ -61,8 +65,16 @@ def test_critical_internet_facing_beats_internal_low_criticality():
     high = score(asset(criticality=5, internet_facing=True), t)
     low = score(asset(criticality=1, internet_facing=False), t)
     assert high.vulnerability_priority_score > low.vulnerability_priority_score
-    assert high.score_factors["vulnerability"]["contributions"]["exposure"] == 15.0
-    assert low.score_factors["vulnerability"]["contributions"]["exposure"] == 6.0
+    assert high.score_factors["vulnerability"]["contributions"]["exposure"] == 20.0
+    assert low.score_factors["vulnerability"]["contributions"]["exposure"] == 5.0
+
+
+def test_same_kev_cve_ranks_clearly_lower_on_internal_or_less_critical_assets():
+    t = threat(kev_listed=True, epss=0.9)
+    top = score(asset(criticality=5, internet_facing=True), t).vulnerability_priority_score
+    internal = score(asset(criticality=5, internet_facing=False), t).vulnerability_priority_score
+    less_critical = score(asset(criticality=3, internet_facing=True), t).vulnerability_priority_score
+    assert top - internal >= 14 and top - less_critical >= 9
 
 
 @pytest.mark.parametrize("case", ["vuln", "unaffected", "behaviour_only", "nothing"])
@@ -122,7 +134,7 @@ def test_scenario_a_real_kev_cve_is_critical():
     a = get_asset_store().get("PWR-FW-01")
     r = score(a, DEMO["CVE-2024-21762"])
     assert r.priority == "critical" and r.vulnerability_priority_score >= 95
-    assert r.factors.exploitation == 1.0
+    assert r.factors.exploitation >= 0.98  # KEV floor 0.8 + EPSS 0.85 spread
 
 
 @pytest.mark.parametrize("threat_id,asset_id,priority", [

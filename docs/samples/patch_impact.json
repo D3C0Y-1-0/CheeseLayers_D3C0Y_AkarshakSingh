@@ -10,7 +10,7 @@
   "after_affected_count": 0,
   "before_needs_verification_count": 0,
   "after_needs_verification_count": 0,
-  "before_aggregate_exposure_score": 198.8,
+  "before_aggregate_exposure_score": 198.0,
   "after_aggregate_exposure_score": 0.0,
   "modelled_exposure_reduction_pct": 100.0,
   "formula": "aggregate exposure = sum of vulnerability_priority_score over every (asset, threat) pair; reduction % = (before - after) / before x 100",
@@ -23,7 +23,7 @@
       ],
       "before": {
         "match_detail": "confirmed_affected",
-        "score": 99.4,
+        "score": 99.0,
         "priority": "critical",
         "version": "7.2.6",
         "reason": "installed 7.2.6 is inside the vulnerable range (>= 7.2.0, < 7.2.7)"
@@ -35,7 +35,7 @@
         "version": "7.4.11",
         "reason": "installed version is outside all 6 vulnerable ranges (e.g. installed 7.4.11 is outside the vulnerable range (>= 6.0.0, < 6.0.18))"
       },
-      "summary": "PWR-FW-01: confirmed_affected (score 99.4) -> confirmed_unaffected (score 0)"
+      "summary": "PWR-FW-01: confirmed_affected (score 99) -> confirmed_unaffected (score 0)"
     },
     {
       "asset_id": "BNK-FW-01",
@@ -45,7 +45,7 @@
       ],
       "before": {
         "match_detail": "confirmed_affected",
-        "score": 99.4,
+        "score": 99.0,
         "priority": "critical",
         "version": "7.0.13",
         "reason": "installed 7.0.13 is inside the vulnerable range (>= 7.0.0, < 7.0.14)"
@@ -57,7 +57,7 @@
         "version": "7.4.11",
         "reason": "installed version is outside all 6 vulnerable ranges (e.g. installed 7.4.11 is outside the vulnerable range (>= 6.0.0, < 6.0.18))"
       },
-      "summary": "BNK-FW-01: confirmed_affected (score 99.4) -> confirmed_unaffected (score 0)"
+      "summary": "BNK-FW-01: confirmed_affected (score 99) -> confirmed_unaffected (score 0)"
     }
   ],
   "notes": []

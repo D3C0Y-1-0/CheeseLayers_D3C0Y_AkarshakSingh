@@ -14,7 +14,7 @@
       "reason": "installed 7.2.6 is inside the vulnerable range (>= 7.2.0, < 7.2.7)",
       "alert_id": "ALR-D6B33680",
       "priority": "critical",
-      "risk_score": 99.4
+      "risk_score": 99.0
     },
     {
       "asset_id": "BNK-FW-01",
@@ -23,7 +23,7 @@
       "reason": "installed 7.0.13 is inside the vulnerable range (>= 7.0.0, < 7.0.14)",
       "alert_id": "ALR-9423EFA2",
       "priority": "critical",
-      "risk_score": 99.4
+      "risk_score": 99.0
     }
   ]
 }

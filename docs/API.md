@@ -438,7 +438,7 @@ alert per (threat, asset). Sending it again updates the alert and never duplicat
 {"threat_id": "CVE-2024-21762", "assets_checked": 40, "created": ["ALR-…"], "updated": [],
  "matches": [{"asset_id": "PWR-FW-01", "match_detail": "confirmed_affected", "match_status": "confirmed",
               "reason": "installed 7.2.6 is inside the vulnerable range (>= 7.2.0, < 7.2.7)", "alert_id": "ALR-…",
-              "priority": "critical", "risk_score": 99.4}]}
+              "priority": "critical", "risk_score": 99.0}]}
 ```
 `on_new_threat` (hooks.py) does the same automatically for every new signal and for `POST /api/demo/inject-cve`.
 
@@ -465,7 +465,7 @@ Per-sector exposure built from the synthetic inventory plus every **active** ale
 {"data_classification": "Simulated Sector Exposure (Synthetic Asset Inventory)", "is_simulated": true, "formula": "…",
  "sectors": [{"sector": "power", "label": "Power/Energy", "total_assets": 7, "confirmed_affected_assets": 2,
    "needs_verification_assets": 0, "active_incidents": 2, "active_critical_high_incidents": 2,
-   "max_asset_priority_score": 99.4, "weighted_sector_risk_score": 29.2, "top_threat_ids": ["CVE-2024-21762", "DEMO-VULN-001"]}]}
+   "max_asset_priority_score": 99.0, "weighted_sector_risk_score": 28.8, "top_threat_ids": ["CVE-2024-21762", "DEMO-VULN-001"]}]}
 ```
 `weighted_sector_risk_score` = Σ(criticality × the asset's worst active `risk_score`) / Σ criticality, over all assets in the
 sector. Assets with no active alert count as 0.
@@ -478,7 +478,7 @@ changes.** Sample: `samples/patch_impact.json`.
 ```json
 {"before_affected_count": 2, "after_affected_count": 0, "before_aggregate_exposure_score": 198.8,
  "after_aggregate_exposure_score": 0.0, "modelled_exposure_reduction_pct": 100.0,
- "transitions": [{"asset_id": "PWR-FW-01", "summary": "PWR-FW-01: confirmed_affected (score 99.4) -> confirmed_unaffected (score 0)",
+ "transitions": [{"asset_id": "PWR-FW-01", "summary": "PWR-FW-01: confirmed_affected (score 99) -> confirmed_unaffected (score 0)",
                   "before": {...}, "after": {...}, "changed_software": ["fortinet/fortios 7.2.6 -> 7.4.11"]}],
  "notes": []}
 ```

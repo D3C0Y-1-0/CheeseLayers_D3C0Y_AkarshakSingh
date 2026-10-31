@@ -10,10 +10,10 @@
     "CVE-2024-21762"
   ],
   "evidence_ids": [],
-  "risk_score": 99.4,
+  "risk_score": 99.0,
   "factors": {
     "severity": 0.98,
-    "exploitation": 1.0,
+    "exploitation": 0.984,
     "criticality": 1.0,
     "exposure": 1.0,
     "confidence": 0.7
@@ -21,37 +21,39 @@
   "match_status": "confirmed",
   "reasons": [
     "installed 7.2.6 is inside the vulnerable range (>= 7.2.0, < 7.2.7)",
-    "vulnerability priority 99.4 -> critical",
+    "vulnerability priority 99.0 -> critical",
     "priority critical (driven by vulnerability)"
   ],
   "limitations": [],
   "timeline": [
     {
-      "at": "2026-10-31T14:09:58.313184Z",
+      "at": "2026-10-31T18:53:38.969848Z",
       "event": "detected (api): installed 7.2.6 is inside the vulnerable range (>= 7.2.0, < 7.2.7)",
       "ref": "CVE-2024-21762"
     },
     {
-      "at": "2026-10-31T14:09:58.486138+00:00",
-      "event": "status detected -> investigating by soc-analyst: patch scheduled",
+      "at": "2026-10-31T18:53:39.454904+00:00",
+      "event": "status detected -> investigating by analyst1: assigned to network team",
       "ref": null
     }
   ],
-  "created_at": "2026-10-31T14:09:58.313184Z",
+  "created_at": "2026-10-31T18:53:38.969848Z",
   "title": "CVE-2024-21762 on nrldc-edge-fw01 (PWR-FW-01)",
   "lifecycle_status": "investigating",
+  "remediation_target_at": "2026-11-07T18:53:38.969848+00:00",
+  "overdue": false,
   "match_detail": "confirmed_affected",
-  "vulnerability_priority_score": 99.4,
+  "vulnerability_priority_score": 99.0,
   "behavioural_suspicion_score": 0.0,
   "evidence_confidence_score": 70.0,
   "score_factors": {
     "vulnerability": {
-      "score": 99.4,
+      "score": 99.0,
       "weights": {
-        "severity": 0.3,
-        "exploitation": 0.35,
-        "criticality": 0.2,
-        "exposure": 0.15
+        "severity": 0.25,
+        "exploitation": 0.3,
+        "criticality": 0.25,
+        "exposure": 0.2
       },
       "inputs": {
         "cvss": 9.8,
@@ -64,17 +66,17 @@
       },
       "factors": {
         "severity": 0.98,
-        "exploitation": 1.0,
+        "exploitation": 0.984,
         "criticality": 1.0,
         "exposure": 1.0
       },
       "contributions": {
-        "severity": 29.4,
-        "exploitation": 35.0,
-        "criticality": 20.0,
-        "exposure": 15.0
+        "severity": 24.5,
+        "exploitation": 29.5,
+        "criticality": 25.0,
+        "exposure": 20.0
       },
-      "exploitation_reason": "CISA KEV: exploited in the wild"
+      "exploitation_reason": "CISA KEV: exploited in the wild (floor 0.8) + EPSS 0.846 spreads the rest -> 0.98"
     },
     "behaviour": {
       "score": 0.0,
@@ -101,9 +103,11 @@
     }
   },
   "escalation_reasons": [
-    "vulnerability priority 99.4 -> critical",
+    "vulnerability priority 99.0 -> critical",
     "priority critical (driven by vulnerability)"
   ],
   "is_simulated": true,
-  "related_alert_ids": []
+  "related_alert_ids": [],
+  "remediation_target_days": 7,
+  "remediation_policy": "organisation-defined policy, not a regulatory deadline"
 }

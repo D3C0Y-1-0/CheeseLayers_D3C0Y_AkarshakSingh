@@ -1,18 +1,19 @@
 {
   "vulnerability": {
     "weights": {
-      "severity": 0.3,
-      "exploitation": 0.35,
-      "criticality": 0.2,
-      "exposure": 0.15
+      "severity": 0.25,
+      "exploitation": 0.3,
+      "criticality": 0.25,
+      "exposure": 0.2
     },
     "cvss_missing_fallback": 0.5,
     "epss_missing_fallback": 0.25,
     "epss_exponent": 0.5,
     "public_exploit_floor": 0.6,
+    "kev_exploitation_floor": 0.8,
     "exposure": {
       "internet_facing": 1.0,
-      "internal": 0.4
+      "internal": 0.25
     }
   },
   "behaviour": {

@@ -19,12 +19,17 @@ from .matcher import MatchResult
 
 CONFIG: dict[str, Any] = {
     "vulnerability": {
-        "weights": {"severity": 0.30, "exploitation": 0.35, "criticality": 0.20, "exposure": 0.15},
+        # Asset context (criticality + exposure) is 45% so the SAME CVE ranks clearly lower on an internal or
+        # less critical asset; the vulnerability itself (severity + exploitation) is 55%.
+        "weights": {"severity": 0.25, "exploitation": 0.30, "criticality": 0.25, "exposure": 0.20},
         "cvss_missing_fallback": 0.5,  # unscored CVE: assume "medium", not "harmless"
         "epss_missing_fallback": 0.25,  # no EPSS: conservative baseline, not 0
         "epss_exponent": 0.5,  # sqrt: stops low-but-real EPSS values collapsing to ~0
         "public_exploit_floor": 0.6,  # public exploit code exists -> exploitation at least this
-        "exposure": {"internet_facing": 1.0, "internal": 0.4},
+        # KEV = exploited somewhere (floor); EPSS spreads the rest = how widely. KEV alone no longer saturates,
+        # so two KEV CVEs with EPSS 0.04 and 0.94 don't tie.
+        "kev_exploitation_floor": 0.8,
+        "exposure": {"internet_facing": 1.0, "internal": 0.25},
     },
     "behaviour": {
         # How bad each suspicious signal is on its own (0-1).
@@ -200,7 +205,13 @@ def vulnerability_priority(asset: Asset, threat: ThreatRecord | None, match: Mat
         severity = threat.cvss / 10
 
     if threat.kev_listed:
-        exploitation, why_exp = 1.0, "CISA KEV: exploited in the wild"
+        floor = cfg["kev_exploitation_floor"]
+        epss = threat.epss if threat.epss is not None else cfg["epss_missing_fallback"]
+        exploitation = floor + (1 - floor) * epss ** cfg["epss_exponent"]
+        why_exp = (f"CISA KEV: exploited in the wild (floor {floor}) + EPSS "
+                   f"{'unknown, fallback ' if threat.epss is None else ''}{epss:.3f} spreads the rest -> {exploitation:.2f}")
+        if threat.epss is None:
+            limits.append(f"{threat.threat_id} has no EPSS score; KEV floor used with a conservative EPSS fallback")
     elif threat.epss is None:
         exploitation, why_exp = cfg["epss_missing_fallback"], "no EPSS score; conservative fallback used"
         limits.append(f"{threat.threat_id} has no EPSS score; exploitation assumed {exploitation}, not zero")

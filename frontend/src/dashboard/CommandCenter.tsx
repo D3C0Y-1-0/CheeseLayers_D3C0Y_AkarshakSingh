@@ -99,7 +99,6 @@ export default function CommandCenter() {
         <SimControls />
       </PageHead>
       <DataNotice mode={overview.mode} error={overview.error} />
-      <p className="mb-4 text-grey-300">{overview.mode === 'live' ? 'Connected to the backend.' : 'Bundled preview.'} Assets and behaviour scenarios are simulated. <Link className="text-blue-300 underline" to="/app/analytics">Explore sector exposure and patch impact</Link></p>
 
       <div className="tiles mb-3">
         {tiles.map((t) => (

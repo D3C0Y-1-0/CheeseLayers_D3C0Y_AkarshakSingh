@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Bell, Bot, ChevronDown, ExternalLink, LayoutGrid, Plus, Search, SendHorizontal, Sparkles, X } from 'lucide-react'
 import { getJson, parseList, post, toTitle, useAlerts, useAssets, useData, useHealth, useOverview, when, type Alert, type StoredEvent, type Threat, type ThreatSummary } from './api'
-import { Globe, type Arc, type Satellite } from './soc/Globe'
+import { Globe, type Arc, type Hotspot, type Satellite } from './soc/Globe'
 import postureFx from '../fixtures/api/sectors_posture.json'
 import './soc/soc.css'
 
@@ -11,6 +11,10 @@ import './soc/soc.css'
 // Attacker IPs come from the stored sensor evidence of live incidents; search queries the backend.
 
 type Sector = { sector: string; label: string; active_incidents: number; active_critical_high_incidents: number; weighted_sector_risk_score: number }
+type IocGeo = { total_ip_indicators: number; located: number; hosting_share_pct: number | null; available: boolean
+  by_country: { country: string; country_code: string; count: number }[]; top_networks: { asn: number; asn_org: string; count: number }[]
+  points: { lat: number; lon: number; count: number; city: string | null; country: string }[]; attribution: string; note: string }
+const noGeo: IocGeo = { total_ip_indicators: 0, located: 0, hosting_share_pct: null, available: false, by_country: [], top_networks: [], points: [], attribution: '', note: '' }
 type Posture = { sectors: Sector[]; data_classification: string }
 
 // Where each feed is published from. The feeds are global; this is the publisher's location.
@@ -89,6 +93,9 @@ export default function Soc() {
   const alerts = useAlerts()
   const assets = useAssets()
   const health = useHealth()
+  // Where the feeds' malicious IPs are registered (DB-IP Lite). Real feed data; network location, not attacker location.
+  const geo = useData<IocGeo>('/api/insights/ioc-geo?points=250', noGeo, (j) => j as IocGeo, 60000)
+  const hotspots: Hotspot[] = useMemo(() => geo.data.points.map((p) => ({ lat: p.lat, lon: p.lon, count: p.count, label: `${p.city ?? p.country} · ${p.count}` })), [geo.data.points])
   const posture = useData<Posture>('/api/sectors/posture', postureFx as unknown as Posture, (j) => j as Posture, 15000)
 
   const [sector, setSector] = useState('all')
@@ -210,7 +217,7 @@ export default function Soc() {
           <h1>Security Operations Center</h1>
           <p>Real-Time Threat Intelligence &amp; Incident Monitoring <span className={`soc-live ${alerts.mode === 'live' ? 'is-live' : ''}`}><i aria-hidden />{alerts.mode === 'live' ? 'Live' : alerts.mode === 'loading' ? 'Connecting' : 'Sample data'}</span></p>
         </div>
-        <Globe arcs={arcs} satellites={satellites} spin={region === 'india' ? 'india' : 'free'} />
+        <Globe arcs={arcs} satellites={satellites} hotspots={hotspots} spin={region === 'india' ? 'india' : 'free'} />
 
         {answer && (
           <div className="soc-answer" role="status">
@@ -249,6 +256,17 @@ export default function Soc() {
       <aside className="soc-side">
         <Card title="Open incidents" to="/app/incidents">
           <ThreatArc levels={levels.map((l) => ({ label: l.label, count: l.list.length, tone: l.tone }))} total={live.length} />
+        </Card>
+        <Card title="Where malicious IPs are registered" to="/app/threats">
+          {!geo.data.available ? <p className="soc-muted">Geolocation database not installed (see PLAN_ip_geolocation.md).</p> : <>
+            <p className="soc-big">{fmt(geo.data.located)}<span> of {fmt(geo.data.total_ip_indicators)} malicious IPs / networks located</span></p>
+            <dl className="soc-facts">
+              {geo.data.by_country.slice(0, 5).map((c) => <div key={c.country_code}><dt>{c.country}</dt><dd>{fmt(c.count)}</dd></div>)}
+              {geo.data.hosting_share_pct !== null && <div><dt>On cloud / hosting networks</dt><dd>{geo.data.hosting_share_pct}%</dd></div>}
+              {geo.data.top_networks[0] && <div><dt>Top network</dt><dd>{geo.data.top_networks[0].asn_org}</dd></div>}
+            </dl>
+            <p className="soc-muted" title={geo.data.note}>Red dots on the globe. IP registration location, not the attacker's position · {geo.data.attribution}</p>
+          </>}
         </Card>
         <Card title="Threat intelligence" to="/app/threats">
           <p className="soc-big">{fmt(iocTotal)}</p>

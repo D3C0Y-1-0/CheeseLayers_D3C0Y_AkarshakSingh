@@ -1,0 +1,18 @@
+{
+  "ip": "8.8.8.8",
+  "geo": {
+    "country": "United States",
+    "country_code": "US",
+    "city": "Mountain View",
+    "latitude": 37.422,
+    "longitude": -122.085,
+    "asn": 15169,
+    "asn_org": "Google LLC",
+    "hosting": true,
+    "geo_source": "dbip-lite",
+    "accuracy": "country-level (city approximate)"
+  },
+  "reason": null,
+  "note": "Location of the network an IP is registered to (DB-IP Lite), not of the person behind an attack: attackers mostly use rented cloud servers, VPNs, Tor exits and hijacked machines.",
+  "attribution": "IP geolocation by DB-IP (https://db-ip.com), CC BY 4.0"
+}

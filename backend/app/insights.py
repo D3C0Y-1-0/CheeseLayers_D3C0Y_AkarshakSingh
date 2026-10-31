@@ -410,3 +410,76 @@ def lead_time_examples(days: int = Query(90, ge=1, le=LEAD_TIME["max_window_days
                                     else "Missed: no early signal fired before the KEV listing.")})
     return {"window_days": days, "as_of": rep.as_of.isoformat(), "examples": out,
             "note": "Backtest on cached public data; signals are counted only strictly before the KEV date."}
+
+
+# =====================================================================================================
+# IP geolocation of malicious indicators (PLAN_ip_geolocation.md). Location = where the IP is REGISTERED.
+# =====================================================================================================
+GEO_NOTE = ("Location of the network an IP is registered to (DB-IP Lite), not of the person behind an attack: "
+            "attackers mostly use rented cloud servers, VPNs, Tor exits and hijacked machines.")
+
+
+@router.get("/api/geo/ip/{ip}", tags=["geo"])
+def geo_ip(ip: str) -> dict:
+    """Locate any IP (or CIDR). 422 if it is not an IP; geo=null when private/documentation/unlisted."""
+    import ipaddress
+    from collectors import geo
+    try:
+        ipaddress.ip_network(ip, strict=False) if "/" in ip else ipaddress.ip_address(ip)
+    except ValueError:
+        raise HTTPException(422, "not an IP address or CIDR") from None
+    g = geo.lookup(ip)
+    reason = None
+    if g is None:
+        addr = ipaddress.ip_network(ip, strict=False).network_address if "/" in ip else ipaddress.ip_address(ip)
+        reason = ("private/reserved/documentation address: has no real-world location" if not addr.is_global
+                  else "geolocation database unavailable" if not geo.available() else "not in the geolocation database")
+    return {"ip": ip, "geo": g, "reason": reason, "note": GEO_NOTE, "attribution": geo.ATTRIBUTION}
+
+
+@router.get("/api/insights/ioc-geo", tags=["geo"])
+def ioc_geo(points: int = Query(300, ge=0, le=2000, description="Max map points (grouped by ~10 km cell)"),
+            db: Session = Depends(get_db)) -> dict:
+    """Where the malicious IPs/networks in our feeds are registered: countries, network owners, hosting share and
+    map points (lat/lon grouped, largest first). Real feed data (ThreatFox, Feodo, Tor exits, OTX, Spamhaus DROP)."""
+    from collections import Counter, defaultdict
+    from collectors import geo
+    rows = db.execute(select(IOCRow.value, IOCRow.ioc_type, IOCRow.source, IOCRow.malware_family, IOCRow.geo)
+                      .where(IOCRow.ioc_type.in_(("ip", "cidr")))).all()
+    countries, codes, asns, sources = Counter(), {}, Counter(), Counter()
+    cells: dict[tuple, dict] = defaultdict(lambda: {"count": 0, "sources": Counter(), "families": Counter(), "examples": []})
+    hosting = hosted_known = 0
+    for value, kind, source, family, g in rows:
+        if not g:
+            continue
+        countries[g["country"]] += 1
+        codes[g["country"]] = g["country_code"]
+        sources[source] += 1
+        if g.get("asn_org"):
+            asns[(g["asn"], g["asn_org"])] += 1
+        if g.get("hosting") is not None:
+            hosted_known += 1
+            hosting += bool(g["hosting"])
+        if g.get("latitude") is not None:
+            c = cells[(round(g["latitude"], 1), round(g["longitude"], 1))]
+            c["count"] += 1
+            c["sources"][source] += 1
+            if family:
+                c["families"][family] += 1
+            c.setdefault("country", g["country"]); c.setdefault("city", g["city"])
+            if len(c["examples"]) < 3:
+                c["examples"].append(value)
+    located = sum(countries.values())
+    pts = sorted(cells.items(), key=lambda kv: (-kv[1]["count"], kv[0]))[:points]
+    return {
+        "total_ip_indicators": len(rows), "located": located, "unknown": len(rows) - located,
+        "by_country": [{"country": k, "country_code": codes[k], "count": n} for k, n in countries.most_common(15)],
+        "top_networks": [{"asn": a, "asn_org": o, "count": n} for (a, o), n in asns.most_common(10)],
+        "hosting_share_pct": round(100 * hosting / hosted_known, 1) if hosted_known else None,
+        "hosting_method": "network-owner name matches a cloud/hosting provider (heuristic)",
+        "by_source": dict(sources.most_common()),
+        "points": [{"lat": lat, "lon": lon, "count": c["count"], "country": c["country"], "city": c["city"],
+                    "sources": dict(c["sources"]), "top_family": (c["families"].most_common(1) or [[None]])[0][0],
+                    "examples": c["examples"]} for (lat, lon), c in pts],
+        "geo_source": geo.SOURCE, "available": geo.available(), "attribution": geo.ATTRIBUTION, "note": GEO_NOTE,
+    }

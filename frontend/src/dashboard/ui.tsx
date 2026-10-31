@@ -34,11 +34,17 @@ export function DataNotice({ mode, error }: { mode: Mode; error: string | null }
 
 export const safeReference = (value: string) => /^https?:\/\//i.test(value)
 
-export function PageHead({ title, children }: { title: string; children?: React.ReactNode }) {
-  return (
+export function PageHead({ title, children, classic = false }: { title: string; children?: React.ReactNode; classic?: boolean }) {
+  if (classic) return (
     <header className="mb-4 flex flex-wrap items-end justify-between gap-3">
       <h1 className="font-display text-[1.875rem] leading-none font-light text-white">{title}</h1>
       {children}
+    </header>
+  )
+  return (
+    <header className="page-head">
+      <h1 className="page-title">{title}</h1>
+      {children && <div className="page-actions">{children}</div>}
     </header>
   )
 }

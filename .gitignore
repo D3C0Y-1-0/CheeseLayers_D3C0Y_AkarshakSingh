@@ -78,3 +78,6 @@ Desktop.ini
 *.swp
 *.swo
 *~
+
+# IP geolocation databases (DB-IP Lite, ~140 MB, download per PLAN_ip_geolocation.md)
+/backend/data/geo/

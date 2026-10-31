@@ -53,7 +53,6 @@ export default function Analytics() {
   return <>
     <PageHead title="Exposure & impact" />
     <DataNotice mode={posture.mode} error={posture.error} />
-    <p className="mb-4">Sector posture uses the simulated inventory. What-if results do not modify assets, apply patches or change alerts.</p>
     <Panel title="Simulated sector exposure"><div className="overflow-auto"><table className="dash-table"><thead><tr><th>Sector</th><th>Assets</th><th>Confirmed affected</th><th>Needs verification</th><th>Incidents</th><th>Weighted score</th></tr></thead><tbody>{posture.data.sectors.map((s) => <tr key={s.sector}><td className="text-white">{s.label}</td><td>{s.total_assets}</td><td>{s.confirmed_affected_assets}</td><td>{s.needs_verification_assets}</td><td>{s.active_incidents}</td><td><div className="flex min-w-36 items-center gap-2"><span className="h-2 flex-1 bg-white/10"><span className="block h-full bg-blue" style={{ width: `${s.weighted_sector_risk_score}%` }} /></span>{s.weighted_sector_risk_score}</div></td></tr>)}</tbody></table></div><p className="p-4 text-sm">{posture.data.formula}</p></Panel>
     <div className="mt-4 grid items-start gap-4 xl:grid-cols-2">
       <Panel title="What if we patched?"><div className="space-y-3 p-4">

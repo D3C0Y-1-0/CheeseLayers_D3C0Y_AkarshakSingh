@@ -60,6 +60,7 @@ class IOCRow(Base):
     raw_ref: Mapped[str | None] = mapped_column(String)
     is_simulated: Mapped[bool] = mapped_column(Boolean, default=False)
     raw_payload_id: Mapped[int | None] = mapped_column(ForeignKey("raw_payloads.id"))
+    geo: Mapped[dict | None] = mapped_column(JSON)  # ip/cidr only: collectors/geo.lookup(); null = unknown/not located
 
 
 class SourceStatus(Base):

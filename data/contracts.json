@@ -288,6 +288,11 @@
         "is_simulated": {
           "type": "boolean",
           "nullable": false
+        },
+        "geo": {
+          "type": "object",
+          "nullable": true,
+          "description": "v1.3, ip/cidr only: {country, country_code, city, latitude, longitude, asn, asn_org, hosting, geo_source:'dbip-lite', accuracy}. Where the IP is REGISTERED (DB-IP Lite), not where an attacker is. null = private/documentation address, not in the database, or database not installed."
         }
       }
     },

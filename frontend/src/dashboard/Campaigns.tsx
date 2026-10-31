@@ -37,7 +37,6 @@ export default function Campaigns() {
       <label className="flex items-center gap-2 text-[0.9375rem] text-white"><input type="checkbox" className="accent-blue" checked={emerging} onChange={(e) => setEmerging(e.target.checked)} />Emerging only</label>
     </PageHead>
     <DataNotice mode={list.mode} error={list.error} />
-    <p className="mb-3">{list.data.total} campaigns ({list.data.emerging_total} emerging) from {list.data.meta.threats_in_scope.toLocaleString('en-IN')} recent threats, KEV entries, OTX pulses, CERT-In advisories and ransomware reports. Data as of {when(list.data.as_of)}. Groups are statistical links between public reports, not attribution.</p>
     {selected && <div className="mb-3"><button type="button" className="btn-line mb-2" onClick={() => setParams({})}>Close campaign</button><Detail key={selected} id={selected} /></div>}
     <Panel>{list.data.items.length === 0 ? <Empty>No campaigns available.</Empty> : <ul>{list.data.items.map((c) => (
       <li key={c.campaign_id}><button type="button" onClick={() => setParams({ id: c.campaign_id })} className="row-link grid w-full items-center gap-x-4 gap-y-1 text-left md:grid-cols-[6rem_1fr_auto_8rem]">

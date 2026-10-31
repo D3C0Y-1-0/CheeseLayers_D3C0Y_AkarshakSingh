@@ -6,6 +6,8 @@ import { WORLD } from './world'
 // the six sectors plus any attacker IPs seen in open alerts. Drag to rotate.
 
 export type Arc = { id: string; from: [number, number]; label: string }
+// Malicious infrastructure on the map: where the feeds' bad IPs are registered (count per ~10 km cell).
+export type Hotspot = { lat: number; lon: number; count: number; label: string }
 export type Satellite = { id: string; label: string; sub: string; weight: number; tone: 'teal' | 'red' | 'amber'; active: boolean }
 
 const D = Math.PI / 180
@@ -24,10 +26,10 @@ const STARS = Array.from({ length: 140 }, (_, i) => {
 })
 const unit = ([lon, lat]: [number, number]) => [Math.cos(lat * D) * Math.sin(lon * D), Math.sin(lat * D), Math.cos(lat * D) * Math.cos(lon * D)]
 
-export function Globe({ arcs, satellites, spin }: { arcs: Arc[]; satellites: Satellite[]; spin: 'india' | 'free' }) {
+export function Globe({ arcs, satellites, spin, hotspots = [] }: { arcs: Arc[]; satellites: Satellite[]; spin: 'india' | 'free'; hotspots?: Hotspot[] }) {
   const canvas = useRef<HTMLCanvasElement>(null)
-  const data = useRef({ arcs, satellites, spin })
-  useEffect(() => { data.current = { arcs, satellites, spin } }, [arcs, satellites, spin])
+  const data = useRef({ arcs, satellites, spin, hotspots })
+  useEffect(() => { data.current = { arcs, satellites, spin, hotspots } }, [arcs, satellites, spin, hotspots])
 
   useEffect(() => {
     const cv = canvas.current!
@@ -66,7 +68,7 @@ export function Globe({ arcs, satellites, spin }: { arcs: Arc[]; satellites: Sat
     }
 
     function draw(time: number) {
-      const { arcs: A, satellites: S } = data.current
+      const { arcs: A, satellites: S, hotspots: H } = data.current
       // Leave headroom so orbit arcs and labels stay inside the canvas (it sits below the page title).
       const R = Math.min(w * 0.28, h * 0.38)
       const cx = w * 0.5  // centred in the stage
@@ -128,6 +130,26 @@ export function Globe({ arcs, satellites, spin }: { arcs: Arc[]; satellites: Sat
         return { x: cx + x * R, y: cy - y * R, z, hidden: z < 0 && x * x + y * y < 1 }
       }
       const home = project(unit(HOME))
+
+      // Hotspots: red glows on the surface, size ~ sqrt(count); the 5 largest visible ones are labelled.
+      const maxN = Math.max(1, ...H.map((p) => p.count))
+      const shown: { x: number; y: number; p: Hotspot }[] = []
+      H.forEach((p, i) => {
+        const q = project(unit([p.lon, p.lat]))
+        if (q.z < 0) return  // far side of the globe
+        const r = 1.2 + 5.5 * Math.sqrt(p.count / maxN)
+        const pulse = reduce ? 0 : (Math.sin(time * 2 + i) + 1) / 2
+        ctx.fillStyle = `rgb(255 96 80 / ${0.12 + 0.12 * pulse})`
+        ctx.beginPath(); ctx.arc(q.x, q.y, r * 2.2, 0, Math.PI * 2); ctx.fill()
+        ctx.fillStyle = 'rgb(255 120 100 / 0.9)'
+        ctx.beginPath(); ctx.arc(q.x, q.y, r * 0.6, 0, Math.PI * 2); ctx.fill()
+        if (shown.length < 5 && q.z > 0.25) shown.push({ x: q.x, y: q.y, p })
+      })
+      ctx.font = '500 10px ui-monospace, SFMono-Regular, monospace'
+      shown.forEach(({ x, y, p }) => {
+        ctx.fillStyle = 'rgb(255 190 180 / 0.9)'
+        ctx.fillText(p.label, x + 8, y + 3)
+      })
 
       // Arcs: great circle from each publisher to India, lifted off the surface.
       A.forEach((arc, i) => {
@@ -310,7 +332,7 @@ export function Globe({ arcs, satellites, spin }: { arcs: Arc[]; satellites: Sat
       ref={canvas}
       className="soc-globe"
       role="img"
-      aria-label={`Globe: intelligence arriving in India from ${arcs.length} feed publisher locations; ${satellites.length} sectors and attacker sources around it. Drag to rotate.`}
+      aria-label={`Globe: intelligence arriving in India from ${arcs.length} feed publisher locations; ${hotspots.length} locations where malicious IPs are registered; ${satellites.length} sectors and attacker sources around it. Drag to rotate.`}
     />
   )
 }

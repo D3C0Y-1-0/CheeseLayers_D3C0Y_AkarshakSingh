@@ -16,6 +16,7 @@ from sqlalchemy import func, select
 from sqlalchemy.dialects.sqlite import insert
 
 from app.database import BACKEND, ROOT, SessionLocal, init_db
+from collectors import geo
 from app.models import ExploitEvidence, IOCRow, RawPayload, SourceStatus, Threat, ThreatSignal
 from collectors.common import load_cache
 from collectors.schema import IOC, ThreatItem
@@ -93,7 +94,9 @@ def load(detect: bool = False) -> dict[str, int]:
         old = changes.snapshot(s) if detect else None
         upsert_threats(s, threats)
         ids = _raw_payloads(s, {i.raw_ref: i.source for i in iocs if i.raw_ref})
-        _upsert(s, IOCRow, [{**i.model_dump(), "raw_payload_id": ids.get(i.raw_ref)} for i in iocs], ["ioc_type", "value"])
+        _upsert(s, IOCRow, [{**i.model_dump(), "raw_payload_id": ids.get(i.raw_ref),
+                             "geo": geo.lookup(i.value) if i.ioc_type in ("ip", "cidr") else None} for i in iocs],
+                ["ioc_type", "value"])
         if evidence:
             _upsert(s, ExploitEvidence, list(evidence.values()), ["cve_id"])
         fresh = changes.emit(s, changes.detect(old, threats, evidence, datetime.now(timezone.utc))) if detect else []

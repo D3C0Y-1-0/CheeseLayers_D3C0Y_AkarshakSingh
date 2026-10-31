@@ -1,0 +1,240 @@
+{
+  "total_ip_indicators": 6530,
+  "located": 6530,
+  "unknown": 0,
+  "by_country": [
+    {
+      "country": "United States",
+      "country_code": "US",
+      "count": 1866
+    },
+    {
+      "country": "Germany",
+      "country_code": "DE",
+      "count": 700
+    },
+    {
+      "country": "The Netherlands",
+      "country_code": "NL",
+      "count": 556
+    },
+    {
+      "country": "China",
+      "country_code": "CN",
+      "count": 384
+    },
+    {
+      "country": "Hong Kong",
+      "country_code": "HK",
+      "count": 304
+    },
+    {
+      "country": "United Kingdom",
+      "country_code": "GB",
+      "count": 209
+    },
+    {
+      "country": "Japan",
+      "country_code": "JP",
+      "count": 160
+    },
+    {
+      "country": "Russia",
+      "country_code": "RU",
+      "count": 159
+    },
+    {
+      "country": "Canada",
+      "country_code": "CA",
+      "count": 158
+    },
+    {
+      "country": "France",
+      "country_code": "FR",
+      "count": 151
+    },
+    {
+      "country": "Luxembourg",
+      "country_code": "LU",
+      "count": 128
+    },
+    {
+      "country": "Singapore",
+      "country_code": "SG",
+      "count": 115
+    },
+    {
+      "country": "India",
+      "country_code": "IN",
+      "count": 99
+    },
+    {
+      "country": "Romania",
+      "country_code": "RO",
+      "count": 95
+    },
+    {
+      "country": "Sweden",
+      "country_code": "SE",
+      "count": 95
+    }
+  ],
+  "top_networks": [
+    {
+      "asn": 60729,
+      "asn_org": "Stiftung Erneuerbare Freiheit",
+      "count": 276
+    },
+    {
+      "asn": 7488,
+      "asn_org": "CNServer LLC",
+      "count": 264
+    },
+    {
+      "asn": 53667,
+      "asn_org": "FranTech Solutions",
+      "count": 182
+    },
+    {
+      "asn": 402169,
+      "asn_org": "Uscloud Inc",
+      "count": 180
+    },
+    {
+      "asn": 14061,
+      "asn_org": "DigitalOcean, LLC",
+      "count": 139
+    },
+    {
+      "asn": 16509,
+      "asn_org": "Amazon.com, Inc.",
+      "count": 100
+    },
+    {
+      "asn": 16276,
+      "asn_org": "OVH SAS",
+      "count": 98
+    },
+    {
+      "asn": 45090,
+      "asn_org": "Shenzhen Tencent Computer Systems Company Limited",
+      "count": 96
+    },
+    {
+      "asn": 210558,
+      "asn_org": "1337 Services GmbH",
+      "count": 79
+    },
+    {
+      "asn": 37963,
+      "asn_org": "Hangzhou Alibaba Advertising Co.,Ltd.",
+      "count": 73
+    }
+  ],
+  "hosting_share_pct": 39.0,
+  "hosting_method": "network-owner name matches a cloud/hosting provider (heuristic)",
+  "by_source": {
+    "threatfox": 2667,
+    "spamhaus_drop": 1755,
+    "tor_exit": 1746,
+    "otx": 357,
+    "feodotracker": 5
+  },
+  "points": [
+    {
+      "lat": 52.4,
+      "lon": 4.9,
+      "count": 300,
+      "country": "The Netherlands",
+      "city": "Amsterdam",
+      "sources": {
+        "spamhaus_drop": 49,
+        "threatfox": 97,
+        "otx": 25,
+        "tor_exit": 129
+      },
+      "top_family": "tor-exit-node",
+      "examples": [
+        "2.57.122.0/24",
+        "5.175.189.0/24",
+        "5.230.201.0/24"
+      ]
+    },
+    {
+      "lat": 22.3,
+      "lon": 114.2,
+      "count": 271,
+      "country": "Hong Kong",
+      "city": "Mong Kok",
+      "sources": {
+        "spamhaus_drop": 90,
+        "threatfox": 165,
+        "otx": 12,
+        "tor_exit": 4
+      },
+      "top_family": "hijacked-range",
+      "examples": [
+        "2.59.152.0/24",
+        "2.59.153.0/24",
+        "14.128.32.0/20"
+      ]
+    },
+    {
+      "lat": 47.6,
+      "lon": -122.3,
+      "count": 259,
+      "country": "United States",
+      "city": "Seattle",
+      "sources": {
+        "threatfox": 257,
+        "otx": 1,
+        "tor_exit": 1
+      },
+      "top_family": "Unknown malware",
+      "examples": [
+        "66.94.113.10",
+        "23.254.226.103",
+        "91.193.233.155"
+      ]
+    },
+    {
+      "lat": 50.1,
+      "lon": 8.7,
+      "count": 236,
+      "country": "Germany",
+      "city": "Frankfurt am Main",
+      "sources": {
+        "spamhaus_drop": 33,
+        "threatfox": 114,
+        "otx": 22,
+        "tor_exit": 67
+      },
+      "top_family": "tor-exit-node",
+      "examples": [
+        "2.27.62.0/24",
+        "23.164.152.0/24",
+        "23.164.153.0/24"
+      ]
+    },
+    {
+      "lat": 53.6,
+      "lon": 10.1,
+      "count": 170,
+      "country": "Germany",
+      "city": "Hamburg (Hamburg-Nord)",
+      "sources": {
+        "tor_exit": 170
+      },
+      "top_family": "tor-exit-node",
+      "examples": [
+        "185.220.101.0",
+        "185.220.101.1",
+        "185.220.101.10"
+      ]
+    }
+  ],
+  "geo_source": "dbip-lite",
+  "available": true,
+  "attribution": "IP geolocation by DB-IP (https://db-ip.com), CC BY 4.0",
+  "note": "Location of the network an IP is registered to (DB-IP Lite), not of the person behind an attack: attackers mostly use rented cloud servers, VPNs, Tor exits and hijacked machines."
+}

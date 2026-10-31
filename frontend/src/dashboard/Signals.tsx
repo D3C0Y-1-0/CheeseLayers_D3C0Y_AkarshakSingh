@@ -24,7 +24,6 @@ export default function Signals() {
   return <>
     <PageHead title="Early warnings"><select className="dash-select" aria-label="Filter warning type" value={type} onChange={(e) => setType(e.target.value)}><option value="all">All warning types</option>{TYPES.map((t) => <option key={t} value={t}>{t.replaceAll('_', ' ')}</option>)}</select></PageHead>
     <DataNotice mode={signals.mode} error={signals.error} />
-    <p className="mb-4">Changes in exploit signals drive asset correlation. Simulated changes are explicitly labelled.</p>
     <div className="tiles mb-4">{TYPES.map((t) => <div className="tile" key={t}><b className="tile-value">{summary.mode === 'live' ? summary.data.last_24h[t] ?? 0 : '—'}</b><span>{t.replaceAll('_', ' ')} · last 24h</span></div>)}</div>
     <Panel title="Demo signal"><div className="flex flex-wrap items-center gap-3 p-4">
       <select className="dash-select" aria-label="Simulated warning type" value={simulate} onChange={(e) => setSimulate(e.target.value)}>{TYPES.map((t) => <option key={t} value={t}>{t.replaceAll('_', ' ')}</option>)}</select>

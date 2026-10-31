@@ -12,7 +12,7 @@ from sqlalchemy import func, select
 
 from . import alerts, analytics, assets, attack_lab, campaigns, certin_draft, feeds, frontend, insights, summaries
 from .database import SessionLocal, init_db
-from .models import Threat
+from .models import IOCRow, Threat
 from routes import investigation, shadow_watch
 from shadow_watch.demo import DemoAdapter
 from shadow_watch.integration import DatabaseFindingSink, demo_investigation_factory
@@ -24,7 +24,8 @@ log = logging.getLogger("vectra")
 async def lifespan(app: FastAPI):
     init_db()  # also rebuilds Member 2's derived tables if their columns changed -> they come back empty
     with SessionLocal() as s:
-        empty = not s.scalar(select(func.count()).select_from(Threat))
+        # Also reload when a derived table (e.g. iocs after a column change) was rebuilt empty.
+        empty = not s.scalar(select(func.count()).select_from(Threat)) or not s.scalar(select(func.count()).select_from(IOCRow))
     if empty:
         from ingestion.loader import load
         log.warning("empty DB, loading cache: %s", load())

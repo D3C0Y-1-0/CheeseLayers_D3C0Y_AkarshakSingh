@@ -144,7 +144,7 @@ export default function AttackLab() {
   }
 
   return <>
-    <PageHead title="Attack simulation" />
+    <PageHead title="Attack simulation" classic />
     <p className="mb-4 max-w-4xl">
       Pick a simple attack and a simulated asset. The lab writes the log lines a real server would record. The detector
       reads <b className="text-white">only that text</b> (it is never told which attack ran), names the attack, and the

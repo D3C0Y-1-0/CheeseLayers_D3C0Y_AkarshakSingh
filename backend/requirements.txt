@@ -14,3 +14,4 @@ packaging  # Member 3: version matching
 stix2
 stix2-validator==3.2.0  # 3.3.1 wheel ships without its schemas-2.1 dir -> every object "invalid"
 scikit-learn>=1.5,<2  # campaigns: TF-IDF similarity
+maxminddb  # IP geolocation: reads DB-IP Lite .mmdb files in backend/data/geo/

@@ -23,7 +23,6 @@ export default function Incidents() {
         </div>
       </PageHead>
       <DataNotice mode={mode} error={error} />
-      <p className="mb-3 text-sm">Remediation targets follow organisation-defined policy (Critical 7 days, High 14, Medium 30, Low 90 from detection), not a regulatory deadline.</p>
       <Panel>
         {rows.length === 0 ? <Empty>No incidents of this type yet.</Empty> : (
           <ul>

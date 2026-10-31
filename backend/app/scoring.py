@@ -59,6 +59,7 @@ CONFIG: dict[str, Any] = {
         "match_certainty": {"confirmed_affected": 40, "needs_verification": 15},
         "corroboration_per_signal": 10,
         "corroboration_max": 30,
+        "incomplete_evidence_penalty": 5,  # per event with a missing key field (asset, IP...)
     },
     "priority_thresholds": {"critical": 80, "high": 55, "medium": 30},  # score >= threshold
     "needs_verification_cap": "high",  # an unconfirmed version match can never be "critical"
@@ -297,7 +298,7 @@ def evidence_confidence(threat: ThreatRecord | None, match: MatchResult | None, 
     kinds = {s.signal for s in signals if s.signal}
     corroboration = min(cfg["corroboration_max"], cfg["corroboration_per_signal"] * len(kinds))
     incomplete = sum(1 for s in signals if s.limitations)
-    penalty = 5 * incomplete  # every event with a missing key field lowers trust a little
+    penalty = cfg["incomplete_evidence_penalty"] * incomplete  # every event with a missing key field lowers trust
     score = float(max(0, min(100, provenance + certainty + corroboration - penalty)))
     return score, {"score": score, "provenance": provenance, "provenance_reason": prov_why,
                    "match_certainty": certainty, "telemetry_corroboration": corroboration,
@@ -348,3 +349,62 @@ def score_incident(asset: Asset, threat: ThreatRecord | None = None, match: Matc
                                     "behaviour_level": behav_level, "thresholds": CONFIG["priority_thresholds"]}},
         escalation_reasons=reasons, limitations=limits, warnings=warnings, signals=signals,
     )
+
+
+# --- documentation generated from CONFIG (docs/SCORING_AND_AI.md, CLAUDE.md §9; a test fails if they drift) ---------
+
+DOC_BEGIN = "<!-- BEGIN GENERATED: scoring formula (scripts/gen_scoring_doc.py, from backend/app/scoring.py CONFIG) -->"
+DOC_END = "<!-- END GENERATED: scoring formula -->"
+
+
+def explain_markdown(cfg: dict[str, Any] | None = None) -> str:
+    """The exact formula with the current numbers, as Markdown."""
+    c = cfg or CONFIG
+    v, b, k, t = c["vulnerability"], c["behaviour"], c["confidence"], c["priority_thresholds"]
+    w, e = v["weights"], v["exposure"]
+    sev = ", ".join(f"{s} {x}" for s, x in sorted(b["signal_severity"].items(), key=lambda i: -i[1]))
+    prov = " · ".join(f"{s} {x}" for s, x in sorted(k["provenance"].items(), key=lambda i: -i[1]))
+    days = " · ".join(f"{p} {d}d" for p, d in c["remediation_targets_days"].items())
+    flat = lambda d: " · ".join(f"{x} {y}" for x, y in d.items())  # noqa: E731
+    # Worked example with the demo's real inputs: CVE-2024-21762 (CVSS 9.8, EPSS 0.846, KEV) on PWR-FW-01.
+    floor = v["kev_exploitation_floor"]
+    ex = {"severity": 0.98, "exploitation": floor + (1 - floor) * 0.846 ** v["epss_exponent"],
+          "criticality": 1.0, "exposure": e["internet_facing"]}
+    pts = {f: round(100 * w[f] * x, 1) for f, x in ex.items()}
+    return "\n".join([
+        "Three separate 0-100 scores, never merged into one number. Priority comes from the higher of the first two.",
+        "",
+        "```text",
+        "vulnerability_priority_score = 100 × ( "
+        f"{w['severity']}·severity + {w['exploitation']}·exploitation + {w['criticality']}·criticality + {w['exposure']}·exposure )",
+        f"  severity     = CVSS / 10                     (CVSS unknown -> {v['cvss_missing_fallback']} + a limitation note, never 0)",
+        f"  exploitation = KEV-listed: {v['kev_exploitation_floor']} + {round(1 - v['kev_exploitation_floor'], 2)}·EPSS^{v['epss_exponent']}"
+        f"   (KEV = exploited somewhere; EPSS = how widely)",
+        f"                 otherwise:  EPSS^{v['epss_exponent']}                  (EPSS unknown -> {v['epss_missing_fallback']})",
+        f"                 public exploit code -> at least {v['public_exploit_floor']}",
+        "  criticality  = asset criticality (1-5) / 5",
+        f"  exposure     = {e['internet_facing']} internet-facing · {e['internal']} internal",
+        "  0 when the asset runs a version outside the vulnerable range (confirmed_unaffected)",
+        f"  version match needs manual verification -> priority capped at {c['needs_verification_cap']}",
+        "",
+        f"behavioural_suspicion_score = 100 × min(1, {b['base_weight']}·worst_signal × confidence_multiplier"
+        f" + {b['diversity_bonus']}·(distinct signal types − 1))",
+        f"  confidence_multiplier (from the detector): {flat(b['confidence_multiplier'])}",
+        f"  × {b['maintenance_damping']} only if EVERY signal is {' / '.join(b['benign_in_maintenance'])} inside an approved"
+        " maintenance window",
+        f"  signal severities: {sev}",
+        "",
+        "evidence_confidence_score = provenance + match certainty + corroboration − missing-field penalty",
+        f"  provenance: {prov}",
+        f"  match certainty: {flat(k['match_certainty'])}",
+        f"  corroboration: {k['corroboration_per_signal']} per distinct signal type, max {k['corroboration_max']}",
+        f"  penalty: {k['incomplete_evidence_penalty']} per event with a missing key field",
+        "",
+        f"priority = critical >= {t['critical']} · high >= {t['high']} · medium >= {t['medium']} · else low",
+        f"remediation target ({c['remediation_policy_label']}): {days}",
+        "",
+        "worked example: CVE-2024-21762 (CVSS 9.8, EPSS 0.846, KEV) on PWR-FW-01 (criticality 5, internet-facing)",
+        "  " + " + ".join(f"{f} {pts[f]}" for f in pts) + f" = {round(sum(pts.values()), 1)} -> "
+        + level(sum(pts.values())),
+        "```",
+    ])

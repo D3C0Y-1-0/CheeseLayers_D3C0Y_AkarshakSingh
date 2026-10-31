@@ -129,19 +129,48 @@ otherwise · `nvd_published_at` · `kev_date_added` (YYYY-MM-DD) · `retrieved_a
 8. **`retrieved_at` is per source run**, not per record.
 
 ## 9. Risk scoring (explainable — show every factor in the UI)
+Source of truth: `backend/app/scoring.py` `CONFIG`. The block below is generated from it
+(`backend/.venv/bin/python scripts/gen_scoring_doc.py`); `backend/tests/test_scoring_doc.py` fails if it drifts.
+Full explanation for judges: `docs/SCORING_AND_AI.md`.
+
+<!-- BEGIN GENERATED: scoring formula (scripts/gen_scoring_doc.py, from backend/app/scoring.py CONFIG) -->
+Three separate 0-100 scores, never merged into one number. Priority comes from the higher of the first two.
+
+```text
+vulnerability_priority_score = 100 × ( 0.25·severity + 0.3·exploitation + 0.25·criticality + 0.2·exposure )
+  severity     = CVSS / 10                     (CVSS unknown -> 0.5 + a limitation note, never 0)
+  exploitation = KEV-listed: 0.8 + 0.2·EPSS^0.5   (KEV = exploited somewhere; EPSS = how widely)
+                 otherwise:  EPSS^0.5                  (EPSS unknown -> 0.25)
+                 public exploit code -> at least 0.6
+  criticality  = asset criticality (1-5) / 5
+  exposure     = 1.0 internet-facing · 0.25 internal
+  0 when the asset runs a version outside the vulnerable range (confirmed_unaffected)
+  version match needs manual verification -> priority capped at high
+
+behavioural_suspicion_score = 100 × min(1, 0.75·worst_signal × confidence_multiplier + 0.2·(distinct signal types − 1))
+  confidence_multiplier (from the detector): low 0.6 · medium 0.8 · high 1.0
+  × 0.3 only if EVERY signal is http_anomaly / auth_anomaly inside an approved maintenance window
+  signal severities: credential_compromise 0.95, data_exposure 0.95, command_injection 0.85, unexpected_process 0.8, sql_injection 0.75, outbound_connection 0.7, brute_force 0.6, http_anomaly 0.5, auth_anomaly 0.5, port_scan 0.45, inbound_ids_alert 0.4
+
+evidence_confidence_score = provenance + match certainty + corroboration − missing-field penalty
+  provenance: kev 30 · verified 25 · telemetry 20 · simulated 15 · other 10
+  match certainty: confirmed_affected 40 · needs_verification 15
+  corroboration: 10 per distinct signal type, max 30
+  penalty: 5 per event with a missing key field
+
+priority = critical >= 80 · high >= 55 · medium >= 30 · else low
+remediation target (organisation-defined policy, not a regulatory deadline): critical 7d · high 14d · medium 30d · low 90d
+
+worked example: CVE-2024-21762 (CVSS 9.8, EPSS 0.846, KEV) on PWR-FW-01 (criticality 5, internet-facing)
+  severity 24.5 + exploitation 29.5 + criticality 25.0 + exposure 20.0 = 99.0 -> critical
 ```
-exploit    = 1.0 if in_kev else max(epss, 0.05)
-exposure   = 1.0 if internet_facing else 0.5
-confidence = 1.0 exact version match · 0.7 product match, version unknown · 0.4 vendor-only/fuzzy
-risk       = 100 × (cvss/10) × exploit^0.5 × (criticality/5) × exposure × confidence
-level      = Critical ≥75 · High ≥50 · Medium ≥25 · Low <25
-```
-(Square root on exploit stops low-EPSS CVEs collapsing to ~0; tune weights if the demo ranking looks wrong.)
+<!-- END GENERATED: scoring formula -->
 
 ## 10. AI components
 1. **LLM analyst summary** per alert: what it is, why it matters to *these* assets, recommended actions (patch version / block IOCs / investigate host), mapped ATT&CK techniques. Strict JSON output, validated.
 2. **Campaign detection:** TF-IDF/embeddings + clustering (e.g. HDBSCAN/KMeans) over advisory/pulse text + shared CVEs/IOCs → group related threats into "emerging campaigns".
 3. **Log anomaly detection:** Isolation Forest on simulated auth/firewall logs (failed logins, rare ports, IOC hits) → suspicious-activity alerts.
+   **Status: evaluated, NOT enabled** (rules alone 8/8, 0 false positives; + Isolation Forest 8/8, 4 false positives). Live detection is rules (Shadow Watch, Attack Lab). See `docs/SCORING_AND_AI.md`.
 4. **ATT&CK mapping:** use OTX tags where present; else keyword/embedding match of CVE/advisory text against ATT&CK technique descriptions.
 5. **Early warning rule:** threat becomes a warning when risk ≥ threshold OR (in_kev AND matches any asset) OR campaign volume spikes.
 

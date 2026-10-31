@@ -62,7 +62,8 @@
       "needs_verification": 15
     },
     "corroboration_per_signal": 10,
-    "corroboration_max": 30
+    "corroboration_max": 30,
+    "incomplete_evidence_penalty": 5
   },
   "priority_thresholds": {
     "critical": 80,

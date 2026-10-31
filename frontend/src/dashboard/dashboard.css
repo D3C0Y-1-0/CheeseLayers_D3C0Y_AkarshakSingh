@@ -1,0 +1,273 @@
+@reference '../index.css';
+
+/* Calmer than the landing page: an analyst reads this for hours, so nothing here moves on its own. */
+.dash {
+  display: grid;
+  grid-template-columns: 14rem minmax(0, 1fr);
+  min-height: 100svh;
+  font-size: 0.9375rem;
+}
+.dash-side {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100svh;
+  border-right: 1px solid var(--color-rule);
+  background: #060c20;
+}
+.dash-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1rem;
+  color: var(--color-grey-200);
+  transition: background-color 0.2s, color 0.2s;
+}
+.dash-nav:hover {
+  background: rgb(146 195 255 / 0.08);
+  color: #fff;
+}
+.dash-nav.is-on {
+  background: var(--color-blue-fill);
+  color: #fff;
+}
+.dash-main {
+  padding: 1.25rem;
+}
+.dash-banner {
+  padding: 0.45rem 1.25rem;
+  background: rgb(240 170 60 / 0.14);
+  color: #ffd695;
+}
+.panel {
+  min-width: 0;
+  border: 1px solid var(--color-rule);
+  border-radius: 4px;
+  background: #081029;
+}
+.panel-title {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--color-rule);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #fff;
+}
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.tile {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-rule);
+  border-radius: 4px;
+  background: #081029;
+  transition: border-color 0.2s;
+}
+.tile:hover {
+  border-color: var(--color-blue-300);
+}
+.tile.is-hot {
+  border-color: var(--color-blue-fill);
+  background: var(--color-blue-fill);
+}
+.tile.is-hot span {
+  color: #fff;
+}
+.tile-value {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+.row-link {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--color-rule);
+  transition: background-color 0.2s;
+}
+li:last-child > .row-link {
+  border-bottom: 0;
+}
+.row-link:hover {
+  background: rgb(146 195 255 / 0.08);
+}
+.dash-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--color-grey-200);
+}
+.dash-table th {
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid var(--color-rule);
+  text-align: left;
+  font-weight: 500;
+  color: var(--color-grey-300);
+  white-space: nowrap;
+}
+.dash-table td {
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid var(--color-rule);
+  vertical-align: middle;
+}
+.dash-table tr:last-child td {
+  border-bottom: 0;
+}
+.dash-table tbody tr:hover {
+  background: rgb(146 195 255 / 0.05);
+}
+.dash-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.dash-select {
+  height: 2.25rem;
+  padding: 0 0.6rem;
+  border: 1px solid rgb(255 255 255 / 0.28);
+  border-radius: 2px;
+  background: #081029;
+  color: #fff;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: fit-content;
+  padding: 0.1rem 0.45rem 0.1rem 0.3rem;
+  border-radius: 2px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.badge-critical {
+  background: #ff5a5f;
+  color: #1c0406;
+}
+.badge-high {
+  background: #ff9d4d;
+  color: #231002;
+}
+.badge-medium {
+  background: #f4d35e;
+  color: #1f1a03;
+}
+.badge-low {
+  background: rgb(217 220 225 / 0.16);
+  color: #fff;
+}
+.text-sev-high {
+  color: #ffb27a;
+}
+.tag {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border-radius: 2px;
+  background: rgb(146 195 255 / 0.14);
+  color: var(--color-blue-300);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+.chart-tip {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--color-rule);
+  border-radius: 3px;
+  background: #0d1838;
+  color: var(--color-grey-200);
+  font-size: 0.875rem;
+}
+.chart-tip b {
+  font-weight: 500;
+  color: #fff;
+}
+
+/* The landing page restyles .seg for its white background. Inside the dashboard it stays dark. */
+.dash .seg {
+  background: #081029;
+  color: #fff;
+}
+.dash .seg-on,
+.dash .seg-on:hover {
+  background: var(--color-blue-fill);
+}
+
+/* The greeting on the way in from the landing page. */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: radial-gradient(90% 90% at 88% 0%, #0e2a77, var(--color-black) 62%);
+}
+.intro-text {
+  position: absolute;
+  top: 36%;
+  left: 50%;
+  width: min(90vw, 62rem);
+  transform: translateX(-50%);
+  font-size: clamp(2.25rem, 5vw, 5.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: #cfe6ff;
+  text-shadow: 0 0 22px rgb(97 170 255 / 0.85), 0 0 60px rgb(61 139 255 / 0.5);
+}
+.intro-writer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  will-change: transform;
+}
+.intro-arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 44px;
+  fill: var(--color-blue);
+}
+.intro-tag {
+  position: absolute;
+  top: 46px;
+  left: 34px;
+  padding: 4px 9px;
+  border-radius: 2px;
+  background: var(--color-blue-fill);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 899px) {
+  .dash {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .dash-side {
+    position: static;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .dash-side > a {
+    padding: 0.75rem 1rem;
+  }
+  .dash-side nav {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    overflow-x: auto;
+  }
+  .dash-nav {
+    justify-content: center;
+    padding: 0.55rem 0.75rem;
+  }
+  .dash-nav span {
+    display: none;
+  }
+  .tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

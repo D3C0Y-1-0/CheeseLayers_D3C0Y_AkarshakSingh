@@ -1,0 +1,420 @@
+[
+{
+"alert_id": "ALR-PWR-FW-01-CVE-2024-21762",
+"kind": "vulnerability",
+"priority": "critical",
+"status": "new",
+"asset_ids": [
+"PWR-FW-01"
+],
+"threat_ids": [
+"CVE-2024-21762"
+],
+"evidence_ids": [],
+"risk_score": 98,
+"factors": {
+"severity": 0.9800000000000001,
+"exploitation": 1,
+"criticality": 1.0,
+"exposure": 1,
+"confidence": 1
+},
+"match_status": "confirmed",
+"title": "CVE-2024-21762: Fortinet FortiOS Out-of-Bound Write Vulnerability",
+"reasons": [
+"FortiOS 7.2.6 is inside the affected range 7.2.0 to below 7.2.7",
+"Listed in CISA KEV: exploited in the wild",
+"Internet-facing perimeter firewall on a criticality 5 asset"
+],
+"limitations": [
+"Inventory version is simulated, not read from a live device"
+],
+"recommended_actions": [
+"Upgrade FortiOS on PWR-FW-01 to 7.2.7 or later",
+"Until patched, disable SSL-VPN on this firewall",
+"Review VPN logs for T1190 exploit activity"
+],
+"timeline": [
+{
+"at": "2026-10-31T11:07:38.704420+00:00",
+"event": "Advisory retrieved from NVD and CISA KEV",
+"ref": "CVE-2024-21762"
+},
+{
+"at": "2026-10-31T17:05:00+05:30",
+"event": "nrldc-edge-fw01 matched: fortios 7.2.6 is in the affected range",
+"ref": "PWR-FW-01"
+},
+{
+"at": "2026-10-31T17:05:00+05:30",
+"event": "Scored 98 of 100",
+"ref": null
+}
+],
+"created_at": "2026-10-31T17:05:00+05:30",
+"is_simulated": false
+},
+{
+"alert_id": "ALR-BNK-FW-01-CVE-2024-21762",
+"kind": "vulnerability",
+"priority": "critical",
+"status": "new",
+"asset_ids": [
+"BNK-FW-01"
+],
+"threat_ids": [
+"CVE-2024-21762"
+],
+"evidence_ids": [],
+"risk_score": 98,
+"factors": {
+"severity": 0.9800000000000001,
+"exploitation": 1,
+"criticality": 1.0,
+"exposure": 1,
+"confidence": 1
+},
+"match_status": "confirmed",
+"title": "CVE-2024-21762: Fortinet FortiOS Out-of-Bound Write Vulnerability",
+"reasons": [
+"FortiOS 7.0.13 is inside the affected range 7.0.0 to below 7.0.14",
+"Listed in CISA KEV: exploited in the wild"
+],
+"limitations": [
+"Inventory version is simulated, not read from a live device"
+],
+"recommended_actions": [
+"Upgrade FortiOS on BNK-FW-01 to 7.0.14 or later",
+"Until patched, disable SSL-VPN on this firewall"
+],
+"timeline": [
+{
+"at": "2026-10-31T11:07:38.704420+00:00",
+"event": "Advisory retrieved from NVD and CISA KEV",
+"ref": "CVE-2024-21762"
+},
+{
+"at": "2026-10-31T17:05:00+05:30",
+"event": "bank-dc-fw01 matched: fortios 7.0.13 is in the affected range",
+"ref": "BNK-FW-01"
+},
+{
+"at": "2026-10-31T17:05:00+05:30",
+"event": "Scored 98 of 100",
+"ref": null
+}
+],
+"created_at": "2026-10-31T17:05:00+05:30",
+"is_simulated": false
+},
+{
+"alert_id": "ALR-GOV-WEB-01-CVE-2024-4577",
+"kind": "vulnerability",
+"priority": "critical",
+"status": "new",
+"asset_ids": [
+"GOV-WEB-01"
+],
+"threat_ids": [
+"CVE-2024-4577"
+],
+"evidence_ids": [],
+"risk_score": 78,
+"factors": {
+"severity": 0.9800000000000001,
+"exploitation": 1,
+"criticality": 0.8,
+"exposure": 1,
+"confidence": 1
+},
+"match_status": "confirmed",
+"title": "CVE-2024-4577: PHP-CGI OS Command Injection Vulnerability",
+"reasons": [
+"PHP 8.1.28 is inside the affected range 8.1.0 to below 8.1.29",
+"Listed in CISA KEV: exploited in the wild"
+],
+"limitations": [
+"Only exploitable on Windows in CGI mode with some code pages, which the NVD version range cannot express"
+],
+"recommended_actions": [
+"Upgrade PHP on GOV-WEB-01 to 8.1.29 or later",
+"Check whether PHP runs in CGI mode on this server"
+],
+"timeline": [
+{
+"at": "2026-10-31T11:07:38.704420+00:00",
+"event": "Advisory retrieved from NVD and CISA KEV",
+"ref": "CVE-2024-4577"
+},
+{
+"at": "2026-10-31T17:05:00+05:30",
+"event": "citizen-portal-01 matched: php 8.1.28 is in the affected range",
+"ref": "GOV-WEB-01"
+},
+{
+"at": "2026-10-31T17:05:00+05:30",
+"event": "Scored 78 of 100",
+"ref": null
+}
+],
+"created_at": "2026-10-31T17:05:00+05:30",
+"is_simulated": false
+},
+{
+"alert_id": "ALR-TEL-WIKI-01-CVE-2023-22515",
+"kind": "vulnerability",
+"priority": "high",
+"status": "new",
+"asset_ids": [
+"TEL-WIKI-01"
+],
+"threat_ids": [
+"CVE-2023-22515"
+],
+"evidence_ids": [],
+"risk_score": 59,
+"factors": {
+"severity": 0.9800000000000001,
+"exploitation": 1,
+"criticality": 0.6,
+"exposure": 1,
+"confidence": 1
+},
+"match_status": "confirmed",
+"title": "CVE-2023-22515: Atlassian Confluence Data Center and Server Broken Access Control Vulnerability",
+"reasons": [
+"Confluence 8.5.1 is inside the affected range 8.5.0 to below 8.5.2",
+"Listed in CISA KEV: exploited in the wild"
+],
+"limitations": [
+"Inventory version is simulated, not read from a live device"
+],
+"recommended_actions": [
+"Upgrade Confluence on TEL-WIKI-01; 8.5.2 fixes this CVE, but later KEV CVEs need a newer release",
+"Audit for unexpected administrator accounts"
+],
+"timeline": [
+{
+"at": "2026-10-31T11:07:38.704420+00:00",
+"event": "Advisory retrieved from NVD and CISA KEV",
+"ref": "CVE-2023-22515"
+},
+{
+"at": "2026-10-31T17:05:00+05:30",
+"event": "noc-wiki-01 matched: confluence_data_center 8.5.1 is in the affected range",
+"ref": "TEL-WIKI-01"
+},
+{
+"at": "2026-10-31T17:05:00+05:30",
+"event": "Scored 59 of 100",
+"ref": null
+}
+],
+"created_at": "2026-10-31T17:05:00+05:30",
+"is_simulated": false
+},
+{
+"alert_id": "ALR-PWR-HMI-01-DEMO-VULN-001",
+"kind": "vulnerability",
+"priority": "low",
+"status": "new",
+"asset_ids": [
+"PWR-HMI-01"
+],
+"threat_ids": [
+"DEMO-VULN-001"
+],
+"evidence_ids": [],
+"risk_score": 11,
+"factors": {
+"severity": 0.9800000000000001,
+"exploitation": 0.05,
+"criticality": 1.0,
+"exposure": 0.5,
+"confidence": 1
+},
+"match_status": "confirmed",
+"title": "GridView HMI unauthenticated remote command execution",
+"reasons": [
+"GridView HMI 4.2.1 is inside the simulated range below 4.2.3"
+],
+"limitations": [
+"Fictional vulnerability, used only for demo testing",
+"EPSS unknown, so exploitation uses the 0.05 floor"
+],
+"recommended_actions": [
+"Upgrade GridView HMI to 4.2.3 or later (simulated advisory)"
+],
+"timeline": [
+{
+"at": "2026-10-31T14:00:00+05:30",
+"event": "Simulated advisory loaded",
+"ref": "DEMO-VULN-001"
+},
+{
+"at": "2026-10-31T17:05:00+05:30",
+"event": "scada-hmi-01 matched: gridview_hmi 4.2.1 is in the affected range",
+"ref": "PWR-HMI-01"
+},
+{
+"at": "2026-10-31T17:05:00+05:30",
+"event": "Scored 11 of 100",
+"ref": null
+}
+],
+"created_at": "2026-10-31T17:05:00+05:30",
+"is_simulated": true
+},
+{
+"alert_id": "ALR-BEH-HLT-WEB-01",
+"kind": "behaviour",
+"priority": "high",
+"status": "new",
+"asset_ids": [
+"HLT-WEB-01"
+],
+"threat_ids": [],
+"evidence_ids": [
+"EVT-0001",
+"EVT-0002",
+"EVT-0003"
+],
+"risk_score": null,
+"factors": {
+"severity": null,
+"exploitation": null,
+"criticality": 0.6,
+"exposure": 1,
+"confidence": null
+},
+"match_status": null,
+"title": "Suspected web shell activity on patient-portal",
+"reasons": [
+"Path traversal request at 7x normal request rate",
+"php-fpm spawned a shell, which a web worker should never do",
+"New outbound connection to 203.0.113.250 on port 4444",
+"Three evidence types on one asset within 4 minutes"
+],
+"limitations": [
+"No known CVE is linked",
+"Suspected activity, not confirmed compromise"
+],
+"recommended_actions": [
+"Isolate HLT-WEB-01 for investigation",
+"Review the upload path and the process ancestry",
+"Block outbound traffic to 203.0.113.250"
+],
+"timeline": [
+{
+"at": "2026-10-31T15:02:10+05:30",
+"event": "Path traversal upload request",
+"ref": "EVT-0001"
+},
+{
+"at": "2026-10-31T15:03:40+05:30",
+"event": "php-fpm spawned /bin/sh",
+"ref": "EVT-0002"
+},
+{
+"at": "2026-10-31T15:06:05+05:30",
+"event": "First-seen outbound connection on port 4444",
+"ref": "EVT-0003"
+}
+],
+"created_at": "2026-10-31T15:06:30+05:30",
+"is_simulated": true
+},
+{
+"alert_id": "ALR-BEH-BNK-NET-01",
+"kind": "behaviour",
+"priority": "low",
+"status": "new",
+"asset_ids": [
+"BNK-NET-01"
+],
+"threat_ids": [],
+"evidence_ids": [
+"EVT-0004",
+"EVT-0005",
+"EVT-0006"
+],
+"risk_score": null,
+"factors": {
+"severity": null,
+"exploitation": null,
+"criticality": 1,
+"exposure": 1,
+"confidence": null
+},
+"match_status": null,
+"title": "Traffic spike during approved maintenance on netbanking-web",
+"reasons": [
+"7x traffic spike came from an internal host",
+"Falls inside approved window CHG-2026-1031-07",
+"No other suspicious evidence, so not escalated"
+],
+"limitations": [
+"Relies on the change record being accurate"
+],
+"recommended_actions": [
+"No action needed; kept for the audit trail"
+],
+"timeline": [
+{
+"at": "2026-10-31T02:00:00+05:30",
+"event": "Maintenance window opened",
+"ref": "EVT-0004"
+},
+{
+"at": "2026-10-31T02:35:00+05:30",
+"event": "Expected package upgrade ran",
+"ref": "EVT-0006"
+}
+],
+"created_at": "2026-10-31T02:40:00+05:30",
+"is_simulated": true
+},
+{
+"alert_id": "ALR-BEH-WTR-WEB-01",
+"kind": "behaviour",
+"priority": "medium",
+"status": "new",
+"asset_ids": [
+"WTR-WEB-01"
+],
+"threat_ids": [],
+"evidence_ids": [
+"EVT-0007"
+],
+"risk_score": null,
+"factors": {
+"severity": null,
+"exploitation": null,
+"criticality": 0.6,
+"exposure": 1,
+"confidence": null
+},
+"match_status": null,
+"title": "Failed login burst with no source address",
+"reasons": [
+"55 failed admin logins in one minute"
+],
+"limitations": [
+"The proxy stripped the client IP, so the source is unknown",
+"EVT-0008 may be related, but it names no asset and was not linked"
+],
+"recommended_actions": [
+"Restore client IP logging at the proxy",
+"Check the admin account for lockout or success after the burst"
+],
+"timeline": [
+{
+"at": "2026-10-31T16:10:00+05:30",
+"event": "Failed login burst",
+"ref": "EVT-0007"
+}
+],
+"created_at": "2026-10-31T16:11:00+05:30",
+"is_simulated": true
+}
+]

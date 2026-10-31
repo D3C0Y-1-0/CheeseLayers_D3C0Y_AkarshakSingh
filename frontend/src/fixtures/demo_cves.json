@@ -1,0 +1,282 @@
+[
+  {
+    "threat_id": "CVE-2024-21762",
+    "cve_id": "CVE-2024-21762",
+    "source": "nvd+kev",
+    "title": "CVE-2024-21762: Fortinet FortiOS Out-of-Bound Write Vulnerability",
+    "description": "A out-of-bounds write vulnerability in Fortinet FortiOS 7.4.0 through 7.4.2, FortiOS 7.2.0 through 7.2.6, FortiOS 7.0.0 through 7.0.13, FortiOS 6.4.0 through 6.4.14, FortiOS 6.2.0 through 6.2.15, FortiOS 6.0 all versions, FortiProxy 7.4.0 through 7.4.2, FortiProxy 7.2.0 through 7.2.8, FortiProxy 7.0.0 through 7.0.14, FortiProxy 2.0.0 through 2.0.13, FortiProxy 01.02 all versions, FortiProxy 1.2 all versions, FortiProxy 01.01 all versions, FortiProxy 1.1 all versions, FortiProxy 01.00 all versions allows attacker to execute unauthorized code or commands via specifically crafted requests",
+    "cvss": 9.8,
+    "cvss_version": "3.1",
+    "severity": "critical",
+    "epss": 0.84589,
+    "epss_percentile": 0.99703,
+    "kev_listed": true,
+    "public_exploit": true,
+    "affected_configurations": [
+      {
+        "vendor": "fortinet",
+        "product": "fortios",
+        "version_start_including": "6.0.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "6.0.18",
+        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "fortinet",
+        "product": "fortios",
+        "version_start_including": "6.2.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "6.2.16",
+        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "fortinet",
+        "product": "fortios",
+        "version_start_including": "6.4.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "6.4.15",
+        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "fortinet",
+        "product": "fortios",
+        "version_start_including": "7.0.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "7.0.14",
+        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "fortinet",
+        "product": "fortios",
+        "version_start_including": "7.2.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "7.2.7",
+        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "fortinet",
+        "product": "fortios",
+        "version_start_including": "7.4.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "7.4.3",
+        "cpe": "cpe:2.3:o:fortinet:fortios:*:*:*:*:*:*:*:*"
+      }
+    ],
+    "references": [
+      "https://fortiguard.com/psirt/FG-IR-24-015",
+      "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-21762"
+    ],
+    "attack_techniques": [
+      "T1190",
+      "T1574",
+      "T1547.009"
+    ],
+    "published_at": "2024-02-09T09:15:08.087Z",
+    "retrieved_at": "2026-10-31T11:07:38.704420+00:00",
+    "raw_ref": "backend/data/raw/nvd_kev/all_0.json",
+    "is_simulated": false,
+    "vulnerable_asset_ids": [
+      "PWR-FW-01",
+      "BNK-FW-01"
+    ],
+    "patched_asset_ids": [
+      "PWR-FW-02",
+      "BNK-FW-02"
+    ],
+    "why_chosen": "FortiOS SSL-VPN RCE, KEV + ransomware use. Clean NVD ranges. Twins run 7.4.11 / 7.6.6: outside this CVE AND every other cached KEV FortiOS CVE (7.0.x/7.2.x lines still carry later KEV bugs, e.g. CVE-2025-61624), so they must raise no alert at all."
+  },
+  {
+    "threat_id": "CVE-2024-4577",
+    "cve_id": "CVE-2024-4577",
+    "source": "nvd+kev",
+    "title": "CVE-2024-4577: PHP-CGI OS Command Injection Vulnerability",
+    "description": "In PHP versions 8.1.* before 8.1.29, 8.2.* before 8.2.20, 8.3.* before 8.3.8, when using Apache and PHP-CGI on Windows, if the system is set up to use certain code pages, Windows may use \"Best-Fit\" behavior to replace characters in command line given to Win32 API functions. PHP CGI module may misinterpret those characters as PHP options, which may allow a malicious user to pass options to PHP binary being run, and thus reveal the source code of scripts, run arbitrary PHP code on the server, etc.",
+    "cvss": 9.8,
+    "cvss_version": "3.1",
+    "severity": "critical",
+    "epss": 0.99987,
+    "epss_percentile": 0.99984,
+    "kev_listed": true,
+    "public_exploit": true,
+    "affected_configurations": [
+      {
+        "vendor": "php",
+        "product": "php",
+        "version_start_including": "8.1.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "8.1.29",
+        "cpe": "cpe:2.3:a:php:php:*:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "php",
+        "product": "php",
+        "version_start_including": "8.2.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "8.2.20",
+        "cpe": "cpe:2.3:a:php:php:*:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "php",
+        "product": "php",
+        "version_start_including": "8.3.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "8.3.8",
+        "cpe": "cpe:2.3:a:php:php:*:*:*:*:*:*:*:*"
+      }
+    ],
+    "references": [
+      "http://www.openwall.com/lists/oss-security/2024/06/07/1",
+      "https://arstechnica.com/security/2024/06/php-vulnerability-allows-attackers-to-run-malicious-code-on-windows-servers/",
+      "https://blog.orange.tw/2024/06/cve-2024-4577-yet-another-php-rce.html",
+      "https://cert.be/en/advisory/warning-php-remote-code-execution-patch-immediately",
+      "https://devco.re/blog/2024/06/06/security-alert-cve-2024-4577-php-cgi-argument-injection-vulnerability-en/",
+      "https://github.com/11whoami99/CVE-2024-4577",
+      "https://github.com/php/php-src/security/advisories/GHSA-3qgc-jrrr-25jv",
+      "https://github.com/rapid7/metasploit-framework/pull/19247",
+      "https://github.com/watchtowrlabs/CVE-2024-4577",
+      "https://github.com/xcanwin/CVE-2024-4577-PHP-RCE",
+      "https://isc.sans.edu/diary/30994",
+      "https://labs.watchtowr.com/no-way-php-strikes-again-cve-2024-4577/",
+      "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/PKGTQUOA2NTZ3RXN22CSAUJPIRUYRB4B/",
+      "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/W45DBOH56NQDRTOM2DN2LNA2FZIMC3PK/",
+      "https://security.netapp.com/advisory/ntap-20240621-0008/",
+      "https://www.imperva.com/blog/imperva-protects-against-critical-php-vulnerability-cve-2024-4577/",
+      "https://www.php.net/ChangeLog-8.php#8.1.29",
+      "https://www.php.net/ChangeLog-8.php#8.2.20",
+      "https://www.php.net/ChangeLog-8.php#8.3.8",
+      "https://blog.talosintelligence.com/new-persistent-attacks-japan/",
+      "https://www.vicarius.io/vsociety/posts/php-cgi-argument-injection-to-rce-cve-2024-4577",
+      "https://www.vicarius.io/vsociety/posts/php-cgi-os-command-injection-vulnerability-cve-2024-4577",
+      "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-4577"
+    ],
+    "attack_techniques": [
+      "T1190",
+      "T1059",
+      "T1112",
+      "T1053",
+      "T1543",
+      "T1033",
+      "T1068",
+      "T1071.001",
+      "T1570",
+      "T1003",
+      "T1003.001",
+      "T1041"
+    ],
+    "published_at": "2024-06-09T20:15:09.550Z",
+    "retrieved_at": "2026-10-31T11:07:38.704420+00:00",
+    "raw_ref": "backend/data/raw/nvd_kev/all_0.json",
+    "is_simulated": false,
+    "vulnerable_asset_ids": [
+      "GOV-WEB-01"
+    ],
+    "patched_asset_ids": [
+      "GOV-WEB-02"
+    ],
+    "why_chosen": "PHP-CGI command injection, KEV. Only exploitable on Windows in CGI mode (some code pages) - NVD's range cannot express that, so a good 'limitations' example. Twin runs 8.2.35 (8.1.x is also hit by later KEV CVE-2026-109618). HLT-WEB-01/WTR-WEB-01 run PHP 8.3.36 on Linux: outside every KEV range."
+  },
+  {
+    "threat_id": "CVE-2023-22515",
+    "cve_id": "CVE-2023-22515",
+    "source": "nvd+kev",
+    "title": "CVE-2023-22515: Atlassian Confluence Data Center and Server Broken Access Control Vulnerability",
+    "description": "Atlassian has been made aware of an issue reported by a handful of customers where external attackers may have exploited a previously unknown vulnerability in publicly accessible Confluence Data Center and Server instances to create unauthorized Confluence administrator accounts and access Confluence instances. \r\n\r\nAtlassian Cloud sites are not affected by this vulnerability. If your Confluence site is accessed via an atlassian.net domain, it is hosted by Atlassian and is not vulnerable to this issue.",
+    "cvss": 9.8,
+    "cvss_version": "3.1",
+    "severity": "critical",
+    "epss": 0.99223,
+    "epss_percentile": 0.99935,
+    "kev_listed": true,
+    "public_exploit": true,
+    "affected_configurations": [
+      {
+        "vendor": "atlassian",
+        "product": "confluence_data_center",
+        "version_start_including": "8.0.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "8.3.3",
+        "cpe": "cpe:2.3:a:atlassian:confluence_data_center:*:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "atlassian",
+        "product": "confluence_data_center",
+        "version_start_including": "8.4.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "8.4.3",
+        "cpe": "cpe:2.3:a:atlassian:confluence_data_center:*:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "atlassian",
+        "product": "confluence_data_center",
+        "version_start_including": "8.5.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "8.5.2",
+        "cpe": "cpe:2.3:a:atlassian:confluence_data_center:*:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "atlassian",
+        "product": "confluence_server",
+        "version_start_including": "8.0.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "8.3.3",
+        "cpe": "cpe:2.3:a:atlassian:confluence_server:*:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "atlassian",
+        "product": "confluence_server",
+        "version_start_including": "8.4.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "8.4.3",
+        "cpe": "cpe:2.3:a:atlassian:confluence_server:*:*:*:*:*:*:*:*"
+      },
+      {
+        "vendor": "atlassian",
+        "product": "confluence_server",
+        "version_start_including": "8.5.0",
+        "version_start_excluding": null,
+        "version_end_including": null,
+        "version_end_excluding": "8.5.2",
+        "cpe": "cpe:2.3:a:atlassian:confluence_server:*:*:*:*:*:*:*:*"
+      }
+    ],
+    "references": [
+      "http://packetstormsecurity.com/files/175225/Atlassian-Confluence-Unauthenticated-Remote-Code-Execution.html",
+      "https://confluence.atlassian.com/display/KB/FAQ+for+CVE-2023-22515",
+      "https://confluence.atlassian.com/pages/viewpage.action?pageId=1295682276",
+      "https://jira.atlassian.com/browse/CONFSERVER-92475",
+      "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2023-22515"
+    ],
+    "attack_techniques": [
+      "T1190",
+      "T1078",
+      "T1059",
+      "T1059.007",
+      "T1136"
+    ],
+    "published_at": "2023-10-04T14:15:10.440Z",
+    "retrieved_at": "2026-10-31T11:07:38.704420+00:00",
+    "raw_ref": "backend/data/raw/nvd_kev/all_0.json",
+    "is_simulated": false,
+    "vulnerable_asset_ids": [
+      "TEL-WIKI-01"
+    ],
+    "patched_asset_ids": [
+      "TEL-WIKI-02"
+    ],
+    "why_chosen": "Confluence broken access control, KEV. Twin runs 9.2.26: 8.5.2 fixes this CVE but is still hit by KEV CVE-2023-22518/-22527/CVE-2026-21589."
+  }
+]

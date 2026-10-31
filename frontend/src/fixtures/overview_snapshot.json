@@ -1,0 +1,109 @@
+{
+"snapshot_at": "2026-10-31T11:07:38+00:00",
+"threats_received": 19695,
+"trend": [
+{
+"date": "2026-10-18",
+"count": 551
+},
+{
+"date": "2026-10-19",
+"count": 541
+},
+{
+"date": "2026-10-20",
+"count": 1946
+},
+{
+"date": "2026-10-21",
+"count": 556
+},
+{
+"date": "2026-10-22",
+"count": 512
+},
+{
+"date": "2026-10-23",
+"count": 507
+},
+{
+"date": "2026-10-24",
+"count": 84
+},
+{
+"date": "2026-10-25",
+"count": 139
+},
+{
+"date": "2026-10-26",
+"count": 770
+},
+{
+"date": "2026-10-27",
+"count": 717
+},
+{
+"date": "2026-10-28",
+"count": 854
+},
+{
+"date": "2026-10-29",
+"count": 612
+},
+{
+"date": "2026-10-30",
+"count": 763
+}
+],
+"sources": [
+{
+"source": "nvd",
+"name": "NVD",
+"records": 17324,
+"newest_record": "2026-10-31T10:16:38.927000Z",
+"status": "cached"
+},
+{
+"source": "kev",
+"name": "CISA KEV",
+"records": 1766,
+"newest_record": "2026-10-30T00:00:00Z",
+"status": "cached"
+},
+{
+"source": "certin",
+"name": "CERT-In",
+"records": 40,
+"newest_record": "2026-10-30T00:00:00+05:30",
+"status": "cached"
+},
+{
+"source": "otx",
+"name": "AlienVault OTX",
+"records": 200,
+"newest_record": "2026-10-30T09:41:33Z",
+"status": "cached"
+},
+{
+"source": "threatfox",
+"name": "ThreatFox",
+"records": 141,
+"newest_record": "2026-10-31T11:05:48Z",
+"status": "cached"
+},
+{
+"source": "urlhaus",
+"name": "URLhaus",
+"records": 46,
+"newest_record": "2026-10-31T11:02:06Z",
+"status": "cached"
+},
+{
+"source": "ransomware",
+"name": "Ransomware tracker",
+"records": 169,
+"newest_record": "2026-10-31T03:34:17.691492Z",
+"status": "cached"
+}
+]
+}

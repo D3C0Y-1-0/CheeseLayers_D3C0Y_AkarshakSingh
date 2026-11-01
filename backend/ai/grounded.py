@@ -208,6 +208,25 @@ async def narrate(kind: str, facts: dict, template: dict, fields: dict[str, str]
     # Look-alike characters (non-breaking hyphen U+2011, en dash, NBSP...) would hide identifiers from the grounding
     # check ("GOV‑VPN‑01" is not "GOV-VPN-01"), so fold them to ASCII before checking and before display.
     narrative = {k: plain(data.get(k)) for k in names}
+    # Normalise list fields to the validator's shape (1-10 strings, <=500 chars each) instead of discarding the
+    # whole narrative: a capable model sometimes returns one combined string, or more/longer items than allowed.
+    # Word-boundary truncation never splits an identifier; the grounding, overclaim, numeric and command checks
+    # below still run on what remains.
+    for name, kind in fields.items():
+        if kind != "list":
+            continue
+        value = narrative.get(name)
+        if isinstance(value, str) and value.strip():  # single string -> one action
+            value = [value]
+        if isinstance(value, list):
+            trimmed = []
+            for s in value:
+                if not isinstance(s, str) or not s.strip():
+                    continue
+                trimmed.append(s[:500].rsplit(" ", 1)[0] if len(s) > 500 else s)
+                if len(trimmed) == 10:
+                    break
+            narrative[name] = trimmed
     problems, bad = check(narrative, fields, corpus)
     if changed:
         problems.append("tried to change factual fields: " + ", ".join(changed))

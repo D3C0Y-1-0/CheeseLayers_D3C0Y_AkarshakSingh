@@ -26,6 +26,20 @@ DATA = Path(__file__).resolve().parents[2] / "data"
 SECTOR_LABELS = {"power": "Power/Energy", "banking": "Banking", "govt": "Government", "health": "Healthcare",
                  "telecom": "Telecom", "water": "Water"}
 
+SOURCE_LABELS = {"nvd": "NVD", "kev": "CISA KEV", "otx": "AlienVault OTX", "certin": "CERT-In",
+                 "epss": "FIRST EPSS", "threatfox": "ThreatFox", "urlhaus": "URLhaus",
+                 "malwarebazaar": "MalwareBazaar", "feodotracker": "Feodo Tracker",
+                 "ransomware": "Ransomware leak sites", "openphish": "OpenPhish", "spamhaus_drop": "Spamhaus DROP",
+                 "tor_exit": "Tor exit nodes", "netrax_synthetic": "Synthetic (demo)", "vectra_lab": "Vectra lab"}
+
+
+def _source_label(source: str | None) -> str:
+    if not source:
+        return "unknown"
+    if "+" in source:  # a record corroborated by several feeds, e.g. "nvd+kev"
+        return " + ".join(_source_label(s) for s in source.split("+"))
+    return SOURCE_LABELS.get(source, source.replace("_", " ").title())
+
 
 def _active_alerts(db: Session) -> list[dict]:
     return [CorrelationEngine.to_alert(r) for r in db.scalars(select(AlertRow))
@@ -203,4 +217,120 @@ def patch_impact(body: PatchImpactRequest, db: Session = Depends(get_db)) -> dic
                    "reduction % = (before - after) / before x 100",
         "transitions": transitions,
         "notes": notes,
+    }
+
+
+# --- CVE impact & spread graph -----------------------------------------------------------------------
+
+@router.get("/api/impact/{threat_id}", tags=["analytics"],
+            responses={404: {"description": "unknown threat"}})
+def cve_impact(threat_id: str, db: Session = Depends(get_db), max_spread_per_org: int = 6) -> dict[str, Any]:
+    """Detect -> match -> spread graph for ONE advisory, from whichever feed reported it.
+
+    Reuses the real matcher and scorer on the synthetic inventory (no own risk logic, nothing persisted):
+      1. did it reach us?       version-aware match across every asset
+      2. what is affected?      tri-state verdict + vulnerability_priority_score per hit
+      3. how could it spread?   MODELLED lateral movement to same-organisation assets from a foothold
+    """
+    threat = _load_threat(db, threat_id)
+    if threat is None:
+        raise HTTPException(404, f"threat {threat_id} not found")
+    store = get_asset_store()
+    assets = store.all()
+    by_id = {a.asset_id: a for a in assets}
+
+    source = getattr(threat, "source", None)
+    source_id, cve_id = f"source:{source}", f"cve:{threat.threat_id}"
+    nodes: list[dict[str, Any]] = [
+        {"id": source_id, "type": "source", "tier": "source", "label": _source_label(source), "source": source},
+        {"id": cve_id, "type": "cve", "tier": "cve", "label": threat.cve_id or threat.threat_id,
+         "threat_id": threat.threat_id, "title": threat.title, "cvss": threat.cvss, "severity": threat.severity,
+         "kev_listed": threat.kev_listed, "epss": threat.epss,
+         "public_exploit": bool(getattr(threat, "public_exploit", False)), "is_simulated": bool(threat.is_simulated)},
+    ]
+    edges: list[dict[str, Any]] = [
+        {"from": source_id, "to": cve_id, "kind": "reported_by", "label": f"detected from {_source_label(source)}"}]
+    notes: list[str] = []
+
+    # 1 + 2. Direct exposure. A threat with no structured affected-product data would otherwise make match_asset
+    # mark every asset needs_verification (its conservative default) -> 40 false amber nodes, so guard it.
+    if not threat.affected_configurations:
+        notes.append("This advisory carries no structured affected-product data, so per-asset applicability cannot be "
+                     "computed automatically; an analyst must verify it. No asset is auto-flagged.")
+        direct = []
+    else:
+        direct = [m for m in (match_asset(a, threat) for a in assets) if m.match_detail != "confirmed_unaffected"]
+
+    affected_ids = {m.asset_id for m in direct}
+    orgs_with_hit: dict[str, list[str]] = {}
+    exposure_total = 0.0
+    for m in direct:
+        asset = by_id[m.asset_id]
+        score = score_incident(asset, threat, m)
+        exposure_total += score.vulnerability_priority_score
+        entry = asset.internet_facing and m.match_detail == "confirmed_affected"
+        sw = m.software or {}
+        nodes.append({
+            "id": asset.asset_id, "type": "asset", "tier": "entry" if entry else "affected",
+            "asset_id": asset.asset_id, "hostname": asset.hostname, "role": asset.role, "sector": asset.sector,
+            "organisation": asset.organisation, "criticality": asset.criticality,
+            "internet_facing": asset.internet_facing, "os": asset.os, "match_detail": m.match_detail,
+            "score": round(score.vulnerability_priority_score, 1),
+            "priority": score.priority if score.vulnerability_priority_score > 0 else None,
+            "software": f"{sw.get('vendor')}/{sw.get('product')} {sw.get('version')}" if sw else None,
+            "reason": m.reason})
+        edges.append({"from": cve_id, "to": asset.asset_id, "kind": "affects", "match_detail": m.match_detail,
+                      "score": round(score.vulnerability_priority_score, 1), "label": m.match_detail.replace("_", " ")})
+        orgs_with_hit.setdefault(asset.organisation, []).append(asset.asset_id)
+
+    # 3. Spread (modelled). From each organisation that has a foothold, lateral movement to its other assets.
+    # Foothold = an internet-facing confirmed hit if the org has one (external entry), else its most critical hit.
+    present = {n["id"] for n in nodes}
+    spread_ids: set[str] = set()
+    confirmed_entry = {m.asset_id for m in direct if m.match_detail == "confirmed_affected"}
+    for org, hit_ids in orgs_with_hit.items():
+        hits = [by_id[i] for i in hit_ids]
+        external_footholds = [a for a in hits if a.internet_facing and a.asset_id in confirmed_entry]
+        foothold = external_footholds[0] if external_footholds else max(hits, key=lambda a: a.criticality)
+        external = bool(external_footholds)
+        neighbours = sorted((a for a in assets if a.organisation == org and a.asset_id not in affected_ids),
+                            key=lambda a: (-a.criticality, a.asset_id))
+        shown = neighbours[:max_spread_per_org]
+        if len(neighbours) > len(shown):
+            notes.append(f"{org}: {len(neighbours) - len(shown)} more internal asset(s) in the same zone not drawn.")
+        for n in shown:
+            spread_ids.add(n.asset_id)
+            if n.asset_id not in present:
+                present.add(n.asset_id)
+                nodes.append({"id": n.asset_id, "type": "asset", "tier": "blast", "asset_id": n.asset_id,
+                              "hostname": n.hostname, "role": n.role, "sector": n.sector, "organisation": n.organisation,
+                              "criticality": n.criticality, "internet_facing": n.internet_facing, "os": n.os,
+                              "match_detail": None, "score": None, "priority": None})
+            edges.append({"from": foothold.asset_id, "to": n.asset_id, "kind": "can_spread_to",
+                          "requires_foothold": not external, "label": "could reach",
+                          "basis": ("lateral movement from an internet-facing foothold" if external
+                                    else "lateral movement once an attacker already has a foothold inside")})
+
+    if not direct and threat.affected_configurations:
+        notes.append("Checked every asset: none in our inventory runs an affected version, so we are not exposed to "
+                     "this advisory right now. Absence of a match is re-checked whenever inventory changes.")
+    sectors_touched = {by_id[i].sector for i in affected_ids | spread_ids}
+    return {
+        "data_classification": "Modelled CVE impact on the synthetic asset inventory (real matcher + scorer)",
+        "is_simulated": True, "threat_id": threat.threat_id, "cve_id": threat.cve_id, "title": threat.title,
+        "source": source, "source_label": _source_label(source), "cvss": threat.cvss, "severity": threat.severity,
+        "kev_listed": threat.kev_listed, "epss": threat.epss,
+        "public_exploit": bool(getattr(threat, "public_exploit", False)), "threat_is_simulated": bool(threat.is_simulated),
+        "spread_model": ("Spread is a MODELLED lateral-movement path: from a compromised asset an attacker can reach "
+                         "other assets in the SAME organisation / security zone. It is derived from shared organisation "
+                         "and internet exposure, NOT from observed network topology or captured traffic."),
+        "summary": {
+            "checked_assets": len(assets),
+            "confirmed_affected": sum(m.match_detail == "confirmed_affected" for m in direct),
+            "needs_verification": sum(m.match_detail == "needs_verification" for m in direct),
+            "entry_points": sum(1 for n in nodes if n.get("tier") == "entry"),
+            "blast_radius_assets": len(spread_ids), "organisations_touched": len(orgs_with_hit),
+            "sectors_touched": len(sectors_touched), "aggregate_exposure_score": round(exposure_total, 1)},
+        "nodes": nodes, "edges": edges, "notes": notes,
+        "generated_at": datetime.now(timezone.utc).isoformat(),
     }

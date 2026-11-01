@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { getJson, notifyRefresh, parseList, post, toTitle, useAlerts, useHealth, useOverview, when, type Alert, type DemoResult } from './api'
 import { Intro } from './Intro'
+import ImpactGraph from './impact/ImpactGraph'
 import { DataNotice, Empty, PageHead, Panel, PriorityBadge } from './ui'
 
 const RANK = { critical: 0, high: 1, medium: 2, low: 3 }
@@ -159,6 +160,8 @@ export default function CommandCenter() {
           </table></div>
         </Panel>
       </div>
+
+      <ImpactGraph />
     </>
   )
 }

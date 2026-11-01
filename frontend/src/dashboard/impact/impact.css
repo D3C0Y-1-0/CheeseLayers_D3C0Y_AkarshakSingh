@@ -1,0 +1,85 @@
+/* CVE impact & spread graph. Colours follow the priority language used across the dashboard. */
+.ig { overflow: hidden; }
+.ig-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 0.8rem 1.5rem; padding: 0.9rem 1.1rem; border-bottom: 1px solid var(--color-rule); }
+.ig-h2 { padding: 0; border: 0; font-size: 1.05rem; }
+.ig-sub { max-width: 40rem; margin-top: 0.2rem; color: var(--color-grey-300); font-size: 0.85rem; }
+.ig-pick { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+.ig-pick select, .ig-pick input { background: #0b1634; color: #fff; border: 1px solid var(--color-rule); border-radius: 4px; padding: 0.35rem 0.5rem; font-size: 0.82rem; }
+.ig-pick input { width: 11rem; }
+.ig-pick select:focus, .ig-pick input:focus { outline: 2px solid var(--color-blue-300); }
+
+.ig-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0.8rem 1.1rem 0; }
+.ig-chip { padding: 0.2rem 0.6rem; border-radius: 999px; background: rgb(217 220 225 / 0.08); color: var(--color-grey-200); font-size: 0.78rem; white-space: nowrap; }
+.ig-chip.is-on { background: rgb(255 90 95 / 0.16); color: #ffb3b5; }
+.ig-title { padding: 0.5rem 1.1rem 0; color: var(--color-grey-300); font-size: 0.9rem; }
+
+.ig-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr)); gap: 0.5rem; padding: 0.9rem 1.1rem; }
+.ig-stat { padding: 0.55rem 0.7rem; border: 1px solid var(--color-rule); border-radius: 4px; background: #060c20; }
+.ig-stat b { display: block; font-size: 1.3rem; color: #fff; font-variant-numeric: tabular-nums; }
+.ig-stat span { color: var(--color-grey-400); font-size: 0.75rem; }
+
+.ig-clean { margin: 0 1.1rem 1rem; padding: 0.9rem 1rem; border: 1px solid rgb(95 211 141 / 0.4); border-radius: 4px; background: rgb(95 211 141 / 0.08); color: #bfead0; }
+.ig-clean b { color: #8fe3b0; }
+
+.ig-stage { display: grid; grid-template-columns: minmax(0, 1fr) 17rem; gap: 1rem; padding: 0 1.1rem; }
+.ig-svg { width: 100%; height: auto; max-height: 30rem; }
+.ig-lane { fill: var(--color-grey-500); font-size: 10px; letter-spacing: 0.05em; text-anchor: middle; text-transform: uppercase; }
+
+.ig-link { fill: none; stroke-width: 2; transition: stroke 0.3s, stroke-width 0.3s; }
+.ig-e-detect .ig-link { stroke: rgb(146 195 255 / 0.5); }
+.ig-e-hit .ig-link { stroke: #ff5a5f; stroke-width: 2.5; }
+.ig-e-verify .ig-link { stroke: #ff9d4d; }
+.ig-e-spread .ig-link { stroke: rgb(255 157 77 / 0.55); stroke-dasharray: 7 6; animation: ig-dash 0.9s linear infinite; }
+.ig-edge.is-focus .ig-link { stroke: var(--color-blue-300); stroke-width: 3; }
+.ig-edge.is-focus.ig-e-spread .ig-link { animation: none; }
+
+/* The packet is placed at the edge's start via an inline `transform`; the animation moves the independent
+   `translate` property by (--dx, --dy), so it travels from the start node to the end node. */
+.ig-pkt { stroke: #fff; stroke-width: 1; translate: 0 0; animation: ig-move 2.6s cubic-bezier(0.45, 0, 0.3, 1) infinite; }
+.ig-e-detect .ig-pkt { fill: var(--color-blue-300); }
+.ig-e-hit .ig-pkt { fill: #ff5a5f; filter: drop-shadow(0 0 5px #ff5a5f); }
+.ig-e-verify .ig-pkt { fill: #ff9d4d; }
+.ig-e-spread .ig-pkt { fill: #f4d35e; }
+@keyframes ig-move { from { opacity: 0; } 10% { opacity: 1; } 85% { opacity: 1; } to { translate: calc(var(--dx) * 1px) calc(var(--dy) * 1px); opacity: 0; } }
+@keyframes ig-dash { to { stroke-dashoffset: -13; } }
+
+.ig-node { cursor: pointer; }
+.ig-box { fill: #0b1634; stroke: rgb(217 220 225 / 0.22); stroke-width: 1.5; transition: stroke 0.25s, fill 0.25s; }
+.ig-node:hover .ig-box, .ig-node.is-focus .ig-box { stroke: var(--color-blue-300); }
+.ig-node.t-source .ig-box { fill: #0a1830; stroke: rgb(146 195 255 / 0.5); }
+.ig-node.t-cve .ig-box { fill: #2a0d14; stroke: #ff5a5f; }
+.ig-node.t-entry .ig-box { fill: #2a0d14; stroke: #ff5a5f; stroke-width: 2; }
+.ig-node.t-affected .ig-box { fill: #231405; stroke: #ff9d4d; }
+.ig-node.t-blast .ig-box { fill: #0c1326; stroke: rgb(217 220 225 / 0.28); stroke-dasharray: 5 4; }
+.ig-ring { fill: none; stroke: #ff5a5f; stroke-width: 2; opacity: 0.55; transform-box: fill-box; transform-origin: center; animation: ig-ringpulse 1.8s ease-out infinite; }
+@keyframes ig-ringpulse { from { transform: scale(1); opacity: 0.6; } to { transform: scale(1.06); opacity: 0; } }
+.ig-nlabel { fill: #fff; font-size: 13px; font-weight: 500; }
+.ig-nsub { fill: var(--color-grey-400); font-size: 11px; }
+.ig-wan { fill: var(--color-grey-500); font-size: 9px; letter-spacing: 0.05em; }
+.ig-crit { stroke: rgb(0 0 0 / 0.3); }
+.ig-crit.c-1 { fill: #5fd38d; } .ig-crit.c-2 { fill: #9fd36a; } .ig-crit.c-3 { fill: #f4d35e; }
+.ig-crit.c-4 { fill: #ff9d4d; } .ig-crit.c-5 { fill: #ff5a5f; }
+
+.ig-detail { align-self: start; margin-top: 1.4rem; padding: 0.9rem; border: 1px solid var(--color-rule); border-radius: 4px; background: #060c20; min-height: 10rem; }
+.ig-d-kick { font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-grey-400); }
+.ig-d-title { margin-top: 0.15rem; font-size: 1.05rem; color: #fff; }
+.ig-dl { display: grid; grid-template-columns: auto 1fr; gap: 0.25rem 0.7rem; margin-top: 0.6rem; font-size: 0.82rem; }
+.ig-dl dt { color: var(--color-grey-400); }
+.ig-dl dd { color: var(--color-grey-100, #fff); }
+.ig-d-reason { margin-top: 0.6rem; color: var(--color-grey-300); font-size: 0.82rem; line-height: 1.4; }
+.ig-d-hint { color: var(--color-grey-300); font-size: 0.85rem; line-height: 1.5; }
+.ig-d-hint b { color: #fff; }
+
+.ig-foot { padding: 0.9rem 1.1rem 0; color: var(--color-grey-400); font-size: 0.8rem; line-height: 1.45; }
+.ig-foot b { color: var(--color-grey-200); }
+.ig-note { padding: 0.3rem 1.1rem 0; color: var(--color-grey-400); font-size: 0.78rem; }
+.ig-class { padding: 0.6rem 1.1rem 1rem; color: var(--color-grey-500); font-size: 0.72rem; }
+
+@media (max-width: 860px) {
+  .ig-stage { grid-template-columns: 1fr; }
+  .ig-detail { margin-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ig-pkt { animation: none; opacity: 0; }
+  .ig-e-spread .ig-link, .ig-ring { animation: none; }
+}

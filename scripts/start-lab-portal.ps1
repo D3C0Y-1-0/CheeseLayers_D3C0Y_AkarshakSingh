@@ -1,9 +1,14 @@
 param([ValidateRange(1024, 65535)][int]$Port = 8010, [string]$BindAddress = '127.0.0.1', [switch]$Background)
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
-$pythonPath = Join-Path $projectRoot '.venv\Scripts\python.exe'
-if (-not (Test-Path -LiteralPath $pythonPath)) { $pythonPath = Join-Path $projectRoot 'backend\.venv\Scripts\python.exe' }
-if (-not (Test-Path -LiteralPath $pythonPath)) { throw 'Install backend dependencies in .venv or backend/.venv first.' }
+# Same as start.ps1: pick the first venv that can actually import the app (root .venv may be incomplete).
+$pythonPath = $null
+foreach ($candidate in @((Join-Path $projectRoot 'backend\.venv\Scripts\python.exe'), (Join-Path $projectRoot '.venv\Scripts\python.exe'))) {
+    if (Test-Path -LiteralPath $candidate) {
+        try { & $candidate -c "import fastapi, uvicorn" 2>$null; if ($LASTEXITCODE -eq 0) { $pythonPath = $candidate; break } } catch { continue }
+    }
+}
+if (-not $pythonPath) { throw 'Install backend dependencies in backend\.venv (or .venv) first. See README.md.' }
 $address = $null
 if (-not [Net.IPAddress]::TryParse($BindAddress, [ref]$address)) { throw 'BindAddress must be a literal address assigned to this PC.' }
 if (-not [Net.IPAddress]::IsLoopback($address)) {

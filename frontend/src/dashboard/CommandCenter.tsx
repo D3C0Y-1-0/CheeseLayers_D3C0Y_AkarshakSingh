@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { getJson, notifyRefresh, parseList, post, toTitle, useAlerts, useHealth, useOverview, when, type Alert, type DemoResult } from './api'
 import { Intro } from './Intro'
+import ImpactGraph from './impact/ImpactGraph'
 import { DataNotice, Empty, PageHead, Panel, PriorityBadge } from './ui'
 import { DetailFold, Distribution, JourneyRail } from './Visuals'
 
@@ -172,6 +173,8 @@ export default function CommandCenter() {
         </Panel>
         <Panel title="Optional fixture and historical replay controls" className="xl:col-span-2"><DetailFold title="Open labelled demo controls (includes reset)"><p className="visual-caption mb-3">These insert fixtures or replay historical logs. Use the owned live console for actual request-driven testing. Reset removes correlated alerts and sensor events.</p><SimControls /></DetailFold></Panel>
       </div>
+
+      <ImpactGraph />
     </>
   )
 }

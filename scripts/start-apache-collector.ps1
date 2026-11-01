@@ -1,7 +1,13 @@
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
-$pythonPath = Join-Path $projectRoot '.venv\Scripts\python.exe'
-if (-not (Test-Path -LiteralPath $pythonPath)) { $pythonPath = Join-Path $projectRoot 'backend\.venv\Scripts\python.exe' }
+# Prefer the venv that can actually import the collector's deps (root .venv may be incomplete).
+$pythonPath = $null
+foreach ($candidate in @((Join-Path $projectRoot 'backend\.venv\Scripts\python.exe'), (Join-Path $projectRoot '.venv\Scripts\python.exe'))) {
+    if (Test-Path -LiteralPath $candidate) {
+        try { & $candidate -c "import httpx" 2>$null; if ($LASTEXITCODE -eq 0) { $pythonPath = $candidate; break } } catch { continue }
+    }
+}
+if (-not $pythonPath) { throw 'Install backend dependencies in backend\.venv (or .venv) first. See README.md.' }
 $logs = Join-Path $projectRoot 'logs'
 New-Item -ItemType Directory -Path $logs -Force | Out-Null
 $statePath = Join-Path $logs 'apache-collector.json'

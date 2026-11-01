@@ -8,9 +8,7 @@ services:
   - type: web
     name: vectra
     runtime: python
-    # Standard (1 CPU, 2 GB): free (0.1 CPU) was too slow. /api/campaigns took ~14 s against the dashboard's 4 s
-    # request timeout, and a campaign rebuild after a demo injection crashed the instance.
-    plan: standard
+    plan: free
     region: singapore
     buildCommand: >-
       pip install -r backend/requirements.txt &&

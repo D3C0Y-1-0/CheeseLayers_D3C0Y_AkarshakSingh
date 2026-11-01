@@ -122,7 +122,8 @@ export const fixtures = {
 }
 
 export async function getJson(path: string, init?: RequestInit) {
-  const res = await fetch(path, { ...init, signal: AbortSignal.timeout(init?.method === 'POST' ? 30000 : 4000) })
+  // GETs get 15 s: a free cloud host (0.1 CPU) answers in a few seconds; 4 s showed "Backend not connected" there.
+  const res = await fetch(path, { ...init, signal: AbortSignal.timeout(init?.method === 'POST' ? 30000 : 15000) })
   if (!res.ok) {
     const body = await res.json().catch(() => ({}))
     throw new Error(typeof body.detail === 'string' ? body.detail : `Request failed (${res.status}). Check the submitted fields.`)

@@ -182,3 +182,17 @@ def test_ranked_by_actionability_with_explained_factors():
     for c in cs:
         assert c["actionability_score"] == round(sum(c["actionability_factors"].values()), 1)
     assert cs[0]["actionability_factors"]["kev_members"] == 15.0  # 3 of 5 KEV members for full points
+
+
+def test_api_serves_memo_and_refreshes_stale_copy_in_background(monkeypatch):
+    """Requests must not re-scan threats each time (that timed out the dashboard on a 0.1-CPU host)."""
+    calls, started = [], []
+    monkeypatch.setattr(campaigns, "get", lambda db: calls.append(1) or {"n": len(calls)})
+    monkeypatch.setattr(campaigns, "refresh_in_background", lambda factory: started.append(1))
+    monkeypatch.setattr(campaigns, "_MEMO", {"data": None, "at": 0.0})
+    monkeypatch.setattr(campaigns, "_REFRESHING", campaigns.threading.Event())  # other tests' app startup may hold the real one
+    assert campaigns.serve(None) == {"n": 1} and campaigns.serve(None) == {"n": 1}  # 2nd call: memo, no get()
+    assert calls == [1] and started == []
+    campaigns._MEMO["at"] -= campaigns.MEMO_TTL_S + 1  # copy is now stale
+    assert campaigns.serve(None) == {"n": 1}  # still answered instantly from the memo...
+    assert started == [1]  # ...while a background refresh was started

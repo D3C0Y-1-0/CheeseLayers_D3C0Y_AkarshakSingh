@@ -1,5 +1,5 @@
 # One container: FastAPI API + built React dashboard on the same origin (dashboard at /app, health at /health).
-# Used by the Hugging Face Space (scripts/deploy_hf.py); also runs anywhere Docker does:
+# Runs anywhere Docker does (the free Render service uses render.yaml instead, no Docker needed):
 #   docker build -t vectra . && docker run -p 7860:7860 vectra
 # DEMO_MODE: no outbound network; the SQLite DB is rebuilt from backend/data/cache/ on every start.
 
@@ -11,7 +11,7 @@ RUN npm ci --no-audit --no-fund
 COPY frontend/ ./
 RUN npm run build
 
-# 2. Python runtime. Hugging Face runs Spaces as uid 1000, so the app dir must be owned by that user
+# 2. Python runtime, as an unprivileged user (uid 1000) that owns the app dir
 #    (the app writes backend/data/vectra.db and the campaigns cache at startup).
 FROM python:3.11-slim
 RUN useradd -m -u 1000 user

@@ -18,6 +18,7 @@ import hashlib
 import json
 import logging
 import threading
+import time
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -387,12 +388,39 @@ def refresh_in_background(session_factory) -> threading.Thread:
     def run():
         try:
             with session_factory() as db:
-                get(db)
+                _remember(get(db))
         except Exception:
             log.exception("campaign precompute failed")
+        finally:
+            _REFRESHING.clear()
+    _REFRESHING.set()
     t = threading.Thread(target=run, name="campaigns", daemon=True)
     t.start()
     return t
+
+
+# In-memory copy for the API. get() re-scans every in-scope threat to fingerprint them (~0.3 s on a laptop, ~10 s
+# on a 0.1-CPU free host) and may rebuild while holding _LOCK, so calling it per request made the dashboard time out.
+# The first request computes as before; later ones get the copy instantly, refreshed in the background once it is
+# older than MEMO_TTL_S (stale-while-revalidate: campaigns may lag new data by up to that long).
+MEMO_TTL_S = float(os.getenv("CAMPAIGNS_MEMO_TTL_S", "300"))
+_MEMO: dict = {"data": None, "at": 0.0}
+_REFRESHING = threading.Event()
+
+
+def _remember(data: dict) -> dict:
+    _MEMO.update(data=data, at=time.monotonic())
+    return data
+
+
+def serve(db: Session) -> dict:
+    data = _MEMO["data"]
+    if data is None:
+        return _remember(get(db))
+    if time.monotonic() - _MEMO["at"] > MEMO_TTL_S and not _REFRESHING.is_set():
+        from .database import SessionLocal
+        refresh_in_background(SessionLocal)
+    return data
 
 
 def campaign_ids_for(db: Session, threat_id: str) -> list[str]:
@@ -411,7 +439,7 @@ router = APIRouter(tags=["campaigns"])
 def list_campaigns(emerging: bool | None = Query(None, description="true = emerging only"),
                    limit: int = Query(50, ge=1, le=500), db: Session = Depends(get_db)) -> dict:
     """Groups of related threats, emerging first. Each lists WHY its members were grouped (link_reasons)."""
-    data = get(db)
+    data = serve(db)
     items = [c for c in data["campaigns"] if emerging is None or c["is_emerging"] == emerging]
     return {"as_of": data["as_of"], "config": data["config"], "meta": data["meta"], "total": len(items),
             "emerging_total": sum(c["is_emerging"] for c in data["campaigns"]), "items": items[:limit]}
@@ -421,7 +449,7 @@ def list_campaigns(emerging: bool | None = Query(None, description="true = emerg
 def campaign_detail(campaign_id: str, db: Session = Depends(get_db)) -> dict:
     """One campaign + its member threats, each with the shared keys that tie it to the group."""
     from .models import Threat
-    data = get(db)
+    data = serve(db)
     c = next((x for x in data["campaigns"] if x["campaign_id"] == campaign_id), None)
     if c is None:
         raise HTTPException(404, f"campaign {campaign_id} not found")

@@ -1,9 +1,15 @@
 # Render Blueprint: one web service that serves the FastAPI API and the built React dashboard from the same origin.
 # Deploy: Render dashboard -> New -> Blueprint -> pick this repo. Dashboard at /app, health at /health.
 #
-# Runs in DEMO_MODE: no outbound network, everything comes from the committed cache in backend/data/cache/.
-# The SQLite DB is rebuilt from that cache on every start (Render's disk is ephemeral), so a restart also
-# resets demo injections. Attack Lab only works in DEMO_MODE; LLM summaries use templates + cached reports.
+# Runs in DEMO_MODE: no outbound network at runtime, everything comes from the committed cache in
+# backend/data/cache/. Render's disk is ephemeral, so every start (deploy, restart, wake from sleep) rebuilds the
+# SQLite DB and resets demo injections. Attack Lab only works in DEMO_MODE; LLM summaries use templates + cached reports.
+#
+# Free plan = 0.1 CPU / 512 MB. To fit:
+# - scripts/prestart.py loads the cache in a separate short-lived process (its ~700 MB peak is returned to the OS
+#   when it exits), seeds the Early warnings feed and warms campaigns; the API then runs at ~170-310 MB.
+# - scripts/fetch_geo.sh downloads DB-IP Lite at build time (gitignored, ~140 MB) for the SOC globe; optional.
+# - MALLOC_ARENA_MAX=2 stops glibc keeping a memory arena per worker thread.
 services:
   - type: web
     name: vectra
@@ -12,9 +18,13 @@ services:
     region: singapore
     buildCommand: >-
       pip install -r backend/requirements.txt &&
+      bash scripts/fetch_geo.sh &&
       python -X utf8 scripts/export_scoring_config.py &&
       cd frontend && npm ci && npm run build
-    startCommand: cd backend && python -X utf8 -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    startCommand: >-
+      cd backend &&
+      python -X utf8 ../scripts/prestart.py &&
+      exec python -X utf8 -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     autoDeploy: true
     envVars:
@@ -26,3 +36,5 @@ services:
         value: "true"
       - key: PYTHONUTF8
         value: "1"
+      - key: MALLOC_ARENA_MAX
+        value: "2"

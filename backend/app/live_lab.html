@@ -2,12 +2,13 @@
 <title>Vectra — live lab control</title><style>
 :root{--bg:#0b1220;--card:#121c2e;--line:#27384f;--ink:#e4edf7;--muted:#95abc4;--teal:#77dfcf;--red:#ff6b6b;--amber:#f5b544;--green:#5ad18b;--blue:#5aa9ff}
 *{box-sizing:border-box}
-body{background:radial-gradient(1200px 600px at 20% -10%,#15233c,transparent),var(--bg);color:var(--ink);font:15px/1.5 system-ui,"Segoe UI",Roboto,sans-serif;margin:0;padding:24px;max-width:1200px;margin-inline:auto}
+body{background:radial-gradient(1200px 600px at 20% -10%,#15233c,transparent),var(--bg);color:var(--ink);font:15px/1.5 system-ui,"Segoe UI",Roboto,sans-serif;margin:0;padding:24px;max-width:1180px;margin-inline:auto}
 h1{font-size:23px;margin:0 0 4px;color:#fff}
-h1 .arrows{color:var(--teal);font-weight:600}
-h2{font-size:17px;color:var(--teal);margin:0 0 10px}
+h1 .arrows{color:var(--teal);font-weight:600;font-size:17px}
+h2{font-size:17px;color:var(--teal);margin:0 0 4px}
 h2 .n{display:inline-block;min-width:24px;height:24px;line-height:24px;text-align:center;background:rgba(119,223,207,.14);border:1px solid rgba(119,223,207,.35);border-radius:7px;color:var(--teal);font-size:13px;margin-right:8px}
-.sub{color:var(--muted);margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 4px;font-size:14px}
+.mono{font-family:ui-monospace,Consolas,monospace}
 a{color:var(--teal)}
 section{background:linear-gradient(180deg,var(--card),#0f1826);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
 section.respond{border-color:#3a5a7a;box-shadow:0 0 0 1px rgba(90,169,255,.15)}
@@ -23,115 +24,170 @@ button.mini{padding:5px 11px;font-size:12px;font-weight:500}
 button.primary{background:linear-gradient(180deg,#1f7a6b,#15594e);border-color:#2a9e8a}
 button.danger{background:linear-gradient(180deg,#9c3d3d,#7a2a2a);border-color:#c05a5a}
 input,select,textarea{font:inherit;padding:9px;margin:4px 6px 4px 0;background:#0e1826;color:#fff;border:1px solid #33485f;border-radius:8px}
-textarea{width:100%;height:120px;font-family:ui-monospace,Consolas,monospace;font-size:13px}
-pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:300px;overflow:auto;background:#0a111d;border:1px solid var(--line);border-radius:10px;padding:12px;font:13px/1.45 ui-monospace,Consolas,monospace;color:#cfe0f2}
+textarea{width:100%;height:110px;font-family:ui-monospace,Consolas,monospace;font-size:13px}
 .muted{color:var(--muted)}
-.flow{color:var(--muted);font-size:13px;margin:2px 0 16px}
-.flow b{color:var(--teal)}
+.note{color:var(--muted);font-size:13px;margin:8px 0}
+.flow{color:var(--muted);font-size:13px;margin:2px 0 14px}.flow b{color:var(--teal)}
 .statusline{display:inline-block;font-weight:700;padding:6px 12px;border-radius:8px;margin:4px 0}
 .statusline.ok{color:var(--green);background:rgba(90,209,139,.1)}
 .statusline.bad{color:var(--red);background:rgba(255,107,107,.1)}
-.tablewrap{max-height:300px;overflow:auto;border:1px solid var(--line);border-radius:10px;margin:6px 0}
+#message{min-height:20px;color:var(--amber);font-weight:600;margin:8px 0}
+/* tags / badges */
+.tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.3px}
+.tag.ok{color:var(--green);background:rgba(90,209,139,.14)}
+.tag.bad{color:var(--red);background:rgba(255,107,107,.14)}
+.tag.warn{color:var(--amber);background:rgba(245,181,68,.14)}
+.tag.blue{color:var(--blue);background:rgba(90,169,255,.14)}
+.tag.muted{color:var(--muted);background:rgba(149,171,196,.12)}
+/* verdict cards */
+.vcard{border:1px solid var(--line);border-left-width:4px;border-radius:9px;padding:10px 13px;margin:8px 0;background:#0e1826}
+.vcard.bad{border-left-color:var(--red)}.vcard.ok{border-left-color:var(--green)}.vcard.warn{border-left-color:var(--amber)}
+.vhead{font-size:14px;margin-bottom:3px}.vbody{font-size:13px;color:#cfe0f2}
+/* metric tiles */
+.tiles{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0}
+.tile{flex:1;min-width:110px;background:#0e1826;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.tile .tv{font-size:22px;font-weight:800;color:#fff}.tile .tk{font-size:12px;color:var(--muted);margin-top:2px}
+/* timeline */
+.tl{display:flex;gap:10px;padding:8px 0;border-left:2px solid var(--line);margin-left:6px;padding-left:14px;position:relative}
+.tl:before{content:"";position:absolute;left:-7px;top:12px;width:10px;height:10px;border-radius:50%;background:var(--line)}
+.tl.ok:before{background:var(--green)}.tl.warn:before{background:var(--amber)}.tl.muted:before{background:#3a4a5f}
+.tlb{font-size:13px;color:#cfe0f2}
+/* attack path */
+.srcrow{font-size:14px;margin-bottom:2px}
+.path{display:flex;align-items:stretch;flex-wrap:wrap;gap:6px;margin:10px 0}
+.pstep{flex:1;min-width:120px;background:#0e1826;border:1px solid var(--line);border-top-width:3px;border-radius:9px;padding:9px 11px}
+.pstep.bad{border-top-color:var(--red)}.pstep.warn{border-top-color:var(--amber)}.pstep.ok{border-top-color:var(--green)}.pstep.blue{border-top-color:var(--blue)}.pstep.muted{border-top-color:#3a4a5f}
+.pstep .pt{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.pstep .ps{font-size:13px;font-weight:600;color:#fff;margin-top:2px;word-break:break-all}
+.parrow{display:flex;align-items:center;color:var(--teal);font-size:20px}
+/* compact table */
+.tablewrap{max-height:280px;overflow:auto;border:1px solid var(--line);border-radius:10px;margin:6px 0}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{text-align:left;color:var(--muted);font-weight:600;padding:9px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#0f1826}
 td{padding:8px 9px;border-bottom:1px solid #1b2a3d}
-tr.hit td{background:rgba(255,107,107,.06)}
-tr.hit td.find{color:var(--red);font-weight:700}
+tr.hit td{background:rgba(255,107,107,.06)}tr.hit td.find{color:var(--red);font-weight:700}
 tr.sel td{background:rgba(90,169,255,.14)}
 td.peer{font-family:ui-monospace,Consolas,monospace;color:var(--teal)}
-td.st.ok{color:var(--green)}td.st.warn{color:var(--amber)}td.st.bad{color:var(--red)}
-td.muted{color:var(--muted)}
+td.st.ok{color:var(--green)}td.st.warn{color:var(--amber)}td.st.bad{color:var(--red)}td.muted{color:var(--muted)}
 .selbar{padding:10px 13px;border-radius:8px;font-weight:600;font-size:13px;margin:10px 0}
 .selbar.ok{color:var(--green);background:rgba(90,209,139,.1);border:1px solid rgba(90,209,139,.3)}
 .selbar.warn{color:var(--amber);background:rgba(245,181,68,.1);border:1px solid rgba(245,181,68,.3)}
-.note{color:var(--muted);font-size:13px;margin:8px 0}
-#message{min-height:20px;color:var(--amber);font-weight:600;margin:8px 0}
-.row2{display:flex;flex-wrap:wrap;gap:16px}.row2>div{flex:1;min-width:320px}
+details{margin:8px 0}summary{cursor:pointer;color:var(--muted);font-size:13px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:280px;overflow:auto;background:#0a111d;border:1px solid var(--line);border-radius:10px;padding:12px;font:12px/1.45 ui-monospace,Consolas,monospace;color:#9fb6cf;margin-top:6px}
+.row2{display:flex;flex-wrap:wrap;gap:16px}.row2>div{flex:1;min-width:300px}
+.evcard{background:#0e1826;border:1px solid var(--line);border-radius:10px;padding:12px}
+.kv{display:grid;grid-template-columns:140px 1fr;gap:4px 12px;font-size:13px}.kv b{color:var(--muted);font-weight:500}
 </style></head><body>
 <h1>Vectra live lab <span class="arrows">· observe → assess → respond → verify</span></h1>
 <p class="sub">Fictional Indian district citizen services. Actual lab requests and enforced responses; all records and target assets are simulated.</p>
 <p class="sub"><a href="/app">Main dashboard</a> · <a href="/docs">API contracts</a> · <a href="/api/insights/india">India intelligence</a> · <span class="muted">control plane is local only; portal listens on :8010</span></p>
-
-<div class="strip" id="strip">
-<span class="pill muted" id="sbMode">portal…</span>
-<span class="pill muted" id="sbApache">apache…</span>
-<span class="pill muted" id="sbBlocks">blocks…</span>
-<span class="pill muted" id="sbThreat">threat…</span>
-<span class="pill muted" id="sbMl">ml…</span>
+<div class="strip">
+<span class="pill muted" id="sbMode">portal…</span><span class="pill muted" id="sbApache">apache…</span>
+<span class="pill muted" id="sbBlocks">blocks…</span><span class="pill muted" id="sbThreat">threat…</span><span class="pill muted" id="sbMl">ml…</span>
 </div>
 <p id="message" role="status"></p>
 
 <section><h2><span class="n">1</span>Preventive exposure: known intelligence × current inventory</h2>
-<p class="note">Select any asset. Reassessment checks its installed products against stored intelligence and links matching CERT-In advisory references when available.</p>
+<p class="note">Before any attack: does stored CVE / CERT-In intelligence match what this asset runs? <b style="color:var(--teal)">Show this to prove the warning comes first.</b></p>
 <select id="asset"></select><button id="assess" class="primary">Reassess exposure now</button>
-<p class="note">Software inventory observation (JSON). Updating it records an audit entry and immediately reassesses exposure. This does not patch software; use the response controls below for the running lab.</p>
-<textarea id="software" aria-label="Observed software JSON"></textarea><br><input id="inventoryReason" placeholder="Reason / observation source" size="45"><button id="inventory">Record inventory change</button>
-<pre id="exposure">No assessment requested yet.</pre></section>
+<div id="exposureViz"></div>
+<details><summary>Software inventory &amp; raw assessment</summary>
+<textarea id="software" aria-label="Observed software JSON"></textarea><br><input id="inventoryReason" placeholder="Reason / observation source" size="40"><button id="inventory">Record inventory change</button>
+<pre id="exposure">No assessment requested yet.</pre></details></section>
 
-<section><h2>Live Indian district-service demonstration — real CVE-2021-41773</h2>
-<p class="note">Synthetic records. Reference: <a href="https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2021-0039&amp;pageid=PUBVLNOTES02" target="_blank" rel="noreferrer">CERT-In CIAD-2021-0039</a>. A real isolated Apache version comparison, not the custom portal weakness.</p>
-<p class="flow">Flow: <b>Discover / warn</b> → <b>ordinary request</b> → <b>traversal attack</b> → <b>replace with fixed Apache</b> → <b>verify</b>. Forecast timing/probability is not estimated.</p>
+<section><h2>Live district-service demonstration — real CVE-2021-41773</h2>
+<p class="note">Synthetic records. Reference: <a href="https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2021-0039&amp;pageid=PUBVLNOTES02" target="_blank" rel="noreferrer">CERT-In CIAD-2021-0039</a>. A real isolated Apache version comparison.</p>
+<p class="flow">Flow: <b>Discover / warn</b> → <b>ordinary request</b> → <b>traversal attack</b> → <b>replace with fixed Apache</b> → <b>verify</b>.</p>
 <p id="apacheRoute" class="statusline"></p>
-<div><button id="apacheDiscover" class="primary">Discover owned targets / warn</button><button id="apachePublic">Send ordinary live request</button><button id="apacheAttack" class="danger">Send live dummy-record traversal</button>
-<button id="apachePatch" class="primary">Replace with fixed Apache</button><button id="apacheVerify">Verify latest replacement</button><button id="apacheRollback">Restore vulnerable lab backend</button></div>
-<div class="row2"><div><p class="note">Pre-attack exposure warning</p><pre id="apacheWarning"></pre></div><div><p class="note">Last action result</p><pre id="apacheResult"></pre></div></div>
-<p class="note">Independent collector evidence &amp; action ledger</p><pre id="apacheEvidence"></pre></section>
+<div><button id="apacheDiscover" class="primary">Discover / warn</button><button id="apachePublic">Ordinary request</button><button id="apacheAttack" class="danger">Traversal attack</button>
+<button id="apachePatch" class="primary">Replace with fixed Apache</button><button id="apacheVerify">Verify</button><button id="apacheRollback">Restore vulnerable</button></div>
+<div id="apacheWarnViz"></div>
+<div id="apacheResultViz"></div>
+<p class="note" style="margin-top:12px">Independent collector evidence (real Apache logs, request-ID matched)</p>
+<div id="apacheObsViz"></div>
+<p class="note">Action ledger</p><div id="apacheActViz"></div>
+<details><summary>Raw warning / result / evidence JSON</summary><pre id="apacheWarning"></pre><pre id="apacheResult"></pre><pre id="apacheEvidence"></pre></details></section>
 
-<section><h2>Lab-specific machine learning</h2>
-<p class="note">Start collection, generate varied ordinary portal traffic, then freeze. At least 30 complete active five-second windows are required. Earlier 80% trains the forest; later 20% is a chronological holdout. Known rule-positive and restricted windows are excluded from the baseline. Operator-declared ordinary traffic, not independent ground truth.</p>
-<input id="baselineReason" size="50" value="Operator-declared ordinary lab service traffic">
-<button id="mlStart" class="primary">Start a new baseline</button><button id="mlFreeze">Freeze and enable lab ML</button><button id="mlDisable">Disable lab ML</button>
-<pre id="mlSummary"></pre><pre id="mlWindows"></pre></section>
+<section><h2>Lab-specific machine learning (Isolation Forest)</h2>
+<p class="note">A frozen anomaly model trained only on this portal's declared-ordinary traffic. Flags statistically unusual windows with no rule and no signature — low-confidence triage, never auto-block.</p>
+<input id="baselineReason" size="46" value="Operator-declared ordinary lab service traffic">
+<button id="mlStart" class="primary">Start a new baseline</button><button id="mlFreeze">Freeze &amp; enable</button><button id="mlDisable">Disable</button>
+<div id="mlViz"></div>
+<details><summary>Raw model &amp; windows JSON</summary><pre id="mlSummary"></pre><pre id="mlWindows"></pre></details></section>
 
-<section><h2><span class="n">2</span>Live observed activity</h2>
+<section><h2><span class="n">2</span>Live observed activity &amp; attack source</h2>
 <p id="mode" class="note"></p>
-<p class="note">The peer IP is the service's TCP peer. Forwarded headers are not trusted. NAT/proxies can hide the original source; this does not identify a person or country. <b style="color:var(--red)">Red rows are detections.</b> Click <b>Inspect</b> to select a row for the response actions below.</p>
+<div id="sourceViz"></div>
+<p class="note"><b style="color:var(--red)">Red rows are detections.</b> Click <b>Inspect</b> to select a row for the response actions below.</p>
 <div class="tablewrap"><table><thead><tr><th>Observed (IST)</th><th>Peer</th><th>Request</th><th>Status</th><th>Deterministic finding</th><th>Select</th></tr></thead><tbody id="observations"></tbody></table></div>
-<pre id="evidence">Select an observation to inspect its evidence.</pre></section>
+<div id="evidenceViz"></div>
+<details><summary>Raw selected-event JSON</summary><pre id="evidence">Select an observation to inspect its evidence.</pre></details></section>
 
 <section class="respond"><h2><span class="n">3</span>Analyst-approved response</h2>
 <p id="portal" class="statusline"></p>
-<div class="selbar warn" id="selectedPeer">No row selected — click Inspect on a flagged row first</div>
-<input id="reason" placeholder="Action reason" size="40" value="Judge demonstration in our isolated lab">
+<div class="selbar warn" id="selectedPeer">No row selected — click Inspect on a red (flagged) row first</div>
+<input id="reason" placeholder="Action reason" size="36" value="Judge demonstration in our isolated lab">
 <input id="ttl" type="number" min="15" max="300" value="60" aria-label="Block TTL in seconds" title="Block duration (seconds)">
-<button id="block" class="danger">Temporarily block selected peer</button><button id="release">Release selected peer</button>
-<button id="patch" class="primary">Apply document boundary fix</button><button id="rollback">Roll back lab fix</button>
-<p class="note">Block enforcement affects this portal only. A patch changes the actual document boundary and its inventory version. Verification requires a subsequent request: 429 for a block, or 403 for a traversal after the fix. Inventory exposure and observed exploitation remain distinct.</p>
-<pre id="actions"></pre></section>
+<button id="block" class="danger">Block selected peer</button><button id="release">Release peer</button>
+<button id="patch" class="primary">Apply boundary fix</button><button id="rollback">Roll back fix</button>
+<p class="note">Verification requires a subsequent request: 429 for a block, or 403 for a traversal after the fix. Inventory exposure and observed exploitation remain distinct.</p>
+<div id="actViz"></div>
+<details><summary>Raw action ledger JSON</summary><pre id="actions"></pre></details></section>
 <script>
 const token='__TOKEN__';let snapshot=null,selected=null;
 const el=id=>document.getElementById(id);
 async function api(path,method='GET',body){const r=await fetch(path,{method,headers:{'X-Vectra-Lab-Token':token,'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});const d=await r.json();if(!r.ok)throw Error(JSON.stringify(d));return d;}
 function show(id,value){el(id).textContent=typeof value==='string'?value:JSON.stringify(value,null,2);}
+function esc(s){return String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function tag(t,c){return '<span class="tag '+c+'">'+esc(t)+'</span>';}
+function ist(t){try{return new Date(t).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})}catch(e){return esc(t)}}
+function isPrivate(ip){return /^(10\.|127\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(ip||'')}
 function pill(id,text,cls){const e=el(id);if(e){e.textContent=text;e.className='pill '+cls;}}
-function statusClass(s){return s>=500?'bad':(s>=400?'warn':'ok');}
+function statusClass(s){return s>=500?'bad':(s>=400?'warn':'ok')}
+function guard(fn){try{fn()}catch(e){/* a visual glitch must never break the controls */}}
 function updateSelected(){const e=el('selectedPeer');if(!e)return;if(selected){const ok=!!selected.finding;e.textContent=(ok?'✓ ':'⚠ ')+'Selected: '+selected.peer_ip+(ok?' (has finding — ready to block)':' (no finding — pick a red row to block)');e.className='selbar '+(ok?'ok':'warn');}else{e.textContent='No row selected — click Inspect on a red (flagged) row first';e.className='selbar warn';}}
 function inventory(){const a=snapshot?.assets.find(x=>x.asset_id===el('asset').value);if(a)el('software').value=JSON.stringify(a.software,null,2);}
+// --- visual renderers ---
+function matchCls(m){return m==='confirmed_affected'?'bad':(m==='confirmed_unaffected'?'ok':'warn')}
+function matchWord(m){return m==='confirmed_affected'?'EXPOSED':(m==='confirmed_unaffected'?'SAFE':'VERIFY')}
+function renderExposure(data){if(!data||!data.assessments){el('exposureViz').innerHTML='';return;}const rows=data.assessments.map(a=>{const c=matchCls(a.match_detail);const refs=(a.certin_advisories||[]).map(x=>x.threat_id).join(', ');return '<div class="vcard '+c+'"><div class="vhead">'+tag(matchWord(a.match_detail),c)+' <b>'+esc(a.threat_id)+'</b>'+(a.cve_id?(' · '+esc(a.cve_id)):'')+'</div><div class="vbody">'+esc(a.reason||'')+(refs?('<br><span class="muted">CERT-In: '+esc(refs)+'</span>'):'')+'</div></div>'}).join('');el('exposureViz').innerHTML='<div class="muted" style="margin:6px 0">Assessed <b class="mono">'+esc(data.asset?.asset_id||'')+'</b> · status: '+esc(data.assessment_status||'')+'</div>'+(rows||'<div class="muted">No structured product matches.</div>')}
+function stateCls(s){return s==='verified'?'ok':(s==='applied'?'warn':'muted')}
+function renderTimeline(id,actions,limit){const box=el(id);if(!box)return;if(!actions||!actions.length){box.innerHTML='<div class="muted">No actions yet.</div>';return;}box.innerHTML=actions.slice(0,limit||8).map(a=>{const c=stateCls(a.state);const extra=a.peer_ip?(' · '+esc(a.peer_ip)):(a.observed_binary_version?(' · Apache '+esc(a.observed_binary_version)):'');const vr=a.verification_request_id||a.verification_event_id;return '<div class="tl '+c+'"><div class="tlb">'+tag((a.kind||'').toUpperCase(),c)+' '+tag(a.state,c)+' '+esc(a.reason||'')+extra+(vr?(' <span class="muted mono">· verified by '+esc(String(vr).slice(0,12))+'</span>'):'')+'<div class="muted">'+ist(a.at)+'</div></div></div>'}).join('')}
+function renderMl(m){const box=el('mlViz');if(!box)return;if(!m){box.innerHTML='';return;}const md=m.model||{};const tiles=[['State',m.state||'—'],['Baseline',(m.eligible_baseline_windows??'—')+' / '+(m.minimum_baseline_windows??'—')],['Training',md.training_windows??(md.training_window_ids||[]).length??'—'],['Holdout',(md.holdout_window_ids||[]).length||'—'],['Flagged',md.holdout_flagged??'—'],['sklearn',md.sklearn_version||'—']];box.innerHTML='<div class="tiles">'+tiles.map(([k,v])=>'<div class="tile"><div class="tv">'+esc(v)+'</div><div class="tk">'+esc(k)+'</div></div>').join('')+'</div>'+(md.features?('<div class="muted">Features: '+md.features.map(esc).join(' · ')+'</div>'):'')}
+function renderApacheObs(obs){const box=el('apacheObsViz');if(!box)return;if(!obs||!obs.length){box.innerHTML='<div class="muted">No collector evidence yet — Discover to register targets.</div>';return;}box.innerHTML='<div class="tablewrap"><table><thead><tr><th>IST</th><th>Peer</th><th>Path</th><th>Status</th><th>Version</th><th>CVE</th></tr></thead><tbody>'+obs.slice(0,12).map(o=>{const vc=o.version_match==='confirmed_affected'?'bad':(o.version_match==='confirmed_unaffected'?'ok':'warn');return '<tr'+(o.signature_match?' class="hit"':'')+'><td>'+ist(o.observed_at)+'</td><td class="peer">'+esc(o.peer_ip)+'</td><td>'+esc(o.path)+'</td><td class="st '+statusClass(o.status)+'">'+esc(o.status)+'</td><td>'+tag(esc(o.observed_version||'?'),vc)+'</td><td class="mono">'+esc((o.candidate_cve_ids||[]).join(', ')||'—')+'</td></tr>'}).join('')+'</tbody></table></div>'}
+function responseLabel(){if(!snapshot)return 'monitoring';const now=Date.now();const b=snapshot.actions.find(a=>a.kind==='block'&&(a.state==='applied'||a.state==='verified')&&(!a.expires_at||new Date(a.expires_at).getTime()>now));if(b)return 'BLOCKED '+b.peer_ip;if(snapshot.portal.patched)return 'PATCHED';return 'monitoring'}
+function renderSource(observations){const box=el('sourceViz');if(!box)return;const by={};for(const o of observations){const p=o.peer_ip;if(!by[p])by[p]={ip:p,n:0,f:new Set()};by[p].n++;if(o.finding)by[p].f.add(o.finding.label)}const peers=Object.values(by).sort((a,b)=>b.f.size-a.f.size||b.n-a.n);const atk=peers.find(p=>p.f.size>0)||peers[0];if(!atk){box.innerHTML='<div class="muted">No traffic observed yet.</div>';return;}const priv=isPrivate(atk.ip);const steps=[['Attacker',esc(atk.ip),atk.f.size?'bad':'muted'],['Portal :8010','district citizen portal','blue'],['Shadow Watch',esc([...atk.f].join(', ')||'monitoring'),atk.f.size?'warn':'muted'],['Response',esc(responseLabel()),'ok']];box.innerHTML='<div class="srcrow">'+tag(priv?'LAN HOST':'INTERNET',priv?'warn':'bad')+' <b class="mono">'+esc(atk.ip)+'</b> · '+atk.n+' requests · <b>'+atk.f.size+'</b> detection(s)</div><div class="muted" style="margin:3px 0 8px">'+(priv?'Private host on this LAN — located on your network below, not geolocatable on a world map.':'Public internet address — geolocated on the dashboard globe.')+'</div><div class="path">'+steps.map((s,i)=>'<div class="pstep '+s[2]+'"><div class="pt">'+s[0]+'</div><div class="ps">'+s[1]+'</div></div>'+(i<steps.length-1?'<div class="parrow">→</div>':'')).join('')+'</div>'}
+function renderEvidence(o){const box=el('evidenceViz');if(!box)return;if(!o){box.innerHTML='';return;}const f=o.finding;box.innerHTML='<div class="evcard"><div class="kv"><b>Event</b><span class="mono">'+esc(o.event_id)+'</span><b>Source</b><span class="mono">'+esc(o.peer_ip)+':'+esc(o.peer_port)+'</span><b>Request</b><span>'+esc(o.kind==='document'?o.name:('login '+o.username))+' → '+esc(o.status)+'</span><b>Finding</b><span>'+(f?tag(f.rule_id,'bad')+' '+esc(f.label):'<span class="muted">none</span>')+'</span>'+(f?('<b>Reason</b><span>'+esc(f.reason)+'</span>'):'')+'<b>Attribution</b><span class="muted">'+esc(o.attribution||'')+'</span></div></div>'}
 let latestApacheAction=null;
-async function refresh(){try{snapshot=await api('/api/lab/state');if(Array.from(el('asset').options).map(x=>x.value).join('|')!==snapshot.assets.map(x=>x.asset_id).join('|')){const previous=el('asset').value;el('asset').replaceChildren();for(const a of snapshot.assets){const o=document.createElement('option');o.value=a.asset_id;o.textContent=a.asset_id+' — '+a.organisation;el('asset').append(o);}el('asset').value=snapshot.assets.some(x=>x.asset_id===previous)?previous:'LAB-GOV-WEB-01';inventory();}
+async function refresh(){try{snapshot=await api('/api/lab/state');
+if(Array.from(el('asset').options).map(x=>x.value).join('|')!==snapshot.assets.map(x=>x.asset_id).join('|')){const previous=el('asset').value;el('asset').replaceChildren();for(const a of snapshot.assets){const o=document.createElement('option');o.value=a.asset_id;o.textContent=a.asset_id+' — '+a.organisation;el('asset').append(o);}el('asset').value=snapshot.assets.some(x=>x.asset_id===previous)?previous:'LAB-GOV-WEB-01';inventory();}
 show('mode',snapshot.ml_status+' '+snapshot.prediction_status);
 const patched=snapshot.portal.patched;show('portal',patched?'Document boundary: PATCHED (1.1.0)':'Document boundary: VULNERABLE LAB MODE (1.0.0)');el('portal').className='statusline '+(patched?'ok':'bad');
 show('actions',snapshot.actions);
-pill('sbMode',patched?'PORTAL: PATCHED':'PORTAL: VULNERABLE',patched?'ok':'bad');
-const now=Date.now();const blocks=snapshot.actions.filter(a=>a.kind==='block'&&(a.state==='applied'||a.state==='verified')&&(!a.expires_at||new Date(a.expires_at).getTime()>now));pill('sbBlocks',blocks.length?('BLOCKED: '+[...new Set(blocks.map(b=>b.peer_ip))].join(', ')):'No active block',blocks.length?'ok':'muted');
-const hit=snapshot.observations.find(o=>o.finding);pill('sbThreat',hit?('THREAT: '+hit.finding.label+' · '+hit.peer_ip):'No detections yet',hit?'bad':'muted');
-if(snapshot.lab_ml){const m=snapshot.lab_ml;show('mlSummary',{state:m.state,eligible_baseline_windows:m.eligible_baseline_windows,minimum:m.minimum_baseline_windows,model:m.model,limitations:m.limitations});show('mlWindows',m.windows);pill('sbMl','ML: '+(m.state||'off'),m.state==='frozen'?'ok':'muted');}
-const apache=await api('/api/lab/apache/state');show('apacheRoute','District endpoint currently routes to: '+apache.route.target+' backend');el('apacheRoute').className='statusline '+(apache.route.target==='patched'?'ok':'bad');show('apacheWarning',apache.pre_attack_warning||'Discover the owned targets to compute exposure before the attack.');show('apacheEvidence',{observations:apache.observations.map(o=>({...o,observed_ist:new Date(o.observed_at).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})})),actions:apache.actions});if(apache.actions.length)latestApacheAction=apache.actions.find(a=>a.state!=='superseded')?.action_id||null;pill('sbApache','APACHE: '+String(apache.route.target).toUpperCase(),apache.route.target==='patched'?'ok':'bad');
-el('observations').replaceChildren();for(const o of snapshot.observations){const row=document.createElement('tr');if(o.finding)row.className='hit';if(selected&&selected.event_id===o.event_id)row.classList.add('sel');const cells=[['',new Date(o.at).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})],['peer',o.peer_ip+':'+o.peer_port],['',o.kind==='document'?o.name:'login '+o.username],['st '+statusClass(o.status),String(o.status)],[o.finding?'find':'muted',o.finding?.label||'No finding']];for(const [cls,v] of cells){const td=document.createElement('td');td.textContent=v;if(cls)td.className=cls;row.append(td);}const td=document.createElement('td'),b=document.createElement('button');b.textContent='Inspect';b.className='mini';b.onclick=()=>{selected=o;show('evidence',o);updateSelected();};td.append(b);row.append(td);el('observations').append(row);}
+guard(()=>{pill('sbMode',patched?'PORTAL: PATCHED':'PORTAL: VULNERABLE',patched?'ok':'bad');const now=Date.now();const blocks=snapshot.actions.filter(a=>a.kind==='block'&&(a.state==='applied'||a.state==='verified')&&(!a.expires_at||new Date(a.expires_at).getTime()>now));pill('sbBlocks',blocks.length?('BLOCKED: '+[...new Set(blocks.map(b=>b.peer_ip))].join(', ')):'No active block',blocks.length?'ok':'muted');const hit=snapshot.observations.find(o=>o.finding);pill('sbThreat',hit?('THREAT: '+hit.finding.label+' · '+hit.peer_ip):'No detections yet',hit?'bad':'muted');});
+guard(()=>renderTimeline('actViz',snapshot.actions,6));
+guard(()=>renderSource(snapshot.observations));
+if(snapshot.lab_ml){const m=snapshot.lab_ml;show('mlSummary',{state:m.state,eligible_baseline_windows:m.eligible_baseline_windows,minimum:m.minimum_baseline_windows,model:m.model,limitations:m.limitations});show('mlWindows',m.windows);guard(()=>renderMl(m));guard(()=>pill('sbMl','ML: '+(m.state||'off'),m.state==='frozen'?'ok':'muted'));}
+const apache=await api('/api/lab/apache/state');show('apacheRoute','District endpoint currently routes to: '+apache.route.target+' backend');el('apacheRoute').className='statusline '+(apache.route.target==='patched'?'ok':'bad');show('apacheWarning',apache.pre_attack_warning||'Discover the owned targets to compute exposure before the attack.');show('apacheEvidence',{observations:apache.observations,actions:apache.actions});if(apache.actions.length)latestApacheAction=apache.actions.find(a=>a.state!=='superseded')?.action_id||null;
+guard(()=>pill('sbApache','APACHE: '+String(apache.route.target).toUpperCase(),apache.route.target==='patched'?'ok':'bad'));
+guard(()=>{el('apacheWarnViz').innerHTML=apache.pre_attack_warning?('<div class="vcard '+matchCls(apache.pre_attack_warning.match_detail)+'"><div class="vhead">'+tag(matchWord(apache.pre_attack_warning.match_detail),matchCls(apache.pre_attack_warning.match_detail))+' <b>'+esc(apache.pre_attack_warning.cve_id||'')+'</b> on '+esc(apache.pre_attack_warning.asset_id||'')+'</div><div class="vbody">Observed Apache '+esc(apache.pre_attack_warning.observed_version||'')+' — '+esc(apache.pre_attack_warning.meaning||'')+'</div></div>'):'';});
+guard(()=>renderApacheObs(apache.observations));
+guard(()=>renderTimeline('apacheActViz',apache.actions,6));
+el('observations').replaceChildren();for(const o of snapshot.observations){const row=document.createElement('tr');if(o.finding)row.className='hit';if(selected&&selected.event_id===o.event_id)row.classList.add('sel');const cells=[['',ist(o.at)],['peer',o.peer_ip+':'+o.peer_port],['',o.kind==='document'?o.name:'login '+o.username],['st '+statusClass(o.status),String(o.status)],[o.finding?'find':'muted',o.finding?.label||'No finding']];for(const [cls,v] of cells){const td=document.createElement('td');td.textContent=v;if(cls)td.className=cls;row.append(td);}const td=document.createElement('td'),b=document.createElement('button');b.textContent='Inspect';b.className='mini';b.onclick=()=>{selected=o;show('evidence',o);guard(()=>renderEvidence(o));updateSelected();};td.append(b);row.append(td);el('observations').append(row);}
 updateSelected();
 }catch(e){show('message',e.message)}}
 async function run(fn){try{show('message','Working…');await fn();await refresh();show('message','Completed. See evidence / action state below.')}catch(e){show('message',e.message)}}
 el('asset').onchange=inventory;
 el('apacheDiscover').onclick=()=>run(async()=>show('apacheResult',await api('/api/lab/apache/discover','POST')));
 el('apachePublic').onclick=()=>run(async()=>show('apacheResult',await api('/api/lab/apache/probe','POST',{request:'public_notice'})));
-el('apacheAttack').onclick=()=>run(async()=>show('apacheResult',await api('/api/lab/apache/probe','POST',{request:'dummy_traversal'})));
+el('apacheAttack').onclick=()=>run(async()=>{const r=await api('/api/lab/apache/probe','POST',{request:'dummy_traversal'});show('apacheResult',r);guard(()=>{const d=r.probe||r;el('apacheResultViz').innerHTML='<div class="vcard '+(d.dummy_record_disclosed?'bad':'ok')+'"><div class="vhead">'+tag(d.dummy_record_disclosed?'RECORD DISCLOSED':'REQUEST REFUSED',d.dummy_record_disclosed?'bad':'ok')+' HTTP '+esc(d.status)+'</div><div class="vbody">'+esc(d.path||'')+'</div></div>';});});
 for(const [id,action] of [['apachePatch','patch'],['apacheRollback','rollback']])el(id).onclick=()=>run(async()=>{const result=await api('/api/lab/apache/patch','POST',{action,reason:el('reason').value});latestApacheAction=result.action.action_id;show('apacheResult',result);});
 el('apacheVerify').onclick=()=>run(async()=>{if(!latestApacheAction)throw Error('Apply a replacement or rollback first.');show('apacheResult',await api('/api/lab/apache/verify/'+latestApacheAction,'POST'));});
 el('mlStart').onclick=()=>run(()=>api('/api/lab/ml/start','POST',{reason:el('baselineReason').value}));
 el('mlFreeze').onclick=()=>run(()=>api('/api/lab/ml/freeze','POST'));
 el('mlDisable').onclick=()=>run(()=>api('/api/lab/ml/disable','POST'));
-el('assess').onclick=()=>run(async()=>show('exposure',await api('/api/lab/reassess/'+encodeURIComponent(el('asset').value),'POST')));
-el('inventory').onclick=()=>run(async()=>show('exposure',await api('/api/lab/inventory/'+encodeURIComponent(el('asset').value),'PUT',{software:JSON.parse(el('software').value),reason:el('inventoryReason').value})));
-for(const kind of ['block','release','patch','rollback'])el(kind).onclick=()=>run(async()=>{if(['block','release'].includes(kind)&&!selected)throw Error('Select a live observation first (click Inspect on a flagged row).');const body={kind,reason:el('reason').value,ttl_seconds:Number(el('ttl').value)};if(['block','release'].includes(kind)){body.peer_ip=selected.peer_ip;body.evidence_id=selected.event_id;}const d=await api('/api/lab/actions','POST',body);if(d.exposure)show('exposure',d.exposure);});
+el('assess').onclick=()=>run(async()=>{const d=await api('/api/lab/reassess/'+encodeURIComponent(el('asset').value),'POST');show('exposure',d);guard(()=>renderExposure(d));});
+el('inventory').onclick=()=>run(async()=>{const d=await api('/api/lab/inventory/'+encodeURIComponent(el('asset').value),'PUT',{software:JSON.parse(el('software').value),reason:el('inventoryReason').value});show('exposure',d);guard(()=>renderExposure(d));});
+for(const kind of ['block','release','patch','rollback'])el(kind).onclick=()=>run(async()=>{if(['block','release'].includes(kind)&&!selected)throw Error('Select a live observation first (click Inspect on a flagged row).');const body={kind,reason:el('reason').value,ttl_seconds:Number(el('ttl').value)};if(['block','release'].includes(kind)){body.peer_ip=selected.peer_ip;body.evidence_id=selected.event_id;}const d=await api('/api/lab/actions','POST',body);if(d.exposure){show('exposure',d.exposure);guard(()=>renderExposure(d.exposure));}});
 refresh();setInterval(refresh,2000);
 </script></body></html>

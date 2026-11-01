@@ -21,6 +21,7 @@ RUN pip install --no-cache-dir -r backend/requirements.txt
 COPY --chown=user . .
 COPY --chown=user --from=web /src/frontend/dist frontend/dist
 USER user
-ENV DEMO_MODE=true PYTHONUTF8=1 PORT=7860
+ENV DEMO_MODE=true PYTHONUTF8=1 PORT=7860 MALLOC_ARENA_MAX=2
 EXPOSE 7860
-CMD ["sh", "-c", "cd backend && exec python -X utf8 -m uvicorn app.main:app --host 0.0.0.0 --port ${PORT}"]
+# prestart.py loads the cache + seeds the demo in its own process first, so the API starts lean (see render.yaml).
+CMD ["sh", "-c", "cd backend && python -X utf8 ../scripts/prestart.py && exec python -X utf8 -m uvicorn app.main:app --host 0.0.0.0 --port ${PORT}"]

@@ -41,7 +41,9 @@ def windows_for(scenario: str) -> tuple[dict, ...]:
     if scenario == "real_ssh_bruteforce":
         peak = max(pool, key=lambda w: (w["failed_logins"], w["minute"]))
         return tuple(_run(pool, peak, 4, lambda w: w["failed_logins"] >= 10))
-    scored = [(ml.score_features(kind, ml.window_features(kind, w)), w) for w in test]  # held-out days only
+    # Held-out days only; batching avoids a cold replay spending seconds scoring each minute separately.
+    scores = ml.score_many(kind, [ml.window_features(kind, w) for w in test])
+    scored = list(zip(scores, test))
     if scenario == "real_ssh_distributed_spray":
         cands = [(s, w) for s, w in scored if s and s["flagged"] and w["failed_logins"] < 10 and w["unique_sources"] >= 3]
     else:

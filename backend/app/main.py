@@ -4,13 +4,16 @@ On startup: create tables; if the DB has no threats yet, load the cache + fixtur
 Each member adds their own router file here (M3: alerts/assets, M4: behaviour/investigate).
 """
 import logging
-from contextlib import asynccontextmanager
+import asyncio
+import os
+from contextlib import asynccontextmanager, suppress
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import func, select
 
-from . import alerts, analytics, assets, attack_lab, campaigns, certin_draft, feeds, ml_explain, frontend, insights, summaries
+from . import (alerts, analytics, assets, attack_lab, campaigns, certin_draft, feeds,
+              ml_explain, frontend, insights, summaries, live_lab, apache_lab)
 from .database import SessionLocal, init_db
 from .models import IOCRow, Threat
 from routes import investigation, shadow_watch
@@ -38,9 +41,23 @@ async def lifespan(app: FastAPI):
         if not hasattr(app.state, name):
             setattr(app.state, name, adapter)
             installed.append(name)
+    worker = None
+    if os.getenv("VECTRA_LAB_ENABLED", "false").lower() == "true":
+        async def process_lab_windows():
+            while True:
+                try:
+                    await asyncio.to_thread(live_lab.lab_ml.tick)
+                except Exception:
+                    log.exception("Live lab window processing failed; raw observations remain stored")
+                await asyncio.sleep(1)
+        worker = asyncio.create_task(process_lab_windows())
     try:
         yield
     finally:
+        if worker:
+            worker.cancel()
+            with suppress(asyncio.CancelledError):
+                await worker
         if app.state.scheduler:
             app.state.scheduler.shutdown(wait=False)
         for name in installed:
@@ -64,4 +81,6 @@ app.include_router(summaries.router)  # AI threat summaries
 app.include_router(campaigns.router)  # emerging campaigns
 app.include_router(certin_draft.router)  # CERT-In report assistant
 app.include_router(ml_explain.router)  # SHAP explanations of the Isolation Forest
+app.include_router(live_lab.router)  # Opt-in local control plane; public lab listener is a separate app.
+app.include_router(apache_lab.router)  # Independent logs from the owned, isolated Apache lab only.
 app.include_router(frontend.router)  # Last: API routes must win over the SPA history fallback.

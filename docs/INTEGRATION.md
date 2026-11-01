@@ -1,5 +1,10 @@
 # Integrated frontend and backend
 
+**Historical checkpoint:** this page records the initial integration on 31 October 2026.
+Later commits added real-log ML, broader grounded narratives, Attack Lab and campaigns, and
+changed cloud opt-in behaviour. Use [STATUS_REPORT.md](STATUS_REPORT.md) and the current README
+for the present checkout. In particular, demo mode alone no longer disables an explicitly opted-in LLM.
+
 Run `scripts/start.ps1` from the root, then open http://127.0.0.1:8000/app. The existing Vectra
 design is preserved. FastAPI serves the built SPA, its assets, API and history URLs from one
 origin. Unknown `/api/*`, hidden files and missing static files return errors rather than HTML.

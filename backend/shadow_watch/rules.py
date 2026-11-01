@@ -19,6 +19,8 @@ class RuleConfig:
             raise ValueError("invalid HTTP thresholds")
         if not 1 <= self.minimum_window_seconds <= self.maximum_window_seconds <= 3600:
             raise ValueError("invalid HTTP window bounds")
+        if self.minimum_failed_logins < 1:
+            raise ValueError("invalid authentication threshold")
 
 
 def process_basename(name: str) -> str:
@@ -56,6 +58,8 @@ def evaluate_rule(event: NormalizedEvent, context: DetectionContext, maintenance
         reason = f"First-seen outbound destination {d.destination_ip}:{d.destination_port} on protected asset"
         limitations.append("New destination alone does not establish malicious activity; no destination was contacted")
     elif event.event_type == "auth_window":
+        if not config.minimum_window_seconds <= d.window_seconds <= config.maximum_window_seconds:
+            return None
         if d.failed_count < config.minimum_failed_logins:
             return None
         detector, kind = "SW-AUTH-001", "login_failure_burst"

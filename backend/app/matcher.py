@@ -13,6 +13,7 @@ CRITICAL RULE: uncertainty never becomes confirmed_affected.
 """
 import re
 from dataclasses import dataclass, field
+from functools import lru_cache
 from typing import Literal
 
 from packaging.version import InvalidVersion, Version
@@ -40,6 +41,7 @@ def norm(s: str | None) -> str:
     return (s or "").strip().lower().replace(" ", "_").replace("-", "_")
 
 
+@lru_cache(maxsize=8192)
 def parse_version(s: str | None) -> Version | None:
     """Strict parse. Returns None for anything packaging can't read cleanly (vendor suffixes, '*', '-')."""
     if s is None or s.strip() in ("", "*", "-"):
@@ -148,6 +150,14 @@ def match_asset(asset: Asset, threat: ThreatRecord) -> MatchResult:
     One vulnerable range is enough for confirmed_affected (NVD lists one entry per release branch).
     confirmed_unaffected needs EVERY product-matching pair to be cleanly outside; any doubt -> needs_verification.
     """
+    # Curated synthetic fixtures retain their complete-inventory semantics. Newly reported
+    # empty/incomplete inventory and empty real inventory must never be interpreted as safety.
+    unknown_inventory = not asset.software and (
+        not asset.is_simulated or asset.model_extra.get("inventory_complete") is False)
+    if unknown_inventory or not threat.affected_configurations:
+        reason = ("no software inventoried; absence of inventory is not evidence of safety" if not asset.software
+                  else "advisory has no structured affected-product configurations; verify applicability")
+        return MatchResult(asset.asset_id, threat.threat_id, "needs_verification", "requires_manual_review", reason)
     candidates: list[dict] = []
     best: tuple[MatchDetailResult, str, dict | None, dict | None] | None = None
 

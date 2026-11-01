@@ -1,0 +1,51 @@
+name: vectra-apache-lab
+services:
+  vulnerable:
+    image: httpd@sha256:dcba0d12e2362fb0c50ec524ae8aa1cca4a4ba7216617a57e7bbca20767e79cc
+    command: ["httpd", "-DFOREGROUND", "-f", "/usr/local/apache2/conf/vectra-lab.conf"]
+    user: "1000:1000"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    pids_limit: 64
+    mem_limit: 128m
+    cpus: 0.5
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=16m"]
+    volumes:
+      - ./httpd.conf:/usr/local/apache2/conf/vectra-lab.conf:ro
+      - ./dummy:/srv/lab:ro
+    networks: [isolated]
+  patched:
+    image: httpd@sha256:0c8dd1d9f90f0da8a29a25dcc092aed76b09a1c9e5e6e93c8db3903c8ce6ef29
+    command: ["httpd", "-DFOREGROUND", "-f", "/usr/local/apache2/conf/vectra-lab.conf"]
+    user: "1000:1000"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    pids_limit: 64
+    mem_limit: 128m
+    cpus: 0.5
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=16m"]
+    volumes:
+      - ./httpd.conf:/usr/local/apache2/conf/vectra-lab.conf:ro
+      - ./dummy:/srv/lab:ro
+    networks: [isolated]
+  relay:
+    image: nginx@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236
+    entrypoint: ["nginx"]
+    command: ["-c", "/etc/nginx/vectra-lab.conf", "-g", "daemon off;"]
+    user: "1000:1000"
+    ports: ["${VECTRA_APACHE_BIND:-127.0.0.1}:8011:8081", "${VECTRA_APACHE_BIND:-127.0.0.1}:8012:8082"]
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    pids_limit: 32
+    mem_limit: 64m
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=16m"]
+    volumes: ["./runtime/nginx.conf:/etc/nginx/vectra-lab.conf:ro"]
+    networks: [isolated, entry]
+    depends_on: [vulnerable, patched]
+networks:
+  isolated:
+    internal: true
+  entry: {}

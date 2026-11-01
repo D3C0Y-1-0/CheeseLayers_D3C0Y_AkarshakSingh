@@ -1,0 +1,150 @@
+{
+  "organisation": "Fictional Indian District Citizen Services",
+  "timezone": "Asia/Kolkata",
+  "observations": [
+    {
+      "event_id": "LIVE-d68f0e6ec1784ecaa58b4dabdff3aabb",
+      "kind": "login",
+      "at": "2026-11-01T00:09:42.400049+00:00",
+      "peer_ip": "127.0.0.1",
+      "peer_port": 51810,
+      "status": 200,
+      "username": "demo-user",
+      "attribution": "TCP peer observed by service; no attacker identity or origin beyond NAT/proxies established",
+      "forwarded_for_trusted": false,
+      "is_simulated": true,
+      "finding": {
+        "rule_id": "LIVE-AUTH-002",
+        "signal": "credential_compromise",
+        "label": "Login succeeded after repeated failures",
+        "reason": "Successful login after 10 failures for the same username and TCP peer in 60s; ownership unverified",
+        "evidence_ids": [
+          "LIVE-af1881d4c1da412c829cbbd879ccccb7",
+          "LIVE-289eb3384b324d43b1df94ea32b68d97",
+          "LIVE-6f24de3cfd204fe2b667219d28e4aae1",
+          "LIVE-ce307b45e15845e59fc6641a9056e323",
+          "LIVE-79ac67c539404726b89fcd25019431e2",
+          "LIVE-b80e9573abb14138b5421976e3f1c74a",
+          "LIVE-76184b23cf044ba6a03b29f79f15e114",
+          "LIVE-a4f0033ae767498ea12c340dfbc4ad6a",
+          "LIVE-c066c9378c9c4d0e81a8a0584cbbcfee",
+          "LIVE-ec41f96224d14fdf8ca4d66acbbd8658",
+          "LIVE-d68f0e6ec1784ecaa58b4dabdff3aabb"
+        ],
+        "confidence": "medium"
+      }
+    },
+    {
+      "event_id": "LIVE-ec41f96224d14fdf8ca4d66acbbd8658",
+      "kind": "login",
+      "at": "2026-11-01T00:09:42.386872+00:00",
+      "peer_ip": "127.0.0.1",
+      "peer_port": 51810,
+      "status": 401,
+      "username": "demo-user",
+      "attribution": "TCP peer observed by service; no attacker identity or origin beyond NAT/proxies established",
+      "forwarded_for_trusted": false,
+      "is_simulated": true,
+      "finding": {
+        "rule_id": "LIVE-AUTH-001",
+        "signal": "brute_force",
+        "label": "Login failure burst",
+        "reason": "10 failed logins from the same TCP peer in 60s",
+        "evidence_ids": [
+          "LIVE-af1881d4c1da412c829cbbd879ccccb7",
+          "LIVE-289eb3384b324d43b1df94ea32b68d97",
+          "LIVE-6f24de3cfd204fe2b667219d28e4aae1",
+          "LIVE-ce307b45e15845e59fc6641a9056e323",
+          "LIVE-79ac67c539404726b89fcd25019431e2",
+          "LIVE-b80e9573abb14138b5421976e3f1c74a",
+          "LIVE-76184b23cf044ba6a03b29f79f15e114",
+          "LIVE-a4f0033ae767498ea12c340dfbc4ad6a",
+          "LIVE-c066c9378c9c4d0e81a8a0584cbbcfee",
+          "LIVE-ec41f96224d14fdf8ca4d66acbbd8658"
+        ],
+        "confidence": "medium"
+      }
+    },
+    {
+      "event_id": "LIVE-c066c9378c9c4d0e81a8a0584cbbcfee",
+      "kind": "login",
+      "at": "2026-11-01T00:09:42.375047+00:00",
+      "peer_ip": "127.0.0.1",
+      "peer_port": 51810,
+      "status": 401,
+      "username": "demo-user",
+      "attribution": "TCP peer observed by service; no attacker identity or origin beyond NAT/proxies established",
+      "forwarded_for_trusted": false,
+      "is_simulated": true,
+      "finding": null
+    }
+  ],
+  "actions": [
+    {
+      "action_id": "ACT-e6d045d20c894ec6a6eae720ebffe148",
+      "kind": "patch",
+      "state": "verified",
+      "at": "2026-11-01T00:09:41.552164+00:00",
+      "peer_ip": null,
+      "evidence_id": null,
+      "reason": "Authorised loopback HTTP rehearsal",
+      "expires_at": null,
+      "scope": "fictional lab portal only; no OS firewall or external changes",
+      "verified_at": "2026-11-01T00:09:42.255629+00:00",
+      "verification_event_id": "LIVE-4183a89a3f104c7ca7c6466f6bf4d4f4"
+    },
+    {
+      "action_id": "ACT-8b6eba8607634d24a4a9bb78f0998254",
+      "kind": "release",
+      "state": "applied",
+      "at": "2026-11-01T00:09:41.545701+00:00",
+      "peer_ip": "127.0.0.1",
+      "evidence_id": null,
+      "reason": "Authorised loopback HTTP rehearsal",
+      "expires_at": null,
+      "scope": "fictional lab portal only; no OS firewall or external changes"
+    },
+    {
+      "action_id": "ACT-54f618d0514d4e4e8913109ff4ef1ecb",
+      "kind": "block",
+      "state": "released",
+      "at": "2026-11-01T00:09:41.486349+00:00",
+      "peer_ip": "127.0.0.1",
+      "evidence_id": "LIVE-6fa8778f263e4b83bde47be8db4989e5",
+      "reason": "Authorised loopback HTTP rehearsal",
+      "expires_at": "2026-11-01T00:10:11.486349+00:00",
+      "scope": "fictional lab portal only; no OS firewall or external changes",
+      "verified_at": "2026-11-01T00:09:41.494770+00:00",
+      "verification_event_id": "LIVE-4fcd592707624242a4baf36322d46ffa",
+      "released_at": "2026-11-01T00:09:41.545701+00:00"
+    }
+  ],
+  "portal": {
+    "patched": true
+  },
+  "assets": [
+    {
+      "asset_id": "LAB-GOV-WEB-01",
+      "hostname": "fictional-district-portal",
+      "ip": "127.0.0.1",
+      "organisation": "Fictional Indian District Citizen Services",
+      "sector": "govt",
+      "role": "Live lab portal; dummy applications only",
+      "os": null,
+      "software": [
+        {
+          "vendor": "vectra_lab",
+          "product": "citizen_portal",
+          "version": "1.1.0",
+          "cpe": null
+        }
+      ],
+      "criticality": 4,
+      "internet_facing": false,
+      "owner": "lab-soc",
+      "is_simulated": true
+    }
+  ],
+  "ml_status": "Historical SecRepo baselines are not applied to this lab sensor. Live lab detections are deterministic.",
+  "prediction_status": "No future-attack probability is estimated; exposure is a preventive warning."
+}

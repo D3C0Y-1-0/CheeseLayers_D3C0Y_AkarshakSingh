@@ -59,5 +59,30 @@ class AssetStore:
 
 
 @lru_cache(maxsize=1)
-def get_asset_store() -> AssetStore:
+def _fixture_store() -> AssetStore:
     return AssetStore()
+
+
+def get_asset_store() -> AssetStore:
+    """Fresh overlay snapshot so inventory changes propagate across the two lab processes."""
+    from sqlalchemy import select
+    from sqlalchemy.exc import OperationalError
+    from .database import SessionLocal
+    from .models import InventoryOverride
+    base = _fixture_store()
+    try:
+        with SessionLocal() as db:
+            overlays = list(db.scalars(select(InventoryOverride)))
+    except OperationalError as exc:
+        # Pure matcher/asset tests can run before init_db; don't hide other DB failures.
+        if "no such table: inventory_overrides" not in str(exc):
+            raise
+        overlays = []
+    snapshot = AssetStore.__new__(AssetStore)
+    snapshot._assets = dict(base._assets)
+    for row in overlays:
+        snapshot._assets[row.asset_id] = Asset.model_validate(row.data)
+    return snapshot
+
+
+get_asset_store.cache_clear = _fixture_store.cache_clear

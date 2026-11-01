@@ -1,5 +1,8 @@
 # Vectra: 5-minute demo script
 
+For the current actual request → independent collection → real replacement → verification demo,
+use [INDIA_LIVE_DEMO.md](INDIA_LIVE_DEMO.md). This broader script retains earlier fixture/replay paths.
+
 **Before the jury (once, with internet):** `backend/.venv/bin/python scripts/pregenerate_ai.py` (Windows: `backend\.venv\Scripts\python scripts\pregenerate_ai.py`)
 caches validated LLM text, so the offline demo shows **LLM-cached** badges. Without it every AI panel
 shows **Template**, which is still complete and correct.
@@ -14,7 +17,7 @@ It adds 5 labelled replay signals (Simulated) and creates no alerts. Safe to rep
 | 0:25 | **Inject known CVE** (CVE-2024-21762, FortiOS) → **Early warnings** | "A new advisory arrives: a labelled early-warning signal (new_kev) is recorded and the matcher checks every asset." |
 | 0:45 | **Incidents** → *CVE-2024-21762 on nrldc-edge-fw01 (PWR-FW-01)* | "Critical: 7.2.6 is inside the vulnerable range; its patched twin PWR-FW-02 (7.4.11) did not alert." Open **Why this priority**: severity + KEV/EPSS exploitation + asset criticality + exposure, every input shown. |
 | 1:15 | Same incident: **Generate AI summary**, **Investigate incident**, **Draft CERT-In report** | "The LLM only rewrites wording. Every ID, version and URL must exist in our stored facts, or we show the template; the badge says which." CERT-In: "a draft for the analyst; nothing is sent." |
-| 1:50 | **Attack simulation** → filter *Known-CVE exploits* → **51.159.5.6** → **Replay attack** | "A REAL attacker's real requests from SANS honeypots (30 Oct). The detector reads only the log text." Let it play: exploit packets go to *Our threat intel*. "Five CVEs exploited, all KEV-listed; our matcher says GOV-WEB-01 is **vulnerable to CVE-2024-4577**, so the CVE alert is raised and the incident is critical." Scroll to the intel table: KEV, EPSS, our verdict per CVE. |
+| 1:50 | **Attack simulation** → filter *Known-CVE exploits* → **51.159.5.6** → **Replay attack** | "A REAL attacker's real requests from SANS honeypots (30 Oct). The detector reads only the log text." Let it play: exploit packets go to *Our threat intel*. "Requests match known-CVE exploit signatures; the linked CVEs are KEV-listed; our matcher says GOV-WEB-01 is **vulnerable to CVE-2024-4577**, so the CVE alert is raised and the incident is critical." Scroll to the intel table: KEV, EPSS, our verdict per CVE. |
 | 2:50 | Same page: filter *Login hammering* or *Port scans* → replay one; then *No rule fired* | "Real port scans and login hammering from the firewall feed. And real traffic where no rule fires stays quiet: no false alarm." |
 | 3:20 | **Command Center** → **Real SSH brute force** → open incident → **Investigate** | "Shadow Watch on a real server's sshd log: 74 failed logins a minute from one IP, rule SW-AUTH-001. Medium: failures only, no successful login seen." |
 | 3:50 | **Real distributed spray (ML)** | "7 IPs, one attempt each: under the rule threshold. The Isolation Forest, trained on this server's own history, flags it as unusual: low severity, needs review. ML flags are outliers, not confirmed attacks." |
@@ -32,7 +35,7 @@ the panel shows the template with the reason (`LLM not used: …`).
   real but cached; `DEMO_MODE` makes no live fetches.
 - **AI text is reworded, not reasoned.** The LLM only rewords a deterministic template. The grounding
   check catches invented IDs/versions/IPs/URLs, overclaims and commands, but not subtle mis-emphasis.
-  Cached LLM text is served only when the stored facts are unchanged. Hindi (Step 7) is not shipped.
+  Cached LLM text is served only when the stored facts are unchanged. Hindi is best-effort machine translation; English is retained when translation is unavailable.
 - **Campaigns are statistical, not attribution.** Generic keys (T1190, "microsoft windows") are
   ignored, and groups are capped at 50, so big vendor clusters split into several campaigns. The IOC
   rule exists, but the current cache has no IOC shared by two threats. "7 days" counts back from the

@@ -17,6 +17,7 @@ class IncidentContext(FrozenDTO):
     additional_evidence: tuple["EvidenceCitation", ...] = Field(default=(), max_length=100)
     findings: tuple[DetectionFinding, ...] = Field(max_length=100)
     verified_cve_ids: tuple[CVE, ...] = ()
+    candidate_cve_ids: tuple[CVE, ...] = ()
     references: tuple[str, ...] = Field(default=(), max_length=30)
     limitations: tuple[str, ...] = ()
     is_simulated: bool
@@ -58,6 +59,8 @@ class EvidenceCitation(FrozenDTO):
     retrieved_at: Timestamp | None
     raw_ref: str
     event_type: str
+    detector_id: Annotated[str, Field(max_length=128)] | None = None
+    finding_reason: Annotated[str, Field(max_length=1000)] | None = None
 
 
 IncidentContext.model_rebuild()

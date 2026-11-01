@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-11-01T00:09:39.806709+00:00",
+  "scope": "loopback dummy portal only",
+  "checks": {
+    "preventive_exposure": {
+      "match": "confirmed_affected",
+      "evaluated_at": "2026-11-01T00:09:41.380806+00:00"
+    },
+    "live_traversal": {
+      "status": 200,
+      "event_id": "LIVE-6fa8778f263e4b83bde47be8db4989e5",
+      "rule": "LIVE-WEB-001",
+      "request_to_persisted_finding_ms": 65.66,
+      "peer_ip": "127.0.0.1",
+      "spoofed_forwarding_header_ignored": true
+    },
+    "temporary_block": {
+      "blocked_status": 429,
+      "other_tcp_peer_status": 200,
+      "state": "verified",
+      "verification_event_id": "LIVE-4fcd592707624242a4baf36322d46ffa"
+    },
+    "actual_fix": {
+      "traversal_status": 403,
+      "public_notice_status": 200,
+      "exposure": "confirmed_unaffected",
+      "state": "verified"
+    },
+    "auth_sequence": {
+      "rule": "LIVE-AUTH-002",
+      "supporting_requests": 11
+    },
+    "central_incident": {
+      "alert_id": "ALR-20145404",
+      "evidence_count": 16
+    },
+    "investigation": {
+      "generated_by": "template",
+      "original_request_cited": true
+    }
+  },
+  "limitations": [
+    "This is a controlled lab rehearsal, not production attack accuracy.",
+    "Measured warning lead time depends on when the operator sends traffic, not a forecast model.",
+    "DEMO-VULN-LAB-TRAVERSAL is not a published CVE."
+  ],
+  "controlled_warning_lead_seconds": 0.08
+}

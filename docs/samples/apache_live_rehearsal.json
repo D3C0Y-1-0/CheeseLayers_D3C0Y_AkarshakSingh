@@ -1,0 +1,135 @@
+{
+  "scope": "Owned isolated fictional Indian district service; dummy records only",
+  "before": {
+    "evaluated_at": "2026-11-01T00:47:54.600503+00:00",
+    "match": "confirmed_affected",
+    "certin_references": [
+      {
+        "threat_id": "CIAD-2021-0039-REFERENCE",
+        "title": "CERT-In CIAD-2021-0039 (reviewed reference metadata)",
+        "references": [
+          "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2021-0039&pageid=PUBVLNOTES02"
+        ],
+        "is_simulated": false,
+        "retrieved_at": "2026-11-01T00:45:39.127882+00:00"
+      }
+    ]
+  },
+  "actual_attack_response": {
+    "at": "2026-11-01T00:47:55.760611+00:00",
+    "target": "district_service",
+    "path": "/documents/.%2e/internal/dummy-records.txt",
+    "status": 200,
+    "response_bytes": 77,
+    "dummy_record_disclosed": true,
+    "public_notice_verified": false,
+    "request_id": "f8c71fc9dee54780ee26e096945a845e",
+    "source": "actual loopback HTTP response"
+  },
+  "independently_collected_observation": {
+    "event_id": "APACHE-a1edf57ed3558d32ee2975d16ccd7d2e",
+    "observed_at": "2026-11-01T00:47:55+00:00",
+    "peer_ip": "172.20.0.4",
+    "peer_port": 44968,
+    "asset_id": "LAB-APACHE-VULN",
+    "relay_observed_peer": "172.21.0.1",
+    "request_id": "f8c71fc9dee54780ee26e096945a845e",
+    "method": "GET",
+    "path": "/documents/.%2e/internal/dummy-records.txt",
+    "status": 200,
+    "response_bytes": 77,
+    "signature_match": true,
+    "raw_sha256": "6c8e2377595c362344cf698d1b9c0783635cbffc367653928a25406a77f84282",
+    "query_values_discarded": false,
+    "container_id": "1b0fde0a948433f3943aa56027301ce2385c38cb30c2d1070f512fe99e15b451",
+    "observed_version": "2.4.49",
+    "version_match": "confirmed_affected",
+    "candidate_cve_ids": [
+      "CVE-2021-41773"
+    ],
+    "rule_id": "APACHE-TRAVERSAL-001",
+    "attribution": "Apache peer is the owned relay; relay-observed peer may still be behind Docker/host NAT",
+    "is_simulated": true
+  },
+  "replacement_action": {
+    "action_id": "ACT-4c37ba3bfab045ae89f0038163f429e2",
+    "kind": "apache_patch",
+    "state": "applied",
+    "at": "2026-11-01T00:48:01.012053+00:00",
+    "reason": "Replace affected district backend with verified fixed binary",
+    "target": "patched",
+    "backend_container": "1e8a9dd2d1e396e3de998a26632207f4ede6fc3df28bad3726f9666fd17594a8",
+    "observed_binary_version": "2.4.51",
+    "scope": "Blue/green route replacement of owned dummy district service; not an external patch deployment"
+  },
+  "verification": {
+    "action": {
+      "action_id": "ACT-4c37ba3bfab045ae89f0038163f429e2",
+      "kind": "apache_patch",
+      "state": "verified",
+      "at": "2026-11-01T00:48:01.012053+00:00",
+      "reason": "Replace affected district backend with verified fixed binary",
+      "target": "patched",
+      "backend_container": "1e8a9dd2d1e396e3de998a26632207f4ede6fc3df28bad3726f9666fd17594a8",
+      "observed_binary_version": "2.4.51",
+      "scope": "Blue/green route replacement of owned dummy district service; not an external patch deployment",
+      "verified_at": "2026-11-01T00:48:07.282703+00:00",
+      "verification_request_id": "861f7fd0507efe47450e0fc6615afa5c",
+      "public_check": {
+        "at": "2026-11-01T00:48:03.398158+00:00",
+        "target": "district_service",
+        "path": "/documents/notice.txt",
+        "status": 200,
+        "response_bytes": 91,
+        "dummy_record_disclosed": false,
+        "public_notice_verified": true,
+        "request_id": "0b2475ec578b43c8dc7a8e84e2b72589",
+        "source": "actual loopback HTTP response"
+      },
+      "traversal_check": {
+        "at": "2026-11-01T00:48:07.278370+00:00",
+        "target": "district_service",
+        "path": "/documents/.%2e/internal/dummy-records.txt",
+        "status": 404,
+        "response_bytes": 196,
+        "dummy_record_disclosed": false,
+        "public_notice_verified": false,
+        "request_id": "861f7fd0507efe47450e0fc6615afa5c",
+        "source": "actual loopback HTTP response"
+      }
+    },
+    "verified": true,
+    "public": {
+      "at": "2026-11-01T00:48:03.398158+00:00",
+      "target": "district_service",
+      "path": "/documents/notice.txt",
+      "status": 200,
+      "response_bytes": 91,
+      "dummy_record_disclosed": false,
+      "public_notice_verified": true,
+      "request_id": "0b2475ec578b43c8dc7a8e84e2b72589",
+      "source": "actual loopback HTTP response"
+    },
+    "attempt": {
+      "at": "2026-11-01T00:48:07.278370+00:00",
+      "target": "district_service",
+      "path": "/documents/.%2e/internal/dummy-records.txt",
+      "status": 404,
+      "response_bytes": 196,
+      "dummy_record_disclosed": false,
+      "public_notice_verified": false,
+      "request_id": "861f7fd0507efe47450e0fc6615afa5c",
+      "source": "actual loopback HTTP response"
+    }
+  },
+  "after_match": "confirmed_unaffected",
+  "incident_id": "ALR-56B6A920",
+  "investigation_cve_ids": [
+    "CVE-2021-41773"
+  ],
+  "limitations": [
+    "Preventive exposure is not a validated forecast of attacker timing.",
+    "2.4.51 is fixed for this CVE comparison, not a current production version recommendation.",
+    "The same service endpoint is replaced through blue/green routing, not an OS package installer."
+  ]
+}

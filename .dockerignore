@@ -7,6 +7,10 @@
 frontend/dist
 backend/data/raw
 backend/data/vectra.db*
+backend/data/netrax.db*
+logs
+lab/apache/runtime
+**/*.log
 backend/data/geo
 .env
 .env.*

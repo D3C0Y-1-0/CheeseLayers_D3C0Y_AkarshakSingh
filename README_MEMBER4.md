@@ -1,5 +1,9 @@
 # Vectra Member 4: Shadow Watch and investigation
 
+For the current request-driven Apache/India demo and live lab-specific ML, read
+[INDIA_LIVE_DEMO.md](docs/INDIA_LIVE_DEMO.md) and the current handoff at the top of [CLAUDE.md](CLAUDE.md).
+The detector/replay checkpoint below remains useful background, not the complete current feature list.
+
 Five detectors, immutable evidence-linked findings, offline investigation reports, and a constrained
 optional Groq assistant, in the existing FastAPI app.
 

@@ -64,6 +64,21 @@ def test_model_is_trained_on_earlier_minutes_only():
         assert n == len(train) and last < test[0]["minute"]  # temporal holdout
 
 
+@pytest.mark.parametrize('kind', ['web', 'ssh'])
+def test_batch_scoring_matches_direct_model_predictions(kind):
+    _, test = ml.split(kind)
+    rows = [ml.window_features(kind, w) for w in test[:8]]
+    model, training_scores, n, _ = ml.model(kind)
+    expected_scores = model.decision_function(rows)
+    expected_flags = model.predict(rows)
+    actual = ml.score_many(kind, rows)
+    for result, score, flag in zip(actual, expected_scores, expected_flags):
+        assert result['score'] == round(float(score), 4)
+        assert result['flagged'] == bool(flag == -1)
+        assert result['unusual_percentile'] == round(100 * sum(s > score for s in training_scores) / n, 1)
+    assert ml.score_many(kind, []) == []
+
+
 def test_model_never_scores_other_sensors():
     synthetic = EVENT.validate_python({
         "event_id": "X1", "asset_id": "HLT-WEB-01", "sensor_id": "s", "observed_at": "2026-10-31T10:00:00Z",

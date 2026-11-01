@@ -5,7 +5,7 @@ from ai.llm import demo_mode
 from ai.schemas import EvidenceCitation, IncidentContext
 from ai.tools import InvestigationScope, ReadOnlyTools
 from app.contracts import SecurityEvent
-from app.correlator import AlertRow, CorrelationEngine, EventRow
+from app.correlator import AlertRow, CorrelationEngine, EventRow, incident_evidence
 from app.models import Threat
 from .normalize import EVENT
 from .schemas import DetectionFinding
@@ -73,12 +73,10 @@ class StoredIncidentProvider:
             if row is None:
                 raise KeyError(incident_id)
             a = row.data
-            records = list(db.scalars(select(EventRow).where(EventRow.event_id.in_(a["evidence_ids"]))
-                                     .order_by(EventRow.timestamp, EventRow.event_id).limit(101)))
+            records, truncated = incident_evidence(db, a["evidence_ids"])
             limitations = list(a.get("limitations", []))
-            if len(records) > 100:
-                limitations.append("Investigation limited to the first 100 stored observations")
-            records = records[:100]
+            if truncated:
+                limitations.append("Investigation bounded to 100 observations, prioritising recent detector findings")
             evidence, additional, findings = [], [], []
             for record in records:
                 raw = record.data
@@ -91,17 +89,31 @@ class StoredIncidentProvider:
                 else:
                     additional.append(EvidenceCitation(evidence_id=record.event_id, asset_id=record.asset_id,
                         observed_at=record.timestamp, sensor_id=raw["source_sensor"], source=raw.get("source") or raw["source_sensor"],
-                        retrieved_at=None, raw_ref=f"/api/alerts/{incident_id}/evidence#{record.event_id}", event_type=raw["event_type"]))
+                        retrieved_at=raw.get("retrieved_at"), raw_ref=raw.get("raw_ref") or f"/api/alerts/{incident_id}/evidence#{record.event_id}",
+                        event_type=raw["event_type"], detector_id=raw.get("rule_id"),
+                        finding_reason=raw.get("details", {}).get("detection_reason")))
             ids = {e.event_id for e in evidence}
             findings = [f for f in findings if set(f.evidence_ids + f.maintenance_evidence_ids) <= ids]
-            verified, references = [], []
+            verified, candidates, references = [], [], []
+            for record in records:
+                raw = record.data
+                if raw.get("source") != "vectra_apache_lab":
+                    continue
+                details = raw.get("details", {})
+                for cve in details.get("candidate_cve_ids", []):
+                    threat = db.get(Threat, cve)
+                    if threat and threat.cve_id == cve:
+                        candidates.append(cve)
+                        references.extend(threat.references or [])
+                        if details.get("version_match") == "confirmed_affected":
+                            verified.append(cve)
             for tid in a["threat_ids"]:
                 threat = db.get(Threat, tid)
                 if threat:
                     references.extend(threat.references or [])
                     if threat.cve_id and a.get("match_detail") == "confirmed_affected":
                         verified.append(threat.cve_id)
-            if additional:
+            if any(c.retrieved_at is None for c in additional):
                 limitations.append("Legacy events have no stored ingestion timestamp; retrieved_at remains unknown")
             if a["kind"] == "vulnerability":
                 assessment = "vulnerability_exposure" if a.get("match_detail") == "confirmed_affected" else "needs_verification"
@@ -111,6 +123,7 @@ class StoredIncidentProvider:
             return IncidentContext(incident_id=incident_id, assessment=assessment, asset_ids=tuple(a["asset_ids"]),
                 evidence=tuple(evidence), additional_evidence=tuple(additional), findings=tuple(findings),
                 verified_cve_ids=tuple(dict.fromkeys(verified)), references=tuple(dict.fromkeys(references))[:30],
+                candidate_cve_ids=tuple(dict.fromkeys(candidates)),
                 limitations=tuple(dict.fromkeys(limitations)), is_simulated=a["is_simulated"], integration_status="persisted")
 
 

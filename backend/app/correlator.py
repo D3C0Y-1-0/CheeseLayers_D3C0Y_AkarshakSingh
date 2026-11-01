@@ -15,7 +15,7 @@ import hashlib
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
-from sqlalchemy import JSON, Integer, String, delete, select
+from sqlalchemy import JSON, Integer, String, case, delete, select
 from sqlalchemy.orm import Mapped, Session, mapped_column
 
 from .asset_store import get_asset_store
@@ -48,6 +48,14 @@ class EventRow(Base):
     timestamp: Mapped[object] = mapped_column(UTCDateTime, index=True)
     alert_id: Mapped[str | None] = mapped_column(String, index=True)
     data: Mapped[dict] = mapped_column(JSON)
+
+
+def incident_evidence(db, ids, limit=100):
+    """Keep recent detections in bounded investigations, then order their evidence chronologically."""
+    flagged = EventRow.data["rule_id"].as_string().is_not(None)
+    rows = list(db.scalars(select(EventRow).where(EventRow.event_id.in_(ids))
+        .order_by(case((flagged, 0), else_=1), EventRow.timestamp.desc(), EventRow.event_id).limit(limit + 1)))
+    return sorted(rows[:limit], key=lambda r: (r.timestamp, r.event_id)), len(rows) > limit
 
 
 def _now() -> datetime:
@@ -138,6 +146,10 @@ class CorrelationEngine:
                 alert.created_at = datetime.fromisoformat(old["created_at"])
                 alert.lifecycle_status = old["lifecycle_status"]  # an analyst's progress is never reset by a re-score
                 audit = list(old["audit"])
+                if old.get("match_detail") == "confirmed_unaffected" and m.match_detail != "confirmed_unaffected":
+                    alert.lifecycle_status = "detected"
+                    audit.append(_audit(now, "exposure reopened: the current inventory is affected or needs verification",
+                                        threat.threat_id))
                 if old["priority"] != alert.priority or old["risk_score"] != alert.risk_score:
                     audit.append(_audit(now, f"re-scored ({trigger}): {old['priority']} {old['risk_score']} -> "
                                              f"{alert.priority} {alert.risk_score}", threat.threat_id))

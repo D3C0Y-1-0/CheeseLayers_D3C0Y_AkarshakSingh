@@ -1,0 +1,11 @@
+{
+  "reviewed_on": "2026-11-01",
+  "provenance": "Reviewed reference metadata; not a fresh automated CERT-In scrape or the full advisory payload.",
+  "cve_id": "CVE-2021-41773",
+  "affected_product": {"vendor": "apache", "product": "http_server", "exact_version": "2.4.49"},
+  "comparison_version": "2.4.51",
+  "vendor_reference": "https://httpd.apache.org/security/vulnerabilities_24.html#CVE-2021-41773",
+  "certin_reference": "https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2021-0039&pageid=PUBVLNOTES02",
+  "certin_id": "CIAD-2021-0039",
+  "limitations": ["2.4.51 is fixed for the demonstrated traversal CVEs, not a current production recommendation.", "Other vulnerabilities in these historical products are outside this single-CVE comparison."]
+}

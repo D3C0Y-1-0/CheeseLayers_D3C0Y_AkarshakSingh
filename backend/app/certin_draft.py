@@ -100,10 +100,14 @@ def draft_facts(db: Session, row: AlertRow) -> dict:
     a = row.data
     store = get_asset_store()
     assets = [x for x in (store.get(i) for i in a["asset_ids"]) if x]
-    events = [r.data for r in db.scalars(select(EventRow).where(EventRow.event_id.in_(a["evidence_ids"]))
-                                         .order_by(EventRow.timestamp, EventRow.event_id).limit(100))]
+    from .correlator import incident_evidence
+    from .database import SessionLocal
+    from shadow_watch.integration import StoredIncidentProvider
+    selected, truncated = incident_evidence(db, a["evidence_ids"])
+    events = [r.data for r in selected]
+    context = StoredIncidentProvider(SessionLocal).get_incident(a["alert_id"])
     threats = []
-    for tid in a["threat_ids"]:
+    for tid in dict.fromkeys(a["threat_ids"] + list(context.verified_cve_ids)):
         t = db.get(Threat, tid)
         if t:
             threats.append({"threat_id": t.threat_id, "cve_id": t.cve_id, "title": t.title, "cvss": t.cvss,
@@ -114,14 +118,16 @@ def draft_facts(db: Session, row: AlertRow) -> dict:
         "alert": {"alert_id": a["alert_id"], "kind": a["kind"], "title": a.get("title"), "priority": a["priority"],
                   "risk_score": a.get("risk_score"), "lifecycle_status": a.get("lifecycle_status"),
                   "match_detail": a.get("match_detail"), "created_at": a["created_at"],
-                  "reasons": a.get("reasons", [])[:10], "limitations": a.get("limitations", [])[:10],
+                  "reasons": a.get("reasons", [])[:10], "limitations": a.get("limitations", [])[:10] +
+                  (["Evidence bounded to 100 observations, prioritising recent detector findings"] if truncated else []),
                   "is_simulated": a.get("is_simulated", False)},
         "assets": [{"asset_id": x.asset_id, "hostname": x.hostname, "ip": x.ip, "organisation": x.organisation,
                     "sector": x.sector, "role": x.role, "criticality": x.criticality,
                     "internet_facing": x.internet_facing, "is_simulated": x.is_simulated} for x in assets],
         "evidence": [{"evidence_id": e["event_id"], "event_type": e.get("event_type"), "observed_at": e.get("timestamp"),
                       "asset_id": e.get("asset_id"), "sensor": e.get("source_sensor"),
-                      "note": (e.get("details") or {}).get("note"), "is_simulated": e.get("is_simulated")}
+                      "note": (e.get("details") or {}).get("detection_reason") or (e.get("details") or {}).get("note"),
+                      "request_id": (e.get("details") or {}).get("request_id"), "is_simulated": e.get("is_simulated")}
                      for e in events],
         "threats": threats,
         "actions_taken": [{"at": t["at"], "action": t["event"]} for t in steps],

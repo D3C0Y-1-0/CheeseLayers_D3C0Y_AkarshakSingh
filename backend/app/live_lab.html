@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vectra — live lab control</title><style>
+body{background:#101827;color:#e4edf7;font:16px system-ui;margin:24px;max-width:1300px}h1,h2{color:#77dfcf}
+section{border:1px solid #3d5069;padding:18px;margin:18px 0;border-radius:10px}button,input,select,textarea{font:inherit;padding:8px;margin:4px;background:#1e3048;color:white;border:1px solid #66819e;border-radius:5px}button{cursor:pointer}textarea{width:90%;height:100px}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:340px;overflow:auto}td,th{padding:8px;text-align:left;border-bottom:1px solid #3d5069}table{width:100%}.muted{color:#a8bdd3}a{color:#77dfcf}
+</style><h1>Vectra: observe → assess → respond → verify</h1>
+<p>Fictional Indian district citizen services. Actual lab requests and enforced responses; all records and target assets are simulated.</p>
+<p><a href="/app">Main dashboard</a> · <a href="/docs">API contracts</a> · <a href="/api/insights/india">India intelligence</a></p>
+<p class="muted">Control plane is local only. Start the separate portal listener on port 8010. The live portal is a custom service, not a published CVE exploit.</p>
+<p id="message" role="status"></p>
+<section><h2>1. Preventive exposure: known intelligence × current inventory</h2>
+<p>Select any asset. Reassessment checks its installed products against stored intelligence and links matching CERT-In advisory references when available.</p>
+<select id="asset"></select><button id="assess">Reassess exposure now</button>
+<p>Software inventory observation (JSON). Updating it records an audit entry and immediately reassesses exposure. This does not patch software. Use the response controls below for the running lab.</p>
+<textarea id="software" aria-label="Observed software JSON"></textarea><br><input id="inventoryReason" placeholder="Reason / observation source" size="45"><button id="inventory">Record inventory change</button>
+<pre id="exposure">No assessment requested yet.</pre></section>
+<section><h2>Live Indian district-service demonstration: CVE-2021-41773</h2>
+<p>Fictional Indian district citizen services, synthetic records. Reference: <a href="https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2021-0039&amp;pageid=PUBVLNOTES02" target="_blank" rel="noreferrer">CERT-In CIAD-2021-0039</a>. This is a real isolated Apache version comparison, not the custom portal weakness.</p>
+<p>Discover before sending the attack to show preventive exposure. The collector imports actual Apache logs. Replacing the backend changes the running district endpoint; verification sends the same request again. Forecast timing/probability is not estimated.</p>
+<button id="apacheDiscover">Discover owned targets / warn</button><button id="apachePublic">Send ordinary live request</button><button id="apacheAttack">Send live dummy-record traversal</button>
+<button id="apachePatch">Replace with fixed Apache</button><button id="apacheVerify">Verify latest replacement</button><button id="apacheRollback">Restore vulnerable lab backend</button>
+<p id="apacheRoute"></p><pre id="apacheWarning"></pre><pre id="apacheResult"></pre><pre id="apacheEvidence"></pre></section>
+<section><h2>Lab-specific machine learning</h2>
+<p>Start collection, generate varied ordinary portal traffic, then freeze. At least 30 complete active five-second windows are required. Earlier 80% trains the forest; later 20% is a chronological holdout. Known rule-positive and restricted windows are excluded from the baseline. This is operator-declared ordinary traffic, not independent ground truth.</p>
+<input id="baselineReason" size="50" value="Operator-declared ordinary lab service traffic">
+<button id="mlStart">Start a new baseline</button><button id="mlFreeze">Freeze and enable lab ML</button><button id="mlDisable">Disable lab ML</button>
+<pre id="mlSummary"></pre><pre id="mlWindows"></pre></section>
+<section><h2>2. Live observed activity</h2><p id="mode"></p>
+<p>The peer IP is the service's TCP peer. Forwarded headers are not trusted. NAT/proxies can hide the original source; this does not identify a person or country.</p>
+<table><thead><tr><th>Observed (IST)</th><th>Peer</th><th>Request</th><th>Status</th><th>Deterministic finding</th><th>Select</th></tr></thead><tbody id="observations"></tbody></table>
+<pre id="evidence">Select an observation to inspect its evidence.</pre></section>
+<section><h2>3. Analyst-approved lab response</h2><p id="portal"></p>
+<input id="reason" placeholder="Action reason" size="45" value="Judge demonstration in our isolated lab">
+<input id="ttl" type="number" min="15" max="300" value="60" aria-label="Block TTL in seconds">
+<button id="block">Temporarily block selected peer</button><button id="release">Release selected peer</button><br>
+<button id="patch">Apply document boundary fix</button><button id="rollback">Roll back lab fix</button>
+<p>Block enforcement affects this portal only. A patch changes the actual document boundary and its inventory version. Verification requires a subsequent request: 429 for a block, or 403 for a traversal after the fix. Inventory exposure and observed exploitation remain distinct.</p>
+<pre id="actions"></pre></section>
+<script>
+const token='__TOKEN__';let snapshot=null,selected=null;
+const el=id=>document.getElementById(id);
+async function api(path,method='GET',body){const r=await fetch(path,{method,headers:{'X-Vectra-Lab-Token':token,'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});const d=await r.json();if(!r.ok)throw Error(JSON.stringify(d));return d;}
+function show(id,value){el(id).textContent=typeof value==='string'?value:JSON.stringify(value,null,2);}
+function inventory(){const a=snapshot?.assets.find(x=>x.asset_id===el('asset').value);if(a)el('software').value=JSON.stringify(a.software,null,2);}
+let latestApacheAction=null;
+async function refresh(){try{snapshot=await api('/api/lab/state');if(Array.from(el('asset').options).map(x=>x.value).join('|')!==snapshot.assets.map(x=>x.asset_id).join('|')){const previous=el('asset').value;el('asset').replaceChildren();for(const a of snapshot.assets){const o=document.createElement('option');o.value=a.asset_id;o.textContent=a.asset_id+' — '+a.organisation;el('asset').append(o);}el('asset').value=snapshot.assets.some(x=>x.asset_id===previous)?previous:'LAB-GOV-WEB-01';inventory();}
+show('mode',snapshot.ml_status+' '+snapshot.prediction_status);show('portal',snapshot.portal.patched?'Document boundary: PATCHED (1.1.0)':'Document boundary: VULNERABLE LAB MODE (1.0.0)');show('actions',snapshot.actions);
+if(snapshot.lab_ml){const m=snapshot.lab_ml;show('mlSummary',{state:m.state,eligible_baseline_windows:m.eligible_baseline_windows,minimum:m.minimum_baseline_windows,model:m.model,limitations:m.limitations});show('mlWindows',m.windows);}
+const apache=await api('/api/lab/apache/state');show('apacheRoute','District endpoint currently routes to: '+apache.route.target+' backend');show('apacheWarning',apache.pre_attack_warning||'Discover the owned targets to compute exposure before the attack.');show('apacheEvidence',{observations:apache.observations.map(o=>({...o,observed_ist:new Date(o.observed_at).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})})),actions:apache.actions});if(apache.actions.length)latestApacheAction=apache.actions.find(a=>a.state!=='superseded')?.action_id||null;
+el('observations').replaceChildren();for(const o of snapshot.observations){const row=document.createElement('tr');const values=[new Date(o.at).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),o.peer_ip+':'+o.peer_port,o.kind==='document'?o.name:'login '+o.username,o.status,o.finding?.label||'No finding'];for(const v of values){const td=document.createElement('td');td.textContent=v;row.append(td);}const td=document.createElement('td'),b=document.createElement('button');b.textContent='Inspect';b.onclick=()=>{selected=o;show('evidence',o)};td.append(b);row.append(td);el('observations').append(row);}
+}catch(e){show('message',e.message)}}
+async function run(fn){try{show('message','Working…');await fn();await refresh();show('message','Completed. See evidence / action state below.')}catch(e){show('message',e.message)}}
+el('asset').onchange=inventory;
+el('apacheDiscover').onclick=()=>run(async()=>show('apacheResult',await api('/api/lab/apache/discover','POST')));
+el('apachePublic').onclick=()=>run(async()=>show('apacheResult',await api('/api/lab/apache/probe','POST',{request:'public_notice'})));
+el('apacheAttack').onclick=()=>run(async()=>show('apacheResult',await api('/api/lab/apache/probe','POST',{request:'dummy_traversal'})));
+for(const [id,action] of [['apachePatch','patch'],['apacheRollback','rollback']])el(id).onclick=()=>run(async()=>{const result=await api('/api/lab/apache/patch','POST',{action,reason:el('reason').value});latestApacheAction=result.action.action_id;show('apacheResult',result);});
+el('apacheVerify').onclick=()=>run(async()=>{if(!latestApacheAction)throw Error('Apply a replacement or rollback first.');show('apacheResult',await api('/api/lab/apache/verify/'+latestApacheAction,'POST'));});
+el('mlStart').onclick=()=>run(()=>api('/api/lab/ml/start','POST',{reason:el('baselineReason').value}));
+el('mlFreeze').onclick=()=>run(()=>api('/api/lab/ml/freeze','POST'));
+el('mlDisable').onclick=()=>run(()=>api('/api/lab/ml/disable','POST'));
+el('assess').onclick=()=>run(async()=>show('exposure',await api('/api/lab/reassess/'+encodeURIComponent(el('asset').value),'POST')));
+el('inventory').onclick=()=>run(async()=>show('exposure',await api('/api/lab/inventory/'+encodeURIComponent(el('asset').value),'PUT',{software:JSON.parse(el('software').value),reason:el('inventoryReason').value})));
+for(const kind of ['block','release','patch','rollback'])el(kind).onclick=()=>run(async()=>{if(['block','release'].includes(kind)&&!selected)throw Error('Select a live observation first.');const body={kind,reason:el('reason').value,ttl_seconds:Number(el('ttl').value)};if(['block','release'].includes(kind)){body.peer_ip=selected.peer_ip;body.evidence_id=selected.event_id;}const d=await api('/api/lab/actions','POST',body);if(d.exposure)show('exposure',d.exposure);});
+refresh();setInterval(refresh,2000);
+</script></html>

@@ -10,13 +10,15 @@ def build_fallback_report(incident_context: IncidentContext | dict) -> Investiga
                             retrieved_at=e.ingested_at, raw_ref=e.raw_ref, event_type=e.event_type) for e in ordered]
                        + list(ctx.additional_evidence), key=lambda e: (e.observed_at, e.evidence_id))
     limitations = list(ctx.limitations) + ["Compromise not confirmed"]
-    if not ctx.verified_cve_ids:
+    if not ctx.verified_cve_ids and not ctx.candidate_cve_ids:
         limitations.append("No known CVE linkage; no vendor patch has been verified for these observations")
     # Missing telemetry is a visibility gap on each asset, never a negative proof.
     for asset in ctx.asset_ids:
         if not any(e.asset_id == asset and e.event_type in {"process_start", "process"} for e in citations):
             limitations.append(f"Process telemetry not observed for {asset}; process execution cannot be inferred or ruled out")
     maintenance = [e for e in ordered if e.event_type == "maintenance_window" and e.details.approved]
+    live_reasons = [f"{c.detector_id}: {c.finding_reason}" for c in ctx.additional_evidence
+                    if c.detector_id and c.finding_reason]
     if maintenance:
         limitations.append("Approved maintenance context retained; it does not rule out unrelated suspicious activity")
     if ctx.integration_status == "demo_adapter":
@@ -25,7 +27,7 @@ def build_fallback_report(incident_context: IncidentContext | dict) -> Investiga
         span = f"{citations[0].observed_at.isoformat()} to {citations[-1].observed_at.isoformat()}"
         facts = "; ".join(f"{e.evidence_id}: {e.event_type} on {e.asset_id or 'unknown asset'} at {e.observed_at.isoformat()}" for e in citations[:5])
         # Lead with what the detectors found (their own reasons carry the real counts), then the evidence trail.
-        found = "; ".join(dict.fromkeys(f"{f.detector_id}: {f.reason}" for f in ctx.findings[:3]))
+        found = "; ".join(list(dict.fromkeys([f"{f.detector_id}: {f.reason}" for f in ctx.findings[:3]] + live_reasons))[:3])
         summary = (f"Detected: {found}. " if found else "") + f"{len(citations)} stored observations ({span}). {facts}."
         if len(citations) > 5:
             limitations.append("Summary shows first 5 observations; complete bounded evidence citations are included")
@@ -33,15 +35,19 @@ def build_fallback_report(incident_context: IncidentContext | dict) -> Investiga
         summary = "No behavioural observations were supplied. Review the verified vulnerability exposure context."
     if ctx.verified_cve_ids:
         summary += " Verified CVE association: " + ", ".join(ctx.verified_cve_ids) + "."
+    elif ctx.candidate_cve_ids:
+        summary += " Candidate CVE attempt pattern: " + ", ".join(ctx.candidate_cve_ids) + "; target applicability/exploitation require review."
     else:
         summary += " No known CVE linkage."
     why = "Stored observations warrant analyst review; temporal proximity does not establish causality."
     if ctx.assessment == "vulnerability_exposure":
         why = "Verified vulnerability association supports exposure review; it does not establish exploitation."
-    elif not ctx.findings:
+    elif not ctx.findings and not live_reasons:
         why = "No typed Shadow Watch finding was supplied. Review the stored evidence and any maintenance context."
     if ctx.findings:
         why += " Observed rule evidence: " + "; ".join(f.reason for f in ctx.findings[:5]) + "."
+    elif live_reasons:
+        why += " Observed detector evidence: " + "; ".join(live_reasons[:5]) + "."
     actions = ["Review the stored source evidence and validate sensor coverage"]
     types = {e.event_type for e in citations}
     if types & {"http_window", "http"}:

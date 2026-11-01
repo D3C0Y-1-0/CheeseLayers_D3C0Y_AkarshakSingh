@@ -1,5 +1,204 @@
 # CLAUDE.md — Project context (read this first)
 
+## Current operational handoff — 1 November 2026 (Asia/Kolkata)
+
+**Read this section before the historical team plan below. It overrides outdated implementation/status claims.**
+
+### Checkout and preservation
+
+- Working branch: `codex/live-india-foundation`, based on `d8ee68e` (`shap`). The latest requested
+  pull included Render deployment and SHAP/PDF explanation work. The `app/main.py` conflict was
+  resolved by retaining BOTH upstream explainability routes and the new live-lab routes.
+- There are substantial **uncommitted tracked and untracked changes**. Do not reset, clean,
+  overwrite, drop recovery stashes or discard files before reviewing `git status`.
+- Recovery stash retained: `codex: preserve live lab and deterministic foundation before user-requested pull`.
+  An older Member 4 recovery stash may also exist. No push/deployment was performed by this work.
+- User explicitly authorises an owned, codebase-only lab; no real company is to be attacked or
+  its data collected. Keep all demonstrations confined to the fictional organisation/dummy records.
+- `.env` is ignored and untracked. Never print credentials. Runtime databases, logs, collector
+  checkpoints, environments, builds and `lab/apache/runtime/` stay out of Git.
+
+### What the product now demonstrates
+
+The organisation is **Fictional Indian District Citizen Services**. The original 40 synthetic
+inventory assets remain. Initialising the custom portal and discovering Apache adds three lab
+assets, making 43 in that setup. Counts come from inventory; do not assume 40/43 in application logic.
+
+1. **Known-intelligence path:** stored CVE/KEV/vendor/CERT-In intelligence is matched against
+   current product/version inventory. New threat signals already invoke `on_new_threat`; a new
+   CERT-In advisory resolves its explicit CVE IDs to the corresponding structured range records.
+   Persisted inventory overrides and operator reassessment now update exposure immediately.
+2. **Behaviour path:** actual requests/authentication outcomes are recorded by the custom
+   portal; independent Apache access logs are collected separately. Rules generate findings
+   from those observations, and the existing correlator persists incidents/evidence.
+3. **Response:** temporary custom-portal restrictions and a working document boundary fix;
+   for the Apache district endpoint, verified blue/green replacement with a fixed binary.
+   A subsequent actual HTTP request verifies effects. A status change alone is not mitigation.
+4. **Early warning:** exposure can be raised BEFORE a controlled attack. Live statistical
+   outliers supply triage. Neither is a validated forecast of attacker timing/probability.
+   Do not claim zero-day discovery, real-world accuracy or automatic regulatory compliance.
+
+### Known-vulnerability foundation changes
+
+- `app/asset_store.py`: immutable fixture starting inventory plus fresh SQLite override snapshots,
+  visible across the control and portal processes. Shared fixture JSON/contracts were not renamed.
+- `app/live_lab.py`: audited simulated inventory changes, relevant intelligence reassessment,
+  explicit CVE-linked CERT-In references and source retrieval/simulation fields.
+- Reassessment uses the SAME vendor/product normalisation as the matcher (including hyphens).
+  Conflicting product/version CPE observations return 422; update the CPE or set it to null.
+  Instrumented live assets must use service-specific controls, not manually fabricated versions.
+- Newly reported empty inventory is incomplete, not proof of removal/safety. Missing structured
+  advisory applicability requires verification. Curated synthetic fixture inventory semantics
+  are preserved. `assessment_status` distinguishes unknown inventory/no structured matches.
+- `app/correlator.py`: a previously unaffected exposure reopens when it becomes affected or
+  uncertain again. Version parsing is bounded/memoised without changing comparison rules.
+- Inventory entry is an operator observation, not proof that a real host was patched. For the
+  runnable Apache lab, registration checks actual Docker identity/image and `httpd -v`.
+
+### Actual published-CVE lab — use this for the main live presentation
+
+- `lab/apache/compose.yaml`: official digest-pinned Apache 2.4.49 and 2.4.51, plus a pinned Nginx
+  relay. Targets are on an internal Docker network, read-only, UID 1000, capabilities dropped,
+  resource limited, CGI/executable/proxy handlers disabled. Only dummy documents/configs mount.
+- The public dummy notice is under `/srv/lab/public`; a dummy internal record is under
+  `/srv/lab/internal`. The real CVE-2021-41773 traversal in 2.4.49 exposes that dummy record.
+  2.4.51 rejects the same request. No host/private/real organisation data is required or used.
+- Apache 2.4.51 is the historical comparison fixed for the demonstrated traversal CVEs, **not
+  a current production security recommendation**. Other CVEs may still match those old versions.
+- CERT-In reference: `CIAD-2021-0039`; vendor and CERT-In URLs are in
+  `lab/apache/advisory_sources.json`. This file is reviewed reference metadata, not a fresh
+  automated scrape/full raw advisory. Existing canonical cache metadata is preserved.
+- `app/apache_lab.py`: local/token-protected discover, verified register, original-log ingestion,
+  evidence/state, bounded live probe, patch/rollback and actual verification endpoints.
+- `shadow_watch/apache.py`: parses original request lines, status, bytes, route identity, peer
+  information, relay-generated request IDs and raw hashes. Original query values are discarded
+  from normalised evidence. Malformed records are explicitly rejected; no guessed verdicts.
+- The relay overwrites route/request-ID/observed-peer headers and strips untrusted X-Forwarded-For.
+  Its generated request ID links the actual HTTP response to the independently collected log.
+  Docker/host/proxy NAT may hide the original client; do not identify an attacker/person/country.
+- `scripts/watch_apache_lab.py`: independent Docker-log collector, authenticated loopback
+  ingestion, persisted timestamp checkpoints, duplicate-safe IDs and ignored raw log capture.
+  Initial collection starts when the collector registers; it does not invent historical traffic.
+- **Patch is real service replacement:** the SAME port 8011 district endpoint is routed from
+  verified Apache 2.4.49 to verified 2.4.51 via generated Nginx config and a tested reload.
+  Inventory/exposure is rechecked. Verification repeats actual public/traversal requests.
+  The old backend stays isolated for rollback; this is not an OS package installer or proof of
+  fleet-wide eradication. Replacement actions can be applied, verified and superseded.
+- Container snapshots preserve version-at-observation, so late old logs are not misclassified
+  using the service's newly patched inventory. Fixed-target attempts remain candidate CVE
+  patterns; they are not recorded as verified affected/exploited targets.
+
+### Custom portal behaviour and real sensor-specific ML
+
+- `shadow_watch/live.py`: actual document traversal, 10 login failures/peer/60s, failures across
+  5 usernames/peer/60s, and login success after at least 5 failures for the same username/peer.
+  Passwords are never recorded. Success-after-failures is suspicious, not verified account theft.
+- Existing typed Shadow Watch HTTP/process/network/auth rules remain; process findings require
+  host telemetry. Auth aggregate thresholds now respect configured observation-window bounds.
+- The custom portal weakness is `DEMO-VULN-LAB-TRAVERSAL`, **not a published CVE**. It uses a
+  two-document virtual store and never opens host files. Its separate listener is port 8010.
+- `shadow_watch/lab_ml.py`: separate Isolation Forest for this portal only. Five-second ACTIVE
+  windows, two-second finalisation grace, at least 30 eligible windows and four distinct training
+  vectors. No fake idle windows. Features: request rate, 4xx ratio, failed-login ratio, unique
+  peers and unique usernames. Known rule-positive/429 windows are excluded from baseline use.
+- Earlier 80% trains; later 20% is a chronological baseline holdout. 200 trees, contamination
+  0.05, fixed seed. Explicit freeze prevents online retraining/attack contamination. Future
+  evaluation excludes windows straddling freeze time. Baseline is operator-declared ordinary
+  traffic, not independently labelled ground truth. Holdout flags must remain visible.
+- Training vectors, provenance IDs, config, library version and fingerprint persist as JSON;
+  no pickles. Frozen models can reconstruct after restart; earlier models are archived in
+  `lab_settings`. A changed sklearn version requires a new baseline. Background processing runs
+  only when the lab is enabled, with one control worker; portal only writes observations.
+- `LIVE-ML-001` findings are low-confidence triage with original request-window references.
+  They do not automatically block. The historical SecRepo model is NEVER reused for this sensor.
+- Historical SecRepo ML remains separate: web/SSH, 200 trees, contamination 0.02, 70/30 temporal
+  split, rules-first fallback; batched candidate scoring retains prior scores/decisions. Upstream
+  SHAP/PDF explanations cover those historical models, not the new lab model.
+
+### Evidence, investigation and India context
+
+- Evidence and actions persist in SQLite; default DB is `backend/data/vectra.db` via
+  `VECTRA_DB_URL`. The older `netrax.db` is separate. Do not silently delete/migrate/reset either.
+- New durable tables: `inventory_overrides`, `lab_observations`, `lab_settings`, `lab_actions`,
+  `lab_ml_windows`, `apache_lab_observations`; not part of the derived-feed drop/rebuild list.
+- Bounded investigation/evidence selection prioritises recent detections before the 100-record
+  cap, then orders the selected evidence chronologically. Truncation remains explicit.
+- `ai/schemas.py`, `ai/fallback.py`, `shadow_watch/integration.py` preserve live detector reasons,
+  ingestion timestamps, candidate versus verified CVE applicability and source references.
+  CERT-In drafts now retain verified live CVE applicability, request IDs and recent detector reasons. Reports distinguish exposure, attempt patterns and actual success; HTTP 200/bytes alone do
+  not prove data disclosure. The controlled probe separately verifies the dummy marker.
+- India-specific context is service ownership/impact, IST timeline, actual CERT-In relevance,
+  existing India intelligence/Hindi assistance and analyst-reviewed reporting drafts. These are
+  not real government deployments or automatic submissions. Reporting duties are contextual;
+  do not put an unconditional six-hour deadline on every anomaly.
+- Detection/matching/scoring are deterministic/ML. Optional LLM is narrative assistance; current
+  local rehearsal used template output. Cloud requires explicit opt-in/provider/key and can
+  otherwise use cached/template reports. Never expose `.env` values to debug this.
+
+### Start, demonstrate, stop
+
+From the repository root (stop an already registered server before changing its launch flags):
+
+```powershell
+.\scripts\start.ps1 -SkipBuild -Background -LiveLab
+.\scripts\start-apache-lab.ps1
+.\scripts\start-apache-collector.ps1
+# Optional separate custom portal; keep terminal open:
+.\scripts\start-lab-portal.ps1
+```
+
+- Control console: `http://127.0.0.1:8000/lab`; dashboard: `/app`; API schema: `/docs`.
+  Control API stays on loopback and requires the per-process local console token/Host/peer.
+- District Apache endpoint: `http://127.0.0.1:8011/documents/notice.txt`; comparison: port 8012.
+  For two PCs, explicitly pass a specific private LAN address to the Apache/portal launcher;
+  leave the control plane local. No automatic Windows firewall changes were made.
+- Console sequence: discover/warn → ordinary request → live dummy traversal → inspect independent
+  evidence/incident → replace with fixed Apache → verify → repeat the SAME attacker request.
+  Restore vulnerable backend only for a fresh owned-lab run. No fixture injection is needed.
+- Current rehearsed state: Apache district endpoint routes to fixed 2.4.51; custom portal is
+  patched; temporary custom restriction released; a real portal ML baseline remains frozen.
+- Repeat actual checks: `python -X utf8 scripts/rehearse_apache_lab.py`;
+  `scripts/rehearse_live_lab.py` for the custom flow; `scripts/train_lab_baseline.py` for roughly
+  three minutes of actual baseline traffic plus a measured burst. These are loopback-only tools.
+- Stop registered app: `scripts/stop.ps1 -Port 8000`; worker: `scripts/stop.ps1 -Worker apache-collector`;
+  portal if registered in background: `scripts/stop.ps1 -Port 8010`; foreground portal: Ctrl+C.
+  Owned Docker lab: `docker compose -f lab/apache/compose.yaml down`.
+- Launchers retain stdout/stderr and identity metadata in ignored `logs/`. Read those records
+  rather than hardcoding PIDs. Stop helpers verify PID/start-time/python identity before stopping.
+- Do not casually use global reset-alert endpoints: they remove correlated evidence, while raw
+  lab records/checkpoints/models persist. Prefer fresh requests and explicit rollback controls.
+
+### Verification and next steps
+
+- Actual Apache HTTP rehearsal passed: affected before traffic; dummy disclosure on 2.4.49;
+  independent request-ID-matched finding; same endpoint replaced with 2.4.51; traversal 404;
+  public notice 200; exposure confirmed unaffected for CVE-2021-41773; action verified and
+  investigation cites that CVE. Evidence: ignored `logs/apache-live-rehearsal.json`.
+- Actual lab ML rehearsal: 25 training windows, 7 later holdout windows, 1 holdout flagged;
+  new 40-request burst flagged without a request-rule finding. These are tiny controlled
+  measurements, not attack accuracy. Evidence: `logs/live-ml-rehearsal.json`.
+- Earlier custom live flow: about 66 ms to persisted finding locally, 429 for the selected peer,
+  another peer 200, real boundary fix 403, public notice 200, auth sequence linked 11 requests.
+- Full backend checkpoint: **347 passed, 10 skipped** in 298.21 seconds; after the final CERT-In draft evidence integration, **27 focused tests passed**. The only pytest warning was the upstream Starlette/httpx deprecation. Actual HTTP rehearsals are separate from these tests.
+- Frontend production build passed after pulling SHAP; new UI is the backend-served `/lab`
+  console. Browser visual and two-PHYSICAL-PC rehearsal have not been verified here. Native
+  computer/browser automation was unavailable earlier; do not claim visual testing from HTTP.
+- Primary runbook: `docs/INDIA_LIVE_DEMO.md`; custom/ML details: `docs/LIVE_LAB.md`;
+  API/contracts: `docs/API.md`; current audit: `docs/STATUS_REPORT.md`; coverage:
+  `docs/DYNAMIC_FOUNDATION_ROADMAP.md`. Older standalone/replay guides are historical checkpoints.
+- Next: (1) physical two-PC/browser rehearsal; (2) representative baseline/labelled evaluation,
+  false alarms and sensor/context/seasonality calibration; (3) production authentication/tenant
+  separation, independent real host/network sensors, retention/backups/load/deployment hardening; reconcile executed lab-action ledger entries with analyst reporting rather than assuming lifecycle entries list all actions;
+  (4) only then validated forecasts with defined outcomes/horizons and untouched future data.
+- Keep scheduled feeds off in DEMO_MODE; label cache freshness separately from live telemetry.
+  Optional geolocation reader/data is still separate and its warning is not a server crash.
+- Preserve generated scoring blocks below and in `docs/SCORING_AND_AI.md`. Do not change shared
+  fixture field names. Prefer focused tests; run full regression when core integration changes.
+
+---
+
+## Historical team context (retain useful requirements; current status above takes precedence)
+
 ## 1. Situation
 - **Event:** D3COY — 24-hour cybersecurity hackathon. Sponsor & PS author: **C-DAC** (MeitY's R&D arm).
 - **Timeline:** starts ~2:00 PM Sat 31 Oct 2026 → ends ~2:00 PM Sun 1 Nov 2026.

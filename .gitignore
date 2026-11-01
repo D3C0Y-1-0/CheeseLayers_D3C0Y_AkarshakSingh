@@ -52,13 +52,15 @@ coverage/
 # Original collector payloads stay local. Keep backend/data/cache/ for offline demos.
 /backend/data/raw/
 
-# Keep the two reviewable, non-sensitive JSON evidence reports; ignore ad-hoc outputs/models.
+# Keep reviewed JSON evaluation evidence; ignore ad-hoc outputs and model binaries.
 /artifacts/*
 !/artifacts/integration_http.json
 !/artifacts/shadow_evaluation.json
+!/artifacts/shadow_evaluation_real.json
 
 # Logs and temporary files.
 logs/
+/lab/apache/runtime/
 *.log
 npm-debug.log*
 yarn-debug.log*

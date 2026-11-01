@@ -5,6 +5,7 @@ import tempfile
 from pathlib import Path
 
 os.environ["DEMO_MODE"] = "true"
+os.environ["VECTRA_LAB_ENABLED"] = "false"  # live-lab tests opt in explicitly; no background worker in other tests
 os.environ["LLM_ALLOW_CLOUD"] = "false"  # tests never call a real provider, whatever .env says
 os.environ["AI_CACHE_DIR"] = tempfile.mkdtemp()  # never read/write the real AI report cache
 os.environ["CAMPAIGNS_CACHE"] = str(Path(tempfile.mkdtemp()) / "campaigns.json")

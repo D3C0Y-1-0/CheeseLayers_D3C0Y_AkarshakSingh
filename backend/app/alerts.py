@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 
 from .asset_store import get_asset_store
 from .contracts import LifecycleStatus, Priority, Sector, SecurityEvent, ThreatRecord
-from .correlator import AlertRow, CorrelationEngine, EventRow
+from .correlator import AlertRow, CorrelationEngine, EventRow, incident_evidence
 from .database import get_db
 from .models import Threat
 
@@ -88,10 +88,9 @@ def alert_evidence(alert_id: str, request: Request, db: Session = Depends(get_db
             factory(request, alert_id).get_incident_context(alert_id)
         except PermissionError:
             raise HTTPException(403, "evidence access denied") from None
-    records = list(db.scalars(select(EventRow).where(EventRow.event_id.in_(row.data["evidence_ids"]))
-                              .order_by(EventRow.timestamp, EventRow.event_id).limit(101)))
-    return {"alert_id": alert_id, "items": [r.data for r in records[:100]], "limit": 100,
-            "truncated": len(records) > 100}
+    records, truncated = incident_evidence(db, row.data["evidence_ids"])
+    return {"alert_id": alert_id, "items": [r.data for r in records], "limit": 100,
+            "truncated": truncated}
 
 
 @router.post("/api/alerts/{alert_id}/acknowledge", tags=["alerts"],

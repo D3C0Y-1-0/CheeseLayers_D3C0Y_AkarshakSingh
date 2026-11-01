@@ -9,6 +9,7 @@ The output is an outlier score, not an attack probability. SW-ML-001 findings ar
 Trained in memory at first use (a second or so); never pickled. Evaluation: scripts/evaluate_shadow_real.py.
 """
 from functools import lru_cache
+from bisect import bisect_right
 
 CONFIG = {"n_estimators": 200, "contamination": 0.02, "train_fraction": 0.7, "random_state": 42}
 SENSORS = {"secrepo:web": "web", "secrepo:ssh": "ssh"}
@@ -53,16 +54,29 @@ def model(kind: str):
     return m, sorted(m.decision_function(x).tolist()), len(train), train[-1]["minute"]
 
 
-def score_features(kind: str, features: list[float]) -> dict | None:
+def score_many(kind: str, rows: list[list[float]]) -> list[dict | None]:
+    """Score a sensor's windows together; one forest traversal instead of thousands of calls."""
+    if not rows:
+        return []
     fitted = model(kind)
     if fitted is None:
-        return None
+        return [None] * len(rows)
     m, train_scores, n, last = fitted
-    s = float(m.decision_function([features])[0])
-    more_normal = sum(t > s for t in train_scores) / n  # share of training minutes that look MORE normal than this one
-    return {"score": round(s, 4), "flagged": bool(m.predict([features])[0] == -1),
-            "unusual_percentile": round(100 * more_normal, 1), "training_minutes": n, "trained_until": last,
-            "features": dict(zip(FEATURES[kind], [round(f, 3) for f in features]))}
+    scores = m.decision_function(rows)
+    results = []
+    for raw_score, features in zip(scores, rows):
+        s = float(raw_score)
+        # Strictly greater scores are more normal. bisect_right preserves the original tie handling.
+        more_normal = (n - bisect_right(train_scores, s)) / n
+        results.append({"score": round(s, 4), "flagged": s < 0,
+                        "unusual_percentile": round(100 * more_normal, 1), "training_minutes": n,
+                        "trained_until": last,
+                        "features": dict(zip(FEATURES[kind], [round(f, 3) for f in features]))})
+    return results
+
+
+def score_features(kind: str, features: list[float]) -> dict | None:
+    return score_many(kind, [features])[0]
 
 
 def score_event(event) -> dict | None:

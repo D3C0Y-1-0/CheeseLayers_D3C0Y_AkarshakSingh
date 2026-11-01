@@ -678,3 +678,88 @@ Model card: settings, per-sensor training size/period and global importance (mea
 
 UI: Incident page → "Why the ML model flagged this (explainable AI)" (behaviour incidents with an ML finding,
 e.g. Command Center → "Real crawler anomaly (ML)"), with the PDF download.
+# Opt-in live lab (additive)
+
+See [LIVE_LAB.md](LIVE_LAB.md) for the complete two-PC setup and claims/limitations.
+Actual local response examples: [live_lab_state.json](samples/live_lab_state.json).
+HTTP rehearsal evidence: [live_lab_rehearsal.json](samples/live_lab_rehearsal.json).
+`VECTRA_LAB_ENABLED=true` is required. The control listener stays on loopback. Open `GET /lab`
+locally to initialise the lab and obtain the per-process console token. All `/api/lab/*`
+operations require the local TCP peer plus `X-Vectra-Lab-Token`; the token is not a URL query
+parameter. It changes when Vectra restarts. These controls are not production authentication.
+
+| Control endpoint | Contract |
+|---|---|
+| `GET /api/lab/state` | Latest 100 observations/actions, effective portal patch flag, inventory, explicit ML/prediction limits |
+| `GET /api/lab/observations/{event_id}` | Original server-observed lab record and finding, or 404 |
+| `POST /api/lab/reassess/{asset_id}` | Match stored intelligence against current inventory, persist exposure changes, return assessments and explicit CVE-linked CERT-In references |
+| `PUT /api/lab/inventory/{asset_id}` | Body `{software: [...SoftwareItem], reason: string}`; simulated existing assets only; audited inventory observation followed by reassessment; use patch action for running lab asset |
+| `POST /api/lab/actions` | Body `{kind: block\|release\|patch\|rollback, reason, evidence_id?, peer_ip?, ttl_seconds?:60}`. Block requires matching observed finding/peer, TTL 15–300 seconds |
+
+The portal is a **separate FastAPI application**, `app.live_lab:portal_app`, normally on port
+8010. Its only service routes are `GET /`, `GET /document?name=...`, `POST /login`.
+It exposes no Vectra control endpoints. Login JSON is `{username, password}`; the fixed dummy
+account is documented on the portal. Passwords are not logged. Document names are bounded to
+256 characters. Only two entries in a virtual dummy document store are readable; no host file
+access occurs. The response header `X-Vectra-Event-ID` links each handled document/login request
+to its original observation. HTTP 429 means an active peer restriction; HTTP 403 on traversal
+after patching verifies the document boundary. Successful public notices remain HTTP 200.
+
+Inventory responses include `evaluated_at`, `asset`, `assessments`, `limitations`. Assessments
+preserve source, retrieval time, `is_simulated`, CVE (null for the custom lab flaw), match result,
+reason, created/updated alert IDs and matching CERT-In references. Empty newly reported software
+inventory is marked incomplete and requires verification; it does not prove that all software
+was removed. Original curated fixture semantics are preserved. An advisory with no structured
+affected-product configurations cannot establish confirmed unaffected status.
+
+Action responses contain `action` and an optional `exposure` reassessment. State `applied` is
+not `verified`: verification records a subsequent request's evidence ID. Blocks can expire or
+be released; patch verification is invalidated by rollback. These actions affect only the lab
+service. They neither submit incident reports nor change OS firewall rules.
+
+## Frozen live portal ML
+
+These endpoints use the same opt-in/local-token guard. This is a separate sensor/model from
+the historical SecRepo/SHAP endpoints. `/api/lab/state.lab_ml` contains progress/model/window data.
+
+| Endpoint | Contract |
+|---|---|
+| `POST /api/lab/ml/start` | `{reason: string}`; new operator-declared baseline session; preserves old models |
+| `POST /api/lab/ml/freeze` | 409 until 30 eligible complete active windows/four distinct training vectors; freezes earlier-80% model and later-20% baseline holdout |
+| `POST /api/lab/ml/disable` | Stops collection/scoring; does not delete evidence/model history |
+| `POST /api/lab/ml/tick` | Finalises eligible completed windows; also run by the enabled app's one-second worker |
+| `GET /api/lab/ml/windows/{id}` | Window features, request IDs, rule IDs, exclusion reason and measured score/model ID |
+
+Windows are five seconds plus two seconds' finalisation grace. Idle windows are not invented.
+Known rule-positive/restricted windows are excluded from baseline training. Frozen evaluation
+cannot overlap training or straddle freeze time. Flags are low-confidence statistical triage,
+not attack probability or an automatic blocking decision. Model cards include holdout flags,
+training/config/library provenance, fingerprint and feature summaries.
+
+## Owned Apache CVE lab
+
+Setup: [INDIA_LIVE_DEMO.md](INDIA_LIVE_DEMO.md). All controls below require the same local token.
+Docker operations are restricted to the named lab project/services; probes accept no arbitrary URL.
+
+| Endpoint | Contract |
+|---|---|
+| `POST /api/lab/apache/discover` | Register current owned vulnerable/comparison targets; return verified inventory and actual exposure assessments |
+| `POST /api/lab/apache/register` | `{container_id: full 64-character hex ID}`; verify lab labels, confinement, image digest and actual `httpd -v` |
+| `POST /api/lab/apache/logs` | `{container_id, lines: string[<=200]}` from independent collector; strict original access-record parsing, duplicate IDs, explicit rejects and central correlation result |
+| `GET /api/lab/apache/state` | Registrations, latest 30 parsed observations, current district route, preventive warning and replacement action ledger |
+| `GET /api/lab/apache/observations/{id}` | Parsed source record, request ID, hashes, observed version/status and CVE applicability |
+| `POST /api/lab/apache/probe` | `{target?: district_service\|fixed_comparison, request?: public_notice\|dummy_traversal}`; actual bounded HTTP request to the owned Docker binding; returns observed status/markers/generated request ID |
+| `POST /api/lab/apache/patch` | `{action: patch\|rollback, reason}`; validated relay reload to an actually verified backend, logical-service inventory change and exposure reassessment |
+| `POST /api/lab/apache/verify/{action_id}` | Repeats actual notice/traversal requests; verifies only if the requested effect and public-service availability are observed |
+
+Registration preserves a version snapshot for old records; a new inventory version does not
+rewrite earlier evidence. The relay overwrites route/request-ID/observed-peer headers and strips
+untrusted forwarding headers. Docker/proxy NAT can obscure source identity. Successful HTTP
+status/byte count alone does not prove disclosure; the controlled probe checks the dummy marker
+independently. A fixed-target attempt is a candidate pattern, not confirmed affected software.
+
+Inventory reassessment now includes `assessment_status`; conflicting/stale CPEs return 422.
+Live service inventory cannot be manually overwritten through the simulated inventory editor.
+Incident evidence/investigation/draft selections preserve recent findings before the bounded
+100-record limit. Indian report drafts include verified live CVE applicability, request IDs
+and detector explanations; they remain analyst-review drafts and are never submitted.

@@ -5,6 +5,49 @@ from sqlalchemy.orm import Mapped, mapped_column
 from .database import Base, UTCDateTime
 
 
+class InventoryOverride(Base):
+    """Operator-observed inventory; fixtures remain the immutable starting inventory."""
+    __tablename__ = "inventory_overrides"
+    asset_id: Mapped[str] = mapped_column(String, primary_key=True)
+    data: Mapped[dict] = mapped_column(JSON)
+
+
+class LabObservation(Base):
+    __tablename__ = "lab_observations"
+    event_id: Mapped[str] = mapped_column(String, primary_key=True)
+    at: Mapped[object] = mapped_column(UTCDateTime, index=True)
+    data: Mapped[dict] = mapped_column(JSON)
+
+
+class LabSetting(Base):
+    __tablename__ = "lab_settings"
+    key: Mapped[str] = mapped_column(String, primary_key=True)
+    data: Mapped[dict] = mapped_column(JSON)
+
+
+class LabAction(Base):
+    __tablename__ = "lab_actions"
+    action_id: Mapped[str] = mapped_column(String, primary_key=True)
+    at: Mapped[object] = mapped_column(UTCDateTime, index=True)
+    data: Mapped[dict] = mapped_column(JSON)
+
+
+class LabMLWindow(Base):
+    __tablename__ = "lab_ml_windows"
+    window_id: Mapped[str] = mapped_column(String, primary_key=True)
+    session_id: Mapped[str] = mapped_column(String, index=True)
+    start_at: Mapped[object] = mapped_column(UTCDateTime, index=True)
+    end_at: Mapped[object] = mapped_column(UTCDateTime, index=True)
+    data: Mapped[dict] = mapped_column(JSON)
+
+
+class ApacheObservation(Base):
+    __tablename__ = "apache_lab_observations"
+    event_id: Mapped[str] = mapped_column(String, primary_key=True)
+    at: Mapped[object] = mapped_column(UTCDateTime, index=True)
+    data: Mapped[dict] = mapped_column(JSON)
+
+
 class RawPayload(Base):
     """One untouched response file under backend/data/raw/ (or a fixture file). Proves where a record came from."""
     __tablename__ = "raw_payloads"

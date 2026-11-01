@@ -57,6 +57,13 @@ def test_isolation_forest_catches_what_the_rules_miss(scenario):
     assert a["priority"] in ("low", "medium") and a["title"].startswith("Statistical anomaly (Isolation Forest)")
 
 
+def test_replay_after_restart_does_not_collide_with_stored_events():
+    first = inject("real_ssh_bruteforce")
+    client.app.state.shadow_demo_adapter.__init__()  # server restart: in-memory runs gone, stored events kept
+    again = inject("real_ssh_bruteforce")
+    assert again["alert_ids"] and {e["event_id"] for e in again["evidence"]}.isdisjoint(e["event_id"] for e in first["evidence"])
+
+
 def test_model_is_trained_on_earlier_minutes_only():
     for kind in ("web", "ssh"):
         train, test = ml.split(kind)

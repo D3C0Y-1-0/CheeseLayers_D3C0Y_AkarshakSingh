@@ -71,11 +71,16 @@ class DemoAdapter:
                     result = DemoResult.model_validate({**result.model_dump(), "alert_ids": alert_ids, "handoff_status": "delivered"})
                     self._runs[incident_id] = (ctx, result)
                 return result
+            event_key = key
             if request.scenario in real.SCENARIOS:  # real SecRepo windows, replayed against our asset
                 from datetime import datetime, timezone
-                selected = real.events(request.scenario, datetime.now(timezone.utc).isoformat())
+                anchor = datetime.now(timezone.utc).isoformat()
+                selected = real.events(request.scenario, anchor)
                 if not selected:
                     raise ValueError("no real SecRepo windows cached for this scenario")
+                # Timestamps follow the replay time, so event IDs must too: after a restart the same
+                # run_id would otherwise reuse stored IDs with different timestamps (a conflict).
+                event_key = hashlib.sha256(f"{key}|{anchor}".encode()).hexdigest()[:24]
             else:
                 manifest = json.loads((ROOT / "data/fixtures/demo_scenarios.json").read_text(encoding="utf-8"))
                 records = json.loads((ROOT / "data/fixtures/events_shadow.json").read_text(encoding="utf-8"))
@@ -84,7 +89,7 @@ class DemoAdapter:
                 if {r["event_id"] for r in selected} != wanted or len(selected) != len(wanted):
                     raise ValueError("scenario manifest has missing or duplicate evidence")
             for raw in selected:
-                raw["event_id"] = key + ":" + raw["event_id"]
+                raw["event_id"] = event_key + ":" + raw["event_id"]
             events = normalize_events(selected)
             if not events or not all(e.is_simulated for e in events):
                 raise ValueError("demo fixtures must contain only simulated events")

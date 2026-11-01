@@ -1,0 +1,14 @@
+.git
+**/.venv
+**/venv
+**/node_modules
+**/__pycache__
+**/.pytest_cache
+frontend/dist
+backend/data/raw
+backend/data/vectra.db*
+backend/data/geo
+.env
+.env.*
+artifacts
+.remember

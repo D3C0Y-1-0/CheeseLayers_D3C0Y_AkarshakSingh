@@ -21,7 +21,7 @@
   "test_normal_count": 142,
   "test_suspicious_count": 8,
   "train_test_overlap": [],
-  "fit_latency_ms": 114.79909997433424,
+  "fit_latency_ms": 37.94433397706598,
   "rules_only": {
     "true_positives": 8,
     "false_positives": 0,
@@ -31,7 +31,7 @@
     "recall": 1.0,
     "false_positive_rate": 0.0,
     "false_positive_denominator": 142,
-    "batch_latency_ms": 0.03890006337314844
+    "batch_latency_ms": 0.010584015399217606
   },
   "rules_plus_isolation_forest": {
     "true_positives": 8,
@@ -42,7 +42,7 @@
     "recall": 1.0,
     "false_positive_rate": 0.028169014084507043,
     "false_positive_denominator": 142,
-    "batch_latency_ms": 6.834800005890429
+    "batch_latency_ms": 2.284749993123114
   },
   "model_saved": false,
   "live_model_enabled": false,

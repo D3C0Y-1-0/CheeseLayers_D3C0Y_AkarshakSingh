@@ -1,0 +1,22 @@
+{
+ "key": "707fb392fda810fdae2329824714e532d4fd929cb353619cba21fb3859d8d2e7",
+ "kind": "investigation",
+ "lang": "en",
+ "model": "openai/gpt-oss-20b",
+ "created_at": "2026-11-01T06:33:11.013454+00:00",
+ "narrative": {
+  "summary": "Two http_window events on asset HLT-WEB-01 at 2016-12-24T17:33:00Z were flagged by detector SW-ML-001 (iforest-v1) as statistical anomalies. The events (evidence IDs e61fbdb5a952c76b8f8cea56:SR-WEB-20161224T1733 and eb0e309fba6ae5bf44609449:SR-WEB-20161224T1733) had 51 requests per minute, 90.2% 4xx responses, 1 unique client, and 0 failed authentications. The outlier score was -0.0755, ranking above 99.8% of 4477 training minutes. No CVE linkage was identified.",
+  "why_relevant": "The stored observations are flagged as statistical outliers and warrant analyst review. Temporal proximity alone does not confirm causality. The anomaly detection provides a lead for further investigation.",
+  "recommended_actions": [
+   "Review the stored source evidence and validate sensor coverage",
+   "Review application request logs and compare the HTTP window with the normal baseline",
+   "Read the raw log lines for the flagged minute: a statistical outlier is a lead for review, not evidence of compromise"
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 4,
+  "rejected_tokens": [],
+  "note": "All 4 identifiers/versions/URLs found in the supplied input; no unsupported claims or commands."
+ }
+}

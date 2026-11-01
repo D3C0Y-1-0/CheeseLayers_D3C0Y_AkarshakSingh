@@ -32,6 +32,13 @@ SIGNALS = {
     "critical_max_age_days": 14,  # only CVEs NVD published recently count as "new" criticals (no backfill noise)
 }
 TYPES = ("new_kev", "epss_jump", "new_public_exploit", "new_certin_advisory", "new_critical_cve")
+TYPES += ("new_cve", "threat_updated")
+MATERIAL_FIELDS = ("title", "description", "cvss", "cvss_version", "severity", "epss", "kev_listed",
+                   "public_exploit", "affected_configurations", "references", "cve_ids")
+
+
+def material(record):
+    return {k: record.get(k) for k in MATERIAL_FIELDS}
 
 
 @dataclass
@@ -39,6 +46,7 @@ class State:
     """What the DB held before this ingest."""
     threats: dict[str, tuple] = field(default_factory=dict)  # threat_id -> (kev_listed, epss, cvss)
     evidence: dict[str, tuple] = field(default_factory=dict)  # cve -> (exploitdb, github_poc_ok, github_poc_listed)
+    material: dict[str, dict] = field(default_factory=dict)
 
 
 def snapshot(s) -> State:
@@ -46,6 +54,7 @@ def snapshot(s) -> State:
         threats={tid: (k, e, c) for tid, k, e, c in s.execute(select(Threat.threat_id, Threat.kev_listed, Threat.epss, Threat.cvss))},
         evidence={c: (x, g, l) for c, x, g, l in s.execute(select(ExploitEvidence.cve_id, ExploitEvidence.exploitdb,
                                                                   ExploitEvidence.github_poc_ok, ExploitEvidence.github_poc_listed))},
+        material={r.threat_id: material({k: getattr(r, k) for k in MATERIAL_FIELDS}) for r in s.scalars(select(Threat))},
     )
 
 
@@ -112,6 +121,19 @@ def detect(old: State, items: list[ThreatItem], evidence: dict[str, dict], now: 
                 out.append(make(cve, "new_public_exploit", None, {"source": "github_poc", "repo": ev["github_poc_repo"]},
                                 "github_poc", {"source": "github_poc", "repo": ev["github_poc_repo"],
                                                "created_at": ev["github_poc_date"], "quality_filtered": True}, now))
+    specialised = {x["threat_id"] for x in out}
+    for t in items:
+        if t.threat_id in specialised:
+            continue
+        before = old.material.get(t.threat_id)
+        after = material(t.model_dump(mode="json"))
+        if before is not None and before != after:
+            changed = [k for k in MATERIAL_FIELDS if before.get(k) != after.get(k)]
+            out.append(make(t.threat_id, "threat_updated", before, after, t.source,
+                {"changed_fields": changed, "cve_ids": t.cve_ids, "note": "Material stored intelligence revision, not an attack."}, now, t.is_simulated))
+        elif t.cve_id and t.threat_id not in old.threats:
+            out.append(make(t.threat_id, "new_cve", None, after, t.source,
+                {"cve_id": t.cve_id, "note": "New to this database; publication may be historical."}, now, t.is_simulated))
     return out
 
 

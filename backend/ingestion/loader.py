@@ -88,6 +88,13 @@ def load(detect: bool = False) -> dict[str, int]:
     init_db()
     threats = [ThreatItem.model_validate(r) for r in json.loads((CACHE / "threat_items.json").read_text())]
     threats += synthetic_threats()
+    from app.case_intelligence import reviewed_items
+    # Explicit verified primary snapshots take precedence over older merged records.
+    reviewed = reviewed_items()
+    if reviewed:
+        by_id = {t.threat_id: t for t in threats}
+        by_id.update({t.threat_id: t for t in reviewed})
+        threats = list(by_id.values())
     iocs = [IOC.model_validate(r) for r in json.loads((CACHE / "iocs.json").read_text())]
     evidence = evidence_rows({t.cve_id for t in threats if t.cve_id})
     with SessionLocal.begin() as s:

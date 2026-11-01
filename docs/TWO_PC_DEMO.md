@@ -65,12 +65,19 @@ records. It is not aimed at any real system.
 
 Start state: portal **vulnerable**, no block on the attacker IP.
 
+0. **Early warning (before any attack).** Defender: in section 1 of the console,
+   reassess the portal asset `LAB-GOV-WEB-01`. The app already flags it as exposed
+   to the known lab weakness — this is the *proactive* step: our own system warns
+   about the exposure before anyone touches it.
 1. **Baseline.** Attacker: `demo-attacker.ps1 -Target <IP> -Phase benign`
    (or browse `/document?name=notice.txt`). Defender: one row, *No finding*,
    showing the attacker's real IP.
-2. **Attack.** Attacker: `-Phase traversal`. Portal returns the dummy internal
-   record (HTTP 200). Defender: new row **LIVE-WEB-001 Path traversal attempt**
-   from that IP. Click **Inspect** to show the evidence.
+2. **Attack → the architecture runs.** Attacker: `-Phase traversal`. Portal
+   returns the dummy internal record (HTTP 200). On the defender the full chain
+   fires at once: the sensor **detects** (**LIVE-WEB-001 Path traversal attempt**
+   from that IP) → the **correlator** turns it into a scored **incident** →
+   it appears on the **dashboard** `/app` with a priority, a score breakdown, the
+   cited evidence, and a recommended action. Open the alert to show that chain.
 3. **Brute force (optional).** Attacker: `-Phase bruteforce`. Defender:
    **LIVE-AUTH-001 Login failure burst** from the same IP.
 4. **Respond — block.** Defender: select the detected row, **Temporarily block

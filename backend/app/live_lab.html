@@ -1,52 +1,124 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vectra — live lab control</title><style>
-body{background:#101827;color:#e4edf7;font:16px system-ui;margin:24px;max-width:1300px}h1,h2{color:#77dfcf}
-section{border:1px solid #3d5069;padding:18px;margin:18px 0;border-radius:10px}button,input,select,textarea{font:inherit;padding:8px;margin:4px;background:#1e3048;color:white;border:1px solid #66819e;border-radius:5px}button{cursor:pointer}textarea{width:90%;height:100px}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:340px;overflow:auto}td,th{padding:8px;text-align:left;border-bottom:1px solid #3d5069}table{width:100%}.muted{color:#a8bdd3}a{color:#77dfcf}
-</style><h1>Vectra: observe → assess → respond → verify</h1>
-<p>Fictional Indian district citizen services. Actual lab requests and enforced responses; all records and target assets are simulated.</p>
-<p><a href="/app">Main dashboard</a> · <a href="/docs">API contracts</a> · <a href="/api/insights/india">India intelligence</a></p>
-<p class="muted">Control plane is local only. Start the separate portal listener on port 8010. The live portal is a custom service, not a published CVE exploit.</p>
+:root{--bg:#0b1220;--card:#121c2e;--line:#27384f;--ink:#e4edf7;--muted:#95abc4;--teal:#77dfcf;--red:#ff6b6b;--amber:#f5b544;--green:#5ad18b;--blue:#5aa9ff}
+*{box-sizing:border-box}
+body{background:radial-gradient(1200px 600px at 20% -10%,#15233c,transparent),var(--bg);color:var(--ink);font:15px/1.5 system-ui,"Segoe UI",Roboto,sans-serif;margin:0;padding:24px;max-width:1200px;margin-inline:auto}
+h1{font-size:23px;margin:0 0 4px;color:#fff}
+h1 .arrows{color:var(--teal);font-weight:600}
+h2{font-size:17px;color:var(--teal);margin:0 0 10px}
+h2 .n{display:inline-block;min-width:24px;height:24px;line-height:24px;text-align:center;background:rgba(119,223,207,.14);border:1px solid rgba(119,223,207,.35);border-radius:7px;color:var(--teal);font-size:13px;margin-right:8px}
+.sub{color:var(--muted);margin:0 0 4px}
+a{color:var(--teal)}
+section{background:linear-gradient(180deg,var(--card),#0f1826);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
+section.respond{border-color:#3a5a7a;box-shadow:0 0 0 1px rgba(90,169,255,.15)}
+.strip{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 20px}
+.pill{padding:7px 13px;border-radius:999px;font-size:13px;font-weight:600;border:1px solid var(--line);background:#0e1826}
+.pill.ok{color:var(--green);border-color:rgba(90,209,139,.4);background:rgba(90,209,139,.08)}
+.pill.bad{color:var(--red);border-color:rgba(255,107,107,.4);background:rgba(255,107,107,.08)}
+.pill.warn{color:var(--amber);border-color:rgba(245,181,68,.4);background:rgba(245,181,68,.08)}
+.pill.muted{color:var(--muted)}
+button{cursor:pointer;font:inherit;font-weight:600;padding:9px 14px;margin:4px 6px 4px 0;background:#1b2b42;color:#fff;border:1px solid #33485f;border-radius:8px;transition:.12s}
+button:hover{background:#223a57;border-color:#4a6686}
+button.mini{padding:5px 11px;font-size:12px;font-weight:500}
+button.primary{background:linear-gradient(180deg,#1f7a6b,#15594e);border-color:#2a9e8a}
+button.danger{background:linear-gradient(180deg,#9c3d3d,#7a2a2a);border-color:#c05a5a}
+input,select,textarea{font:inherit;padding:9px;margin:4px 6px 4px 0;background:#0e1826;color:#fff;border:1px solid #33485f;border-radius:8px}
+textarea{width:100%;height:120px;font-family:ui-monospace,Consolas,monospace;font-size:13px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:300px;overflow:auto;background:#0a111d;border:1px solid var(--line);border-radius:10px;padding:12px;font:13px/1.45 ui-monospace,Consolas,monospace;color:#cfe0f2}
+.muted{color:var(--muted)}
+.flow{color:var(--muted);font-size:13px;margin:2px 0 16px}
+.flow b{color:var(--teal)}
+.statusline{display:inline-block;font-weight:700;padding:6px 12px;border-radius:8px;margin:4px 0}
+.statusline.ok{color:var(--green);background:rgba(90,209,139,.1)}
+.statusline.bad{color:var(--red);background:rgba(255,107,107,.1)}
+.tablewrap{max-height:300px;overflow:auto;border:1px solid var(--line);border-radius:10px;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:var(--muted);font-weight:600;padding:9px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#0f1826}
+td{padding:8px 9px;border-bottom:1px solid #1b2a3d}
+tr.hit td{background:rgba(255,107,107,.06)}
+tr.hit td.find{color:var(--red);font-weight:700}
+tr.sel td{background:rgba(90,169,255,.14)}
+td.peer{font-family:ui-monospace,Consolas,monospace;color:var(--teal)}
+td.st.ok{color:var(--green)}td.st.warn{color:var(--amber)}td.st.bad{color:var(--red)}
+td.muted{color:var(--muted)}
+.selbar{padding:10px 13px;border-radius:8px;font-weight:600;font-size:13px;margin:10px 0}
+.selbar.ok{color:var(--green);background:rgba(90,209,139,.1);border:1px solid rgba(90,209,139,.3)}
+.selbar.warn{color:var(--amber);background:rgba(245,181,68,.1);border:1px solid rgba(245,181,68,.3)}
+.note{color:var(--muted);font-size:13px;margin:8px 0}
+#message{min-height:20px;color:var(--amber);font-weight:600;margin:8px 0}
+.row2{display:flex;flex-wrap:wrap;gap:16px}.row2>div{flex:1;min-width:320px}
+</style></head><body>
+<h1>Vectra live lab <span class="arrows">· observe → assess → respond → verify</span></h1>
+<p class="sub">Fictional Indian district citizen services. Actual lab requests and enforced responses; all records and target assets are simulated.</p>
+<p class="sub"><a href="/app">Main dashboard</a> · <a href="/docs">API contracts</a> · <a href="/api/insights/india">India intelligence</a> · <span class="muted">control plane is local only; portal listens on :8010</span></p>
+
+<div class="strip" id="strip">
+<span class="pill muted" id="sbMode">portal…</span>
+<span class="pill muted" id="sbApache">apache…</span>
+<span class="pill muted" id="sbBlocks">blocks…</span>
+<span class="pill muted" id="sbThreat">threat…</span>
+<span class="pill muted" id="sbMl">ml…</span>
+</div>
 <p id="message" role="status"></p>
-<section><h2>1. Preventive exposure: known intelligence × current inventory</h2>
-<p>Select any asset. Reassessment checks its installed products against stored intelligence and links matching CERT-In advisory references when available.</p>
-<select id="asset"></select><button id="assess">Reassess exposure now</button>
-<p>Software inventory observation (JSON). Updating it records an audit entry and immediately reassesses exposure. This does not patch software. Use the response controls below for the running lab.</p>
+
+<section><h2><span class="n">1</span>Preventive exposure: known intelligence × current inventory</h2>
+<p class="note">Select any asset. Reassessment checks its installed products against stored intelligence and links matching CERT-In advisory references when available.</p>
+<select id="asset"></select><button id="assess" class="primary">Reassess exposure now</button>
+<p class="note">Software inventory observation (JSON). Updating it records an audit entry and immediately reassesses exposure. This does not patch software; use the response controls below for the running lab.</p>
 <textarea id="software" aria-label="Observed software JSON"></textarea><br><input id="inventoryReason" placeholder="Reason / observation source" size="45"><button id="inventory">Record inventory change</button>
 <pre id="exposure">No assessment requested yet.</pre></section>
-<section><h2>Live Indian district-service demonstration: CVE-2021-41773</h2>
-<p>Fictional Indian district citizen services, synthetic records. Reference: <a href="https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2021-0039&amp;pageid=PUBVLNOTES02" target="_blank" rel="noreferrer">CERT-In CIAD-2021-0039</a>. This is a real isolated Apache version comparison, not the custom portal weakness.</p>
-<p>Discover before sending the attack to show preventive exposure. The collector imports actual Apache logs. Replacing the backend changes the running district endpoint; verification sends the same request again. Forecast timing/probability is not estimated.</p>
-<button id="apacheDiscover">Discover owned targets / warn</button><button id="apachePublic">Send ordinary live request</button><button id="apacheAttack">Send live dummy-record traversal</button>
-<button id="apachePatch">Replace with fixed Apache</button><button id="apacheVerify">Verify latest replacement</button><button id="apacheRollback">Restore vulnerable lab backend</button>
-<p id="apacheRoute"></p><pre id="apacheWarning"></pre><pre id="apacheResult"></pre><pre id="apacheEvidence"></pre></section>
+
+<section><h2>Live Indian district-service demonstration — real CVE-2021-41773</h2>
+<p class="note">Synthetic records. Reference: <a href="https://www.cert-in.org.in/s2cMainServlet?VLCODE=CIAD-2021-0039&amp;pageid=PUBVLNOTES02" target="_blank" rel="noreferrer">CERT-In CIAD-2021-0039</a>. A real isolated Apache version comparison, not the custom portal weakness.</p>
+<p class="flow">Flow: <b>Discover / warn</b> → <b>ordinary request</b> → <b>traversal attack</b> → <b>replace with fixed Apache</b> → <b>verify</b>. Forecast timing/probability is not estimated.</p>
+<p id="apacheRoute" class="statusline"></p>
+<div><button id="apacheDiscover" class="primary">Discover owned targets / warn</button><button id="apachePublic">Send ordinary live request</button><button id="apacheAttack" class="danger">Send live dummy-record traversal</button>
+<button id="apachePatch" class="primary">Replace with fixed Apache</button><button id="apacheVerify">Verify latest replacement</button><button id="apacheRollback">Restore vulnerable lab backend</button></div>
+<div class="row2"><div><p class="note">Pre-attack exposure warning</p><pre id="apacheWarning"></pre></div><div><p class="note">Last action result</p><pre id="apacheResult"></pre></div></div>
+<p class="note">Independent collector evidence &amp; action ledger</p><pre id="apacheEvidence"></pre></section>
+
 <section><h2>Lab-specific machine learning</h2>
-<p>Start collection, generate varied ordinary portal traffic, then freeze. At least 30 complete active five-second windows are required. Earlier 80% trains the forest; later 20% is a chronological holdout. Known rule-positive and restricted windows are excluded from the baseline. This is operator-declared ordinary traffic, not independent ground truth.</p>
+<p class="note">Start collection, generate varied ordinary portal traffic, then freeze. At least 30 complete active five-second windows are required. Earlier 80% trains the forest; later 20% is a chronological holdout. Known rule-positive and restricted windows are excluded from the baseline. Operator-declared ordinary traffic, not independent ground truth.</p>
 <input id="baselineReason" size="50" value="Operator-declared ordinary lab service traffic">
-<button id="mlStart">Start a new baseline</button><button id="mlFreeze">Freeze and enable lab ML</button><button id="mlDisable">Disable lab ML</button>
+<button id="mlStart" class="primary">Start a new baseline</button><button id="mlFreeze">Freeze and enable lab ML</button><button id="mlDisable">Disable lab ML</button>
 <pre id="mlSummary"></pre><pre id="mlWindows"></pre></section>
-<section><h2>2. Live observed activity</h2><p id="mode"></p>
-<p>The peer IP is the service's TCP peer. Forwarded headers are not trusted. NAT/proxies can hide the original source; this does not identify a person or country.</p>
-<table><thead><tr><th>Observed (IST)</th><th>Peer</th><th>Request</th><th>Status</th><th>Deterministic finding</th><th>Select</th></tr></thead><tbody id="observations"></tbody></table>
+
+<section><h2><span class="n">2</span>Live observed activity</h2>
+<p id="mode" class="note"></p>
+<p class="note">The peer IP is the service's TCP peer. Forwarded headers are not trusted. NAT/proxies can hide the original source; this does not identify a person or country. <b style="color:var(--red)">Red rows are detections.</b> Click <b>Inspect</b> to select a row for the response actions below.</p>
+<div class="tablewrap"><table><thead><tr><th>Observed (IST)</th><th>Peer</th><th>Request</th><th>Status</th><th>Deterministic finding</th><th>Select</th></tr></thead><tbody id="observations"></tbody></table></div>
 <pre id="evidence">Select an observation to inspect its evidence.</pre></section>
-<section><h2>3. Analyst-approved lab response</h2><p id="portal"></p>
-<input id="reason" placeholder="Action reason" size="45" value="Judge demonstration in our isolated lab">
-<input id="ttl" type="number" min="15" max="300" value="60" aria-label="Block TTL in seconds">
-<button id="block">Temporarily block selected peer</button><button id="release">Release selected peer</button><br>
-<button id="patch">Apply document boundary fix</button><button id="rollback">Roll back lab fix</button>
-<p>Block enforcement affects this portal only. A patch changes the actual document boundary and its inventory version. Verification requires a subsequent request: 429 for a block, or 403 for a traversal after the fix. Inventory exposure and observed exploitation remain distinct.</p>
+
+<section class="respond"><h2><span class="n">3</span>Analyst-approved response</h2>
+<p id="portal" class="statusline"></p>
+<div class="selbar warn" id="selectedPeer">No row selected — click Inspect on a flagged row first</div>
+<input id="reason" placeholder="Action reason" size="40" value="Judge demonstration in our isolated lab">
+<input id="ttl" type="number" min="15" max="300" value="60" aria-label="Block TTL in seconds" title="Block duration (seconds)">
+<button id="block" class="danger">Temporarily block selected peer</button><button id="release">Release selected peer</button>
+<button id="patch" class="primary">Apply document boundary fix</button><button id="rollback">Roll back lab fix</button>
+<p class="note">Block enforcement affects this portal only. A patch changes the actual document boundary and its inventory version. Verification requires a subsequent request: 429 for a block, or 403 for a traversal after the fix. Inventory exposure and observed exploitation remain distinct.</p>
 <pre id="actions"></pre></section>
 <script>
 const token='__TOKEN__';let snapshot=null,selected=null;
 const el=id=>document.getElementById(id);
 async function api(path,method='GET',body){const r=await fetch(path,{method,headers:{'X-Vectra-Lab-Token':token,'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});const d=await r.json();if(!r.ok)throw Error(JSON.stringify(d));return d;}
 function show(id,value){el(id).textContent=typeof value==='string'?value:JSON.stringify(value,null,2);}
+function pill(id,text,cls){const e=el(id);if(e){e.textContent=text;e.className='pill '+cls;}}
+function statusClass(s){return s>=500?'bad':(s>=400?'warn':'ok');}
+function updateSelected(){const e=el('selectedPeer');if(!e)return;if(selected){const ok=!!selected.finding;e.textContent=(ok?'✓ ':'⚠ ')+'Selected: '+selected.peer_ip+(ok?' (has finding — ready to block)':' (no finding — pick a red row to block)');e.className='selbar '+(ok?'ok':'warn');}else{e.textContent='No row selected — click Inspect on a red (flagged) row first';e.className='selbar warn';}}
 function inventory(){const a=snapshot?.assets.find(x=>x.asset_id===el('asset').value);if(a)el('software').value=JSON.stringify(a.software,null,2);}
 let latestApacheAction=null;
 async function refresh(){try{snapshot=await api('/api/lab/state');if(Array.from(el('asset').options).map(x=>x.value).join('|')!==snapshot.assets.map(x=>x.asset_id).join('|')){const previous=el('asset').value;el('asset').replaceChildren();for(const a of snapshot.assets){const o=document.createElement('option');o.value=a.asset_id;o.textContent=a.asset_id+' — '+a.organisation;el('asset').append(o);}el('asset').value=snapshot.assets.some(x=>x.asset_id===previous)?previous:'LAB-GOV-WEB-01';inventory();}
-show('mode',snapshot.ml_status+' '+snapshot.prediction_status);show('portal',snapshot.portal.patched?'Document boundary: PATCHED (1.1.0)':'Document boundary: VULNERABLE LAB MODE (1.0.0)');show('actions',snapshot.actions);
-if(snapshot.lab_ml){const m=snapshot.lab_ml;show('mlSummary',{state:m.state,eligible_baseline_windows:m.eligible_baseline_windows,minimum:m.minimum_baseline_windows,model:m.model,limitations:m.limitations});show('mlWindows',m.windows);}
-const apache=await api('/api/lab/apache/state');show('apacheRoute','District endpoint currently routes to: '+apache.route.target+' backend');show('apacheWarning',apache.pre_attack_warning||'Discover the owned targets to compute exposure before the attack.');show('apacheEvidence',{observations:apache.observations.map(o=>({...o,observed_ist:new Date(o.observed_at).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})})),actions:apache.actions});if(apache.actions.length)latestApacheAction=apache.actions.find(a=>a.state!=='superseded')?.action_id||null;
-el('observations').replaceChildren();for(const o of snapshot.observations){const row=document.createElement('tr');const values=[new Date(o.at).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),o.peer_ip+':'+o.peer_port,o.kind==='document'?o.name:'login '+o.username,o.status,o.finding?.label||'No finding'];for(const v of values){const td=document.createElement('td');td.textContent=v;row.append(td);}const td=document.createElement('td'),b=document.createElement('button');b.textContent='Inspect';b.onclick=()=>{selected=o;show('evidence',o)};td.append(b);row.append(td);el('observations').append(row);}
+show('mode',snapshot.ml_status+' '+snapshot.prediction_status);
+const patched=snapshot.portal.patched;show('portal',patched?'Document boundary: PATCHED (1.1.0)':'Document boundary: VULNERABLE LAB MODE (1.0.0)');el('portal').className='statusline '+(patched?'ok':'bad');
+show('actions',snapshot.actions);
+pill('sbMode',patched?'PORTAL: PATCHED':'PORTAL: VULNERABLE',patched?'ok':'bad');
+const now=Date.now();const blocks=snapshot.actions.filter(a=>a.kind==='block'&&(a.state==='applied'||a.state==='verified')&&(!a.expires_at||new Date(a.expires_at).getTime()>now));pill('sbBlocks',blocks.length?('BLOCKED: '+[...new Set(blocks.map(b=>b.peer_ip))].join(', ')):'No active block',blocks.length?'ok':'muted');
+const hit=snapshot.observations.find(o=>o.finding);pill('sbThreat',hit?('THREAT: '+hit.finding.label+' · '+hit.peer_ip):'No detections yet',hit?'bad':'muted');
+if(snapshot.lab_ml){const m=snapshot.lab_ml;show('mlSummary',{state:m.state,eligible_baseline_windows:m.eligible_baseline_windows,minimum:m.minimum_baseline_windows,model:m.model,limitations:m.limitations});show('mlWindows',m.windows);pill('sbMl','ML: '+(m.state||'off'),m.state==='frozen'?'ok':'muted');}
+const apache=await api('/api/lab/apache/state');show('apacheRoute','District endpoint currently routes to: '+apache.route.target+' backend');el('apacheRoute').className='statusline '+(apache.route.target==='patched'?'ok':'bad');show('apacheWarning',apache.pre_attack_warning||'Discover the owned targets to compute exposure before the attack.');show('apacheEvidence',{observations:apache.observations.map(o=>({...o,observed_ist:new Date(o.observed_at).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})})),actions:apache.actions});if(apache.actions.length)latestApacheAction=apache.actions.find(a=>a.state!=='superseded')?.action_id||null;pill('sbApache','APACHE: '+String(apache.route.target).toUpperCase(),apache.route.target==='patched'?'ok':'bad');
+el('observations').replaceChildren();for(const o of snapshot.observations){const row=document.createElement('tr');if(o.finding)row.className='hit';if(selected&&selected.event_id===o.event_id)row.classList.add('sel');const cells=[['',new Date(o.at).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})],['peer',o.peer_ip+':'+o.peer_port],['',o.kind==='document'?o.name:'login '+o.username],['st '+statusClass(o.status),String(o.status)],[o.finding?'find':'muted',o.finding?.label||'No finding']];for(const [cls,v] of cells){const td=document.createElement('td');td.textContent=v;if(cls)td.className=cls;row.append(td);}const td=document.createElement('td'),b=document.createElement('button');b.textContent='Inspect';b.className='mini';b.onclick=()=>{selected=o;show('evidence',o);updateSelected();};td.append(b);row.append(td);el('observations').append(row);}
+updateSelected();
 }catch(e){show('message',e.message)}}
 async function run(fn){try{show('message','Working…');await fn();await refresh();show('message','Completed. See evidence / action state below.')}catch(e){show('message',e.message)}}
 el('asset').onchange=inventory;
@@ -60,6 +132,6 @@ el('mlFreeze').onclick=()=>run(()=>api('/api/lab/ml/freeze','POST'));
 el('mlDisable').onclick=()=>run(()=>api('/api/lab/ml/disable','POST'));
 el('assess').onclick=()=>run(async()=>show('exposure',await api('/api/lab/reassess/'+encodeURIComponent(el('asset').value),'POST')));
 el('inventory').onclick=()=>run(async()=>show('exposure',await api('/api/lab/inventory/'+encodeURIComponent(el('asset').value),'PUT',{software:JSON.parse(el('software').value),reason:el('inventoryReason').value})));
-for(const kind of ['block','release','patch','rollback'])el(kind).onclick=()=>run(async()=>{if(['block','release'].includes(kind)&&!selected)throw Error('Select a live observation first.');const body={kind,reason:el('reason').value,ttl_seconds:Number(el('ttl').value)};if(['block','release'].includes(kind)){body.peer_ip=selected.peer_ip;body.evidence_id=selected.event_id;}const d=await api('/api/lab/actions','POST',body);if(d.exposure)show('exposure',d.exposure);});
+for(const kind of ['block','release','patch','rollback'])el(kind).onclick=()=>run(async()=>{if(['block','release'].includes(kind)&&!selected)throw Error('Select a live observation first (click Inspect on a flagged row).');const body={kind,reason:el('reason').value,ttl_seconds:Number(el('ttl').value)};if(['block','release'].includes(kind)){body.peer_ip=selected.peer_ip;body.evidence_id=selected.event_id;}const d=await api('/api/lab/actions','POST',body);if(d.exposure)show('exposure',d.exposure);});
 refresh();setInterval(refresh,2000);
-</script></html>
+</script></body></html>

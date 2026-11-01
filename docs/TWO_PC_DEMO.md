@@ -90,6 +90,59 @@ Start state: portal **vulnerable**, no block on the attacker IP.
    warn → Send ordinary request → Send traversal (CVE-2021-41773, dummy record on
    2.4.49) → Replace with fixed Apache → Verify (same request now 404).
 
+## How the live demo binds to the website (Attack simulation + Incidents)
+
+The 2-PC demo and the website run the **same detection engine and incident
+model** — the laptop just feeds it *live* traffic instead of replayed logs.
+
+- **Website → Attack simulation tab** replays 22 real internet attackers (SANS
+  Internet Storm Center honeypots) against the simulated inventory. It proves
+  *breadth*: a 13-rule **Detection rulebook** (each with its MITRE ATT&CK ID),
+  11 known CVEs including **CVE-2021-41773**, plus injection, traversal, scanning,
+  login hammering, XSS and SQLi. "Try it yourself" lets a judge paste any log line.
+- **2-PC laptop demo → the live portal** proves *depth and liveness*: a real
+  second machine, a real source IP, detection and response in real time, verified
+  by the attacker's next request.
+- **They converge in the Incidents tab.** The live portal attack becomes one
+  scored incident that correlates all your Shadow Watch signals — path traversal
+  (**LIVE-WEB-001**), login burst (**LIVE-AUTH-001**) and the Isolation Forest
+  anomaly (**LIVE-ML-001**, the ML) — with a 3-part score breakdown, an evidence
+  timeline, an **Investigate incident** (AI) action and a **Draft CERT-In report**
+  action. Benign requests show in the same timeline as *"no suspicious pattern."*
+
+Demo line: *"On the website it catches 22 real internet attackers. On this laptop
+you watch it catch a live one, in real time, and fix it — same engine."*
+
+## Two judge questions — have these ready
+
+**"These are just known exposures / CVEs. How is it beyond that?"**
+- Only **3 of 22** real attackers are known-CVE; the rest are caught by
+  **behaviour, no CVE needed**. The Incidents tab has a **"Behaviour, no CVE"**
+  filter — show it.
+- Shadow Watch flags patterns (traversal, brute force, spray, scanning, command
+  injection) from the traffic itself, and the **Isolation Forest (LIVE-ML-001)**
+  flags statistically unusual traffic with **no rule and no signature at all** —
+  the "unknown unknown" the problem statement asks for.
+- And it is **early**: exposure is warned *before* anyone attacks (known
+  intelligence × your inventory), not after the breach.
+
+**"How do you keep false positives down?"** (expect this one)
+- **Thresholds model people, not tools:** "a person mistypes 1-3 times; hundreds a
+  minute is a tool" — see the rulebook's **"Why it works"** column.
+- **Built-in controls:** the Attack simulation includes **"No rule fired
+  (control)"** attackers — real traffic (one sits in 7 threat feeds) we
+  deliberately do *not* alert on. We never alert on reputation alone.
+- **Corroboration before escalation:** sequence rules need a second signal (login
+  *success after* failures; injection *plus* a large response). One weak signal
+  does not escalate.
+- **ML is triage, not a verdict:** every ML flag is low-confidence, labelled
+  *"statistical triage, not proof of attack,"* and never auto-blocks. We measured
+  it and left the Isolation Forest **off** the synthetic sensors because there it
+  added 4/142 false positives with no recall gain — honesty about where ML helps.
+- **Three separate scores, not one blended number:** evidence-confidence tempers
+  thin alerts, and an asset on a fixed version scores **0** (confirmed unaffected).
+- **Maintenance windows suppress benign spikes**, so planned bursts do not page.
+
 ## Teardown (after the demo)
 
 1. Stop the portal window with **Ctrl+C** (or `Get-NetTCPConnection -LocalPort

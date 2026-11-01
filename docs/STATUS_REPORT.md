@@ -1,5 +1,45 @@
 # Vectra repository status and explanation
 
+## Live automatic activity update - 1 November 2026
+
+The custom portal now has a working dummy login UI and request-boundary observation/enforcement.
+The /lab graph consumes actual portal/Apache records, automatically displays supported detected
+types, and distinguishes ordinary traffic, findings, enforcement and explicitly recorded replay.
+Shared web signatures cover SQLi, command injection, traversal and XSS URL attempts. Login/scan
+thresholds and a distributed-failure rule remain inspectable suspicions rather than attribution.
+
+Restrictions cover portal routes/verbs/invalid bodies, reconnects and untrusted forwarded headers;
+quiet-period renewal and explicit release are audited. Auto-response is opt-in/off; ML never blocks.
+The bounded assistant reads stored data and proposes local portal changes for a separate Execute.
+Report controls default to deterministic evidence-only output bypassing model/cache; optional
+model outputs and cached text receive tighter validation, without a zero-hallucination guarantee.
+
+Full regression: 362 passed/10 skipped; later focused live/AI regression: 45 passed. Production
+build/lint and JavaScript syntax/control-contract checks pass (existing warnings remain). Actual
+HTTP checks verified automatic labels, 429 enforcement/renewal, release200, cited template report
+and unsent draft. Native visual review and second-PC rehearsal remain. See
+[LIVE_ACTIVITY_AND_DATA.md](LIVE_ACTIVITY_AND_DATA.md) for the complete provenance/scope audit.
+
+
+## Dashboard and presentation update - 1 November 2026
+
+The live-foundation changes below are now merged into `main`; this presentation pass began
+at `512c825`. All `/app` screens have been reviewed and updated with shared metric cards,
+score gauges, distribution/breakdown charts, workflow rails and compact evidence timelines.
+Raw records, sources, full explanations and optional replay/fixture controls remain available
+through expandable sections. English/Hindi choices use existing investigation/draft endpoints.
+
+The complete presentation script is [PITCH_AND_DEMO.md](PITCH_AND_DEMO.md), covering the
+whole website, both detection paths, owned Apache attack/patch verification, live and historical
+Isolation Forest distinctions, retrospective evaluation, India context and judge questions.
+
+Current UI validation: production TypeScript/Vite build passed; ESLint passed with five
+existing warnings and no errors. Landing/app routes and current built JS/CSS return HTTP 200.
+Rendered desktop/mobile/keyboard review remains because native browser automation was
+unavailable. A large production bundle warning remains. Historical backend tests below were
+not rerun for these frontend/docs-only changes. This task did not commit, push or deploy.
+
+
 Review date: **1 November 2026**, Asia/Kolkata. Initial audit at **3c3f590**;
 latest follow-up incorporates **d8ee68e** on branch **codex/live-india-foundation**.
 This report includes the later campaign, real-log, AI and live-lab work.

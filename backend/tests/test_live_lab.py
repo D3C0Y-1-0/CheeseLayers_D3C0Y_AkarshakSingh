@@ -293,3 +293,137 @@ def test_reassessment_uses_matcher_product_normalisation(lab):
                 if tid not in existed:
                     db.execute(delete(Threat).where(Threat.threat_id == tid))
             db.commit()
+
+
+def test_portal_form_generic_observations_and_no_password_recording(lab):
+    control, portal = lab
+    page = portal.get("/")
+    assert page.status_code == 200 and 'id="loginForm"' in page.text
+    assert "fetch('/login'" in page.text
+    assert page.headers["Cache-Control"] == "no-store"
+    assert portal.post("/login", json={"username": "invalid user", "password": "BODY-SECRET"}).status_code == 422
+    portal.get("/missing", params={"password": "QUERY-SECRET", "q": "ordinary search"})
+    rows = control.get("/api/lab/state").json()["observations"]
+    assert {r["status"] for r in rows} >= {200, 404, 422}
+    assert not any(r["finding"] for r in rows)
+    assert "BODY-SECRET" not in json.dumps(rows) and "QUERY-SECRET" not in json.dumps(rows)
+
+
+@pytest.mark.parametrize("payload,label", [
+    ("1 UNION SELECT name FROM demo", "SQL injection attempt"),
+    ("<script>alert(1)</script>", "Cross-site scripting attempt"),
+    ("127.0.0.1;whoami", "Command injection attempt"),
+    ("../../internal/demo", "Path traversal attempt"),
+])
+def test_auto_classification_from_actual_url_not_a_selected_scenario(lab, payload, label):
+    control, portal = lab
+    response = portal.get("/search", params={"q": payload})
+    assert response.status_code == 404  # No SQL engine, script or shell was executed.
+    row = control.get('/api/lab/observations/' + response.headers['X-Vectra-Event-ID']).json()
+    assert label in row['finding']['label']
+    assert row['finding']['rule_id'] == 'LIVE-HTTP-SIGNATURE'
+    with SessionLocal() as db:
+        alerts = list(db.scalars(select(AlertRow)))
+        assert alerts and all(not a.data['threat_ids'] for a in alerts)
+
+
+def test_web_discovery_threshold_and_benign_near_miss(lab):
+    control, portal = lab
+    for i in range(7):
+        portal.get(f"/missing-{i}")
+    assert not any(o['finding'] for o in control.get('/api/lab/state').json()['observations'])
+    response = portal.get('/missing-7')
+    row = control.get('/api/lab/observations/' + response.headers['X-Vectra-Event-ID']).json()
+    assert row['finding']['rule_id'] == 'LIVE-WEB-003'
+    assert 'possible scanning' in row['finding']['reason']
+
+
+def test_block_boundary_all_routes_methods_invalid_payload_and_spoofed_headers(lab):
+    control, portal = lab
+    eid = portal.get('/document', params={'name': '../internal/dummy-records.json'}).headers['X-Vectra-Event-ID']
+    act(control, 'block', peer_ip='192.0.2.10', evidence_id=eid)
+    reconnected = TestClient(live_lab.portal_app, client=('192.0.2.10', 50000))
+    mapped = TestClient(live_lab.portal_app, client=('::ffff:192.0.2.10', 50001))
+    for client in (portal, reconnected, mapped):
+        for method, path in [('GET', '/'), ('POST', '/login'), ('HEAD', '/document'), ('OPTIONS', '/unknown')]:
+            response = client.request(method, path, content='not-json', headers={'X-Forwarded-For': '192.0.2.99'})
+            assert response.status_code == 429
+    assert TestClient(live_lab.portal_app, client=('192.0.2.11', 123)).get('/').status_code == 200
+    act(control, 'release', peer_ip='192.0.2.10')
+    assert portal.get('/').status_code == 200
+
+
+def test_sustained_retries_renew_then_quiet_expiry(lab, monkeypatch):
+    control, portal = lab
+    eid = portal.get('/document', params={'name': '../internal/dummy-records.json'}).headers['X-Vectra-Event-ID']
+    started = live_lab.now()
+    monkeypatch.setattr(live_lab, 'now', lambda: started)
+    action = act(control, 'block', peer_ip='192.0.2.10', evidence_id=eid, ttl_seconds=300)['action']
+    monkeypatch.setattr(live_lab, 'now', lambda: started + timedelta(seconds=299))
+    assert portal.get('/').status_code == 429
+    monkeypatch.setattr(live_lab, 'now', lambda: started + timedelta(seconds=301))
+    assert live_lab.blocked('192.0.2.10') is True  # original deadline no longer bypasses enforcement
+    with SessionLocal() as db:
+        data = db.get(LabAction, action['action_id']).data
+        assert data['renewal_count'] == 1 and data['state'] == 'verified'
+    monkeypatch.setattr(live_lab, 'now', lambda: started + timedelta(seconds=600))
+    assert portal.get('/').status_code == 200
+    assert live_lab.blocked('192.0.2.10') is False
+
+
+def test_opt_in_auto_policy_only_after_evidence_and_no_ml_autoblock(lab):
+    control, portal = lab
+    policy = control.put('/api/lab/policy', json=dict(auto_block=True, renew_on_retry=True,
+        ttl_seconds=300, reason='Owned lab automated response test'))
+    assert policy.status_code == 200
+    for _ in range(9):
+        assert portal.post('/login', json=dict(username='demo-user', password='wrong')).status_code == 401
+    assert not live_lab.blocked('192.0.2.10')
+    assert portal.post('/login', json=dict(username='demo-user', password='wrong')).status_code == 401
+    assert portal.post('/login', json=dict(username='demo-user', password='wrong')).status_code == 429
+    actions = control.get('/api/lab/state').json()['actions']
+    auto = next(a for a in actions if a.get('source') == 'deterministic_policy')
+    assert auto['rule_id'] == 'LIVE-AUTH-001' and auto['evidence_id']
+
+
+def test_console_button_contract_and_activity_boundary(lab):
+    import re
+    control, portal = lab
+    html = control.get('/lab').text
+    js = control.get('/lab/activity.js')
+    assert js.status_code == 200
+    ids = set(re.findall(r'id="([^"]+)"', html))
+    direct_refs = set(re.findall(r"el\('([^']+)'\)", html + js.text))
+    assert direct_refs <= ids
+    assert 'Replay retained events' in html and 'RECORDED REPLAY' in js.text
+    assert portal.get('/lab/activity.js').status_code == 404
+
+
+def test_assistant_queries_are_read_only_and_actions_need_review(lab):
+    control, portal = lab
+    before = control.get('/api/lab/state').json()['actions']
+    empty = control.post('/api/lab/assistant', json={'message': 'block latest peer'}).json()
+    assert empty['proposal'] is None
+    portal.get('/document', params={'name': '../internal/dummy-records.json'})
+    proposal = control.post('/api/lab/assistant', json={'message': 'block latest peer'}).json()
+    assert proposal['proposal']['body']['peer_ip'] == '192.0.2.10'
+    assert control.get('/api/lab/state').json()['actions'] == before
+    assert control.post('/api/lab/actions', json=proposal['proposal']['body']).status_code == 200
+    assert portal.get('/').status_code == 429
+    public = control.post('/api/assistant/query', json={'message': 'patch portal'}).json()
+    assert public['proposal'] is None
+    assert control.post('/api/lab/assistant', json={'message': "don't block latest peer"}).json()['proposal'] is None
+    assert control.post('/api/lab/assistant', json={'message': 'block 192.0.2.99'}).json()['proposal'] is None
+    assert control.post('/api/assistant/query', json={'message': 'show open incidents'}).json()['links']
+
+
+def test_distributed_failures_do_not_require_a_per_peer_burst(lab):
+    control, _ = lab
+    # Four observed test peers; each stays below the per-peer 10-failure threshold.
+    peers = [TestClient(live_lab.portal_app, client=(f'192.0.2.{i}', 1234)) for i in range(30, 34)]
+    for i in range(30):
+        response = peers[i % 4].post('/login', json={'username': 'demo-user', 'password': 'wrong'})
+        assert response.status_code == 401
+    row = control.get('/api/lab/observations/' + response.headers['X-Vectra-Event-ID']).json()
+    assert row['finding']['rule_id'] == 'LIVE-AUTH-004'
+    assert 'not proof of a botnet' in row['finding']['reason']

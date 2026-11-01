@@ -23,7 +23,7 @@ export const Unknown = () => <span className="inline-flex items-center gap-1 tex
 
 export function Provenance({ alert }: { alert: Alert }) {
   const realCve = alert.threat_ids.some((t) => t.startsWith('CVE-'))
-  return <span className="tag">{realCve && alert.is_simulated ? 'Real CVE, simulated asset' : alert.is_simulated ? 'Simulated' : realCve ? 'Real CVE' : 'Source telemetry'}</span>
+  return <span className="tag">{realCve && alert.is_simulated ? 'Real CVE · simulated target' : alert.is_simulated ? 'Simulated target' : realCve ? 'Real CVE' : 'Source telemetry'}</span>
 }
 
 export function DataNotice({ mode, error }: { mode: Mode; error: string | null }) {
@@ -68,7 +68,7 @@ const AI_LABEL: Record<GeneratedBy, string> = { llm: 'LLM · grounding checked',
 export function AiBadge({ generatedBy, validation, fallbackReason }: { generatedBy: GeneratedBy; validation?: Validation | null; fallbackReason?: string | null }) {
   return <div className="grid gap-1">
     <span className="flex flex-wrap gap-2"><span className="tag">{AI_LABEL[generatedBy] ?? generatedBy}</span>{fallbackReason && <span className="tag">LLM not used: {fallbackReason.replaceAll('_', ' ')}</span>}</span>
-    {validation?.note && <p className="text-xs text-grey-300">{validation.passed === false ? 'Validation failed: ' : validation.passed ? 'Validation passed: ' : ''}{validation.note}</p>}
+    {validation?.note && <details className={`text-xs ${validation.passed === false ? 'text-sev-high' : 'text-grey-300'}`}><summary className="cursor-pointer">{validation.passed === false ? 'Narrative validation failed' : validation.passed ? 'Grounding checks passed' : 'Generation details'}</summary><p className="mt-2">{validation.note}</p></details>}
   </div>
 }
 

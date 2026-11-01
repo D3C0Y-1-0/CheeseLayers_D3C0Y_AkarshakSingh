@@ -9,15 +9,18 @@ import hmac
 import ipaddress
 import os
 import secrets
+import re
 from threading import RLock
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from uuid import uuid4
+from urllib.parse import urlencode, unquote_plus
 
 from fastapi import APIRouter, Depends, FastAPI, HTTPException, Query, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from pydantic import BaseModel, ConfigDict, Field, IPvAnyAddress, model_validator
-from sqlalchemy import select
+from sqlalchemy import select, update
+from starlette.concurrency import run_in_threadpool
 
 from .asset_store import get_asset_store
 from .contracts import Asset, SecurityEvent, SoftwareItem, ThreatRecord
@@ -38,6 +41,51 @@ portal_app = FastAPI(title="Vectra fictional district portal", docs_url=None, re
 
 def now():
     return datetime.now(timezone.utc)
+
+
+def peer_address(value):
+    address = ipaddress.ip_address(value)
+    return str(address.ipv4_mapped if isinstance(address, ipaddress.IPv6Address) and address.ipv4_mapped else address)
+
+
+DEFAULT_POLICY = {"auto_block": False, "renew_on_retry": True, "ttl_seconds": 300}
+
+
+def request_metadata(request):
+    from .detection import signature_hits
+    # Never inspect credential bodies or headers. Bounded query fields with sensitive keys
+    # redacted; these are the same web signatures used by the historical replay analyser.
+    fields = [(k[:64], "[redacted]" if re.search(
+        r"pass|pwd|secret|token|key|auth|cookie|session|credential|email|phone|aadhaar", k, re.I) else v[:256])
+        for k, v in list(request.query_params.multi_items())[:24]]
+    target = (request.url.path[:256] + ("?" + urlencode(fields) if fields else ""))[:2048]
+    decoded = unquote_plus(unquote_plus(target))
+    return dict(request_target=target, signatures=[h for h in signature_hits(decoded) if h["strong"]])
+
+
+@portal_app.middleware("http")
+async def enforce_portal_boundary(request: Request, call_next):
+    # Before routing/body validation: changing URL, verb, port or JSON cannot bypass a block.
+    if os.getenv("VECTRA_LAB_ENABLED", "false").lower() == "true":
+        peer = peer_address(request.client.host)
+        if await run_in_threadpool(blocked, peer, True):
+            eid, _ = await run_in_threadpool(record, "request", request, 429,
+                                            path=request.url.path[:256], method=request.method)
+            return PlainTextResponse("Temporary lab restriction. Continued retries may renew the quiet period.",
+                                     status_code=429, headers={"X-Vectra-Event-ID": eid,
+                                     "Cache-Control": "no-store", "Retry-After": "300"})
+    response = await call_next(request)
+    if os.getenv("VECTRA_LAB_ENABLED", "false").lower() == "true" and "X-Vectra-Event-ID" not in response.headers:
+        # Observe other routes, validation failures and scanning as well. Never copy bodies,
+        # credentials or cookies into evidence. Query inspection is bounded/redacted.
+        with SessionLocal() as db:
+            ready = db.get(InventoryOverride, ASSET_ID) is not None
+        if ready:
+            eid, _ = await run_in_threadpool(record, "request", request, response.status_code,
+                                            path=request.url.path[:256], method=request.method)
+            response.headers["X-Vectra-Event-ID"] = eid
+    response.headers["Cache-Control"] = "no-store"
+    return response
 
 
 def enabled():
@@ -146,7 +194,8 @@ def record(kind, request, status, **details):
 def _record(kind, request, status, **details):
     stamp = now()
     event_id = "LIVE-" + uuid4().hex
-    peer = request.client.host
+    peer = peer_address(request.client.host)
+    details = request_metadata(request) | details
     observation = dict(event_id=event_id, kind=kind, at=stamp, peer_ip=peer,
         peer_port=request.client.port, status=status, **details,
         attribution="TCP peer observed by service; no attacker identity or origin beyond NAT/proxies established",
@@ -169,28 +218,60 @@ def _record(kind, request, status, **details):
             source="vectra_live_lab", retrieved_at=stamp.isoformat(), raw_ref=d["observation_ref"])
         # This commit stores original observation and correlated evidence in the same transaction.
         result = CorrelationEngine(db).ingest_events([event])
+        policy = setting(db, "response_policy", DEFAULT_POLICY)
+        if finding and policy["auto_block"]:
+            # Deterministic findings only; ML outliers never trigger this policy.
+            aid = "ACT-" + uuid4().hex
+            db.add(LabAction(action_id=aid, at=stamp, data=dict(action_id=aid, kind="block", state="applied",
+                at=stamp.isoformat(), peer_ip=peer, evidence_id=event_id, source="deterministic_policy",
+                rule_id=finding["rule_id"], reason="Opt-in deterministic live-portal response policy",
+                ttl_seconds=policy["ttl_seconds"],
+                expires_at=(stamp + timedelta(seconds=policy["ttl_seconds"])).isoformat(),
+                scope="fictional lab portal only; no OS firewall or Apache changes")))
         # Verification requires an actual later request hitting the enforcement boundary.
         for action in db.scalars(select(LabAction)):
             a = action.data
             if (a["state"] == "applied" and ((a["kind"] == "block" and a.get("peer_ip") == peer and status == 429
                     and stamp < datetime.fromisoformat(a["expires_at"]))
                     or (a["kind"] == "patch" and kind == "document" and details.get("traversal") and status == 403))):
-                action.data = dict(a, state="verified", verified_at=stamp.isoformat(), verification_event_id=event_id)
+                db.execute(update(LabAction).where(LabAction.action_id == action.action_id, LabAction.data == a)
+                    .values(data=dict(a, state="verified", verified_at=stamp.isoformat(), verification_event_id=event_id))
+                    .execution_options(synchronize_session=False))
         db.commit()
     return event_id, result
 
 
-def blocked(peer):
+def blocked(peer, retry=False):
+    with RECORD_LOCK:
+        return _blocked(peer, retry)
+
+
+def _blocked(peer, retry=False):
+    peer = peer_address(peer)
+    active = False
     with SessionLocal() as db:
+        policy = setting(db, "response_policy", DEFAULT_POLICY)
+        stamp = now()
         for row in db.scalars(select(LabAction)):
             a = row.data
             if a["kind"] == "block" and a["state"] in ("applied", "verified"):
-                if now() >= datetime.fromisoformat(a["expires_at"]):
-                    row.data = dict(a, state="expired")
+                if stamp >= datetime.fromisoformat(a["expires_at"]):
+                    db.execute(update(LabAction).where(LabAction.action_id == row.action_id, LabAction.data == a)
+                        .values(data=dict(a, state="expired")).execution_options(synchronize_session=False))
                 elif a["peer_ip"] == peer:
-                    return True
+                    active = True
+                    if retry and policy["renew_on_retry"]:
+                        duration = a.get("ttl_seconds", max(15, min(300, int((
+                            datetime.fromisoformat(a["expires_at"]) - datetime.fromisoformat(a["at"])).total_seconds()))))
+                        changed = dict(a, expires_at=max(datetime.fromisoformat(a["expires_at"]),
+                            stamp + timedelta(seconds=duration)).isoformat(),
+                            last_retry_at=stamp.isoformat(), renewal_count=a.get("renewal_count", 0) + 1)
+                        # Compare-and-set prevents a portal retry from overwriting a concurrent
+                        # explicit release committed by the separate control process.
+                        db.execute(update(LabAction).where(LabAction.action_id == row.action_id, LabAction.data == a)
+                            .values(data=changed).execution_options(synchronize_session=False))
         db.commit()
-    return False
+    return active
 
 
 def portal_ready():
@@ -203,10 +284,8 @@ def portal_ready():
 
 @portal_app.get("/", response_class=HTMLResponse, dependencies=[Depends(enabled)])
 def portal_home():
-    return """<h1>Fictional Indian district citizen portal — LAB ONLY</h1>
-    <p>All records are dummy. This is a custom lab service, not Apache or a published CVE.</p>
-    <a href='/document?name=notice.txt'>Public notice</a><p>Lab login: POST /login with JSON username/password.
-    Dummy account: demo-user / lab-only-password. Passwords are not logged.</p>"""
+    return HTMLResponse(Path(__file__).with_name("portal.html").read_text(encoding="utf-8"),
+        headers={"Content-Security-Policy": "default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; frame-ancestors 'none'"})
 
 
 @portal_app.get("/document", dependencies=[Depends(portal_ready)])
@@ -214,7 +293,7 @@ def document(request: Request, name: str = Query("notice.txt", max_length=256)):
     from shadow_watch.live import traversal
     with SessionLocal() as db:
         patched = setting(db, "portal", {"patched": False})["patched"]
-    status, text = (429, "Temporary lab restriction") if blocked(request.client.host) else virtual_document(name, patched)
+    status, text = (429, "Temporary lab restriction") if blocked(peer_address(request.client.host)) else virtual_document(name, patched)
     eid, _ = record("document", request, status, name=name, traversal=traversal(name), response_bytes=len(text.encode()))
     return PlainTextResponse(text, status_code=status, headers={"X-Vectra-Event-ID": eid, "Cache-Control": "no-store"})
 
@@ -228,7 +307,7 @@ class Login(BaseModel):
 @portal_app.post("/login", dependencies=[Depends(portal_ready)])
 def login(body: Login, request: Request):
     success = body.username == "demo-user" and hmac.compare_digest(body.password, "lab-only-password")
-    status = 429 if blocked(request.client.host) else 200 if success else 401
+    status = 429 if blocked(peer_address(request.client.host)) else 200 if success else 401
     eid, _ = record("login", request, status, username=body.username)  # Never record passwords.
     return PlainTextResponse("Lab login accepted" if status == 200 else "Lab login rejected", status_code=status,
                              headers={"X-Vectra-Event-ID": eid})
@@ -245,6 +324,15 @@ def console(request: Request):
         "Content-Security-Policy": "default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; frame-ancestors 'none'"})
 
 
+@router.get("/lab/activity.js")
+def activity_script(request: Request):
+    enabled()
+    if not loopback(request):
+        raise HTTPException(403, "console is local only")
+    return PlainTextResponse(Path(__file__).with_name("live_lab_activity.js").read_text(encoding="utf-8"),
+                             media_type="text/javascript", headers={"Cache-Control": "no-store"})
+
+
 @router.get("/api/lab/state", dependencies=[Depends(admin)])
 def state():
     # Expire restrictions before reporting their effective state.
@@ -253,6 +341,7 @@ def state():
         observations = list(db.scalars(select(LabObservation).order_by(LabObservation.at.desc()).limit(100)))
         actions = list(db.scalars(select(LabAction).order_by(LabAction.at.desc()).limit(100)))
         return dict(organisation="Fictional Indian District Citizen Services", timezone="Asia/Kolkata",
+            response_policy=setting(db, "response_policy", DEFAULT_POLICY),
             observations=[r.data for r in observations], actions=[r.data for r in actions],
             portal=setting(db, "portal", {"patched": False}), assets=[a.model_dump(mode="json") for a in get_asset_store().all()],
             ml_status="Lab ML uses only an explicitly collected, frozen portal baseline. Historical SecRepo models stay separate.",
@@ -360,7 +449,7 @@ class ActionRequest(BaseModel):
     kind: str = Field(pattern=r"^(block|patch|rollback|release)$")
     evidence_id: str | None = Field(default=None, max_length=128)
     peer_ip: IPvAnyAddress | None = None
-    ttl_seconds: int = Field(default=60, ge=15, le=300)
+    ttl_seconds: int = Field(default=300, ge=15, le=300)
     reason: str = Field(min_length=5, max_length=256)
 
 
@@ -368,16 +457,17 @@ class ActionRequest(BaseModel):
 def action(body: ActionRequest):
     stamp = now()
     aid = "ACT-" + uuid4().hex
+    peer = peer_address(str(body.peer_ip)) if body.peer_ip else None
     with SessionLocal() as db:
         if body.kind == "block":
             evidence = db.get(LabObservation, body.evidence_id) if body.evidence_id else None
-            if not evidence or not evidence.data.get("finding") or evidence.data["peer_ip"] != str(body.peer_ip):
+            if not evidence or not evidence.data.get("finding") or evidence.data["peer_ip"] != peer:
                 raise HTTPException(400, "block requires a detected observation from that exact TCP peer")
         if body.kind == "release":
             if body.peer_ip is None:
                 raise HTTPException(422, "peer_ip required")
             for row in db.scalars(select(LabAction)):
-                if row.data["kind"] == "block" and row.data.get("peer_ip") == str(body.peer_ip) and row.data["state"] in ("applied", "verified"):
+                if row.data["kind"] == "block" and row.data.get("peer_ip") == peer and row.data["state"] in ("applied", "verified"):
                     row.data = dict(row.data, state="released", released_at=stamp.isoformat())
         if body.kind in ("patch", "rollback"):
             patched = body.kind == "patch"
@@ -394,10 +484,42 @@ def action(body: ActionRequest):
                     if previous.data["kind"] == "patch" and previous.data["state"] in ("applied", "verified"):
                         previous.data = dict(previous.data, state="rolled_back", rolled_back_at=stamp.isoformat())
         data = dict(action_id=aid, kind=body.kind, state="applied", at=stamp.isoformat(),
-            peer_ip=str(body.peer_ip) if body.peer_ip else None, evidence_id=body.evidence_id, reason=body.reason,
+            peer_ip=peer, evidence_id=body.evidence_id, reason=body.reason,
+            ttl_seconds=body.ttl_seconds if body.kind == "block" else None,
             expires_at=(stamp + timedelta(seconds=body.ttl_seconds)).isoformat() if body.kind == "block" else None,
             scope="fictional lab portal only; no OS firewall or external changes")
         db.add(LabAction(action_id=aid, at=stamp, data=data))
         db.commit()
     assessment = reassess(ASSET_ID, "lab_" + body.kind) if body.kind in ("patch", "rollback") else None
     return dict(action=data, exposure=assessment)
+
+
+class ResponsePolicy(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    auto_block: bool
+    renew_on_retry: bool = True
+    ttl_seconds: int = Field(default=300, ge=15, le=300)
+    reason: str = Field(min_length=5, max_length=256)
+
+
+@router.put("/api/lab/policy", dependencies=[Depends(admin)])
+def response_policy(body: ResponsePolicy):
+    stamp = now()
+    aid = "ACT-" + uuid4().hex
+    with SessionLocal() as db:
+        before = setting(db, "response_policy", DEFAULT_POLICY)
+        after = body.model_dump(exclude={"reason"})
+        save_setting(db, "response_policy", after)
+        db.add(LabAction(action_id=aid, at=stamp, data=dict(action_id=aid, kind="policy", state="recorded",
+            at=stamp.isoformat(), before=before, after=after, reason=body.reason)))
+        db.commit()
+    return after
+
+
+from .assistant import Question  # shared bounded schema; no model-selected actions
+
+
+@router.post("/api/lab/assistant", dependencies=[Depends(admin)])
+def lab_assistant(body: Question):
+    from .assistant import answer
+    return answer(body.message, allow_actions=True)

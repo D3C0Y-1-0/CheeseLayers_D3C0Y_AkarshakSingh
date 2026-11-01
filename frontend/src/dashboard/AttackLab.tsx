@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { notifyRefresh, post, useAssets, useData, useHealth, type Alert } from './api'
 import AttackGraph, { type IntelCve } from './attack/AttackGraph'
 import { Empty, PageHead, Panel } from './ui'
+import { DetailFold } from './Visuals'
 
 // Attack Lab on REAL data: real attackers' real requests and connection attempts (SANS Internet Storm Center
 // honeypots and firewall sensors) are replayed against one of our simulated assets, detected from the log text alone,
@@ -42,7 +43,7 @@ type Rule = { rule_id: string; name: string; log_source: string; kind: string; l
 const STAGE_TONE: Record<string, string> = { Reconnaissance: 'medium', 'Attack attempt': 'high', 'Compromise likely': 'critical' }
 const KINDS: { id: string; label: string; test: (a: Attacker) => boolean }[] = [
   { id: 'all', label: 'All', test: () => true },
-  { id: 'exploit', label: 'Known-CVE exploits', test: (a) => a.rules.includes('WEB-EXPLOIT-001') },
+  { id: 'exploit', label: 'Known-CVE signatures', test: (a) => a.rules.includes('WEB-EXPLOIT-001') },
   { id: 'inject', label: 'Injection / traversal', test: (a) => a.rules.some((r) => /CMDI|SQLI|TRAV|XSS/.test(r)) },
   { id: 'login', label: 'Login hammering', test: (a) => a.kind === 'login' },
   { id: 'scan', label: 'Port scans', test: (a) => a.kind === 'scan' },
@@ -216,12 +217,8 @@ export default function AttackLab() {
 
   return <>
     <PageHead title="Attack simulation" />
-    <p className="mb-4 max-w-4xl text-grey-300">
-      <b className="text-white">Real attackers, real traffic.</b> These requests and connection attempts hit SANS Internet
-      Storm Center honeypots and firewall sensors on the internet. We replay one attacker against an asset in our
-      (simulated) inventory: the detector reads only the log text, each exploited CVE is looked up in our NVD / CISA KEV
-      feed and matched against our assets, and the result becomes a scored incident.
-    </p>
+    <div className="intel-path"><div><strong>Captured traffic</strong><small>Historical SANS ISC observations</small></div><div><strong>Deterministic analysis</strong><small>Signatures, thresholds and source evidence</small></div><div><strong>Asset-aware incident</strong><small>Match known CVEs to reported software</small></div></div>
+    <DetailFold title="What this replay demonstrates"><p>Historical requests from SANS Internet Storm Center sensors are replayed against simulated targets. Signature matches support attempted-exploitation analysis, not proof of a successful compromise. Actual request-driven lab testing uses the separate owned live console.</p></DetailFold>
 
     <Panel title={`1 · Choose a real attacker · ${cat.data.items.length} from ${cat.data.web_requests.toLocaleString('en-IN')} web requests and ${cat.data.firewall_records.toLocaleString('en-IN')} firewall records`}>
       <div className="flex flex-wrap gap-2 px-4 pt-4">
@@ -254,7 +251,7 @@ export default function AttackLab() {
         </label>
         <button type="button" className="btn-line" disabled={!enabled || state.busy || !chosen} onClick={run}>{state.busy ? 'Replaying' : 'Replay attack'}</button>
         <button type="button" className="btn-line" disabled={!enabled || state.busy} onClick={reset}>Reset demo alerts</button>
-        <p className="w-full text-sm text-grey-400">Source: {cat.data.source || 'SANS ISC'}{cat.data.retrieved_at ? ` · fetched ${new Date(cat.data.retrieved_at).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}` : ''}. The default target is an asset our matcher says is vulnerable to the exploited CVE, when one exists.</p>
+        <p className="w-full text-sm text-grey-400">Source: {cat.data.source || 'SANS ISC'}{cat.data.retrieved_at ? ` · fetched ${new Date(cat.data.retrieved_at).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}` : ''}. Default targets use the signature-associated CVE match when available.</p>
         {!enabled && <p className="w-full text-grey-300">Replaying needs the backend in demo mode. The rulebook and log analyzer below still work when connected.</p>}
         {state.error && <p role="status" className="w-full text-sev-high">{state.error}</p>}
       </div>
@@ -290,7 +287,8 @@ export default function AttackLab() {
     </Panel>
 
     <Panel title="Detection rulebook: exactly how each attack type is recognised" className="mt-6">
-      <div className="overflow-auto"><table className="dash-table">
+      <div className="p-4 flex flex-wrap gap-2"><span className="tag">{rules.data.rules.length} rule definitions</span>{[...new Set(rules.data.rules.map(r=>r.log_source))].map(s=><span className="tag" key={s}>{s}</span>)}</div>
+      <DetailFold title="Open thresholds, rule logic and MITRE ATT&CK mappings"><div className="overflow-auto"><table className="dash-table">
         <thead><tr><th>Rule</th><th>Detects</th><th>Reads</th><th>Logic</th><th>Why it works</th><th>MITRE ATT&CK</th></tr></thead>
         <tbody>{rules.data.rules.map((r) => <tr key={r.rule_id}>
           <td className="whitespace-nowrap"><span className="lab-rule">{r.rule_id}</span></td>
@@ -298,7 +296,7 @@ export default function AttackLab() {
           <td>{r.log_source}</td><td className="min-w-72">{r.logic}</td><td className="min-w-60 text-grey-200">{r.why_it_works}</td>
           <td><MitreChips items={r.mitre} /></td>
         </tr>)}</tbody>
-      </table></div>
+      </table></div></DetailFold>
     </Panel>
   </>
 }

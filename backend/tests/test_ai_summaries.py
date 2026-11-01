@@ -91,3 +91,34 @@ def test_cache_key_ignores_volatile_fields():
     a = grounded.cache_key("k", {"x": 1, "retrieved_at": "2026-01-01"}, {"s": "t"}, ("s",))
     b = grounded.cache_key("k", {"retrieved_at": "2026-02-02", "x": 1}, {"s": "t", "generated_by": "llm"}, ("s",))
     assert a == b and a != grounded.cache_key("k", {"x": 2}, {"s": "t"}, ("s",))
+
+
+def test_numeric_invention_and_cached_factual_override_rejected(client, cloud):
+    cloud(lambda p: {f: p['template'][f] for f in p['return_fields']} | {'why_it_matters': '98765432 citizen records were stolen.'})
+    data = client.post('/api/threats/CVE-2024-21762/summary').json()
+    assert data['generated_by'] == 'template' and data['validation']['passed'] is False
+    assert 'numeric claim' in data['validation']['note']
+
+
+def test_cache_is_revalidated_and_cannot_override_facts(tmp_path, monkeypatch):
+    import asyncio
+    monkeypatch.setattr(grounded, 'CACHE_DIR', tmp_path)
+    template = {'summary': 'Stored exposure needs review', 'asset_ids': ['TEST-01']}
+    fields = {'summary': 'text'}
+    key = grounded.cache_key('test', {}, template, tuple(fields))
+    grounded.cache_put(key, {'narrative': {'summary': 'Review evidence', 'asset_ids': []}, 'validation': {'passed': True}})
+    result = asyncio.run(grounded.narrate('test', {}, template, fields))
+    assert result['generated_by'] == 'template' and result['asset_ids'] == ['TEST-01']
+    grounded.cache_put(key, {'narrative': {'summary': 'CVE-2099-999999 has been exploited'}, 'validation': {'passed': True}})
+    result = asyncio.run(grounded.narrate('test', {}, template, fields))
+    assert result['generated_by'] == 'template' and result['validation']['passed'] is False
+
+
+def test_evidence_only_bypasses_cloud_and_cached_narrative(client, cloud):
+    calls = cloud(lambda p: {f: p['template'][f] for f in p['return_fields']} | {'why_it_matters': 'Review this stored vulnerability.'})
+    first = client.post('/api/threats/CVE-2024-21762/summary').json()
+    assert first['generated_by'] == 'llm' and len(calls) == 1
+    result = client.post('/api/threats/CVE-2024-21762/summary?evidence_only=true').json()
+    assert result['generated_by'] == 'template' and len(calls) == 1
+    assert 'cache bypassed' in result['validation']['note']
+    assert result['why_it_matters'] != first['why_it_matters']

@@ -4,6 +4,7 @@ import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recha
 import { getJson, notifyRefresh, parseList, post, toTitle, useAlerts, useHealth, useOverview, when, type Alert, type DemoResult } from './api'
 import { Intro } from './Intro'
 import { DataNotice, Empty, PageHead, Panel, PriorityBadge } from './ui'
+import { DetailFold, Distribution, JourneyRail } from './Visuals'
 
 const RANK = { critical: 0, high: 1, medium: 2, low: 3 }
 const day = (d: string) => d ? new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' }) : 'no records'
@@ -99,10 +100,10 @@ export default function CommandCenter() {
     <>
       {intro && <Intro urgent={urgent.length} onDone={finish} />}
 
-      <PageHead title="Command Center">
-        <SimControls />
-      </PageHead>
+      <PageHead title="Command Center" />
+      <p className="page-lead">Turn global intelligence into decisions for the services your organisation runs. Follow an exposure through detection, investigation and measured impact.</p>
       <DataNotice mode={overview.mode} error={overview.error} />
+      {(alerts.mode !== overview.mode || alerts.error) && <DataNotice mode={alerts.mode} error={alerts.error} />}
 
       <div className="tiles mb-3">
         {tiles.map((t) => (
@@ -114,6 +115,16 @@ export default function CommandCenter() {
       </div>
 
       <div className="grid gap-3 xl:grid-cols-[1.4fr_1fr]">
+        <Panel title="Open incident mix"><div className="visual-panel-pad"><Distribution label="open incidents" rows={[
+          { label: 'Critical', value: open.filter(a => a.priority === 'critical').length, tone: 'red' },
+          { label: 'High', value: open.filter(a => a.priority === 'high').length, tone: 'amber' },
+          { label: 'Medium', value: open.filter(a => a.priority === 'medium').length, tone: 'blue' },
+          { label: 'Low', value: open.filter(a => a.priority === 'low').length, tone: 'teal' },
+        ]} caption="Counts are from the incident API. Priority is a triage score, not attack probability." /></div></Panel>
+        <Panel title="Two paths to early warning"><div className="visual-panel-pad grid gap-4"><JourneyRail items={[
+          { label: 'Known exposure', detail: 'Advisory × installed version', to: '/app/threats' },
+          { label: 'Observed behaviour', detail: 'Rules + sensor-specific ML', to: '/app/attack-lab' },
+        ]} /><Link className="text-blue-300 text-sm" to="/app/analytics">Compare service impact and early-warning evidence →</Link></div></Panel>
         <Panel title="Top investigations">
           {top.length === 0 ? <Empty>No open investigations. New alerts appear here within 3 seconds.</Empty> : (
             <ul>
@@ -144,7 +155,8 @@ export default function CommandCenter() {
         </Panel>
 
         <Panel title="Source health" className="xl:col-span-2">
-          <div className="overflow-x-auto"><table className="dash-table">
+          <div className="source-tile-grid">{o.sources.map(s => <div key={s.source} className="source-tile"><header><span>{s.name}</span><i aria-hidden className={`source-state ${/cache/i.test(s.status) ? 'is-cached' : /^(ok|healthy|success)$/i.test(s.status) ? 'is-ready' : ''}`} /></header><strong>{s.records?.toLocaleString('en-IN') ?? 'Unknown'}</strong><small>{s.status.replaceAll('_', ' ')}</small></div>)}</div>
+          <DetailFold title="Collection timestamps and full source status"><div className="overflow-x-auto"><table className="dash-table">
             <thead><tr><th>Source</th><th className="num">Records</th><th>Last successful collection</th><th>State</th></tr></thead>
             <tbody>
               {o.sources.map((s) => (
@@ -156,8 +168,9 @@ export default function CommandCenter() {
                 </tr>
               ))}
             </tbody>
-          </table></div>
+          </table></div></DetailFold>
         </Panel>
+        <Panel title="Optional fixture and historical replay controls" className="xl:col-span-2"><DetailFold title="Open labelled demo controls (includes reset)"><p className="visual-caption mb-3">These insert fixtures or replay historical logs. Use the owned live console for actual request-driven testing. Reset removes correlated alerts and sensor events.</p><SimControls /></DetailFold></Panel>
       </div>
     </>
   )

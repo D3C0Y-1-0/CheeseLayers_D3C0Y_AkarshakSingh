@@ -10,7 +10,7 @@ router = APIRouter(tags=["SOC Investigation"])
 
 
 @router.post("/api/alerts/{id}/investigate", response_model=InvestigationReport)
-async def investigate_alert(id: str, request: Request):
+async def investigate_alert(id: str, request: Request, evidence_only: bool = False):
     try:
         ID.validate_python(id)
     except ValueError:
@@ -27,7 +27,7 @@ async def investigate_alert(id: str, request: Request):
             if factory is None:
                 raise HTTPException(503, "Member 3 incident provider and authorisation adapter are not connected")
             tools = factory(request, id)
-        return await investigate(id, tools)
+        return await investigate(id, tools, evidence_only=evidence_only)
     except KeyError:
         raise HTTPException(404, "alert not found in authorised scope") from None
     except PermissionError:

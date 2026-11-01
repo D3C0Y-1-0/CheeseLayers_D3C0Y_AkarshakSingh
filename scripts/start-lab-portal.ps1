@@ -1,4 +1,4 @@
-param([ValidateRange(1024, 65535)][int]$Port = 8010, [string]$BindAddress = '127.0.0.1')
+param([ValidateRange(1024, 65535)][int]$Port = 8010, [string]$BindAddress = '127.0.0.1', [switch]$Background)
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $pythonPath = Join-Path $projectRoot '.venv\Scripts\python.exe'
@@ -18,6 +18,34 @@ if (-not [Net.IPAddress]::IsLoopback($address)) {
 $env:VECTRA_LAB_ENABLED = 'true'
 $env:PYTHONUTF8 = '1'
 Write-Host "Lab portal: http://${BindAddress}:$Port/ (dummy records only)"
+if ($Background) {
+    # Reuse only an identity-checked recorded process; never terminate an unrelated listener.
+    $statePath = Join-Path $projectRoot "logs\vectra-$Port.json"
+    if (Test-Path -LiteralPath $statePath) {
+        $previous = Get-Content -LiteralPath $statePath -Raw | ConvertFrom-Json
+        $existing = Get-Process -Id $previous.process_id -ErrorAction SilentlyContinue
+        if ($existing -and [Math]::Abs(($existing.StartTime.ToUniversalTime() - [DateTime]::Parse($previous.start_time_utc).ToUniversalTime()).TotalSeconds) -lt 2) {
+            throw "A recorded portal process is already running. Use scripts\stop.ps1 -Port $Port before restarting it."
+        }
+    }
+    $logDirectory = Join-Path $projectRoot 'logs'
+    New-Item -ItemType Directory -Force -Path $logDirectory | Out-Null
+    $stamp = Get-Date -Format 'yyyyMMdd-HHmmss-fff'
+    $stdout = Join-Path $logDirectory "portal-$Port-$stamp.stdout.log"
+    $stderr = Join-Path $logDirectory "portal-$Port-$stamp.stderr.log"
+    $arguments = @('-X', 'utf8', '-u', '-m', 'uvicorn', 'app.live_lab:portal_app', '--app-dir',
+        ('"' + (Join-Path $projectRoot 'backend') + '"'), '--host', $BindAddress, '--port', "$Port", '--no-proxy-headers', '--workers', '1')
+    $server = Start-Process -FilePath $pythonPath -ArgumentList $arguments -WorkingDirectory $projectRoot `
+        -WindowStyle Hidden -RedirectStandardOutput $stdout -RedirectStandardError $stderr -PassThru
+    [ordered]@{process_id=$server.Id; start_time_utc=$server.StartTime.ToUniversalTime().ToString('o');
+        python_path=$pythonPath; port=$Port; url="http://${BindAddress}:$Port/";
+        stdout_log=$stdout; stderr_log=$stderr} | ConvertTo-Json | Set-Content -LiteralPath $statePath -Encoding UTF8
+    Start-Sleep -Seconds 2
+    $server.Refresh()
+    if ($server.HasExited) { throw "Portal exited. Inspect $stderr" }
+    Write-Host "Portal running in background. PID $($server.Id). Stop with scripts\stop.ps1 -Port $Port"
+    return
+}
 Write-Host 'Initialise the local Vectra /lab console first. Keep this terminal open; Ctrl+C stops the portal.'
 & $pythonPath -X utf8 -m uvicorn app.live_lab:portal_app --app-dir (Join-Path $projectRoot 'backend') --host $BindAddress --port $Port --no-proxy-headers --workers 1
 if ($LASTEXITCODE -ne 0) { throw "Lab portal stopped with exit code $LASTEXITCODE" }

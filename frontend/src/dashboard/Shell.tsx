@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { Activity, Boxes, ChartNoAxesCombined, Crosshair, Earth, LayoutDashboard, Network, Radar, Siren } from 'lucide-react'
 import { Mark } from '../landing/Mark'
+import { useHealth } from './api'
+import { JourneyRail } from './Visuals'
 import './dashboard.css'
+import './visuals.css'
 
 const NAV = [
   { to: '/app', end: true, label: 'Command Center', icon: LayoutDashboard },
@@ -18,20 +21,14 @@ const NAV = [
 
 export default function Shell() {
   const { pathname } = useLocation()
-  const [online, setOnline] = useState<boolean | null>(null)
+  const health = useHealth()
+  const online = health.mode === 'live' && !health.error
+  const local = ['localhost', '127.0.0.1', '[::1]', '::1'].includes(window.location.hostname)
+  const stage = pathname.includes('/analytics') ? 4 : pathname.includes('/assets') ? 1 : pathname.includes('/attack-lab') ? 2 : pathname.includes('/incidents') ? 3 : 0
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
-
-  useEffect(() => {
-    const check = () => fetch('/health', { signal: AbortSignal.timeout(2500) })
-      .then(async (r) => { if (!r.ok) throw new Error('unavailable'); const h = await r.json(); setOnline(h.status === 'ok') })
-      .catch(() => setOnline(false))
-    check()
-    const t = setInterval(check, 5000)
-    return () => clearInterval(t)
-  }, [])
 
   return (
     <div className="dash glass">
@@ -48,14 +45,25 @@ export default function Shell() {
             </NavLink>
           ))}
         </nav>
+        <div className="sidebar-foot">INDIA-FOCUSED EARLY WARNING<br />Intelligence → service impact
+          {local && <a href="/lab" target="_blank" rel="noreferrer">Open owned live lab ↗</a>}
+        </div>
       </aside>
       <div className="min-w-0">
-        {online === false && (
+        {health.mode !== 'loading' && !online && (
           <p role="status" className="dash-banner">
-            Backend not connected. Showing bundled sample data: real feed records, simulated assets and hand-built sample alerts.
+            Connection interrupted. Panels label bundled samples or the last backend data received. Mutating controls require a connection.
           </p>
         )}
         <main className="dash-main">
+          <div className="dash-context"><span>Vectra / Analyst workspace / IST</span><span className={`connection-chip ${online ? '' : 'is-offline'}`}><i aria-hidden />{online ? health.data.demo_mode ? 'API connected · cache mode' : 'API connected' : health.mode === 'loading' ? 'Connecting' : 'Connection unavailable'}</span></div>
+          {pathname !== '/app/soc' && <div className="dash-story"><JourneyRail active={stage} items={[
+            { label: 'Intelligence', detail: 'What is known?', to: '/app/threats' },
+            { label: 'Exposure', detail: 'What do we run?', to: '/app/assets' },
+            { label: 'Detection', detail: 'What was observed?', to: '/app/attack-lab' },
+            { label: 'Investigation', detail: 'What supports it?', to: '/app/incidents' },
+            { label: 'Impact', detail: 'What changes risk?', to: '/app/analytics' },
+          ]} /></div>}
           <Outlet />
         </main>
       </div>

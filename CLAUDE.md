@@ -1,5 +1,104 @@
 # CLAUDE.md — Project context (read this first)
 
+## Latest live activity / response / assistant handoff - 1 November 2026
+
+This section supersedes the earlier frontend-only scope below: user additionally authorised
+live automatic attack-type visualisation, a real portal login form, block bypass verification,
+workspace NLP tasks, report grounding and a per-tab data audit. Existing teammate/UI work is
+preserved; no .env edits, database resets, commit, push or deployment were performed.
+
+Implemented:
+- `backend/app/portal.html`: functional owned dummy login page, public notice, actual HTTP/event
+  feedback. It POSTs real requests; it does not insert selected attack scenarios.
+- Portal middleware observes all routed/unknown/validation-failed HTTP requests and enforces
+  restrictions before routing/body parsing. It never reads credential bodies/cookies/headers.
+  URL fields are bounded and sensitive query keys redacted before signature inspection/storage.
+- Automatic SQLi/command-injection/traversal/XSS labels reuse strong replay signatures. Login
+  burst/spray/success-sequence, 8-path discovery and 30-failure/3-peer distributed patterns are
+  evidence-linked. No match stays no rule fired; no guessed CVE or successful compromise.
+- `/lab` now animates actual portal + independent Apache observations and offers explicitly
+  recorded playback. Initial retained history is not presented as a live replay. Pause affects
+  animation only. Counts are bounded to retained view; large bursts sample 20 animation entries.
+- Block covers paths/verbs/bad JSON/reconnections/spoofed forwarded headers for the exact TCP
+  peer, normalising IPv4-mapped IPv6. Default TTL 300s; retries renew original-duration quiet
+  period when enabled, tracked on the action. State polling does not renew. Release/expiry work.
+  Compare-and-set updates prevent stale retry/verification writes undoing a concurrent release.
+- Opt-in deterministic auto-block is OFF at handoff; renewal ON. ML never auto-blocks. Scope is
+  custom portal :8010, NOT the OS firewall, Apache listener or arbitrary traffic to this PC.
+  Distributed failure finding does not identify a botnet or automatically block every source.
+- `app/assistant.py`: deterministic bounded intent queries over stored records. SOC Ask formerly
+  offered literal search/CVE summaries; now recognises incident/inventory/provenance tasks.
+  Local `/lab` adds exact-target block/release/custom-portal patch proposals; a separate Execute
+  invokes existing token/loopback-protected action API. Queries never mutate, no arbitrary tools.
+- Report controls default to `evidence_only=true`: model AND model cache bypassed. Optional
+  LLM mode revalidates cached narratives and rejects factual-field overrides, new numbers,
+  identifiers, commands and compromise/attribution overclaims. Filters do not prove semantics.
+  Hindi in strict mode honestly returns English fallback. Clipboard failures display an error.
+- `scripts/start-lab-portal.ps1 -Background` supports hidden persistent launch, logs and process
+  metadata compatible with identity-checked `scripts/stop.ps1 -Port 8010`.
+
+Validation:
+- Full backend suite: **362 passed, 10 skipped** in 374.19s. A later focused live/AI run after
+  final enforcement/distributed changes: **45 passed**. One Starlette/httpx deprecation warning.
+- Final production TypeScript/Vite build passed. Lint has zero errors / five existing warnings.
+  Inline portal/console and external activity JavaScript syntax checks passed; console ID/control
+  contract tested. Native rendered browser/mobile/keyboard and a real second PC remain unverified.
+- Actual running-service HTTP check on private 10.120.134.199:8010: home200; automatically labelled
+  SQLi then XSS attempts on missing URL; block applied; changed URL + malformed body + spoofed XFF
+  returned429, verified action and renewal1; release restored200. Evidence-only investigation
+  returned200/template and cited the actual event; CERT-In draft200 with sent=false. Strict Hindi
+  returned English with correct note. Details: ignored `logs/live-activity-verification.json`.
+- Main and portal were restarted using verified process identities, preserving existing data.
+  Main: `http://127.0.0.1:8000/lab`; portal: `http://10.120.134.199:8010/` on verified Wi-Fi IP.
+  Both run in background. Refresh /lab and /app after deployment/build changes; tokens rotate
+  on control restart. The Apache watcher retrieves the current token each collection cycle.
+
+Read `docs/LIVE_ACTIVITY_AND_DATA.md` for the complete rule/scope table, run instructions,
+block semantics, assistant commands and tab-by-tab actual versus predefined data. Rehearse
+from the second PC before judges. Collect a NEW ordinary ML baseline after the expanded HTTP
+coverage; an older baseline saw a different request mix. Do not silently tune for desired flags.
+Production identity/tenant boundaries, retention, calibrated false-positive measurement,
+additional authorised OS/network sensors and bundle-size improvement remain future work.
+
+## Latest dashboard and presentation handoff - 1 November 2026
+
+This section supersedes older checkout and UI status below. The earlier live-foundation work
+has been committed/merged by the team. This task started on `main` at `512c825`; do not assume
+the historical branch or dirty-file list below still describes this checkout. Read `git status`.
+
+User explicitly requested a repo-wide presentation story and visual improvements across `/app`.
+These changes are frontend/docs only; preserve `.env`, Docker configuration and backend contracts.
+
+- `docs/PITCH_AND_DEMO.md` is the current complete 11-13 minute script, seven-minute cut,
+  page/endpoint map, evidence requirements, judge questions and failure contingencies.
+- Shared visual components live in `frontend/src/dashboard/Visuals.tsx` and `visuals.css`:
+  metric cards, score gauges, distributions, breakdowns, workflow rails and expandable details.
+- Dashboard pages now prioritise actual counts, charts and evidence timelines. Full reasons,
+  raw evidence, source references, rulebooks and optional fixture controls remain expandable.
+  Unknown values remain unknown; chart scopes distinguish current page from full inventory.
+- All dashboard routes were reviewed, including SOC, Command Center, Threats, Assets,
+  Incidents/detail, Signals, Campaigns, Analytics and Attack Replay. Existing graph/globe,
+  investigation, SHAP/PDF and replay functionality is retained. `/lab` remains the live controller.
+- AI investigation and CERT-In draft now expose the existing English/Hindi API option and show
+  actual returned language/fallback. Neither drafting nor copying submits a regulatory report.
+- Shared health uses existing polling and distinguishes cache-mode API connectivity from fresh
+  intelligence. Live HTTP activity, cached intelligence, replay and baseline models stay labelled.
+- Replay and live sensors use DIFFERENT detectors and common downstream correlation/scoring;
+  do not describe them as one identical detection engine. A CVE signature is attempt evidence,
+  not proof of successful exploitation. Incident state changes are not proof of remediation.
+
+Verification for this UI task: final TypeScript/Vite production build passed; ESLint passed
+with five existing warnings (no errors). HTTP returned 200 for landing and all checked app
+routes, and the server references the current build's JavaScript/CSS (both return 200).
+Native browser automation was unavailable, so visual browser/mobile/keyboard review remains.
+The existing large JavaScript chunk warning also remains. Earlier backend test results below
+are historical and were not rerun for this presentation-only change. No commit/push/deploy.
+
+Next: rehearse `docs/PITCH_AND_DEMO.md` against current runtime data, check rendered layouts at
+mobile/desktop widths, and exercise Hindi fallback with the actual configured provider. For
+judges, prepare the live baseline before the anomaly test, release blocks before patch checks,
+and verify the same Apache district URL after replacement. Hosted and local DBs are separate.
+
 ## Current operational handoff — 1 November 2026 (Asia/Kolkata)
 
 **Read this section before the historical team plan below. It overrides outdated implementation/status claims.**

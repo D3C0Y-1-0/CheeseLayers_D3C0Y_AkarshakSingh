@@ -5,7 +5,8 @@ Flow for every AI text (investigation, threat summary, CERT-In draft, translatio
   2. cache hit (same normalised input)      -> cached LLM wording, generated_by="llm_cached"
   3. LLM disabled / unconfigured / offline  -> template, generated_by="template"
   4. LLM output: only the narrative `fields` are taken; every identifier, version, IP and URL in them must already
-     appear in the input, no unsupported claims ("confirmed breach", "zero-day"), no commands -> else template.
+     appear in the input; numeric/overclaim/command filters reject obvious inventions -> else template.
+     These checks do not prove semantic accuracy. Evidence-only mode bypasses model/cache entirely.
 Validated LLM output is cached in backend/data/cache/ai_reports/<sha256>.json, so the demo replays it offline.
 """
 import asyncio
@@ -31,7 +32,8 @@ VOLATILE = {"retrieved_at", "ingested_at", "detected_at", "updated_at", "created
 TOKENS = re.compile(r"https?://[^\s\"'<>)\]]+"  # URLs
                     r"|\b[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-\d[A-Z0-9]*\b"  # CVE-2024-1, PWR-FW-01, EVT-0001, ALR-1A2B, DEMO-VULN-001
                     r"|\bT\d{4}(?:\.\d{3})?\b"  # ATT&CK technique
-                    r"|\b\d+(?:\.\d+){2,3}\b")  # versions, IPs (7.2.6, 198.51.100.7); plain scores like 9.8 are free
+                    r"|\b\d+(?:\.\d+){2,3}\b")  # versions/IPs; other numerical claims are checked separately below
+NUMBERS = re.compile(r"(?<![\w])\d+(?:\.\d+)*(?:%)?")
 OVERCLAIM = re.compile(r"zero[- ]?day|\bbreach(?:ed)?\b|confirmed\s+(?:compromise|exploitation|attack|intrusion)"
                        r"|(?:has|have|was|were)\s+been\s+(?:compromised|exploited|hacked)|\battributed\s+to\b", re.I)
 COMMAND = re.compile(r"`|\$\(|\b(?:sudo|rm\s+-|curl|wget|powershell|chmod|bash|cmd\.exe)\b"
@@ -132,8 +134,11 @@ def check(narrative: dict, fields: dict[str, str], corpus: str) -> tuple[list[st
     if bad:
         problems.append("identifiers/versions/URLs not in the input: " + ", ".join(bad[:10]))
     joined = "\n".join(texts)
-    if OVERCLAIM.search(joined) and not OVERCLAIM.search(corpus):
+    if OVERCLAIM.search(joined):
         problems.append("unsupported claim (compromise/exploitation/zero-day/attribution)")
+    source_numbers = set(NUMBERS.findall(corpus))
+    if any(n not in source_numbers for n in NUMBERS.findall(joined)):
+        problems.append("numeric claim not present in supplied facts")
     if COMMAND.search(joined):
         problems.append("command or execution instruction")
     return problems, bad
@@ -148,25 +153,31 @@ TEMPLATE_NOTE = "Deterministic template built only from stored facts; no languag
 
 async def narrate(kind: str, facts: dict, template: dict, fields: dict[str, str], *, lang: str = "en",
                   settings: LLMSettings | None = None, completion: Completion | None = None,
-                  instruction: str | None = None) -> dict:
+                  instruction: str | None = None, evidence_only: bool = False) -> dict:
     """-> template updated with LLM wording (or not) + generated_by, validation, fallback_reason.
 
     `template` is the full deterministic object; only keys in `fields` may change. If the model echoes any other
     template key with a different value, the output is rejected (it tried to change a fact)."""
     names = tuple(fields)
     key = cache_key(kind, facts, template, names, lang)
+    corpus = json.dumps({"facts": facts, "template": template}, default=str, ensure_ascii=False)
 
     def fallback(reason, validation):
         return template | {"generated_by": "template", "fallback_reason": reason, "validation": validation}
 
+    if evidence_only:
+        return fallback("disabled", _validation(None, "Evidence-only mode: deterministic stored-fact template; model and model cache bypassed. Analyst review required."))
     hit = cache_get(key)
     if hit and isinstance(hit.get("narrative"), dict):
-        return template | hit["narrative"] | {"generated_by": "llm_cached", "fallback_reason": None,
-                                              "validation": hit.get("validation") or _validation(True, "cached")}
+        narrative = {k: plain(hit["narrative"].get(k)) for k in names}
+        problems, bad = check(narrative, fields, corpus)
+        if not problems and set(hit["narrative"]) == set(names):
+            return template | narrative | {"generated_by": "llm_cached", "fallback_reason": None,
+                "validation": _validation(True, "Cached narrative rechecked against current facts; analyst review required.")}
+        return fallback("invalid_output", _validation(False, "Cached output failed current checks; template shown.", rejected=bad))
     config, reason = disabled_reason(settings)
     if reason:
         return fallback(reason, _validation(None, TEMPLATE_NOTE))
-    corpus = json.dumps({"facts": facts, "template": template}, default=str, ensure_ascii=False)
     if INJECTION.search(corpus):
         return fallback("invalid_output", _validation(False, "Instruction-like text in stored data; LLM not called."))
     prompt = json.dumps({"task": kind, "language": lang, "facts": facts, "template": template,
@@ -204,8 +215,8 @@ async def narrate(kind: str, facts: dict, template: dict, fields: dict[str, str]
     if problems:
         return fallback("invalid_output", _validation(False, "LLM output rejected: " + "; ".join(problems) + ". Template shown.",
                                                       checked, bad))
-    validation = _validation(True, f"All {checked} identifiers/versions/URLs found in the supplied input; "
-                                   "no unsupported claims or commands.", checked)
+    validation = _validation(True, f"All {checked} identifiers/versions/URLs found in supplied input; numeric and claim filters passed. "
+                                   "These checks do not prove semantic accuracy; analyst review required.", checked)
     cache_put(key, {"key": key, "kind": kind, "lang": lang, "model": config.model,
                     "created_at": datetime.now(timezone.utc).isoformat(), "narrative": narrative,
                     "validation": validation})

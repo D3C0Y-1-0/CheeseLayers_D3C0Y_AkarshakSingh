@@ -92,8 +92,12 @@ Start state: portal **vulnerable**, no block on the attacker IP.
 
 ## How the live demo binds to the website (Attack simulation + Incidents)
 
-The 2-PC demo and the website run the **same detection engine and incident
-model** — the laptop just feeds it *live* traffic instead of replayed logs.
+The 2-PC demo and website replay use **different sensor-specific detectors** and
+converge in the shared correlation, incident persistence and scoring pipeline. Website
+replay analyses recorded traffic; the live portal observes actual HTTP/auth outcomes.
+An Isolation Forest finding requires an established live baseline and an unusual window;
+it is not guaranteed to accompany every attack. Separate events may correlate according
+to asset and time-window rules rather than always becoming exactly one incident.
 
 - **Website → Attack simulation tab** replays 22 real internet attackers (SANS
   Internet Storm Center honeypots) against the simulated inventory. It proves
@@ -103,21 +107,21 @@ model** — the laptop just feeds it *live* traffic instead of replayed logs.
 - **2-PC laptop demo → the live portal** proves *depth and liveness*: a real
   second machine, a real source IP, detection and response in real time, verified
   by the attacker's next request.
-- **They converge in the Incidents tab.** The live portal attack becomes one
-  scored incident that correlates all your Shadow Watch signals — path traversal
+- **They converge in the Incidents tab.** The live portal observations can create or update
+  scored incidents that correlate eligible Shadow Watch signals — path traversal
   (**LIVE-WEB-001**), login burst (**LIVE-AUTH-001**) and the Isolation Forest
   anomaly (**LIVE-ML-001**, the ML) — with a 3-part score breakdown, an evidence
   timeline, an **Investigate incident** (AI) action and a **Draft CERT-In report**
   action. Benign requests show in the same timeline as *"no suspicious pattern."*
 
 Demo line: *"On the website it catches 22 real internet attackers. On this laptop
-you watch it catch a live one, in real time, and fix it — same engine."*
+you watch it catch a live one, in real time, and fix it — shared incident workflow."*
 
 ## Two judge questions — have these ready
 
 **"These are just known exposures / CVEs. How is it beyond that?"**
 - Only **3 of 22** real attackers are known-CVE; the rest are caught by
-  **behaviour, no CVE needed**. The Incidents tab has a **"Behaviour, no CVE"**
+  **behaviour, no CVE needed**. The Incidents tab has a **"Behavioural detection"**
   filter — show it.
 - Shadow Watch flags patterns (traversal, brute force, spray, scanning, command
   injection) from the traffic itself, and the **Isolation Forest (LIVE-ML-001)**

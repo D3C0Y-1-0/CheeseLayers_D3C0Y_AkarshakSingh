@@ -78,10 +78,11 @@ export type Alert = {
 }
 
 export type StoredEvent = { event_id: string; asset_id: string | null; timestamp: string; event_type: string;
+  rule_id?: string | null;
   source_sensor: string; details: Record<string, unknown>; is_simulated: boolean;
   normalized_event?: { raw_ref: string; source: string; ingested_at: string };
   shadow_findings?: { finding_id: string; detector_id: string; reason: string; confidence: string; evidence_ids: string[] }[] }
-export type Report = { incident_id: string; summary: string; assessment: string; evidence_ids: string[]; why_relevant: string;
+export type Report = { incident_id: string; summary: string; assessment: string; evidence_ids: string[]; why_relevant: string; asset_ids?: string[];
   limitations: string[]; recommended_actions: string[]; references: string[]; generated_by: GeneratedBy;
   is_simulated: boolean; integration_status: string; analyst_review_required: boolean; fallback_reason: string | null
   validation?: Validation | null }

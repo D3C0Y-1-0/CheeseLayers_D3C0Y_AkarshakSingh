@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { fixtures, useAlerts, useData, useOverview, when, type Threat } from './api'
 import { ThreatAiSummary } from './AiSummary'
 import { DataNotice, Empty, PageHead, Panel, safeReference, SeverityBadge, Unknown } from './ui'
+import { DetailFold, StatCards } from './Visuals'
 
 const SOURCE_NAMES: Record<string, string> = { 'nvd+kev': 'NVD + KEV', nvd: 'NVD', kev: 'CISA KEV', certin: 'CERT-In', otx: 'AlienVault OTX', vectra_synthetic: 'Demo fixture', netrax_synthetic: 'Demo fixture' }
 const name = (s: string) => SOURCE_NAMES[s] ?? s
@@ -14,14 +15,19 @@ function ThreatDetail({ threat, connected, close }: { threat: Threat; connected:
     `/api/threats/${encodeURIComponent(threat.threat_id)}`, threat, (j) => j as Threat)
   return <Panel title={threat.title} className="mb-3"><div className="space-y-3 p-4">
     <button type="button" className="btn-line" onClick={close}>Close details</button>
-    <p className="text-white">{threat.description ?? 'Description is not available.'}</p>
+    <StatCards items={[
+      { label: 'CVSS severity', value: threat.cvss === null ? 'Unknown' : `${threat.cvss} / 10`, tone: 'amber' },
+      { label: 'EPSS', value: threat.epss === null ? 'Unknown' : `${(threat.epss * 100).toFixed(1)}%`, detail: 'Global CVE exploit likelihood estimate' },
+      { label: 'KEV status', value: threat.kev_listed === null ? 'Unknown' : threat.kev_listed ? 'Listed' : 'Not listed', tone: threat.kev_listed ? 'red' : 'muted' },
+    ]} />
+    <DetailFold title="Description and affected technology"><p className="text-white">{threat.description ?? 'Description is not available.'}</p></DetailFold>
     <p>Retrieved {when(threat.retrieved_at)} · {threat.is_simulated ? 'Synthetic threat fixture' : 'Public intelligence record'}</p>
     <p>ATT&amp;CK techniques: {threat.attack_techniques.length ? threat.attack_techniques.join(', ') : 'No verified mapping supplied'}</p>
-    <ul className="space-y-1">{threat.references.filter(safeReference).map((url) => <li key={url} className="break-all"><a className="text-blue-300 underline" href={url} target="_blank" rel="noreferrer">{url}</a></li>)}</ul>
+    <DetailFold title="Original source references"><ul className="space-y-1">{threat.references.filter(safeReference).map((url) => <li key={url} className="break-all"><a className="text-blue-300 underline" href={url} target="_blank" rel="noreferrer">{url}</a></li>)}</ul></DetailFold>
     {!!record.data.raw_payloads?.length && <details><summary className="cursor-pointer text-blue-300">Raw payload provenance</summary><ul className="mt-3 space-y-2 text-xs">{record.data.raw_payloads.map((r) => <li key={r.path} className="break-all">{r.path} · {r.sha256 ? `SHA-256: ${r.sha256}` : 'Original raw file absent; hash not verified'}</li>)}</ul></details>}
     {connected && <a className="btn-line inline-block" download={`vectra-${threat.threat_id}.json`} href={`/api/export/stix?threat_id=${encodeURIComponent(threat.threat_id)}`}>Export STIX 2.1</a>}
     {!!record.data.campaign_ids?.length && <p>Part of campaign: {record.data.campaign_ids.map((c) => <Link key={c} className="mr-2 text-blue-300 underline" to={`/app/campaigns?id=${encodeURIComponent(c)}`}>{c}</Link>)}</p>}
-    <ThreatAiSummary threatId={threat.threat_id} enabled={connected} />
+    <ThreatAiSummary key={threat.threat_id} threatId={threat.threat_id} enabled={connected} />
   </div></Panel>
 }
 
@@ -80,6 +86,12 @@ export default function Threats() {
         </div>
       </PageHead>
       <DataNotice mode={feed.mode} error={feed.error} />
+      <StatCards items={[
+        { label: 'Matching records', value: total.toLocaleString('en-IN'), detail: 'Across the selected filters' },
+        { label: 'KEV listed', value: rows.filter(t => t.kev_listed === true).length, detail: 'On this page only', tone: 'red' },
+        { label: 'Critical / high', value: rows.filter(t => ['critical', 'high'].includes(t.severity ?? '')).length, detail: 'On this page only', tone: 'amber' },
+        { label: 'Asset-linked', value: rows.filter(t => affected.has(t.threat_id)).length, detail: 'On this page; recorded alert links', tone: 'teal' },
+      ]} />
       <p className="mb-3">{total.toLocaleString('en-IN')} matching records · Page {page} of {Math.max(1, pages)}</p>
       {selected && <ThreatDetail key={selected.threat_id} threat={selected} connected={mode === 'live'} close={() => setSelected(null)} />}
       <Panel>

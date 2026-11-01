@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { useData, when } from './api'
 import { DataNotice, Empty, PageHead, Panel, SeverityBadge } from './ui'
+import { Breakdown, DetailFold, Distribution, StatCards } from './Visuals'
 
 type Reason = { type: string; key: string; count: number; text: string }
 export type Campaign = { campaign_id: string; title: string; kind?: 'campaign' | 'patch_batch'; size: number; threat_ids: string[]; sources: Record<string, number>
@@ -19,7 +20,7 @@ function Detail({ id }: { id: string }) {
   if (!c) return <Panel title="Campaign"><DataNotice mode={d.mode} error={d.error} /><Empty>Loading campaign…</Empty></Panel>
   return <Panel title={c.title}><div className="grid gap-3 p-4">
     <div className="flex flex-wrap gap-2">{c.kind === 'patch_batch' ? <span className="tag">Vendor patch batch: one vendor's same-day release, not attacker activity</span> : c.is_emerging && <span className="tag">Emerging</span>}<span className="tag">{plural(c.size, 'threat', 'threats')}</span><span className="tag">{c.kev_listed_members} KEV-listed</span>{Object.entries(c.sources).map(([s, n]) => <span key={s} className="tag">{s}: {n}</span>)}</div>
-    <div><h3 className="mb-1 text-white">Why these threats were grouped</h3><ul className="list-inside list-disc space-y-1">{c.link_reasons.map((r) => <li key={r.type + r.key}>{r.text}</li>)}</ul></div>
+    <div className="visual-panel-grid"><Breakdown caption="Member records by canonical source" rows={Object.entries(c.sources).map(([label,value])=>({label,value}))} /><DetailFold title="Shared evidence and grouping explanation" open><ul>{c.link_reasons.map(r=><li key={r.type+r.key}>{r.text}</li>)}</ul></DetailFold></div>
     <p>Seen {when(c.first_seen)} to {when(c.last_seen)} · last 7 days: {c.growth_7d.last_7d} new (previous 7: {c.growth_7d.prev_7d})</p>
     <p className="text-white">{c.top_recommended_action}</p>
     {c.affected_asset_ids.length > 0 && <p>Matched assets (simulated inventory): {c.affected_asset_ids.join(', ')}</p>}
@@ -39,6 +40,17 @@ export default function Campaigns() {
       <label className="flex items-center gap-2 text-[0.9375rem] text-white"><input type="checkbox" className="accent-blue" checked={emerging} onChange={(e) => setEmerging(e.target.checked)} />Emerging only</label>
     </PageHead>
     <DataNotice mode={list.mode} error={list.error} />
+    <StatCards items={[
+      { label:'Groups in view',value:list.data.items.length,detail:'Returned by this filtered request' },
+      { label:'Emerging in view',value:list.data.items.filter(c=>c.is_emerging&&c.kind!=='patch_batch').length,tone:'teal' },
+      { label:'Asset-linked groups',value:list.data.items.filter(c=>c.affected_asset_count>0).length,tone:'amber' },
+      { label:'Unique matched assets',value:new Set(list.data.items.flatMap(c=>c.affected_asset_ids)).size,detail:'Across groups in this view' },
+    ]} />
+    <Panel title="Group composition" className="mb-4"><div className="visual-panel-pad"><Distribution label="listed groups" rows={[
+      {label:'Vendor patch batches',value:list.data.items.filter(c=>c.kind==='patch_batch').length,tone:'amber'},
+      {label:'Emerging associations',value:list.data.items.filter(c=>c.kind!=='patch_batch'&&c.is_emerging).length,tone:'teal'},
+      {label:'Other associations',value:list.data.items.filter(c=>c.kind!=='patch_batch'&&!c.is_emerging).length},
+    ]} caption="Shared indicators or text connect these records. A group does not prove a common attacker." /></div></Panel>
     {selected && <div className="mb-3"><button type="button" className="btn-line mb-2" onClick={() => setParams({})}>Close campaign</button><Detail key={selected} id={selected} /></div>}
     <Panel>{list.data.items.length === 0 ? <Empty>No campaigns available.</Empty> : <ul>{list.data.items.map((c) => (
       <li key={c.campaign_id}><button type="button" onClick={() => setParams({ id: c.campaign_id })} className="row-link grid w-full items-center gap-x-4 gap-y-1 text-left md:grid-cols-[9.5rem_minmax(0,1fr)_auto_9rem]">

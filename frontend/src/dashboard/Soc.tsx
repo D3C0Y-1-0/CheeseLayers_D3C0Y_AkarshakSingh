@@ -107,6 +107,7 @@ export default function Soc() {
   const [q, setQ] = useState('')
   const [answer, setAnswer] = useState<Answer | null>(null)
   const askRef = useRef<HTMLInputElement>(null)
+  const askSequence = useRef(0)
 
   // Attacker IPs: read from each open high/critical behaviour incident's stored evidence (GET /api/alerts/{id}/evidence).
   const [attackers, setAttackers] = useState<string[]>([])
@@ -157,7 +158,19 @@ export default function Soc() {
   const ask = async (raw: string) => {
     const text = raw.trim()
     if (!text) return
+    const requestId = ++askSequence.current
     setSuggest(false)
+    setAnswer({ q: text, busy: true, links: [] })
+    if (!/CVE-\d{4}-\d{4,}/i.test(text) && /\b(incident|alert|investigat\w*|report|inventory|assets?|how many|where does|hardcoded|data source|predict\w*|isolation|block|release|unblock|patch|rollback|help)\b/i.test(text)) {
+      try {
+        const result = await post('/api/assistant/query', { message: text }) as { message: string; links: { href: string; label: string }[] }
+        if (requestId !== askSequence.current) return
+        setAnswer({ q: text, text: result.message, by: 'Stored facts · bounded workspace task', links: result.links.map(l => ({ to: l.href, label: l.label, sub: 'Inspect supporting records' })), note: 'No task is executed from this query. Portal response proposals are available in local /lab.' })
+      } catch (e) {
+        if (requestId === askSequence.current) setAnswer({ q: text, text: e instanceof Error ? e.message : 'Assistant unavailable', by: 'Request failed · no result assumed', links: [] })
+      }
+      return
+    }
     const needle = text.toLowerCase()
     const hit = (s: string | null | undefined) => !!s && s.toLowerCase().includes(needle)
     const links = [
@@ -166,6 +179,7 @@ export default function Soc() {
       ...assets.data.filter((a) => hit(a.hostname) || hit(a.asset_id) || hit(a.role) || a.software.some((s) => hit(s.product) || hit(s.vendor))).slice(0, 3).map((a) => ({ to: `/app/assets`, label: `${a.hostname} (${a.asset_id})`, sub: `Asset · ${a.role}` })),
     ]
     const cve = text.match(/CVE-\d{4}-\d{4,}/i)?.[0].toUpperCase()
+    if (requestId !== askSequence.current) return
     const base = { q: text, links, note: links.length ? undefined : 'Nothing in the current feeds, alerts or inventory matches that.' }
     if (!cve) {
       setAnswer({ ...base, by: 'Search across feeds, alerts and inventory', text: links.length ? `${links.length} match${links.length === 1 ? '' : 'es'} for “${text}”.` : undefined })
@@ -173,10 +187,12 @@ export default function Soc() {
     }
     setAnswer({ ...base, busy: true })
     try {
-      const s = await post(`/api/threats/${encodeURIComponent(cve)}/summary`) as ThreatSummary
+      const s = await post(`/api/threats/${encodeURIComponent(cve)}/summary?evidence_only=true`) as ThreatSummary
+      if (requestId !== askSequence.current) return
       setAnswer({ ...base, text: `${s.summary} ${s.why_it_matters}`, by: s.generated_by === 'template' ? 'Template · grounded' : s.generated_by === 'llm_cached' ? 'LLM-cached · grounding checked' : 'LLM · grounding checked', note: s.recommended_actions[0] ? `Recommended: ${s.recommended_actions[0]}` : undefined })
     } catch {
       const t = (await getJson(`/api/threats/${encodeURIComponent(cve)}`).catch(() => null)) as Threat | null
+      if (requestId !== askSequence.current) return
       setAnswer({ ...base, text: t ? `${t.title}. CVSS ${t.cvss ?? 'unknown'}; ${t.kev_listed === null ? 'exploitation status unknown' : t.kev_listed ? 'listed in CISA KEV (actively exploited)' : 'not in CISA KEV'}.` : `No stored record for ${cve}.`, by: 'Stored record · AI summary needs the backend' })
     }
   }
@@ -215,7 +231,7 @@ export default function Soc() {
       <div className="soc-stage">
         <div className="soc-head">
           <h1>Security Operations Center</h1>
-          <p>Real-Time Threat Intelligence &amp; Incident Monitoring <span className={`soc-live ${alerts.mode === 'live' ? 'is-live' : ''}`}><i aria-hidden />{alerts.mode === 'live' ? 'Live' : alerts.mode === 'loading' ? 'Connecting' : 'Sample data'}</span></p>
+          <p>Threat Intelligence &amp; Incident Monitoring <span className={`soc-live ${alerts.mode === 'live' && !alerts.error ? 'is-live' : ''}`}><i aria-hidden />{alerts.error ? 'Last received data' : alerts.mode === 'live' ? 'API connected' : alerts.mode === 'loading' ? 'Connecting' : 'Sample data'}</span></p>
         </div>
         <Globe arcs={arcs} satellites={satellites} hotspots={hotspots} spin={region === 'india' ? 'india' : 'free'} />
 

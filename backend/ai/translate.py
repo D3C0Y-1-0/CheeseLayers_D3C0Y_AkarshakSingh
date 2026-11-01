@@ -19,8 +19,9 @@ async def localise(kind: str, facts: dict, template: dict, fields: dict[str, str
         "Add nothing and drop nothing. Return one JSON object with exactly return_fields."), **kw)
     if out["generated_by"] == "template":  # translation unavailable or rejected: English, honestly labelled
         return english | {"language": "en", "requested_language": lang, "translation": {
-            "status": "unavailable", "note": f"Hindi translation needs the cloud LLM ({out['fallback_reason']}); "
-            "showing English.", "validation": out["validation"]}}
+            "status": "unavailable", "note": ("Evidence-only mode bypasses model translation; showing English."
+                if kw.get("evidence_only") else f"Hindi translation needs the cloud LLM ({out['fallback_reason']}); showing English."),
+            "validation": out["validation"]}}
     return english | {k: out[k] for k in fields} | {"language": lang, "translation": {
         "status": "machine_translated", "label": MT_LABEL, "generated_by": out["generated_by"],
         "validation": out["validation"]}}

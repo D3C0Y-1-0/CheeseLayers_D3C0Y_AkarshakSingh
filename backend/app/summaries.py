@@ -121,7 +121,7 @@ def threat_template(f: dict) -> dict:
 
 
 @router.post("/api/threats/{threat_id}/summary")
-async def threat_summary(threat_id: str, lang: str = Query("en", pattern="^(en|hi)$"), db: Session = Depends(get_db)) -> dict:
+async def threat_summary(threat_id: str, lang: str = Query("en", pattern="^(en|hi)$"), evidence_only: bool = False, db: Session = Depends(get_db)) -> dict:
     """Grounded threat summary: what it is, who is affected in our inventory, exploit signals, recommended action,
     sources. generated_by = llm | llm_cached | template; `validation` records the grounding check."""
     row = db.get(Threat, threat_id)
@@ -129,4 +129,4 @@ async def threat_summary(threat_id: str, lang: str = Query("en", pattern="^(en|h
         raise HTTPException(404, f"threat {threat_id} not found")
     facts = threat_facts(db, row)
     from ai.translate import localise
-    return await localise("threat_summary", facts, threat_template(facts), NARRATIVE, lang)
+    return await localise("threat_summary", facts, threat_template(facts), NARRATIVE, lang, evidence_only=evidence_only)

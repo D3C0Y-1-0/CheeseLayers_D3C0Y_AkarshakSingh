@@ -34,6 +34,28 @@ def verdict(current: dict, history: list[dict]) -> dict | None:
     """Evidence-linked rules; input is collected by the service, not supplied as a verdict."""
     if current["status"] == 429:
         return None  # Enforcement is evidence, not another successful attack.
+    families = sorted({h["family"] for h in current.get("signatures", []) if h.get("strong")})
+    if families and not (current["kind"] == "document" and traversal(current["name"])):
+        labels = {"sql_injection": "SQL injection attempt", "command_injection": "Command injection attempt",
+                  "path_traversal": "Path traversal attempt", "xss": "Cross-site scripting attempt"}
+        return dict(rule_id="LIVE-HTTP-SIGNATURE", signal={"path_traversal": "http_anomaly", "xss": "http_anomaly"}.get(families[0], families[0]),
+            label=" + ".join(labels.get(f, f) for f in families), attack_types=families,
+            reason=f"Strong web signature(s) in observed URL: {', '.join(h['signature'] for h in current['signatures'])}; HTTP {current['status']}; attempt only, execution not established",
+            evidence_ids=[current["event_id"]], confidence="medium")
+    if current["kind"] == "request":
+        if traversal(current.get("path", "")):
+            return dict(rule_id="LIVE-WEB-002", signal="http_anomaly", label="HTTP path traversal attempt",
+                reason=f"Parent-directory segment in observed URL path; HTTP {current['status']}; disclosure not established",
+                evidence_ids=[current["event_id"]], confidence="medium")
+        lower = current["at"] - timedelta(seconds=60)
+        missed = [r for r in history if r["peer_ip"] == current["peer_ip"] and r["status"] == 404
+                  and lower <= r["at"] <= current["at"] and r["event_id"] != current["event_id"]]
+        candidates = missed + ([current] if current["status"] == 404 else [])
+        if current["status"] == 404 and len({r.get("path", "") for r in candidates}) >= 8:
+            return dict(rule_id="LIVE-WEB-003", signal="http_anomaly", label="Multi-path discovery burst",
+                reason="At least 8 distinct missing URL paths from one TCP peer in 60s; possible scanning, not confirmed compromise",
+                evidence_ids=[r["event_id"] for r in candidates], confidence="medium")
+        return None
     if current["kind"] == "document" and traversal(current["name"]):
         return dict(rule_id="LIVE-WEB-001", signal="http_anomaly", label="Path traversal attempt",
                     reason=f"Parent-directory segment in document name; service returned HTTP {current['status']}",
@@ -62,4 +84,9 @@ def verdict(current: dict, history: list[dict]) -> dict | None:
             return dict(rule_id="LIVE-AUTH-003", signal="brute_force", label="Multi-account login failures",
                         reason="Failures against at least 5 usernames from one TCP peer in 60s; possible password spraying",
                         evidence_ids=[r["event_id"] for r in candidates], confidence="medium")
+        distributed = [r for r in prior if r.get("username") == current["username"]] + [current]
+        if len(distributed) >= 30 and len({r["peer_ip"] for r in distributed}) >= 3:
+            return dict(rule_id="LIVE-AUTH-004", signal="brute_force", label="Distributed login failure pattern",
+                reason="At least 30 failures for one username across at least 3 observed peers in 60s; possible distributed guessing, not proof of a botnet",
+                evidence_ids=[r["event_id"] for r in distributed], confidence="medium")
     return None

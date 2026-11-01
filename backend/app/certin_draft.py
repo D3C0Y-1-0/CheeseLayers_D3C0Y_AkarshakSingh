@@ -201,7 +201,7 @@ def markdown(d: dict) -> str:
 @router.post("/api/alerts/{alert_id}/certin-draft",
              responses={200: {"content": {"text/markdown": {}}}, 403: {}, 404: {}})
 async def certin_draft(alert_id: str, request: Request, format: str = Query("json", pattern="^(json|markdown)$"),
-                       lang: str = Query("en", pattern="^(en|hi)$"), db: Session = Depends(get_db)):
+                       lang: str = Query("en", pattern="^(en|hi)$"), evidence_only: bool = False, db: Session = Depends(get_db)):
     """Draft CERT-In incident report for analyst review. Never sent. `?format=markdown` downloads a .md file."""
     row = db.get(AlertRow, alert_id)
     if row is None:
@@ -218,7 +218,7 @@ async def certin_draft(alert_id: str, request: Request, format: str = Query("jso
         except PermissionError:
             raise HTTPException(403, "authenticated incident access required") from None
     facts = draft_facts(db, row)
-    d = await localise("certin_draft", facts, draft_template(facts), NARRATIVE, lang)
+    d = await localise("certin_draft", facts, draft_template(facts), NARRATIVE, lang, evidence_only=evidence_only)
     d["generated_at"] = datetime.now(timezone.utc).isoformat()
     d["markdown"] = markdown(d)
     if format == "markdown":

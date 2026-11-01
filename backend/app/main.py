@@ -13,7 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import func, select
 
 from . import (alerts, analytics, assets, attack_lab, campaigns, certin_draft, feeds,
-              ml_explain, frontend, insights, summaries, live_lab, apache_lab)
+              ml_explain, frontend, insights, summaries, live_lab, apache_lab, assistant)
 from .database import SessionLocal, init_db
 from .models import IOCRow, Threat
 from routes import investigation, shadow_watch
@@ -83,4 +83,5 @@ app.include_router(certin_draft.router)  # CERT-In report assistant
 app.include_router(ml_explain.router)  # SHAP explanations of the Isolation Forest
 app.include_router(live_lab.router)  # Opt-in local control plane; public lab listener is a separate app.
 app.include_router(apache_lab.router)  # Independent logs from the owned, isolated Apache lab only.
+app.include_router(assistant.router)
 app.include_router(frontend.router)  # Last: API routes must win over the SPA history fallback.

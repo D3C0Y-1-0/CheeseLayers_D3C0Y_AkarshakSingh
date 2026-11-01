@@ -1,5 +1,7 @@
 # Vectra
 
+**Live automatic attack labels, response policy, assistant and per-tab data provenance:** [docs/LIVE_ACTIVITY_AND_DATA.md](docs/LIVE_ACTIVITY_AND_DATA.md).
+
 The integrated React dashboard and FastAPI backend: cached public intelligence, simulated asset
 inventory, explainable scoring/correlation, Shadow Watch and grounded SOC investigation.
 
@@ -8,6 +10,13 @@ implemented, how each flow works, verification results and remaining work. Vectr
 prototype: public intelligence and historical attack traffic are real datasets; the organisation,
 target assets and replayed incidents are simulated. A stopped local server does not serve the UI
 until `scripts/start.ps1` is run.
+
+**Presentation and full website tour:** [docs/PITCH_AND_DEMO.md](docs/PITCH_AND_DEMO.md)
+provides the start-to-finish Indian district-service story, page-by-page judge script, live
+attack/response proof, prediction limits and shorter demo cut. The dashboard now includes
+visual metrics, score gauges, distributions and evidence timelines; detailed evidence stays
+expandable. The live Apache/custom-portal demonstration uses owned dummy targets; recorded
+website replay remains a separate mode. Refresh `/app` after rebuilding the frontend.
 
 ## Run the complete demo (PowerShell, repository root)
 

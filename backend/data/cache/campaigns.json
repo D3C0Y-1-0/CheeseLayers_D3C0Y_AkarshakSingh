@@ -1,6 +1,6 @@
 {
  "as_of": "2026-10-31T13:03:06+00:00",
- "fingerprint": "12532cca4188ce454da629afa6b3f0f27b110b56aebf820aa5b0ca634e24e1e1",
+ "fingerprint": "59fed1f59f0715cb8df457b12f08311e7ae06f1de12edcd5fb2930710af588ae",
  "config": {
   "window_days": 30,
   "tfidf_threshold": 0.6,
@@ -42,9 +42,9 @@
   }
  },
  "meta": {
-  "threats_in_scope": 3087,
+  "threats_in_scope": 3086,
   "links_by_type": {
-   "cve": 157,
+   "cve": 156,
    "product": 1311,
    "technique": 164,
    "text_similarity": 1775

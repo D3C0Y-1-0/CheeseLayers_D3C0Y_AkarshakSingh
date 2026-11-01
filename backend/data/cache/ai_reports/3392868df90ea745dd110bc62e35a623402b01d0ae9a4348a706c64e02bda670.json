@@ -1,0 +1,25 @@
+{
+ "key": "3392868df90ea745dd110bc62e35a623402b01d0ae9a4348a706c64e02bda670",
+ "kind": "list",
+ "lang": "en",
+ "model": "openai/gpt-oss-20b",
+ "created_at": "2026-11-01T08:29:11.872822+00:00",
+ "narrative": {
+  "summary": "CVE-2024-21762: Fortinet FortiOS Out-of-Bound Write Vulnerability. critical severity, CVSS 9.8. Source: nvd+kev.",
+  "affected_summary": "2 asset(s) run an affected version: PWR-FW-01 (nrldc-edge-fw01, 7.2.6, internet-facing), BNK-FW-01 (bank-dc-fw01, 7.0.13, internet-facing).",
+  "exploit_summary": "CVE-2024-21762 is listed in the CISA KEV catalog (added 2024-02-09) and is actively exploited in the wild. EPSS score is 0.84589 (percentile 0.99703). Public exploit code has been reported. One early-warning signal: new_kev.",
+  "why_it_matters": "Actively exploited elsewhere and present in our inventory: highest remediation priority.",
+  "recommended_actions": [
+   "Plan remediation for PWR-FW-01: upgrade to 7.2.7 or later, or apply the vendor mitigation",
+   "Plan remediation for BNK-FW-01: upgrade to 7.0.14 or later, or apply the vendor mitigation",
+   "Restrict internet exposure of affected interfaces until patched",
+   "Review the source references and the linked incident(s) before acting"
+  ]
+ },
+ "validation": {
+  "passed": true,
+  "checked_tokens": 10,
+  "rejected_tokens": [],
+  "note": "All 10 identifiers/versions/URLs found in supplied input; numeric and claim filters passed. These checks do not prove semantic accuracy; analyst review required."
+ }
+}

@@ -1,0 +1,43 @@
+.update-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 12px 0;
+  padding: 12px 16px;
+  border: 1px solid rgba(245, 181, 68, 0.4);
+  border-left-width: 4px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(245, 181, 68, 0.12), rgba(245, 181, 68, 0.03));
+  color: #e4edf7;
+}
+.update-notice > svg { color: #f5b544; margin-top: 2px; }
+.update-notice-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.update-notice-head b { color: #fff; }
+.update-notice-kinds { color: #f5b544; font-size: 12px; }
+.update-notice-sim {
+  font-size: 11px; color: #95abc4;
+  border: 1px solid #3d5069; border-radius: 999px; padding: 1px 8px;
+}
+.update-notice-sub { color: #c3d3e6; font-size: 13px; margin-top: 2px; }
+.update-notice-sub b { color: #fff; }
+.update-notice-steps { margin-top: 8px; }
+.update-notice-steps ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 5px; }
+.update-notice-steps li { display: flex; gap: 7px; align-items: flex-start; font-size: 13px; color: #dbe7f4; }
+.update-notice-steps li > svg { color: #5ad18b; margin-top: 3px; flex-shrink: 0; }
+.update-notice-steps .muted { color: #95abc4; font-size: 13px; }
+.update-notice-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.update-notice-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; font-weight: 600; color: #e4edf7;
+  background: #1b2b42; border: 1px solid #33485f; border-radius: 8px;
+  padding: 6px 11px; cursor: pointer; text-decoration: none;
+}
+.update-notice-btn:hover { background: #223a57; border-color: #4a6686; }
+.update-notice-btn.is-primary { background: linear-gradient(180deg, #1f7a6b, #15594e); border-color: #2a9e8a; }
+.update-notice-flip { transform: rotate(180deg); }
+.update-notice-x { background: transparent; border: 0; color: #95abc4; cursor: pointer; padding: 4px; line-height: 0; }
+.update-notice-x:hover { color: #fff; }
+@media (max-width: 720px) {
+  .update-notice { flex-wrap: wrap; }
+  .update-notice-actions { width: 100%; justify-content: flex-end; }
+}

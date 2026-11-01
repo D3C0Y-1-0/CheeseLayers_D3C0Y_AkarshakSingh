@@ -4,6 +4,7 @@ import { Activity, Boxes, ChartNoAxesCombined, Crosshair, Earth, LayoutDashboard
 import { Mark } from '../landing/Mark'
 import { useHealth } from './api'
 import { JourneyRail } from './Visuals'
+import UpdateNotice from './UpdateNotice'
 import './dashboard.css'
 import './visuals.css'
 
@@ -57,6 +58,7 @@ export default function Shell() {
         )}
         <main className="dash-main">
           <div className="dash-context"><span>Vectra / Analyst workspace / IST</span><span className={`connection-chip ${online ? '' : 'is-offline'}`}><i aria-hidden />{online ? health.data.demo_mode ? 'API connected · cache mode' : 'API connected' : health.mode === 'loading' ? 'Connecting' : 'Connection unavailable'}</span></div>
+          <UpdateNotice />
           {pathname !== '/app/soc' && <div className="dash-story"><JourneyRail active={stage} items={[
             { label: 'Intelligence', detail: 'What is known?', to: '/app/threats' },
             { label: 'Exposure', detail: 'What do we run?', to: '/app/assets' },

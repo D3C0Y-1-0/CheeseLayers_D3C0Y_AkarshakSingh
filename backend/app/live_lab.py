@@ -321,7 +321,7 @@ def console(request: Request):
     initialise()
     page = (Path(__file__).with_name("live_lab.html")).read_text(encoding="utf-8")
     return HTMLResponse(page.replace("__TOKEN__", TOKEN), headers={"Cache-Control": "no-store",
-        "Content-Security-Policy": "default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; frame-ancestors 'none'"})
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; frame-ancestors 'none'"})
 
 
 @router.get("/lab/activity.js")
